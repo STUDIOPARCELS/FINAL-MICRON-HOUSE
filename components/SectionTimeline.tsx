@@ -22,8 +22,8 @@ const timelineEvents = [
     desc: "Calendar booking opens. Executive onboarding.",
     detail: "Soft launch. Board members begin booking stays. Initial feedback loop established with executive assistants.",
     icon: <Calendar />,
-    gradient: "bg-micron-grey1",
-    hoverColor: "text-micron-eggplant-light"
+    gradient: "bg-micron-eggplant-light", // Changed to Light Blue
+    hoverColor: "text-micron-green"
   },
   { 
     id: 3, 
@@ -55,8 +55,9 @@ export const SectionTimeline: React.FC = () => {
       {/* Consistent Header */}
       <div className="mb-20 flex flex-col md:flex-row md:items-end gap-6 border-b border-zinc-200 pb-8">
         <div>
-           <span className="block text-xs font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2">05 / Roadmap</span>
-           <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-tight text-zinc-900 leading-none">Timeline</h2>
+           <span className="block text-xs font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2">06 / Roadmap</span>
+           {/* Changed to Dark Grey (Grey1) */}
+           <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-tight text-micron-grey1 leading-none">Timeline</h2>
         </div>
       </div>
 

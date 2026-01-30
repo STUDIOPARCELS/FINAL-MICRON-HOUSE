@@ -54,7 +54,7 @@ export const SectionServingTesla: React.FC = () => {
     <section id="serving-tesla" className="container mx-auto px-6 py-24 md:px-12 bg-white text-zinc-900">
       <div className="mb-20 flex flex-col md:flex-row md:items-end gap-6 border-b border-zinc-200 pb-8">
         <div>
-           <span className="block text-xs font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2">04 / PARTNERSHIP</span>
+           <span className="block text-xs font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2">05 / PARTNERSHIP</span>
            <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-tight text-zinc-900 leading-none">SERVING TESLA</h2>
         </div>
         <div className="md:ml-auto max-w-md pb-1">
