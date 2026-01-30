@@ -1,161 +1,212 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { MapPin } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { MapPin, ArrowRight } from 'lucide-react';
 
 export const Hero: React.FC = () => {
   const [stage, setStage] = useState(0);
 
-  // Split the text into individual words for the "fade in each word" effect
-  const fullText = "Without memory, there's no meaning. Without vision, there's no velocity. Without place, there's no perspective.";
-  const words = fullText.split(' ');
+  // 1. Philosophical Text Configuration
+  const sentence1 = "Without memory, there's no meaning.".split(" ");
+  const sentence2 = "Without vision, there's no velocity.".split(" ");
+  const sentence3 = "Without place, there's no perspective.".split(" ");
 
+  // 2. Paradigm Text Configuration
+  const paradigmPart1 = "A new paradigm.".split(" ");
+  const paradigmPart2 = "One address.".split(" ");
+
+  // Timing Constants
+  const WORD_DELAY = 0.35; 
+  const SENTENCE_PAUSE = WORD_DELAY * 3; 
+  
   useEffect(() => {
-    // Calculate timing based on word count
-    // 17 words * 0.4s stagger = ~6.8 seconds for full text to start appearing
-    const totalTextTime = words.length * 400 + 1000; 
+    // Calculate timing
+    const s1Duration = sentence1.length * WORD_DELAY;
+    const s2Duration = sentence2.length * WORD_DELAY;
+    const s3Duration = sentence3.length * WORD_DELAY;
+    
+    // Total time for the intro text to play out
+    const totalIntroTime = (s1Duration + SENTENCE_PAUSE + s2Duration + SENTENCE_PAUSE + s3Duration) * 1000 + 1500;
 
     const sequence = async () => {
-      await new Promise(r => setTimeout(r, 500));
-      setStage(1); // Words start fading in
+      await new Promise(r => setTimeout(r, 800));
+      setStage(1); // Start Intro Text (Centered)
       
-      await new Promise(r => setTimeout(r, totalTextTime)); 
-      setStage(2); // Map Box appears (Moved up in order)
+      await new Promise(r => setTimeout(r, totalIntroTime)); 
+      setStage(2); // FADE OUT Intro Text
       
-      await new Promise(r => setTimeout(r, 1500));
-      setStage(3); // Paradigm text appears (Moved down)
+      await new Promise(r => setTimeout(r, 1000)); // Void
+      setStage(3); // Title Reveal (Left Aligned)
     };
     sequence();
-  }, [words.length]);
+  }, []);
 
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.4, // Slower stagger (0.4s per word)
-        delayChildren: 0.2
-      }
-    }
-  };
-
-  const wordVariants = {
-    hidden: { opacity: 0, y: 10, filter: 'blur(10px)' },
-    visible: { 
-        opacity: 1, 
-        y: 0, 
-        filter: 'blur(0px)',
-        transition: { 
-            duration: 1.5, // Twice as slow fade (was ~0.8)
-            ease: "easeOut" 
-        }
-    }
+  const getWordDelay = (sentenceIndex: number, wordIndex: number) => {
+    let delay = 0;
+    if (sentenceIndex > 0) delay += (sentence1.length * WORD_DELAY) + SENTENCE_PAUSE;
+    if (sentenceIndex > 1) delay += (sentence2.length * WORD_DELAY) + SENTENCE_PAUSE;
+    delay += wordIndex * WORD_DELAY;
+    return delay;
   };
 
   return (
-    <section className="relative min-h-screen w-full bg-white px-4 md:px-8 pb-8 pt-28 flex flex-col items-center justify-center box-border overflow-hidden">
+    <section className="relative h-[95vh] w-full bg-white px-2 md:px-6 pt-24 pb-6 flex flex-col items-center justify-center box-border overflow-hidden">
       
-      {/* Background Container */}
-      <div className="relative w-full flex-1 overflow-hidden rounded-[2.5rem] bg-zinc-900 shadow-2xl ring-1 ring-zinc-900/5 min-h-[800px] flex flex-col">
+      {/* Main Container - The "Viewport" */}
+      <div className="relative w-full h-full overflow-hidden rounded-[2rem] bg-zinc-950 shadow-2xl flex flex-col relative group">
         
-        {/* Cinematic Background - Cosmic */}
-        <div className="absolute inset-0 z-0">
+        {/* Cinematic Background */}
+        <div className="absolute inset-0 z-0 select-none">
            <div className="relative h-full w-full animate-slow-zoom">
               <img 
                src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop" 
                alt="Cosmic View"
-               className="h-full w-full object-cover opacity-60"
+               className="h-full w-full object-cover opacity-50"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/70" />
+              {/* Vignette Overlay: Heavier on the left to make text readable */}
+              <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
            </div>
         </div>
 
-        {/* Content Flex Container */}
-        <div className="relative z-10 w-full h-full flex flex-col justify-center items-center flex-1 py-16">
+        {/* Content Layer */}
+        <div className="relative z-10 w-full h-full flex flex-col">
             
-            {/* 1. Word-by-Word Text Animation */}
-            {/* "reduce thickness by 50%" -> font-semibold (600) instead of extrabold (800/900) */}
-            <motion.div 
-                initial="hidden"
-                animate={stage >= 1 ? "visible" : "hidden"}
-                variants={containerVariants}
-                className="mb-20 text-center max-w-6xl px-6 flex flex-wrap justify-center gap-x-3 gap-y-2"
-            >
-               {words.map((word, i) => (
-                 <motion.span 
-                    key={i} 
-                    variants={wordVariants} 
-                    className="inline-block text-xl md:text-3xl font-sans font-semibold tracking-tighter text-white drop-shadow-lg"
-                 >
-                    {word}
-                 </motion.span>
-               ))}
-            </motion.div>
+            {/* SCENE 1: The Philosophy (CENTERED) */}
+            {/* Fades OUT after playing to clear stage for Scene 2 */}
+            <AnimatePresence>
+            {stage < 2 && (
+                <motion.div 
+                    exit={{ opacity: 0, filter: 'blur(10px)', scale: 1.1 }}
+                    transition={{ duration: 1 }}
+                    className="absolute inset-0 flex items-center justify-center px-8 md:px-20"
+                >
+                    <div className="text-center max-w-6xl flex flex-wrap justify-center gap-x-2 gap-y-3">
+                    {sentence1.map((word, i) => (
+                        <motion.span 
+                            key={`s1-${i}`}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 1.2, delay: getWordDelay(0, i), ease: "linear" }}
+                            // Changed Font to font-body (Inter) and Medium weight for better legibility
+                            className="inline-block text-2xl md:text-4xl lg:text-5xl font-body font-normal tracking-wide text-white/90"
+                        >
+                            {word}
+                        </motion.span>
+                    ))}
+                    
+                    {sentence2.map((word, i) => (
+                        <motion.span 
+                            key={`s2-${i}`}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 1.2, delay: getWordDelay(1, i), ease: "linear" }}
+                            className="inline-block text-2xl md:text-4xl lg:text-5xl font-body font-normal tracking-wide text-white/90"
+                        >
+                            {word}
+                        </motion.span>
+                    ))}
 
-            {/* 2. The Glass Map Box (Moved Up - Under Bento/Text) */}
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              animate={stage >= 2 ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 1.2, ease: "easeOut" }}
-              className="relative w-full max-w-sm overflow-hidden rounded-2xl glass-panel p-4 mx-auto mb-16"
-            >
-              <div className="flex flex-col gap-4">
-                <div className="flex items-center gap-3 text-white justify-center">
-                   <MapPin size={20} className="text-micron-eggplant" />
-                   <div className="text-left">
-                     <p className="font-sans text-base font-medium tracking-wide text-white">
-                       1020 E Warm Springs Ave
-                     </p>
-                     <p className="font-sans text-[10px] font-bold text-zinc-300 uppercase tracking-[0.2em]">
-                       Boise, ID 83712
-                     </p>
-                   </div>
+                    {sentence3.map((word, i) => (
+                        <motion.span 
+                            key={`s3-${i}`}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 1.2, delay: getWordDelay(2, i), ease: "linear" }}
+                            className="inline-block text-2xl md:text-4xl lg:text-5xl font-body font-normal tracking-wide text-white/90"
+                        >
+                            {word}
+                        </motion.span>
+                    ))}
+                    </div>
+                </motion.div>
+            )}
+            </AnimatePresence>
+
+            {/* SCENE 2: The Reveal (LEFT ALIGNED) */}
+            {/* This container aligns items to the start (left) and centers them vertically */}
+            {stage >= 3 && (
+                <div className="absolute inset-0 flex flex-col justify-center px-8 md:px-20 lg:px-28 pb-20">
+                    <div className="flex flex-col items-start gap-4 max-w-4xl">
+                        
+                        {/* Title - Significantly Reduced Size */}
+                        <h1 className="flex flex-wrap items-start justify-start gap-x-4 md:gap-x-5 leading-none">
+                            {paradigmPart1.map((word, i) => (
+                                <motion.span
+                                    key={`p1-${i}`}
+                                    initial={{ opacity: 0, x: -20 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ duration: 1, delay: i * 0.2, ease: "easeOut" }}
+                                    // Reduced from 9xl to 7xl/5xl
+                                    className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white uppercase"
+                                >
+                                    {word}
+                                </motion.span>
+                            ))}
+                        </h1>
+                        
+                        {/* Subtitle - Left Aligned */}
+                        <div className="flex flex-wrap items-start justify-start gap-x-3 mt-2 pl-1">
+                            {paradigmPart2.map((word, i) => (
+                                <motion.span
+                                    key={`p2-${i}`}
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ duration: 1.5, delay: 1.5 + (i * 0.3), ease: "linear" }}
+                                    className="text-lg md:text-2xl font-light tracking-[0.2em] text-micron-eggplant-light uppercase"
+                                >
+                                    {word}
+                                </motion.span>
+                            ))}
+                        </div>
+
+                    </div>
                 </div>
+            )}
 
-                {/* Map Tile */}
-                <div className="h-32 w-full rounded-xl overflow-hidden border border-white/10 relative group hover:border-white/30 transition-colors duration-500">
-                  <div className="absolute top-2 left-2 z-10 bg-black/60 px-2 py-0.5 rounded text-[10px] font-bold uppercase text-white backdrop-blur-sm">Location</div>
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2889.234!2d-116.1898!3d43.6088!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54aef8d1b0b3b8e7%3A0x0!2s1020%20E%20Warm%20Springs%20Ave%2C%20Boise%2C%20ID%2083712!5e0!3m2!1sen!2sus!4v1706000000000"
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0, filter: 'grayscale(100%) invert(92%) contrast(83%) brightness(85%)' }}
-                    allowFullScreen={true}
-                    loading="lazy"
-                    title="Map"
-                    className="h-full w-full opacity-80 group-hover:opacity-100 transition-opacity duration-300"
-                  />
-                </div>
-              </div>
-            </motion.div>
-
-            {/* 3. Paradigm Text (Moved Down) */}
-            {/* Reduced font size by ~20%: 4xl/6xl -> 3xl/5xl */}
+            {/* Floating Map HUD (Left Aligned) */}
             <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={stage >= 3 ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 1.5 }}
-              className="text-center mb-12"
+              initial={{ opacity: 0, y: 50 }}
+              animate={stage >= 3 ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 1.5, delay: 2.5, ease: "easeOut" }}
+              className="absolute bottom-10 left-8 md:left-20 lg:left-28 z-20"
             >
-               <h2 className="text-3xl md:text-5xl font-bold font-micron tracking-tight leading-none text-zinc-100 drop-shadow-2xl">
-                 a new paradigm. one address.
-               </h2>
+                <div className="group relative bg-black/40 backdrop-blur-xl border border-white/10 rounded-full px-2 py-2 flex items-center gap-4 hover:bg-black/60 transition-all duration-500 hover:border-white/30 cursor-pointer overflow-hidden">
+                    
+                    {/* Icon Circle - Using New Blue Color via eggplant-light class */}
+                    <div className="h-10 w-10 md:h-12 md:w-12 rounded-full bg-micron-eggplant-light flex items-center justify-center text-white shadow-lg shadow-micron-eggplant-light/50 group-hover:scale-110 transition-transform">
+                        <MapPin size={20} className="text-black/80" /> 
+                    </div>
+
+                    {/* Text Info */}
+                    <div className="flex flex-col pr-4 md:pr-8">
+                        <span className="text-xs md:text-sm font-bold text-white tracking-wide uppercase">1020 E Warm Springs Ave</span>
+                        <span className="text-[10px] font-medium text-zinc-400 uppercase tracking-widest">Boise, ID 83712</span>
+                    </div>
+
+                    {/* Hidden Map Preview (Expands on Hover) */}
+                    <div className="w-0 overflow-hidden group-hover:w-32 md:group-hover:w-48 transition-all duration-500 ease-in-out h-12 rounded-r-full relative opacity-50 group-hover:opacity-100">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2889.234!2d-116.1898!3d43.6088!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54aef8d1b0b3b8e7%3A0x0!2s1020%20E%20Warm%20Springs%20Ave%2C%20Boise%2C%20ID%2083712!5e0!3m2!1sen!2sus!4v1706000000000"
+                            width="100%"
+                            height="100%"
+                            style={{ border: 0, filter: 'grayscale(100%) invert(92%) contrast(83%) brightness(85%)' }}
+                            allowFullScreen={false}
+                            loading="lazy"
+                            title="Map"
+                            className="absolute inset-0 w-full h-full"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-l from-transparent to-black/50 pointer-events-none" />
+                    </div>
+                    
+                    {/* Action Arrow */}
+                    <div className="pr-4 text-white/30 group-hover:text-white transition-colors">
+                        <ArrowRight size={16} />
+                    </div>
+
+                </div>
             </motion.div>
 
         </div>
         
-        {/* Scroll Indicator */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={stage >= 3 ? { opacity: 1 } : {}}
-          transition={{ duration: 1 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/30 z-20"
-        >
-          <div className="flex flex-col items-center gap-2">
-            <span className="text-[10px] uppercase tracking-widest font-bold">Scroll</span>
-            <div className="h-10 w-[1px] bg-gradient-to-b from-transparent via-white/50 to-transparent" />
-          </div>
-        </motion.div>
       </div>
     </section>
   );

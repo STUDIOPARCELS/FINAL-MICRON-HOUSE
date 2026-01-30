@@ -83,8 +83,9 @@ export const SectionPrototype: React.FC = () => {
            <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-tight text-zinc-900 leading-none">A NEW DAY</h2>
         </div>
         <div className="md:ml-auto max-w-lg pb-1">
+          {/* Updated Text Copy */}
           <p className="text-zinc-500 font-body text-sm leading-relaxed">
-            From the stars to Warm Springs Avenue. Bringing together history, energy, and culture.
+            Micron's History, Tesla's Future, Boise's Moment. Converging together at one address to create a new paradigm.
           </p>
         </div>
       </div>
