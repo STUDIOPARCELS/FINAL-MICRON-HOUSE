@@ -12,7 +12,8 @@ const timelineEvents = [
     desc: "Contract signing and transition planning.",
     detail: "Immediate activation. Website launch. Handover of keys. The property shifts from private residence to corporate asset status.",
     icon: <PenTool />,
-    gradient: "bg-zinc-950"
+    gradient: "bg-micron-black",
+    hoverColor: "text-micron-green"
   },
   { 
     id: 2, 
@@ -21,7 +22,8 @@ const timelineEvents = [
     desc: "Calendar booking opens. Executive onboarding.",
     detail: "Soft launch. Board members begin booking stays. Initial feedback loop established with executive assistants.",
     icon: <Calendar />,
-    gradient: "bg-zinc-900"
+    gradient: "bg-micron-grey1",
+    hoverColor: "text-micron-eggplant-light"
   },
   { 
     id: 3, 
@@ -30,7 +32,8 @@ const timelineEvents = [
     desc: "Sauna, Cold Plunge, and WBV integration.",
     detail: "Installation of world-class recovery modalities. Geothermal heating loop optimized for the new amenities.",
     icon: <Activity />,
-    gradient: "bg-zinc-800"
+    gradient: "bg-micron-green", // Green (1 per section)
+    hoverColor: "text-micron-eggplant"
   },
   { 
     id: 4, 
@@ -39,7 +42,8 @@ const timelineEvents = [
     desc: "Tesla Optimus & Cybercab deployment.",
     detail: "The house becomes a living lab. Cybercab handles all transport. Optimus manages housekeeping and security.",
     icon: <Zap />,
-    gradient: "bg-gradient-to-br from-indigo-950 to-purple-950" // Pop: Eggplant
+    gradient: "bg-micron-eggplant", // Eggplant (1 per section)
+    hoverColor: "text-micron-green"
   }
 ];
 
@@ -61,7 +65,7 @@ export const SectionTimeline: React.FC = () => {
           <BentoCard 
             key={item.id} 
             delay={i * 0.1}
-            className={`flex flex-col justify-between min-h-[250px] group border border-white/5`}
+            className={`flex flex-col justify-between min-h-[250px] border border-white/5`}
             gradient={item.gradient}
             onClick={() => setModalData({
                 title: item.title,
@@ -71,17 +75,17 @@ export const SectionTimeline: React.FC = () => {
             })}
           >
              <div className="flex justify-between items-start">
-                <div className="inline-block px-3 py-1 rounded-full bg-white/10 text-[10px] font-bold uppercase text-white backdrop-blur-md border border-white/5">
+                <div className="inline-block px-3 py-1 rounded-full bg-white/10 text-[10px] font-bold uppercase text-white backdrop-blur-md border border-white/5 group-hover:bg-white/20 transition-colors">
                     {item.date}
                 </div>
-                <div className="text-zinc-500 group-hover:text-white transition-colors">
+                <div className="text-zinc-500 group-hover:text-white transition-colors duration-300">
                     {item.icon}
                 </div>
              </div>
 
              <div className="mt-8">
-                 <h3 className="text-2xl font-bold text-white mb-2">{item.title}</h3>
-                 <p className="text-sm text-zinc-400 leading-relaxed font-body">
+                 <h3 className={`text-2xl font-bold text-white mb-2 group-hover:${item.hoverColor} transition-colors duration-300`}>{item.title}</h3>
+                 <p className="text-sm text-zinc-400 leading-relaxed font-body group-hover:text-zinc-200 transition-colors duration-300">
                     {item.desc}
                  </p>
              </div>

@@ -5,23 +5,58 @@ import { MapPin } from 'lucide-react';
 export const Hero: React.FC = () => {
   const [stage, setStage] = useState(0);
 
+  // Split the text into individual words for the "fade in each word" effect
+  const fullText = "Without memory, there's no meaning. Without vision, there's no velocity. Without place, there's no perspective.";
+  const words = fullText.split(' ');
+
   useEffect(() => {
+    // Calculate timing based on word count
+    // 17 words * 0.4s stagger = ~6.8 seconds for full text to start appearing
+    const totalTextTime = words.length * 400 + 1000; 
+
     const sequence = async () => {
       await new Promise(r => setTimeout(r, 500));
-      setStage(1); // Timeline text
+      setStage(1); // Words start fading in
+      
+      await new Promise(r => setTimeout(r, totalTextTime)); 
+      setStage(2); // Map Box appears (Moved up in order)
+      
       await new Promise(r => setTimeout(r, 1500));
-      setStage(2); // Paradigm text
-      await new Promise(r => setTimeout(r, 800));
-      setStage(3); // Map box
+      setStage(3); // Paradigm text appears (Moved down)
     };
     sequence();
-  }, []);
+  }, [words.length]);
+
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.4, // Slower stagger (0.4s per word)
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const wordVariants = {
+    hidden: { opacity: 0, y: 10, filter: 'blur(10px)' },
+    visible: { 
+        opacity: 1, 
+        y: 0, 
+        filter: 'blur(0px)',
+        transition: { 
+            duration: 1.5, // Twice as slow fade (was ~0.8)
+            ease: "easeOut" 
+        }
+    }
+  };
 
   return (
     <section className="relative min-h-screen w-full bg-white px-4 md:px-8 pb-8 pt-28 flex flex-col items-center justify-center box-border overflow-hidden">
       
-      {/* Background Container - Dark Cosmic to frame the content */}
-      <div className="relative w-full flex-1 overflow-hidden rounded-[2.5rem] bg-zinc-900 shadow-2xl ring-1 ring-zinc-900/5 min-h-[750px] flex flex-col">
+      {/* Background Container */}
+      <div className="relative w-full flex-1 overflow-hidden rounded-[2.5rem] bg-zinc-900 shadow-2xl ring-1 ring-zinc-900/5 min-h-[800px] flex flex-col">
         
         {/* Cinematic Background - Cosmic */}
         <div className="absolute inset-0 z-0">
@@ -31,45 +66,38 @@ export const Hero: React.FC = () => {
                alt="Cosmic View"
                className="h-full w-full object-cover opacity-60"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/60" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/70" />
            </div>
         </div>
 
         {/* Content Flex Container */}
-        <div className="relative z-10 w-full h-full flex flex-col justify-center items-center flex-1 py-12">
+        <div className="relative z-10 w-full h-full flex flex-col justify-center items-center flex-1 py-16">
             
-            {/* 1. The Timeline Text - LARGE AND BOLD */}
+            {/* 1. Word-by-Word Text Animation */}
+            {/* "reduce thickness by 50%" -> font-semibold (600) instead of extrabold (800/900) */}
             <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={stage >= 1 ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 1 }}
-                className="mb-12 text-center"
+                initial="hidden"
+                animate={stage >= 1 ? "visible" : "hidden"}
+                variants={containerVariants}
+                className="mb-20 text-center max-w-6xl px-6 flex flex-wrap justify-center gap-x-3 gap-y-2"
             >
-               <div className="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-16">
-                   <span className="text-2xl md:text-4xl font-micron font-bold lowercase text-white tracking-tight drop-shadow-lg">micron's history.</span>
-                   <span className="text-2xl md:text-4xl font-micron font-bold lowercase text-white tracking-tight drop-shadow-lg">tesla's future.</span>
-                   <span className="text-2xl md:text-4xl font-micron font-bold lowercase text-white tracking-tight drop-shadow-lg">boise's moment.</span>
-               </div>
+               {words.map((word, i) => (
+                 <motion.span 
+                    key={i} 
+                    variants={wordVariants} 
+                    className="inline-block text-xl md:text-3xl font-sans font-semibold tracking-tighter text-white drop-shadow-lg"
+                 >
+                    {word}
+                 </motion.span>
+               ))}
             </motion.div>
 
-            {/* 2. New Paradigm Text - REVERTED TO ORIGINAL PHRASING & CENTERED */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={stage >= 2 ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.8 }}
-              className="text-center mb-16"
-            >
-               <h2 className="text-4xl md:text-6xl font-bold font-micron tracking-tight leading-none text-zinc-100 drop-shadow-2xl">
-                 a new paradigm. one address.
-               </h2>
-            </motion.div>
-
-            {/* 3. The Glass Map Box */}
+            {/* 2. The Glass Map Box (Moved Up - Under Bento/Text) */}
             <motion.div 
               initial={{ opacity: 0, y: 30 }}
-              animate={stage >= 3 ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 1, ease: "easeOut" }}
-              className="relative w-full max-w-sm overflow-hidden rounded-2xl glass-panel p-4 mx-auto"
+              animate={stage >= 2 ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 1.2, ease: "easeOut" }}
+              className="relative w-full max-w-sm overflow-hidden rounded-2xl glass-panel p-4 mx-auto mb-16"
             >
               <div className="flex flex-col gap-4">
                 <div className="flex items-center gap-3 text-white justify-center">
@@ -100,6 +128,20 @@ export const Hero: React.FC = () => {
                 </div>
               </div>
             </motion.div>
+
+            {/* 3. Paradigm Text (Moved Down) */}
+            {/* Reduced font size by ~20%: 4xl/6xl -> 3xl/5xl */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={stage >= 3 ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 1.5 }}
+              className="text-center mb-12"
+            >
+               <h2 className="text-3xl md:text-5xl font-bold font-micron tracking-tight leading-none text-zinc-100 drop-shadow-2xl">
+                 a new paradigm. one address.
+               </h2>
+            </motion.div>
+
         </div>
         
         {/* Scroll Indicator */}

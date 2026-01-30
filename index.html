@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Micron House — Boise's First Innovation Residence</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script>
       tailwind.config = {
         theme: {
@@ -17,10 +17,16 @@
             },
             colors: {
               micron: {
-                blue: '#005CB9', 
-                green: '#15803d', // Natural green
-                eggplant: '#2E0249', // Darker, richer Eggplant/Silicon
-                purple: '#4c1d95',
+                green: '#008f25',      // Provided Green
+                eggplant: {
+                  DEFAULT: '#2c0f38',  // Deep Eggplant
+                  light: '#5f127d',    // Lighter Purple/Eggplant
+                },
+                // Specific Grays from palette
+                black: '#0e0a0f',      // Almost Black
+                grey1: '#32393f',      // Dark Slate
+                grey2: '#585c67',      // Medium Slate
+                grey3: '#878d9f',      // Light Slate
               }
             },
             animation: {
@@ -37,6 +43,9 @@
       }
     </script>
     <style>
+      html {
+        scroll-padding-top: 100px; /* Ensures content doesn't get hidden behind fixed header */
+      }
       ::-webkit-scrollbar {
         width: 8px;
       }

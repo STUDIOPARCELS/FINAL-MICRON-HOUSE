@@ -29,8 +29,9 @@ export const BentoCard: React.FC<CardProps> = ({
         shadow-2xl
         p-6 
         flex flex-col
-        transition-all duration-300
-        ${hoverEffect && onClick ? 'cursor-pointer hover:border-white/20 hover:scale-[1.01]' : ''}
+        transition-all duration-500 ease-out
+        group
+        ${hoverEffect && onClick ? 'cursor-pointer hover:border-white/20 hover:scale-[1.02] hover:shadow-xl hover:shadow-micron-eggplant/20' : ''}
         ${className}
       `}
     >
