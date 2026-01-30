@@ -2,39 +2,80 @@ import React, { useState } from 'react';
 import { BentoCard } from './BentoCard';
 import { Modal } from './Modal';
 import { ModalContent } from '../types';
-import { Wine, Car, Globe2, Sparkles, Utensils, Flame, Leaf, Music, Activity, Heart } from 'lucide-react';
+import { Wine, Car, BedDouble, Shield, Music, Mic, Armchair, Heart, Trophy, Snowflake, ArrowUpRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 
-// Reordered for contrast: Alternating Dark / Light / Color
 const useCases = [
-  // 1. Black
-  { id: 1, title: "Vintner Dinners", text: "Snake River Valley wines. 6 executives. 1906 dining room.", icon: <Wine />, gradient: "bg-micron-black", hoverClass: "group-hover:text-micron-green" }, 
-  
-  // 2. Light Blue (Contrast against Black)
-  { id: 3, title: "Executive Relocations", text: "Munich to Boise. 2 weeks in a real neighborhood.", icon: <Globe2 />, gradient: "bg-micron-eggplant-light", hoverClass: "group-hover:text-micron-green" },
-  
-  // 3. Deep Eggplant (Dark)
-  { id: 10, title: "Recovery Protocols", text: "Whole body vibration. Geothermal warmth. Quiet.", icon: <Activity />, gradient: "bg-micron-eggplant", hoverClass: "group-hover:text-micron-green" },
-  
-  // 4. Green (Bright)
-  { id: 2, title: "Autonomous Arrivals", text: "Board member lands at BOI. Cybercab waiting. Optimus opens door.", icon: <Car />, gradient: "bg-micron-green", hoverClass: "group-hover:text-micron-eggplant" },
-  
-  // 5. Grey (Dark/Neutral)
-  { id: 4, title: "Wellness Mornings", text: "Deck. Hot tub. Sauna. Contrast therapy.", icon: <Sparkles />, gradient: "bg-micron-grey1", hoverClass: "group-hover:text-micron-green" },
-  
-  // 6. Light Blue (Bright)
-  { id: 7, title: "Fireside Chats", text: "Governor & Executives. Completely private. Hiding in plain sight.", icon: <Flame />, gradient: "bg-micron-eggplant-light", hoverClass: "group-hover:text-micron-green" },
-  
-  // 7. Black (Dark)
-  { id: 8, title: "Harvest Dinners", text: "Fall. Produce from property's fruit trees & grapevine.", icon: <Leaf />, gradient: "bg-micron-black", hoverClass: "group-hover:text-micron-green" },
-  
-  // 8. Green (Bright)
-  { id: 9, title: "Pre-Event Cocktails", text: "Pre-Treefort cocktails. Post-Philharmonic gathering.", icon: <Music />, gradient: "bg-micron-green", hoverClass: "group-hover:text-micron-eggplant" },
-  
-  // 9. Deep Eggplant (Dark)
-  { id: 5, title: "Medical Support Stays", text: "Family with child at hospital. <1 mile away. A home.", icon: <Heart />, gradient: "bg-micron-eggplant", hoverClass: "group-hover:text-micron-green" },
-  
-  // 10. Grey (Neutral)
-  { id: 6, title: "Tailgate Brunches", text: "Before BSU football. Local diner food. Boise beer.", icon: <Utensils />, gradient: "bg-micron-grey1", hoverClass: "group-hover:text-micron-green" },
+  { 
+    id: 1, 
+    title: "CHEF'S TABLE", 
+    text: "A James Beard-recognized chef prepares dinner in the 1906 kitchen. Snake River Valley wines selected by the owner's sommelier network. Six guests. Produce from the property's fruit trees and grapevine when in season.", 
+    icon: <Wine />, 
+    gradient: "bg-micron-black",
+  }, 
+  { 
+    id: 2, 
+    title: "AUTONOMOUS ARRIVAL", 
+    text: "Board member lands at BOI. Cybercab waiting at the curb. Autonomous drive through downtown Boise to Warm Springs Avenue. Optimus opens the front door. Luggage handled. Guest settles into a geothermal-heated home.", 
+    icon: <Car />, 
+    gradient: "bg-micron-green",
+  },
+  { 
+    id: 3, 
+    title: "ALPINE DAY", 
+    text: "Heli-ski Idaho backcountry. Return to the house for geothermal hot tub, dry sauna, contrast therapy. Recovery meal prepared by a local chef. The mountain and the restoration in the same day.", 
+    icon: <Snowflake />, 
+    gradient: "bg-micron-eggplant-light",
+  },
+  { 
+    id: 4, 
+    title: "SOFT LANDING", 
+    text: "Executive relocating from Munich, Seoul, or Tel Aviv. Family arrives before permanent housing is ready. Two weeks in a real Boise neighborhood. Foothills visible from the deck. River walkable.", 
+    icon: <BedDouble />, 
+    gradient: "bg-zinc-600",
+  },
+  { 
+    id: 5, 
+    title: "CONFIDENTIAL COUNSEL", 
+    text: "Governor and executives. Investors and founders. Board members and advisors. Fireside conversation. Same neighbors for 25 years. Complete privacy.", 
+    icon: <Shield />, 
+    gradient: "bg-micron-eggplant",
+  },
+  { 
+    id: 6, 
+    title: "PRE-PERFORMANCE", 
+    text: "Cocktails before the Boise Philharmonic. Drinks before Ballet Idaho. Gathering before Treefort. The house as staging point for Boise's performing arts calendar.", 
+    icon: <Music />, 
+    gradient: "bg-micron-black",
+  },
+  { 
+    id: 7, 
+    title: "VISITING VOICES", 
+    text: "The Boise Art Museum curator discusses a current exhibition. A James Beard chef demonstrates technique. A state official briefs on policy. Intimate lectures and conversations in the living room. Six to eight guests. The expertise comes to the house.", 
+    icon: <Mic />, 
+    gradient: "bg-zinc-600",
+  },
+  { 
+    id: 8, 
+    title: "STAYCATION", 
+    text: "Total restoration without leaving the property. Optimus handles the housekeeping. Cybercab is your private driver. A butler and chauffeur service, redefined by robotics. You are taken care of.", 
+    icon: <Armchair />, 
+    gradient: "bg-micron-green",
+  },
+  { 
+    id: 9, 
+    title: "COMPASSIONATE STAY", 
+    text: "Family with a child receiving treatment at St. Luke's Medical Center, less than one mile away. A home. Kitchen access. Quiet evenings.", 
+    icon: <Heart />, 
+    gradient: "bg-micron-eggplant-light",
+  },
+  { 
+    id: 10, 
+    title: "GAME DAY", 
+    text: "BSU football Saturday. Tailgate brunch at the house. Biscuits from a celebrated local diner. Craft beer from a Boise brewery. Walk to the stadium. Return for evening gathering.", 
+    icon: <Trophy />, 
+    gradient: "bg-micron-grey2",
+  },
 ];
 
 export const SectionUseCases: React.FC = () => {
@@ -53,36 +94,79 @@ export const SectionUseCases: React.FC = () => {
 
   return (
     <section id="use-cases" className="container mx-auto px-6 py-24 md:px-12 bg-white text-zinc-900">
-      <div className="mb-16 flex flex-col md:flex-row md:items-end gap-6 border-b border-zinc-200 pb-8">
-        <div>
+      {/* Header - Animated Reveal */}
+      <motion.div 
+         initial={{ opacity: 0, y: 30 }}
+         whileInView={{ opacity: 1, y: 0 }}
+         viewport={{ once: true, margin: "-100px" }}
+         transition={{ duration: 0.8, ease: "easeOut" }}
+         className="mb-16 flex flex-col md:flex-row md:items-end gap-12 border-b border-zinc-200 pb-10"
+      >
+        <div className="flex-shrink-0">
            <span className="block text-xs font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2">03 / USE CASE</span>
-           {/* Changed to Blue (Light Eggplant) */}
            <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-tight text-micron-eggplant-light leading-none">EXPERIENCES</h2>
         </div>
-        <div className="md:ml-auto max-w-lg">
-             <p className="text-zinc-500 text-sm">Intimate. Authentic. Inaccessible by design.</p>
+        
+        {/* Added Lorem Ipsum Description */}
+        <div className="md:ml-auto max-w-2xl pb-1">
+             <div className="pl-6 border-l-4 border-micron-eggplant-light/20 hover:border-micron-eggplant-light transition-colors duration-500">
+                <p className="text-lg font-light text-zinc-600 leading-snug font-body">
+                   <span className="font-bold text-micron-eggplant-light block mb-2 text-xl md:text-2xl uppercase tracking-tighter font-sans">
+                       CURATED MOMENTS.
+                   </span>
+                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+                </p>
+             </div>
         </div>
+      </motion.div>
+
+      {/* 
+        Grid / Horizontal Scroll Strategy:
+        Mobile: Horizontal Scroll to avoid excessive vertical length (user request).
+        Desktop: 5-column Grid.
+      */}
+      <div className="flex items-center gap-2 mb-4 md:hidden">
+          <span className="text-xs text-zinc-400 uppercase tracking-wide">Swipe to explore →</span>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
+      <div className="
+        flex overflow-x-auto pb-6 -mx-6 px-6 gap-6 snap-x snap-mandatory 
+        md:grid md:grid-cols-5 md:gap-6 md:pb-0 md:mx-0 md:px-0 md:overflow-visible
+        scrollbar-hide
+      ">
         {useCases.map((uc, i) => (
           <BentoCard 
             key={uc.id} 
-            className={`flex flex-col justify-between min-h-[220px]`}
+            className="
+                min-w-[280px] md:min-w-0 snap-center
+                flex flex-col justify-between min-h-[340px] group border-none
+            "
             gradient={uc.gradient} 
+            textColor="text-white"
+            borderColor="border-transparent"
             delay={i * 0.05}
             onClick={() => openModal(uc)}
           >
-            <div className="flex justify-between items-start mb-4">
-                <div className="text-white/80 group-hover:text-white group-hover:bg-white/20 transition-all duration-300 p-2 bg-white/10 rounded-lg border border-white/5 backdrop-blur-sm">
-                   {uc.icon}
+            <div className="mb-6">
+                <div className="flex justify-between items-start">
+                    {/* Icon container - clean, white, no fill, 50% smaller (18px) */}
+                    <div className="flex items-center justify-center mb-6 transform group-hover:scale-110 transition-transform duration-300">
+                       {React.cloneElement(uc.icon as React.ReactElement<any>, { size: 18, strokeWidth: 1.5, className: "text-white" })}
+                    </div>
+                    {/* Hover indicator */}
+                    <div className="opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0">
+                        <ArrowUpRight className="text-white/70" size={20} />
+                    </div>
                 </div>
+                
+                <h3 className="font-bold text-xl text-white mb-3 leading-tight uppercase tracking-tight">
+                  {uc.title}
+                </h3>
             </div>
             
-            <div>
-               <h3 className={`font-bold text-sm text-white mb-2 leading-tight ${uc.hoverClass} transition-colors duration-300`}>{uc.title}</h3>
-               <p className="text-[11px] leading-relaxed font-body text-white/50 line-clamp-3 group-hover:text-white/80 transition-colors duration-300">{uc.text}</p>
-            </div>
+            <p className="text-sm font-bold text-white/80 leading-relaxed font-sans tracking-wide">
+              {uc.text}
+            </p>
 
           </BentoCard>
         ))}

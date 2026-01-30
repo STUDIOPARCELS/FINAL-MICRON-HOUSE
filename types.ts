@@ -1,6 +1,6 @@
 import React from 'react';
 
-export type ModalCategory = 'cinematic' | 'showcase' | 'reference';
+export type ModalCategory = 'cinematic' | 'showcase' | 'reference' | 'gallery';
 export type ModalLayout = 'default' | 'reverse' | 'vertical-text-top' | 'vertical-image-top';
 
 export interface ModalContent {
@@ -12,6 +12,7 @@ export interface ModalContent {
   tags?: string[]; // Added for showcase grid
   image?: string; // Specific image for the modal
   modalLayout?: ModalLayout; // Layout configuration
+  galleryImages?: string[]; // For gallery modal
 }
 
 export interface CardProps {
