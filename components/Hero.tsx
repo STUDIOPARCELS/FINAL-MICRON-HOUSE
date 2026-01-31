@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { BentoCard } from './BentoCard';
 
 export const Hero: React.FC = () => {
   const titleChars = "MICRON HOUSE".split("");
@@ -8,7 +9,8 @@ export const Hero: React.FC = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.08, delayChildren: 0.2 }
+      // Tighter stagger for faster completion
+      transition: { staggerChildren: 0.06, delayChildren: 0.1 }
     }
   };
 
@@ -18,30 +20,28 @@ export const Hero: React.FC = () => {
       opacity: 1, 
       y: 0,
       rotateX: 0,
-      transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } // Ultra smooth ease
+      // Duration reduced to 1.2s for snappy but smooth feel
+      transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } 
     }
   };
 
   return (
-    // Removed h-screen centering to reduce vertical whitespace gaps.
-    // pt-28 ensures it sits nicely below the fixed header (approx 90px).
+    // Pt-28 ensures it sits nicely below the fixed header (approx 90px).
     // pb-6 minimizes the gap to the next section (Green Bento).
     <section className="relative w-full bg-white flex flex-col items-center justify-center pt-28 pb-6 md:pt-32 md:pb-8 box-border overflow-hidden">
       
-      {/* Changed px-6 md:px-12 to just px-6 to match SectionIntro's width exactly as requested */}
       <div className="container mx-auto px-6 h-full flex items-center justify-center">
-        {/* Standard Black Bento Box (No Video) */}
-        <motion.div 
-          initial={{ scale: 0.95, opacity: 0, y: 20 }}
-          animate={{ scale: 1, opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="relative w-full aspect-video md:aspect-[21/9] overflow-hidden rounded-3xl bg-micron-black shadow-2xl flex flex-col items-center justify-center group ring-1 ring-zinc-900/5"
+        {/* Switched to BentoCard for consistent 'treatment' (corners, shadows, borders) */}
+        <BentoCard 
+          gradient="bg-micron-black"
+          textColor="text-white"
+          borderColor="border-zinc-900/5" // Subtle border
+          className="w-full aspect-video md:aspect-[21/9] flex items-center justify-center !p-0" // !p-0 to allow centering without padding constraints if needed, or rely on flex
+          delay={0}
+          hoverEffect={true}
         >
-          {/* Subtle top light source for 3D bevel effect to match other Bento cards */}
-          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-100" />
-          
           {/* Center Title */}
-          <div className="relative z-20 flex flex-col items-center text-center px-4">
+          <div className="relative z-20 flex flex-col items-center text-center px-4 w-full h-full justify-center">
              <motion.div
                variants={titleContainerVariants}
                initial="hidden"
@@ -63,8 +63,7 @@ export const Hero: React.FC = () => {
                ))}
              </motion.div>
           </div>
-
-        </motion.div>
+        </BentoCard>
       </div>
     </section>
   );

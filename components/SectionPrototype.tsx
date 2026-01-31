@@ -175,8 +175,8 @@ export const SectionPrototype: React.FC<SectionPrototypeProps> = ({ enableAnimat
                                     color: word === "BOISE." ? '#008f25' : '#6b7280', 
                                     transition: { duration: 0.2 } 
                                 }}
-                                // Smoother stagger (0.4s) instead of dragged out (0.8s)
-                                transition={{ duration: 0.4, delay: i * 0.4 }} 
+                                // Sped up stagger from 0.4 to 0.2
+                                transition={{ duration: 0.4, delay: i * 0.2 }} 
                                 className="mr-3 inline-block"
                         >
                             {word}
@@ -189,7 +189,7 @@ export const SectionPrototype: React.FC<SectionPrototypeProps> = ({ enableAnimat
                         initial={{ opacity: 0 }}
                         whileInView={enableAnimations ? { opacity: 1 } : undefined}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.8, delay: (mainTitleWords.length * 0.4) + 0.2 }}
+                        transition={{ duration: 0.8, delay: (mainTitleWords.length * 0.2) + 0.2 }}
                         className="text-zinc-600 block"
                 >
                     Creating the first autonomous corporate residence. A convergence of historic stewardship and future technology.

@@ -13,6 +13,8 @@ export interface ModalContent {
   image?: string; // Specific image for the modal
   modalLayout?: ModalLayout; // Layout configuration
   galleryImages?: string[]; // For gallery modal
+  theme?: 'light' | 'dark'; // Added for modal theming (white backgrounds)
+  headerClassName?: string; // Optional override for header text color
 }
 
 export interface CardProps {

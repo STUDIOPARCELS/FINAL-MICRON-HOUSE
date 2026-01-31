@@ -3,7 +3,7 @@ import { BentoCard } from './BentoCard';
 import { Modal } from './Modal';
 import { ModalContent } from '../types';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Wine, Car, BedDouble, Shield, Music, Mic, Armchair, Heart, Trophy, Snowflake, Utensils, Cpu, Users } from 'lucide-react';
+import { Wine, Car, BedDouble, Shield, Music, Mic, Armchair, Heart, Trophy, Snowflake, Utensils, Cpu, Users } from 'lucide-react';
 
 interface Experience {
   title: string;
@@ -17,19 +17,26 @@ interface Department {
   value: string;
   detail: string;
   gradient: string;
-  // Added a lighter color for inner cards
-  innerColor?: string;
   experiences: Experience[];
+  
+  // New props for Modal Color Customization
+  modalHeaderColor: string; // Tailwind class for the modal title
+  modalIconColor: string;   // Tailwind class for the icons inside the modal
+  modalTagColor: string;    // Tailwind class for small accent tags or borders
 }
 
-// Consolidated Data Structure
+// DEFINING COMPLEMENTARY COLOR PAIRINGS
 const departments: Department[] = [
   { 
     id: "travel", 
     title: "Travel & Entertainment", 
     value: "Board hosting, VIP visits", 
     detail: "Esteemed corporate guests hosted in an intimate, private setting. Control over experience, memorable impressions.", 
-    gradient: "bg-micron-black",
+    gradient: "bg-micron-eggplant", // Bento: Eggplant
+    // Modal: Eggplant Header, Green Accents
+    modalHeaderColor: "text-micron-eggplant",
+    modalIconColor: "text-micron-green",
+    modalTagColor: "border-micron-green",
     experiences: [
       {
         title: "Game Days",
@@ -48,7 +55,11 @@ const departments: Department[] = [
     title: "Events & Meetings", 
     value: "Private dinners", 
     detail: "Controlled environment, curated experiences, cultural calendar integration.", 
-    gradient: "bg-micron-green",
+    gradient: "bg-micron-green", // Bento: Green
+    // Modal: Green Header, Eggplant Accents
+    modalHeaderColor: "text-micron-green",
+    modalIconColor: "text-micron-eggplant",
+    modalTagColor: "border-micron-eggplant",
     experiences: [
       {
         title: "Snake River Tasting",
@@ -67,7 +78,11 @@ const departments: Department[] = [
     title: "Executive Office", 
     value: "Confidential off-sites", 
     detail: "Strategy sessions, sensitive conversations, total discretion, no hotel staff.", 
-    gradient: "bg-micron-eggplant",
+    gradient: "bg-micron-grey1", // Bento: Dark Gray
+    // Modal: Dark Gray Header, Blue Accents
+    modalHeaderColor: "text-micron-grey1",
+    modalIconColor: "text-micron-eggplant-light",
+    modalTagColor: "border-micron-eggplant-light",
     experiences: [
       {
         title: "Confidential Counsel",
@@ -86,7 +101,11 @@ const departments: Department[] = [
     title: "Global Mobility", 
     value: "Soft landings", 
     detail: "Real neighborhood experience, family accommodation, transition support before permanent housing.", 
-    gradient: "bg-zinc-600",
+    gradient: "bg-micron-eggplant-light", // Bento: Blue
+    // Modal: Blue Header, Dark Gray Accents
+    modalHeaderColor: "text-micron-eggplant-light",
+    modalIconColor: "text-micron-grey1",
+    modalTagColor: "border-micron-grey1",
     experiences: [
       {
         title: "Soft Landings",
@@ -100,7 +119,11 @@ const departments: Department[] = [
     title: "Talent Acquisition", 
     value: "Recruiting closes", 
     detail: "Differentiated candidate experience, memorable final impression, demonstrates company culture.", 
-    gradient: "bg-micron-eggplant-light",
+    gradient: "bg-micron-eggplant", // Bento: Eggplant
+    // Modal: Eggplant Header, Blue Accents (Different combo than Travel)
+    modalHeaderColor: "text-micron-eggplant",
+    modalIconColor: "text-micron-eggplant-light",
+    modalTagColor: "border-micron-eggplant-light",
     experiences: [
       {
         title: "Chef's Table",
@@ -124,7 +147,11 @@ const departments: Department[] = [
     title: "Micron Foundation", 
     value: "Community events", 
     detail: "Hosting community leaders, nonprofit partners, civic engagement.", 
-    gradient: "bg-micron-grey2",
+    gradient: "bg-micron-grey2", // Bento: Mid Gray
+    // Modal: Mid Gray Header, Green Accents
+    modalHeaderColor: "text-micron-grey2",
+    modalIconColor: "text-micron-green",
+    modalTagColor: "border-micron-green",
     experiences: [
       {
         title: "Art + Appetite",
@@ -148,7 +175,11 @@ const departments: Department[] = [
     title: "Family Support", 
     value: "St. Luke's lodging", 
     detail: "Less than 1 mile to medical center, home environment during difficult times, compassionate use.", 
-    gradient: "bg-micron-eggplant-light",
+    gradient: "bg-micron-grey3", // Bento: Light Gray
+    // Modal: Dark Gray Header (For contrast), Eggplant Accents (Warmth)
+    modalHeaderColor: "text-micron-grey1",
+    modalIconColor: "text-micron-eggplant",
+    modalTagColor: "border-micron-eggplant",
     experiences: [
       {
         title: "Healing House",
@@ -162,7 +193,11 @@ const departments: Department[] = [
     title: "Employee Incentives", 
     value: "Milestone rewards", 
     detail: "Recognition for exceptional performance, unique reward beyond standard compensation.", 
-    gradient: "bg-[#32393f]",
+    gradient: "bg-micron-green", // Bento: Green
+    // Modal: Green Header, Blue Accents
+    modalHeaderColor: "text-micron-green",
+    modalIconColor: "text-micron-eggplant-light",
+    modalTagColor: "border-micron-eggplant-light",
     experiences: [
       {
         title: "Alpine Days",
@@ -182,48 +217,42 @@ export const SectionServing: React.FC = () => {
   const [modalData, setModalData] = useState<ModalContent | null>(null);
 
   const openDeptModal = (dept: Department) => {
-      // Determine a border color based on the gradient for the inner cards
-      // This is a simple approximation
-      let borderColor = "border-white/10";
-      let headerColor = "text-white";
-      let bgTint = "bg-white/5";
-
-      if (dept.gradient.includes("micron-green")) {
-          headerColor = "text-micron-green";
-          bgTint = "bg-micron-green/10";
-      } else if (dept.gradient.includes("micron-eggplant")) {
-          headerColor = "text-micron-eggplant-light";
-          bgTint = "bg-micron-eggplant/20";
-      } else if (dept.gradient.includes("micron-grey")) {
-          headerColor = "text-zinc-300";
-      }
-
       setModalData({
         title: dept.title,
         subtitle: dept.value,
         category: 'reference', // Uses larger layout
+        theme: 'light', // Force White Background
+        headerClassName: dept.modalHeaderColor, // Pass custom header color
         content: (
             <div className="flex flex-col gap-10">
                  <div>
-                     <p className="text-3xl md:text-4xl font-light text-white leading-tight">
+                     <p className="text-2xl md:text-3xl font-light text-zinc-600 leading-tight">
                         {dept.detail}
                      </p>
                  </div>
                  
-                 <div className="h-px bg-white/10 w-full"></div>
+                 <div className="h-px bg-zinc-200 w-full"></div>
 
-                 <div className="space-y-8">
-                    <h3 className={`text-sm font-bold uppercase tracking-[0.2em] ${headerColor}`}>Curated Experiences</h3>
+                 <div className="space-y-6">
+                    {/* Subhead styled with accent color */}
+                    <h3 className={`text-sm font-bold uppercase tracking-[0.2em] opacity-80 ${dept.modalIconColor}`}>
+                        Curated Experiences
+                    </h3>
+                    
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         {dept.experiences.map((exp, i) => (
-                            <div key={i} className={`${bgTint} rounded-2xl p-8 border border-white/5 hover:border-white/10 transition-colors group shadow-lg`}>
+                            <div 
+                                key={i} 
+                                // White mode cards: zinc-50 background, zinc-200 border
+                                className="bg-zinc-50 border border-zinc-200 rounded-2xl p-8 hover:border-zinc-300 hover:shadow-md transition-all group"
+                            >
                                 <div className="flex items-center gap-4 mb-4">
-                                    <div className={`p-3 rounded-full text-white transition-colors duration-300 ${dept.gradient}`}>
-                                        {React.cloneElement(exp.icon as React.ReactElement<any>, { size: 24 })}
+                                    <div className={`${dept.modalIconColor}`}>
+                                        {React.cloneElement(exp.icon as React.ReactElement<any>, { size: 28, strokeWidth: 1.5 })}
                                     </div>
-                                    <h4 className={`text-xl font-bold uppercase tracking-tight ${headerColor}`}>{exp.title}</h4>
+                                    <h4 className="text-lg font-bold uppercase tracking-tight text-zinc-800">{exp.title}</h4>
                                 </div>
-                                <p className="text-zinc-300 text-lg font-light leading-relaxed">
+                                <p className="text-zinc-500 font-light leading-relaxed">
                                     {exp.description}
                                 </p>
                             </div>
@@ -285,9 +314,6 @@ export const SectionServing: React.FC = () => {
                   {dept.value}
                </p>
             </div>
-            
-            {/* Removed explicit arrow div to rely on BentoCard's hover arrow */}
-
           </BentoCard>
         ))}
       </div>

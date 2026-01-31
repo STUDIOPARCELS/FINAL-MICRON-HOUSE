@@ -30,35 +30,45 @@ export const SectionIntro: React.FC<SectionIntroProps> = ({ onAnimationComplete 
     }
   ];
 
-  // ANIMATION CONFIGURATION
-  // Reverted to fast timing
+  // ANIMATION TIMING CONFIGURATION
+  // Goal: Smooth, luxurious flow, but precise timing gaps.
+  
   const GREEN_BOX_DELAY = 0.2; 
   
-  // Text Animation Speed - fast and snappy
+  // Text Animation - Smooth and Readable
   const WORD_DELAY = 0.12; 
-  const SENTENCE_DELAY = 0.4;
-  const TEXT_FADE_DURATION = 0.5;
-  const BENTO_FADE_DURATION = 0.8;
+  const SENTENCE_DELAY = 0.5; 
+  const TEXT_FADE_DURATION = 1.0; // Slower fade for individual words (smoothness)
 
-  // Calculate when text should start
-  const TEXT_START_OFFSET = GREEN_BOX_DELAY + 0.3; // Start text while box is fading in
+  const TEXT_START_OFFSET = GREEN_BOX_DELAY + 0.3; 
 
-  // Calculate when the last word of the top section finishes
-  const LAST_SENTENCE_START = TEXT_START_OFFSET + (10 * WORD_DELAY) + (2 * SENTENCE_DELAY);
-  const TEXT_ANIMATION_COMPLETE = LAST_SENTENCE_START + (5 * WORD_DELAY) + TEXT_FADE_DURATION;
+  // --- CALCULATION FOR 'PERSPECTIVE' COMPLETION ---
+  // Sentence 1 (5 words)
+  // Sentence 2 (5 words)
+  // Sentence 3 (5 words)
+  const prevWordsCount = 10; // Words in first two sentences
+  const sentenceGaps = 2; // Gaps between 3 sentences
   
-  // Paradigm text starts shortly after top section finishes (Target ~1s after start relative to box)
-  const paradigmStartTime = TEXT_ANIMATION_COMPLETE - 0.5; 
+  // Start time of the last sentence ("Without place...")
+  const LAST_SENTENCE_START = TEXT_START_OFFSET + (prevWordsCount * WORD_DELAY) + (sentenceGaps * SENTENCE_DELAY);
   
-  // Address block starts after Paradigm text
+  // "Perspective" is the 5th word (index 4) of the last sentence.
+  const PERSPECTIVE_START_TIME = LAST_SENTENCE_START + (4 * WORD_DELAY);
+  
+  // Time when "Perspective" is fully visible (opacity 1)
+  const PERSPECTIVE_COMPLETE_TIME = PERSPECTIVE_START_TIME + TEXT_FADE_DURATION;
+  
+  // --- PARADIGM UNFOLDS TIMING ---
+  // Constraint: "Fade in literally one second after perspective fades in"
+  const paradigmStartTime = PERSPECTIVE_COMPLETE_TIME + 1.0; 
+  
+  // --- ADDRESS & MAP TIMING ---
+  // Start Address shortly after Paradigm starts appearing (overlapping slightly for flow)
   const addressStartTime = paradigmStartTime + 0.8; 
+  const mapStartTime = addressStartTime + 0.6;
   
-  // Map starts after address
-  const mapStartTime = addressStartTime + 1.2;
-  
-  // Total animation time calculation to trigger callback for Next Section
-  // Reduced buffer significantly so it doesn't hang
-  const TOTAL_DURATION = mapStartTime + 0.5; 
+  // Total duration for callback
+  const TOTAL_DURATION = mapStartTime + 1.0; 
 
   useEffect(() => {
     if (onAnimationComplete) {
@@ -71,7 +81,7 @@ export const SectionIntro: React.FC<SectionIntroProps> = ({ onAnimationComplete 
 
   const paradigmText = "A PARADIGM UNFOLDS.";
 
-  // Address Lines to be animated word by word
+  // Address Lines
   const addressLine1 = "Micron House";
   const addressLine2 = "1020 East Warm Springs Ave";
   const addressLine3 = "Boise, Idaho 83712";
@@ -146,12 +156,13 @@ export const SectionIntro: React.FC<SectionIntroProps> = ({ onAnimationComplete 
                     {paradigmText.split(" ").map((word, i) => (
                         <motion.span
                             key={i}
-                            initial={{ opacity: 0, y: 10 }}
+                            initial={{ opacity: 0, y: 15 }} // Increased Y slightly for drama
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ 
-                                duration: 0.4, 
-                                delay: paradigmStartTime + (i * 0.1) 
+                                duration: 1.5, // SLOWED DOWN from 0.3 to 1.5 for smoothness
+                                ease: [0.16, 1, 0.3, 1], // Smooth bezier
+                                delay: paradigmStartTime + (i * 0.08) 
                             }}
                         >
                             {word}
@@ -164,7 +175,7 @@ export const SectionIntro: React.FC<SectionIntroProps> = ({ onAnimationComplete 
                     initial={{ opacity: 0, x: -10 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: addressStartTime, duration: 0.5 }}
+                    transition={{ delay: addressStartTime, duration: 0.8 }}
                     className="flex gap-5 border-l-4 border-micron-green pl-6"
                 >
                     <div className="flex flex-col justify-center">
@@ -175,7 +186,7 @@ export const SectionIntro: React.FC<SectionIntroProps> = ({ onAnimationComplete 
                                     initial={{ opacity: 0 }}
                                     whileInView={{ opacity: 1 }}
                                     viewport={{ once: true }}
-                                    transition={{ duration: 0.3, delay: addressStartTime + 0.1 + (i * 0.1) }}
+                                    transition={{ duration: 0.5, delay: addressStartTime + 0.1 + (i * 0.05) }}
                                 >
                                     {word}
                                 </motion.span>
@@ -188,7 +199,7 @@ export const SectionIntro: React.FC<SectionIntroProps> = ({ onAnimationComplete 
                                     initial={{ opacity: 0 }}
                                     whileInView={{ opacity: 1 }}
                                     viewport={{ once: true }}
-                                    transition={{ duration: 0.3, delay: addressStartTime + 0.3 + (i * 0.1) }}
+                                    transition={{ duration: 0.5, delay: addressStartTime + 0.2 + (i * 0.05) }}
                                 >
                                     {word}
                                 </motion.span>
@@ -201,7 +212,7 @@ export const SectionIntro: React.FC<SectionIntroProps> = ({ onAnimationComplete 
                                     initial={{ opacity: 0 }}
                                     whileInView={{ opacity: 1 }}
                                     viewport={{ once: true }}
-                                    transition={{ duration: 0.3, delay: addressStartTime + 0.6 + (i * 0.1) }}
+                                    transition={{ duration: 0.5, delay: addressStartTime + 0.3 + (i * 0.05) }}
                                 >
                                     {word}
                                 </motion.span>
@@ -217,7 +228,7 @@ export const SectionIntro: React.FC<SectionIntroProps> = ({ onAnimationComplete 
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ 
-                    duration: 0.8, 
+                    duration: 1.0, 
                     delay: mapStartTime
                 }}
                 className="h-full min-h-[300px]"

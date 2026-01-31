@@ -49,22 +49,23 @@ export const SectionProperty: React.FC = () => {
         
         {/* 1. Stats Grid - Changed to 5 columns with Gallery Link */}
         <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
-             {/* Changed from black to eggplant */}
-             <BentoCard gradient="bg-micron-eggplant" className="min-h-[160px] flex flex-col items-center justify-center text-center" delay={0.1}>
+             {/* Reduced height from min-h-[160px] to min-h-[120px] */}
+             <BentoCard gradient="bg-micron-eggplant" className="min-h-[120px] flex flex-col items-center justify-center text-center" delay={0.1}>
                  <h3 className="text-4xl md:text-5xl font-black text-white mb-2">1906</h3>
                  {/* Text color changed to zinc-500 (faded) */}
                  <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Year Built</p>
              </BentoCard>
-             <BentoCard gradient="bg-micron-grey1" className="min-h-[160px] flex flex-col items-center justify-center text-center" delay={0.2}>
+             <BentoCard gradient="bg-micron-grey1" className="min-h-[120px] flex flex-col items-center justify-center text-center" delay={0.2}>
                  <h3 className="text-4xl md:text-5xl font-black text-white mb-2">3,374</h3>
                  <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Square Feet</p>
              </BentoCard>
-             <BentoCard gradient="bg-micron-grey2" className="min-h-[160px] flex flex-col items-center justify-center text-center" delay={0.3}>
+             {/* Changed from bg-micron-grey2 to bg-micron-green */}
+             <BentoCard gradient="bg-micron-green" className="min-h-[120px] flex flex-col items-center justify-center text-center" delay={0.3}>
                  <h3 className="text-4xl md:text-5xl font-black text-white mb-2">3 / 4</h3>
-                 <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Bed / Bath</p>
+                 <p className="text-[10px] font-bold uppercase tracking-widest text-white/80">Bed / Bath</p>
              </BentoCard>
              {/* Geothermal Rights Delay changed to 1.2s */}
-             <BentoCard gradient="bg-micron-eggplant-light" className="min-h-[160px] flex flex-col items-center justify-center text-center" delay={1.2}>
+             <BentoCard gradient="bg-micron-eggplant-light" className="min-h-[120px] flex flex-col items-center justify-center text-center" delay={1.2}>
                  <h3 className="text-4xl md:text-5xl font-black text-white mb-2">1892</h3>
                  <p className="text-[10px] font-bold uppercase tracking-widest text-white/80">Geothermal Rights</p>
              </BentoCard>
@@ -72,7 +73,7 @@ export const SectionProperty: React.FC = () => {
              {/* 5th Card: View Gallery Link - Removed Icon, Removed Underline, Changed Text Color */}
              <BentoCard 
                 gradient="bg-zinc-900" 
-                className="min-h-[160px] flex flex-col items-center justify-center text-center group cursor-pointer" 
+                className="min-h-[120px] flex flex-col items-center justify-center text-center group cursor-pointer" 
                 delay={0.5}
                 onClick={openGallery}
              >
@@ -157,13 +158,15 @@ export const SectionProperty: React.FC = () => {
              </div>
              
              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                 {/* Spec 1 */}
-                 <BentoCard gradient="bg-white" textColor="text-zinc-900" borderColor="border-zinc-200" className="min-h-[200px] shadow-sm" delay={0.1}>
+                 {/* Spec 1 - Changed gradient to bg-zinc-100 for 3D look */}
+                 <BentoCard gradient="bg-zinc-100" textColor="text-zinc-900" borderColor="border-zinc-200" className="min-h-[200px] shadow-sm" delay={0.1}>
                      <div className="flex justify-between items-start mb-4">
                         <Utensils className="text-micron-black" size={24} />
                      </div>
                      <h4 className="text-lg font-bold uppercase tracking-tight mb-3 text-micron-eggplant">Main Level</h4>
                      <ul className="space-y-3 text-sm text-zinc-600 font-body">
+                        {/* Added Foyer */}
+                        <li className="flex gap-2 items-start"><span className="text-micron-green mt-1 text-[10px]">●</span> <span>Foyer Entry</span></li>
                         <li className="flex gap-2 items-start"><span className="text-micron-green mt-1 text-[10px]">●</span> <span>Living, Dining, & Fully Equipped Kitchen</span></li>
                         {/* Removed 'Main Floor' from text */}
                         <li className="flex gap-2 items-start"><span className="text-micron-green mt-1 text-[10px]">●</span> <span>Office w/ Ensuite Bath</span></li>
@@ -173,8 +176,8 @@ export const SectionProperty: React.FC = () => {
                      </ul>
                  </BentoCard>
 
-                 {/* Spec 2 */}
-                 <BentoCard gradient="bg-white" textColor="text-zinc-900" borderColor="border-zinc-200" className="min-h-[200px] shadow-sm" delay={0.2}>
+                 {/* Spec 2 - Changed gradient to bg-zinc-100 for 3D look */}
+                 <BentoCard gradient="bg-zinc-100" textColor="text-zinc-900" borderColor="border-zinc-200" className="min-h-[200px] shadow-sm" delay={0.2}>
                      <div className="flex justify-between items-start mb-4">
                         <BedDouble className="text-micron-black" size={24} />
                      </div>
@@ -183,11 +186,13 @@ export const SectionProperty: React.FC = () => {
                         <li className="flex gap-2 items-start"><span className="text-micron-green mt-1 text-[10px]">●</span> <span>3 Bedrooms</span></li>
                         <li className="flex gap-2 items-start"><span className="text-micron-green mt-1 text-[10px]">●</span> <span>2 Private En-Suite Baths</span></li>
                         <li className="flex gap-2 items-start"><span className="text-micron-green mt-1 text-[10px]">●</span> <span>1 Bedroom Served by Hall Bath</span></li>
+                        {/* Added Laundry */}
+                        <li className="flex gap-2 items-start"><span className="text-micron-green mt-1 text-[10px]">●</span> <span>Laundry Facilities</span></li>
                      </ul>
                  </BentoCard>
 
-                 {/* Spec 3 */}
-                 <BentoCard gradient="bg-white" textColor="text-zinc-900" borderColor="border-zinc-200" className="min-h-[200px] shadow-sm" delay={0.3}>
+                 {/* Spec 3 - Changed gradient to bg-zinc-100 for 3D look */}
+                 <BentoCard gradient="bg-zinc-100" textColor="text-zinc-900" borderColor="border-zinc-200" className="min-h-[200px] shadow-sm" delay={0.3}>
                      <div className="flex justify-between items-start mb-4">
                         <Sprout className="text-micron-black" size={24} />
                      </div>
@@ -225,7 +230,8 @@ export const SectionProperty: React.FC = () => {
                 <BentoCard gradient="bg-zinc-100" textColor="text-zinc-900" borderColor="border-zinc-200" className="min-h-[220px]" delay={0.2}>
                     <div className="flex justify-between items-start mb-4">
                         {/* Switched to Car (Side Profile) and darker gold (amber-600) */}
-                        <Car className="text-amber-600" />
+                        {/* UPDATED: Face opposite direction (scale-x-[-1]) and more yellow gold */}
+                        <Car className="text-yellow-500 scale-x-[-1]" />
                         <span className="text-xs font-bold uppercase tracking-widest text-zinc-400">Intelligence</span>
                     </div>
                     <h4 className="text-xl font-bold uppercase tracking-tight mb-2">Autonomous Service</h4>

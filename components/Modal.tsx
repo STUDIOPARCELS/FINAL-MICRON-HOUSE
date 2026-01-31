@@ -188,29 +188,52 @@ const ShowcaseModalContent: React.FC<{ data: ModalContent; onClose: () => void }
   );
 };
 
-// Category C: Reference (Serving Micron) - UPDATED TO BE WIDER
+// Category C: Reference (Serving Micron) - UPDATED TO BE WIDER AND THEMED
 const ReferenceModalContent: React.FC<{ data: ModalContent; onClose: () => void }> = ({ data, onClose }) => {
+  
+  const isLight = data.theme === 'light';
+
+  // Dynamic classes based on theme
+  const containerClasses = isLight 
+    ? "bg-white shadow-2xl border border-zinc-200" 
+    : "bg-zinc-950/95 backdrop-blur-xl shadow-2xl border border-white/10";
+    
+  const headerClasses = isLight 
+    ? "bg-zinc-50 border-b border-zinc-200" 
+    : "bg-black/50 border-b border-white/10";
+
+  // Allow custom header color override, else default based on theme
+  const titleColor = data.headerClassName || (isLight ? "text-zinc-900" : "text-white");
+  
+  const subtitleColor = isLight ? "text-zinc-500" : "text-zinc-500";
+  const closeBtnClasses = isLight 
+    ? "bg-zinc-100 text-zinc-600 hover:bg-zinc-200 hover:text-zinc-900" 
+    : "bg-white/5 text-zinc-400 hover:text-white";
+
+  const contentContainerClasses = isLight ? "text-zinc-700" : "text-zinc-300";
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.2 }}
-      // Changed max-w-2xl to max-w-4xl for better readability
-      className="pointer-events-auto relative w-full max-w-5xl overflow-hidden rounded-3xl bg-zinc-950/95 backdrop-blur-xl shadow-2xl border border-white/10"
+      className={`pointer-events-auto relative w-full max-w-5xl overflow-hidden rounded-3xl ${containerClasses}`}
     >
-      <div className="bg-black/50 p-6 border-b border-white/10 flex justify-between items-start">
+      <div className={`p-6 flex justify-between items-start ${headerClasses}`}>
         <div className="pr-6">
-          <h2 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-white mb-1">
+          <h2 className={`text-3xl md:text-4xl font-bold uppercase tracking-tight mb-1 ${titleColor}`}>
             {data.title}
           </h2>
-          <p className="text-xs font-bold uppercase tracking-widest text-zinc-500">
+          <p className={`text-xs font-bold uppercase tracking-widest ${subtitleColor}`}>
             {data.subtitle}
           </p>
         </div>
-        <button onClick={onClose} className="rounded-full bg-white/5 p-2 text-zinc-400 hover:text-white transition-colors"><X size={24} /></button>
+        <button onClick={onClose} className={`rounded-full p-2 transition-colors ${closeBtnClasses}`}>
+          <X size={24} />
+        </button>
       </div>
-      <div className="p-8 md:p-12 text-zinc-300 overflow-y-auto max-h-[80vh] custom-scrollbar">
+      <div className={`p-8 md:p-12 overflow-y-auto max-h-[80vh] custom-scrollbar ${contentContainerClasses}`}>
         {data.content}
       </div>
     </motion.div>
