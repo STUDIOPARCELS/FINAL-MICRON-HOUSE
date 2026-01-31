@@ -11,7 +11,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [introAnimationComplete, setIntroAnimationComplete] = useState(false);
 
   // Helper function to handle smooth scrolling with header offset
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
@@ -40,7 +39,7 @@ function App() {
 
   return (
     <div className="min-h-screen w-full bg-white text-zinc-900 font-sans">
-      {/* Navigation Overlay */}
+      {/* Navigation Overlay - Z-50 to stay on top */}
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between bg-white/95 backdrop-blur-xl px-6 md:px-12 py-5 border-b border-zinc-200 shadow-sm transition-all duration-300">
         <div 
           className="text-2xl font-bold tracking-tight text-micron-eggplant uppercase font-sans cursor-pointer hover:opacity-80 transition-opacity z-50 relative" 
@@ -71,22 +70,22 @@ function App() {
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
 
-        {/* Mobile Full Screen Menu */}
+        {/* Mobile Full Screen Menu - Z-40 (Under Navbar but above content) */}
         <AnimatePresence>
             {mobileMenuOpen && (
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
-                    className="fixed inset-0 bg-white z-40 flex flex-col pt-32 px-6"
+                    className="fixed inset-0 bg-white z-40 flex flex-col pt-24 px-6 overflow-y-auto"
                 >
-                    <div className="flex flex-col gap-8 text-xl font-bold uppercase tracking-widest text-zinc-800">
+                    <div className="flex flex-col gap-6 text-xl font-bold uppercase tracking-widest text-zinc-800 pb-10">
                         {navLinks.map(link => (
                             <a 
                                 key={link.id}
                                 href={`#${link.id}`} 
                                 onClick={(e) => scrollToSection(e, link.id)} 
-                                className="border-b border-zinc-100 pb-4 flex justify-between items-center group"
+                                className="border-b border-zinc-100 pb-4 flex justify-between items-center group cursor-pointer"
                             >
                                 {link.label}
                                 <ArrowRight size={20} className="text-micron-green opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all" />
@@ -100,9 +99,10 @@ function App() {
 
       <main>
         <Hero />
-        <SectionIntro onAnimationComplete={() => setIntroAnimationComplete(true)} />
+        {/* Removed onAnimationComplete as Prototype section is now independent */}
+        <SectionIntro />
         <div className="relative z-20 bg-white">
-          <SectionPrototype enableAnimations={introAnimationComplete} />
+          <SectionPrototype />
           <SectionProperty />
           <SectionServing />
           <SectionServingTesla />

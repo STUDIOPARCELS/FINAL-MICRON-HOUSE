@@ -35,9 +35,9 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, data }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md"
+            className="fixed inset-0 z-[60] bg-black/90 backdrop-blur-md"
           />
-          <div className="fixed inset-0 z-[51] flex items-center justify-center p-4 md:p-8 pointer-events-none">
+          <div className="fixed inset-0 z-[61] flex items-center justify-center p-2 md:p-8 pointer-events-none">
             {getModalContent()}
           </div>
         </>
@@ -57,8 +57,9 @@ const CinematicModalContent: React.FC<{ data: ModalContent; onClose: () => void 
   let containerClasses = "flex flex-col md:flex-row"; // Default
   
   // Height classes for sections to share space on mobile
+  // Mobile: Text area shrinks/grows, Image has fixed height or flex
   let textSectionClasses = "flex-1 min-h-[50%]";
-  let imageSectionClasses = "flex-1 min-h-[30%] md:min-h-0 block"; // Changed from hidden to block
+  let imageSectionClasses = "flex-1 min-h-[30%] md:min-h-0 block"; 
 
   // Layout Logic
   switch (layout) {
@@ -88,13 +89,13 @@ const CinematicModalContent: React.FC<{ data: ModalContent; onClose: () => void 
       initial={{ opacity: 0, scale: 0.98 }}
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.98 }}
-      className={`pointer-events-auto relative h-[85vh] w-full max-w-6xl overflow-hidden rounded-3xl bg-zinc-950 shadow-2xl border border-white/10 ring-1 ring-white/5 ${containerClasses}`}
+      className={`pointer-events-auto relative h-[85vh] w-full max-w-6xl overflow-hidden rounded-2xl md:rounded-3xl bg-zinc-950 shadow-2xl border border-white/10 ring-1 ring-white/5 ${containerClasses}`}
     >
       <button
         onClick={onClose}
-        className="absolute top-6 right-6 z-20 rounded-full bg-white/10 p-2 text-white hover:bg-white/20 transition-colors backdrop-blur-md border border-white/10"
+        className="absolute top-4 right-4 z-20 rounded-full bg-white/10 p-2 text-white hover:bg-white/20 transition-colors backdrop-blur-md border border-white/10"
       >
-        <X size={24} />
+        <X size={20} />
       </button>
 
       {/* Text Section */}
@@ -112,11 +113,11 @@ const CinematicModalContent: React.FC<{ data: ModalContent; onClose: () => void 
             </motion.div>
           )}
           {/* Updated Title Style: Uppercase, Bold, Sans-serif (removed font-micron) */}
-          <motion.h2 variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }} className="text-4xl md:text-5xl text-white mb-8 leading-none font-bold uppercase tracking-tight">
+          <motion.h2 variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }} className="text-3xl md:text-5xl text-white mb-6 md:mb-8 leading-none font-bold uppercase tracking-tight">
             {data.title}
           </motion.h2>
           
-          <div className="space-y-6 text-lg text-zinc-400 font-light leading-relaxed">
+          <div className="space-y-6 text-base md:text-lg text-zinc-400 font-light leading-relaxed">
              <motion.div variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}>
                {data.content}
              </motion.div>
@@ -127,7 +128,7 @@ const CinematicModalContent: React.FC<{ data: ModalContent; onClose: () => void 
       {/* Image Section - Bento Box Style */}
       <div className={`${imageSectionClasses} bg-zinc-900 relative p-4 md:p-8 flex items-center justify-center`}>
         {/* The "Bento" Image Container */}
-        <div className="relative w-full h-full rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+        <div className="relative w-full h-full rounded-xl md:rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
            <img 
              src={imageSrc} 
              alt="Visual Context"
@@ -149,38 +150,36 @@ const ShowcaseModalContent: React.FC<{ data: ModalContent; onClose: () => void }
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 40 }}
       transition={{ type: "spring", damping: 25, stiffness: 300 }}
-      className="pointer-events-auto relative w-full max-w-4xl overflow-hidden rounded-3xl bg-zinc-900/90 backdrop-blur-xl shadow-[0_0_50px_rgba(0,0,0,0.8)] p-6 md:p-12 border border-white/10 max-h-[90vh] overflow-y-auto ring-1 ring-white/5"
+      className="pointer-events-auto relative w-full max-w-4xl overflow-hidden rounded-2xl md:rounded-3xl bg-zinc-900/90 backdrop-blur-xl shadow-[0_0_50px_rgba(0,0,0,0.8)] p-6 md:p-12 border border-white/10 max-h-[85vh] overflow-y-auto ring-1 ring-white/5"
     >
       <button
         onClick={onClose}
-        className="absolute top-6 right-6 z-20 rounded-full bg-white/5 p-2 text-white hover:bg-white/20 transition-colors border border-white/10"
+        className="absolute top-4 right-4 md:top-6 md:right-6 z-20 rounded-full bg-white/5 p-2 text-white hover:bg-white/20 transition-colors border border-white/10"
       >
-        <X size={24} />
+        <X size={20} />
       </button>
 
       {/* Header */}
-      <div className="mb-10 text-center mt-8 md:mt-0">
-        {/* Consistent Bento Cover Style: Sans, Bold, Uppercase */}
-        <h2 className="text-3xl md:text-5xl font-bold uppercase tracking-tight text-white mb-4 drop-shadow-md">
+      <div className="mb-8 md:mb-10 text-center mt-6 md:mt-0">
+        <h2 className="text-2xl md:text-5xl font-bold uppercase tracking-tight text-white mb-4 drop-shadow-md">
           {data.title}
         </h2>
         {data.subtitle && (
-          <p className="text-sm font-bold uppercase tracking-widest text-zinc-500 mb-2">
+          <p className="text-xs md:text-sm font-bold uppercase tracking-widest text-zinc-500 mb-2">
             {data.subtitle}
           </p>
         )}
       </div>
 
-      {/* Simplified Layout for Experiences (Clean Text Only) */}
       <motion.div 
         initial="hidden"
         animate="visible"
         variants={{
           visible: { transition: { staggerChildren: 0.1 } }
         }}
-        className="bg-black/40 rounded-2xl p-6 md:p-10 border border-white/5 shadow-inner"
+        className="bg-black/40 rounded-xl p-6 md:p-10 border border-white/5 shadow-inner"
       >
-          <div className="prose prose-lg prose-invert text-zinc-300">
+          <div className="prose prose-sm md:prose-lg prose-invert text-zinc-300">
             {data.content}
           </div>
       </motion.div>
@@ -188,7 +187,7 @@ const ShowcaseModalContent: React.FC<{ data: ModalContent; onClose: () => void }
   );
 };
 
-// Category C: Reference (Serving Micron) - UPDATED TO BE WIDER AND THEMED
+// Category C: Reference (Serving Micron) - UPDATED TO BE WIDER AND THEMED AND MOBILE RESPONSIVE
 const ReferenceModalContent: React.FC<{ data: ModalContent; onClose: () => void }> = ({ data, onClose }) => {
   
   const isLight = data.theme === 'light';
@@ -202,9 +201,7 @@ const ReferenceModalContent: React.FC<{ data: ModalContent; onClose: () => void 
     ? "bg-zinc-50 border-b border-zinc-200" 
     : "bg-black/50 border-b border-white/10";
 
-  // Allow custom header color override, else default based on theme
   const titleColor = data.headerClassName || (isLight ? "text-zinc-900" : "text-white");
-  
   const subtitleColor = isLight ? "text-zinc-500" : "text-zinc-500";
   const closeBtnClasses = isLight 
     ? "bg-zinc-100 text-zinc-600 hover:bg-zinc-200 hover:text-zinc-900" 
@@ -218,22 +215,25 @@ const ReferenceModalContent: React.FC<{ data: ModalContent; onClose: () => void 
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.2 }}
-      className={`pointer-events-auto relative w-full max-w-5xl overflow-hidden rounded-3xl ${containerClasses}`}
+      // Added max-h-[85vh] and overflow-hidden to container
+      className={`pointer-events-auto relative w-full max-w-5xl h-auto max-h-[90vh] flex flex-col overflow-hidden rounded-2xl md:rounded-3xl ${containerClasses}`}
     >
-      <div className={`p-6 flex justify-between items-start ${headerClasses}`}>
+      <div className={`p-4 md:p-6 flex justify-between items-start flex-shrink-0 ${headerClasses}`}>
         <div className="pr-6">
-          <h2 className={`text-3xl md:text-4xl font-bold uppercase tracking-tight mb-1 ${titleColor}`}>
+          <h2 className={`text-2xl md:text-4xl font-bold uppercase tracking-tight mb-1 ${titleColor}`}>
             {data.title}
           </h2>
-          <p className={`text-xs font-bold uppercase tracking-widest ${subtitleColor}`}>
+          <p className={`text-[10px] md:text-xs font-bold uppercase tracking-widest ${subtitleColor}`}>
             {data.subtitle}
           </p>
         </div>
         <button onClick={onClose} className={`rounded-full p-2 transition-colors ${closeBtnClasses}`}>
-          <X size={24} />
+          <X size={20} />
         </button>
       </div>
-      <div className={`p-8 md:p-12 overflow-y-auto max-h-[80vh] custom-scrollbar ${contentContainerClasses}`}>
+      
+      {/* Scrollable Content Area */}
+      <div className={`p-6 md:p-12 overflow-y-auto custom-scrollbar ${contentContainerClasses}`}>
         {data.content}
       </div>
     </motion.div>
@@ -256,12 +256,12 @@ const GalleryModalContent: React.FC<{ data: ModalContent; onClose: () => void }>
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            className="pointer-events-auto relative w-full max-w-7xl h-[90vh] overflow-hidden rounded-3xl bg-zinc-950/95 backdrop-blur-xl shadow-2xl border border-white/10 flex flex-col"
+            className="pointer-events-auto relative w-full max-w-7xl h-[85vh] overflow-hidden rounded-2xl md:rounded-3xl bg-zinc-950/95 backdrop-blur-xl shadow-2xl border border-white/10 flex flex-col"
         >
-            <div className="p-6 md:p-8 border-b border-white/10 flex justify-between items-center bg-black/50">
+            <div className="p-4 md:p-8 border-b border-white/10 flex justify-between items-center bg-black/50 flex-shrink-0">
                 <div>
-                    <h2 className="text-2xl font-bold uppercase tracking-tight text-white">{data.title}</h2>
-                    <p className="text-zinc-400 text-sm">{images.length} Photos available</p>
+                    <h2 className="text-xl md:text-2xl font-bold uppercase tracking-tight text-white">{data.title}</h2>
+                    <p className="text-zinc-400 text-xs md:text-sm">{images.length} Photos available</p>
                 </div>
                 <button 
                     onClick={onClose}
@@ -271,7 +271,7 @@ const GalleryModalContent: React.FC<{ data: ModalContent; onClose: () => void }>
                 </button>
             </div>
             
-            <div className="flex-1 overflow-y-auto p-6 md:p-8 custom-scrollbar">
+            <div className="flex-1 overflow-y-auto p-4 md:p-8 custom-scrollbar">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {images.map((img, i) => (
                         <div key={i} className="group relative aspect-[4/3] overflow-hidden rounded-xl bg-zinc-900 border border-white/5 cursor-pointer">

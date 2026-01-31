@@ -26,9 +26,9 @@ export const Hero: React.FC = () => {
   };
 
   return (
-    // Pt-28 ensures it sits nicely below the fixed header (approx 90px).
-    // pb-6 minimizes the gap to the next section (Green Bento).
-    <section className="relative w-full bg-white flex flex-col items-center justify-center pt-28 pb-6 md:pt-32 md:pb-8 box-border overflow-hidden">
+    // Reduced padding: pt-24 (mobile) / pt-28 (desktop) and pb-2 (mobile) / pb-4 (desktop)
+    // Previous was pt-28/pt-32 and pb-6/pb-8
+    <section className="relative w-full bg-white flex flex-col items-center justify-center pt-24 pb-2 md:pt-28 md:pb-4 box-border overflow-hidden">
       
       <div className="container mx-auto px-6 h-full flex items-center justify-center">
         {/* Switched to BentoCard for consistent 'treatment' (corners, shadows, borders) */}

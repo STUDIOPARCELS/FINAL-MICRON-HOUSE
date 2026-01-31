@@ -5,9 +5,7 @@ import { ModalContent } from '../types';
 import { ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-interface SectionPrototypeProps {
-  enableAnimations?: boolean;
-}
+// Removed Props interface as we no longer depend on external state for animation
 
 const getCardData = (id: number): ModalContent => {
   const base = { category: 'cinematic' as const, label: 'Vision' };
@@ -128,7 +126,7 @@ const getCardData = (id: number): ModalContent => {
   }
 };
 
-export const SectionPrototype: React.FC<SectionPrototypeProps> = ({ enableAnimations = true }) => {
+export const SectionPrototype: React.FC = () => {
   const [modalData, setModalData] = useState<ModalContent | null>(null);
 
   const mainTitleWords = ["MICRON.", "TESLA.", "BOISE."];
@@ -136,17 +134,18 @@ export const SectionPrototype: React.FC<SectionPrototypeProps> = ({ enableAnimat
   return (
     <section id="prototype" className="container mx-auto px-6 py-8 md:px-12 md:py-24 bg-white text-zinc-900">
       
-      {/* Wrap content to hide if animations disabled */}
+      {/* Removed dependent animation wrapper. Content is always interactive and animates on scroll. */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: enableAnimations ? 1 : 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, amount: 0.1 }}
         transition={{ duration: 1.0 }}
-        className={enableAnimations ? "pointer-events-auto" : "pointer-events-none"}
+        className="pointer-events-auto"
       >
         {/* Header - Animated Reveal */}
         <motion.div 
             initial={{ opacity: 0, y: 30 }}
-            whileInView={enableAnimations ? { opacity: 1, y: 0 } : undefined}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="mb-20 flex flex-col md:flex-row md:items-end gap-12 border-b border-zinc-200 pb-10"
@@ -165,7 +164,7 @@ export const SectionPrototype: React.FC<SectionPrototypeProps> = ({ enableAnimat
                         <motion.span 
                                 key={i}
                                 initial={{ opacity: 0, x: -5 }}
-                                whileInView={enableAnimations ? { opacity: 1, x: 0 } : undefined}
+                                whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
                                 // Update colors: Gray for Micron/Tesla, Green for Boise
                                 whileHover={{ 
@@ -187,7 +186,7 @@ export const SectionPrototype: React.FC<SectionPrototypeProps> = ({ enableAnimat
                 {/* 2. Subtitle - Populates AFTER the main title */}
                 <motion.span 
                         initial={{ opacity: 0 }}
-                        whileInView={enableAnimations ? { opacity: 1 } : undefined}
+                        whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, delay: (mainTitleWords.length * 0.2) + 0.2 }}
                         className="text-zinc-600 block"
