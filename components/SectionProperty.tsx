@@ -43,7 +43,7 @@ export const SectionProperty: React.FC = () => {
         <div className="flex-shrink-0">
            <span className="block text-xs font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2">02 / ASSET</span>
            {/* Changed to Green */}
-           <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-tight text-micron-green leading-none">THE PROPERTY</h2>
+           <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-tight text-micron-green leading-none">PROPERTY</h2>
         </div>
         
         {/* Styled Description */}
@@ -53,7 +53,7 @@ export const SectionProperty: React.FC = () => {
                    <span className="font-bold text-micron-eggplant block mb-2 text-xl md:text-2xl uppercase tracking-tighter font-sans">
                        Historic Context.
                    </span>
-                   A Warm Springs address is one of Boise's most desirable—a mature tree-lined section of the historic district with many notable homes.
+                   A modest home situated atop North America's oldest continuously operating geothermal district (est. 1892). This site taps into the nation's largest historic direct-use aquifer—the same clean, ancient energy source that powers the only state capitol in the country. <span className="font-semibold text-micron-eggplant">A profound convergence of deep geologic history with energy from the stars.</span>
                 </p>
              </div>
         </div>
@@ -201,67 +201,66 @@ export const SectionProperty: React.FC = () => {
              </div>
         </div>
 
-        {/* 4. Amenities & Systems */}
+        {/* VIEW PROPERTY GALLERY Button */}
+        <motion.div
+           initial={{ opacity: 0, y: 20 }}
+           whileInView={{ opacity: 1, y: 0 }}
+           viewport={{ once: true }}
+           transition={{ duration: 0.6 }}
+           className="mt-8"
+        >
+             <button
+                onClick={openGallery}
+                className="w-full bg-micron-green hover:bg-micron-green/90 text-white py-5 px-8 rounded-xl font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-3 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 group"
+             >
+                <Images size={20} />
+                <span>View Property Gallery</span>
+                <ArrowUpRight size={18} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+             </button>
+        </motion.div>
+
+        {/* 4. Technology, Wellness & History */}
         <div className="mt-12">
              <div className="flex items-center gap-2 mb-6">
                 <Armchair className="text-micron-eggplant" size={20} />
-                <h3 className="font-bold uppercase tracking-widest text-sm text-micron-eggplant">Technology & Wellness</h3>
+                <h3 className="font-bold uppercase tracking-widest text-sm text-micron-eggplant">Technology, Wellness & History</h3>
              </div>
-             
+
              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {/* Feature 1 */}
+                {/* Feature 1: Geothermal & Wellness */}
                 <BentoCard gradient="bg-zinc-100" textColor="text-zinc-900" borderColor="border-zinc-200" className="min-h-[220px]">
                     <div className="flex justify-between items-start mb-4">
                         <Waves className="text-micron-green" />
-                        <span className="text-xs font-bold uppercase tracking-widest text-zinc-400">Recovery</span>
+                        <span className="text-xs font-bold uppercase tracking-widest text-zinc-400">Nature</span>
                     </div>
-                    <h4 className="text-xl font-bold uppercase tracking-tight mb-2">Geothermal Spa</h4>
+                    <h4 className="text-xl font-bold uppercase tracking-tight mb-2 text-micron-green">Geothermal & Wellness</h4>
                     <p className="text-sm text-zinc-600 leading-relaxed">
-                        Private geothermal hot tub and heating system utilizing the district's 177°F natural water source.
+                        Natural hot springs flowing from 177°F waters. The grounds feature mature producing fruit trees, plus a private garden feature centered geothermal wellness, rooted in the earth.
                     </p>
                 </BentoCard>
 
-                {/* Feature 2 */}
+                {/* Feature 2: Autonomous Service */}
                 <BentoCard gradient="bg-zinc-100" textColor="text-zinc-900" borderColor="border-zinc-200" className="min-h-[220px]">
                     <div className="flex justify-between items-start mb-4">
-                        <MonitorSmartphone className="text-micron-eggplant" />
+                        <Car className="text-micron-eggplant-light" />
                         <span className="text-xs font-bold uppercase tracking-widest text-zinc-400">Intelligence</span>
                     </div>
-                    <h4 className="text-xl font-bold uppercase tracking-tight mb-2">Smart Infrastructure</h4>
+                    <h4 className="text-xl font-bold uppercase tracking-tight mb-2 text-micron-eggplant-light">Autonomous Service</h4>
                     <p className="text-sm text-zinc-600 leading-relaxed">
-                        Integrated Starlink backbone with mesh network designed for high-bandwidth robotics latency requirements.
+                        Infrastructure exists for Cybercab, Optimus, and Electric. A living laboratory where Tesla's technology becomes a tangible, lived experience.
                     </p>
                 </BentoCard>
 
-                {/* Feature 3: Gallery Trigger */}
-                <BentoCard 
-                    gradient="bg-zinc-900" 
-                    textColor="text-white" 
-                    borderColor="border-zinc-800" 
-                    className="min-h-[220px] cursor-pointer group relative overflow-hidden"
-                    onClick={openGallery}
-                    hoverEffect={true}
-                >
-                     {/* Background Image */}
-                     <div className="absolute inset-0">
-                        <img 
-                            src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop" 
-                            className="w-full h-full object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-500"
-                            alt="Property Gallery"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent" />
-                     </div>
-
-                    <div className="relative z-10 flex flex-col h-full justify-between">
-                        <div className="flex justify-between items-start">
-                            <Images className="text-white" />
-                            <ArrowUpRight className="text-white opacity-0 group-hover:opacity-100 transition-opacity" />
-                        </div>
-                        <div>
-                            <h4 className="text-xl font-bold uppercase tracking-tight mb-1 text-white">View Gallery</h4>
-                            <p className="text-xs font-bold uppercase tracking-widest text-zinc-400">6 Images</p>
-                        </div>
+                {/* Feature 3: Tree-Lined Avenue */}
+                <BentoCard gradient="bg-zinc-100" textColor="text-zinc-900" borderColor="border-zinc-200" className="min-h-[220px]">
+                    <div className="flex justify-between items-start mb-4">
+                        <Trees className="text-micron-eggplant" />
+                        <span className="text-xs font-bold uppercase tracking-widest text-zinc-400">Heritage</span>
                     </div>
+                    <h4 className="text-xl font-bold uppercase tracking-tight mb-2 text-micron-eggplant">Tree-Lined Avenue</h4>
+                    <p className="text-sm text-zinc-600 leading-relaxed">
+                        Adjacent to the home of internationally-recognized images of the C.W. Moore House. The oldest residence on Warm Springs—directly across the street. Even older than the property's first geothermal hot pipe back.
+                    </p>
                 </BentoCard>
              </div>
         </div>

@@ -107,14 +107,13 @@ export const SectionUseCases: React.FC = () => {
            <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-tight text-micron-eggplant-light leading-none">EXPERIENCES</h2>
         </div>
         
-        {/* Added Lorem Ipsum Description */}
         <div className="md:ml-auto max-w-2xl pb-1">
              <div className="pl-6 border-l-4 border-micron-eggplant-light/20 hover:border-micron-eggplant-light transition-colors duration-500">
                 <p className="text-lg font-light text-zinc-600 leading-snug font-body">
                    <span className="font-bold text-micron-eggplant-light block mb-2 text-xl md:text-2xl uppercase tracking-tighter font-sans">
                        CURATED MOMENTS.
                    </span>
-                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+                   The residence adapts fluidly to the specific demands of the occasion. From private dining to executive off-site, the property configures itself to support the intent of the guest.
                 </p>
              </div>
         </div>

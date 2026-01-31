@@ -92,14 +92,13 @@ export const SectionServing: React.FC = () => {
            <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-tight text-micron-eggplant leading-none">SERVING MICRON</h2>
         </div>
         
-        {/* Added Lorem Ipsum Description */}
         <div className="md:ml-auto max-w-2xl pb-1">
              <div className="pl-6 border-l-4 border-micron-eggplant/20 hover:border-micron-eggplant transition-colors duration-500">
                 <p className="text-lg font-light text-zinc-600 leading-snug font-body">
                    <span className="font-bold text-micron-eggplant block mb-2 text-xl md:text-2xl uppercase tracking-tighter font-sans">
                        STRATEGIC ALIGNMENT.
                    </span>
-                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.
+                   Integrating the residence into Micron's operational fabric. It serves not just as accommodation, but as a strategic asset for talent acquisition, executive privacy, and brand equity.
                 </p>
              </div>
         </div>

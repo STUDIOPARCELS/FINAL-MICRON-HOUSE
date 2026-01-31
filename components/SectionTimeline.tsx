@@ -59,16 +59,27 @@ export const SectionTimeline: React.FC = () => {
   return (
     <section id="timeline" className="container mx-auto px-6 py-24 md:px-12 mb-20 bg-white text-zinc-900">
       {/* Consistent Header - Animated Reveal */}
-      <motion.div 
+      <motion.div
          initial={{ opacity: 0, y: 30 }}
          whileInView={{ opacity: 1, y: 0 }}
          viewport={{ once: true, margin: "-100px" }}
          transition={{ duration: 0.8, ease: "easeOut" }}
-         className="mb-20 flex flex-col md:flex-row md:items-end gap-6 border-b border-zinc-200 pb-8"
+         className="mb-20 flex flex-col md:flex-row md:items-end gap-12 border-b border-zinc-200 pb-10"
       >
-        <div>
+        <div className="flex-shrink-0">
            <span className="block text-xs font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2">06 / Roadmap</span>
-           <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-tight text-micron-grey1 leading-none">Timeline</h2>
+           <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-tight text-micron-grey1 leading-none">EXECUTION ROADMAP</h2>
+        </div>
+
+        <div className="md:ml-auto max-w-2xl pb-1">
+             <div className="pl-6 border-l-4 border-micron-grey1/20 hover:border-micron-grey1 transition-colors duration-500">
+                <p className="text-lg font-light text-zinc-600 leading-snug font-body">
+                   <span className="font-bold text-micron-grey1 block mb-2 text-xl md:text-2xl uppercase tracking-tighter font-sans">
+                       TIMELINE.
+                   </span>
+                   Moving from agreement to installation, then to a fully active testing environment.
+                </p>
+             </div>
         </div>
       </motion.div>
 

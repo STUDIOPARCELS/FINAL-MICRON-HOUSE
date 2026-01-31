@@ -109,7 +109,7 @@ export const SectionIntro: React.FC = () => {
                 
                 <div className="flex flex-col gap-4 pl-2 border-l-4 border-micron-green">
                     <span className="text-2xl md:text-3xl font-bold uppercase tracking-[0.2em] text-micron-green pl-4">
-                        ONE ADDRESS.
+                        MICRON HOUSE
                     </span>
                     <div className="pl-4">
                         <h3 className="text-xl font-bold text-zinc-900 uppercase leading-none tracking-tight mb-1">

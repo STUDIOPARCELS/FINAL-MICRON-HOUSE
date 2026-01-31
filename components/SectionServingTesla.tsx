@@ -37,14 +37,13 @@ export const SectionServingTesla: React.FC = () => {
            <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-tight text-zinc-900 leading-none">SERVING TESLA</h2>
         </div>
 
-        {/* Added Lorem Ipsum Description */}
         <div className="md:ml-auto max-w-2xl pb-1">
              <div className="pl-6 border-l-4 border-zinc-900/20 hover:border-zinc-900 transition-colors duration-500">
                 <p className="text-lg font-light text-zinc-600 leading-snug font-body">
                    <span className="font-bold text-zinc-900 block mb-2 text-xl md:text-2xl uppercase tracking-tighter font-sans">
                        AUTONOMOUS FUTURE.
                    </span>
-                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                   A living laboratory where the future of robotics meets the reality of daily life. Optimus and Cybercab aren't just tested here—they are the operating system of the home.
                 </p>
              </div>
         </div>

@@ -149,7 +149,7 @@ export const SectionPrototype: React.FC = () => {
                <span className="font-bold text-micron-eggplant block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
                    MICRON. TESLA. BOISE.
                </span>
-               Three forces converge at a single address — grounded in a city ascending on the national stage — to present the first autonomous residence.
+               Creating the first autonomous corporate residence. A convergence of historic stewardship and future technology.
              </p>
           </div>
         </div>
