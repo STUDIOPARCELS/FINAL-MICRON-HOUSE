@@ -10,7 +10,7 @@ const timelineEvents = [
     id: 1, 
     date: "NOW", 
     title: "AGREEMENT", 
-    desc: "Establishing the partnership framework.",
+    desc: "Establishing the partnership.",
     detail: "Finalizing the agreement between Micron and the property stakeholders. Defining the scope of the prototype relationship.",
     icon: <FileText />,
     gradient: "bg-micron-black",
@@ -18,17 +18,17 @@ const timelineEvents = [
   { 
     id: 2, 
     date: "MAR 1", 
-    title: "PROTOCOLS", 
-    desc: "Confirming prototype details.",
+    title: "PROTOCOL ASSESSMENT", 
+    desc: "Defining operational parameters.",
     detail: "Defining specific testing parameters for Optimus. Establishing liability, insurance, and operational protocols for the residence.",
     icon: <PenTool />,
-    gradient: "bg-micron-grey2",
+    gradient: "bg-micron-grey1", // Changed to Dark Gray #353942
   },
   { 
     id: 3, 
     date: "APR 1", 
     title: "WELLNESS INSTALL", 
-    desc: "Sauna, Cold Plunge, and WBV integration.",
+    desc: "Sauna, Cold Plunge, and WBV.",
     detail: "Installation of world-class recovery modalities. Geothermal heating loop optimized for the new amenities.",
     icon: <Activity />,
     gradient: "bg-micron-green",
@@ -40,7 +40,7 @@ const timelineEvents = [
     desc: "Calendar booking opens.",
     detail: "Soft launch. Board members begin booking stays. Initial feedback loop established with executive assistants.",
     icon: <Calendar />,
-    gradient: "bg-micron-eggplant-light",
+    gradient: "bg-micron-grey3",
   },
   { 
     id: 5, 
@@ -57,18 +57,29 @@ export const SectionTimeline: React.FC = () => {
   const [modalData, setModalData] = useState<ModalContent | null>(null);
 
   return (
-    <section id="timeline" className="container mx-auto px-6 py-24 md:px-12 mb-20 bg-white text-zinc-900">
-      {/* Consistent Header - Animated Reveal */}
+    <section id="timeline" className="container mx-auto px-6 py-8 md:px-12 md:py-24 mb-20 bg-zinc-50 text-zinc-900">
+      {/* Consistent Header */}
       <motion.div 
          initial={{ opacity: 0, y: 30 }}
          whileInView={{ opacity: 1, y: 0 }}
-         viewport={{ once: true, margin: "-100px" }}
+         viewport={{ once: false, amount: 0.2 }}
          transition={{ duration: 0.8, ease: "easeOut" }}
-         className="mb-20 flex flex-col md:flex-row md:items-end gap-6 border-b border-zinc-200 pb-8"
+         className="mb-20 flex flex-col md:flex-row md:items-end gap-12 border-b border-zinc-200 pb-10"
       >
-        <div>
-           <span className="block text-xs font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2">06 / Roadmap</span>
-           <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-tight text-micron-grey1 leading-none">Timeline</h2>
+        <div className="flex-shrink-0">
+           <span className="block text-xs font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2 font-sans">06 / Roadmap</span>
+           <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-tight text-micron-grey1 leading-none font-sans">EXECUTION ROADMAP</h2>
+        </div>
+
+        <div className="md:ml-auto max-w-2xl pb-1">
+             <div className="pl-6 border-l-4 border-micron-grey1/20 hover:border-micron-grey1 transition-colors duration-500">
+                <p className="text-lg font-light text-zinc-600 leading-snug font-body">
+                   <span className="font-bold text-micron-grey1 block mb-2 text-xl md:text-2xl uppercase tracking-tighter font-sans">
+                       TIMELINE.
+                   </span>
+                   Moving from agreement to installation, then to a fully active testing environment.
+                </p>
+             </div>
         </div>
       </motion.div>
 
@@ -89,14 +100,12 @@ export const SectionTimeline: React.FC = () => {
                 content: <p className="text-lg text-zinc-300">{item.detail}</p>
             })}
           >
-             {/* Icon Top Left - Matched to Experiences Style (No Circle) */}
+             {/* Icon Top Left */}
              <div className="absolute top-8 left-8 text-white group-hover:scale-110 transition-transform duration-300">
                 {React.cloneElement(item.icon as React.ReactElement<any>, { size: 18, strokeWidth: 1.5, className: "text-white" })}
              </div>
 
-             {/* Content Container */}
-             <div className="flex flex-col items-center justify-center h-full pt-8 text-center px-2">
-                 {/* Date as Header in Center */}
+             <div className="flex flex-col items-center justify-start h-full pt-12 text-center px-2">
                  <div className="mb-6">
                     <span className="text-2xl font-black uppercase tracking-widest text-white/90 drop-shadow-sm font-sans">
                         {item.date}
@@ -106,18 +115,12 @@ export const SectionTimeline: React.FC = () => {
 
                  <div className="mt-2">
                      <h3 className="text-lg font-bold text-white mb-3 uppercase tracking-tight leading-none">{item.title}</h3>
-                     <p className="text-white/70 font-body text-xs leading-relaxed group-hover:text-white transition-colors duration-300">
+                     <p className="text-white/90 font-body text-xs leading-relaxed transition-colors duration-300">
                         {item.desc}
                      </p>
                  </div>
              </div>
              
-             {/* Timeline Connector - Adjusted position */}
-             {i < timelineEvents.length - 1 && (
-                <div className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-[2px] bg-white/20 hidden xl:block translate-x-4 z-10">
-                   <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-white/40"></div>
-                </div>
-             )}
           </BentoCard>
         ))}
       </div>

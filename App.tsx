@@ -3,7 +3,6 @@ import { Hero } from './components/Hero';
 import { SectionIntro } from './components/SectionIntro';
 import { SectionPrototype } from './components/SectionPrototype';
 import { SectionProperty } from './components/SectionProperty';
-import { SectionUseCases } from './components/SectionUseCases';
 import { SectionServing } from './components/SectionServing';
 import { SectionServingTesla } from './components/SectionServingTesla';
 import { SectionTimeline } from './components/SectionTimeline';
@@ -12,6 +11,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [introAnimationComplete, setIntroAnimationComplete] = useState(false);
 
   // Helper function to handle smooth scrolling with header offset
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
@@ -33,7 +33,6 @@ function App() {
   const navLinks = [
     { label: "Vision", id: "prototype" },
     { label: "Property", id: "property" },
-    { label: "Use Case", id: "use-cases" },
     { label: "Serving Micron", id: "serving" },
     { label: "Serving Tesla", id: "serving-tesla" },
     { label: "Timeline", id: "timeline" },
@@ -50,8 +49,8 @@ function App() {
           Micron House
         </div>
         
-        {/* Desktop Menu */}
-        <div className="hidden md:flex gap-6 text-xs font-bold uppercase tracking-widest text-zinc-500">
+        {/* Desktop Menu - Font Size Increased from text-xs to text-sm */}
+        <div className="hidden md:flex gap-6 text-sm font-bold uppercase tracking-widest text-zinc-500">
            {navLinks.map(link => (
              <a 
                 key={link.id}
@@ -101,11 +100,10 @@ function App() {
 
       <main>
         <Hero />
-        <SectionIntro />
+        <SectionIntro onAnimationComplete={() => setIntroAnimationComplete(true)} />
         <div className="relative z-20 bg-white">
-          <SectionPrototype />
+          <SectionPrototype enableAnimations={introAnimationComplete} />
           <SectionProperty />
-          <SectionUseCases />
           <SectionServing />
           <SectionServingTesla />
           <SectionTimeline />

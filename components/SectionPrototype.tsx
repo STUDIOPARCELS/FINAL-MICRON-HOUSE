@@ -5,6 +5,10 @@ import { ModalContent } from '../types';
 import { ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
+interface SectionPrototypeProps {
+  enableAnimations?: boolean;
+}
+
 const getCardData = (id: number): ModalContent => {
   const base = { category: 'cinematic' as const, label: 'Vision' };
   switch(id) {
@@ -76,7 +80,7 @@ const getCardData = (id: number): ModalContent => {
         ...base, 
         title: 'FOUNDATION', 
         modalLayout: 'vertical-image-top', 
-        image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop', // Updated to a reliable architectural image
+        image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop', 
         content: (
         <div className="h-full flex flex-col">
            <div className="mb-10">
@@ -124,132 +128,161 @@ const getCardData = (id: number): ModalContent => {
   }
 };
 
-export const SectionPrototype: React.FC = () => {
+export const SectionPrototype: React.FC<SectionPrototypeProps> = ({ enableAnimations = true }) => {
   const [modalData, setModalData] = useState<ModalContent | null>(null);
 
+  const mainTitleWords = ["MICRON.", "TESLA.", "BOISE."];
+  
   return (
-    <section id="prototype" className="container mx-auto px-6 py-24 md:px-12 bg-white text-zinc-900">
+    <section id="prototype" className="container mx-auto px-6 py-8 md:px-12 md:py-24 bg-white text-zinc-900">
       
-      {/* Header - Animated Reveal */}
-      <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="mb-20 flex flex-col md:flex-row md:items-end gap-12 border-b border-zinc-200 pb-10"
+      {/* Wrap content to hide if animations disabled */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: enableAnimations ? 1 : 0 }}
+        transition={{ duration: 1.0 }}
+        className={enableAnimations ? "pointer-events-auto" : "pointer-events-none"}
       >
-        <div className="flex-shrink-0">
-           <span className="block text-xs font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2 font-sans">01 / VISION</span>
-           {/* Color changed to Blue (eggplant-light) */}
-           <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-tight text-micron-eggplant-light leading-none font-sans">A NEW DAY</h2>
-        </div>
-        <div className="md:ml-auto max-w-2xl pb-1">
-          <div className="pl-6 border-l-4 border-micron-eggplant/20 hover:border-micron-eggplant transition-colors duration-500">
-             <p className="text-base font-light text-zinc-600 leading-snug font-body">
-               <span className="font-bold text-micron-eggplant block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
-                   MICRON. TESLA. BOISE.
-               </span>
-               Three forces converge at a single address — grounded in a city ascending on the national stage — to present the first autonomous residence.
-             </p>
-          </div>
-        </div>
-      </motion.div>
-
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        
-        {/* Card 1: PROTOTYPE */}
-        <BentoCard 
-          className="flex flex-col h-[480px] p-8 relative overflow-hidden group" 
-          gradient="bg-micron-black" 
-          textColor="text-white"
-          borderColor="border-white/10"
-          delay={0.1} 
-          hoverEffect={true}
-          onClick={() => setModalData(getCardData(1))}
+        {/* Header - Animated Reveal */}
+        <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={enableAnimations ? { opacity: 1, y: 0 } : undefined}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="mb-20 flex flex-col md:flex-row md:items-end gap-12 border-b border-zinc-200 pb-10"
         >
-             <div className="relative z-10 mt-auto">
-                 <h3 className="text-4xl font-black uppercase leading-[0.9] tracking-tighter text-white group-hover:text-micron-green transition-colors duration-300 mb-4">
-                    PROTOTYPE
-                 </h3>
-                 <p className="text-xs font-bold uppercase tracking-widest text-white/50 group-hover:text-white transition-colors">
-                    A New Paradigm
-                 </p>
-                 <div className="mt-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-2 group-hover:translate-y-0">
-                    <ArrowUpRight size={18} className="text-white" />
-                 </div>
-             </div>
-        </BentoCard>
+            <div className="flex-shrink-0">
+            <span className="block text-xs font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2 font-sans">01 / VISION</span>
+            {/* Color changed to GREEN */}
+            <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-tight text-micron-green leading-none font-sans">A NEW DAY</h2>
+            </div>
+            <div className="md:ml-auto max-w-2xl pb-1">
+            <div className="pl-6 border-l-4 border-micron-eggplant/20 hover:border-micron-eggplant transition-colors duration-500">
+                <div className="text-base font-light text-zinc-600 leading-snug font-body">
+                {/* 1. Micron. Tesla. Boise. - One by One */}
+                <span className="font-bold text-micron-eggplant block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans cursor-default">
+                    {mainTitleWords.map((word, i) => (
+                        <motion.span 
+                                key={i}
+                                initial={{ opacity: 0, x: -5 }}
+                                whileInView={enableAnimations ? { opacity: 1, x: 0 } : undefined}
+                                viewport={{ once: true }}
+                                // Update colors: Gray for Micron/Tesla, Green for Boise
+                                whileHover={{ 
+                                    y: -4, 
+                                    x: 2, 
+                                    scale: 1.05, 
+                                    color: word === "BOISE." ? '#008f25' : '#6b7280', 
+                                    transition: { duration: 0.2 } 
+                                }}
+                                // Smoother stagger (0.4s) instead of dragged out (0.8s)
+                                transition={{ duration: 0.4, delay: i * 0.4 }} 
+                                className="mr-3 inline-block"
+                        >
+                            {word}
+                        </motion.span>
+                    ))}
+                </span>
+                
+                {/* 2. Subtitle - Populates AFTER the main title */}
+                <motion.span 
+                        initial={{ opacity: 0 }}
+                        whileInView={enableAnimations ? { opacity: 1 } : undefined}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: (mainTitleWords.length * 0.4) + 0.2 }}
+                        className="text-zinc-600 block"
+                >
+                    Creating the first autonomous corporate residence. A convergence of historic stewardship and future technology.
+                </motion.span>
+                </div>
+            </div>
+            </div>
+        </motion.div>
 
-        {/* Card 2: COLLABORATION */}
-        <BentoCard 
-          className="flex flex-col h-[480px] p-8 relative overflow-hidden group" 
-          gradient="bg-micron-grey1" 
-          textColor="text-white"
-          borderColor="border-white/10"
-          delay={0.2} 
-          hoverEffect={true}
-          onClick={() => setModalData(getCardData(3))}
-        >
-             <div className="relative z-10 mt-auto">
-                 <h3 className="text-4xl font-black uppercase leading-[0.9] tracking-tighter text-white group-hover:text-micron-green transition-colors duration-300 mb-4">
-                    COLLABORATION
-                 </h3>
-                 <p className="text-xs font-bold uppercase tracking-widest text-white/50 group-hover:text-white transition-colors">
-                    Shared Missions
-                 </p>
-                 <div className="mt-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-2 group-hover:translate-y-0">
-                    <ArrowUpRight size={18} className="text-white" />
-                 </div>
-             </div>
-        </BentoCard>
-
-        {/* Card 3: TIMING */}
-        <BentoCard 
-            className="flex flex-col h-[480px] p-8 relative overflow-hidden group" 
-            gradient="bg-micron-green"
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            
+            {/* Card 1: PROTOTYPE (Black) */}
+            <BentoCard 
+            className="flex flex-col min-h-[320px] md:h-[480px] p-8 relative overflow-hidden group" 
+            gradient="bg-micron-black" 
             textColor="text-white"
             borderColor="border-white/10"
-            delay={0.3} 
+            delay={0.1} 
             hoverEffect={true}
-            onClick={() => setModalData(getCardData(2))}
-        >
-           <div className="relative z-10 mt-auto">
-                 <h3 className="text-4xl font-black uppercase leading-[0.9] tracking-tighter text-white group-hover:text-micron-eggplant transition-colors duration-300 mb-4">
-                    TIMING
-                 </h3>
-                 <p className="text-xs font-bold uppercase tracking-widest text-white/70 group-hover:text-white transition-colors">
-                    Boise's Moment
-                 </p>
-                 <div className="mt-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-2 group-hover:translate-y-0">
-                    <ArrowUpRight size={18} className="text-white" />
-                 </div>
-           </div>
-        </BentoCard>
+            onClick={() => setModalData(getCardData(1))}
+            >
+                <div className="relative z-10 mt-auto">
+                    <h3 className="text-4xl font-black uppercase leading-[0.9] tracking-tighter text-white group-hover:text-micron-green transition-colors duration-300 mb-4">
+                        PROTOTYPE
+                    </h3>
+                    <p className="text-xs font-bold uppercase tracking-widest text-white/50 group-hover:text-white transition-colors">
+                        A New Paradigm
+                    </p>
+                </div>
+            </BentoCard>
 
-        {/* Card 4: FOUNDATION */}
-        <BentoCard 
-           className="flex flex-col h-[480px] p-8 relative overflow-hidden group" 
-           gradient="bg-micron-eggplant" 
-           textColor="text-white"
-           borderColor="border-white/10"
-           delay={0.4} 
-           hoverEffect={true}
-           onClick={() => setModalData(getCardData(4))}
-        >
-             <div className="relative z-10 mt-auto">
-                 <h3 className="text-4xl font-black uppercase leading-[0.9] tracking-tighter text-white group-hover:text-micron-green transition-colors duration-300 mb-4">
-                    FOUNDATION
-                 </h3>
-                 <p className="text-xs font-bold uppercase tracking-widest text-white/50 group-hover:text-white transition-colors">
-                    Place & Perspective
-                 </p>
-                 <div className="mt-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-2 group-hover:translate-y-0">
-                    <ArrowUpRight size={18} className="text-white" />
-                 </div>
-             </div>
-        </BentoCard>
+            {/* Card 2: COLLABORATION (Changed to LIGHT BLUE) */}
+            <BentoCard 
+            className="flex flex-col min-h-[320px] md:h-[480px] p-8 relative overflow-hidden group" 
+            gradient="bg-micron-eggplant-light" // Changed to Blue
+            textColor="text-white"
+            borderColor="border-white/10"
+            delay={0.2} 
+            hoverEffect={true}
+            onClick={() => setModalData(getCardData(3))}
+            >
+                <div className="relative z-10 mt-auto">
+                    <h3 className="text-4xl font-black uppercase leading-[0.9] tracking-tighter text-white group-hover:text-micron-black transition-colors duration-300 mb-4">
+                        COLLABORATION
+                    </h3>
+                    <p className="text-xs font-bold uppercase tracking-widest text-white/50 group-hover:text-white transition-colors">
+                        Shared Missions
+                    </p>
+                </div>
+            </BentoCard>
 
-      </div>
+            {/* Card 3: TIMING (Green) */}
+            <BentoCard 
+                className="flex flex-col min-h-[320px] md:h-[480px] p-8 relative overflow-hidden group" 
+                gradient="bg-micron-green"
+                textColor="text-white"
+                borderColor="border-white/10"
+                delay={0.3} 
+                hoverEffect={true}
+                onClick={() => setModalData(getCardData(2))}
+            >
+            <div className="relative z-10 mt-auto">
+                    <h3 className="text-4xl font-black uppercase leading-[0.9] tracking-tighter text-white group-hover:text-micron-eggplant transition-colors duration-300 mb-4">
+                        TIMING
+                    </h3>
+                    <p className="text-xs font-bold uppercase tracking-widest text-white/70 group-hover:text-white transition-colors">
+                        Boise's Moment
+                    </p>
+            </div>
+            </BentoCard>
+
+            {/* Card 4: FOUNDATION (Eggplant) */}
+            <BentoCard 
+            className="flex flex-col min-h-[320px] md:h-[480px] p-8 relative overflow-hidden group" 
+            gradient="bg-micron-eggplant" 
+            textColor="text-white" 
+            borderColor="border-white/10"
+            delay={0.4} 
+            hoverEffect={true}
+            onClick={() => setModalData(getCardData(4))}
+            >
+                <div className="relative z-10 mt-auto">
+                    <h3 className="text-4xl font-black uppercase leading-[0.9] tracking-tighter text-white group-hover:text-micron-green transition-colors duration-300 mb-4">
+                        FOUNDATION
+                    </h3>
+                    <p className="text-xs font-bold uppercase tracking-widest text-white/50 group-hover:text-white transition-colors">
+                        Place & Perspective
+                    </p>
+                </div>
+            </BentoCard>
+
+        </div>
+      </motion.div>
       <Modal isOpen={!!modalData} onClose={() => setModalData(null)} data={modalData} />
     </section>
   );

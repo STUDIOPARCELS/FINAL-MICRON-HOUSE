@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { CardProps } from '../types';
+import { ArrowUpRight } from 'lucide-react';
 
 export const BentoCard: React.FC<CardProps & { textColor?: string; borderColor?: string }> = ({ 
   className = "", 
@@ -14,15 +15,18 @@ export const BentoCard: React.FC<CardProps & { textColor?: string; borderColor?:
   textColor = "text-white",
   borderColor = "border-white/10"
 }) => {
+  // Determine arrow color based on text color prop
+  const arrowColor = textColor.includes('black') || textColor.includes('zinc-900') ? 'text-zinc-900' : 'text-white';
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={{ once: true, amount: 0.1 }} // Changed to once: true to prevent flashing
       transition={{ 
-        duration: 0.6,
-        ease: [0.21, 0.47, 0.32, 0.98], // Custom ease out
-        delay: delay 
+        duration: 1.0,
+        ease: [0.25, 0.4, 0.25, 1],
+        delay: delay
       }}
       whileHover={hoverEffect ? { y: -8, transition: { duration: 0.3 } } : undefined}
       onClick={onClick}
@@ -50,14 +54,10 @@ export const BentoCard: React.FC<CardProps & { textColor?: string; borderColor?:
         {children}
       </div>
       
-      {/* Hover Icon (Only if clickable) */}
-      {hoverEffect && onClick && (
-        <div className={`absolute bottom-6 right-6 opacity-0 translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 z-20`}>
-          <div className={`h-8 w-8 rounded-full flex items-center justify-center border shadow-lg ${textColor === 'text-white' ? 'bg-white/10 text-white border-white/10' : 'bg-zinc-900 text-white border-zinc-900'}`}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </div>
+      {/* Hover Arrow */}
+      {onClick && hoverEffect && (
+        <div className="absolute top-6 right-6 z-20 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+             <ArrowUpRight className={`${arrowColor} opacity-70`} size={20} />
         </div>
       )}
     </motion.div>

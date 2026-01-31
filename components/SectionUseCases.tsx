@@ -2,79 +2,82 @@ import React, { useState } from 'react';
 import { BentoCard } from './BentoCard';
 import { Modal } from './Modal';
 import { ModalContent } from '../types';
-import { Wine, Car, BedDouble, Shield, Music, Mic, Armchair, Heart, Trophy, Snowflake, ArrowUpRight } from 'lucide-react';
+import { Wine, Car, BedDouble, Shield, Music, Mic, Armchair, Heart, Trophy, Snowflake } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const useCases = [
+  // ROW 1
   { 
     id: 1, 
     title: "CHEF'S TABLE", 
-    text: "A James Beard-recognized chef prepares dinner in the 1906 kitchen. Snake River Valley wines selected by the owner's sommelier network. Six guests. Produce from the property's fruit trees and grapevine when in season.", 
+    text: "A James Beard-recognized chef prepares dinner in the 1906 kitchen. Snake River Valley wines selected by the owner's sommelier network. Six guests.", 
     icon: <Wine />, 
-    gradient: "bg-micron-black",
+    gradient: "bg-micron-grey1", // Dark Slate
   }, 
   { 
     id: 2, 
-    title: "AUTONOMOUS ARRIVAL", 
-    text: "Board member lands at BOI. Cybercab waiting at the curb. Autonomous drive through downtown Boise to Warm Springs Avenue. Optimus opens the front door. Luggage handled. Guest settles into a geothermal-heated home.", 
+    title: "AUTONOMOUS ARRIVALS", 
+    text: "Board member lands at BOI. Cybercab waiting at the curb. Autonomous drive through downtown Boise. Optimus opens the front door.", 
     icon: <Car />, 
-    gradient: "bg-micron-green",
+    gradient: "bg-micron-green", 
   },
   { 
     id: 3, 
-    title: "ALPINE DAY", 
-    text: "Heli-ski Idaho backcountry. Return to the house for geothermal hot tub, dry sauna, contrast therapy. Recovery meal prepared by a local chef. The mountain and the restoration in the same day.", 
+    title: "ALPINE DAYS", 
+    text: "Heli-ski Idaho backcountry. Return to the house for geothermal hot tub, dry sauna, contrast therapy. Recovery meal prepared by a local chef.", 
     icon: <Snowflake />, 
-    gradient: "bg-micron-eggplant-light",
+    gradient: "bg-micron-eggplant", // Deep Eggplant
   },
   { 
     id: 4, 
-    title: "SOFT LANDING", 
-    text: "Executive relocating from Munich, Seoul, or Tel Aviv. Family arrives before permanent housing is ready. Two weeks in a real Boise neighborhood. Foothills visible from the deck. River walkable.", 
+    title: "SOFT LANDINGS", 
+    text: "Executive relocating from Munich, Seoul, or Tel Aviv. Family arrives before permanent housing is ready. Two weeks in a real Boise neighborhood.", 
     icon: <BedDouble />, 
-    gradient: "bg-zinc-600",
+    gradient: "bg-micron-grey2", // Medium Slate (Reference Tone)
   },
   { 
     id: 5, 
     title: "CONFIDENTIAL COUNSEL", 
-    text: "Governor and executives. Investors and founders. Board members and advisors. Fireside conversation. Same neighbors for 25 years. Complete privacy.", 
+    text: "Governor and executives. Investors and founders. Board members and advisors. Fireside conversation. Same neighbors for 25 years.", 
     icon: <Shield />, 
-    gradient: "bg-micron-eggplant",
+    gradient: "bg-micron-black", // The ONE Black card allowed
   },
+
+  // ROW 2
   { 
     id: 6, 
-    title: "PRE-PERFORMANCE", 
-    text: "Cocktails before the Boise Philharmonic. Drinks before Ballet Idaho. Gathering before Treefort. The house as staging point for Boise's performing arts calendar.", 
+    title: "PRE-PERFORMANCES", 
+    text: "Cocktails before the Boise Philharmonic. Drinks before Ballet Idaho. Gathering before Treefort. The house as staging point for arts calendar.", 
     icon: <Music />, 
-    gradient: "bg-micron-black",
+    gradient: "bg-micron-grey3", // Light Slate
   },
   { 
     id: 7, 
     title: "VISITING VOICES", 
-    text: "The Boise Art Museum curator discusses a current exhibition. A James Beard chef demonstrates technique. A state official briefs on policy. Intimate lectures and conversations in the living room. Six to eight guests. The expertise comes to the house.", 
+    text: "The Boise Art Museum curator discusses a current exhibition. A James Beard chef demonstrates technique. Intimate lectures in the living room.", 
     icon: <Mic />, 
-    gradient: "bg-zinc-600",
+    gradient: "bg-micron-eggplant", // Deep Eggplant
   },
   { 
     id: 8, 
-    title: "STAYCATION", 
-    text: "Total restoration without leaving the property. Optimus handles the housekeeping. Cybercab is your private driver. A butler and chauffeur service, redefined by robotics. You are taken care of.", 
+    title: "STAYCATIONS", 
+    text: "Total restoration without leaving the property. Optimus handles the housekeeping. Cybercab is your private driver. Redefined by robotics.", 
     icon: <Armchair />, 
-    gradient: "bg-micron-green",
+    gradient: "bg-micron-eggplant-light", // Changed to Blue
   },
   { 
     id: 9, 
-    title: "COMPASSIONATE STAY", 
+    title: "COMPASSIONATE STAYS", 
     text: "Family with a child receiving treatment at St. Luke's Medical Center, less than one mile away. A home. Kitchen access. Quiet evenings.", 
     icon: <Heart />, 
-    gradient: "bg-micron-eggplant-light",
+    gradient: "bg-micron-grey4", // Changed to Very Light Gray
   },
   { 
     id: 10, 
-    title: "GAME DAY", 
-    text: "BSU football Saturday. Tailgate brunch at the house. Biscuits from a celebrated local diner. Craft beer from a Boise brewery. Walk to the stadium. Return for evening gathering.", 
+    title: "GAME DAYS", 
+    text: "BSU football Saturday. Tailgate brunch at the house. Biscuits from a celebrated local diner. Walk to the stadium. Return for evening gathering.", 
     icon: <Trophy />, 
-    gradient: "bg-micron-grey2",
+    gradient: "bg-micron-green", // Changed to Green
   },
 ];
 
@@ -93,38 +96,33 @@ export const SectionUseCases: React.FC = () => {
   };
 
   return (
-    <section id="use-cases" className="container mx-auto px-6 py-24 md:px-12 bg-white text-zinc-900">
-      {/* Header - Animated Reveal */}
+    <section id="use-cases" className="container mx-auto px-6 py-8 md:px-12 md:py-24 bg-white text-zinc-900">
+      {/* Header */}
       <motion.div 
          initial={{ opacity: 0, y: 30 }}
          whileInView={{ opacity: 1, y: 0 }}
-         viewport={{ once: true, margin: "-100px" }}
+         viewport={{ once: true, amount: 0.2 }}
          transition={{ duration: 0.8, ease: "easeOut" }}
          className="mb-16 flex flex-col md:flex-row md:items-end gap-12 border-b border-zinc-200 pb-10"
       >
         <div className="flex-shrink-0">
-           <span className="block text-xs font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2">03 / USE CASE</span>
-           <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-tight text-micron-eggplant-light leading-none">EXPERIENCES</h2>
+           <span className="block text-xs font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2 font-sans">03 / USE CASE</span>
+           <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-tight text-zinc-400 leading-none font-sans">EXPERIENCES</h2>
         </div>
         
-        {/* Added Lorem Ipsum Description */}
         <div className="md:ml-auto max-w-2xl pb-1">
              <div className="pl-6 border-l-4 border-micron-eggplant-light/20 hover:border-micron-eggplant-light transition-colors duration-500">
                 <p className="text-lg font-light text-zinc-600 leading-snug font-body">
                    <span className="font-bold text-micron-eggplant-light block mb-2 text-xl md:text-2xl uppercase tracking-tighter font-sans">
                        CURATED MOMENTS.
                    </span>
-                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+                   {/* Improved rephrasing */}
+                   The residence adapts fluidly to the specific demands of the occasion. From private dining to executive off-sites, the property configures itself to support the intent of the guest.
                 </p>
              </div>
         </div>
       </motion.div>
 
-      {/* 
-        Grid / Horizontal Scroll Strategy:
-        Mobile: Horizontal Scroll to avoid excessive vertical length (user request).
-        Desktop: 5-column Grid.
-      */}
       <div className="flex items-center gap-2 mb-4 md:hidden">
           <span className="text-xs text-zinc-400 uppercase tracking-wide">Swipe to explore →</span>
       </div>
@@ -142,29 +140,29 @@ export const SectionUseCases: React.FC = () => {
                 flex flex-col justify-between min-h-[340px] group border-none
             "
             gradient={uc.gradient} 
-            textColor="text-white"
+            // Handle text color for very light card
+            textColor={uc.gradient === 'bg-micron-grey4' ? 'text-zinc-900' : 'text-white'}
             borderColor="border-transparent"
             delay={i * 0.05}
             onClick={() => openModal(uc)}
           >
             <div className="mb-6">
                 <div className="flex justify-between items-start">
-                    {/* Icon container - clean, white, no fill, 50% smaller (18px) */}
                     <div className="flex items-center justify-center mb-6 transform group-hover:scale-110 transition-transform duration-300">
-                       {React.cloneElement(uc.icon as React.ReactElement<any>, { size: 18, strokeWidth: 1.5, className: "text-white" })}
-                    </div>
-                    {/* Hover indicator */}
-                    <div className="opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0">
-                        <ArrowUpRight className="text-white/70" size={20} />
+                       {React.cloneElement(uc.icon as React.ReactElement<any>, { 
+                           size: 18, 
+                           strokeWidth: 1.5, 
+                           className: uc.gradient === 'bg-micron-grey4' ? 'text-zinc-900' : 'text-white' 
+                        })}
                     </div>
                 </div>
                 
-                <h3 className="font-bold text-xl text-white mb-3 leading-tight uppercase tracking-tight">
+                <h3 className={`font-bold text-xl mb-3 leading-tight uppercase tracking-tight ${uc.gradient === 'bg-micron-grey4' ? 'text-zinc-900' : 'text-white'}`}>
                   {uc.title}
                 </h3>
             </div>
             
-            <p className="text-sm font-bold text-white/80 leading-relaxed font-sans tracking-wide">
+            <p className={`text-sm font-bold leading-relaxed font-sans tracking-wide ${uc.gradient === 'bg-micron-grey4' ? 'text-zinc-600' : 'text-white/80'}`}>
               {uc.text}
             </p>
 

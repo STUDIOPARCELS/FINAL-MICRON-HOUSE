@@ -171,53 +171,24 @@ const ShowcaseModalContent: React.FC<{ data: ModalContent; onClose: () => void }
         )}
       </div>
 
-      {/* Staggered Grid Reveal */}
+      {/* Simplified Layout for Experiences (Clean Text Only) */}
       <motion.div 
-        className="grid grid-cols-1 md:grid-cols-2 gap-6"
         initial="hidden"
         animate="visible"
         variants={{
           visible: { transition: { staggerChildren: 0.1 } }
         }}
+        className="bg-black/40 rounded-2xl p-6 md:p-10 border border-white/5 shadow-inner"
       >
-        <motion.div 
-          variants={{ hidden: { opacity: 0, scale: 0.9 }, visible: { opacity: 1, scale: 1 } }}
-          className="col-span-1 md:col-span-2 bg-black/40 rounded-2xl p-6 md:p-8 border border-white/5 shadow-inner"
-        >
           <div className="prose prose-lg prose-invert text-zinc-300">
             {data.content}
           </div>
-          
-          {data.tags && (
-            <div className="flex gap-2 mt-8 flex-wrap">
-              {data.tags.map((tag, i) => (
-                <span key={i} className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-bold uppercase tracking-wider text-micron-eggplant-light hover:bg-white/10 transition-colors">
-                  {tag}
-                </span>
-              ))}
-            </div>
-          )}
-        </motion.div>
-
-        {/* 3D Dark Tiles for Meta Data */}
-        <motion.div variants={{ hidden: { opacity: 0, scale: 0.8 }, visible: { opacity: 1, scale: 1 } }} className="h-24 md:h-32 bg-gradient-to-br from-zinc-900 to-black rounded-2xl flex flex-col items-center justify-center border border-white/10 shadow-lg relative overflow-hidden group">
-           <div className="absolute inset-0 bg-micron-eggplant-light/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-           <span className="text-xs font-bold text-zinc-500 uppercase tracking-widest mb-1 z-10">Timeline</span>
-           <span className="text-white font-bold text-lg z-10">2026-2027</span>
-        </motion.div>
-
-        <motion.div variants={{ hidden: { opacity: 0, scale: 0.8 }, visible: { opacity: 1, scale: 1 } }} className="h-24 md:h-32 bg-gradient-to-br from-zinc-900 to-black rounded-2xl flex flex-col items-center justify-center border border-white/10 shadow-lg relative overflow-hidden group">
-           <div className="absolute inset-0 bg-micron-green/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-           <span className="text-xs font-bold text-zinc-500 uppercase tracking-widest mb-1 z-10">Availability</span>
-           <span className="text-white font-bold text-lg z-10">Priority Access</span>
-        </motion.div>
-
       </motion.div>
     </motion.div>
   );
 };
 
-// Category C: Reference (Serving Micron)
+// Category C: Reference (Serving Micron) - UPDATED TO BE WIDER
 const ReferenceModalContent: React.FC<{ data: ModalContent; onClose: () => void }> = ({ data, onClose }) => {
   return (
     <motion.div
@@ -225,21 +196,21 @@ const ReferenceModalContent: React.FC<{ data: ModalContent; onClose: () => void 
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.2 }}
-      className="pointer-events-auto relative w-full max-w-2xl overflow-hidden rounded-2xl bg-zinc-950 shadow-2xl border border-white/10"
+      // Changed max-w-2xl to max-w-4xl for better readability
+      className="pointer-events-auto relative w-full max-w-5xl overflow-hidden rounded-3xl bg-zinc-950/95 backdrop-blur-xl shadow-2xl border border-white/10"
     >
       <div className="bg-black/50 p-6 border-b border-white/10 flex justify-between items-start">
         <div className="pr-6">
-          {/* Consistent Bento Cover Style: Sans, Bold, Uppercase */}
-          <h2 className="text-2xl font-bold uppercase tracking-tight text-white mb-1">
+          <h2 className="text-3xl md:text-4xl font-bold uppercase tracking-tight text-white mb-1">
             {data.title}
           </h2>
           <p className="text-xs font-bold uppercase tracking-widest text-zinc-500">
             {data.subtitle}
           </p>
         </div>
-        <button onClick={onClose} className="text-zinc-500 hover:text-white transition-colors p-1"><X size={20} /></button>
+        <button onClick={onClose} className="rounded-full bg-white/5 p-2 text-zinc-400 hover:text-white transition-colors"><X size={24} /></button>
       </div>
-      <div className="p-6 md:p-8 text-zinc-300">
+      <div className="p-8 md:p-12 text-zinc-300 overflow-y-auto max-h-[80vh] custom-scrollbar">
         {data.content}
       </div>
     </motion.div>
