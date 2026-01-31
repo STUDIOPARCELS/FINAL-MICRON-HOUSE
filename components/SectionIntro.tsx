@@ -8,17 +8,20 @@ export const SectionIntro: React.FC = () => {
   const sentences = [
     { 
       text: "Without memory, there's no meaning.",
-      highlight: "meaning.",
+      boldWord: "memory,",
+      colorWord: "meaning.",
       align: "justify-start" // Left
     },
     { 
       text: "Without vision, there's no velocity.",
-      highlight: "velocity.",
+      boldWord: "vision,",
+      colorWord: "velocity.",
       align: "justify-center" // Center
     },
     { 
       text: "Without place, there's no perspective.",
-      highlight: "perspective.",
+      boldWord: "place,",
+      colorWord: "perspective.",
       align: "justify-end" // Right
     }
   ];
@@ -55,7 +58,8 @@ export const SectionIntro: React.FC = () => {
                             className={`flex flex-wrap ${sentence.align} gap-x-3 md:gap-x-5 text-2xl md:text-5xl lg:text-6xl leading-tight tracking-tight w-full`}
                         >
                             {sentence.text.split(" ").map((word, wIndex) => {
-                                const isHighlight = word.toLowerCase() === sentence.highlight;
+                                const isBold = word === sentence.boldWord;
+                                const isColor = word === sentence.colorWord;
                                 const delay = startDelay + (wIndex * WORD_DELAY);
                                 
                                 return (
@@ -70,9 +74,11 @@ export const SectionIntro: React.FC = () => {
                                             ease: "easeOut" 
                                         }}
                                         className={`${
-                                            isHighlight 
-                                                ? "font-black italic opacity-100 text-micron-eggplant" 
-                                                : "font-light italic opacity-70"
+                                            isBold 
+                                                ? "font-black italic opacity-100 text-white" 
+                                                : isColor
+                                                    ? "font-medium italic opacity-100 text-micron-eggplant"
+                                                    : "font-light italic opacity-70 text-white"
                                         }`}
                                     >
                                         {word}

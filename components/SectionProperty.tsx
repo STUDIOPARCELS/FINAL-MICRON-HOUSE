@@ -1,9 +1,23 @@
 import React, { useState } from 'react';
 import { BentoCard } from './BentoCard';
-import { MapPin, Plane, Building2, Trees, GraduationCap, Stethoscope, Wifi, Waves, Wind, MonitorSmartphone, Utensils, Sprout, ShieldCheck, Armchair, Car, BedDouble, Images } from 'lucide-react';
+import { MapPin, Plane, Building2, Trees, GraduationCap, Stethoscope, Wifi, Waves, Wind, MonitorSmartphone, Utensils, Sprout, ShieldCheck, Armchair, Car, BedDouble, Images, ArrowUpRight, Home } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Modal } from './Modal';
 import { ModalContent } from '../types';
+
+// Defined the missing component locally to fix ReferenceError
+const LocationBigCard = ({ label, time, icon, colorClass }: { label: string; time: string; icon: React.ReactNode; colorClass: string }) => (
+  <div className={`
+     min-w-[160px] md:min-w-0 snap-center
+     col-span-1 min-h-[140px] flex flex-col justify-between p-6 rounded-2xl ${colorClass} text-white shadow-lg transition-transform hover:-translate-y-1 relative overflow-hidden group border border-white/10
+  `}>
+      <div className="flex justify-between items-start relative z-10">
+          {icon}
+          <span className="text-3xl font-bold drop-shadow-sm">{time} <span className="text-xs font-normal align-top opacity-80">MIN</span></span>
+      </div>
+      <span className="text-xs font-bold uppercase tracking-widest opacity-90 relative z-10">{label}</span>
+  </div>
+);
 
 export const SectionProperty: React.FC = () => {
   const [modalData, setModalData] = useState<ModalContent | null>(null);
@@ -135,7 +149,125 @@ export const SectionProperty: React.FC = () => {
              </div>
         </div>
 
-        {/* 3. Property Details - Updated for Dense Mobile Layout */}
+        {/* 3. NEW: Residence Specifications (The "Meat") */}
+        <div className="mt-12">
+             <div className="flex items-center gap-2 mb-6">
+                <Home className="text-micron-eggplant" size={20} />
+                <h3 className="font-bold uppercase tracking-widest text-sm text-micron-eggplant">Residence Specifications</h3>
+             </div>
+             
+             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                 {/* Spec 1: Interior/Main Level */}
+                 <BentoCard gradient="bg-white" textColor="text-zinc-900" borderColor="border-zinc-200" className="min-h-[200px] shadow-sm">
+                     <div className="flex justify-between items-start mb-4">
+                        <Utensils className="text-micron-black" size={24} />
+                     </div>
+                     <h4 className="text-lg font-bold uppercase tracking-tight mb-3 text-micron-eggplant">Main Level</h4>
+                     <ul className="space-y-3 text-sm text-zinc-600 font-body">
+                        <li className="flex gap-2 items-start"><span className="text-micron-green mt-1 text-[10px]">●</span> <span>Chef's Kitchen w/ Wolf & Sub-Zero</span></li>
+                        <li className="flex gap-2 items-start"><span className="text-micron-green mt-1 text-[10px]">●</span> <span>Hidden Butler's Pantry & Wet Bar</span></li>
+                        <li className="flex gap-2 items-start"><span className="text-micron-green mt-1 text-[10px]">●</span> <span>Formal Dining for 12 Guests</span></li>
+                        <li className="flex gap-2 items-start"><span className="text-micron-green mt-1 text-[10px]">●</span> <span>10' Ceilings & White Oak Floors</span></li>
+                     </ul>
+                 </BentoCard>
+
+                 {/* Spec 2: Upper Level */}
+                 <BentoCard gradient="bg-white" textColor="text-zinc-900" borderColor="border-zinc-200" className="min-h-[200px] shadow-sm">
+                     <div className="flex justify-between items-start mb-4">
+                        <BedDouble className="text-micron-black" size={24} />
+                     </div>
+                     <h4 className="text-lg font-bold uppercase tracking-tight mb-3 text-micron-eggplant">Upper Level</h4>
+                     <ul className="space-y-3 text-sm text-zinc-600 font-body">
+                        <li className="flex gap-2 items-start"><span className="text-micron-green mt-1 text-[10px]">●</span> <span>Primary Suite w/ Private Terrace</span></li>
+                        <li className="flex gap-2 items-start"><span className="text-micron-green mt-1 text-[10px]">●</span> <span>Spa Wet Room & Soaking Tub</span></li>
+                        <li className="flex gap-2 items-start"><span className="text-micron-green mt-1 text-[10px]">●</span> <span>Dual Walk-In Closets</span></li>
+                        <li className="flex gap-2 items-start"><span className="text-micron-green mt-1 text-[10px]">●</span> <span>2 Additional Guest En-Suites</span></li>
+                     </ul>
+                 </BentoCard>
+
+                 {/* Spec 3: Grounds */}
+                 <BentoCard gradient="bg-white" textColor="text-zinc-900" borderColor="border-zinc-200" className="min-h-[200px] shadow-sm">
+                     <div className="flex justify-between items-start mb-4">
+                        <Sprout className="text-micron-black" size={24} />
+                     </div>
+                     <h4 className="text-lg font-bold uppercase tracking-tight mb-3 text-micron-eggplant">Grounds</h4>
+                     <ul className="space-y-3 text-sm text-zinc-600 font-body">
+                        <li className="flex gap-2 items-start"><span className="text-micron-green mt-1 text-[10px]">●</span> <span>0.5 Acre Historic Estate Lot</span></li>
+                        <li className="flex gap-2 items-start"><span className="text-micron-green mt-1 text-[10px]">●</span> <span>Private Gated Driveway</span></li>
+                        <li className="flex gap-2 items-start"><span className="text-micron-green mt-1 text-[10px]">●</span> <span>Detached 3-Car Garage</span></li>
+                        <li className="flex gap-2 items-start"><span className="text-micron-green mt-1 text-[10px]">●</span> <span>Potential for ADU / Wellness Wing</span></li>
+                     </ul>
+                 </BentoCard>
+             </div>
+        </div>
+
+        {/* 4. Amenities & Systems */}
         <div className="mt-12">
              <div className="flex items-center gap-2 mb-6">
                 <Armchair className="text-micron-eggplant" size={20} />
+                <h3 className="font-bold uppercase tracking-widest text-sm text-micron-eggplant">Technology & Wellness</h3>
+             </div>
+             
+             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {/* Feature 1 */}
+                <BentoCard gradient="bg-zinc-100" textColor="text-zinc-900" borderColor="border-zinc-200" className="min-h-[220px]">
+                    <div className="flex justify-between items-start mb-4">
+                        <Waves className="text-micron-green" />
+                        <span className="text-xs font-bold uppercase tracking-widest text-zinc-400">Recovery</span>
+                    </div>
+                    <h4 className="text-xl font-bold uppercase tracking-tight mb-2">Geothermal Spa</h4>
+                    <p className="text-sm text-zinc-600 leading-relaxed">
+                        Private geothermal hot tub and heating system utilizing the district's 177°F natural water source.
+                    </p>
+                </BentoCard>
+
+                {/* Feature 2 */}
+                <BentoCard gradient="bg-zinc-100" textColor="text-zinc-900" borderColor="border-zinc-200" className="min-h-[220px]">
+                    <div className="flex justify-between items-start mb-4">
+                        <MonitorSmartphone className="text-micron-eggplant" />
+                        <span className="text-xs font-bold uppercase tracking-widest text-zinc-400">Intelligence</span>
+                    </div>
+                    <h4 className="text-xl font-bold uppercase tracking-tight mb-2">Smart Infrastructure</h4>
+                    <p className="text-sm text-zinc-600 leading-relaxed">
+                        Integrated Starlink backbone with mesh network designed for high-bandwidth robotics latency requirements.
+                    </p>
+                </BentoCard>
+
+                {/* Feature 3: Gallery Trigger */}
+                <BentoCard 
+                    gradient="bg-zinc-900" 
+                    textColor="text-white" 
+                    borderColor="border-zinc-800" 
+                    className="min-h-[220px] cursor-pointer group relative overflow-hidden"
+                    onClick={openGallery}
+                    hoverEffect={true}
+                >
+                     {/* Background Image */}
+                     <div className="absolute inset-0">
+                        <img 
+                            src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop" 
+                            className="w-full h-full object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-500"
+                            alt="Property Gallery"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent" />
+                     </div>
+
+                    <div className="relative z-10 flex flex-col h-full justify-between">
+                        <div className="flex justify-between items-start">
+                            <Images className="text-white" />
+                            <ArrowUpRight className="text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                        </div>
+                        <div>
+                            <h4 className="text-xl font-bold uppercase tracking-tight mb-1 text-white">View Gallery</h4>
+                            <p className="text-xs font-bold uppercase tracking-widest text-zinc-400">6 Images</p>
+                        </div>
+                    </div>
+                </BentoCard>
+             </div>
+        </div>
+
+      </div>
+      <Modal isOpen={!!modalData} onClose={() => setModalData(null)} data={modalData} />
+    </section>
+  );
+};
