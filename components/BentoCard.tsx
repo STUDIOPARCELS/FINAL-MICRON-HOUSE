@@ -30,13 +30,13 @@ export const BentoCard: React.FC<CardProps & { textColor?: string; borderColor?:
         relative overflow-hidden rounded-xl 
         ${gradient} ${textColor}
         border ${borderColor}
-        shadow-[0_10px_30px_-10px_rgba(0,0,0,0.1)] 
+        shadow-[0_20px_40px_-12px_rgba(0,0,0,0.3)] 
         p-8
         flex flex-col
         transition-all duration-300 ease-out
         group
-        ${hoverEffect && onClick ? 'cursor-pointer hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)]' : ''}
-        ${hoverEffect && !onClick ? 'hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.15)]' : ''}
+        ${hoverEffect && onClick ? 'cursor-pointer hover:shadow-[0_30px_60px_-12px_rgba(0,0,0,0.4)]' : ''}
+        ${hoverEffect && !onClick ? 'hover:shadow-[0_30px_60px_-12px_rgba(0,0,0,0.25)]' : ''}
         ${className}
       `}
     >

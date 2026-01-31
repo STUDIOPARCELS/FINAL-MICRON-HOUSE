@@ -140,7 +140,8 @@ export const SectionPrototype: React.FC = () => {
       >
         <div className="flex-shrink-0">
            <span className="block text-xs font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2 font-sans">01 / VISION</span>
-           <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-tight text-micron-green leading-none font-sans">A NEW DAY</h2>
+           {/* Color changed to Blue (eggplant-light) */}
+           <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-tight text-micron-eggplant-light leading-none font-sans">A NEW DAY</h2>
         </div>
         <div className="md:ml-auto max-w-2xl pb-1">
           <div className="pl-6 border-l-4 border-micron-eggplant/20 hover:border-micron-eggplant transition-colors duration-500">

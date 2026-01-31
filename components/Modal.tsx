@@ -52,9 +52,13 @@ const CinematicModalContent: React.FC<{ data: ModalContent; onClose: () => void 
   // Determine Layout Classes
   const layout = data.modalLayout || 'default';
   
+  // MOBILE FIX: Ensure flex-col for mobile to stack Image + Text
+  // AND ensure image is BLOCK (visible), not hidden.
   let containerClasses = "flex flex-col md:flex-row"; // Default
-  let textSectionClasses = "flex-1";
-  let imageSectionClasses = "flex-1 hidden md:block";
+  
+  // Height classes for sections to share space on mobile
+  let textSectionClasses = "flex-1 min-h-[50%]";
+  let imageSectionClasses = "flex-1 min-h-[30%] md:min-h-0 block"; // Changed from hidden to block
 
   // Layout Logic
   switch (layout) {
@@ -64,12 +68,12 @@ const CinematicModalContent: React.FC<{ data: ModalContent; onClose: () => void 
     case 'vertical-text-top':
       containerClasses = "flex flex-col";
       textSectionClasses = "h-1/2 w-full";
-      imageSectionClasses = "h-1/2 w-full hidden md:block";
+      imageSectionClasses = "h-1/2 w-full block";
       break;
     case 'vertical-image-top':
-      containerClasses = "flex flex-col-reverse"; // Image visual top (in flex-col-reverse, last child is top)
+      containerClasses = "flex flex-col-reverse"; 
       textSectionClasses = "h-1/2 w-full";
-      imageSectionClasses = "h-1/2 w-full hidden md:block";
+      imageSectionClasses = "h-1/2 w-full block";
       break;
     default:
       // Default is already set
@@ -121,9 +125,9 @@ const CinematicModalContent: React.FC<{ data: ModalContent; onClose: () => void 
       </div>
 
       {/* Image Section - Bento Box Style */}
-      <div className={`${imageSectionClasses} bg-zinc-900 relative p-6 md:p-8 flex items-center justify-center`}>
+      <div className={`${imageSectionClasses} bg-zinc-900 relative p-4 md:p-8 flex items-center justify-center`}>
         {/* The "Bento" Image Container */}
-        <div className="relative w-full h-full rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+        <div className="relative w-full h-full rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
            <img 
              src={imageSrc} 
              alt="Visual Context"

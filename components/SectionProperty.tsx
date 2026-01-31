@@ -28,7 +28,8 @@ export const SectionProperty: React.FC = () => {
        >
         <div className="flex-shrink-0">
            <span className="block text-xs font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2">02 / ASSET</span>
-           <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-tight text-micron-grey1 leading-none">THE PROPERTY</h2>
+           {/* Changed to Green */}
+           <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-tight text-micron-green leading-none">THE PROPERTY</h2>
         </div>
         
         {/* Styled Description */}
@@ -138,76 +139,3 @@ export const SectionProperty: React.FC = () => {
         <div className="mt-12">
              <div className="flex items-center gap-2 mb-6">
                 <Armchair className="text-micron-eggplant" size={20} />
-                <h3 className="font-bold uppercase tracking-widest text-sm text-micron-eggplant">Property Details</h3>
-             </div>
-             
-             {/* 
-                UPDATED GRID:
-                Mobile: grid-cols-2 (Two across), gap-3
-                Desktop: grid-cols-3/4, gap-4
-             */}
-             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
-                 <CompactFeature label="Geothermal Radiant Heat" icon={<Waves size={16}/>} />
-                 
-                 <CompactFeature label="Two Ensuite Master Bedrooms" icon={<BedDouble size={16}/>} />
-                 
-                 <CompactFeature label="Carport" icon={<Car size={16}/>} />
-                 <CompactFeature label="Central A/C" icon={<Wind size={16}/>} />
-                 <CompactFeature label="Main Floor Office" icon={<MonitorSmartphone size={16}/>} />
-                 
-                 <CompactFeature label="300 ft Deck & Fenced Yard" icon={<Trees size={16}/>} />
-                 <CompactFeature label="Fruit Trees & Grapevine" icon={<Sprout size={16}/>} />
-                 
-                 <CompactFeature label="Hot Springs Hot Tub" icon={<Waves size={16}/>} />
-                 <CompactFeature label="Sauna" icon={<Wind size={16}/>} />
-                 <CompactFeature label="Art & Antiques" icon={<ShieldCheck size={16}/>} />
-                 
-                 {/* Gallery Button - Styled to match CompactFeature */}
-                 <div 
-                    onClick={openGallery}
-                    className="cursor-pointer flex items-center gap-2.5 p-2.5 md:gap-3 md:p-4 rounded-xl bg-micron-eggplant text-white border border-micron-eggplant shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 group h-full"
-                 >
-                    <div className="text-white bg-white/20 p-1.5 md:p-2 rounded-lg border border-white/20 group-hover:bg-white/30 transition-colors shrink-0">
-                        <Images size={16}/>
-                    </div>
-                    <span className="font-bold text-xs md:text-sm leading-tight">
-                        Property Gallery
-                    </span>
-                 </div>
-
-             </div>
-        </div>
-
-      </div>
-
-      <Modal isOpen={!!modalData} onClose={() => setModalData(null)} data={modalData} />
-    </section>
-  );
-};
-
-// Reusable Large Location Card Component - Added min-w for horizontal scrolling
-const LocationBigCard = ({ label, time, icon, colorClass }: { label: string, time: string, icon: React.ReactNode, colorClass: string }) => (
-    <div className={`
-        min-w-[160px] md:min-w-0 snap-center
-        col-span-1 min-h-[140px] flex flex-col justify-between p-6 rounded-2xl ${colorClass} text-white shadow-lg transition-transform hover:-translate-y-1 relative overflow-hidden group border border-white/10
-    `}>
-        <div className="absolute top-0 right-0 w-32 h-32 bg-white/20 blur-3xl -mr-10 -mt-10 rounded-full pointer-events-none"></div>
-        <div className="flex justify-between items-start relative z-10">
-            {icon}
-            <span className="text-3xl font-bold drop-shadow-sm">{time} <span className="text-xs font-normal align-top opacity-80">MIN</span></span>
-        </div>
-        <span className="text-xs font-bold uppercase tracking-widest opacity-90 relative z-10">{label}</span>
-    </div>
-);
-
-// Helper for Compact Features - Super Condensed for Mobile
-const CompactFeature = ({ label, icon }: { label: string, icon: React.ReactNode }) => (
-    <div className="flex items-center gap-2.5 p-2.5 md:gap-3 md:p-4 rounded-xl bg-white border border-zinc-200 shadow-[0_2px_4px_-1px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1),0_4px_6px_-2px_rgba(0,0,0,0.05)] hover:-translate-y-0.5 transition-all duration-300 group h-full">
-        <div className="text-zinc-500 group-hover:text-micron-eggplant transition-colors bg-zinc-50 p-1.5 md:p-2 rounded-lg border border-zinc-100 group-hover:border-micron-eggplant/20 shrink-0">
-            {icon}
-        </div>
-        <span className="font-bold text-xs md:text-sm text-zinc-700 leading-tight group-hover:text-zinc-900 transition-colors">
-            {label}
-        </span>
-    </div>
-);
