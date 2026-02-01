@@ -313,8 +313,8 @@ export const SectionServing: React.FC = () => {
   };
 
   return (
-    // Reduced padding: py-16 instead of py-24
-    <section id="serving" className="container mx-auto px-6 py-8 md:px-12 md:py-16 bg-white text-zinc-900">
+    // Reduced padding: py-16 instead of py-24, px-4 mobile
+    <section id="serving" className="container mx-auto px-4 md:px-12 py-8 md:py-16 bg-white text-zinc-900">
       
       {/* Header - Animated Reveal */}
       <motion.div 
@@ -341,8 +341,8 @@ export const SectionServing: React.FC = () => {
         </div>
       </motion.div>
 
-      {/* Departments Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {/* Departments Grid - RESPONSIVE */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {departments.map((dept, i) => (
           <BentoCard 
             key={dept.id} 

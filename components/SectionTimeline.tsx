@@ -57,8 +57,8 @@ export const SectionTimeline: React.FC = () => {
   const [modalData, setModalData] = useState<ModalContent | null>(null);
 
   return (
-    // Reduced padding: py-16 instead of py-24
-    <section id="timeline" className="container mx-auto px-6 py-8 md:px-12 md:py-16 mb-20 bg-white text-zinc-900">
+    // Reduced padding: py-16 instead of py-24, px-4 mobile
+    <section id="timeline" className="container mx-auto px-4 md:px-12 py-8 md:py-16 mb-20 bg-white text-zinc-900">
       {/* Consistent Header */}
       <motion.div 
          initial={{ opacity: 0, y: 30 }}
@@ -84,8 +84,8 @@ export const SectionTimeline: React.FC = () => {
         </div>
       </motion.div>
 
-      {/* Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+      {/* Grid - RESPONSIVE FIX */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
         {timelineEvents.map((item, i) => (
           <BentoCard 
             key={item.id} 

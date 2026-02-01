@@ -168,7 +168,7 @@ const ShowcaseModalContent: React.FC<{ data: ModalContent; onClose: () => void }
         <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent opacity-50" />
 
         {/* Floating Close Button */}
-        <div className="absolute top-6 right-6 z-30">
+        <div className="absolute top-4 right-4 md:top-6 md:right-6 z-30">
             <button
                 onClick={onClose}
                 className={`
@@ -186,7 +186,7 @@ const ShowcaseModalContent: React.FC<{ data: ModalContent; onClose: () => void }
 
       {/* Header Area */}
       <div className={`
-          relative z-10 px-8 py-10 md:px-12 md:pb-6 flex-shrink-0
+          relative z-10 px-6 py-8 md:px-12 md:pb-6 flex-shrink-0
           ${isLight ? 'bg-gradient-to-b from-white to-zinc-50' : 'bg-gradient-to-b from-zinc-800 to-zinc-900'}
       `}>
          <motion.div
@@ -216,7 +216,7 @@ const ShowcaseModalContent: React.FC<{ data: ModalContent; onClose: () => void }
             variants={{
                 visible: { transition: { staggerChildren: 0.1, delayChildren: 0.2 } }
             }}
-            className="p-8 md:p-12 md:pt-4"
+            className="p-6 md:p-12 md:pt-4"
         >
             {/* 
                 We render the content directly. 

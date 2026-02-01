@@ -190,8 +190,8 @@ export const SectionServingTesla: React.FC = () => {
   };
 
   return (
-    // Reduced Vertical Padding: py-16 instead of py-24
-    <section id="serving-tesla" className="container mx-auto px-6 py-8 md:px-12 md:py-16 bg-zinc-50 text-zinc-900">
+    // Reduced Vertical Padding: py-16 instead of py-24, px-4 mobile
+    <section id="serving-tesla" className="container mx-auto px-4 md:px-12 py-8 md:py-16 bg-zinc-50 text-zinc-900">
       {/* Header - Animated Reveal */}
       <motion.div 
          initial={{ opacity: 0, y: 30 }}

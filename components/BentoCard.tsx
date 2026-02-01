@@ -35,7 +35,7 @@ export const BentoCard: React.FC<CardProps & { textColor?: string; borderColor?:
         ${gradient} ${textColor}
         border ${borderColor}
         shadow-[0_20px_40px_-12px_rgba(0,0,0,0.3)] 
-        p-8
+        p-6 md:p-8
         flex flex-col
         transition-all duration-300 ease-out
         group
@@ -56,7 +56,7 @@ export const BentoCard: React.FC<CardProps & { textColor?: string; borderColor?:
       
       {/* Hover Arrow */}
       {onClick && hoverEffect && (
-        <div className="absolute top-6 right-6 z-20 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+        <div className="absolute top-4 right-4 md:top-6 md:right-6 z-20 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
              <ArrowUpRight className={`${arrowColor} opacity-70`} size={20} />
         </div>
       )}

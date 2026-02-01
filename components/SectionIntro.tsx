@@ -73,8 +73,8 @@ export const SectionIntro: React.FC<SectionIntroProps> = () => {
   const MAP_START_TIME = ADDRESS_START_TIME + 1.0;
 
   return (
-    // Reduced bottom padding: pb-6 md:pb-12 (was pb-12 md:pb-24)
-    <section ref={containerRef} className="container mx-auto px-6 pt-0 pb-6 md:pb-12 bg-zinc-50 text-zinc-900">
+    // Reduced bottom padding: pb-6 md:pb-12, px-4 mobile
+    <section ref={containerRef} className="container mx-auto px-4 md:px-12 pt-0 pb-6 md:pb-12 bg-zinc-50 text-zinc-900">
       <div className="flex flex-col gap-4"> 
         
         {/* 1. Top Bento: Green, Animated Text */}

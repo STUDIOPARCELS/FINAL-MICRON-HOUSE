@@ -29,7 +29,7 @@ export const Hero: React.FC = () => {
     // Restored padding-bottom: pb-8 to create gap between this and the green box below
     <section className="relative w-full bg-white flex flex-col items-center justify-center pt-24 pb-8 md:pt-28 md:pb-8 box-border overflow-hidden">
       
-      <div className="container mx-auto px-6 h-full flex items-center justify-center">
+      <div className="container mx-auto px-4 md:px-12 h-full flex items-center justify-center">
         {/* Switched to BentoCard for consistent 'treatment' (corners, shadows, borders) */}
         {/* Adjusted aspect ratio to be shorter/wider to reduce vertical padding inside the black box */}
         <BentoCard 

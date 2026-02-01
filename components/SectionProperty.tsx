@@ -17,8 +17,8 @@ export const SectionProperty: React.FC = () => {
   };
 
   return (
-    // Reduced Section Padding: py-8 md:py-16 (was md:py-24)
-    <section id="property" className="container mx-auto px-6 py-8 md:px-12 md:py-16 bg-zinc-50 text-zinc-900">
+    // Reduced Section Padding: py-8 md:py-16, px-4 mobile
+    <section id="property" className="container mx-auto px-4 md:px-12 py-8 md:py-16 bg-zinc-50 text-zinc-900">
        {/* Header - Animated Reveal */}
        <motion.div 
          initial={{ opacity: 0, y: 30 }}
@@ -50,34 +50,34 @@ export const SectionProperty: React.FC = () => {
       {/* Reduced Main Layout Gap: gap-5 (was gap-6) */}
       <div className="flex flex-col gap-5">
         
-        {/* 1. Stats Grid - Changed to 5 columns with Gallery Link */}
-        {/* Reduced grid gap: gap-4 (was gap-6) */}
+        {/* 1. Stats Grid - RESPONSIVE FIX */}
+        {/* Reduced grid gap: gap-4 */}
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
              {/* Reduced height from min-h-[160px] to min-h-[120px] */}
              <BentoCard gradient="bg-micron-eggplant" className="min-h-[120px] flex flex-col items-center justify-center text-center" delay={0.1}>
-                 <h3 className="text-4xl md:text-5xl font-black text-white mb-2">1906</h3>
+                 <h3 className="text-3xl md:text-5xl font-black text-white mb-2">1906</h3>
                  {/* Text color changed to zinc-500 (faded) */}
                  <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Year Built</p>
              </BentoCard>
              <BentoCard gradient="bg-micron-grey1" className="min-h-[120px] flex flex-col items-center justify-center text-center" delay={0.2}>
-                 <h3 className="text-4xl md:text-5xl font-black text-white mb-2">3,374</h3>
+                 <h3 className="text-3xl md:text-5xl font-black text-white mb-2">3,374</h3>
                  <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Square Feet</p>
              </BentoCard>
              {/* Changed from bg-micron-grey2 to bg-micron-green */}
              <BentoCard gradient="bg-micron-green" className="min-h-[120px] flex flex-col items-center justify-center text-center" delay={0.3}>
-                 <h3 className="text-4xl md:text-5xl font-black text-white mb-2">3 / 4</h3>
+                 <h3 className="text-3xl md:text-5xl font-black text-white mb-2">3 / 4</h3>
                  <p className="text-[10px] font-bold uppercase tracking-widest text-white/80">Bed / Bath</p>
              </BentoCard>
              {/* Geothermal Rights Delay changed to 1.2s */}
              <BentoCard gradient="bg-micron-eggplant-light" className="min-h-[120px] flex flex-col items-center justify-center text-center" delay={1.2}>
-                 <h3 className="text-4xl md:text-5xl font-black text-white mb-2">1892</h3>
+                 <h3 className="text-3xl md:text-5xl font-black text-white mb-2">1892</h3>
                  <p className="text-[10px] font-bold uppercase tracking-widest text-white/80">Geothermal Rights</p>
              </BentoCard>
 
              {/* 5th Card: View Gallery Link - Removed Icon, Removed Underline, Changed Text Color */}
              <BentoCard 
                 gradient="bg-zinc-900" 
-                className="min-h-[120px] flex flex-col items-center justify-center text-center group cursor-pointer" 
+                className="min-h-[120px] flex flex-col items-center justify-center text-center group cursor-pointer col-span-2 md:col-span-1" 
                 delay={0.5}
                 onClick={openGallery}
              >
@@ -86,7 +86,7 @@ export const SectionProperty: React.FC = () => {
              </BentoCard>
         </div>
 
-        {/* 2. Location Details */}
+        {/* 2. Location Details - RESPONSIVE FIX */}
         {/* Reduced margin-top: mt-6 (was mt-8) */}
         <div className="mt-6">
              {/* Reduced margin-bottom: mb-3 (was mb-6) */}
@@ -95,11 +95,11 @@ export const SectionProperty: React.FC = () => {
                 <h3 className="font-bold uppercase tracking-widest text-sm text-micron-eggplant">Location Details</h3>
              </div>
              
-             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3 mb-4">
+             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3 mb-4">
                  <BentoCard gradient="bg-micron-green" className="min-h-[100px] flex flex-col justify-between p-4" hoverEffect={false} delay={0.1}>
                     <div className="flex justify-between items-start">
                         <MapPin size={16} className="text-white"/>
-                        <span className="text-2xl font-bold text-white">15<span className="text-[10px] font-normal align-top ml-0.5">min</span></span>
+                        <span className="text-xl md:text-2xl font-bold text-white">15<span className="text-[10px] font-normal align-top ml-0.5">min</span></span>
                     </div>
                     <span className="text-[10px] font-bold uppercase tracking-widest text-white/90">Micron HQ</span>
                  </BentoCard>
@@ -107,7 +107,7 @@ export const SectionProperty: React.FC = () => {
                  <BentoCard gradient="bg-micron-eggplant" className="min-h-[100px] flex flex-col justify-between p-4" hoverEffect={false} delay={0.15}>
                     <div className="flex justify-between items-start">
                         <Plane size={16} className="text-white"/>
-                        <span className="text-2xl font-bold text-white">10<span className="text-[10px] font-normal align-top ml-0.5">min</span></span>
+                        <span className="text-xl md:text-2xl font-bold text-white">10<span className="text-[10px] font-normal align-top ml-0.5">min</span></span>
                     </div>
                     <span className="text-[10px] font-bold uppercase tracking-widest text-white/90">Airport</span>
                  </BentoCard>
@@ -115,7 +115,7 @@ export const SectionProperty: React.FC = () => {
                  <BentoCard gradient="bg-micron-eggplant-light" className="min-h-[100px] flex flex-col justify-between p-4" hoverEffect={false} delay={0.2}>
                     <div className="flex justify-between items-start">
                         <Building2 size={16} className="text-white"/>
-                        <span className="text-2xl font-bold text-white">3<span className="text-[10px] font-normal align-top ml-0.5">min</span></span>
+                        <span className="text-xl md:text-2xl font-bold text-white">3<span className="text-[10px] font-normal align-top ml-0.5">min</span></span>
                     </div>
                     <span className="text-[10px] font-bold uppercase tracking-widest text-white/90">Downtown</span>
                  </BentoCard>
@@ -123,7 +123,7 @@ export const SectionProperty: React.FC = () => {
                  <BentoCard gradient="bg-zinc-800" className="min-h-[100px] flex flex-col justify-between p-4" hoverEffect={false} delay={0.25}>
                     <div className="flex justify-between items-start">
                         <Stethoscope size={16} className="text-white"/>
-                        <span className="text-2xl font-bold text-white">2<span className="text-[10px] font-normal align-top ml-0.5">min</span></span>
+                        <span className="text-xl md:text-2xl font-bold text-white">2<span className="text-[10px] font-normal align-top ml-0.5">min</span></span>
                     </div>
                     <span className="text-[10px] font-bold uppercase tracking-widest text-white/90">St. Luke's</span>
                  </BentoCard>
@@ -131,7 +131,7 @@ export const SectionProperty: React.FC = () => {
                  <BentoCard gradient="bg-micron-grey2" className="min-h-[100px] flex flex-col justify-between p-4" hoverEffect={false} delay={0.3}>
                     <div className="flex justify-between items-start">
                         <Building2 size={16} className="text-white"/>
-                        <span className="text-2xl font-bold text-white">5<span className="text-[10px] font-normal align-top ml-0.5">min</span></span>
+                        <span className="text-xl md:text-2xl font-bold text-white">5<span className="text-[10px] font-normal align-top ml-0.5">min</span></span>
                     </div>
                     <span className="text-[10px] font-bold uppercase tracking-widest text-white/90">Capitol</span>
                  </BentoCard>
@@ -139,7 +139,7 @@ export const SectionProperty: React.FC = () => {
                  <BentoCard gradient="bg-micron-black" className="min-h-[100px] flex flex-col justify-between p-4" hoverEffect={false} delay={0.35}>
                     <div className="flex justify-between items-start">
                         <GraduationCap size={16} className="text-white"/>
-                        <span className="text-2xl font-bold text-white">4<span className="text-[10px] font-normal align-top ml-0.5">min</span></span>
+                        <span className="text-xl md:text-2xl font-bold text-white">4<span className="text-[10px] font-normal align-top ml-0.5">min</span></span>
                     </div>
                     <span className="text-[10px] font-bold uppercase tracking-widest text-white/90">Boise State</span>
                  </BentoCard>
@@ -149,7 +149,7 @@ export const SectionProperty: React.FC = () => {
                      <div className="absolute top-0 right-0 w-16 h-16 bg-white/20 blur-xl -mr-4 -mt-4 rounded-full pointer-events-none"></div>
                      <div className="flex justify-between items-start relative z-10">
                          <Trees size={16} className="text-white"/>
-                         <span className="text-2xl font-bold text-white">1<span className="text-[10px] font-normal align-top ml-0.5">min</span></span>
+                         <span className="text-xl md:text-2xl font-bold text-white">1<span className="text-[10px] font-normal align-top ml-0.5">min</span></span>
                      </div>
                      <span className="text-[10px] font-bold uppercase tracking-widest text-white/90 relative z-10">River</span>
                  </BentoCard>

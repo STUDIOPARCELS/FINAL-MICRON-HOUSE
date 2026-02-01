@@ -300,8 +300,8 @@ export const SectionPrototype: React.FC = () => {
   const mainTitleWords = ["MICRON.", "TESLA.", "BOISE."];
   
   return (
-    // Reduced padding: py-16 instead of py-24
-    <section id="prototype" className="container mx-auto px-6 py-8 md:px-12 md:py-16 bg-white text-zinc-900">
+    // Reduced padding: py-16 instead of py-24, adjusted px for mobile (px-4) vs desktop (px-12)
+    <section id="prototype" className="container mx-auto px-4 md:px-12 py-8 md:py-16 bg-white text-zinc-900">
       
       <motion.div
         initial={{ opacity: 0 }}
@@ -363,8 +363,8 @@ export const SectionPrototype: React.FC = () => {
             </div>
         </motion.div>
 
-        {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        {/* Bento Grid - RESPONSIVE FIX: grid-cols-1 (mobile) -> grid-cols-2 (tablet) -> grid-cols-4 (desktop) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             
             {/* Card 1: PROTOTYPE (Black) */}
             <BentoCard 

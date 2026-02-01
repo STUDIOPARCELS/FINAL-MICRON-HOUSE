@@ -96,8 +96,8 @@ export const SectionUseCases: React.FC = () => {
   };
 
   return (
-    // Reduced padding: py-16 instead of py-24
-    <section id="use-cases" className="container mx-auto px-6 py-8 md:px-12 md:py-16 bg-white text-zinc-900">
+    // Reduced padding: py-16 instead of py-24, px-4 mobile
+    <section id="use-cases" className="container mx-auto px-4 md:px-12 py-8 md:py-16 bg-white text-zinc-900">
       {/* Header */}
       <motion.div 
          initial={{ opacity: 0, y: 30 }}
@@ -129,7 +129,7 @@ export const SectionUseCases: React.FC = () => {
       </div>
 
       <div className="
-        flex overflow-x-auto pb-6 -mx-6 px-6 gap-6 snap-x snap-mandatory 
+        flex overflow-x-auto pb-6 -mx-4 px-4 gap-6 snap-x snap-mandatory 
         md:grid md:grid-cols-5 md:gap-6 md:pb-0 md:mx-0 md:px-0 md:overflow-visible
         scrollbar-hide
       ">
