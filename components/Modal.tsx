@@ -190,11 +190,16 @@ const ShowcaseModalContent: React.FC<{ data: ModalContent; onClose: () => void }
       <div className={`
           relative z-10 px-8 py-8 md:px-12 md:pb-6 flex-shrink-0
           ${isLight ? 'bg-gradient-to-b from-white to-zinc-50' : 'bg-gradient-to-b from-zinc-800 to-zinc-900'}
+          pr-20 md:pr-12 
       `}>
          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.6 }}>
             {data.subtitle && (
             <div className={`flex items-center gap-3 mb-3`}>
-                <span className={`h-px w-8 ${isLight ? 'bg-zinc-300' : 'bg-zinc-600'}`}></span>
+                {/* 
+                   FIX: Hidden on mobile (hidden) to "justify to the left" as requested.
+                   Visible on Desktop (md:block).
+                */}
+                <span className={`hidden md:block h-px w-8 ${isLight ? 'bg-zinc-300' : 'bg-zinc-600'}`}></span>
                 <span className={`text-xs font-bold uppercase tracking-[0.2em] ${isLight ? 'text-zinc-400' : 'text-zinc-500'}`}>
                     {data.subtitle}
                 </span>

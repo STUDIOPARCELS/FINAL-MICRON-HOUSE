@@ -13,7 +13,8 @@ export const BentoCard: React.FC<CardProps & { textColor?: string; borderColor?:
   gradient = "bg-zinc-900",
   // New props for theming
   textColor = "text-white",
-  borderColor = "border-white/10"
+  // Removed default black/dark borders, using very subtle white/alpha or transparent
+  borderColor = "border-white/5" 
 }) => {
   // Determine arrow color based on text color prop
   const arrowColor = textColor.includes('black') || textColor.includes('zinc-900') ? 'text-zinc-900' : 'text-white';
@@ -22,7 +23,7 @@ export const BentoCard: React.FC<CardProps & { textColor?: string; borderColor?:
     <motion.div
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.1 }} // Changed to once: true to prevent flashing
+      viewport={{ once: true, amount: 0.1 }} 
       transition={{ 
         duration: 1.0,
         ease: [0.25, 0.4, 0.25, 1],
@@ -34,13 +35,13 @@ export const BentoCard: React.FC<CardProps & { textColor?: string; borderColor?:
         relative overflow-hidden rounded-xl 
         ${gradient} ${textColor}
         border ${borderColor}
-        shadow-[0_20px_40px_-12px_rgba(0,0,0,0.3)] 
+        shadow-[0_20px_40px_-12px_rgba(0,0,0,0.5)] 
         p-6 md:p-8
         flex flex-col
         transition-all duration-300 ease-out
         group
-        ${hoverEffect && onClick ? 'cursor-pointer hover:shadow-[0_30px_60px_-12px_rgba(0,0,0,0.4)]' : ''}
-        ${hoverEffect && !onClick ? 'hover:shadow-[0_30px_60px_-12px_rgba(0,0,0,0.25)]' : ''}
+        ${hoverEffect && onClick ? 'cursor-pointer hover:shadow-[0_40px_80px_-12px_rgba(0,0,0,0.6)]' : ''}
+        ${hoverEffect && !onClick ? 'hover:shadow-[0_40px_80px_-12px_rgba(0,0,0,0.4)]' : ''}
         ${className}
       `}
     >

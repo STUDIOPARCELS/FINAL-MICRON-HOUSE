@@ -3,7 +3,7 @@ import { BentoCard } from './BentoCard';
 import { Modal } from './Modal';
 import { ModalContent } from '../types';
 import { motion } from 'framer-motion';
-import { Wine, Car, BedDouble, Shield, Music, Mic, Armchair, Heart, Trophy, Snowflake, Utensils, Cpu, Users } from 'lucide-react';
+import { Wine, Car, BedDouble, Shield, Music, Mic, Armchair, Heart, Trophy, Snowflake, Utensils, Cpu, Users, Fish, Map } from 'lucide-react';
 
 interface Experience {
   title: string;
@@ -49,6 +49,20 @@ const departments: Department[] = [
         icon: <Music />,
         description: "Pre-event cocktails by Remi McManus (Bar, Please!) in the living room. Cybercab transfer to Albertsons Stadium suites for Post Malone or the 2026 concert series.",
         customGradient: "bg-micron-green"
+      },
+      // Added Fly Fishing - Color: Blue
+      {
+        title: "FLY FISHING",
+        icon: <Fish />,
+        description: "Cybercab to Jackson Jet Center, fifteen minutes. Helicopter into the Sawtooth National Forest, where the South Fork of the Boise River runs cold through a basalt canyon holding wild rainbow and brown trout. A guided morning on a private stretch, then a riverside lunch from one of Boise's James Beard–recognized chefs paired with Snake River Valley wines. Helicopter back. Cybercab waiting.",
+        customGradient: "bg-micron-eggplant-light" 
+      },
+      // Added Rocky Bar - Color: Gray
+      {
+        title: "ROCKY BAR",
+        icon: <Map />,
+        description: "Cybercab to Jackson Jet Center, fifteen minutes. Helicopter southeast over Arrowrock Reservoir and into the Boise Mountains — twenty minutes to a ghost town at the confluence of Bear and Steel Creeks that once held 2,500 people and nearly became Idaho's territorial capital. A local historian walks the group through what remains — the old jail, Peg Leg Annie's cabin, mine ruins scattered across a ten-square-mile National Register district, and the cemetery where acting territorial governor Clinton DeWitt Smith dropped dead mid-chess game while inspecting the quartz mines in 1865. Creekside lunch from a James Beard–recognized Boise chef, Snake River Valley wines, late summer light through the cottonwoods. Helicopter back. Cybercab waiting.",
+        customGradient: "bg-micron-grey1"
       }
     ]
   }, 
@@ -123,8 +137,9 @@ const departments: Department[] = [
     title: "Talent Acquisition", 
     value: "Recruiting closes", 
     detail: "Differentiated candidate experience, memorable final impression, demonstrates company culture.", 
-    gradient: "bg-micron-grey1", 
-    modalHeaderColor: "text-micron-grey1", 
+    // Changed to BLUE (eggplant-light) as requested
+    gradient: "bg-micron-eggplant-light", 
+    modalHeaderColor: "text-micron-eggplant-light", 
     modalIconColor: "text-zinc-400",
     modalTagColor: "border-micron-eggplant-light",
     experiences: [
@@ -259,6 +274,7 @@ export const SectionServing: React.FC = () => {
                     {/* 
                        2. EXPERIENCE CARDS - 3D Effect
                        Enhanced shadow, border, and lighting for "pop out" look.
+                       REMOVED: Black outlines (border-black/30 -> border-black/5).
                     */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         {dept.experiences.map((exp, i) => {
@@ -274,7 +290,7 @@ export const SectionServing: React.FC = () => {
                                         ${isLastAndOdd ? 'md:col-span-2' : ''}
                                         ${exp.customGradient || dept.gradient} 
                                         rounded-2xl p-8
-                                        border-t border-l border-white/20 border-b border-black/30 border-r border-black/10
+                                        border-t border-l border-white/20 border-b border-black/10 border-r border-black/5
                                         shadow-[0_25px_50px_-12px_rgba(0,0,0,0.6)]
                                         hover:shadow-[0_35px_60px_-15px_rgba(0,0,0,0.7)]
                                         transition-all duration-300
