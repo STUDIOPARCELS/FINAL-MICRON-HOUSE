@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { BentoCard } from './BentoCard';
 
@@ -7,8 +7,16 @@ interface SectionIntroProps {
   onAnimationComplete?: () => void;
 }
 
-export const SectionIntro: React.FC<SectionIntroProps> = ({ onAnimationComplete }) => {
-  
+export const SectionIntro: React.FC<SectionIntroProps> = () => {
+  const containerRef = useRef(null);
+  const isInView = useInView(containerRef, { once: true, amount: 0.2 });
+
+  // --- TIMING CONFIGURATION ---
+  const INITIAL_DELAY = 1.0;     // 1s Delay after Micron House populates
+  const WORD_DELAY = 0.4;        // Slow, readable speed per word
+  const SENTENCE_PAUSE = 0.8;    // Pause between sentences
+  const FADE_DURATION = 0.8;     // Smooth fade in for words
+
   const sentences = [
     { 
       text: "Without memory, there's no meaning.",
@@ -30,120 +38,90 @@ export const SectionIntro: React.FC<SectionIntroProps> = ({ onAnimationComplete 
     }
   ];
 
-  // ANIMATION TIMING CONFIGURATION
-  // Goal: Smooth, luxurious flow, but precise timing gaps.
+  // --- CALCULATE TOTAL DURATION ---
+  // We calculate the exact timestamp when the last word finishes to trigger the next section.
+  let currentDelayCounter = INITIAL_DELAY;
   
-  const GREEN_BOX_DELAY = 0.2; 
-  
-  // Text Animation - Smooth and Readable
-  const WORD_DELAY = 0.12; 
-  const SENTENCE_DELAY = 0.5; 
-  const TEXT_FADE_DURATION = 1.0; // Slower fade for individual words (smoothness)
+  // Helper to store word delays
+  const wordDelays: number[][] = sentences.map(s => {
+      const words = s.text.split(" ");
+      const delaysForSentence = words.map((_, i) => currentDelayCounter + (i * WORD_DELAY));
+      // Advance counter for next sentence: (words * duration) + pause
+      currentDelayCounter += (words.length * WORD_DELAY) + SENTENCE_PAUSE;
+      return delaysForSentence;
+  });
 
-  const TEXT_START_OFFSET = GREEN_BOX_DELAY + 0.3; 
-
-  // --- CALCULATION FOR 'PERSPECTIVE' COMPLETION ---
-  // Sentence 1 (5 words)
-  // Sentence 2 (5 words)
-  // Sentence 3 (5 words)
-  const prevWordsCount = 10; // Words in first two sentences
-  const sentenceGaps = 2; // Gaps between 3 sentences
+  // The moment the last word of the last sentence starts appearing
+  const lastSentenceIndex = sentences.length - 1;
+  const lastWordIndex = sentences[lastSentenceIndex].text.split(" ").length - 1;
+  const lastWordStartTime = wordDelays[lastSentenceIndex][lastWordIndex];
   
-  // Start time of the last sentence ("Without place...")
-  const LAST_SENTENCE_START = TEXT_START_OFFSET + (prevWordsCount * WORD_DELAY) + (sentenceGaps * SENTENCE_DELAY);
+  // Paradigm Section starts AFTER the last word has fully faded in (plus a small buffer)
+  const PARADIGM_START_TIME = lastWordStartTime + FADE_DURATION + 0.2; 
   
-  // "Perspective" is the 5th word (index 4) of the last sentence.
-  const PERSPECTIVE_START_TIME = LAST_SENTENCE_START + (4 * WORD_DELAY);
-  
-  // Time when "Perspective" is fully visible (opacity 1)
-  const PERSPECTIVE_COMPLETE_TIME = PERSPECTIVE_START_TIME + TEXT_FADE_DURATION;
-  
-  // --- PARADIGM UNFOLDS TIMING ---
-  // Constraint: "Fade in literally one second after perspective fades in"
-  const paradigmStartTime = PERSPECTIVE_COMPLETE_TIME + 1.0; 
-  
-  // --- ADDRESS & MAP TIMING ---
-  // Start Address shortly after Paradigm starts appearing (overlapping slightly for flow)
-  const addressStartTime = paradigmStartTime + 0.8; 
-  const mapStartTime = addressStartTime + 0.6;
-  
-  // Total duration for callback
-  const TOTAL_DURATION = mapStartTime + 1.0; 
-
-  useEffect(() => {
-    if (onAnimationComplete) {
-      const timer = setTimeout(() => {
-        onAnimationComplete();
-      }, TOTAL_DURATION * 1000);
-      return () => clearTimeout(timer);
-    }
-  }, [onAnimationComplete, TOTAL_DURATION]);
-
   const paradigmText = "A PARADIGM UNFOLDS.";
-
-  // Address Lines
   const addressLine1 = "Micron House";
   const addressLine2 = "1020 East Warm Springs Ave";
   const addressLine3 = "Boise, Idaho 83712";
 
+  // Calculate Paradigm Word Delays
+  const paradigmWords = paradigmText.split(" ");
+  const paradigmWordDelays = paradigmWords.map((_, i) => PARADIGM_START_TIME + (i * 0.15)); // Faster, punchy reveal for header
+  
+  // Address Starts after Paradigm Header
+  const ADDRESS_START_TIME = PARADIGM_START_TIME + (paradigmWords.length * 0.15) + 0.5;
+  const MAP_START_TIME = ADDRESS_START_TIME + 1.0;
+
   return (
-    <section className="container mx-auto px-6 pt-0 pb-12 md:pb-24 bg-zinc-50 text-zinc-900">
+    // Reduced bottom padding: pb-6 md:pb-12 (was pb-12 md:pb-24)
+    <section ref={containerRef} className="container mx-auto px-6 pt-0 pb-6 md:pb-12 bg-zinc-50 text-zinc-900">
       <div className="flex flex-col gap-4"> 
         
         {/* 1. Top Bento: Green, Animated Text */}
         <BentoCard 
-            className="min-h-[260px] md:min-h-[360px] justify-center shadow-2xl relative overflow-hidden group"
+            className="min-h-[220px] md:min-h-[300px] justify-center shadow-2xl relative overflow-hidden group"
             gradient="bg-micron-green"
             textColor="text-white"
             borderColor="border-white/20"
             hoverEffect={true}
-            delay={GREEN_BOX_DELAY}
+            // Increased delay to 1.3s to ensure Hero Black Box finishes first
+            delay={1.3} 
         >
-            <div className="flex flex-col gap-4 md:gap-8 w-full mx-auto py-4 md:py-8 px-2 md:px-4 relative z-10">
-                {sentences.map((sentence, sIndex) => {
-                    let prevWords = 0;
-                    for (let i = 0; i < sIndex; i++) {
-                        prevWords += sentences[i].text.split(" ").length;
-                    }
-                    // Calculate start delay for this sentence
-                    const startDelay = TEXT_START_OFFSET + (prevWords * WORD_DELAY) + (sIndex * SENTENCE_DELAY);
-
-                    return (
-                        <div 
-                            key={sIndex} 
-                            className={`flex flex-wrap ${sentence.align} gap-x-2 md:gap-x-5 text-2xl md:text-5xl lg:text-6xl leading-tight tracking-tight w-full`}
-                        >
-                            {sentence.text.split(" ").map((word, wIndex) => {
-                                const isBold = word === sentence.boldWord;
-                                const isColor = word === sentence.colorWord;
-                                const delay = startDelay + (wIndex * WORD_DELAY);
-                                
-                                return (
-                                    <motion.span
-                                        key={`${sIndex}-${wIndex}`}
-                                        initial={{ opacity: 0, x: -5 }} 
-                                        whileInView={{ opacity: 1, x: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ 
-                                            duration: TEXT_FADE_DURATION,
-                                            delay: delay,
-                                            ease: "easeOut"
-                                        }}
-                                        className={`${
-                                            isBold 
-                                                ? "font-black italic opacity-100 text-white" 
-                                                : isColor
-                                                    ? "font-medium italic opacity-100 text-micron-eggplant"
-                                                    : "font-light italic opacity-70 text-white"
-                                        }`}
-                                    >
-                                        {word}
-                                    </motion.span>
-                                );
-                            })}
-                        </div>
-                    );
-                })}
+            <div className="flex flex-col gap-4 md:gap-8 w-full mx-auto py-4 md:py-6 px-2 md:px-4 relative z-10">
+                {sentences.map((sentence, sIndex) => (
+                    <div 
+                        key={sIndex} 
+                        className={`flex flex-wrap ${sentence.align} gap-x-2 md:gap-x-5 text-2xl md:text-5xl lg:text-6xl leading-tight tracking-tight w-full`}
+                    >
+                        {sentence.text.split(" ").map((word, wIndex) => {
+                            const isBold = word === sentence.boldWord;
+                            const isColor = word === sentence.colorWord;
+                            const delay = wordDelays[sIndex][wIndex];
+                            
+                            return (
+                                <motion.span
+                                    key={`${sIndex}-${wIndex}`}
+                                    initial={{ opacity: 0, x: -5 }} 
+                                    animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -5 }}
+                                    transition={{ 
+                                        duration: FADE_DURATION,
+                                        delay: delay,
+                                        ease: "easeOut"
+                                    }}
+                                    className={`${
+                                        isBold 
+                                            ? "font-black italic opacity-100 text-white" 
+                                            : isColor
+                                                ? "font-medium italic opacity-100 text-micron-eggplant"
+                                                : "font-light italic opacity-70 text-white"
+                                    }`}
+                                >
+                                    {word}
+                                </motion.span>
+                            );
+                        })}
+                    </div>
+                ))}
             </div>
         </BentoCard>
 
@@ -153,16 +131,15 @@ export const SectionIntro: React.FC<SectionIntroProps> = ({ onAnimationComplete 
             {/* Left: Text and Address */}
             <div className="flex flex-col justify-center py-2 pl-2">
                 <h2 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter text-zinc-900 leading-[0.9] mb-8 flex flex-wrap gap-x-4">
-                    {paradigmText.split(" ").map((word, i) => (
+                    {paradigmWords.map((word, i) => (
                         <motion.span
                             key={i}
-                            initial={{ opacity: 0, y: 15 }} // Increased Y slightly for drama
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
+                            initial={{ opacity: 0, y: 15 }} 
+                            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
                             transition={{ 
-                                duration: 1.5, // SLOWED DOWN from 0.3 to 1.5 for smoothness
-                                ease: [0.16, 1, 0.3, 1], // Smooth bezier
-                                delay: paradigmStartTime + (i * 0.08) 
+                                duration: 1.2, 
+                                ease: [0.16, 1, 0.3, 1], 
+                                delay: paradigmWordDelays[i] 
                             }}
                         >
                             {word}
@@ -170,12 +147,11 @@ export const SectionIntro: React.FC<SectionIntroProps> = ({ onAnimationComplete 
                     ))}
                 </h2>
                 
-                {/* ADDRESS BLOCK - Animated Word by Word */}
+                {/* ADDRESS BLOCK */}
                 <motion.div
                     initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: addressStartTime, duration: 0.8 }}
+                    animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
+                    transition={{ delay: ADDRESS_START_TIME, duration: 0.8 }}
                     className="flex gap-5 border-l-4 border-micron-green pl-6"
                 >
                     <div className="flex flex-col justify-center">
@@ -184,9 +160,8 @@ export const SectionIntro: React.FC<SectionIntroProps> = ({ onAnimationComplete 
                                 <motion.span
                                     key={i}
                                     initial={{ opacity: 0 }}
-                                    whileInView={{ opacity: 1 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.5, delay: addressStartTime + 0.1 + (i * 0.05) }}
+                                    animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+                                    transition={{ duration: 0.5, delay: ADDRESS_START_TIME + 0.1 + (i * 0.05) }}
                                 >
                                     {word}
                                 </motion.span>
@@ -197,9 +172,8 @@ export const SectionIntro: React.FC<SectionIntroProps> = ({ onAnimationComplete 
                                 <motion.span
                                     key={i}
                                     initial={{ opacity: 0 }}
-                                    whileInView={{ opacity: 1 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.5, delay: addressStartTime + 0.2 + (i * 0.05) }}
+                                    animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+                                    transition={{ duration: 0.5, delay: ADDRESS_START_TIME + 0.2 + (i * 0.05) }}
                                 >
                                     {word}
                                 </motion.span>
@@ -210,9 +184,8 @@ export const SectionIntro: React.FC<SectionIntroProps> = ({ onAnimationComplete 
                                 <motion.span
                                     key={i}
                                     initial={{ opacity: 0 }}
-                                    whileInView={{ opacity: 1 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.5, delay: addressStartTime + 0.3 + (i * 0.05) }}
+                                    animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+                                    transition={{ duration: 0.5, delay: ADDRESS_START_TIME + 0.3 + (i * 0.05) }}
                                 >
                                     {word}
                                 </motion.span>
@@ -225,11 +198,10 @@ export const SectionIntro: React.FC<SectionIntroProps> = ({ onAnimationComplete 
             {/* Right: Map Bento Box */}
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ 
                     duration: 1.0, 
-                    delay: mapStartTime
+                    delay: MAP_START_TIME
                 }}
                 className="h-full min-h-[300px]"
             >

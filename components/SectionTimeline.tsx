@@ -57,14 +57,15 @@ export const SectionTimeline: React.FC = () => {
   const [modalData, setModalData] = useState<ModalContent | null>(null);
 
   return (
-    <section id="timeline" className="container mx-auto px-6 py-8 md:px-12 md:py-24 mb-20 bg-zinc-50 text-zinc-900">
+    // Reduced padding: py-16 instead of py-24
+    <section id="timeline" className="container mx-auto px-6 py-8 md:px-12 md:py-16 mb-20 bg-white text-zinc-900">
       {/* Consistent Header */}
       <motion.div 
          initial={{ opacity: 0, y: 30 }}
          whileInView={{ opacity: 1, y: 0 }}
          viewport={{ once: false, amount: 0.2 }}
          transition={{ duration: 0.8, ease: "easeOut" }}
-         className="mb-20 flex flex-col md:flex-row md:items-end gap-12 border-b border-zinc-200 pb-10"
+         className="mb-12 flex flex-col md:flex-row md:items-end gap-12 border-b border-zinc-200 pb-8"
       >
         <div className="flex-shrink-0">
            <span className="block text-xs font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2 font-sans">06 / Roadmap</span>
@@ -73,8 +74,8 @@ export const SectionTimeline: React.FC = () => {
 
         <div className="md:ml-auto max-w-2xl pb-1">
              <div className="pl-6 border-l-4 border-micron-grey1/20 hover:border-micron-grey1 transition-colors duration-500">
-                <p className="text-lg font-light text-zinc-600 leading-snug font-body">
-                   <span className="font-bold text-micron-grey1 block mb-2 text-xl md:text-2xl uppercase tracking-tighter font-sans">
+                <p className="text-base font-light text-zinc-600 leading-snug font-body">
+                   <span className="font-bold text-micron-grey1 block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
                        TIMELINE.
                    </span>
                    Moving from agreement to installation, then to a fully active testing environment.

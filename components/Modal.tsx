@@ -35,7 +35,7 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, data }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 z-[60] bg-black/90 backdrop-blur-md"
+            className="fixed inset-0 z-[60] bg-zinc-950/60 backdrop-blur-md"
           />
           <div className="fixed inset-0 z-[61] flex items-center justify-center p-2 md:p-8 pointer-events-none">
             {getModalContent()}
@@ -86,25 +86,26 @@ const CinematicModalContent: React.FC<{ data: ModalContent; onClose: () => void 
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.98 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.98 }}
-      className={`pointer-events-auto relative h-[85vh] w-full max-w-6xl overflow-hidden rounded-2xl md:rounded-3xl bg-zinc-950 shadow-2xl border border-white/10 ring-1 ring-white/5 ${containerClasses}`}
+      initial={{ opacity: 0, scale: 0.95, y: 20 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.95, y: 20 }}
+      transition={{ type: "spring", damping: 25, stiffness: 300 }}
+      className={`pointer-events-auto relative h-[85vh] w-full max-w-6xl overflow-hidden rounded-3xl bg-zinc-950 shadow-2xl border border-white/10 ring-1 ring-white/5 ${containerClasses}`}
     >
       <button
         onClick={onClose}
-        className="absolute top-4 right-4 z-20 rounded-full bg-white/10 p-2 text-white hover:bg-white/20 transition-colors backdrop-blur-md border border-white/10"
+        className="absolute top-4 right-4 z-20 rounded-full bg-black/20 p-2 text-white hover:bg-black/40 transition-colors backdrop-blur-md border border-white/10"
       >
         <X size={20} />
       </button>
 
       {/* Text Section */}
-      <div className={`${textSectionClasses} p-6 md:p-16 flex flex-col justify-center overflow-y-auto bg-gradient-to-br from-zinc-950 to-black`}>
+      <div className={`${textSectionClasses} p-6 md:p-16 flex flex-col justify-center overflow-y-auto bg-gradient-to-br from-zinc-950 to-zinc-900`}>
         <motion.div
           initial="hidden"
           animate="visible"
           variants={{
-            visible: { transition: { staggerChildren: 0.15 } }
+            visible: { transition: { staggerChildren: 0.1 } }
           }}
         >
           {data.label && (
@@ -128,7 +129,7 @@ const CinematicModalContent: React.FC<{ data: ModalContent; onClose: () => void 
       {/* Image Section - Bento Box Style */}
       <div className={`${imageSectionClasses} bg-zinc-900 relative p-4 md:p-8 flex items-center justify-center`}>
         {/* The "Bento" Image Container */}
-        <div className="relative w-full h-full rounded-xl md:rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+        <div className="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
            <img 
              src={imageSrc} 
              alt="Visual Context"
@@ -143,46 +144,87 @@ const CinematicModalContent: React.FC<{ data: ModalContent; onClose: () => void 
 };
 
 // Category B: Showcase Use-Cases (Vintner Dinners, Tesla, etc.)
+// REDESIGNED FOR "AWARD WINNING" 3D LOOK
 const ShowcaseModalContent: React.FC<{ data: ModalContent; onClose: () => void }> = ({ data, onClose }) => {
+  const isLight = data.theme === 'light';
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: 40 }}
-      transition={{ type: "spring", damping: 25, stiffness: 300 }}
-      className="pointer-events-auto relative w-full max-w-4xl overflow-hidden rounded-2xl md:rounded-3xl bg-zinc-900/90 backdrop-blur-xl shadow-[0_0_50px_rgba(0,0,0,0.8)] p-6 md:p-12 border border-white/10 max-h-[85vh] overflow-y-auto ring-1 ring-white/5"
+      initial={{ opacity: 0, y: 40, scale: 0.95 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      exit={{ opacity: 0, y: 40, scale: 0.95 }}
+      transition={{ type: "spring", damping: 30, stiffness: 350 }}
+      className={`
+        pointer-events-auto relative w-full overflow-hidden rounded-[2rem] 
+        shadow-[0_0_50px_-12px_rgba(0,0,0,0.5)] 
+        border max-h-[92vh] flex flex-col
+        ${isLight 
+            ? 'bg-zinc-50 border-white ring-1 ring-zinc-200 max-w-7xl' // Light Mode
+            : 'bg-zinc-900 border-white/10 ring-1 ring-white/5 max-w-5xl' // Dark Mode
+        }
+      `}
     >
-      <button
-        onClick={onClose}
-        className="absolute top-4 right-4 md:top-6 md:right-6 z-20 rounded-full bg-white/5 p-2 text-white hover:bg-white/20 transition-colors border border-white/10"
-      >
-        <X size={20} />
-      </button>
+        {/* Decorative Top Highlight */}
+        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent opacity-50" />
 
-      {/* Header */}
-      <div className="mb-8 md:mb-10 text-center mt-6 md:mt-0">
-        <h2 className="text-2xl md:text-5xl font-bold uppercase tracking-tight text-white mb-4 drop-shadow-md">
-          {data.title}
-        </h2>
-        {data.subtitle && (
-          <p className="text-xs md:text-sm font-bold uppercase tracking-widest text-zinc-500 mb-2">
-            {data.subtitle}
-          </p>
-        )}
+        {/* Floating Close Button */}
+        <div className="absolute top-6 right-6 z-30">
+            <button
+                onClick={onClose}
+                className={`
+                    rounded-full p-2 transition-all duration-300 border
+                    hover:scale-110 active:scale-95
+                    ${isLight 
+                        ? 'bg-white text-zinc-900 border-zinc-200 shadow-sm hover:shadow-md' 
+                        : 'bg-zinc-800 text-white border-white/10 hover:bg-zinc-700'
+                    }
+                `}
+            >
+                <X size={20} />
+            </button>
+        </div>
+
+      {/* Header Area */}
+      <div className={`
+          relative z-10 px-8 py-10 md:px-12 md:pb-6 flex-shrink-0
+          ${isLight ? 'bg-gradient-to-b from-white to-zinc-50' : 'bg-gradient-to-b from-zinc-800 to-zinc-900'}
+      `}>
+         <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1, duration: 0.6 }}
+         >
+            {data.subtitle && (
+            <div className={`flex items-center gap-3 mb-3`}>
+                <span className={`h-px w-8 ${isLight ? 'bg-zinc-300' : 'bg-zinc-600'}`}></span>
+                <span className={`text-xs font-bold uppercase tracking-[0.2em] ${isLight ? 'text-zinc-400' : 'text-zinc-500'}`}>
+                    {data.subtitle}
+                </span>
+            </div>
+            )}
+            <h2 className={`text-3xl md:text-5xl font-black uppercase tracking-tight leading-none ${isLight ? 'text-zinc-900' : 'text-white drop-shadow-lg'}`}>
+            {data.title}
+            </h2>
+         </motion.div>
       </div>
 
-      <motion.div 
-        initial="hidden"
-        animate="visible"
-        variants={{
-          visible: { transition: { staggerChildren: 0.1 } }
-        }}
-        className="bg-black/40 rounded-xl p-6 md:p-10 border border-white/5 shadow-inner"
-      >
-          <div className="prose prose-sm md:prose-lg prose-invert text-zinc-300">
+      {/* Scrollable Content Area */}
+      <div className="flex-1 overflow-y-auto custom-scrollbar relative z-10">
+        <motion.div 
+            initial="hidden"
+            animate="visible"
+            variants={{
+                visible: { transition: { staggerChildren: 0.1, delayChildren: 0.2 } }
+            }}
+            className="p-8 md:p-12 md:pt-4"
+        >
+            {/* 
+                We render the content directly. 
+                The content itself (from SectionServing/Tesla) creates the sub-bento cards.
+            */}
             {data.content}
-          </div>
-      </motion.div>
+        </motion.div>
+      </div>
     </motion.div>
   );
 };

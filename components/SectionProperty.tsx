@@ -17,14 +17,16 @@ export const SectionProperty: React.FC = () => {
   };
 
   return (
-    <section id="property" className="container mx-auto px-6 py-8 md:px-12 md:py-24 bg-zinc-50 text-zinc-900">
+    // Reduced Section Padding: py-8 md:py-16 (was md:py-24)
+    <section id="property" className="container mx-auto px-6 py-8 md:px-12 md:py-16 bg-zinc-50 text-zinc-900">
        {/* Header - Animated Reveal */}
        <motion.div 
          initial={{ opacity: 0, y: 30 }}
          whileInView={{ opacity: 1, y: 0 }}
          viewport={{ once: false, amount: 0.2 }}
          transition={{ duration: 0.8, ease: "easeOut" }}
-         className="mb-16 flex flex-col md:flex-row md:items-end gap-12 border-b border-zinc-200 pb-10"
+         // Reduced margin-bottom: mb-10 (was mb-16)
+         className="mb-10 flex flex-col md:flex-row md:items-end gap-12 border-b border-zinc-200 pb-10"
       >
         <div className="flex-shrink-0">
            <span className="block text-xs font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2 font-sans">02 / ASSET</span>
@@ -34,8 +36,8 @@ export const SectionProperty: React.FC = () => {
         
         <div className="md:ml-auto max-w-2xl pb-1">
              <div className="pl-6 border-l-4 border-micron-eggplant/20 hover:border-micron-eggplant transition-colors duration-500">
-                <p className="text-lg font-light text-zinc-600 leading-snug font-body">
-                   <span className="font-bold text-micron-eggplant block mb-2 text-xl md:text-2xl uppercase tracking-tighter font-sans">
+                <p className="text-base font-light text-zinc-600 leading-snug font-body">
+                   <span className="font-bold text-micron-eggplant block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
                        HISTORIC CONTEXT.
                    </span>
                    A modest home situated atop North America’s oldest continuously operating geothermal district (est. 1890). This site taps into the nation's largest historic direct-use aquifer—the same clean, ancient energy source that powers the only state capital in the country. 
@@ -45,10 +47,12 @@ export const SectionProperty: React.FC = () => {
         </div>
       </motion.div>
 
-      <div className="flex flex-col gap-6">
+      {/* Reduced Main Layout Gap: gap-5 (was gap-6) */}
+      <div className="flex flex-col gap-5">
         
         {/* 1. Stats Grid - Changed to 5 columns with Gallery Link */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
+        {/* Reduced grid gap: gap-4 (was gap-6) */}
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
              {/* Reduced height from min-h-[160px] to min-h-[120px] */}
              <BentoCard gradient="bg-micron-eggplant" className="min-h-[120px] flex flex-col items-center justify-center text-center" delay={0.1}>
                  <h3 className="text-4xl md:text-5xl font-black text-white mb-2">1906</h3>
@@ -83,8 +87,10 @@ export const SectionProperty: React.FC = () => {
         </div>
 
         {/* 2. Location Details */}
-        <div className="mt-8">
-             <div className="flex items-center gap-2 mb-6">
+        {/* Reduced margin-top: mt-6 (was mt-8) */}
+        <div className="mt-6">
+             {/* Reduced margin-bottom: mb-3 (was mb-6) */}
+             <div className="flex items-center gap-2 mb-3">
                 <MapPin className="text-micron-eggplant" size={20} />
                 <h3 className="font-bold uppercase tracking-widest text-sm text-micron-eggplant">Location Details</h3>
              </div>
@@ -151,8 +157,10 @@ export const SectionProperty: React.FC = () => {
         </div>
 
         {/* 3. Residence Specifications */}
-        <div className="mt-12">
-             <div className="flex items-center gap-2 mb-6">
+        {/* Reduced margin-top: mt-8 (was mt-12) */}
+        <div className="mt-8">
+             {/* Reduced margin-bottom: mb-3 (was mb-6) */}
+             <div className="flex items-center gap-2 mb-3">
                 <Home className="text-micron-eggplant" size={20} />
                 <h3 className="font-bold uppercase tracking-widest text-sm text-micron-eggplant">Residence Specifications</h3>
              </div>
@@ -208,53 +216,60 @@ export const SectionProperty: React.FC = () => {
         </div>
 
         {/* 4. Amenities & Systems */}
-        <div className="mt-12">
-             <div className="flex items-center gap-2 mb-6">
+        {/* Reduced margin-top: mt-8 (was mt-12) */}
+        <div className="mt-8">
+             {/* Reduced margin-bottom: mb-3 (was mb-6) */}
+             <div className="flex items-center gap-2 mb-3">
                 <Zap className="text-micron-eggplant" size={20} />
                 <h3 className="font-bold uppercase tracking-widest text-sm text-micron-eggplant">Technology, Wellness & History</h3>
              </div>
              
              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <BentoCard gradient="bg-zinc-100" textColor="text-zinc-900" borderColor="border-zinc-200" className="min-h-[220px]" delay={0.1}>
+                {/* GEOTHERMAL: Changed to GREEN (bg-micron-green) + White Text */}
+                <BentoCard gradient="bg-micron-green" textColor="text-white" borderColor="border-white/10" className="min-h-[220px]" delay={0.1}>
                     <div className="flex justify-between items-start mb-4">
-                        <Leaf className="text-micron-green" />
-                        <span className="text-xs font-bold uppercase tracking-widest text-zinc-400">Nature</span>
+                        <Leaf className="text-white" />
+                        <span className="text-xs font-bold uppercase tracking-widest text-white/80">Nature</span>
                     </div>
                     <h4 className="text-xl font-bold uppercase tracking-tight mb-2">Geothermal & Wellness</h4>
-                    {/* Updated text to include radiant heat and hot tub */}
-                    <p className="text-sm text-zinc-600 leading-relaxed">
+                    {/* Updated text: text-base + font-medium + pure white (CHANGED TO white/70) */}
+                    <p className="text-base text-white/70 font-medium leading-relaxed font-body">
                         Geothermal spa utilizing the district's 177°F source. The home is heated through geothermal radiant heat as well as the hot tub. The grounds feature mature producing fruit trees and a Concord grapevine.
                     </p>
                 </BentoCard>
 
-                <BentoCard gradient="bg-zinc-100" textColor="text-zinc-900" borderColor="border-zinc-200" className="min-h-[220px]" delay={0.2}>
+                {/* AUTONOMOUS SERVICE: Changed to DARK GRAY (bg-micron-grey1) */}
+                <BentoCard gradient="bg-micron-grey1" textColor="text-white" borderColor="border-white/10" className="min-h-[220px]" delay={0.2}>
                     <div className="flex justify-between items-start mb-4">
                         {/* Switched to Car (Side Profile) and darker gold (amber-600) */}
                         {/* UPDATED: Face opposite direction (scale-x-[-1]) and more yellow gold */}
-                        <Car className="text-yellow-500 scale-x-[-1]" />
-                        <span className="text-xs font-bold uppercase tracking-widest text-zinc-400">Intelligence</span>
+                        <Car className="text-white scale-x-[-1]" />
+                        <span className="text-xs font-bold uppercase tracking-widest text-white/80">Intelligence</span>
                     </div>
                     <h4 className="text-xl font-bold uppercase tracking-tight mb-2">Autonomous Service</h4>
-                    <p className="text-sm text-zinc-600 leading-relaxed">
-                        Autonomous service via Cybercab and Optimus. A living lab where abstract technology becomes a tangible, lived experience.
+                    {/* Updated text: Removed 'living lab' */}
+                    <p className="text-base text-white/70 font-medium leading-relaxed font-body">
+                        Autonomous service via Cybercab and Optimus. A functional proving ground where abstract technology becomes a seamless, daily reality.
                     </p>
                 </BentoCard>
 
+                {/* NATIONAL REGISTER: Kept EGGPLANT */}
                 <BentoCard 
-                    gradient="bg-zinc-100" 
-                    textColor="text-zinc-900" 
-                    borderColor="border-zinc-200" 
+                    gradient="bg-micron-eggplant" 
+                    textColor="text-white" 
+                    borderColor="border-white/10" 
                     className="min-h-[220px]"
                     delay={0.3}
                 >
                     <div className="flex justify-between items-start mb-4">
                         {/* Switched to Map icon as requested */}
-                        <Map className="text-amber-800" />
-                        <span className="text-xs font-bold uppercase tracking-widest text-zinc-400">Heritage</span>
+                        <Map className="text-white" />
+                        <span className="text-xs font-bold uppercase tracking-widest text-white/80">Heritage</span>
                     </div>
                     <h4 className="text-xl font-bold uppercase tracking-tight mb-2">National Register of Historic Places</h4>
-                    <p className="text-sm text-zinc-600 leading-relaxed">
-                        Anchored by the C.W. Moore House (1891) and the neighboring George Whitfield Russell House. A corridor defined by the legacy of Western energy pioneers and geothermal ingenuity.
+                    {/* Updated text: text-base + font-medium + pure white (CHANGED TO white/70) */}
+                    <p className="text-base text-white/70 font-medium leading-relaxed font-body">
+                        Anchored by the C.W. Moore House (1891) and the neighboring George Whitfield Russell House. A corridor defined by the legacy of Western pioneers and energy ingenuity.
                     </p>
                 </BentoCard>
              </div>

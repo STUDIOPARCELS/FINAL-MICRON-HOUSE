@@ -26,17 +26,17 @@ export const Hero: React.FC = () => {
   };
 
   return (
-    // Reduced padding: pt-24 (mobile) / pt-28 (desktop) and pb-2 (mobile) / pb-4 (desktop)
-    // Previous was pt-28/pt-32 and pb-6/pb-8
-    <section className="relative w-full bg-white flex flex-col items-center justify-center pt-24 pb-2 md:pt-28 md:pb-4 box-border overflow-hidden">
+    // Restored padding-bottom: pb-8 to create gap between this and the green box below
+    <section className="relative w-full bg-white flex flex-col items-center justify-center pt-24 pb-8 md:pt-28 md:pb-8 box-border overflow-hidden">
       
       <div className="container mx-auto px-6 h-full flex items-center justify-center">
         {/* Switched to BentoCard for consistent 'treatment' (corners, shadows, borders) */}
+        {/* Adjusted aspect ratio to be shorter/wider to reduce vertical padding inside the black box */}
         <BentoCard 
           gradient="bg-micron-black"
           textColor="text-white"
           borderColor="border-zinc-900/5" // Subtle border
-          className="w-full aspect-video md:aspect-[21/9] flex items-center justify-center !p-0" // !p-0 to allow centering without padding constraints if needed, or rely on flex
+          className="w-full aspect-[2/1] md:aspect-[3/1] flex items-center justify-center !p-0" // Increased aspect ratio denominator to make it shorter
           delay={0}
           hoverEffect={true}
         >
@@ -52,7 +52,7 @@ export const Hero: React.FC = () => {
                  <motion.span
                    key={i}
                    variants={titleLetterVariants}
-                   className="text-[12vw] md:text-[8vw] leading-none font-black text-white tracking-tighter"
+                   className="text-[10vw] md:text-[7vw] leading-none font-black text-white tracking-tighter"
                    style={{ 
                      display: 'inline-block',
                      transformOrigin: 'bottom center'
