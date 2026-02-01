@@ -472,7 +472,7 @@ export const SectionPrototype: React.FC = () => {
                                 transition={{ duration: 0.8, delay: (mainTitleWords.length * 0.2) + 0.2 }}
                                 className="text-micron-eggplant block text-base" // CHANGED: text-zinc-600 -> text-micron-eggplant
                         >
-                            Creating the first autonomous corporate residence. A profound convergence of ancient earth energy with energy from the stars.
+                            Creating the first autonomous corporate residence. A new corporate amenity forged at the missions of enriching life for all, sustainable energy, and enabling a new world of "amazing abundance".
                         </motion.span>
                     </div>
                 </div>
