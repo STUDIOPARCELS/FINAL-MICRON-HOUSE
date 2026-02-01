@@ -123,72 +123,63 @@ const getCardData = (id: number): ModalContent => {
         title: 'TIMING', 
         subtitle: "BOISE'S MOMENT",
         content: (
-            <div className="flex flex-col gap-6 h-full">
-                {/* 
-                    Video/Media Section 
-                    Standard Aspect Ratio 16:9
-                */}
-                <motion.div 
-                    initial={{ opacity: 0, scale: 0.98 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.1 }}
-                    className="w-full aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl relative group cursor-pointer border-t border-white/20 border-b border-black/10 flex-shrink-0"
-                >
-                     {/* Placeholder Background for Video */}
-                     <div className="absolute inset-0 opacity-80 bg-[url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center transition-transform duration-700 group-hover:scale-105"></div>
-                     <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/30"></div>
-                     
-                     <div className="absolute inset-0 flex flex-col items-center justify-center z-20">
-                         <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-white/30 transition-all duration-300">
-                            <Play className="text-white fill-white ml-1" size={24} />
+            <div className="flex flex-col lg:flex-row gap-6 h-full min-h-0">
+                {/* LEFT COLUMN: Video + Runway (Green) */}
+                <div className="lg:w-5/12 flex flex-col gap-6">
+                     {/* Video Section */}
+                     <motion.div 
+                        initial={{ opacity: 0, scale: 0.98 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.1 }}
+                        className="w-full aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl relative group cursor-pointer border-t border-white/20 border-b border-black/10 flex-shrink-0"
+                    >
+                         {/* Placeholder Background for Video */}
+                         <div className="absolute inset-0 opacity-80 bg-[url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center transition-transform duration-700 group-hover:scale-105"></div>
+                         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/30"></div>
+                         
+                         <div className="absolute inset-0 flex flex-col items-center justify-center z-20">
+                             <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-white/30 transition-all duration-300">
+                                <Play className="text-white fill-white ml-1" size={24} />
+                             </div>
+                             <h3 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tight drop-shadow-lg">
+                                The Window of Opportunity
+                             </h3>
                          </div>
-                         <h3 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tight drop-shadow-lg">
-                            The Window of Opportunity
-                         </h3>
-                     </div>
-                </motion.div>
+                    </motion.div>
 
-                {/* 
-                   RECONFIGURED LAYOUT: 
-                   Eliminating extra space. 
-                   Grid is now 2 columns on desktop.
-                   - Boise's Moment: spans 1 column.
-                   - Runway: spans 1 column.
-                   - 3 Arcs: spans 2 columns (full width at bottom) to anchor the layout.
-                */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 flex-1 min-h-0">
-                    {/* SECTION 1 — BLUE BENTO BOX */}
+                    {/* RUNWAY (Green) - Fills remaining vertical space */}
+                    <InnerBento 
+                        title="RUNWAY" 
+                        gradient="bg-micron-green" 
+                        delay={0.3}
+                        className="flex-1"
+                    >
+                        <p className="text-sm">There are no Optimus robots operating in private residences today. The window to build, test, and refine the first autonomous corporate residence exists right now — before the technology scales to mass production and the conversation shifts from design to regulation.</p>
+                        <p className="mt-3 text-sm">This is a unique moment in the timeline of automation where a prototype can still define the standard.</p>
+                    </InnerBento>
+                </div>
+
+                {/* RIGHT COLUMN: Boise's Moment (Blue) + 3 Arcs (Eggplant) */}
+                <div className="lg:w-7/12 flex flex-col gap-6">
+                    {/* BOISE'S MOMENT */}
                     <InnerBento 
                         title="BOISE'S MOMENT" 
                         gradient="bg-micron-eggplant-light" 
-                        // REMOVED ICON
                         delay={0.2}
                     >
                         <p className="text-sm">Boise has arrived. A city once known primarily for potatoes and public land now supports a James Beard-nominated culinary scene, world-class wineries across the Snake River Valley, a thriving arts and entertainment scene, and the kind of civic energy that comes with a Division I University town.</p>
                         <p className="mt-3 text-sm">The Boise River Greenbelt connects 25 miles of parkland through the city center. Bogus Basin is 45 minutes from downtown. Some of the best fly fishing, whitewater, and backcountry skiing in North America are all within reach.</p>
                     </InnerBento>
 
-                    {/* SECTION 2 — GREEN BENTO BOX */}
-                    <InnerBento 
-                        title="RUNWAY" 
-                        gradient="bg-micron-green" 
-                        // REMOVED ICON
-                        delay={0.3}
-                    >
-                        <p className="text-sm">There are no Optimus robots operating in private residences today. The window to build, test, and refine the first autonomous corporate residence exists right now — before the technology scales to mass production and the conversation shifts from design to regulation.</p>
-                        <p className="mt-3 text-sm">This is a unique moment in the timeline of automation where a prototype can still define the standard.</p>
-                    </InnerBento>
-
-                    {/* SECTION 3 — EGGPLANT BENTO BOX (Full Width) */}
+                    {/* 3 ARCS CONVERGING */}
                     <InnerBento 
                         title="3 ARCS CONVERGING" 
                         gradient="bg-micron-eggplant" 
-                        // REMOVED ICON
-                        className="md:col-span-2 overflow-y-auto"
+                        className="flex-1"
                         delay={0.4}
                     >
-                        <div className="md:columns-2 gap-8">
-                            <p className="mb-4 md:mb-0 text-sm">A city reaching cultural maturity after decades of quiet growth. A semiconductor company deploying the largest memory infrastructure investment in American history into its hometown. A robotics company preparing to place autonomous systems into the world for the first time.</p>
+                        <div className="lg:columns-2 gap-8">
+                            <p className="mb-4 lg:mb-0 text-sm">A city reaching cultural maturity after decades of quiet growth. A semiconductor company deploying the largest memory infrastructure investment in American history into its hometown. A robotics company preparing to place autonomous systems into the world for the first time.</p>
                             <p className="text-sm">These three trajectories are converging right now, in the same city, on the same street where a Boise banker piped 177-degree water from the ground to heat his home in 1892 — before most American homes had electricity — and started a tradition of adopting technology the rest of the country hadn't imagined yet.</p>
                         </div>
                     </InnerBento>
@@ -472,7 +463,7 @@ export const SectionPrototype: React.FC = () => {
                                 transition={{ duration: 0.8, delay: (mainTitleWords.length * 0.2) + 0.2 }}
                                 className="text-micron-eggplant block text-base" // CHANGED: text-zinc-600 -> text-micron-eggplant
                         >
-                            Creating the first autonomous corporate residence. A new corporate amenity forged at the missions of enriching life for all, sustainable energy, and enabling a new world of "amazing abundance".
+                            Creating the first autonomous corporate residence. Where Micron's semiconductor revolution, Tesla's autonomous ecosystem, and Boise's emergence as a global tech hub converge at an inflection point — and 1020 Warm Springs Avenue delivers the first tangible glimpse of the autonomous era.
                         </motion.span>
                     </div>
                 </div>

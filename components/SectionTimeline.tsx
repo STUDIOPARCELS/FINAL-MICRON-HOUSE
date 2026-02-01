@@ -1,61 +1,60 @@
-import React, { useState } from 'react';
+
+import React from 'react';
 import { BentoCard } from './BentoCard';
-import { Modal } from './Modal';
-import { ModalContent } from '../types';
-import { Calendar, PenTool, Activity, Zap, FileText } from 'lucide-react';
+import { Calendar, PenTool, Activity, Zap, FileText, Database, Shield, Radio, Cpu, Network } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const timelineEvents = [
   { 
     id: 1, 
-    date: "NOW", 
-    title: "AGREEMENT", 
-    desc: "Establishing the partnership.",
-    detail: "Finalizing the agreement between Micron and the property stakeholders. Defining the scope of the prototype relationship.",
-    icon: <FileText />,
+    date: "PHASE I", 
+    title: "ARCHITECTURAL ALIGNMENT", 
+    desc: "Defining the physical API.",
+    detail: "Establishing the interface between historic infrastructure and autonomous logic. Mapping the residence for Optimus navigation.",
+    icon: <Database />,
     gradient: "bg-micron-black",
   },
   { 
     id: 2, 
-    date: "MAR 1", 
-    title: "PROTOCOL ASSESSMENT", 
-    desc: "Defining operational parameters.",
-    detail: "Defining specific testing parameters for Optimus. Establishing liability, insurance, and operational protocols for the residence.",
-    icon: <PenTool />,
+    date: "PHASE II", 
+    title: "PERCEPTION MAPPING", 
+    desc: "Digitizing the environment.",
+    detail: "Optimus neural networks ingest the property's geometry for centimeter-level navigation and semantic understanding.",
+    icon: <Network />,
     gradient: "bg-micron-eggplant-light", // Changed to Blue
   },
   { 
     id: 3, 
-    date: "APR 1", 
-    title: "WELLNESS INSTALL", 
-    desc: "Sauna, Cold Plunge, and WBV.",
-    detail: "Installation of world-class recovery modalities. Geothermal heating loop optimized for the new amenities.",
+    date: "PHASE III", 
+    title: "BIOMETRIC INFRASTRUCTURE", 
+    desc: "Human optimization.",
+    detail: "Deploying contrast therapy, vibration systems, and circadian lighting to service the biological occupants.",
     icon: <Activity />,
     gradient: "bg-micron-green",
   },
   { 
     id: 4, 
-    date: "MAY 1", 
-    title: "ACCESS BEGINS", 
-    desc: "Calendar booking opens.",
-    detail: "Soft launch. Board members begin booking stays. Initial feedback loop established with executive assistants.",
-    icon: <Calendar />,
+    date: "PHASE IV", 
+    title: "PILOT ACTIVATION", 
+    desc: "The feedback loop begins.",
+    detail: "Executive stakeholders initiate residency. Initial feedback loops established between occupants and the autonomous OS.",
+    icon: <Radio />,
     gradient: "bg-micron-grey3",
   },
   { 
     id: 5, 
-    date: "2027", 
-    title: "FULL AUTONOMY", 
-    desc: "Tesla Optimus & Cybercab deployment.",
-    detail: "The house becomes a living lab. Cybercab handles all transport. Optimus manages housekeeping and security.",
-    icon: <Zap />,
+    date: "PHASE V", 
+    title: "AUTONOMOUS SCALE", 
+    desc: "The new standard.",
+    detail: "Transitioning to zero-intervention property management. Cybercab and Optimus assume full operational governance.",
+    icon: <Cpu />,
     gradient: "bg-micron-eggplant",
   }
 ];
 
 export const SectionTimeline: React.FC = () => {
-  const [modalData, setModalData] = useState<ModalContent | null>(null);
-
+  // Removed Modal State and Modal Component usage
+  
   return (
     // Reduced padding: py-16 instead of py-24, px-4 mobile
     <section id="timeline" className="container mx-auto px-4 md:px-12 py-8 md:py-16 mb-20 bg-white text-zinc-900">
@@ -76,9 +75,9 @@ export const SectionTimeline: React.FC = () => {
              <div className="pl-6 border-l-4 border-micron-grey1/20 hover:border-micron-grey1 transition-colors duration-500">
                 <p className="text-base font-light text-zinc-600 leading-snug font-body">
                    <span className="font-bold text-micron-grey1 block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
-                       TIMELINE.
+                       STRATEGIC DEPLOYMENT.
                    </span>
-                   From agreement to installation, then hosting — with full autonomy as Cybercab and Optimus deploy to the property.
+                   From physical alignment to full autonomy. A phased integration of robotics, biometrics, and historic infrastructure.
                 </p>
              </div>
         </div>
@@ -90,34 +89,35 @@ export const SectionTimeline: React.FC = () => {
           <BentoCard 
             key={item.id} 
             delay={i * 0.1}
-            className={`flex flex-col min-h-[300px] relative`}
+            className={`flex flex-col min-h-[340px] relative hover:shadow-2xl transition-shadow duration-300`}
             gradient={item.gradient}
             textColor="text-white"
             borderColor="border-white/10"
-            onClick={() => setModalData({
-                title: item.title,
-                subtitle: item.date,
-                category: 'reference',
-                content: <p className="text-lg text-zinc-300">{item.detail}</p>
-            })}
+            hoverEffect={false} // Disabled hover lift to keep focus on reading
           >
              {/* Icon Top Left */}
-             <div className="absolute top-8 left-8 text-white group-hover:scale-110 transition-transform duration-300">
-                {React.cloneElement(item.icon as React.ReactElement<any>, { size: 18, strokeWidth: 1.5, className: "text-white" })}
+             <div className="absolute top-8 left-8 text-white/80">
+                {React.cloneElement(item.icon as React.ReactElement<any>, { size: 24, strokeWidth: 1.5 })}
              </div>
 
-             <div className="flex flex-col items-center justify-start h-full pt-12 text-center px-2">
+             <div className="flex flex-col items-center justify-start h-full pt-16 text-center px-4">
                  <div className="mb-6">
-                    <span className="text-2xl font-black uppercase tracking-widest text-white/90 drop-shadow-sm font-sans">
+                    <span className="text-xl font-bold uppercase tracking-widest text-white/60 font-sans block mb-1">
                         {item.date}
                     </span>
+                    <h3 className="text-xl font-black text-white uppercase tracking-tight leading-none mb-3">
+                        {item.title}
+                    </h3>
                     <div className="h-0.5 w-8 bg-white/30 mx-auto mt-2"></div>
                  </div>
 
-                 <div className="mt-2">
-                     <h3 className="text-lg font-bold text-white mb-3 uppercase tracking-tight leading-none">{item.title}</h3>
-                     <p className="text-white/90 font-body text-xs leading-relaxed transition-colors duration-300">
+                 <div className="mt-auto pb-4">
+                     <p className="text-white font-bold text-sm uppercase tracking-wide mb-3">
                         {item.desc}
+                     </p>
+                     {/* Increased font size for readability as requested */}
+                     <p className="text-white/90 font-body text-sm md:text-base leading-relaxed font-medium">
+                        {item.detail}
                      </p>
                  </div>
              </div>
@@ -125,8 +125,6 @@ export const SectionTimeline: React.FC = () => {
           </BentoCard>
         ))}
       </div>
-      
-      <Modal isOpen={!!modalData} onClose={() => setModalData(null)} data={modalData} />
     </section>
   );
 };

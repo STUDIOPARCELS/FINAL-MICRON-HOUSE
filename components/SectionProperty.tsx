@@ -134,7 +134,7 @@ export const SectionProperty: React.FC = () => {
         case 'autonomous':
             return {
                 ...base,
-                title: "AUTONOMOUS SERVICE",
+                title: "SECURITY AND SERVICE",
                 subtitle: "LIVING LAB",
                 content: (
                     <div className="flex flex-col gap-6 h-full">
@@ -481,7 +481,7 @@ export const SectionProperty: React.FC = () => {
                         <Car className="text-white scale-x-[-1]" />
                         <span className="text-xs font-bold uppercase tracking-widest text-white/80">Intelligence</span>
                     </div>
-                    <h4 className="text-xl font-bold uppercase tracking-tight mb-2">Autonomous Service</h4>
+                    <h4 className="text-xl font-bold uppercase tracking-tight mb-2">Security and Service</h4>
                     {/* Updated text: Removed 'living lab' */}
                     <p className="text-base text-white/70 font-medium leading-relaxed font-body">
                         Autonomous service via Cybercab and Optimus. A functional proving ground where abstract technology becomes a seamless, daily reality.
