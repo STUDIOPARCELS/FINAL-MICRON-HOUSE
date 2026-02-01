@@ -330,9 +330,15 @@ const getCardData = (id: number): ModalContent => {
            {/* 1. MANTRA HEADER (Full Width, Paragraph Style) */}
            <div className="w-full bg-micron-eggplant p-8 md:p-12 rounded-2xl border border-white/10 shadow-lg flex items-center justify-center text-center">
                <p className="text-xl md:text-3xl font-black uppercase leading-tight tracking-tight">
-                 <span className="text-white/50">WITHOUT MEMORY, </span><span className="text-white">THERE IS NO MEANING. </span>
-                 <span className="text-white/50">WITHOUT VISION, </span><span className="text-white">THERE IS NO VELOCITY. </span>
-                 <span className="text-white/50">WITHOUT PLACE, </span><span className="text-white">THERE IS NO PERSPECTIVE.</span>
+                 <span className="block md:inline mb-6 md:mb-0">
+                    <span className="text-white/50">WITHOUT MEMORY, </span><span className="text-white">THERE IS NO MEANING. </span>
+                 </span>
+                 <span className="block md:inline mb-6 md:mb-0">
+                    <span className="text-white/50">WITHOUT VISION, </span><span className="text-white">THERE IS NO VELOCITY. </span>
+                 </span>
+                 <span className="block md:inline">
+                    <span className="text-white/50">WITHOUT PLACE, </span><span className="text-white">THERE IS NO PERSPECTIVE.</span>
+                 </span>
                </p>
            </div>
            
