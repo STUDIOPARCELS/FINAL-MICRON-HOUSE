@@ -224,13 +224,6 @@ export const SectionIntro: React.FC<SectionIntroProps> = () => {
                             className="absolute inset-0 w-full h-full opacity-80 group-hover:opacity-100 transition-opacity duration-700"
                         />
                      </div>
-                     
-                     <div className="absolute bottom-6 left-6 pointer-events-none z-20 bg-white/90 backdrop-blur-md px-4 py-2 rounded-lg border border-zinc-200 shadow-sm">
-                        <div className="flex items-center gap-2">
-                            <span className="text-xs font-bold uppercase tracking-widest text-zinc-600">Get Directions</span>
-                            <ArrowUpRight size={14} className="text-micron-green" />
-                        </div>
-                     </div>
                 </BentoCard>
             </motion.div>
 

@@ -241,7 +241,8 @@ export const SectionServing: React.FC = () => {
                     variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}
                     className="pb-2"
                  >
-                     <p className="text-2xl md:text-3xl font-light text-zinc-800 leading-tight tracking-tight">
+                     {/* Reduced text size for mobile/desktop for better fit: text-lg md:text-2xl */}
+                     <p className="text-lg md:text-2xl font-light text-zinc-800 leading-tight tracking-tight">
                         {dept.detail}
                      </p>
                  </motion.div>

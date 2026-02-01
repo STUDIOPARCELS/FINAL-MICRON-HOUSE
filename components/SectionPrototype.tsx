@@ -337,7 +337,7 @@ export const SectionPrototype: React.FC = () => {
                                             y: -4, 
                                             x: 2, 
                                             scale: 1.05, 
-                                            color: word === "BOISE." ? '#008f25' : '#6b7280', 
+                                            color: word === "BOISE." ? '#008f25' : '#2c0f38', // CHANGED: Gray #6b7280 -> Eggplant #2c0f38
                                             transition: { duration: 0.2 } 
                                         }}
                                         transition={{ duration: 0.4, delay: i * 0.2 }} 
@@ -354,7 +354,7 @@ export const SectionPrototype: React.FC = () => {
                                 whileInView={{ opacity: 1 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.8, delay: (mainTitleWords.length * 0.2) + 0.2 }}
-                                className="text-zinc-600 block text-base"
+                                className="text-micron-eggplant block text-base" // CHANGED: text-zinc-600 -> text-micron-eggplant
                         >
                             Creating the first autonomous corporate residence. A convergence of historic stewardship and future technology.
                         </motion.span>

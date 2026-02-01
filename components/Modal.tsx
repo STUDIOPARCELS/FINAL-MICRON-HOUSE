@@ -37,7 +37,8 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, data }) => {
             onClick={onClose}
             className="fixed inset-0 z-[60] bg-zinc-950/60 backdrop-blur-md"
           />
-          <div className="fixed inset-0 z-[61] flex items-center justify-center p-2 md:p-8 pointer-events-none">
+          {/* Increased padding p-4 (from p-2) for mobile spacing */}
+          <div className="fixed inset-0 z-[61] flex items-center justify-center p-4 md:p-8 pointer-events-none">
             {getModalContent()}
           </div>
         </>
@@ -94,9 +95,9 @@ const CinematicModalContent: React.FC<{ data: ModalContent; onClose: () => void 
     >
       <button
         onClick={onClose}
-        className="absolute top-4 right-4 z-20 rounded-full bg-black/20 p-2 text-white hover:bg-black/40 transition-colors backdrop-blur-md border border-white/10"
+        className="absolute top-4 right-4 z-50 rounded-full bg-black/20 p-2 text-white hover:bg-black/40 transition-colors backdrop-blur-md border border-white/10"
       >
-        <X size={20} />
+        <X size={24} />
       </button>
 
       {/* Text Section */}
@@ -167,26 +168,26 @@ const ShowcaseModalContent: React.FC<{ data: ModalContent; onClose: () => void }
         {/* Decorative Top Highlight */}
         <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent opacity-50" />
 
-        {/* Floating Close Button */}
-        <div className="absolute top-4 right-4 md:top-6 md:right-6 z-30">
+        {/* Floating Close Button - Adjusted for visibility and mobile touch targets */}
+        <div className="absolute top-4 right-4 md:top-6 md:right-6 z-50">
             <button
                 onClick={onClose}
                 className={`
                     rounded-full p-2 transition-all duration-300 border
                     hover:scale-110 active:scale-95
                     ${isLight 
-                        ? 'bg-white text-zinc-900 border-zinc-200 shadow-sm hover:shadow-md' 
-                        : 'bg-zinc-800 text-white border-white/10 hover:bg-zinc-700'
+                        ? 'bg-white/90 backdrop-blur text-zinc-900 border-zinc-200 shadow-sm hover:shadow-md' 
+                        : 'bg-zinc-800/90 backdrop-blur text-white border-white/10 hover:bg-zinc-700'
                     }
                 `}
             >
-                <X size={20} />
+                <X size={24} />
             </button>
         </div>
 
       {/* Header Area */}
       <div className={`
-          relative z-10 px-6 py-8 md:px-12 md:pb-6 flex-shrink-0
+          relative z-10 px-8 py-8 md:px-12 md:pb-6 flex-shrink-0
           ${isLight ? 'bg-gradient-to-b from-white to-zinc-50' : 'bg-gradient-to-b from-zinc-800 to-zinc-900'}
       `}>
          <motion.div
@@ -208,15 +209,16 @@ const ShowcaseModalContent: React.FC<{ data: ModalContent; onClose: () => void }
          </motion.div>
       </div>
 
-      {/* Scrollable Content Area */}
-      <div className="flex-1 overflow-y-auto custom-scrollbar relative z-10">
+      {/* Scrollable Content Area - Added min-h-0 and increased mobile padding */}
+      <div className="flex-1 overflow-y-auto custom-scrollbar relative z-10 min-h-0">
         <motion.div 
             initial="hidden"
             animate="visible"
             variants={{
                 visible: { transition: { staggerChildren: 0.1, delayChildren: 0.2 } }
             }}
-            className="p-6 md:p-12 md:pt-4"
+            // Increased p-6 to p-8 on mobile to ensure content isn't cramped
+            className="p-8 md:p-12 md:pt-4"
         >
             {/* 
                 We render the content directly. 
@@ -260,7 +262,7 @@ const ReferenceModalContent: React.FC<{ data: ModalContent; onClose: () => void 
       // Added max-h-[85vh] and overflow-hidden to container
       className={`pointer-events-auto relative w-full max-w-5xl h-auto max-h-[90vh] flex flex-col overflow-hidden rounded-2xl md:rounded-3xl ${containerClasses}`}
     >
-      <div className={`p-4 md:p-6 flex justify-between items-start flex-shrink-0 ${headerClasses}`}>
+      <div className={`p-6 md:p-6 flex justify-between items-start flex-shrink-0 ${headerClasses}`}>
         <div className="pr-6">
           <h2 className={`text-2xl md:text-4xl font-bold uppercase tracking-tight mb-1 ${titleColor}`}>
             {data.title}
@@ -270,12 +272,12 @@ const ReferenceModalContent: React.FC<{ data: ModalContent; onClose: () => void 
           </p>
         </div>
         <button onClick={onClose} className={`rounded-full p-2 transition-colors ${closeBtnClasses}`}>
-          <X size={20} />
+          <X size={24} />
         </button>
       </div>
       
-      {/* Scrollable Content Area */}
-      <div className={`p-6 md:p-12 overflow-y-auto custom-scrollbar ${contentContainerClasses}`}>
+      {/* Scrollable Content Area - Added min-h-0 */}
+      <div className={`p-8 md:p-12 overflow-y-auto custom-scrollbar min-h-0 ${contentContainerClasses}`}>
         {data.content}
       </div>
     </motion.div>
@@ -300,7 +302,7 @@ const GalleryModalContent: React.FC<{ data: ModalContent; onClose: () => void }>
             exit={{ opacity: 0, scale: 0.95 }}
             className="pointer-events-auto relative w-full max-w-7xl h-[85vh] overflow-hidden rounded-2xl md:rounded-3xl bg-zinc-950/95 backdrop-blur-xl shadow-2xl border border-white/10 flex flex-col"
         >
-            <div className="p-4 md:p-8 border-b border-white/10 flex justify-between items-center bg-black/50 flex-shrink-0">
+            <div className="p-6 md:p-8 border-b border-white/10 flex justify-between items-center bg-black/50 flex-shrink-0">
                 <div>
                     <h2 className="text-xl md:text-2xl font-bold uppercase tracking-tight text-white">{data.title}</h2>
                     <p className="text-zinc-400 text-xs md:text-sm">{images.length} Photos available</p>
@@ -309,11 +311,11 @@ const GalleryModalContent: React.FC<{ data: ModalContent; onClose: () => void }>
                     onClick={onClose}
                     className="rounded-full bg-white/10 p-2 text-white hover:bg-white/20 transition-colors border border-white/10"
                 >
-                    <X size={20} />
+                    <X size={24} />
                 </button>
             </div>
             
-            <div className="flex-1 overflow-y-auto p-4 md:p-8 custom-scrollbar">
+            <div className="flex-1 overflow-y-auto p-4 md:p-8 custom-scrollbar min-h-0">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {images.map((img, i) => (
                         <div key={i} className="group relative aspect-[4/3] overflow-hidden rounded-xl bg-zinc-900 border border-white/5 cursor-pointer">
