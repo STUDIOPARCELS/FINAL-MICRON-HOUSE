@@ -11,7 +11,12 @@ const InnerBento = ({ title, children, gradient, icon, className = "", delay = 0
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ delay, duration: 0.5 }}
-        className={`${gradient} rounded-2xl p-6 md:p-8 text-white shadow-lg relative overflow-hidden group ${className}`}
+        className={`
+            ${gradient} rounded-2xl p-6 md:p-8 text-white relative overflow-hidden group 
+            shadow-[0_20px_40px_-12px_rgba(0,0,0,0.5)] 
+            border-t border-l border-white/20 border-b border-black/40
+            ${className}
+        `}
     >
         {/* Decorative background element - Only if icon exists */}
         {icon && (
@@ -20,14 +25,17 @@ const InnerBento = ({ title, children, gradient, icon, className = "", delay = 0
             </div>
         )}
         
+        {/* Top Highlight for 3D Bevel */}
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-50" />
+
         <div className="relative z-10 h-full flex flex-col">
             {(title || icon) && (
-                <h3 className="text-xl md:text-2xl font-black uppercase tracking-tight mb-4 flex items-center gap-3">
+                <h3 className="text-xl md:text-2xl font-black uppercase tracking-tight mb-4 flex items-center gap-3 drop-shadow-md">
                     {icon && React.cloneElement(icon, { size: 24, strokeWidth: 1.5 })}
                     {title}
                 </h3>
             )}
-            <div className="text-white/90 text-sm md:text-base leading-relaxed font-body font-medium space-y-4 flex-1">
+            <div className="text-white/90 text-sm md:text-base leading-relaxed font-body font-medium space-y-4 flex-1 drop-shadow-sm">
                 {children}
             </div>
         </div>
@@ -45,49 +53,16 @@ const getCardData = (id: number): ModalContent => {
         subtitle: 'VISION',
         content: (
             <div className="flex flex-col gap-6">
-                {/* Row 1: The 3 Core Pillars in Colorful Bento Boxes */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <InnerBento 
-                        title="The Service Layer" 
-                        gradient="bg-micron-green" 
-                        icon={<Server />}
-                        delay={0.1}
-                    >
-                        <p>A private sanctuary serviced entirely by Optimus and Cybercab. Here, the service layer is the product.</p>
-                        <p>It curates the best of Boise—bringing exclusive local experiences directly into the home or facilitating discreet autonomous transport.</p>
-                    </InnerBento>
-
-                    <InnerBento 
-                        title="Real-World Integration" 
-                        gradient="bg-micron-eggplant" 
-                        icon={<Globe />}
-                        delay={0.2}
-                    >
-                        <p>Located minutes from engineering headquarters, this residence creates a vital feedback loop.</p>
-                        <p>Executives and guests live alongside the technology, observing Optimus and Cybercab in a genuine home environment, transforming abstract code into tangible experience.</p>
-                    </InnerBento>
-
-                    <InnerBento 
-                        title="The Inflection Point" 
-                        gradient="bg-micron-grey1" 
-                        icon={<BrainCircuit />}
-                        delay={0.3}
-                    >
-                        <p>As society pivots toward mass adoption of humanoid robotics, this residence serves as the strategic staging ground for essential dialogue.</p>
-                        <ul className="list-disc pl-4 space-y-1 mt-2 text-white/80 text-xs">
-                            <li>Absorbing visual vernacular of robotics.</li>
-                            <li>Defining psychological thresholds.</li>
-                            <li>Establishing autonomous-free zones.</li>
-                        </ul>
-                    </InnerBento>
-                </div>
-
-                {/* Row 2: Media / Video Section */}
+                
+                {/* 
+                   MOVED VIDEO TO TOP: 
+                   Ensures media is always on top on mobile stack. 
+                */}
                 <motion.div 
                     initial={{ opacity: 0, scale: 0.98 }}
                     whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.4 }}
-                    className="w-full aspect-video md:aspect-[21/9] bg-black rounded-2xl overflow-hidden shadow-2xl relative group cursor-pointer"
+                    transition={{ delay: 0.1 }}
+                    className="w-full aspect-video md:aspect-[21/9] bg-black rounded-2xl overflow-hidden shadow-2xl relative group cursor-pointer border-t border-white/20 border-b border-black/40"
                 >
                      {/* Placeholder Background Image */}
                      <div className="absolute inset-0 opacity-60 bg-[url('https://images.unsplash.com/photo-1614728263952-84ea256f9679?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center transition-transform duration-700 group-hover:scale-105"></div>
@@ -105,6 +80,40 @@ const getCardData = (id: number): ModalContent => {
                         </p>
                      </div>
                 </motion.div>
+
+                {/* The 3 Core Pillars in Colorful Bento Boxes */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <InnerBento 
+                        title="SERVICE & SECURITY LAYER" 
+                        gradient="bg-micron-green" 
+                        icon={<Server />}
+                        delay={0.2}
+                    >
+                        <p>Five minutes from downtown. Fifteen from the airport. Fifteen from Micron headquarters. The home sits at the center of everything Boise offers — and Optimus and Cybercab are the mechanism that brings it through the front door.</p>
+                        <p>Culinary, wellness, recreation, entertainment — each delivered into an intimate, private setting with a level of coordination and discretion that the autonomous infrastructure sustains across every event. This is the prototype for a new kind of corporate hospitality.</p>
+                    </InnerBento>
+
+                    <InnerBento 
+                        title="REAL-WORLD INTEGRATION" 
+                        gradient="bg-micron-eggplant" 
+                        icon={<Globe />}
+                        delay={0.3}
+                    >
+                        <p>Optimus and Cybercab operate here before they reach the public. This residence is the beginning of cohabitation — executives, engineers, partners, and invited guests engaging with the technology in a domestic setting, generating continuous feedback.</p>
+                        <p>Located minutes from the Micron fabs where the memory inside every unit is manufactured, the loop from silicon to service closes at Micron House.</p>
+                    </InnerBento>
+
+                    <InnerBento 
+                        title="THE INFLECTION POINT" 
+                        gradient="bg-micron-grey1" 
+                        icon={<BrainCircuit />}
+                        delay={0.4}
+                    >
+                        <p>Every person alive today has lived in a world composed entirely of other people. That is about to change. As autonomous systems scale from thousands to millions to billions, the visual and psychological landscape of daily life transforms permanently.</p>
+                        <p>Micron House is where the leaders building that future and the policymakers governing it engage with the profound questions together — density, presence, liability, civil liberty — while the technology assists the chef in the next room.</p>
+                    </InnerBento>
+                </div>
+
             </div>
         )
     };
@@ -161,7 +170,7 @@ const getCardData = (id: number): ModalContent => {
                         gradient="bg-micron-grey1" 
                         icon={null} // Removed bg icon to keep it clean per request
                         delay={0.1}
-                        className="border border-zinc-200/10"
+                        className="border-zinc-200/10"
                     >
                          <div className="flex items-center gap-3 mb-4">
                             <Handshake className="text-micron-green" size={24} />
@@ -178,7 +187,7 @@ const getCardData = (id: number): ModalContent => {
                         gradient="bg-micron-eggplant" 
                         icon={null}
                         delay={0.2}
-                        className="border border-white/10"
+                        className="border-white/10"
                     >
                         <div className="flex items-center gap-3 mb-4">
                             <BrainCircuit className="text-micron-green" size={24} />
@@ -213,7 +222,7 @@ const getCardData = (id: number): ModalContent => {
                     gradient="bg-zinc-900" 
                     icon={null}
                     delay={0.3}
-                    className="border border-zinc-800"
+                    className="border-zinc-800"
                 >
                     <div className="flex items-center gap-3 mb-4">
                         <TrendingUp className="text-micron-green" size={24} />
@@ -251,41 +260,80 @@ const getCardData = (id: number): ModalContent => {
         title: 'FOUNDATION', 
         subtitle: 'PLACE & PERSPECTIVE',
         content: (
-        <div className="flex flex-col gap-6">
-           <div className="bg-zinc-100 p-8 rounded-2xl border border-zinc-200">
-               <h3 className="text-2xl md:text-4xl text-zinc-900 font-black uppercase leading-none tracking-tighter mb-4">
-                 WITHOUT PLACE,<br/> 
-                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-micron-green to-emerald-600">THERE IS NO PERSPECTIVE.</span>
+        <div className="flex flex-col gap-4">
+           {/* 
+                1. MANTRA HEADER
+                Tight typography, Micron Eggplant background for contrast, White Text.
+           */}
+           <div className="bg-micron-eggplant p-6 md:p-8 rounded-2xl border border-white/10 shadow-lg flex flex-col justify-center items-start gap-1">
+               <h3 className="text-xl md:text-3xl font-black uppercase leading-none tracking-tight text-white/50">
+                 WITHOUT MEMORY, <span className="text-white">THERE IS NO MEANING.</span>
+               </h3>
+               <h3 className="text-xl md:text-3xl font-black uppercase leading-none tracking-tight text-white/50">
+                 WITHOUT VISION, <span className="text-white">THERE IS NO VELOCITY.</span>
+               </h3>
+               <h3 className="text-xl md:text-3xl font-black uppercase leading-none tracking-tight text-white/50">
+                 WITHOUT PLACE, <span className="text-white">THERE IS NO PERSPECTIVE.</span>
                </h3>
            </div>
            
-           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+           {/* 
+                2. MEDIA BENTO BOX (NEW)
+                Landscape aspect ratio (21:9 or similar).
+                Placed between Text and Bottom Grid.
+           */}
+           <motion.div 
+                initial={{ opacity: 0, scale: 0.98 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.1 }}
+                className="w-full aspect-[21/9] bg-zinc-900 rounded-2xl overflow-hidden shadow-lg relative group border border-white/10"
+            >
+                 <img 
+                    src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=2070&auto=format&fit=crop" 
+                    alt="Historic Foundation" 
+                    className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700"
+                 />
+                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                 <div className="absolute bottom-4 left-6 md:bottom-6 md:left-8">
+                    <span className="text-micron-green font-bold uppercase tracking-widest text-xs mb-1 block">Est. 1890</span>
+                    <h4 className="text-white font-bold text-xl md:text-2xl uppercase tracking-tight">The Historic Bedrock</h4>
+                 </div>
+           </motion.div>
+
+           {/* 
+                3. BOTTOM GRID
+                3 Columns for The Avenue, Energy, Convergence.
+           */}
+           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                <InnerBento 
-                    title="The Origin Point" 
+                    title="THE AVENUE" 
                     gradient="bg-micron-green"
                     icon={<Globe />}
-                    delay={0.1}
-               >
-                   <p>Located across the street from the C.W. Moore House (1891). 177°F water rises naturally from the earth to heat this home, the State Capitol, and the surrounding historic district.</p>
-               </InnerBento>
-
-               <InnerBento 
-                    title="Natural Stewardship" 
-                    gradient="bg-micron-eggplant-light"
-                    icon={<Activity />}
                     delay={0.2}
                >
-                   <p>A property maintained under single ownership for 25 years. Defined by producing fruit trees, Concord grapevines, and deep wellness infrastructure.</p>
+                   <p>Warm Springs Avenue began as a stagecoach route in the 1890s. Stone carriage steps still line the street where horses were hitched outside Queen Anne mansions and Colonial Revival homes. A streetcar ran from downtown to the Natatorium for a nickel.</p>
+                   <p className="mt-2">The avenue is a wide, tree-lined corridor on the National Register of Historic Places — the same road where Boise's wealthiest citizens built their estates using the city's most radical technology of the era: hot water from the ground.</p>
                </InnerBento>
 
                <InnerBento 
-                    title="Earth Meets Stars" 
-                    gradient="bg-gradient-to-br from-zinc-900 to-black"
-                    icon={<Zap />}
-                    className="border border-white/20"
+                    title="ENERGY" 
+                    gradient="bg-micron-eggplant-light"
+                    icon={<Activity />}
                     delay={0.3}
                >
-                   <p>Energy from the ground meets energy from the stars. Heat bubbles up through the pipes to warm the structure; intelligence beams down via Starlink to power the robotics.</p>
+                   <p>In 1892, banker C.W. Moore piped 177-degree geothermal water into his brick mansion at the corner of Warm Springs and Walnut — the first home in America heated by natural hot water. The idea spread down the avenue, then downtown, then to the State Capitol — the only capitol building in the country heated by geothermal energy.</p>
+                   <p className="mt-2">Today the Boise Warm Springs Water District still delivers that same water to roughly 300 homes through the nation's oldest geothermal district heating system, operational for over 130 years.</p>
+               </InnerBento>
+
+               <InnerBento 
+                    title="CONVERGENCE" 
+                    gradient="bg-micron-black"
+                    icon={<Zap />}
+                    className="border-white/20"
+                    delay={0.4}
+               >
+                   <p>Micron House draws heat from the same aquifer that warmed its first residents in 1906 — energy from deep in the earth, delivered through infrastructure that predates electricity in most American homes. It connects to the world through Starlink, receiving signal from a constellation of satellites powered by solar energy collected in space.</p>
+                   <p className="mt-2">Hot water rising from below. Data arriving from above. The oldest residential energy system in the country meeting the newest -- on a tree-lined street with carriage steps in the sidewalk, in a neighborhood that has been absorbing the future for 130 years.</p>
                </InnerBento>
            </div>
         </div>

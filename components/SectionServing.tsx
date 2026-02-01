@@ -274,9 +274,9 @@ export const SectionServing: React.FC = () => {
                                         ${isLastAndOdd ? 'md:col-span-2' : ''}
                                         ${exp.customGradient || dept.gradient} 
                                         rounded-2xl p-8
-                                        border border-white/20
-                                        shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)]
-                                        hover:shadow-[0_35px_60px_-15px_rgba(0,0,0,0.6)]
+                                        border-t border-l border-white/20 border-b border-black/30 border-r border-black/10
+                                        shadow-[0_25px_50px_-12px_rgba(0,0,0,0.6)]
+                                        hover:shadow-[0_35px_60px_-15px_rgba(0,0,0,0.7)]
                                         transition-all duration-300
                                         group relative overflow-hidden
                                         ring-1 ring-white/10 ring-inset

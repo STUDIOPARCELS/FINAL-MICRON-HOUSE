@@ -63,7 +63,7 @@ export const SectionServingTesla: React.FC = () => {
                     {/* Quote Card */}
                     <motion.div 
                         variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-                        className="bg-micron-eggplant rounded-3xl p-8 border border-white/10 shadow-lg text-white"
+                        className="bg-micron-eggplant rounded-3xl p-8 border-t border-l border-white/20 border-b border-black/40 shadow-[0_20px_40px_-12px_rgba(0,0,0,0.5)] text-white"
                     >
                         <MessageSquare className="mb-4 opacity-50" size={24} />
                         <p className="text-xl font-bold italic leading-relaxed">
@@ -82,8 +82,8 @@ export const SectionServingTesla: React.FC = () => {
                         <p className="text-zinc-500 text-sm mt-1">Solving density, surveillance, and civil rights.</p>
                      </div>
 
-                     {/* List Items as Cards */}
-                     <div className="bg-white rounded-xl p-6 border border-zinc-100 shadow-sm hover:shadow-md transition-shadow">
+                     {/* List Items as Cards - 3D Effect Added */}
+                     <div className="bg-white rounded-xl p-6 border-b-4 border-zinc-200 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                         <div className="flex items-center gap-3 mb-2">
                             <ShieldCheck className="text-zinc-400" size={20} />
                             <span className="text-zinc-900 font-black text-lg uppercase tracking-wide">Government</span>
@@ -91,7 +91,7 @@ export const SectionServingTesla: React.FC = () => {
                         <p className="text-zinc-500 text-sm font-medium">City Councils, Transportation Departments, and Public Health Officials.</p>
                      </div>
 
-                     <div className="bg-white rounded-xl p-6 border border-zinc-100 shadow-sm hover:shadow-md transition-shadow">
+                     <div className="bg-white rounded-xl p-6 border-b-4 border-zinc-200 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                         <div className="flex items-center gap-3 mb-2">
                             <Activity className="text-zinc-400" size={20} />
                             <span className="text-zinc-900 font-black text-lg uppercase tracking-wide">Design & Society</span>
@@ -99,7 +99,7 @@ export const SectionServingTesla: React.FC = () => {
                         <p className="text-zinc-500 text-sm font-medium">Urban Planners, Architects, Sociologists, and Anthropologists.</p>
                      </div>
 
-                     <div className="bg-white rounded-xl p-6 border border-zinc-100 shadow-sm hover:shadow-md transition-shadow">
+                     <div className="bg-white rounded-xl p-6 border-b-4 border-zinc-200 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                         <div className="flex items-center gap-3 mb-2">
                             <Users className="text-zinc-400" size={20} />
                             <span className="text-zinc-900 font-black text-lg uppercase tracking-wide">Rights & Ethics</span>
@@ -123,7 +123,7 @@ export const SectionServingTesla: React.FC = () => {
                 {/* Card A */}
                 <motion.div 
                     variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-                    className="bg-white rounded-3xl p-8 border border-zinc-200 shadow-lg group hover:border-micron-green/30 transition-colors"
+                    className="bg-white rounded-3xl p-8 border border-zinc-200 shadow-xl border-b-4 border-zinc-300 group hover:border-micron-green/30 transition-colors"
                 >
                     <div className="flex justify-between items-start mb-4">
                         <h4 className="text-micron-green font-bold uppercase text-xs tracking-[0.2em]">The Thesis</h4>
@@ -138,7 +138,7 @@ export const SectionServingTesla: React.FC = () => {
                 {/* Card B */}
                 <motion.div 
                     variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-                    className="bg-zinc-900 rounded-3xl p-8 border border-zinc-700 shadow-lg group"
+                    className="bg-zinc-900 rounded-3xl p-8 border border-zinc-700 shadow-xl border-b-4 border-zinc-950 group"
                 >
                     <div className="flex justify-between items-start mb-4">
                         <h4 className="text-micron-eggplant-light font-bold uppercase text-xs tracking-[0.2em]">The Psychology</h4>
