@@ -103,7 +103,7 @@ const getCardData = (id: number): ModalContent => {
                     </InnerBento>
 
                     <InnerBento 
-                        title="THE INFLECTION POINT" 
+                        title="INFLECTION POINT" 
                         gradient="bg-micron-grey1" 
                         // REMOVED ICON
                         delay={0.4}
@@ -219,7 +219,7 @@ const getCardData = (id: number): ModalContent => {
                             className="border-white/10 flex-1"
                         >
                             <div className="mb-4">
-                                <h3 className="text-3xl font-black uppercase tracking-tight text-white leading-none mb-1">MICRON</h3>
+                                <h3 className="text-3xl font-black uppercase tracking-tight text-white leading-none mb-1 drop-shadow-md">MICRON</h3>
                                 <p className="text-micron-green font-bold uppercase tracking-widest text-xs">Sanjay Mehrotra, CEO</p>
                             </div>
                             <div className="pl-4 border-l-2 border-white/20 mb-4">
@@ -239,7 +239,7 @@ const getCardData = (id: number): ModalContent => {
                             className="border-white/10 flex-1"
                         >
                             <div className="mb-4">
-                                <h3 className="text-3xl font-black uppercase tracking-tight text-white leading-none mb-1">TESLA</h3>
+                                <h3 className="text-3xl font-black uppercase tracking-tight text-white leading-none mb-1 drop-shadow-md">TESLA</h3>
                                 <p className="text-micron-green font-bold uppercase tracking-widest text-xs">Elon Musk, CEO</p>
                             </div>
                             <div className="pl-4 border-l-2 border-white/20 mb-4">
@@ -287,8 +287,9 @@ const getCardData = (id: number): ModalContent => {
                     delay={0.3}
                     className="border-white/10"
                 >
-                    <div className="flex items-center gap-3 mb-4">
-                        <span className="text-white font-black uppercase tracking-widest text-lg">FUTURE SCALE</span>
+                    <div className="flex flex-col mb-4">
+                        <span className="text-white font-black uppercase tracking-widest text-3xl drop-shadow-md">FUTURE SCALE</span>
+                        <span className="text-black font-bold uppercase tracking-widest text-xs mt-1">Building Together</span>
                     </div>
 
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -450,7 +451,8 @@ export const SectionPrototype: React.FC = () => {
                                             y: -4, 
                                             x: 2, 
                                             scale: 1.05, 
-                                            color: word === "BOISE." ? '#008f25' : '#2c0f38', // CHANGED: Gray #6b7280 -> Eggplant #2c0f38
+                                            // LOGIC: BOISE=Green, TESLA=Black, Default=Eggplant
+                                            color: word === "BOISE." ? '#008f25' : (word === "TESLA." ? '#000000' : '#2c0f38'),
                                             transition: { duration: 0.2 } 
                                         }}
                                         transition={{ duration: 0.4, delay: i * 0.2 }} 
@@ -550,7 +552,8 @@ export const SectionPrototype: React.FC = () => {
             onClick={() => setModalData(getCardData(4))}
             >
                 <div className="relative z-10 mt-auto">
-                    <h3 className="text-4xl font-black uppercase leading-[0.9] tracking-tighter text-white group-hover:text-micron-green transition-colors duration-300 mb-4">
+                    {/* CHANGED: group-hover text color from micron-green to micron-eggplant-light (blue) */}
+                    <h3 className="text-4xl font-black uppercase leading-[0.9] tracking-tighter text-white group-hover:text-micron-eggplant-light transition-colors duration-300 mb-4">
                         FOUNDATION
                     </h3>
                     <p className="text-xs font-bold uppercase tracking-widest text-white/50 group-hover:text-white transition-colors">

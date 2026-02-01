@@ -8,7 +8,7 @@ import { Wine, Car, BedDouble, Shield, Music, Mic, Armchair, Heart, Trophy, Snow
 interface Experience {
   title: string;
   icon: React.ReactNode;
-  description: string;
+  description: string | React.ReactNode; // Allow JSX for multi-paragraph descriptions
   customGradient?: string; // Restored custom gradient functionality
 }
 
@@ -61,7 +61,14 @@ const departments: Department[] = [
       {
         title: "ROCKY BAR",
         icon: <Map />,
-        description: "Cybercab to Jackson Jet Center, fifteen minutes. Helicopter southeast over Arrowrock Reservoir and into the Boise Mountains — twenty minutes to a ghost town at the confluence of Bear and Steel Creeks that once held 2,500 people and nearly became Idaho's territorial capital. A local historian walks the group through what remains — the old jail, Peg Leg Annie's cabin, mine ruins scattered across a ten-square-mile National Register district, and the cemetery where acting territorial governor Clinton DeWitt Smith dropped dead mid-chess game while inspecting the quartz mines in 1865. Creekside lunch from a James Beard–recognized Boise chef, Snake River Valley wines, late summer light through the cottonwoods. Helicopter back. Cybercab waiting.",
+        // Updated description with paragraphs
+        description: (
+            <div className="space-y-4">
+                <p>Cybercab to Jackson Jet Center, fifteen minutes. Helicopter southeast over Arrowrock Reservoir and into the Boise Mountains — twenty minutes to a ghost town at the confluence of Bear and Steel Creeks that once held 2,500 people and nearly became Idaho's territorial capital.</p>
+                <p>A local historian walks the group through what remains — the old jail, Peg Leg Annie's cabin, mine ruins scattered across a ten-square-mile National Register district, and the cemetery where acting territorial governor Clinton DeWitt Smith dropped dead mid-chess game while inspecting the quartz mines in 1865.</p>
+                <p>Creekside lunch from a James Beard–recognized Boise chef, Snake River Valley wines, late summer light through the cottonwoods. Helicopter back. Cybercab waiting.</p>
+            </div>
+        ),
         customGradient: "bg-micron-grey1"
       }
     ]
@@ -315,9 +322,10 @@ export const SectionServing: React.FC = () => {
                                             </div>
                                         </div>
                                         
-                                        <p className="text-white/95 text-sm leading-relaxed font-medium drop-shadow-sm">
+                                        {/* Changed p to div to handle ReactNode content (like nested <p>s) */}
+                                        <div className="text-white/95 text-sm leading-relaxed font-medium drop-shadow-sm">
                                             {exp.description}
-                                        </p>
+                                        </div>
                                     </div>
                                 </motion.div>
                              );

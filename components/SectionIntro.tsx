@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
 import { BentoCard } from './BentoCard';
 
 interface SectionIntroProps {
@@ -59,13 +58,16 @@ export const SectionIntro: React.FC<SectionIntroProps> = () => {
   // Paradigm Section starts AFTER the last word has fully faded in (plus a small buffer)
   const PARADIGM_START_TIME = lastWordStartTime + FADE_DURATION + 0.2; 
   
-  const paradigmText = "A PARADIGM SHIFT UNFOLDS.";
+  // Split into two lines for visual layout: "THE PARADIGM" and "SHIFTS."
+  const paradigmLine1 = ["THE", "PARADIGM"];
+  const paradigmLine2 = ["SHIFTS."];
+  const paradigmWords = [...paradigmLine1, ...paradigmLine2];
+  
   const addressLine1 = "Micron House";
   const addressLine2 = "1020 East Warm Springs Ave";
   const addressLine3 = "Boise, Idaho 83712";
 
   // Calculate Paradigm Word Delays
-  const paradigmWords = paradigmText.split(" ");
   const paradigmWordDelays = paradigmWords.map((_, i) => PARADIGM_START_TIME + (i * 0.15)); // Faster, punchy reveal for header
   
   // Address Starts after Paradigm Header
@@ -91,7 +93,7 @@ export const SectionIntro: React.FC<SectionIntroProps> = () => {
                 {sentences.map((sentence, sIndex) => (
                     <div 
                         key={sIndex} 
-                        className={`flex flex-wrap ${sentence.align} gap-x-2 md:gap-x-5 text-2xl md:text-5xl lg:text-6xl leading-tight tracking-tight w-full`}
+                        className={`flex flex-wrap ${sentence.align} gap-x-2 md:gap-x-5 text-2xl md:text-5xl lg:text-6xl leading-tight tracking-tight w-full cursor-default`}
                     >
                         {sentence.text.split(" ").map((word, wIndex) => {
                             const isBold = word === sentence.boldWord;
@@ -132,32 +134,58 @@ export const SectionIntro: React.FC<SectionIntroProps> = () => {
             <div className="flex flex-col justify-center py-2 pl-2">
                 {/* 
                     UPDATED HEADER: 
-                    1. Text changed to "A PARADIGM SHIFT UNFOLDS."
-                    2. Font size reduced to fit (text-4xl md:text-6xl lg:text-7xl)
-                    3. Added hover micro-interaction (scale + color shift)
+                    1. Text changed to "THE PARADIGM SHIFTS."
+                    2. Forced Layout: Line 1 "THE PARADIGM", Line 2 "SHIFTS."
                 */}
-                <h2 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter text-zinc-900 leading-[0.9] mb-8 flex flex-wrap gap-x-3 md:gap-x-4 cursor-default">
-                    {paradigmWords.map((word, i) => (
-                        <motion.span
-                            key={i}
-                            initial={{ opacity: 0, y: 15 }} 
-                            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
-                            whileHover={{ 
-                                scale: 1.05, 
-                                y: -2, 
-                                color: '#008f25', // micron-green
-                                transition: { duration: 0.2 }
-                            }}
-                            transition={{ 
-                                duration: 1.2, 
-                                ease: [0.16, 1, 0.3, 1], 
-                                delay: paradigmWordDelays[i] 
-                            }}
-                            className="inline-block"
-                        >
-                            {word}
-                        </motion.span>
-                    ))}
+                <h2 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter text-zinc-900 leading-[0.9] mb-8 cursor-default flex flex-col items-start">
+                    {/* Line 1 */}
+                    <div className="flex flex-wrap gap-x-4 md:gap-x-6">
+                        {paradigmLine1.map((word, i) => (
+                            <motion.span
+                                key={`l1-${i}`}
+                                initial={{ opacity: 0, y: 15 }} 
+                                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
+                                whileHover={{ 
+                                    scale: 1.05, 
+                                    y: -2, 
+                                    color: '#008f25', // micron-green
+                                    transition: { duration: 0.2 }
+                                }}
+                                transition={{ 
+                                    duration: 1.2, 
+                                    ease: [0.16, 1, 0.3, 1], 
+                                    delay: paradigmWordDelays[i] 
+                                }}
+                                className="inline-block"
+                            >
+                                {word}
+                            </motion.span>
+                        ))}
+                    </div>
+                    {/* Line 2 */}
+                    <div className="flex flex-wrap gap-x-4 md:gap-x-6">
+                        {paradigmLine2.map((word, i) => (
+                            <motion.span
+                                key={`l2-${i}`}
+                                initial={{ opacity: 0, y: 15 }} 
+                                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
+                                whileHover={{ 
+                                    scale: 1.05, 
+                                    y: -2, 
+                                    color: '#008f25', // micron-green
+                                    transition: { duration: 0.2 }
+                                }}
+                                transition={{ 
+                                    duration: 1.2, 
+                                    ease: [0.16, 1, 0.3, 1], 
+                                    delay: paradigmWordDelays[paradigmLine1.length + i] 
+                                }}
+                                className="inline-block"
+                            >
+                                {word}
+                            </motion.span>
+                        ))}
+                    </div>
                 </h2>
                 
                 {/* ADDRESS BLOCK */}

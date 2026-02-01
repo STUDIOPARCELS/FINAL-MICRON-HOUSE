@@ -243,13 +243,19 @@ export const SectionProperty: React.FC = () => {
         
         <div className="md:ml-auto max-w-2xl pb-1">
              <div className="pl-6 border-l-4 border-micron-eggplant/20 hover:border-micron-eggplant transition-colors duration-500">
-                <p className="text-base font-light text-zinc-600 leading-snug font-body">
-                   <span className="font-bold text-micron-eggplant block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
-                       HISTORIC CONTEXT.
+                <div className="text-base font-light text-zinc-600 leading-snug font-body">
+                   {/* CHANGED: text-micron-eggplant to text-micron-eggplant-light (blue), Removed dot */}
+                   <span className="font-bold text-micron-eggplant-light block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
+                       HISTORIC CONTEXT
                    </span>
-                   A modest home drawing on North America’s oldest continuously operating geothermal district (est. 1890). This site taps into the nation's largest historic direct-use aquifer—the same clean, ancient energy source that powers the only state capital in the country. 
-                   <span className="text-micron-eggplant font-semibold"> A profound convergence of deep geologic history with energy from the stars.</span>
-                </p>
+                   {/* Split text and new paragraph structure */}
+                   <p className="mb-4">
+                        A modest home drawing on North America’s oldest continuously operating geothermal district (est. 1890). This site taps into the nation's largest historic direct-use aquifer.
+                   </p>
+                   <p className="text-micron-eggplant font-semibold">
+                        A profound convergence of deep geologic history with energy from the stars.
+                   </p>
+                </div>
              </div>
         </div>
       </motion.div>
