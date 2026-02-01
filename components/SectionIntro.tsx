@@ -1,3 +1,4 @@
+
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { BentoCard } from './BentoCard';
@@ -14,13 +15,14 @@ export const SectionIntro: React.FC<SectionIntroProps> = () => {
   const INITIAL_DELAY = 1.0;     // 1s Delay after Micron House populates
   const WORD_DELAY = 0.4;        // Slow, readable speed per word
   const SENTENCE_PAUSE = 0.8;    // Pause between sentences
-  const FADE_DURATION = 0.8;     // Smooth fade in for words
+  const FADE_DURATION = 1.2;     // Smooth fade in for words
 
+  // Configuration for sentence keywords
   const sentences = [
     { 
       text: "Without memory, there's no meaning.",
-      boldWord: "memory,",
-      colorWord: "meaning.",
+      boldWord: "memory,",    // Starts White/Bold -> Hover Eggplant
+      colorWord: "meaning.",  // Starts Eggplant/Regular -> Hover White
       align: "md:justify-start" 
     },
     { 
@@ -38,7 +40,6 @@ export const SectionIntro: React.FC<SectionIntroProps> = () => {
   ];
 
   // --- CALCULATE TOTAL DURATION ---
-  // We calculate the exact timestamp when the last word finishes to trigger the next section.
   let currentDelayCounter = INITIAL_DELAY;
   
   // Helper to store word delays
@@ -74,6 +75,11 @@ export const SectionIntro: React.FC<SectionIntroProps> = () => {
   const ADDRESS_START_TIME = PARADIGM_START_TIME + (paradigmWords.length * 0.15) + 0.5;
   const MAP_START_TIME = ADDRESS_START_TIME + 1.0;
 
+  // CONSTANTS FOR COLORS
+  const COLOR_WHITE = '#ffffff';
+  const COLOR_EGGPLANT = '#2c0f38';
+  const COLOR_FADED = 'rgba(255, 255, 255, 0.7)';
+
   return (
     // Reduced bottom padding: pb-6 md:pb-12, px-4 mobile
     <section ref={containerRef} className="container mx-auto px-4 md:px-12 pt-0 pb-6 md:pb-12 bg-zinc-50 text-zinc-900">
@@ -100,22 +106,42 @@ export const SectionIntro: React.FC<SectionIntroProps> = () => {
                             const isColor = word === sentence.colorWord;
                             const delay = wordDelays[sIndex][wIndex];
                             
+                            // Determine the base and hover colors explicitly
+                            // isBold: White base -> Eggplant hover
+                            // isColor: Eggplant base -> White hover
+                            // Default: Faded White -> No hover
+                            
+                            const baseColor = isBold ? COLOR_WHITE : (isColor ? COLOR_EGGPLANT : COLOR_FADED);
+
                             return (
                                 <motion.span
                                     key={`${sIndex}-${wIndex}`}
-                                    initial={{ opacity: 0, x: -5 }} 
-                                    animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -5 }}
-                                    transition={{ 
-                                        duration: FADE_DURATION,
-                                        delay: delay,
-                                        ease: "easeOut"
-                                    }}
-                                    className={`${
+                                    // Use 'initial' and 'animate' for explicit color control to avoid CSS conflicts
+                                    initial={{ opacity: 0, y: 20, color: baseColor }} 
+                                    animate={isInView ? { opacity: 1, y: 0, color: baseColor } : { opacity: 0, y: 20, color: baseColor }}
+                                    // HOVER LOGIC:
+                                    // If Bold (memory/vision/place) -> Turn Eggplant (#2c0f38)
+                                    // If Color (meaning/velocity/perspective) -> Turn White (#ffffff)
+                                    whileHover={
                                         isBold 
-                                            ? "font-black italic opacity-100 text-white" 
+                                            ? { color: COLOR_EGGPLANT, scale: 1.05, y: -2 }
+                                            : isColor 
+                                                ? { color: COLOR_WHITE, scale: 1.05, y: -2 }
+                                                : undefined
+                                    }
+                                    transition={{ 
+                                        // Fast duration for hover color change (0.2s)
+                                        default: { duration: 0.2, ease: "easeInOut" },
+                                        // Slower duration for entrance animation
+                                        opacity: { duration: 1.0, delay: delay, ease: "easeOut" },
+                                        y: { duration: 1.0, delay: delay, ease: "easeOut" }
+                                    }}
+                                    className={`inline-block ${
+                                        isBold 
+                                            ? "font-black italic" // Removed text-white class to rely on motion style
                                             : isColor
-                                                ? "font-medium italic opacity-100 text-micron-eggplant"
-                                                : "font-light italic opacity-70 text-white"
+                                                ? "font-normal italic" // Regular weight as requested
+                                                : "font-light italic"
                                     }`}
                                 >
                                     {word}

@@ -1,7 +1,8 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { BentoCard } from './BentoCard';
-import { ArrowDown } from 'lucide-react';
+import { ArrowDown, Play } from 'lucide-react';
 
 export const Hero: React.FC = () => {
   return (
@@ -37,29 +38,18 @@ export const Hero: React.FC = () => {
              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20"></div>
           </div>
 
-          {/* Center Title */}
-          <div className="relative z-20 flex flex-col items-center text-center px-4 w-full justify-center">
+          {/* Replaced Text Title with Video Placeholder UI */}
+          <div className="relative z-20 flex flex-col items-center justify-center">
              <motion.div
-               initial={{ opacity: 0, scale: 0.9, y: 30 }}
-               animate={{ opacity: 1, scale: 1, y: 0 }}
-               transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+               initial={{ opacity: 0, scale: 0.8 }}
+               animate={{ opacity: 1, scale: 1 }}
+               transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+               whileHover={{ scale: 1.1 }}
+               className="cursor-pointer"
              >
-               <h1 className="text-5xl md:text-7xl lg:text-9xl font-black text-white tracking-tighter mb-4 mix-blend-screen leading-none">
-                 MICRON HOUSE
-               </h1>
-             </motion.div>
-             
-             <motion.div
-               initial={{ opacity: 0, y: 10 }}
-               animate={{ opacity: 1, y: 0 }}
-               transition={{ delay: 0.6, duration: 1.0 }}
-               className="flex items-center gap-4"
-             >
-                <div className="h-px w-12 bg-white/50 hidden md:block"></div>
-                <p className="text-zinc-300 text-xs md:text-sm font-bold uppercase tracking-[0.4em]">
-                  Boise's Innovation Residence
-                </p>
-                <div className="h-px w-12 bg-white/50 hidden md:block"></div>
+               <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center group-hover:bg-white/20 transition-all duration-500 shadow-[0_0_40px_rgba(255,255,255,0.2)]">
+                  <Play className="text-white fill-white ml-2" size={32} />
+               </div>
              </motion.div>
           </div>
         </BentoCard>

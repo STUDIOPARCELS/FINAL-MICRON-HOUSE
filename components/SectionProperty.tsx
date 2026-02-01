@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { BentoCard } from './BentoCard';
 import { MapPin, Plane, Building2, Trees, GraduationCap, Stethoscope, Utensils, Sprout, BedDouble, Images, ArrowUpRight, Home, Zap, Leaf, Map, Car, Thermometer, Waves, Activity, Bot, History, Droplets } from 'lucide-react';
@@ -64,66 +65,66 @@ export const SectionProperty: React.FC = () => {
                 title: "WELLNESS & NATURE",
                 subtitle: "RESTORATIVE INFRASTRUCTURE",
                 content: (
-                    <div className="flex flex-col gap-6">
+                    <div className="flex flex-col gap-6 h-full">
                         {/* Summary Paragraph Added */}
                         <p className="text-lg md:text-xl text-zinc-600 font-light leading-relaxed border-l-4 border-micron-green pl-6 py-1">
-                            Geothermal spa utilizing the district's 177°F source. The home is heated through geothermal radiant heat as well as the hot tub. The grounds feature mature producing fruit trees and a Concord grapevine.
+                            Powered by a 177°F direct-use aquifer. Geothermal water flows through the home’s radiators and feeds the outdoor soaking tub. The grounds feature mature fruit trees and a Concord grapevine.
                         </p>
 
-                        {/* CHANGED: Grid Layout from 3-cols to 1-col for full width cards */}
-                        <div className="grid grid-cols-1 gap-6">
+                        {/* REVERTED: Grid Layout to 3 columns for portrait cards */}
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 flex-1">
                             
-                            {/* Card 1: CONTRAST THERAPY */}
+                            {/* Card 1: CONTRAST THERAPY - Text Only, Paragraphs */}
                             <InnerBento 
                                 title="CONTRAST THERAPY" 
-                                gradient="bg-micron-eggplant" 
+                                gradient="bg-micron-eggplant-light" 
                                 icon={<Waves />}
                                 delay={0.1}
-                                className="w-full"
+                                className="flex flex-col h-full"
                             >
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                                <div className="flex flex-col h-full gap-4">
                                     <p>
-                                        Alternating thermal exposure drives circulation to flush systemic inflammation and accelerate deep tissue recovery. The rapid temperature shift triggers a proven 250% increase in dopamine, delivering sustained alertness, mental clarity, and elevated mood.
+                                        Alternating thermal exposure drives circulation to flush systemic inflammation and accelerate deep tissue recovery.
                                     </p>
-                                    <div className="aspect-video md:aspect-auto md:h-64 w-full rounded-xl overflow-hidden relative shadow-lg border border-white/10">
-                                        <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=2070&auto=format&fit=crop" className="absolute inset-0 w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-700" alt="Sauna" />
-                                    </div>
+                                    <p>
+                                        The rapid temperature shift triggers a proven 250% increase in dopamine, delivering sustained alertness, mental clarity, and elevated mood.
+                                    </p>
                                 </div>
                             </InnerBento>
                             
-                            {/* Card 2: WHOLE BODY VIBRATION - Now Full Width */}
+                            {/* Card 2: WHOLE BODY VIBRATION - Text Only, Paragraphs */}
                             <InnerBento 
                                 title="WHOLE BODY VIBRATION" 
                                 gradient="bg-micron-grey1" 
                                 icon={<Activity />}
                                 delay={0.2}
-                                className="w-full"
+                                className="flex flex-col h-full"
                             >
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                                <div className="flex flex-col h-full gap-4">
                                     <p>
-                                        Invented in 1960 by Vladimir Nazarov for the Soviet Space Program to combat zero-gravity bone loss. By engaging 90% of muscle fibers (vs. 40% in standard training), it rapidly builds bone density, counteracts neuropathy, and stimulates neuro-repair for improved mental health.
+                                        Invented in 1960 by Vladimir Nazarov for the Soviet Space Program to combat zero-gravity bone loss.
                                     </p>
-                                    <div className="aspect-video md:aspect-auto md:h-64 w-full rounded-xl overflow-hidden relative shadow-lg border border-white/10">
-                                        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop" className="absolute inset-0 w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-700" alt="Vibration" />
-                                    </div>
+                                    <p>
+                                        By engaging 90% of muscle fibers (vs. 40% in standard training), it rapidly builds bone density, counteracts neuropathy, and stimulates neuro-repair for improved mental health.
+                                    </p>
                                 </div>
                             </InnerBento>
 
-                            {/* Card 3: ORGANIC GARDEN (Renamed from LIVING GARDEN) */}
+                            {/* Card 3: ORGANIC GARDEN - Text Only, Paragraphs */}
                             <InnerBento 
                                 title="ORGANIC GARDEN" 
                                 gradient="bg-micron-green" 
                                 icon={<Sprout />}
                                 delay={0.3}
-                                className="w-full"
+                                className="flex flex-col h-full"
                             >
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                                <div className="flex flex-col h-full gap-4">
                                     <p>
-                                        2025 research on the "Soil-Plant-Gut Axis" confirms fresh-harvested produce delivers essential soil-based probiotics missing from sterilized commercial food. Homegrown crops retain up to 50% more nutrient density than store-bought options, directly fueling the gut microbiome and immune system.
+                                        2025 research on the "Soil-Plant-Gut Axis" confirms fresh-harvested produce delivers essential soil-based probiotics missing from sterilized commercial food.
                                     </p>
-                                    <div className="aspect-video md:aspect-auto md:h-64 w-full rounded-xl overflow-hidden relative shadow-lg border border-white/10">
-                                        <img src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=2064&auto=format&fit=crop" className="absolute inset-0 w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-700" alt="Garden" />
-                                    </div>
+                                    <p>
+                                        Homegrown crops retain up to 50% more nutrient density than store-bought options, directly fueling the gut microbiome and immune system.
+                                    </p>
                                 </div>
                             </InnerBento>
                         </div>
@@ -294,8 +295,10 @@ export const SectionProperty: React.FC = () => {
                 delay={0.5}
                 onClick={openGallery}
              >
-                 {/* Changed text color to micron-eggplant-light */}
-                 <h3 className="text-lg font-bold text-micron-eggplant-light uppercase tracking-widest transition-all pb-1">View Gallery</h3>
+                 {/* Changed text color to micron-eggplant-light and increased weight/size */}
+                 <h3 className="text-2xl md:text-4xl font-black text-micron-eggplant-light uppercase tracking-tighter leading-none">
+                    VIEW GALLERY
+                 </h3>
              </BentoCard>
         </div>
 
@@ -452,10 +455,11 @@ export const SectionProperty: React.FC = () => {
                         <Leaf className="text-white" />
                         <span className="text-xs font-bold uppercase tracking-widest text-white/80">Nature</span>
                     </div>
-                    <h4 className="text-xl font-bold uppercase tracking-tight mb-2">Geothermal & Wellness</h4>
+                    {/* CHANGED: Title to "Wellness" */}
+                    <h4 className="text-xl font-bold uppercase tracking-tight mb-2">Wellness</h4>
                     {/* Updated text: text-base + font-medium + pure white (CHANGED TO white/70) */}
                     <p className="text-base text-white/70 font-medium leading-relaxed font-body">
-                        Geothermal spa utilizing the district's 177°F source. The home is heated through geothermal radiant heat as well as the hot tub. The grounds feature mature producing fruit trees and a Concord grapevine.
+                        Powered by a 177°F direct-use aquifer. Geothermal water flows through the home’s radiators and feeds the outdoor soaking tub. The grounds feature mature fruit trees and a Concord grapevine.
                     </p>
                     {/* REMOVED: Redundant ArrowUpRight */}
                 </BentoCard>

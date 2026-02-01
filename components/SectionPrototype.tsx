@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { BentoCard } from './BentoCard';
 import { Modal } from './Modal';
@@ -471,7 +472,7 @@ export const SectionPrototype: React.FC = () => {
                                 transition={{ duration: 0.8, delay: (mainTitleWords.length * 0.2) + 0.2 }}
                                 className="text-micron-eggplant block text-base" // CHANGED: text-zinc-600 -> text-micron-eggplant
                         >
-                            Creating the first autonomous corporate residence. A convergence of historic stewardship and future technology.
+                            Creating the first autonomous corporate residence. A profound convergence of ancient earth energy with energy from the stars.
                         </motion.span>
                     </div>
                 </div>
