@@ -59,7 +59,7 @@ export const SectionIntro: React.FC<SectionIntroProps> = () => {
   // Paradigm Section starts AFTER the last word has fully faded in (plus a small buffer)
   const PARADIGM_START_TIME = lastWordStartTime + FADE_DURATION + 0.2; 
   
-  const paradigmText = "A PARADIGM UNFOLDS.";
+  const paradigmText = "A PARADIGM SHIFT UNFOLDS.";
   const addressLine1 = "Micron House";
   const addressLine2 = "1020 East Warm Springs Ave";
   const addressLine3 = "Boise, Idaho 83712";
@@ -130,17 +130,30 @@ export const SectionIntro: React.FC<SectionIntroProps> = () => {
             
             {/* Left: Text and Address */}
             <div className="flex flex-col justify-center py-2 pl-2">
-                <h2 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter text-zinc-900 leading-[0.9] mb-8 flex flex-wrap gap-x-4">
+                {/* 
+                    UPDATED HEADER: 
+                    1. Text changed to "A PARADIGM SHIFT UNFOLDS."
+                    2. Font size reduced to fit (text-4xl md:text-6xl lg:text-7xl)
+                    3. Added hover micro-interaction (scale + color shift)
+                */}
+                <h2 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter text-zinc-900 leading-[0.9] mb-8 flex flex-wrap gap-x-3 md:gap-x-4 cursor-default">
                     {paradigmWords.map((word, i) => (
                         <motion.span
                             key={i}
                             initial={{ opacity: 0, y: 15 }} 
                             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
+                            whileHover={{ 
+                                scale: 1.05, 
+                                y: -2, 
+                                color: '#008f25', // micron-green
+                                transition: { duration: 0.2 }
+                            }}
                             transition={{ 
                                 duration: 1.2, 
                                 ease: [0.16, 1, 0.3, 1], 
                                 delay: paradigmWordDelays[i] 
                             }}
+                            className="inline-block"
                         >
                             {word}
                         </motion.span>

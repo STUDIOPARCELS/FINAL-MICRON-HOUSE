@@ -22,7 +22,7 @@ const timelineEvents = [
     desc: "Defining operational parameters.",
     detail: "Defining specific testing parameters for Optimus. Establishing liability, insurance, and operational protocols for the residence.",
     icon: <PenTool />,
-    gradient: "bg-micron-grey1", // Changed to Dark Gray #353942
+    gradient: "bg-micron-eggplant-light", // Changed to Blue
   },
   { 
     id: 3, 
@@ -78,7 +78,7 @@ export const SectionTimeline: React.FC = () => {
                    <span className="font-bold text-micron-grey1 block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
                        TIMELINE.
                    </span>
-                   Moving from agreement to installation, then to a fully active testing environment.
+                   From agreement to installation, then hosting — with full autonomy as Cybercab and Optimus deploy to the property.
                 </p>
              </div>
         </div>

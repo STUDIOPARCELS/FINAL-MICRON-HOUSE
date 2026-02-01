@@ -247,7 +247,7 @@ export const SectionProperty: React.FC = () => {
                    <span className="font-bold text-micron-eggplant block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
                        HISTORIC CONTEXT.
                    </span>
-                   A modest home situated atop North America’s oldest continuously operating geothermal district (est. 1890). This site taps into the nation's largest historic direct-use aquifer—the same clean, ancient energy source that powers the only state capital in the country. 
+                   A modest home drawing on North America’s oldest continuously operating geothermal district (est. 1890). This site taps into the nation's largest historic direct-use aquifer—the same clean, ancient energy source that powers the only state capital in the country. 
                    <span className="text-micron-eggplant font-semibold"> A profound convergence of deep geologic history with energy from the stars.</span>
                 </p>
              </div>
@@ -427,7 +427,7 @@ export const SectionProperty: React.FC = () => {
              {/* Reduced margin-bottom: mb-3 (was mb-6) */}
              <div className="flex items-center gap-2 mb-3">
                 <Zap className="text-micron-eggplant" size={20} />
-                <h3 className="font-bold uppercase tracking-widest text-sm text-micron-eggplant">Technology, Wellness & History</h3>
+                <h3 className="font-bold uppercase tracking-widest text-sm text-micron-eggplant">Technology, Wellness & Legacy</h3>
              </div>
              
              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -440,6 +440,7 @@ export const SectionProperty: React.FC = () => {
                     delay={0.1}
                     onClick={() => setModalData(getModalContent('wellness'))}
                     hoverEffect={true}
+                    arrowPosition="bottom-right"
                 >
                     <div className="flex justify-between items-start mb-4">
                         <Leaf className="text-white" />
@@ -462,6 +463,7 @@ export const SectionProperty: React.FC = () => {
                     delay={0.2}
                     onClick={() => setModalData(getModalContent('autonomous'))}
                     hoverEffect={true}
+                    arrowPosition="bottom-right"
                 >
                     <div className="flex justify-between items-start mb-4">
                         {/* Switched to Car (Side Profile) and darker gold (amber-600) */}
@@ -486,6 +488,7 @@ export const SectionProperty: React.FC = () => {
                     delay={0.3}
                     onClick={() => setModalData(getModalContent('historic'))}
                     hoverEffect={true}
+                    arrowPosition="bottom-right"
                 >
                     <div className="flex justify-between items-start mb-4">
                         {/* Switched to Map icon as requested */}
