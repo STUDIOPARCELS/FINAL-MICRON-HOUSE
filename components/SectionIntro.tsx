@@ -11,19 +11,74 @@ export const SectionIntro: React.FC<SectionIntroProps> = () => {
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { once: true, amount: 0.2 });
 
+  // --- TIMING CONFIGURATION ---
+  const INITIAL_DELAY = 1.0;     // 1s Delay after Micron House populates
+  const WORD_DELAY = 0.4;        // Slow, readable speed per word
+  const SENTENCE_PAUSE = 0.8;    // Pause between sentences
+  const FADE_DURATION = 1.2;     // Smooth fade in for words
+
+  // Configuration for sentence keywords
+  const sentences = [
+    { 
+      text: "Without memory, there's no meaning.",
+      boldWord: "memory,",    // Starts White/Bold -> Hover Eggplant
+      colorWord: "meaning.",  // Starts Eggplant/Regular -> Hover White
+      align: "md:justify-start" 
+    },
+    { 
+      text: "Without vision, there's no velocity.",
+      boldWord: "vision,",
+      colorWord: "velocity.",
+      align: "md:justify-center" 
+    },
+    { 
+      text: "Without place, there's no perspective.",
+      boldWord: "place,",
+      colorWord: "perspective.",
+      align: "md:justify-end" 
+    }
+  ];
+
+  // --- CALCULATE TOTAL DURATION ---
+  let currentDelayCounter = INITIAL_DELAY;
+  
+  // Helper to store word delays
+  const wordDelays: number[][] = sentences.map(s => {
+      const words = s.text.split(" ");
+      const delaysForSentence = words.map((_, i) => currentDelayCounter + (i * WORD_DELAY));
+      // Advance counter for next sentence: (words * duration) + pause
+      currentDelayCounter += (words.length * WORD_DELAY) + SENTENCE_PAUSE;
+      return delaysForSentence;
+  });
+
+  // The moment the last word of the last sentence starts appearing
+  const lastSentenceIndex = sentences.length - 1;
+  const lastWordIndex = sentences[lastSentenceIndex].text.split(" ").length - 1;
+  const lastWordStartTime = wordDelays[lastSentenceIndex][lastWordIndex];
+  
+  // Paradigm Section starts AFTER the last word has fully faded in (plus a small buffer)
+  const PARADIGM_START_TIME = lastWordStartTime + FADE_DURATION + 0.2; 
+  
+  // Split into two lines for visual layout: "THE PARADIGM" and "SHIFTS."
+  const paradigmLine1 = ["THE", "PARADIGM"];
+  const paradigmLine2 = ["SHIFTS."];
+  const paradigmWords = [...paradigmLine1, ...paradigmLine2];
+  
   const addressLine1 = "Micron House";
   const addressLine2 = "1020 East Warm Springs Ave";
   const addressLine3 = "Boise, Idaho 83712";
+
+  // Calculate Paradigm Word Delays
+  const paradigmWordDelays = paradigmWords.map((_, i) => PARADIGM_START_TIME + (i * 0.15)); // Faster, punchy reveal for header
+  
+  // Address Starts after Paradigm Header
+  const ADDRESS_START_TIME = PARADIGM_START_TIME + (paradigmWords.length * 0.15) + 0.5;
+  const MAP_START_TIME = ADDRESS_START_TIME + 1.0;
 
   // CONSTANTS FOR COLORS
   const COLOR_WHITE = '#ffffff';
   const COLOR_EGGPLANT = '#2c0f38';
   const COLOR_FADED = 'rgba(255, 255, 255, 0.7)';
-
-  // Full text paragraph configuration
-  const fullText = "Without memory, there's no meaning. Without vision, there's no velocity. Without place, there's no perspective.";
-  const boldKeywords = ["memory,", "vision,", "place,"];
-  const colorKeywords = ["meaning.", "velocity.", "perspective."];
 
   return (
     // Reduced bottom padding: pb-6 md:pb-12, px-4 mobile
@@ -37,27 +92,36 @@ export const SectionIntro: React.FC<SectionIntroProps> = () => {
             textColor="text-white"
             borderColor="border-white/20"
             hoverEffect={true}
-            // Removed delay to make it instant ("baked in")
-            delay={0} 
+            // Increased delay to 1.3s to ensure Hero Black Box finishes first
+            delay={1.3} 
         >
-            <div className="w-full mx-auto py-6 px-4 md:px-8 relative z-10 text-center">
-                <p className="text-2xl md:text-5xl lg:text-6xl leading-tight tracking-tight cursor-default">
-                    {fullText.split(" ").map((word, i) => {
-                        const isBold = boldKeywords.includes(word);
-                        const isColor = colorKeywords.includes(word);
-                        
-                        // Determine the base colors explicitly
-                        const baseColor = isBold ? COLOR_WHITE : (isColor ? COLOR_EGGPLANT : COLOR_FADED);
+            <div className="flex flex-col gap-4 md:gap-8 w-full mx-auto py-4 md:py-6 px-2 md:px-4 relative z-10">
+                {sentences.map((sentence, sIndex) => (
+                    <div 
+                        key={sIndex} 
+                        className={`flex flex-wrap ${sentence.align} gap-x-2 md:gap-x-5 text-2xl md:text-5xl lg:text-6xl leading-tight tracking-tight w-full cursor-default`}
+                    >
+                        {sentence.text.split(" ").map((word, wIndex) => {
+                            const isBold = word === sentence.boldWord;
+                            const isColor = word === sentence.colorWord;
+                            const delay = wordDelays[sIndex][wIndex];
+                            
+                            // Determine the base and hover colors explicitly
+                            // isBold: White base -> Eggplant hover
+                            // isColor: Eggplant base -> White hover
+                            // Default: Faded White -> No hover
+                            
+                            const baseColor = isBold ? COLOR_WHITE : (isColor ? COLOR_EGGPLANT : COLOR_FADED);
 
-                        return (
-                            <React.Fragment key={i}>
+                            return (
                                 <motion.span
-                                    // "BAKED IN" ANIMATION: 
-                                    // Removed initial/animate opacity/y transitions. 
-                                    // Text appears instantly in its final position.
-                                    style={{ color: baseColor }}
-                                    
-                                    // HOVER LOGIC RETAINED:
+                                    key={`${sIndex}-${wIndex}`}
+                                    // Use 'initial' and 'animate' for explicit color control to avoid CSS conflicts
+                                    initial={{ opacity: 0, y: 20, color: baseColor }} 
+                                    animate={isInView ? { opacity: 1, y: 0, color: baseColor } : { opacity: 0, y: 20, color: baseColor }}
+                                    // HOVER LOGIC:
+                                    // If Bold (memory/vision/place) -> Turn Eggplant (#2c0f38)
+                                    // If Color (meaning/velocity/perspective) -> Turn White (#ffffff)
                                     whileHover={
                                         isBold 
                                             ? { color: COLOR_EGGPLANT, scale: 1.05, y: -2 }
@@ -66,23 +130,26 @@ export const SectionIntro: React.FC<SectionIntroProps> = () => {
                                                 : undefined
                                     }
                                     transition={{ 
-                                        default: { duration: 0.2, ease: "easeInOut" }
+                                        // Fast duration for hover color change (0.2s)
+                                        default: { duration: 0.2, ease: "easeInOut" },
+                                        // Slower duration for entrance animation
+                                        opacity: { duration: 1.0, delay: delay, ease: "easeOut" },
+                                        y: { duration: 1.0, delay: delay, ease: "easeOut" }
                                     }}
                                     className={`inline-block ${
                                         isBold 
-                                            ? "font-black italic" 
+                                            ? "font-black italic" // Removed text-white class to rely on motion style
                                             : isColor
-                                                ? "font-normal italic" 
+                                                ? "font-normal italic" // Regular weight as requested
                                                 : "font-light italic"
                                     }`}
                                 >
                                     {word}
                                 </motion.span>
-                                {" "}
-                            </React.Fragment>
-                        );
-                    })}
-                </p>
+                            );
+                        })}
+                    </div>
+                ))}
             </div>
         </BentoCard>
 
@@ -91,35 +158,120 @@ export const SectionIntro: React.FC<SectionIntroProps> = () => {
             
             {/* Left: Text and Address */}
             <div className="flex flex-col justify-center py-2 pl-2">
+                {/* 
+                    UPDATED HEADER: 
+                    1. Text changed to "THE PARADIGM SHIFTS."
+                    2. Forced Layout: Line 1 "THE PARADIGM", Line 2 "SHIFTS."
+                */}
                 <h2 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter text-zinc-900 leading-[0.9] mb-8 cursor-default flex flex-col items-start">
-                    {/* Static Text - No Entrance Animation */}
+                    {/* Line 1 */}
                     <div className="flex flex-wrap gap-x-4 md:gap-x-6">
-                        <span>THE</span>
-                        <span>PARADIGM</span>
+                        {paradigmLine1.map((word, i) => (
+                            <motion.span
+                                key={`l1-${i}`}
+                                initial={{ opacity: 0, y: 15 }} 
+                                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
+                                whileHover={{ 
+                                    scale: 1.05, 
+                                    y: -2, 
+                                    color: '#008f25', // micron-green
+                                    transition: { duration: 0.2 }
+                                }}
+                                transition={{ 
+                                    duration: 1.2, 
+                                    ease: [0.16, 1, 0.3, 1], 
+                                    delay: paradigmWordDelays[i] 
+                                }}
+                                className="inline-block"
+                            >
+                                {word}
+                            </motion.span>
+                        ))}
                     </div>
+                    {/* Line 2 */}
                     <div className="flex flex-wrap gap-x-4 md:gap-x-6">
-                        <span>SHIFTS.</span>
+                        {paradigmLine2.map((word, i) => (
+                            <motion.span
+                                key={`l2-${i}`}
+                                initial={{ opacity: 0, y: 15 }} 
+                                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
+                                whileHover={{ 
+                                    scale: 1.05, 
+                                    y: -2, 
+                                    color: '#008f25', // micron-green
+                                    transition: { duration: 0.2 }
+                                }}
+                                transition={{ 
+                                    duration: 1.2, 
+                                    ease: [0.16, 1, 0.3, 1], 
+                                    delay: paradigmWordDelays[paradigmLine1.length + i] 
+                                }}
+                                className="inline-block"
+                            >
+                                {word}
+                            </motion.span>
+                        ))}
                     </div>
                 </h2>
                 
                 {/* ADDRESS BLOCK */}
-                <div className="flex gap-5 border-l-4 border-micron-green pl-6">
+                <motion.div
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
+                    transition={{ delay: ADDRESS_START_TIME, duration: 0.8 }}
+                    className="flex gap-5 border-l-4 border-micron-green pl-6"
+                >
                     <div className="flex flex-col justify-center">
-                        <h3 className="text-micron-green font-bold text-lg md:text-xl tracking-[0.2em] uppercase mb-1">
-                             {addressLine1}
+                        <h3 className="text-micron-green font-bold text-lg md:text-xl tracking-[0.2em] uppercase mb-1 flex flex-wrap gap-x-2">
+                             {addressLine1.split(" ").map((word, i) => (
+                                <motion.span
+                                    key={i}
+                                    initial={{ opacity: 0 }}
+                                    animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+                                    transition={{ duration: 0.5, delay: ADDRESS_START_TIME + 0.1 + (i * 0.05) }}
+                                >
+                                    {word}
+                                </motion.span>
+                             ))}
                         </h3>
-                        <p className="text-zinc-900 font-bold text-base md:text-lg tracking-widest uppercase leading-snug">
-                             {addressLine2}
+                        <p className="text-zinc-900 font-bold text-base md:text-lg tracking-widest uppercase leading-snug flex flex-wrap gap-x-2">
+                             {addressLine2.split(" ").map((word, i) => (
+                                <motion.span
+                                    key={i}
+                                    initial={{ opacity: 0 }}
+                                    animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+                                    transition={{ duration: 0.5, delay: ADDRESS_START_TIME + 0.2 + (i * 0.05) }}
+                                >
+                                    {word}
+                                </motion.span>
+                             ))}
                         </p>
-                        <p className="text-zinc-400 text-sm md:text-base tracking-widest uppercase">
-                             {addressLine3}
+                        <p className="text-zinc-400 text-sm md:text-base tracking-widest uppercase flex flex-wrap gap-x-2">
+                             {addressLine3.split(" ").map((word, i) => (
+                                <motion.span
+                                    key={i}
+                                    initial={{ opacity: 0 }}
+                                    animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+                                    transition={{ duration: 0.5, delay: ADDRESS_START_TIME + 0.3 + (i * 0.05) }}
+                                >
+                                    {word}
+                                </motion.span>
+                             ))}
                         </p>
                     </div>
-                </div>
+                </motion.div>
             </div>
 
             {/* Right: Map Bento Box */}
-            <div className="h-full min-h-[300px]">
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ 
+                    duration: 1.0, 
+                    delay: MAP_START_TIME
+                }}
+                className="h-full min-h-[300px]"
+            >
                 <BentoCard 
                     className="p-0 overflow-hidden relative group shadow-xl h-full"
                     gradient="bg-white"
@@ -140,7 +292,7 @@ export const SectionIntro: React.FC<SectionIntroProps> = () => {
                         />
                      </div>
                 </BentoCard>
-            </div>
+            </motion.div>
 
         </div>
       </div>

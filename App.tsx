@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Hero } from './components/Hero';
 import { SectionIntro } from './components/SectionIntro';
@@ -17,21 +16,17 @@ function App() {
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
     setMobileMenuOpen(false); // Close mobile menu on click
-    
-    // Small timeout to allow menu close animation to start/UI to unlock if needed
-    setTimeout(() => {
-        const element = document.getElementById(id);
-        if (element) {
-          const headerOffset = 85; // Height of fixed header + breathing room
-          const elementPosition = element.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.scrollY - headerOffset;
-    
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          });
-        }
-    }, 10);
+    const element = document.getElementById(id);
+    if (element) {
+      const headerOffset = 85; // Height of fixed header + breathing room
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
   };
 
   const navLinks = [
@@ -74,16 +69,14 @@ function App() {
         >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
-      </nav>
 
-      {/* Mobile Full Screen Menu - Moved outside nav to avoid z-index/stacking context issues */}
-      <AnimatePresence>
+        {/* Mobile Full Screen Menu - Z-40 (Under Navbar but above content) */}
+        <AnimatePresence>
             {mobileMenuOpen && (
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
-                    // z-40 is below nav (z-50) so header stays visible
                     className="fixed inset-0 bg-white z-40 flex flex-col pt-24 px-6 overflow-y-auto"
                 >
                     <div className="flex flex-col gap-6 text-xl font-bold uppercase tracking-widest text-zinc-800 pb-10">
@@ -101,7 +94,8 @@ function App() {
                     </div>
                 </motion.div>
             )}
-      </AnimatePresence>
+        </AnimatePresence>
+      </nav>
 
       <main>
         <Hero />
