@@ -16,17 +16,10 @@ const InnerBento = ({ title, children, gradient, icon, className = "", delay = 0
         className={`
             ${gradient} rounded-2xl p-6 md:p-8 text-white relative overflow-hidden group 
             shadow-[0_20px_40px_-12px_rgba(0,0,0,0.5)] 
-            border-t border-l border-white/20 border-b border-black/10 border-r border-black/5
+            border border-white/10
             ${className}
         `}
     >
-        {/* Decorative background element - Only if icon exists */}
-        {icon && (
-            <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                {icon}
-            </div>
-        )}
-        
         {/* Top Highlight for 3D Bevel */}
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-50" />
 
@@ -134,7 +127,7 @@ export const SectionProperty: React.FC = () => {
         case 'autonomous':
             return {
                 ...base,
-                title: "SECURITY AND SERVICE",
+                title: "AUTONOMOUS SERVICE",
                 subtitle: "LIVING LAB",
                 content: (
                     <div className="flex flex-col gap-6 h-full">
@@ -481,7 +474,7 @@ export const SectionProperty: React.FC = () => {
                         <Car className="text-white scale-x-[-1]" />
                         <span className="text-xs font-bold uppercase tracking-widest text-white/80">Intelligence</span>
                     </div>
-                    <h4 className="text-xl font-bold uppercase tracking-tight mb-2">Security and Service</h4>
+                    <h4 className="text-xl font-bold uppercase tracking-tight mb-2">Autonomous Service</h4>
                     {/* Updated text: Removed 'living lab' */}
                     <p className="text-base text-white/70 font-medium leading-relaxed font-body">
                         Autonomous service via Cybercab and Optimus. A functional proving ground where abstract technology becomes a seamless, daily reality.
@@ -520,4 +513,3 @@ export const SectionProperty: React.FC = () => {
       <Modal isOpen={!!modalData} onClose={() => setModalData(null)} data={modalData} />
     </section>
   );
-};

@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { BentoCard } from './BentoCard';
 import { Modal } from './Modal';
@@ -63,7 +64,7 @@ export const SectionServingTesla: React.FC = () => {
                     {/* Quote Card */}
                     <motion.div 
                         variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-                        className="bg-micron-eggplant rounded-3xl p-8 border-t border-l border-white/20 border-b border-black/40 shadow-[0_20px_40px_-12px_rgba(0,0,0,0.5)] text-white"
+                        className="bg-micron-eggplant rounded-3xl p-8 border border-white/20 shadow-[0_20px_40px_-12px_rgba(0,0,0,0.5)] text-white"
                     >
                         <MessageSquare className="mb-4 opacity-50" size={24} />
                         <p className="text-xl font-bold italic leading-relaxed">
