@@ -7,7 +7,7 @@ import { ArrowUpRight, Play, Zap, BrainCircuit, Globe, Activity, ShieldCheck, Se
 import { motion } from 'framer-motion';
 
 // Helper component for inner bento cards within the modal
-// Updated to accept textColor and allow border overrides via className
+// Updated: Removed border class, added separator line
 const InnerBento = ({ title, children, gradient, icon, className = "", delay = 0, textColor = "text-white" }: any) => (
     <motion.div 
         initial={{ opacity: 0, y: 20 }}
@@ -16,7 +16,6 @@ const InnerBento = ({ title, children, gradient, icon, className = "", delay = 0
         className={`
             ${gradient} rounded-2xl p-6 md:p-8 ${textColor} relative overflow-hidden group 
             shadow-[0_20px_40px_-12px_rgba(0,0,0,0.5)] 
-            border border-white/10
             ${className}
         `}
     >
@@ -25,10 +24,14 @@ const InnerBento = ({ title, children, gradient, icon, className = "", delay = 0
 
         <div className="relative z-10 h-full flex flex-col">
             {(title || icon) && (
-                <h3 className="text-xl md:text-2xl font-black uppercase tracking-tight mb-4 flex items-center gap-3 drop-shadow-md">
-                    {icon && React.cloneElement(icon, { size: 24, strokeWidth: 1.5 })}
-                    {title}
-                </h3>
+                <>
+                    <h3 className="text-xl md:text-2xl font-black uppercase tracking-tight flex items-center gap-3 drop-shadow-md">
+                        {icon && React.cloneElement(icon, { size: 24, strokeWidth: 1.5 })}
+                        {title}
+                    </h3>
+                    {/* Added Separator for Readability */}
+                    <div className="h-px w-full bg-current opacity-20 my-4" />
+                </>
             )}
             {/* Removed 'text-white/90' hardcode, utilizing textColor prop */}
             <div className={`text-sm md:text-base leading-relaxed font-body font-medium flex-1 drop-shadow-sm opacity-90`}>
@@ -55,12 +58,12 @@ const getCardData = (id: number): ModalContent => {
                 </p>
 
                 <div className="flex flex-col lg:flex-row gap-6 h-full min-h-[480px]">
-                    {/* LEFT COLUMN: PORTRAIT VIDEO */}
+                    {/* LEFT COLUMN: PORTRAIT VIDEO - Removed Border */}
                     <motion.div 
                         initial={{ opacity: 0, scale: 0.98 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.1 }}
-                        className="w-full lg:w-4/12 bg-black rounded-2xl overflow-hidden shadow-2xl relative group cursor-pointer border border-white/10 flex-shrink-0 order-1"
+                        className="w-full lg:w-4/12 bg-black rounded-2xl overflow-hidden shadow-2xl relative group cursor-pointer flex-shrink-0 order-1"
                     >
                         <div className="absolute inset-0 opacity-80 bg-[url('https://images.unsplash.com/photo-1534996858221-380b92700493?q=80&w=1931&auto=format&fit=crop')] bg-cover bg-center transition-transform duration-700 group-hover:scale-105"></div>
                         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/30"></div>
@@ -148,11 +151,12 @@ const getCardData = (id: number): ModalContent => {
             <div className="flex flex-col lg:flex-row gap-6 h-full min-h-0">
                 {/* LEFT COLUMN: Video + RUNWAY */}
                 <div className="lg:w-5/12 flex flex-col gap-6">
+                     {/* Video Card - Removed Border */}
                      <motion.div 
                         initial={{ opacity: 0, scale: 0.98 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.1 }}
-                        className="w-full aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl relative group cursor-pointer border border-white/10 flex-shrink-0"
+                        className="w-full aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl relative group cursor-pointer flex-shrink-0"
                     >
                          <div className="absolute inset-0 opacity-80 bg-[url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center transition-transform duration-700 group-hover:scale-105"></div>
                          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/30"></div>
@@ -217,10 +221,12 @@ const getCardData = (id: number): ModalContent => {
                          <div>
                             <div className="flex justify-between items-start mb-2">
                                 <h3 className="text-3xl font-black uppercase tracking-tight text-white leading-none">MICRON</h3>
-                                <Cpu size={24} className="text-zinc-400" /> {/* Changed Icon Color to Gray */}
+                                <Cpu size={24} className="text-zinc-400" /> 
                             </div>
+                            {/* Manually added separator here since Title is empty and loop check in InnerBento might skip */}
+                            <div className="h-px w-full bg-white/20 my-4" />
+                            
                             <p className="text-zinc-400 font-bold uppercase tracking-widest text-[10px] mb-4">Sanjay Mehrotra, CEO</p>
-                            {/* CHANGED: Reduced Size to text-sm md:text-base & Changed Color back to WHITE */}
                             <p className="text-sm md:text-base font-bold leading-tight mb-4 text-white tracking-tight italic">
                                 "Transform how the world uses information to enrich life for all."
                             </p>
@@ -243,8 +249,10 @@ const getCardData = (id: number): ModalContent => {
                                 <h3 className="text-3xl font-black uppercase tracking-tight text-white leading-none">TESLA</h3>
                                 <Bot size={24} className="text-zinc-400" />
                             </div>
+                            {/* Manually added separator */}
+                            <div className="h-px w-full bg-white/20 my-4" />
+
                             <p className="text-zinc-400 font-bold uppercase tracking-widest text-[10px] mb-4">Elon Musk, CEO</p>
-                            {/* CHANGED: Reduced Size to text-sm md:text-base & Changed Color back to WHITE */}
                             <p className="text-sm md:text-base font-bold leading-tight mb-4 text-white tracking-tight italic">
                                 "Accelerate the world's transition to sustainable energy" & "Build a world of amazing abundance."
                             </p>
@@ -268,7 +276,6 @@ const getCardData = (id: number): ModalContent => {
                     >
                          <div className="flex flex-col md:flex-row gap-6 h-full">
                              {/* Stats Header - Left side on desktop for balanced layout */}
-                             {/* CHANGED: Darkened border-r from zinc-200 to zinc-400 for visibility */}
                              <div className="grid grid-cols-2 md:grid-cols-1 gap-4 md:w-1/3 border-b md:border-b-0 md:border-r border-zinc-400 pb-4 md:pb-0 md:pr-4">
                                  <div>
                                     <span className="block text-4xl lg:text-5xl font-black tracking-tighter text-micron-eggplant leading-none">$200B</span>
@@ -300,19 +307,18 @@ const getCardData = (id: number): ModalContent => {
         title: 'PLACE', 
         subtitle: 'GROUNDING THE TECHNOLOGY', 
         content: (
-        // REDESIGNED LAYOUT: Split Portrait Image (Left) + Dense Grid (Right)
+        // REDESIGNED LAYOUT: No Purple Box, 50/50 Split
         <div className="flex flex-col md:flex-row gap-6 h-full">
-            {/* LEFT COLUMN: Portrait Image Card (40%) */}
+            {/* LEFT COLUMN: Portrait Image Card (50%) - Removed Border */}
             <motion.div 
                 initial={{ opacity: 0, scale: 0.98 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.1 }}
-                className="w-full md:w-5/12 bg-zinc-900 rounded-2xl overflow-hidden shadow-lg relative group border border-white/10 shrink-0 min-h-[400px] md:min-h-0"
+                className="w-full md:w-1/2 bg-zinc-900 rounded-2xl overflow-hidden shadow-lg relative group shrink-0 min-h-[400px] md:min-h-0"
             >
                  <img 
                     src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=2070&auto=format&fit=crop" 
                     alt="Historic Foundation" 
-                    // Use object-cover w-full h-full to fill the portrait container
                     className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700"
                  />
                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
@@ -322,56 +328,41 @@ const getCardData = (id: number): ModalContent => {
                  </div>
            </motion.div>
 
-           {/* RIGHT COLUMN: Quote + 3 Small Cards (60%) */}
-           <div className="w-full md:w-7/12 flex flex-col gap-6">
-                {/* Top: Quote Box */}
-                <div className="bg-micron-eggplant p-8 rounded-2xl border border-white/10 shadow-lg flex items-center justify-center text-center flex-shrink-0">
-                   <p className="text-xl md:text-2xl font-black uppercase leading-tight tracking-tight">
-                     <span className="block mb-2">
-                        <span className="text-white/50">WITHOUT MEMORY, </span><span className="text-white">THERE IS NO MEANING. </span>
-                     </span>
-                     <span className="block">
-                        <span className="text-white/50">WITHOUT PLACE, </span><span className="text-white">THERE IS NO PERSPECTIVE.</span>
-                     </span>
-                   </p>
-                </div>
+           {/* RIGHT COLUMN: 3 Cards Expanded to Fill Space (50%) */}
+           <div className="w-full md:w-1/2 flex flex-col gap-4 h-full">
+                <InnerBento 
+                    title="ADDRESS" 
+                    gradient="bg-micron-green"
+                    icon={<Globe />}
+                    delay={0.2}
+                    className="flex-1"
+                >
+                    <p className="text-sm leading-relaxed">Warm Springs Avenue is a tree-lined corridor on the National Register of Historic Places — where Boise's wealthiest families built estates heated by the city's most radical technology: hot water from the ground.</p>
+                </InnerBento>
 
-                {/* Bottom: 3 Card Stack/Grid */}
-                <div className="flex-1 grid grid-cols-1 gap-4 overflow-y-auto">
-                    <InnerBento 
-                        title="ADDRESS" 
-                        gradient="bg-micron-green"
-                        icon={<Globe />}
-                        delay={0.2}
-                    >
-                        <p className="text-sm leading-relaxed">Warm Springs Avenue is a tree-lined corridor on the National Register of Historic Places — where Boise's wealthiest families built estates heated by the city's most radical technology: hot water from the ground.</p>
-                    </InnerBento>
+                <InnerBento 
+                    title="ENERGY" 
+                    gradient="bg-micron-eggplant-light"
+                    icon={<Activity />}
+                    delay={0.3}
+                    className="flex-1"
+                >
+                    <div className="space-y-4">
+                        <p className="text-sm leading-relaxed">
+                            In 1892, C.W. Moore piped 177°F geothermal water into his mansion — the first home in America heated by natural hot water.
+                        </p>
+                    </div>
+                </InnerBento>
 
-                    <InnerBento 
-                        title="ENERGY" 
-                        gradient="bg-micron-eggplant-light"
-                        icon={<Activity />}
-                        delay={0.3}
-                    >
-                        <div className="space-y-4">
-                            <p className="text-sm leading-relaxed">
-                                In 1892, C.W. Moore piped 177°F geothermal water into his mansion — the first home in America heated by natural hot water. The idea spread down the avenue, then downtown, and by 1982 to the State Capitol — now the only capitol building in the country on geothermal.
-                            </p>
-                            <p className="text-sm leading-relaxed">
-                                Today, the same system delivers to roughly 300 homes — operational for over 130 years, the water temperature unchanged within one degree.
-                            </p>
-                        </div>
-                    </InnerBento>
-
-                    <InnerBento 
-                        title="CONFLUENCE" 
-                        gradient="bg-micron-black"
-                        icon={<Zap />}
-                        delay={0.4}
-                    >
-                        <p className="text-sm leading-relaxed">Heat from an aquifer tapped in 1892. Data from a satellite constellation powered by solar energy in space. Hot water rising from below. Signal arriving from above. The oldest residential energy system in the country meeting the newest — on a street that has been absorbing the future for 130 years.</p>
-                    </InnerBento>
-                </div>
+                <InnerBento 
+                    title="CONFLUENCE" 
+                    gradient="bg-micron-black"
+                    icon={<Zap />}
+                    delay={0.4}
+                    className="flex-1"
+                >
+                    <p className="text-sm leading-relaxed">Heat from an aquifer tapped in 1892. Data from a satellite constellation powered by solar energy in space. Hot water rising from below. Signal arriving from above.</p>
+                </InnerBento>
            </div>
         </div>
     )};
@@ -385,7 +376,6 @@ export const SectionPrototype: React.FC = () => {
   const mainTitleWords = ["MICRON.", "TESLA.", "BOISE."];
   
   return (
-    // Reduced padding: py-16 instead of py-24, adjusted px for mobile (px-4) vs desktop (px-12)
     <section id="prototype" className="container mx-auto px-4 md:px-12 py-8 md:py-16 bg-white text-zinc-900">
       
       <motion.div
@@ -395,7 +385,6 @@ export const SectionPrototype: React.FC = () => {
         transition={{ duration: 1.0 }}
         className="pointer-events-auto"
       >
-        {/* Header - Aligned with other sections */}
         <motion.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -410,7 +399,6 @@ export const SectionPrototype: React.FC = () => {
             <div className="md:ml-auto max-w-2xl pb-1">
                 <div className="pl-6 border-l-4 border-micron-eggplant/20 hover:border-micron-eggplant transition-colors duration-500">
                     <div className="text-base font-light text-zinc-600 leading-snug font-body">
-                        {/* MAIN HEADER: Text-2xl to 3xl */}
                         <span className="font-bold text-micron-eggplant block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans cursor-default">
                             {mainTitleWords.map((word, i) => (
                                 <motion.span 
@@ -422,7 +410,6 @@ export const SectionPrototype: React.FC = () => {
                                             y: -4, 
                                             x: 2, 
                                             scale: 1.05, 
-                                            // LOGIC: BOISE=Green, TESLA=Black, Default=Eggplant
                                             color: word === "BOISE." ? '#008f25' : (word === "TESLA." ? '#000000' : '#2c0f38'),
                                             transition: { duration: 0.2 } 
                                         }}
@@ -434,13 +421,12 @@ export const SectionPrototype: React.FC = () => {
                             ))}
                         </span>
                         
-                        {/* DESCRIPTION: Text-Base */}
                         <motion.span 
                                 initial={{ opacity: 0 }}
                                 whileInView={{ opacity: 1 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.8, delay: (mainTitleWords.length * 0.2) + 0.2 }}
-                                className="text-micron-eggplant block text-base" // CHANGED: text-zinc-600 -> text-micron-eggplant
+                                className="text-micron-eggplant block text-base"
                         >
                             Creating the first autonomous corporate residence. Where Micron's semiconductor revolution, Tesla's autonomous ecosystem, and Boise's emergence as a global tech hub converge at an inflection point — and 1020 Warm Springs Avenue delivers the first tangible glimpse of the autonomous era.
                         </motion.span>
@@ -449,10 +435,8 @@ export const SectionPrototype: React.FC = () => {
             </div>
         </motion.div>
 
-        {/* Bento Grid - RESPONSIVE FIX: grid-cols-1 (mobile) -> grid-cols-2 (tablet) -> grid-cols-4 (desktop) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             
-            {/* Card 1: PROTOTYPE (Black) */}
             <BentoCard 
             className="flex flex-col min-h-[320px] md:h-[480px] p-8 relative overflow-hidden group" 
             gradient="bg-micron-black" 
@@ -472,7 +456,6 @@ export const SectionPrototype: React.FC = () => {
                 </div>
             </BentoCard>
 
-            {/* Card 2: COLLABORATION (Blue) */}
             <BentoCard 
             className="flex flex-col min-h-[320px] md:h-[480px] p-8 relative overflow-hidden group" 
             gradient="bg-micron-eggplant-light" 
@@ -492,7 +475,6 @@ export const SectionPrototype: React.FC = () => {
                 </div>
             </BentoCard>
 
-            {/* Card 3: TIMING (Green) */}
             <BentoCard 
                 className="flex flex-col min-h-[320px] md:h-[480px] p-8 relative overflow-hidden group" 
                 gradient="bg-micron-green"
@@ -512,7 +494,6 @@ export const SectionPrototype: React.FC = () => {
             </div>
             </BentoCard>
 
-            {/* Card 4: PLACE (Eggplant) */}
             <BentoCard 
             className="flex flex-col min-h-[320px] md:h-[480px] p-8 relative overflow-hidden group" 
             gradient="bg-micron-eggplant" 
@@ -523,7 +504,6 @@ export const SectionPrototype: React.FC = () => {
             onClick={() => setModalData(getCardData(4))}
             >
                 <div className="relative z-10 mt-auto">
-                    {/* CHANGED: group-hover text color from micron-green to micron-eggplant-light (blue) */}
                     <h3 className="text-4xl font-black uppercase leading-[0.9] tracking-tighter text-white group-hover:text-micron-eggplant-light transition-colors duration-300 mb-4">
                         PLACE
                     </h3>
