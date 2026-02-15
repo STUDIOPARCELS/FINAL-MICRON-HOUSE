@@ -578,3 +578,4 @@ export const SectionPrototype: React.FC = () => {
       <Modal isOpen={!!modalData} onClose={() => setModalData(null)} data={modalData} />
     </section>
   );
+};
