@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { BentoCard } from './BentoCard';
-import { MapPin, Plane, Building2, Trees, GraduationCap, Stethoscope, Utensils, Sprout, BedDouble, Images, ArrowUpRight, Home, Zap, Leaf, Map, Car, Thermometer, Waves, Activity, Bot, History, Droplets } from 'lucide-react';
+import { MapPin, Plane, Building2, Trees, GraduationCap, Stethoscope, Utensils, Sprout, BedDouble, Images, ArrowUpRight, FileText, Home, Zap, Leaf, Map, Car, Thermometer, Waves, Activity, Bot, History, Droplets } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Modal } from './Modal';
 import { ModalContent } from '../types';
@@ -67,7 +67,7 @@ export const SectionProperty: React.FC = () => {
                 content: (
                     <div className="flex flex-col gap-6 h-full">
                         {/* Summary Paragraph Added */}
-                        <p className="text-lg md:text-xl text-zinc-600 font-light leading-relaxed border-l-4 border-micron-green pl-6 py-1">
+                        <p className="text-base text-zinc-600 font-light leading-relaxed border-l-4 border-micron-green pl-6 py-1">
                             Powered by a 177°F direct-use aquifer. Geothermal water flows through the home’s radiators and feeds the outdoor soaking tub. The grounds feature mature fruit trees and a Concord grapevine.
                         </p>
 
@@ -107,6 +107,16 @@ export const SectionProperty: React.FC = () => {
                                     <p>
                                         By engaging 90% of muscle fibers (vs. 40% in standard training), it rapidly builds bone density, counteracts neuropathy, and stimulates neuro-repair for improved mental health.
                                     </p>
+                                    <a 
+                                        href="https://aawnkxnnrymqbysgimqj.supabase.co/storage/v1/object/public/MICRON-HOUSE/LOST-VIBRATIONS-WHITEPAPER.pdf" 
+                                        target="_blank" 
+                                        rel="noopener noreferrer"
+                                        className="mt-auto pt-2 inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-white/40 hover:text-white/80 transition-all duration-300 group/link"
+                                    >
+                                        <FileText size={12} strokeWidth={2} className="opacity-60 group-hover/link:opacity-100 transition-opacity" />
+                                        Read the White Paper
+                                        <ArrowUpRight size={10} strokeWidth={2.5} className="opacity-40 group-hover/link:opacity-80 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-all duration-300" />
+                                    </a>
                                 </div>
                             </InnerBento>
 
@@ -139,7 +149,7 @@ export const SectionProperty: React.FC = () => {
                 content: (
                     <div className="flex flex-col gap-6 h-full">
                         {/* Summary Paragraph Added */}
-                        <p className="text-lg md:text-xl text-zinc-600 font-light leading-relaxed border-l-4 border-micron-grey1 pl-6 py-1">
+                        <p className="text-base text-zinc-600 font-light leading-relaxed border-l-4 border-micron-grey1 pl-6 py-1">
                             Autonomous service via Cybercab and Optimus. A functional proving ground where abstract technology becomes a seamless, daily reality.
                         </p>
 
@@ -188,7 +198,7 @@ export const SectionProperty: React.FC = () => {
                 content: (
                     <div className="flex flex-col gap-6 h-full">
                         {/* Summary Paragraph Added */}
-                        <p className="text-lg md:text-xl text-zinc-600 font-light leading-relaxed border-l-4 border-micron-eggplant pl-6 py-1">
+                        <p className="text-base text-zinc-600 font-light leading-relaxed border-l-4 border-micron-eggplant pl-6 py-1">
                             Anchored by the C.W. Moore House (1891) and the neighboring George Whitfield Russell House. A corridor defined by the legacy of Western pioneers and energy ingenuity.
                         </p>
 
