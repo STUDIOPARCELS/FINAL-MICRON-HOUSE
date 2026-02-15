@@ -80,7 +80,7 @@ const WhitepaperViewer: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ 
                     <div className="px-6 md:px-8 py-5 flex justify-between items-center border-b border-zinc-200 bg-zinc-50 flex-shrink-0">
                         <div>
                             <h2 className="text-lg md:text-xl font-bold uppercase tracking-tight text-zinc-900">Lost Vibrations</h2>
-                            <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-zinc-400 mt-0.5">White Paper — Lisa Wood Studio 2026</p>
+                            <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-zinc-400 mt-0.5">White Paper — Lisa Wood 2025</p>
                         </div>
                         <button onClick={onClose} className="rounded-full bg-zinc-100 p-2 text-zinc-500 hover:text-zinc-900 hover:bg-zinc-200 transition-colors border border-zinc-200">
                             <X size={20} />
