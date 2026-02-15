@@ -111,11 +111,11 @@ export const SectionProperty: React.FC = () => {
                                         href="https://aawnkxnnrymqbysgimqj.supabase.co/storage/v1/object/public/MICRON-HOUSE/LOST-VIBRATIONS-WHITEPAPER.pdf" 
                                         target="_blank" 
                                         rel="noopener noreferrer"
-                                        className="mt-auto pt-2 inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-white/40 hover:text-white/80 transition-all duration-300 group/link"
+                                        className="mt-auto pt-2 inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-white/60 hover:text-white/95 transition-all duration-300 group/link"
                                     >
-                                        <FileText size={12} strokeWidth={2} className="opacity-60 group-hover/link:opacity-100 transition-opacity" />
+                                        <FileText size={12} strokeWidth={2} className="opacity-70 group-hover/link:opacity-100 transition-opacity" />
                                         Read the White Paper
-                                        <ArrowUpRight size={10} strokeWidth={2.5} className="opacity-40 group-hover/link:opacity-80 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-all duration-300" />
+                                        <ArrowUpRight size={10} strokeWidth={2.5} className="opacity-60 group-hover/link:opacity-100 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-all duration-300" />
                                     </a>
                                 </div>
                             </InnerBento>
