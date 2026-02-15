@@ -74,20 +74,20 @@ const WhitepaperViewer: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ 
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.95, y: 20 }}
                     transition={{ type: "spring", damping: 30, stiffness: 350 }}
-                    className="pointer-events-auto relative w-full max-w-4xl h-[90vh] flex flex-col overflow-hidden rounded-2xl md:rounded-3xl bg-zinc-950 shadow-2xl border border-white/10 ring-1 ring-white/5"
+                    className="pointer-events-auto relative w-full max-w-4xl h-[90vh] flex flex-col overflow-hidden rounded-2xl md:rounded-3xl bg-white shadow-2xl border border-zinc-200 ring-1 ring-zinc-200"
                 >
                     {/* Header */}
-                    <div className="px-6 md:px-8 py-5 flex justify-between items-center border-b border-white/10 bg-black/50 flex-shrink-0">
+                    <div className="px-6 md:px-8 py-5 flex justify-between items-center border-b border-zinc-200 bg-zinc-50 flex-shrink-0">
                         <div>
-                            <h2 className="text-lg md:text-xl font-bold uppercase tracking-tight text-white">Lost Vibrations</h2>
-                            <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-zinc-500 mt-0.5">White Paper — Lisa Wood Studio 2026</p>
+                            <h2 className="text-lg md:text-xl font-bold uppercase tracking-tight text-zinc-900">Lost Vibrations</h2>
+                            <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-zinc-400 mt-0.5">White Paper — Lisa Wood Studio 2026</p>
                         </div>
-                        <button onClick={onClose} className="rounded-full bg-white/5 p-2 text-zinc-400 hover:text-white hover:bg-white/10 transition-colors border border-white/10">
+                        <button onClick={onClose} className="rounded-full bg-zinc-100 p-2 text-zinc-500 hover:text-zinc-900 hover:bg-zinc-200 transition-colors border border-zinc-200">
                             <X size={20} />
                         </button>
                     </div>
                     {/* PDF iframe */}
-                    <div className="flex-1 min-h-0">
+                    <div className="flex-1 min-h-0 bg-white">
                         <iframe
                             src="https://aawnkxnnrymqbysgimqj.supabase.co/storage/v1/object/public/MICRON-HOUSE/LOST-VIBRATIONS-WHITEPAPER.pdf"
                             className="w-full h-full border-0"
