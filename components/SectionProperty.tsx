@@ -89,7 +89,7 @@ const WhitepaperViewer: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ 
                     {/* PDF iframe */}
                     <div className="flex-1 min-h-0 bg-white">
                         <iframe
-                            src="https://aawnkxnnrymqbysgimqj.supabase.co/storage/v1/object/public/MICRON-HOUSE/LOST-VIBRATIONS-WHITEPAPER.pdf"
+                            src="https://acwgirldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/LOST-VIBRATIONS-WHITEPAPER.pdf"
                             className="w-full h-full border-0"
                             title="Lost Vibrations White Paper"
                         />
