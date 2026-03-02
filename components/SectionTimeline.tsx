@@ -5,46 +5,46 @@ import { Calendar, PenTool, Activity, Zap, FileText, Database, Shield, Radio, Cp
 import { motion } from 'framer-motion';
 
 const timelineEvents = [
-  {
-    id: 1,
+  { 
+    id: 1, 
     date: "NOW",
-    title: "AGREEMENT",
+    title: "ARCHITECTURAL ALIGNMENT", 
     desc: "Defining the physical API.",
     detail: "Establishing the interface between historic infrastructure and autonomous logic. Mapping the residence for Optimus navigation.",
     icon: <Database />,
     gradient: "bg-micron-black",
   },
-  {
-    id: 2,
+  { 
+    id: 2, 
     date: "DAY 60",
-    title: "SYSTEMS ALIGNMENT",
+    title: "PERCEPTION MAPPING", 
     desc: "Digitizing the environment.",
     detail: "Optimus neural networks ingest the property's geometry for centimeter-level navigation and semantic understanding.",
     icon: <Network />,
     gradient: "bg-micron-eggplant-light", // Changed to Blue
   },
-  {
-    id: 3,
+  { 
+    id: 3, 
     date: "DAY 90",
-    title: "WELLNESS INSTALL",
+    title: "BIOMETRIC INFRASTRUCTURE", 
     desc: "Human optimization.",
     detail: "Deploying contrast therapy, vibration systems, and circadian lighting to service the biological occupants.",
     icon: <Activity />,
     gradient: "bg-micron-green",
   },
-  {
-    id: 4,
+  { 
+    id: 4, 
     date: "DAY 120",
-    title: "ACCESS BEGINS",
+    title: "PILOT ACTIVATION", 
     desc: "The feedback loop begins.",
     detail: "Executive stakeholders initiate residency. Initial feedback loops established between occupants and the autonomous OS.",
     icon: <Radio />,
     gradient: "bg-micron-grey3",
   },
-  {
-    id: 5,
+  { 
+    id: 5, 
     date: "2027",
-    title: "FULL AUTONOMY",
+    title: "AUTONOMOUS SCALE", 
     desc: "The new standard.",
     detail: "Transitioning to zero-intervention property management. Cybercab and Optimus assume full operational governance.",
     icon: <Cpu />,
