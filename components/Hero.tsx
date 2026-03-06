@@ -341,20 +341,18 @@ export const Hero: React.FC = () => {
            <motion.span
                key={`${word}-${i}`}
                variants={{
-                   hidden: { opacity: 0, y: 2 },
+                   hidden: { opacity: 0 },
                    visible: { 
-                       opacity: 1, y: 0,
+                       opacity: 1,
                        transition: { 
-                           duration: 2.0, 
+                           duration: 3.0, 
                            ease: [0.16, 1, 0.3, 1],
-                           // 1s per word + 1s extra pause after the comma word (index 1)
-                           // First part: 2s between words. Second part: 6s after VISION, then 1s stagger
-                           delay: i < 2 ? i * 2.0 : 5.5 + (i - 2) * 1.0
+                           delay: i < 2 ? i * 1.2 : 4.0 + (i - 2) * 0.8
                        } 
                    },
                    exit: {
-                       opacity: 0, y: -4,
-                       transition: { duration: 0.5, ease: "easeIn" }
+                       opacity: 0,
+                       transition: { duration: 0.8, ease: "easeIn" }
                    }
                }}
                className={`${sizeClass} ${layoutClass} ${fontWeight} uppercase tracking-tighter leading-[0.9] cursor-default transition-colors duration-300 ${colorClass} ${hoverClass}`}
