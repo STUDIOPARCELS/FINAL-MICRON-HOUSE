@@ -363,7 +363,7 @@ export const Hero: React.FC = () => {
   }
 
   // UPDATED: Single Paragraph Quote with hyphen and lowercase 'd'
-  const quoteText = "A private residence, hospitality platform, and real-world autonomy environment for Micron. A proposed new corporate asset class shaped by autonomous security, service, and place.";
+  const quoteText = "A convergence of historic stewardship and autonomous future. The first corporate residence - designed for the era of artificial intelligence.";
   const quoteWords = quoteText.split(" ");
 
   // Shared container variants for the word-by-word animation
@@ -629,23 +629,23 @@ export const Hero: React.FC = () => {
                     }}
                 >
                     {[
-                        { text: "Without ", color: "rgba(255,255,255,0.3)" },
-                        { text: "Vision ", color: "rgba(53,57,66,0.6)" },
-                        { text: "there's ", color: "rgba(255,255,255,0.3)" },
-                        { text: "no ", color: "rgba(255,255,255,0.3)" },
-                        { text: "Velocity.", color: "rgba(53,57,66,0.6)" },
+                        { text: "Without ", color: "rgba(44,15,56,0.4)" },
+                        { text: "Vision ", color: "rgba(44,15,56,0.85)" },
+                        { text: "there's ", color: "rgba(44,15,56,0.4)" },
+                        { text: "no ", color: "rgba(44,15,56,0.4)" },
+                        { text: "Velocity.", color: "rgba(44,15,56,0.85)" },
                         { text: "\u00A0\u00A0\u00A0", color: "transparent" },
-                        { text: "Without ", color: "rgba(255,255,255,0.3)" },
-                        { text: "Memory ", color: "rgba(44,15,56,0.7)" },
-                        { text: "there's ", color: "rgba(255,255,255,0.3)" },
-                        { text: "no ", color: "rgba(255,255,255,0.3)" },
-                        { text: "Meaning.", color: "rgba(44,15,56,0.7)" },
+                        { text: "Without ", color: "rgba(44,15,56,0.4)" },
+                        { text: "Memory ", color: "rgba(44,15,56,0.85)" },
+                        { text: "there's ", color: "rgba(44,15,56,0.4)" },
+                        { text: "no ", color: "rgba(44,15,56,0.4)" },
+                        { text: "Meaning.", color: "rgba(44,15,56,0.85)" },
                         { text: "\u00A0\u00A0\u00A0", color: "transparent" },
-                        { text: "Without ", color: "rgba(255,255,255,0.3)" },
-                        { text: "Place ", color: "rgba(0,143,37,0.5)" },
-                        { text: "there's ", color: "rgba(255,255,255,0.3)" },
-                        { text: "no ", color: "rgba(255,255,255,0.3)" },
-                        { text: "Perspective.", color: "rgba(0,143,37,0.5)" },
+                        { text: "Without ", color: "rgba(44,15,56,0.4)" },
+                        { text: "Place ", color: "rgba(44,15,56,0.85)" },
+                        { text: "there's ", color: "rgba(44,15,56,0.4)" },
+                        { text: "no ", color: "rgba(44,15,56,0.4)" },
+                        { text: "Perspective.", color: "rgba(44,15,56,0.85)" },
                     ].map((w, i) => (
                         <motion.span
                             key={i}
