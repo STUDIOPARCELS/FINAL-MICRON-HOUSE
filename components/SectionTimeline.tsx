@@ -6,42 +6,40 @@ const roadmapItems = [
   { 
     id: 1, 
     date: "NOW", 
-    title: "AGREEMENT", 
-    subtitle: "Architectural interface.", 
-    // UPDATED: Changed from bg-micron-black to bg-micron-grey1 to match "Real-World Inference"
+    title: "SITE VISIT", 
+    subtitle: "Working session on fit, scope, and priorities.", 
     bg: "bg-micron-grey1",
     text: "text-white"
   },
   { 
     id: 2, 
-    date: "MAR 1", 
-    title: "SYSTEMS ALIGNMENT", 
-    subtitle: "Infrastructure install.", 
-    bg: "bg-micron-eggplant-light", // Light Blue
+    date: "DAY 30", 
+    title: "PROGRAM ALIGNMENT", 
+    subtitle: "Define uses, hosting standards, privacy, and operating needs.", 
+    bg: "bg-micron-eggplant-light",
     text: "text-white"
   },
   { 
     id: 3, 
-    date: "APR 1", 
-    title: "WELLNESS INSTALL", 
-    subtitle: "Core logic ingest.", 
+    date: "DAY 60", 
+    title: "PROPERTY READINESS", 
+    subtitle: "Prepare the house for leadership stays, meetings, and partner hosting.", 
     bg: "bg-micron-green",
     text: "text-white"
   },
   { 
     id: 4, 
-    date: "MAY 1", 
-    title: "ACCESS BEGINS", 
-    subtitle: "Executive residence.", 
-    bg: "bg-[#878d9f]", // Grey/Slate manual override to match screenshot vibe
+    date: "DAY 90", 
+    title: "PILOT USE", 
+    subtitle: "Begin hosted use for recruitment, relocation, family support, and small strategic gatherings.", 
+    bg: "bg-[#878d9f]",
     text: "text-white"
   },
   { 
     id: 5, 
-    // UPDATED: Changed from 'SEPT' to '2027' as requested
-    date: "2027", 
-    title: "FULL AUTONOMY", 
-    subtitle: "Zero human intervention.", 
+    date: "NEXT PHASE", 
+    title: "AUTONOMY INTEGRATION", 
+    subtitle: "Evaluate early service and security systems and define the next operational step.", 
     bg: "bg-micron-eggplant",
     text: "text-white"
   }
@@ -123,7 +121,10 @@ export const SectionTimeline: React.FC = () => {
                             {item.title}
                         </h3>
                         
-                        {/* UPDATED: Removed subtitle text per instructions */}
+                        {/* Subtitle text */}
+                        <p className="text-xs text-white/60 font-medium leading-snug mt-1">
+                            {item.subtitle}
+                        </p>
                     </div>
                 </motion.div>
             ))}

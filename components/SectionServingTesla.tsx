@@ -77,7 +77,7 @@ const teslaCards = [
     id: 3,
     title: "GENESIS", 
     subtitle: "Origin & Intent",
-    content: "The strategy, design, and stewardship behind the Micron House concept. Aligning a historic asset with the future Micron and Tesla are leading.",
+    content: "The strategy, design, and stewardship behind the Micron House concept. Aligning a Boise property with the future Micron and Tesla are leading.",
     icon: null,
     gradient: "bg-micron-eggplant", 
     border: "border-white/10",
@@ -192,7 +192,7 @@ export const SectionServingTesla: React.FC = () => {
                         </div>
                      </div>
 
-                     <p className="text-base text-zinc-500 font-medium text-center mt-2">At the center is the house: a historic residence adapted for a new kind of corporate use.</p>
+                     <p className="text-base text-zinc-500 font-medium text-center mt-2">At the center is the house: a 1906 residence adapted for a new kind of corporate use.</p>
                 </motion.div>
             </div>
         )

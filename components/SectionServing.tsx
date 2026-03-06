@@ -151,7 +151,7 @@ const departments: Department[] = [
       {
         title: "The Closer",
         icon: <Shield />,
-        description: "Final offer discussions by the living room fireplace. A neutral setting in the 1906 historic home, away from the boardroom.",
+        description: "Final offer discussions by the living room fireplace. A neutral setting in the 1906 home, away from the boardroom.",
         customGradient: "bg-micron-eggplant-light"
       },
       {
