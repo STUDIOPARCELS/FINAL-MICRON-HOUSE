@@ -148,7 +148,7 @@ const CinematicModalContent: React.FC<{ data: ModalContent; onClose: () => void 
           <motion.h2 variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }} className="text-3xl md:text-5xl text-white mb-6 md:mb-8 leading-none font-bold uppercase tracking-tight">
             {data.title}
           </motion.h2>
-          <div className="space-y-6 text-base md:text-lg text-zinc-400 font-light leading-relaxed">
+          <div className="space-y-6 text-base text-zinc-400 font-light leading-relaxed">
              <motion.div variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}>
                {data.content}
              </motion.div>
@@ -226,7 +226,7 @@ const ShowcaseModalContent: React.FC<{ data: ModalContent; onClose: () => void }
             {data.subtitle && (
             <div className={`flex items-center gap-2 mt-2`}>
                 <span className={`hidden md:block h-px w-6 ${isLight && !data.customBackground ? 'bg-zinc-300' : 'bg-white/50'}`}></span>
-                <span className={`text-[10px] font-bold uppercase tracking-[0.2em] ${isLight && !data.customBackground ? 'text-zinc-400' : 'text-white/70'}`}>
+                <span className={`text-xs font-bold uppercase tracking-[0.2em] ${isLight && !data.customBackground ? 'text-zinc-400' : 'text-white/70'}`}>
                     {data.subtitle}
                 </span>
             </div>
@@ -269,7 +269,7 @@ const ReferenceModalContent: React.FC<{ data: ModalContent; onClose: () => void 
           <h2 className={`text-2xl font-bold uppercase tracking-tight mb-1 ${titleColor}`}>
             {data.title}
           </h2>
-          <p className={`text-[10px] font-bold uppercase tracking-widest ${subtitleColor}`}>
+          <p className={`text-xs font-bold uppercase tracking-widest ${subtitleColor}`}>
             {data.subtitle}
           </p>
         </div>

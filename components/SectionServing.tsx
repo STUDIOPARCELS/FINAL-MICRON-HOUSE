@@ -257,7 +257,7 @@ export const SectionServing: React.FC = () => {
                             </div>
                             <div className="h-px w-full bg-white/20 mb-4" />
                             {/* UPDATED: Verified font size is text-lg to match Wellness modal tiles standard */}
-                            <p className="text-white/80 font-medium leading-relaxed text-lg">
+                            <p className="text-white/80 font-medium leading-relaxed text-base">
                                 {exp.description}
                             </p>
                         </div>

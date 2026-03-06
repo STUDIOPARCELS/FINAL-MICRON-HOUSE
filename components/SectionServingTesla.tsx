@@ -107,7 +107,7 @@ export const SectionServingTesla: React.FC = () => {
                             <p className="text-xs font-bold uppercase tracking-widest text-zinc-400">Lisa Wood</p>
                          </div>
                          <div className="w-12 h-1 bg-micron-green/20 mb-6"></div>
-                         <div className="space-y-4 text-zinc-600 leading-relaxed text-lg font-medium">
+                         <div className="space-y-4 text-zinc-600 leading-relaxed text-base font-medium">
                             <p>I have lived in Idaho since 1992 and owned the Warm Springs property since 2000. After three decades in technology, I developed Micron House as a way to align a Boise property on Warm Springs Avenue with Micron's long-term presence and the lived arrival of autonomous systems.</p>
                             <p>Micron House brings three commitments into one setting: <em className="italic font-normal">hospitality of high standard, stewardship of the property, and careful observation of how autonomy changes daily experience.</em></p>
                          </div>
@@ -120,7 +120,7 @@ export const SectionServingTesla: React.FC = () => {
                     >
                         <div>
                             <h3 className="text-2xl font-bold tracking-tight text-white/90 mb-4">Partnership</h3>
-                            <div className="text-zinc-300 font-light leading-relaxed text-lg space-y-4">
+                            <div className="text-zinc-300 font-light leading-relaxed text-base space-y-4">
                                 <p>
                                     Micron House is conceived as a long-term relationship whose value grows through use: leadership stays, partner hosting, recruitment, relocation, and family support.
                                 </p>
@@ -243,7 +243,7 @@ export const SectionServingTesla: React.FC = () => {
                         
                         <div className="w-full h-px bg-zinc-200 mb-4 relative z-10" />
 
-                        <div className="flex flex-col gap-4 text-zinc-600 text-lg font-medium leading-relaxed relative z-10">
+                        <div className="flex flex-col gap-4 text-zinc-600 text-base font-medium leading-relaxed relative z-10">
                             {/* UPDATED: Flex layout to align "Micron to Front Door" next to "15 min" */}
                             <div className="flex flex-row items-baseline gap-4">
                                  <span className="block text-5xl md:text-6xl font-black tracking-tighter text-zinc-900 leading-none">15 <span className="text-2xl font-bold align-top text-zinc-400">min</span></span>
@@ -338,7 +338,7 @@ export const SectionServingTesla: React.FC = () => {
                  {/* Scale Section */}
                  <div>
                     <h5 className="text-3xl font-black text-white mb-3 uppercase leading-none tracking-tight">SCALE</h5>
-                    <p className="text-white font-medium leading-relaxed text-lg">
+                    <p className="text-white font-medium leading-relaxed text-base">
                         Autonomous systems are moving from thousands to billions within a decade. Speed of adoption outpaces all previous technological transition — electricity, the internet, smartphones. Micron silicon powers the memory in every unit.
                     </p>
                  </div>
@@ -349,7 +349,7 @@ export const SectionServingTesla: React.FC = () => {
                  {/* Friction Section */}
                  <div>
                     <h5 className="text-3xl font-black text-white mb-3 uppercase leading-none tracking-tight">FRICTION</h5>
-                    <p className="text-white font-medium leading-relaxed text-lg">
+                    <p className="text-white font-medium leading-relaxed text-base">
                         Each autonomous unit carries cameras, sensors, and microphones. Billions of mobile platforms operating in homes, neighborhoods, schools, and public spaces permanently alter the sensory landscape of daily life.
                     </p>
                  </div>
@@ -419,7 +419,7 @@ export const SectionServingTesla: React.FC = () => {
               className="mb-12 flex flex-col md:flex-row md:items-end gap-12 border-b border-zinc-100 pb-8"
           >
               <div className="flex-shrink-0">
-                  <span className="block text-xs font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2 font-sans">04 / PARTNERSHIP</span>
+                  <span className="block text-sm font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2 font-sans">04 / PARTNERSHIP</span>
                   <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-tight text-micron-grey1 leading-none font-sans">
                       AUTONOMOUS LIVING
                   </h2>
@@ -461,7 +461,7 @@ export const SectionServingTesla: React.FC = () => {
                                    {card.subtitle}
                                </p>
                                <div className="w-full h-px bg-white/20 mb-6" />
-                               <p className={`text-lg font-medium leading-relaxed ${card.descriptionColor}`}>
+                               <p className={`text-base font-medium leading-relaxed ${card.descriptionColor}`}>
                                    {card.content}
                                </p>
                            </div>

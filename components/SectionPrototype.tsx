@@ -226,7 +226,7 @@ const getCardData = (id: number): ModalContent => {
                         </h3>
                         <div className="w-full h-px bg-zinc-200 mb-4" />
                         
-                        <div className="text-zinc-600 text-lg font-medium leading-relaxed relative z-10">
+                        <div className="text-zinc-600 text-base font-medium leading-relaxed relative z-10">
                             <p>
                                 A private residence, hospitality platform, and real-world autonomy environment for Micron — where executives host, entertain, and engage with autonomous service, security, and daily use in a residential setting.
                             </p>
@@ -247,7 +247,7 @@ const getCardData = (id: number): ModalContent => {
                         <h3 className="text-xl font-black uppercase tracking-tight mb-4 text-micron-green relative z-10 leading-none">SERVICE & SECURITY</h3>
                         <div className="w-full h-px bg-zinc-200 mb-5 relative z-10" />
 
-                        <div className="flex flex-col gap-6 text-zinc-600 text-lg font-medium leading-relaxed relative z-10 flex-1">
+                        <div className="flex flex-col gap-6 text-zinc-600 text-base font-medium leading-relaxed relative z-10 flex-1">
                             <p>
                                 Five minutes from downtown. Fifteen from the airport. Fifteen from Micron headquarters.
                             </p>
@@ -267,7 +267,7 @@ const getCardData = (id: number): ModalContent => {
                     >
                         <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2 font-sans">INTEGRATION</h3>
                         <div className="w-full h-px bg-white/20 mb-4" />
-                        <div className="space-y-4 text-white/70 text-lg font-medium leading-relaxed flex-1">
+                        <div className="space-y-4 text-white/70 text-base font-medium leading-relaxed flex-1">
                             <p className="font-bold text-white text-xl">A Venue for Leadership.</p>
                             <p>A residential venue where Micron executives host, entertain, and recruit alongside Optimus and Cybercab in full operation. Board members and partners experience autonomous systems as part of daily life.</p>
                         </div>
@@ -283,7 +283,7 @@ const getCardData = (id: number): ModalContent => {
                     >
                         <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-400 mb-3 font-sans">INFLECTION POINT</h3>
                         <div className="w-full h-px bg-white/20 mb-4" />
-                        <div className="space-y-4 text-white/70 text-lg font-medium leading-relaxed flex-1">
+                        <div className="space-y-4 text-white/70 text-base font-medium leading-relaxed flex-1">
                             <p className="font-bold text-white text-xl">Scaling to Billions.</p>
                             <p>Tesla is scaling Optimus Gen 3 production at its Fremont factory, with over 1,000 units already deployed internally and a dedicated line targeting one million units annually. Micron House is operational at the earliest stage of that curve — generating institutional knowledge from day one.</p>
                         </div>
@@ -331,7 +331,7 @@ const getCardData = (id: number): ModalContent => {
                             delay={0.2}
                         >
                             <div className="w-full h-px bg-white/20 mb-4" />
-                            <div className="space-y-4 text-base md:text-lg text-white/90 leading-relaxed">
+                            <div className="space-y-4 text-base text-white/90 leading-relaxed">
                                 <p>
                                     The Boise River Greenbelt connects 25 miles of parkland through the city center. Bogus Basin is 45 minutes from downtown. Some of the best fly fishing, whitewater, and backcountry skiing in North America are all within reach.
                                 </p>
@@ -350,7 +350,7 @@ const getCardData = (id: number): ModalContent => {
                             transition={{ delay: 0.2, duration: 0.8 }}
                             className="w-full bg-white rounded-xl p-6 md:p-8 text-zinc-900 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] relative group flex flex-col justify-center lg:flex-1"
                         >
-                            <div className="text-zinc-600 text-lg font-medium leading-relaxed relative z-10">
+                            <div className="text-zinc-600 text-base font-medium leading-relaxed relative z-10">
                                 <p>
                                     Boise has arrived. A city once known for potatoes and public land now supports a James Beard-nominated culinary scene, world-class wineries across the Snake River Valley, a thriving arts and entertainment culture, and the kind of civic energy that comes with a Division I University town.
                                 </p>
@@ -366,7 +366,7 @@ const getCardData = (id: number): ModalContent => {
                             delay={0.4}
                         >
                              <div className="w-full h-px bg-white/20 mb-4" />
-                             <div className="space-y-4 text-white/90 text-base md:text-lg mb-3 leading-relaxed">
+                             <div className="space-y-4 text-white/90 text-base mb-3 leading-relaxed">
                                 <p>
                                     A city reaching cultural maturity. A semiconductor company deploying historic investment. A robotics company innovating autonomous systems.
                                 </p>
@@ -383,7 +383,7 @@ const getCardData = (id: number): ModalContent => {
                             delay={0.6}
                         >
                             <div className="w-full h-px bg-white/20 mb-4" />
-                            <p className="mb-2 text-base md:text-lg text-white/90 leading-relaxed">
+                            <p className="mb-2 text-base text-white/90 leading-relaxed">
                                 Micron executives, employees, and their guests live alongside, interact, and engage with the technology before the world does.
                             </p>
                         </InnerBento>
@@ -399,7 +399,7 @@ const getCardData = (id: number): ModalContent => {
                             delay={0.2}
                         >
                             <div className="w-full h-px bg-white/20 mb-4" />
-                            <div className="space-y-4 text-base md:text-lg text-white/90 leading-relaxed">
+                            <div className="space-y-4 text-base text-white/90 leading-relaxed">
                                 <p>
                                     The Boise River Greenbelt connects 25 miles of parkland through the city center. Bogus Basin is 45 minutes from downtown. Some of the best fly fishing, whitewater, and backcountry skiing in North America are all within reach.
                                 </p>
@@ -448,8 +448,8 @@ const getCardData = (id: number): ModalContent => {
                                 {/* UPDATED: Increased font size to text-sm */}
                                 <p className="text-sm font-bold uppercase tracking-widest text-white/50 mb-4">Sanjay Mehrotra, CEO</p>
                                 <div className="mb-2 pl-4 border-l-2 border-white/30">
-                                    {/* UPDATED: Standardized to text-lg for mobile/desktop (18px) */}
-                                    <p className="text-lg font-bold italic text-white/90 leading-relaxed tracking-tight">"Transform how the world uses information to enrich life for all."</p>
+                                    {/* UPDATED: Standardized to text-base for mobile/desktop (18px) */}
+                                    <p className="text-base font-bold italic text-white/90 leading-relaxed tracking-tight">"Transform how the world uses information to enrich life for all."</p>
                                 </div>
                             </div>
                             <div className="text-white/70 font-medium mt-4">
@@ -477,8 +477,8 @@ const getCardData = (id: number): ModalContent => {
                                 <p className="text-sm font-bold uppercase tracking-widest text-white/50 mb-4">Elon Musk, CEO</p>
                                 {/* UPDATED: Adjusted padding to pl-4 to match Micron card */}
                                 <div className="mb-2 pl-4 border-l-2 border-white/30">
-                                    {/* UPDATED: Standardized to text-lg for mobile/desktop (18px) */}
-                                    <p className="text-lg font-bold italic text-white/90 leading-relaxed tracking-tight">
+                                    {/* UPDATED: Standardized to text-base for mobile/desktop (18px) */}
+                                    <p className="text-base font-bold italic text-white/90 leading-relaxed tracking-tight">
                                         "Accelerate the world's transition to sustainable energy. Build a world of amazing abundance."
                                     </p>
                                 </div>
@@ -504,7 +504,7 @@ const getCardData = (id: number): ModalContent => {
                >
                     {/* UPDATED: Arrow moved to left side next to title (justify-start gap-4) and increased icon size */}
                     <div className="flex items-center justify-start gap-4 mb-4 pb-4 border-b border-micron-eggplant/20">
-                        <h3 className="text-3xl font-black uppercase tracking-tight text-white">FUTURE SCALE</h3>
+                        <h3 className="text-xl md:text-2xl font-black uppercase tracking-tight text-white">FUTURE SCALE</h3>
                         <TrendingUp className="text-white" size={32} />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
@@ -512,16 +512,16 @@ const getCardData = (id: number): ModalContent => {
                             <div>
                                 {/* UPDATED: Value text-white */}
                                 <h4 className="text-4xl font-black text-white tracking-tighter">$200B</h4>
-                                <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-600">Micron Investment</p>
+                                <p className="text-xs font-bold uppercase tracking-widest text-zinc-600">Micron Investment</p>
                             </div>
                             <div>
                                 {/* UPDATED: Value text-white */}
                                 <h4 className="text-4xl font-black text-white tracking-tighter">1M+</h4>
-                                <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-600">Optimus Capacity</p>
+                                <p className="text-xs font-bold uppercase tracking-widest text-zinc-600">Optimus Capacity</p>
                             </div>
                         </div>
-                        {/* UPDATED: Standardized to text-lg for mobile/desktop (18px) and Updated Text content */}
-                        <div className="md:col-span-8 flex flex-col gap-3 text-lg font-medium text-zinc-700 leading-relaxed justify-center">
+                        {/* UPDATED: Standardized to text-base for mobile/desktop (18px) and Updated Text content */}
+                        <div className="md:col-span-8 flex flex-col gap-3 text-base font-medium text-zinc-700 leading-relaxed justify-center">
                             <p>
                                 In June 2025, Micron announced <strong className="text-micron-eggplant">$200 billion</strong> in U.S. semiconductor manufacturing — the largest memory infrastructure commitment in American history.
                             </p>
@@ -569,7 +569,7 @@ const getCardData = (id: number): ModalContent => {
                         <Activity size={18} strokeWidth={2.5} /> ENERGY
                    </h3>
                    <div className="w-full h-px bg-white/30 mb-4" />
-                   <div className="text-white/60 text-base md:text-lg font-medium leading-relaxed">
+                   <div className="text-white/60 text-base font-medium leading-relaxed">
                        <p>In 1892, C.W. Moore piped 177°F geothermal water into his mansion — the <span className="font-bold text-white drop-shadow-sm">first home in America heated by natural hot water</span>. The idea spread down the avenue, then downtown, and by 1982 to the State Capitol.</p>
                        <p className="mt-3">Today, the same system delivers to roughly 300 homes — operational for over 130 years, the water temperature unchanged within one degree.</p>
                    </div>
@@ -587,7 +587,7 @@ const getCardData = (id: number): ModalContent => {
                         <Zap size={18} strokeWidth={2.5} /> CONFLUENCE
                    </h3>
                    <div className="w-full h-px bg-white/20 mb-4" />
-                   <div className="text-white/60 text-base md:text-lg font-medium leading-relaxed">
+                   <div className="text-white/60 text-base font-medium leading-relaxed">
                        <p><span className="font-bold text-white">The oldest residential energy system in the country meeting the newest</span> — on a street that has been absorbing the future for 130 years.</p>
                    </div>
                </InnerBento>
@@ -601,7 +601,7 @@ const getCardData = (id: number): ModalContent => {
                         <Globe size={18} strokeWidth={2.5} /> ADDRESS
                    </h3>
                    <div className="w-full h-px bg-white/30 mb-5" />
-                   <div className="text-white/60 text-base md:text-lg font-medium leading-relaxed">
+                   <div className="text-white/60 text-base font-medium leading-relaxed">
                        <p>Warm Springs Avenue is a tree-lined corridor on the <span className="font-bold text-white drop-shadow-sm">National Register of Historic Places</span> — where Boise's wealthiest families built homes heated by the city's most radical technology: hot water from the ground.</p>
                    </div>
                </InnerBento>
@@ -628,7 +628,7 @@ export const SectionPrototype: React.FC = () => {
             className="flex flex-col md:flex-row md:items-end gap-6 mb-12"
         >
             <div className="flex-shrink-0">
-                <span className="block text-xs font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2 font-sans">01 / VISION</span>
+                <span className="block text-sm font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2 font-sans">01 / VISION</span>
                 <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-tight text-micron-eggplant leading-none font-sans">WHY NOW</h2>
             </div>
 

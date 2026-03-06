@@ -46,7 +46,7 @@ const LocationPill = ({ label, time, color, icon, delay = 0 }: any) => (
     <div className="opacity-80">{icon}</div>
     <div className="w-full">
         <div className="flex justify-between items-end w-full">
-            <span className="text-[10px] font-bold uppercase tracking-widest leading-none">{label}</span>
+            <span className="text-xs font-bold uppercase tracking-widest leading-none">{label}</span>
             <span className="text-sm font-black leading-none">{time}</span>
         </div>
     </div>
@@ -85,7 +85,7 @@ const SpecCard = ({ title, icon, items, onGallery, className, gradient = "bg-zin
       </ul>
       
       <div className="mt-auto flex justify-end items-center gap-3">
-          <span className="text-[10px] font-bold uppercase tracking-widest text-white/60 group-hover:text-white transition-colors">
+          <span className="text-xs font-bold uppercase tracking-widest text-white/60 group-hover:text-white transition-colors">
               GALLERY
           </span>
           <div className="opacity-50 group-hover:opacity-100 transition-opacity duration-300">
@@ -119,19 +119,19 @@ const InfoCard = ({ title, subtitle, icon, text, className, gradient, image, onC
         <div className="flex justify-between items-start mb-4">
              <div className="flex items-center gap-3">
                  <div className={`text-white/70 group-hover:text-white group-hover:scale-110 transition-transform duration-300`}>{icon}</div>
-                 <h4 className="text-base md:text-lg font-black uppercase tracking-tight text-white/70 group-hover:text-white transition-colors leading-tight">{title}</h4>
+                 <h4 className="text-base font-black uppercase tracking-tight text-white/70 group-hover:text-white transition-colors leading-tight">{title}</h4>
              </div>
         </div>
         
         <div className="h-px w-full bg-white/20 mb-6 group-hover:bg-white/40 transition-colors" />
 
-        {/* UPDATED: Increased text size from text-sm md:text-base to text-base md:text-lg */}
-        <p className="text-base md:text-lg text-white/90 font-medium leading-relaxed mb-4 flex-1 drop-shadow-sm">
+        {/* UPDATED: Increased text size from text-sm md:text-base to text-base */}
+        <p className="text-base text-white/90 font-medium leading-relaxed mb-4 flex-1 drop-shadow-sm">
            {text}
         </p>
         
         <div className="mt-auto flex justify-end items-center gap-3">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-white/60 group-hover:text-white transition-colors">
+            <span className="text-xs font-bold uppercase tracking-widest text-white/60 group-hover:text-white transition-colors">
                 {subtitle}
             </span>
             <div className="opacity-50 group-hover:opacity-100 transition-opacity duration-300">
@@ -159,7 +159,7 @@ const ModalCard = ({ title, description, colorClass, icon, image, textColor="tex
               
               <div className="h-px w-full bg-white/20 mb-4" />
 
-              <div className="text-white/80 font-light leading-relaxed text-lg space-y-4">
+              <div className="text-white/80 font-light leading-relaxed text-base space-y-4">
                   {description}
               </div>
           </div>
@@ -213,7 +213,7 @@ const WhitepaperViewer: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ 
                     <div className="px-4 md:px-8 py-4 md:py-5 flex justify-between items-center border-b border-white/10 bg-black/50 flex-shrink-0">
                         <div>
                             <h2 className="text-base md:text-xl font-bold uppercase tracking-tight text-white">Lost Vibrations</h2>
-                            <p className="text-[9px] md:text-xs font-bold uppercase tracking-widest text-zinc-400 mt-0.5">White Paper — Lisa Wood 2025</p>
+                            <p className="text-xs md:text-xs font-bold uppercase tracking-widest text-zinc-400 mt-0.5">White Paper — Lisa Wood 2025</p>
                         </div>
                         <button onClick={onClose} className="rounded-full bg-white/5 p-2 text-zinc-400 hover:text-white hover:bg-white/10 transition-colors border border-white/10">
                             <X size={20} />
@@ -338,7 +338,7 @@ export const SectionProperty: React.FC = () => {
             content: (
                 <div className="flex flex-col gap-8 pb-4">
                     <div className="border-l-4 border-micron-eggplant-light pl-6 py-1">
-                         <p className="text-base md:text-lg font-light text-zinc-600 leading-relaxed font-body">
+                         <p className="text-base font-light text-zinc-600 leading-relaxed font-body">
                             Powered by a 177°F direct-use aquifer. Geothermal water flows through the home's radiators and feeds the outdoor soaking tub. The grounds feature mature fruit trees and a Concord grapevine.
                          </p>
                     </div>
@@ -402,7 +402,7 @@ export const SectionProperty: React.FC = () => {
                 <div className="flex flex-col gap-8 pb-4">
                      <div className="border-l-4 border-zinc-900 pl-6 py-1">
                          {/* UPDATED: Removed "Autonomous service via Cybercab and Optimus." as requested */}
-                         <p className="text-base md:text-lg font-light text-zinc-600 leading-relaxed font-body">
+                         <p className="text-base font-light text-zinc-600 leading-relaxed font-body">
                             A functional proving ground where abstract technology becomes a seamless, daily reality.
                          </p>
                     </div>
@@ -415,7 +415,7 @@ export const SectionProperty: React.FC = () => {
                                         <h3 className="text-xl font-bold uppercase tracking-tight">CYBERCAB</h3>
                                     </div>
                                     <div className="h-px w-full bg-white/20 mb-4" />
-                                    <div className="text-white/90 font-medium leading-relaxed text-lg space-y-4">
+                                    <div className="text-white/90 font-medium leading-relaxed text-base space-y-4">
                                         <p>Tesla's first fully autonomous vehicle — a two-passenger cabin with butterfly doors, inductive charging, and a 20.5-inch display. Cybercab manages all airport transfers, downtown shuttles, and guest logistics autonomously.</p>
                                     </div>
                                 </div>
@@ -438,7 +438,7 @@ export const SectionProperty: React.FC = () => {
                                         <h3 className="text-xl font-bold uppercase tracking-tight">OPTIMUS</h3>
                                     </div>
                                     <div className="h-px w-full bg-white/20 mb-4" />
-                                    <div className="text-white/90 font-medium leading-relaxed text-lg space-y-4">
+                                    <div className="text-white/90 font-medium leading-relaxed text-base space-y-4">
                                         <p>Tesla's Gen 3 humanoid — 5'8", 125 lbs, with 22 degrees of freedom in each hand and vision-based autonomy. Optimus manages property maintenance, perimeter monitoring, and routine service tasks within defined geofenced zones across the residence.</p>
                                     </div>
                                 </div>
@@ -566,22 +566,22 @@ export const SectionProperty: React.FC = () => {
              {/* 1906 */}
              <div className="bg-micron-eggplant text-white rounded-xl p-6 flex flex-col items-center justify-center shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] hover:shadow-[0_30px_60px_-12px_rgba(0,0,0,0.4)] hover:-translate-y-1 transition-all duration-300 border border-white/10">
                  <span className="text-4xl md:text-5xl font-black tracking-tighter">1906</span>
-                 <span className="text-[10px] font-bold uppercase tracking-widest opacity-70 mt-1">Year Built</span>
+                 <span className="text-xs font-bold uppercase tracking-widest opacity-70 mt-1">Year Built</span>
              </div>
              {/* 3,374 */}
              <div className="bg-micron-grey1 text-white rounded-xl p-6 flex flex-col items-center justify-center shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] hover:shadow-[0_30px_60px_-12px_rgba(0,0,0,0.4)] hover:-translate-y-1 transition-all duration-300 border border-white/10">
                  <span className="text-4xl md:text-5xl font-black tracking-tighter">3,374</span>
-                 <span className="text-[10px] font-bold uppercase tracking-widest opacity-70 mt-1">Square Feet</span>
+                 <span className="text-xs font-bold uppercase tracking-widest opacity-70 mt-1">Square Feet</span>
              </div>
              {/* 3/4 */}
              <div className="bg-micron-green text-white rounded-xl p-6 flex flex-col items-center justify-center shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] hover:shadow-[0_30px_60px_-12px_rgba(0,0,0,0.4)] hover:-translate-y-1 transition-all duration-300 border border-white/10">
                  <span className="text-4xl md:text-5xl font-black tracking-tighter">3/4</span>
-                 <span className="text-[10px] font-bold uppercase tracking-widest opacity-70 mt-1">Bed / Bath</span>
+                 <span className="text-xs font-bold uppercase tracking-widest opacity-70 mt-1">Bed / Bath</span>
              </div>
              {/* 1892 */}
              <div className="bg-micron-eggplant-light text-white rounded-xl p-6 flex flex-col items-center justify-center shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] hover:shadow-[0_30px_60px_-12px_rgba(0,0,0,0.4)] hover:-translate-y-1 transition-all duration-300 border border-white/10">
                  <span className="text-4xl md:text-5xl font-black tracking-tighter">1892</span>
-                 <span className="text-[10px] font-bold uppercase tracking-widest opacity-70 mt-1">Geothermal Rights</span>
+                 <span className="text-xs font-bold uppercase tracking-widest opacity-70 mt-1">Geothermal Rights</span>
              </div>
         </div>
 

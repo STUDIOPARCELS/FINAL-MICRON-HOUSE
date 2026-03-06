@@ -57,7 +57,7 @@ export const SectionTimeline: React.FC = () => {
           {/* Header Row - REMOVED OUTER BENTO WRAPPER */}
           <div className="mb-6 md:mb-12 flex flex-col md:flex-row md:items-end gap-6 md:gap-12 border-b border-zinc-100 pb-4 md:pb-8">
               <div className="flex-shrink-0">
-                  <span className="block text-xs font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2 font-sans">05 / DEPLOYMENT</span>
+                  <span className="block text-sm font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2 font-sans">05 / DEPLOYMENT</span>
                   {/* UPDATED: Changed color to text-micron-green */}
                   <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-tight text-micron-green leading-none font-sans">
                       ROADMAP
