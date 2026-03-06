@@ -418,9 +418,9 @@ export const SectionServingTesla: React.FC = () => {
               className="mb-12 flex flex-col md:flex-row md:items-end gap-12 border-b border-zinc-100 pb-8"
           >
               <div className="flex-shrink-0">
-                  <span className="block text-xs font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2 font-sans">05 / PARTNERSHIP</span>
+                  <span className="block text-xs font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2 font-sans">04 / PARTNERSHIP</span>
                   <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-tight text-micron-grey1 leading-none font-sans">
-                      LIVING WITH AUTONOMY
+                      AUTONOMOUS LIVING
                   </h2>
               </div>
               
@@ -428,7 +428,7 @@ export const SectionServingTesla: React.FC = () => {
                    <div className="pl-6 border-l-4 border-micron-eggplant-light/20 hover:border-micron-eggplant-light transition-colors duration-500">
                       <p className="text-base font-light text-zinc-600 leading-snug font-body">
                          <span className="font-bold text-micron-grey1 block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
-                             AUTONOMOUS ECOSYSTEM
+                             INTEGRATED ECOSYSTEM
                          </span>
                          The house also becomes a setting where autonomous systems are encountered at human scale. This gives Micron a private residential environment where service, security, movement, and daily use can be observed in practice.
                       </p>

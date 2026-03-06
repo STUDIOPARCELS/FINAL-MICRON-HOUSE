@@ -550,7 +550,7 @@ export const SectionProperty: React.FC = () => {
                        <span className="font-bold text-micron-eggplant-light block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
                            HISTORIC CONTEXT
                        </span>
-                       <p className="mb-4">
+                       <p className="mb-0">
                            Warm Springs gives the project historic depth, residential privacy, geothermal distinction, and immediate proximity to Boise's institutional core.
                        </p>
                        <p className="font-semibold text-micron-eggplant">

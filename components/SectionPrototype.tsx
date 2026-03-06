@@ -664,7 +664,7 @@ export const SectionPrototype: React.FC = () => {
                                 transition={{ duration: 1.5, delay: (mainTitleWords.length * 0.2) + 0.2 }}
                                 className="text-micron-eggplant block text-base"
                         >
-                            At the scale of infrastructure, memory, compute, autonomy, and mobility are converging. At the scale of daily life, those systems still require a place. Micron House proposes that place in Boise. <strong className="font-bold">Micron anchors Boise's technological identity.</strong>
+                            Memory, compute, autonomy, and mobility are converging at the scale of infrastructure. At the scale of daily life, those systems still require a place. Micron House proposes that place in Boise. <strong className="font-bold">Micron anchors Boise's technological identity.</strong>
                         </motion.span>
                     </div>
                 </div>

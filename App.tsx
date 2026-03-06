@@ -50,7 +50,7 @@ function App() {
     { label: "Vision", id: "prototype" },
     { label: "Property", id: "property" },
     { label: "Serving Micron", id: "serving" },
-    { label: "Living With Autonomy", id: "serving-tesla" },
+    { label: "Autonomous Living", id: "serving-tesla" },
     { label: "Timeline", id: "timeline" },
   ];
 
