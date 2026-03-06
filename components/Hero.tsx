@@ -616,8 +616,7 @@ export const Hero: React.FC = () => {
             {/* BOTTOM ROW: MANIFESTO — Word by word after quote finishes */}
             <div className="w-full pt-4 border-t border-white/10 select-none z-10 relative">
                 <motion.p 
-                    className="text-sm md:text-base lg:text-lg font-black uppercase tracking-wide leading-snug md:whitespace-nowrap"
-                    style={{ wordSpacing: '0.3em' }}
+                    className="font-micron text-base md:text-lg lg:text-xl tracking-normal leading-relaxed md:whitespace-nowrap text-center"
                     initial="hidden"
                     animate={shouldShowQuote ? "visible" : "hidden"}
                     variants={{
@@ -629,23 +628,20 @@ export const Hero: React.FC = () => {
                     }}
                 >
                     {[
-                        { text: "Without ", color: "rgba(44,15,56,0.4)" },
-                        { text: "Vision ", color: "rgba(44,15,56,0.85)" },
-                        { text: "there's ", color: "rgba(44,15,56,0.4)" },
-                        { text: "no ", color: "rgba(44,15,56,0.4)" },
-                        { text: "Velocity.", color: "rgba(44,15,56,0.85)" },
-                        { text: "\u00A0\u00A0\u00A0", color: "transparent" },
-                        { text: "Without ", color: "rgba(44,15,56,0.4)" },
-                        { text: "Memory ", color: "rgba(44,15,56,0.85)" },
-                        { text: "there's ", color: "rgba(44,15,56,0.4)" },
-                        { text: "no ", color: "rgba(44,15,56,0.4)" },
-                        { text: "Meaning.", color: "rgba(44,15,56,0.85)" },
-                        { text: "\u00A0\u00A0\u00A0", color: "transparent" },
-                        { text: "Without ", color: "rgba(44,15,56,0.4)" },
-                        { text: "Place ", color: "rgba(44,15,56,0.85)" },
-                        { text: "there's ", color: "rgba(44,15,56,0.4)" },
-                        { text: "no ", color: "rgba(44,15,56,0.4)" },
-                        { text: "Perspective.", color: "rgba(44,15,56,0.85)" },
+                        { text: "Without ", color: "rgba(0,80,20,0.4)" },
+                        { text: "Vision ", color: "rgba(0,80,20,0.9)" },
+                        { text: "there's no ", color: "rgba(0,80,20,0.4)" },
+                        { text: "Velocity.", color: "rgba(0,80,20,0.9)" },
+                        { text: "\u00A0\u00A0\u00A0\u00A0", color: "transparent" },
+                        { text: "Without ", color: "rgba(0,80,20,0.4)" },
+                        { text: "Memory ", color: "rgba(0,80,20,0.9)" },
+                        { text: "there's no ", color: "rgba(0,80,20,0.4)" },
+                        { text: "Meaning.", color: "rgba(0,80,20,0.9)" },
+                        { text: "\u00A0\u00A0\u00A0\u00A0", color: "transparent" },
+                        { text: "Without ", color: "rgba(0,80,20,0.4)" },
+                        { text: "Place ", color: "rgba(0,80,20,0.9)" },
+                        { text: "there's no ", color: "rgba(0,80,20,0.4)" },
+                        { text: "Perspective.", color: "rgba(0,80,20,0.9)" },
                     ].map((w, i) => (
                         <motion.span
                             key={i}
