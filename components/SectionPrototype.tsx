@@ -664,7 +664,7 @@ export const SectionPrototype: React.FC = () => {
                                 transition={{ duration: 1.5, delay: (mainTitleWords.length * 0.2) + 0.2 }}
                                 className="text-micron-eggplant block text-base"
                         >
-                            Memory, compute, autonomy, and mobility are converging at an industrial scale. At the scale of daily life, those systems require a place — and Micron already anchors Boise's technological identity.
+                            Memory, compute, autonomy, and mobility are converging at an industrial scale. At the scale of daily life, those systems require a place. Micron defines Boise's technological identity. Micron House gives that identity a physical address.
                         </motion.span>
                     </div>
                 </div>
