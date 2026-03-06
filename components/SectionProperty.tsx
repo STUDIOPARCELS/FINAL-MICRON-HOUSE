@@ -553,7 +553,7 @@ export const SectionProperty: React.FC = () => {
                        <p className="mb-0">
                            Warm Springs gives the project historic depth, residential privacy, geothermal distinction, and immediate proximity to Boise's institutional core.
                        </p>
-                       <p className="font-semibold text-micron-eggplant">
+                       <p className="font-medium text-zinc-700">
                            Boise offers privacy, access, regional distinction, and a growing cultural field that can be hosted at a high standard.
                        </p>
                     </div>
