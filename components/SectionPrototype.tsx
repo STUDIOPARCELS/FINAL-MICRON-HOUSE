@@ -468,7 +468,7 @@ const getCardData = (id: number): ModalContent => {
                                 }
                             }}
                             // UPDATED: Increased padding pl-10 md:pl-16
-                            className="bg-black rounded-xl p-6 pl-10 md:pl-16 text-white relative overflow-hidden flex flex-col justify-between shadow-lg flex-1 group hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 will-change-transform"
+                            className="bg-black rounded-xl p-6 text-white relative overflow-hidden flex flex-col justify-between shadow-lg flex-1 group hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 will-change-transform"
                         >
                             <div className="absolute top-4 right-4 opacity-30"><Bot size={24} /></div>
                             <div>
