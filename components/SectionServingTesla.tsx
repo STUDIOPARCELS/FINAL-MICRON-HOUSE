@@ -122,7 +122,7 @@ export const SectionServingTesla: React.FC = () => {
                             <h3 className="text-2xl font-bold tracking-tight text-white/90 mb-4">Partnership</h3>
                             <div className="text-zinc-300 font-light leading-relaxed text-lg space-y-4">
                                 <p>
-                                    Micron House is designed as a long-term relationship whose value grows through use: leadership stays, partner hosting, recruitment, relocation, and family support.
+                                    Micron House is conceived as a long-term relationship whose value grows through use: leadership stays, partner hosting, recruitment, relocation, and family support.
                                 </p>
                             </div>
                         </div>
