@@ -165,7 +165,7 @@ export const SectionServingTesla: React.FC = () => {
                                 <Mountain size={18} className="text-white/80" />
                                 <span className="font-bold uppercase text-xs tracking-widest">Earth</span>
                             </div>
-                            <p className="text-white/80 text-lg leading-relaxed font-medium">Boise, ground, home</p>
+                            <p className="text-white/80 text-lg leading-relaxed font-medium">Ground</p>
                         </div>
 
                         {/* Sky - Blue */}
@@ -174,7 +174,7 @@ export const SectionServingTesla: React.FC = () => {
                                 <Star size={18} className="text-white/80" />
                                 <span className="font-bold uppercase text-xs tracking-widest">Sky</span>
                             </div>
-                            <p className="text-white/80 text-lg leading-relaxed font-medium">Energy, infrastructure</p>
+                            <p className="text-white/80 text-lg leading-relaxed font-medium">Energy</p>
                         </div>
 
                         {/* Memory - Eggplant */}
@@ -183,7 +183,7 @@ export const SectionServingTesla: React.FC = () => {
                                 <Layers size={18} className="text-white/80" />
                                 <span className="font-bold uppercase text-xs tracking-widest">Memory</span>
                             </div>
-                            <p className="text-white/80 text-lg leading-relaxed font-medium">Intelligence, continuity</p>
+                            <p className="text-white/80 text-lg leading-relaxed font-medium">Intelligence</p>
                         </div>
 
                         {/* Vision - Grey */}
@@ -192,7 +192,7 @@ export const SectionServingTesla: React.FC = () => {
                                 <Eye size={18} className="text-white/80" />
                                 <span className="font-bold uppercase text-xs tracking-widest">Vision</span>
                             </div>
-                            <p className="text-white/80 text-lg leading-relaxed font-medium">Autonomy, systems, security</p>
+                            <p className="text-white/80 text-lg leading-relaxed font-medium">Autonomy</p>
                         </div>
                      </div>
 

@@ -122,7 +122,7 @@ export const SectionTimeline: React.FC = () => {
                         </h3>
                         
                         {/* Subtitle text */}
-                        <p className="text-xs text-white/60 font-medium leading-snug mt-1">
+                        <p className="text-sm text-white/70 font-medium leading-snug mt-1">
                             {item.subtitle}
                         </p>
                     </div>
