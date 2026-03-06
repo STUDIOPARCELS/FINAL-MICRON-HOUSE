@@ -363,7 +363,7 @@ export const Hero: React.FC = () => {
   }
 
   // UPDATED: Single Paragraph Quote with hyphen and lowercase 'd'
-  const quoteText = "A convergence of historic stewardship and autonomous future. The first corporate residence - designed for the era of artificial intelligence.";
+  const quoteText = "A private residence, hospitality platform, and real-world autonomy environment for Micron. A proposed new corporate asset class shaped by autonomous security, service, and place.";
   const quoteWords = quoteText.split(" ");
 
   // Shared container variants for the word-by-word animation

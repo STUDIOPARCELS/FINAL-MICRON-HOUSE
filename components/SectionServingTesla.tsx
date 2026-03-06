@@ -109,7 +109,7 @@ export const SectionServingTesla: React.FC = () => {
                          <div className="w-12 h-1 bg-micron-green/20 mb-6"></div>
                          <div className="space-y-4 text-zinc-600 leading-relaxed text-lg font-medium">
                             <p>I have lived in Idaho since 1992 and owned the Warm Springs property since 2000. After three decades in technology, I developed Micron House as a way to align a Boise property on Warm Springs Avenue with Micron's long-term presence and the lived arrival of autonomous systems.</p>
-                            <p>Micron House brings three commitments into one setting: <em className="italic font-normal">stewardship of the property, hospitality at a high standard, and careful observation of how autonomy changes daily experience.</em></p>
+                            <p>Micron House brings three commitments into one setting: <em className="italic font-normal">hospitality of high standard, stewardship of the property, and careful observation of how autonomy changes daily experience.</em></p>
                          </div>
                     </motion.div>
 
