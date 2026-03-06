@@ -536,7 +536,7 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 100 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
             transition={{ duration: 2.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="w-full bg-micron-eggplant-light rounded-3xl shadow-[0_40px_80px_-15px_rgba(0,0,0,0.3)] border border-white/20 relative overflow-hidden flex flex-col p-8 md:p-8 gap-6 md:gap-8 group"
+            className="w-full bg-micron-eggplant-light rounded-3xl shadow-[0_40px_80px_-15px_rgba(0,0,0,0.3)] border border-white/20 relative overflow-hidden flex flex-col p-6 md:p-8 gap-4 md:gap-6 group"
         >
             {/* TOP ROW: Paradigm + Quote + Map */}
             <div className="flex flex-col md:flex-row md:items-stretch flex-1 gap-4 md:gap-8">
@@ -613,49 +613,6 @@ export const Hero: React.FC = () => {
             </div>
             </div>
 
-            {/* BOTTOM ROW: MANIFESTO — Word by word after quote finishes */}
-            <div className="w-full pt-4 border-t border-white/10 select-none z-10 relative">
-                <motion.p 
-                    className="font-micron text-base md:text-lg lg:text-xl tracking-normal leading-relaxed md:whitespace-nowrap text-center"
-                    initial="hidden"
-                    animate={shouldShowQuote ? "visible" : "hidden"}
-                    variants={{
-                        hidden: { opacity: 0 },
-                        visible: { 
-                            opacity: 1, 
-                            transition: { staggerChildren: 0.36, delayChildren: 11 }
-                        }
-                    }}
-                >
-                    {[
-                        { text: "Without ", color: "rgba(0,80,20,0.4)" },
-                        { text: "Vision ", color: "rgba(0,80,20,0.9)" },
-                        { text: "there's no ", color: "rgba(0,80,20,0.4)" },
-                        { text: "Velocity.", color: "rgba(0,80,20,0.9)" },
-                        { text: "\u00A0\u00A0\u00A0\u00A0", color: "transparent" },
-                        { text: "Without ", color: "rgba(0,80,20,0.4)" },
-                        { text: "Memory ", color: "rgba(0,80,20,0.9)" },
-                        { text: "there's no ", color: "rgba(0,80,20,0.4)" },
-                        { text: "Meaning.", color: "rgba(0,80,20,0.9)" },
-                        { text: "\u00A0\u00A0\u00A0\u00A0", color: "transparent" },
-                        { text: "Without ", color: "rgba(0,80,20,0.4)" },
-                        { text: "Place ", color: "rgba(0,80,20,0.9)" },
-                        { text: "there's no ", color: "rgba(0,80,20,0.4)" },
-                        { text: "Perspective.", color: "rgba(0,80,20,0.9)" },
-                    ].map((w, i) => (
-                        <motion.span
-                            key={i}
-                            variants={{
-                                hidden: { opacity: 0, y: 6 },
-                                visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: "easeOut" } }
-                            }}
-                            style={{ color: w.color }}
-                        >
-                            {w.text}
-                        </motion.span>
-                    ))}
-                </motion.p>
-            </div>
         </motion.div>
 
       </div>
