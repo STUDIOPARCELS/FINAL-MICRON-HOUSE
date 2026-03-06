@@ -196,7 +196,7 @@ export const SectionServingTesla: React.FC = () => {
                         </div>
                      </div>
 
-                     <p className="text-base text-zinc-500 font-medium text-center mt-2">At the center is the house: a 1906 residence adapted for a new kind of corporate use.</p>
+                     <p className="text-base text-zinc-500 font-medium text-center mt-2">At the center is the house: a 1906 residence adapted<br/>for a new kind of corporate use.</p>
                 </motion.div>
             </div>
         )
