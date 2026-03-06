@@ -108,8 +108,8 @@ export const SectionServingTesla: React.FC = () => {
                          </div>
                          <div className="w-12 h-1 bg-micron-green/20 mb-6"></div>
                          <div className="space-y-4 text-zinc-600 leading-relaxed text-lg font-medium">
-                            <p>I have lived in Idaho since 1992 and have stewarded the Warm Springs property since 2000. After three decades in technology, I began developing Micron House as a way to align a historic Boise residence with Micron's long-term presence and the lived arrival of autonomous systems.</p>
-                            <p>Micron House brings three commitments into one setting: stewardship of a historic property, hospitality at a high standard, and careful observation of how autonomy changes daily experience.</p>
+                            <p>I have lived in Idaho since 1992 and owned the Warm Springs property since 2000. After three decades in technology, I developed Micron House as a way to align a Boise property on Warm Springs Avenue with Micron's long-term presence and the lived arrival of autonomous systems.</p>
+                            <p>Micron House brings three commitments into one setting: <em className="italic font-normal">stewardship of the property, hospitality at a high standard, and careful observation of how autonomy changes daily experience.</em></p>
                          </div>
                     </motion.div>
 
@@ -122,10 +122,7 @@ export const SectionServingTesla: React.FC = () => {
                             <h3 className="text-2xl font-bold tracking-tight text-white/90 mb-4">Partnership</h3>
                             <div className="text-zinc-300 font-light leading-relaxed text-lg space-y-4">
                                 <p>
-                                    Micron House is designed as a long-term relationship rather than a fixed program. Its value grows through use: leadership stays, partner hosting, recruitment, relocation, family support, and small strategic gatherings in a private residential environment.
-                                </p>
-                                <p>
-                                    The next step is a site visit and a working conversation about fit, scope, and priorities.
+                                    Micron House is designed as a long-term relationship whose value grows through use: leadership stays, partner hosting, recruitment, relocation, and family support.
                                 </p>
                             </div>
                         </div>
@@ -173,7 +170,7 @@ export const SectionServingTesla: React.FC = () => {
                                 <Star size={18} className="text-white/80" />
                                 <span className="font-bold uppercase text-xs tracking-widest">Sky</span>
                             </div>
-                            <p className="text-white/80 text-lg leading-relaxed font-medium">Energy, infrastructure, mobility</p>
+                            <p className="text-white/80 text-lg leading-relaxed font-medium">Energy, infrastructure</p>
                         </div>
 
                         {/* Memory - Eggplant */}
@@ -182,7 +179,7 @@ export const SectionServingTesla: React.FC = () => {
                                 <Layers size={18} className="text-white/80" />
                                 <span className="font-bold uppercase text-xs tracking-widest">Memory</span>
                             </div>
-                            <p className="text-white/80 text-lg leading-relaxed font-medium">Micron, intelligence, continuity</p>
+                            <p className="text-white/80 text-lg leading-relaxed font-medium">Intelligence, continuity</p>
                         </div>
 
                         {/* Vision - Grey */}
@@ -191,7 +188,7 @@ export const SectionServingTesla: React.FC = () => {
                                 <Eye size={18} className="text-white/80" />
                                 <span className="font-bold uppercase text-xs tracking-widest">Vision</span>
                             </div>
-                            <p className="text-white/80 text-lg leading-relaxed font-medium">Autonomy, systems, future use</p>
+                            <p className="text-white/80 text-lg leading-relaxed font-medium">Autonomy, systems, security</p>
                         </div>
                      </div>
 
