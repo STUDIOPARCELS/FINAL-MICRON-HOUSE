@@ -314,9 +314,11 @@ export const Hero: React.FC = () => {
     };
     document.addEventListener('touchstart', forcePlay, { once: true });
     document.addEventListener('click', forcePlay, { once: true });
+    document.addEventListener('scroll', forcePlay, { once: true });
     return () => {
         document.removeEventListener('touchstart', forcePlay);
         document.removeEventListener('click', forcePlay);
+        document.removeEventListener('scroll', forcePlay);
     };
   }, []);
 
@@ -339,12 +341,12 @@ export const Hero: React.FC = () => {
            <motion.span
                key={`${word}-${i}`}
                variants={{
-                   hidden: { opacity: 0, y: 8 },
+                   hidden: { opacity: 0, y: 2 },
                    visible: { 
                        opacity: 1, y: 0,
                        transition: { 
-                           duration: 1.6, 
-                           ease: [0.22, 1, 0.36, 1],
+                           duration: 2.0, 
+                           ease: [0.16, 1, 0.3, 1],
                            // 1s per word + 1s extra pause after the comma word (index 1)
                            // First part: 2s between words. Second part: 6s after VISION, then 1s stagger
                            delay: i < 2 ? i * 2.0 : 5.5 + (i - 2) * 1.0
@@ -500,6 +502,7 @@ export const Hero: React.FC = () => {
             >
                 <video 
                     ref={videoRef}
+                    autoPlay
                     loop={false} 
                     muted 
                     playsInline
