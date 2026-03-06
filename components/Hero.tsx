@@ -492,10 +492,7 @@ export const Hero: React.FC = () => {
             {/* UPDATED: Changed order to order-1 (Top on Mobile, Left on Desktop) */}
             {/* UPDATED: REMOVED DELAY so video plays instantly */}
             {/* UPDATED: Changed mobile height from aspect-[1.4/1] to aspect-[1.4/1] (Taller by ~10%) */}
-            <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
+            <div 
                 className="aspect-[1.4/1] h-auto xl:aspect-auto xl:h-full w-full rounded-3xl overflow-hidden relative shadow-[0_40px_80px_-15px_rgba(0,0,0,0.3)] hover:-translate-y-1 transition-transform duration-500 bg-black order-1 group"
             >
                 <video 
@@ -505,6 +502,7 @@ export const Hero: React.FC = () => {
                     muted 
                     playsInline
                     preload="auto"
+                    src="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/MH_VIDEOS/micron-house-hero-compressed.mp4"
                     onPlaying={() => {
                         if (videoRef.current) videoRef.current.playbackRate = 0.45;
                         setVideoIsPlaying(true);
@@ -513,9 +511,7 @@ export const Hero: React.FC = () => {
                     onEnded={handleVideoEnd}
                     onTimeUpdate={handleVideoTimeUpdate}
                     className="absolute inset-0 w-full h-full object-cover opacity-100"
-                >
-                     <source src="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/MH_VIDEOS/micron-house-hero-compressed.mp4" type="video/mp4" />
-                </video>
+                />
                 {/* Invisible overlay blocks iOS from rendering native play button — matches bento video pattern */}
                 <div className="absolute inset-0 z-[1]" style={{ WebkitTapHighlightColor: 'transparent' }} />
                 {/* Poster image overlay — shows until video actually plays, then fades out */}
@@ -527,7 +523,7 @@ export const Hero: React.FC = () => {
                     transition={{ duration: 0.8, ease: "easeOut" }}
                     className="absolute inset-0 w-full h-full object-cover pointer-events-none z-[2]"
                 />
-            </motion.div>
+            </div>
 
         </div>
 
