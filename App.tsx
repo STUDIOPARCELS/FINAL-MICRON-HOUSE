@@ -47,11 +47,11 @@ function App() {
   };
 
   const navLinks = [
-    { label: "Vision", id: "prototype" },
-    { label: "Property", id: "property" },
-    { label: "Serving Micron", id: "serving" },
-    { label: "Autonomous Living", id: "serving-tesla" },
-    { label: "Timeline", id: "timeline" },
+    { label: "Why Now", id: "prototype" },
+    { label: "The Property", id: "property" },
+    { label: "How It Serves Micron", id: "serving" },
+    { label: "Living With Autonomy", id: "serving-tesla" },
+    { label: "Next Step", id: "timeline" },
   ];
 
   return (
@@ -198,8 +198,11 @@ function App() {
                     {/* Brand Column */}
                     <div className="col-span-1 md:col-span-2">
                         <h3 className="text-4xl font-bold text-white mb-6 uppercase tracking-tight">Micron House</h3>
-                        <p className="text-zinc-500 text-lg max-w-md mb-8 leading-relaxed">
-                            A convergence of historic stewardship and autonomous future. The first corporate residence designed for the era of artificial intelligence.
+                        <p className="text-zinc-500 text-lg max-w-md mb-2 leading-relaxed">
+                            A private residence, hospitality platform, and real-world autonomy environment for Micron.
+                        </p>
+                        <p className="text-zinc-600 text-base max-w-md mb-8 leading-relaxed">
+                            A proposed new corporate asset class shaped by autonomous security, service, and place.
                         </p>
                         <div className="flex items-start gap-4 mb-2 group cursor-pointer text-base">
                             <MapPin className="text-micron-green mt-1 group-hover:text-white transition-colors flex-shrink-0" size={20} />
@@ -234,9 +237,9 @@ function App() {
                                 <a href="tel:2087202433" className="hover:text-white transition-colors">208.720.2433</a>
                             </li>
                             <li className="mt-8">
-                                <span className="inline-block px-4 py-1.5 border border-white/20 rounded-full text-sm text-zinc-500 uppercase tracking-widest">
-                                    Proposal v1
-                                </span>
+                                <a href="mailto:lisa@lisawoodstudio.com?subject=Micron%20House%20%E2%80%94%20Site%20Visit%20Request" className="inline-block px-6 py-2.5 bg-micron-green text-white rounded-full text-sm font-bold uppercase tracking-widest hover:bg-micron-green/80 transition-colors">
+                                    Request a Site Visit
+                                </a>
                             </li>
                         </ul>
                     </div>

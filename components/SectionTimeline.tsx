@@ -70,10 +70,10 @@ export const SectionTimeline: React.FC = () => {
                     <p className="text-base font-light text-zinc-600 leading-snug font-body">
                        {/* UPDATED: Changed color to text-micron-green */}
                        <span className="font-bold text-micron-green block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
-                           TIMELINE
+                           NEXT STEP
                        </span>
                        {/* Increased description size to text-base */}
-                       From agreement to installation, then testing to full autonomy as Cybercab and Optimus deploy to the property.
+                       From site visit to program alignment, property readiness, pilot use, and autonomy integration.
                     </p>
                  </div>
               </div>
@@ -117,7 +117,7 @@ export const SectionTimeline: React.FC = () => {
                         </div>
                         
                         {/* UPDATED: Reduced font size to text-lg md:text-xl to ensure single line for "PROTOCOL ASSESSMENT" */}
-                        <h3 className="text-lg md:text-xl font-black uppercase leading-[0.9] mb-2 tracking-tight drop-shadow-md whitespace-nowrap overflow-hidden text-ellipsis">
+                        <h3 className="text-lg md:text-xl font-black uppercase leading-[0.9] mb-2 tracking-tight drop-shadow-md">
                             {item.title}
                         </h3>
                         
