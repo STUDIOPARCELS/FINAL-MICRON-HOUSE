@@ -1,122 +1,294 @@
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { BentoCard } from './BentoCard';
 import { Modal } from './Modal';
 import { ModalContent } from '../types';
-import { ArrowUpRight, Play, Zap, BrainCircuit, Globe, Activity, ShieldCheck, Server, TrendingUp, Handshake, Building2, Cpu, Bot } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { Play, Zap, ShieldCheck, TrendingUp, Globe, Activity, Cpu, Bot, Building2, Check, ArrowRight, MessageSquare, Quote, Mountain } from 'lucide-react';
+import { motion, useInView } from 'framer-motion';
 
-// Helper component for inner bento cards within the modal
-// Updated to accept textColor and allow border overrides via className
-const InnerBento = ({ title, children, gradient, icon, className = "", delay = 0, textColor = "text-white" }: any) => (
-    <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ delay, duration: 0.5 }}
-        className={`
-            ${gradient} rounded-2xl p-6 md:p-8 ${textColor} relative overflow-hidden group 
-            shadow-[0_20px_40px_-12px_rgba(0,0,0,0.5)] 
-            border-t border-l border-white/20 border-b border-black/10 border-r border-black/5
-            ${className}
-        `}
-    >
-        {/* Decorative background element - Only if icon exists */}
-        {icon && (
-            <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                {icon}
-            </div>
-        )}
-        
-        {/* Top Highlight for 3D Bevel */}
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-50" />
+// --- GLOBAL iOS VIDEO UNLOCK ---
+// iOS blocks programmatic video.play() until first user gesture.
+// On first tap/click anywhere, try to play every video on the page.
+let videoUnlocked = false;
+const unlockVideos = () => {
+    if (videoUnlocked) return;
+    videoUnlocked = true;
+    document.querySelectorAll('video').forEach(v => {
+        if (v.paused) {
+            v.muted = true;
+            v.play().catch(() => {});
+        }
+    });
+    document.removeEventListener('touchstart', unlockVideos);
+    document.removeEventListener('click', unlockVideos);
+};
+if (typeof document !== 'undefined') {
+    document.addEventListener('touchstart', unlockVideos, { once: true });
+    document.addEventListener('click', unlockVideos, { once: true });
+}
 
-        <div className="relative z-10 h-full flex flex-col">
-            {(title || icon) && (
-                <h3 className="text-xl md:text-2xl font-black uppercase tracking-tight mb-4 flex items-center gap-3 drop-shadow-md">
-                    {icon && React.cloneElement(icon, { size: 24, strokeWidth: 1.5 })}
-                    {title}
-                </h3>
-            )}
-            {/* Removed 'text-white/90' hardcode, utilizing textColor prop */}
-            <div className={`text-sm md:text-base leading-relaxed font-body font-medium flex-1 drop-shadow-sm opacity-90`}>
-                {children}
+// --- VIDEO ASSETS ---
+const VIDEO_TIMING = "https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/MH_VIDEOS/micron-boise-timing.mp4";
+const VIDEO_COLLAB = "https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/MH_VIDEOS/micron-house-collaboration.mp4";
+const VIDEO_PLACE = "https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/MH_VIDEOS/cw-moore-history.mp4"; 
+const VIDEO_PROTOTYPE = "https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/MH_VIDEOS/micron-house-prototype.mp4";
+
+// --- HELPER COMPONENTS ---
+
+const InnerBento = ({ title, children, gradient, icon, className = "", delay = 0, textColor = "text-white", padding = "p-5", direction = "up" }: any) => {
+    // UPDATED: Standardized travel to y: 100 or x: 100 for consistent "visible motion"
+    let initial: { opacity: number; x?: number; y?: number } = { opacity: 0, y: 100 };
+    if (direction === "left") initial = { opacity: 0, x: -100 };
+    if (direction === "right") initial = { opacity: 0, x: 100 };
+    if (direction === "down") initial = { opacity: 0, y: -100 };
+
+    return (
+        <motion.div 
+            initial={initial}
+            whileInView={{ opacity: 1, x: 0, y: 0 }}
+            viewport={{ once: false }}
+            // UPDATED: Duration 2.5s and smooth easing
+            transition={{ delay, duration: 2.5, ease: [0.22, 1, 0.36, 1] }}
+            className={`
+                ${gradient} rounded-xl ${padding} ${textColor} relative overflow-hidden group 
+                shadow-[0_20px_40px_-12px_rgba(0,0,0,0.3)] 
+                flex flex-col justify-start
+                border-t border-l border-white/20 border-b border-white/10 border-r border-white/5
+                ${className}
+            `}
+        >
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-50" />
+
+            <div className="relative z-10 h-full flex flex-col gap-3">
+                {(title || icon) && (
+                    <div className="mb-1 shrink-0">
+                        <h3 className={`text-sm md:text-base font-black uppercase tracking-tight flex items-center gap-2 drop-shadow-md leading-none ${textColor === 'text-white' ? 'text-white/70' : ''}`}>
+                            {icon && React.cloneElement(icon, { size: 18, strokeWidth: 2 })}
+                            {title}
+                        </h3>
+                    </div>
+                )}
+                <div className={`leading-relaxed font-body font-normal flex-1 ${textColor === 'text-zinc-900' ? 'text-zinc-600' : 'text-white/80'}`}>
+                    {children}
+                </div>
             </div>
+        </motion.div>
+    );
+};
+
+const HoverVideoPlayer = ({ src, className = "", isHovering = false }: { src: string; className?: string; isHovering?: boolean }) => {
+    const videoRef = useRef<HTMLVideoElement>(null);
+    const containerRef = useRef(null);
+    const isInView = useInView(containerRef, { amount: 0.3 });
+    const [hasPlayed, setHasPlayed] = useState(false);
+
+    useEffect(() => {
+        const video = videoRef.current;
+        if (!video) return;
+
+        // Autoplay on scroll into view (all devices), replay on hover
+        const shouldPlay = isInView || isHovering;
+
+        if (shouldPlay) {
+            if (video.paused) {
+                if (video.ended || hasPlayed) video.currentTime = 0;
+                video.muted = true;
+                video.play().catch(() => {});
+            }
+        }
+        // Don't pause on scroll-away — let it finish playing
+    }, [isInView, isHovering, src]);
+
+    return (
+        <div 
+            ref={containerRef}
+            className={`w-full relative rounded-xl overflow-hidden mb-0 bg-black z-20 group/video ${className}`} 
+            style={{ aspectRatio: '1.5/1.1' }}
+        >
+            <video 
+                ref={videoRef}
+                key={src}
+                src={src} 
+                className="absolute inset-0 w-full h-full object-cover" 
+                muted 
+                playsInline 
+                preload="auto"
+                loop={false}
+                onEnded={() => setHasPlayed(true)}
+            />
+            {/* Invisible overlay blocks iOS from rendering native play button */}
+            <div className="absolute inset-0 z-10" style={{ WebkitTapHighlightColor: 'transparent' }} />
         </div>
-    </motion.div>
-);
+    );
+};
+
+// --- NEW COMPONENT: ModalVideo ---
+// Plays once, stops. Replays on hover or when scrolled back into view.
+const ModalVideo = ({ src, className = "" }: { src: string; className?: string }) => {
+    const videoRef = useRef<HTMLVideoElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const isInView = useInView(containerRef, { amount: 0.1 });
+    const [hasPlayed, setHasPlayed] = useState(false);
+
+    // Play via JS when in view (works on mobile without showing native controls)
+    useEffect(() => {
+        const video = videoRef.current;
+        if (!video) return;
+
+        if (isInView) {
+            if (video.paused) {
+                if (video.ended || hasPlayed) video.currentTime = 0;
+                video.muted = true;
+                video.play().catch(() => {});
+            }
+        }
+    }, [isInView, hasPlayed]);
+
+    const handleEnded = () => {
+        setHasPlayed(true);
+    };
+
+    const handleMouseEnter = () => {
+        const video = videoRef.current;
+        if (video) {
+             if (video.paused) {
+                 if (video.ended) video.currentTime = 0;
+                 video.play().catch(() => {});
+             }
+        }
+    };
+
+    return (
+        <div 
+            ref={containerRef} 
+            className={`relative overflow-hidden bg-black rounded-xl ${className}`} 
+            onMouseEnter={handleMouseEnter}
+        >
+             <video 
+                ref={videoRef}
+                src={src} 
+                className="w-full h-full object-cover" 
+                muted 
+                playsInline 
+                preload="metadata"
+                onEnded={handleEnded}
+                loop={false}
+            />
+            {/* Invisible overlay blocks iOS native play button */}
+            <div className="absolute inset-0 z-10" style={{ WebkitTapHighlightColor: 'transparent' }} />
+        </div>
+    )
+}
 
 const getCardData = (id: number): ModalContent => {
-  // Common config for all Prototype Section modals: Light Theme (White Background), Showcase Category
-  const base = { category: 'showcase' as const, theme: 'light' as const };
+  const base = { category: 'showcase' as const, theme: 'light' as const, maxWidth: 'max-w-6xl' };
 
   switch(id) {
     case 1: return { 
         ...base, 
         title: 'PROTOTYPE', 
-        subtitle: 'VISION',
+        subtitle: 'AUTONOMOUS HUB', 
+        modalLayout: 'default', 
+        maxWidth: 'max-w-7xl', 
         content: (
-            <div className="flex flex-col lg:flex-row gap-6 h-full min-h-[600px]">
-                {/* LEFT COLUMN: PORTRAIT VIDEO */}
-                <motion.div 
-                    initial={{ opacity: 0, scale: 0.98 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.1 }}
-                    className="w-full lg:w-4/12 bg-black rounded-2xl overflow-hidden shadow-2xl relative group cursor-pointer border-t border-white/20 border-b border-black/10 flex-shrink-0 order-1"
-                >
-                     <div className="absolute inset-0 opacity-80 bg-[url('https://images.unsplash.com/photo-1534996858221-380b92700493?q=80&w=1931&auto=format&fit=crop')] bg-cover bg-center transition-transform duration-700 group-hover:scale-105"></div>
-                     <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/30"></div>
-                     <div className="absolute inset-0 flex flex-col items-center justify-center z-20">
-                        <div className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-white/30 transition-all duration-300 shadow-[0_0_30px_rgba(255,255,255,0.3)]">
-                            <Play className="text-white fill-white ml-2" size={32} />
-                        </div>
-                        <h3 className="text-4xl font-black text-white uppercase tracking-tight drop-shadow-lg text-center leading-none">
-                            Cosmic<br/>Zoo
+            // UPDATED LAYOUT: SEAMLESS 2-ROW GRID
+            <div className="flex flex-col gap-6 h-full w-full">
+                
+                {/* ROW 1: VIDEO (2/3) + INTRO (1/3) */}
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full items-stretch">
+                    
+                    {/* VIDEO TILE - Spans 2 */}
+                    <div className="lg:col-span-2 w-full h-full min-h-[300px]">
+                         <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.1, duration: 0.8 }}
+                            className="w-full h-full"
+                         >
+                            {/* Force h-full to fill grid cell, object-cover handles aspect. Removed fixed aspect class. */}
+                            <ModalVideo 
+                                src={VIDEO_PROTOTYPE}
+                                className="w-full h-full shadow-[0_20px_40px_-12px_rgba(0,0,0,0.3)] border border-zinc-200 group object-cover"
+                            />
+                         </motion.div>
+                    </div>
+
+                    {/* INTRO TILE - Spans 1 */}
+                    <motion.div 
+                        initial={{ opacity: 0, x: 20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.3, duration: 0.8 }}
+                        className="lg:col-span-1 w-full bg-white rounded-xl p-6 md:p-8 text-zinc-900 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] relative overflow-hidden group flex flex-col justify-center h-full"
+                    >
+                        {/* UPDATED: Removed "Corporate", now "First Autonomous Residence" */}
+                        <h3 className="text-lg md:text-xl font-black text-black mb-3 leading-tight">
+                            First Autonomous Residence
                         </h3>
-                     </div>
-                </motion.div>
+                        <div className="w-full h-px bg-zinc-200 mb-4" />
+                        
+                        <div className="text-zinc-600 text-lg font-medium leading-relaxed relative z-10">
+                            <p>
+                                A private corporate residence powered by autonomous systems — where Micron hosts, entertains, and demonstrates the future it's building. Optimus and Cybercab units execute all logistics, delivering high-end culinary, wellness, and entertainment experiences with privacy and precision.
+                            </p>
+                        </div>
+                    </motion.div>
+                </div>
 
-                {/* RIGHT COLUMN: EXPANDED GRID */}
-                <div className="w-full lg:w-8/12 grid grid-cols-1 md:grid-cols-2 gap-4 order-2">
-                    {/* TOP CARD */}
-                    <InnerBento 
-                        title="SERVICE & SECURITY" 
-                        gradient="bg-micron-green" 
-                        icon={<ShieldCheck className="text-white/80" />}
-                        delay={0.2}
-                        className="md:col-span-2 flex flex-col justify-center"
+                {/* ROW 2: SERVICE (1/3) + INTEGRATION (1/3) + INFLECTION (1/3) */}
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full items-stretch">
+                    
+                    {/* SERVICE & SECURITY - Now in bottom row */}
+                     <motion.div 
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.4, duration: 0.8 }}
+                        className="w-full bg-white rounded-xl p-6 md:p-8 text-zinc-900 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] relative overflow-hidden group flex flex-col h-full"
                     >
-                        <p className="text-base md:text-lg leading-relaxed text-white font-medium">
-                            A secure, autonomous event hub centrally located in Boise. <span className="font-bold">Optimus and Cybercab units execute all logistics</span>, delivering high-end culinary, wellness, and entertainment experiences with privacy and precision.
-                        </p>
-                    </InnerBento>
+                        <h3 className="text-xl font-black uppercase tracking-tight mb-4 text-micron-green relative z-10 leading-none">SERVICE & SECURITY</h3>
+                        <div className="w-full h-px bg-zinc-200 mb-5 relative z-10" />
 
-                    {/* BOTTOM LEFT */}
+                        <div className="flex flex-col gap-6 text-zinc-600 text-lg font-medium leading-relaxed relative z-10 flex-1">
+                            <p>
+                                Five minutes from downtown. Fifteen from the airport. Fifteen from Micron headquarters.
+                            </p>
+                            <p>
+                                Optimus and Cybercab handle arrivals, departures, transfers, and coordinate deliveries, services, and experiences directly into the residence.
+                            </p>
+                        </div>
+                    </motion.div>
+
+                    {/* INTEGRATION */}
                     <InnerBento 
-                        title="INTEGRATION" 
                         gradient="bg-micron-eggplant" 
-                        icon={<Zap className="text-white/80" />}
-                        delay={0.3}
-                        className="flex flex-col justify-between"
+                        direction="up" 
+                        delay={0.5} 
+                        className="h-full" 
+                        padding="p-6 md:p-8"
                     >
-                        <p className="text-sm leading-relaxed text-white/80 font-medium mb-4">
-                            <span className="text-white font-bold block mb-2 text-lg">A Venue for Leadership.</span>
-                            A residential venue for the leaders building the future and the policymakers governing it. Guests gather to experience the shift to autonomous systems directly, turning abstract policy into practical understanding.
-                        </p>
+                        <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2 font-sans">INTEGRATION</h3>
+                        <div className="w-full h-px bg-white/20 mb-4" />
+                        <div className="space-y-4 text-white/70 text-lg font-medium leading-relaxed flex-1">
+                            <p className="font-bold text-white text-xl">A Venue for Leadership.</p>
+                            <p>A residential venue where Micron executives host, entertain, and recruit alongside Optimus and Cybercab in full operation. Board members and partners experience autonomous systems as part of daily life.</p>
+                        </div>
                     </InnerBento>
 
-                    {/* BOTTOM RIGHT */}
+                    {/* INFLECTION POINT */}
                     <InnerBento 
-                        title="INFLECTION POINT" 
                         gradient="bg-micron-grey1" 
-                        icon={<TrendingUp className="text-white/80" />}
-                        delay={0.4}
-                        className="flex flex-col justify-between"
+                        direction="up" 
+                        delay={0.6} 
+                        className="h-full" 
+                        padding="p-6 md:p-8"
                     >
-                        <p className="text-sm leading-relaxed text-white/80 font-medium mb-4">
-                            <span className="text-white font-bold block mb-2 text-lg">Scaling to Billions.</span>
-                            Autonomous systems are scaling from thousands to billions. Daily life transforms permanently. The leaders building that future and the policymakers governing it gather here to experience the shift firsthand and confront the profound questions it demands.
-                        </p>
+                        <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-400 mb-3 font-sans">INFLECTION POINT</h3>
+                        <div className="w-full h-px bg-white/20 mb-4" />
+                        <div className="space-y-4 text-white/70 text-lg font-medium leading-relaxed flex-1">
+                            <p className="font-bold text-white text-xl">Scaling to Billions.</p>
+                            <p>Tesla is scaling Optimus Gen 3 production at its Fremont factory, with over 1,000 units already deployed internally and a dedicated line targeting one million units annually. Micron House is operational at the earliest stage of that curve — generating institutional knowledge from day one.</p>
+                        </div>
                     </InnerBento>
+
                 </div>
             </div>
         )
@@ -125,109 +297,117 @@ const getCardData = (id: number): ModalContent => {
         ...base, 
         title: 'TIMING', 
         subtitle: "BOISE'S MOMENT",
+        maxWidth: 'max-w-7xl',
         content: (
-            <div className="flex flex-col lg:flex-row gap-6 h-full min-h-0">
-                {/* LEFT COLUMN: Video + Runway (Green) */}
-                <div className="lg:w-5/12 flex flex-col gap-6">
-                     <motion.div 
-                        initial={{ opacity: 0, scale: 0.98 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: 0.1 }}
-                        className="w-full aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl relative group cursor-pointer border-t border-white/20 border-b border-black/10 flex-shrink-0"
-                    >
-                         <div className="absolute inset-0 opacity-80 bg-[url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center transition-transform duration-700 group-hover:scale-105"></div>
-                         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/30"></div>
-                         <div className="absolute inset-0 flex flex-col items-center justify-center z-20">
-                             <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-white/30 transition-all duration-300">
-                                <Play className="text-white fill-white ml-1" size={24} />
+            // UPDATED: Removed redundant div wrapper and flex styling, cleaned up structure
+            <div className="flex flex-col gap-6 h-auto pb-12">
+               
+               <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 h-full">
+                   {/* LEFT COLUMN: VIDEO + BLUE TILE */}
+                   <div className="flex flex-col gap-6 lg:col-span-3">
+                       {/* VIDEO */}
+                       <div className="w-full aspect-[1.5/1.1]">
+                            <motion.div 
+                                initial={{ opacity: 0 }}
+                                whileInView={{ opacity: 1 }}
+                                transition={{ duration: 0.8 }}
+                                className="w-full h-full"
+                            >
+                                 <ModalVideo 
+                                    src={VIDEO_TIMING} 
+                                    className="w-full h-full shadow-[0_20px_40px_-12px_rgba(0,0,0,0.3)] border border-zinc-200"
+                                />
+                            </motion.div>
+                       </div>
+
+                       {/* RECREATION (Blue) - Hidden on mobile, shown in desktop left column */}
+                       <div className="hidden lg:block">
+                       <InnerBento 
+                            title="RECREATION" 
+                            gradient="bg-micron-eggplant-light" 
+                            icon={<Mountain />} 
+                            className="flex-1" 
+                            padding="pt-6 pb-6 px-8"
+                            delay={0.2}
+                        >
+                            <div className="w-full h-px bg-white/20 mb-4" />
+                            <div className="space-y-4 text-base md:text-lg text-white/90 leading-relaxed">
+                                <p>
+                                    The Boise River Greenbelt connects 25 miles of parkland through the city center. Bogus Basin is 45 minutes from downtown. Some of the best fly fishing, whitewater, and backcountry skiing in North America are all within reach.
+                                </p>
+                            </div>
+                        </InnerBento>
+                       </div>
+                   </div>
+                   
+                   {/* RIGHT COLUMN: NEW INTRO TILE + PURPLE + GREEN TILES */}
+                   <div className="flex flex-col gap-6 h-full lg:col-span-2">
+                        
+                        {/* 1. NEW INTRO TILE (White) - UPDATED: FLOATING EFFECT (No border, strong shadow) */}
+                        <motion.div 
+                            initial={{ opacity: 0, x: 20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.2, duration: 0.8 }}
+                            className="w-full bg-white rounded-xl p-6 md:p-8 text-zinc-900 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] relative group flex flex-col justify-center lg:flex-1"
+                        >
+                            <div className="text-zinc-600 text-lg font-medium leading-relaxed relative z-10">
+                                <p>
+                                    Boise has arrived. A city once known for potatoes and public land now supports a James Beard-nominated culinary scene, world-class wineries across the Snake River Valley, a thriving arts and entertainment culture, and the kind of civic energy that comes with a Division I University town.
+                                </p>
+                            </div>
+                        </motion.div>
+
+                        {/* 2. 3 ARCS CONVERGING (Purple) */}
+                        <InnerBento 
+                            title="3 ARCS CONVERGING" 
+                            gradient="bg-micron-eggplant" 
+                            icon={<Zap />} 
+                            className="flex-1"
+                            delay={0.4}
+                        >
+                             <div className="w-full h-px bg-white/20 mb-4" />
+                             <div className="space-y-4 text-white/90 text-base md:text-lg mb-3 leading-relaxed">
+                                <p>
+                                    A city reaching cultural maturity. A semiconductor company deploying historic investment. A robotics company innovating autonomous systems.
+                                </p>
                              </div>
-                             <h3 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tight drop-shadow-lg">
-                                The Window
-                             </h3>
-                         </div>
-                    </motion.div>
+                        </InnerBento>
 
-                    <InnerBento title="RUNWAY" gradient="bg-micron-green" delay={0.3} className="flex-1">
-                        <p className="text-sm leading-relaxed font-medium">The window to build, test, and refine the first autonomous corporate residence exists right now — before the technology scales to mass production and the conversation shifts from design to regulation.</p>
-                        <p className="mt-4 text-xs font-bold uppercase tracking-widest text-white/60">Defining the Standard</p>
-                    </InnerBento>
-                </div>
-
-                {/* RIGHT COLUMN */}
-                <div className="lg:w-7/12 flex flex-col gap-6">
-                    {/* BOISE'S MOMENT - Updated with Stats */}
-                    <InnerBento title="BOISE'S MOMENT" gradient="bg-micron-eggplant-light" delay={0.2}>
-                        <div className="space-y-6">
-                            <p className="text-sm leading-relaxed text-white/95 font-medium">
-                                <span className="font-bold text-white">Boise has arrived.</span> A city once known primarily for agriculture now supports a James Beard-nominated culinary scene, world-class wineries, and the civic energy of a Division I University town.
+                        {/* 3. RUNWAY (Green) */}
+                        <InnerBento 
+                            title="RUNWAY" 
+                            gradient="bg-micron-green" 
+                            icon={<Activity />} 
+                            className="flex-1" 
+                            padding="pt-6 pb-6 px-6"
+                            delay={0.6}
+                        >
+                            <div className="w-full h-px bg-white/20 mb-4" />
+                            <p className="mb-2 text-base md:text-lg text-white/90 leading-relaxed">
+                                Micron executives, employees, and their guests live alongside, interact, and engage with the technology before the world does.
                             </p>
-                            
-                            {/* Stats Row */}
-                            <div className="grid grid-cols-2 gap-4 border-t border-white/20 pt-4">
-                                <div>
-                                    <span className="block text-3xl font-black text-white">25</span>
-                                    <span className="text-[10px] font-bold uppercase tracking-widest text-white/70">Miles of Greenbelt</span>
-                                </div>
-                                <div>
-                                    <span className="block text-3xl font-black text-white">45</span>
-                                    <span className="text-[10px] font-bold uppercase tracking-widest text-white/70">Mins to Skiing</span>
-                                </div>
+                        </InnerBento>
+
+                        {/* RECREATION (Blue) - Mobile only, appears after Runway */}
+                        <div className="lg:hidden">
+                        <InnerBento 
+                            title="RECREATION" 
+                            gradient="bg-micron-eggplant-light" 
+                            icon={<Mountain />} 
+                            className="flex-1" 
+                            padding="pt-6 pb-6 px-8"
+                            delay={0.2}
+                        >
+                            <div className="w-full h-px bg-white/20 mb-4" />
+                            <div className="space-y-4 text-base md:text-lg text-white/90 leading-relaxed">
+                                <p>
+                                    The Boise River Greenbelt connects 25 miles of parkland through the city center. Bogus Basin is 45 minutes from downtown. Some of the best fly fishing, whitewater, and backcountry skiing in North America are all within reach.
+                                </p>
                             </div>
+                        </InnerBento>
                         </div>
-                    </InnerBento>
-
-                    {/* 3 ARCS CONVERGING - COMPLETELY REDESIGNED */}
-                    <InnerBento 
-                        title="3 ARCS CONVERGING" 
-                        gradient="bg-micron-eggplant" 
-                        className="flex-1"
-                        delay={0.4}
-                    >
-                        <div className="flex flex-col gap-3 h-full">
-                            {/* Light cards for readability inside the Purple Box */}
-                            <div className="flex flex-col gap-3">
-                                {/* 1. City */}
-                                <div className="bg-white rounded-xl p-4 flex gap-4 items-center shadow-lg transform transition-transform hover:scale-[1.02]">
-                                    <div className="bg-zinc-100 p-2 rounded-lg shrink-0">
-                                        <Building2 size={20} className="text-micron-eggplant" />
-                                    </div>
-                                    <div>
-                                        <h4 className="text-zinc-900 font-bold text-xs uppercase tracking-wider mb-0.5">Cultural Maturity</h4>
-                                        <p className="text-zinc-600 text-xs font-medium leading-snug">A city reaching its peak after decades of quiet growth.</p>
-                                    </div>
-                                </div>
-
-                                {/* 2. Micron */}
-                                <div className="bg-white rounded-xl p-4 flex gap-4 items-center shadow-lg transform transition-transform hover:scale-[1.02]">
-                                    <div className="bg-zinc-100 p-2 rounded-lg shrink-0">
-                                        <Cpu size={20} className="text-micron-green" />
-                                    </div>
-                                    <div>
-                                        <h4 className="text-zinc-900 font-bold text-xs uppercase tracking-wider mb-0.5">Infrastructure</h4>
-                                        <p className="text-zinc-600 text-xs font-medium leading-snug">Micron deploying $200B investment into its hometown.</p>
-                                    </div>
-                                </div>
-
-                                {/* 3. Tesla */}
-                                <div className="bg-white rounded-xl p-4 flex gap-4 items-center shadow-lg transform transition-transform hover:scale-[1.02]">
-                                    <div className="bg-zinc-100 p-2 rounded-lg shrink-0">
-                                        <Bot size={20} className="text-black" />
-                                    </div>
-                                    <div>
-                                        <h4 className="text-zinc-900 font-bold text-xs uppercase tracking-wider mb-0.5">Robotics</h4>
-                                        <p className="text-zinc-600 text-xs font-medium leading-snug">Tesla placing autonomous systems into the world.</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="mt-auto pt-4 border-t border-white/10 text-center">
-                                 <p className="text-white/80 text-xs leading-relaxed font-bold uppercase tracking-widest">
-                                    Converging on Warm Springs Ave
-                                 </p>
-                            </div>
-                        </div>
-                    </InnerBento>
-                </div>
+                   </div>
+               </div>
             </div>
         )
     };
@@ -235,182 +415,195 @@ const getCardData = (id: number): ModalContent => {
         ...base, 
         title: 'COLLABORATION', 
         subtitle: 'SHARED MISSIONS',
+        maxWidth: 'max-w-7xl',
         content: (
-            <div className="flex flex-col gap-6 h-full">
-                {/* ROW 1: THE PLAYERS */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 min-h-[250px]">
-                    <InnerBento 
-                        title="" 
-                        gradient="bg-micron-eggplant" 
-                        delay={0.1}
-                        className="flex flex-col justify-between"
-                    >
-                         <div>
-                            <div className="flex justify-between items-start mb-2">
-                                <h3 className="text-3xl font-black uppercase tracking-tight text-white leading-none">MICRON</h3>
-                                <Cpu size={24} className="text-micron-green" />
-                            </div>
-                            <p className="text-micron-green font-bold uppercase tracking-widest text-[10px] mb-4">Sanjay Mehrotra, CEO</p>
-                            <p className="text-xl md:text-2xl font-bold leading-tight mb-4 text-white tracking-tight italic">
-                                "Transform how the world uses information to enrich life for all."
-                            </p>
-                        </div>
-                        <div className="mt-auto pt-4 border-t border-white/20">
-                            <p className="text-white/80 text-sm leading-relaxed font-medium">
-                                Founded 1978, Boise. Today, every Tesla vehicle carries 20 Micron memory chips delivering a 30x bandwidth leap. The chips enabling Optimus originate here.
-                            </p>
-                        </div>
-                    </InnerBento>
+            // UPDATED: Added pb-12 for bottom padding
+            <div className="flex flex-col gap-6 h-auto pb-12">
+               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 h-full items-stretch">
+                   
+                   {/* UPDATED: Strictly enforced aspect-[1.5/1.1] to match BentoCard exactly */}
+                   <div className="w-full aspect-[1.5/1.1]">
+                        <ModalVideo 
+                            src={VIDEO_COLLAB} 
+                            className="w-full h-full shadow-[0_20px_40px_-12px_rgba(0,0,0,0.3)] border border-zinc-200 group"
+                        />
+                   </div>
 
-                    <InnerBento 
-                        title="" 
-                        gradient="bg-black" 
-                        delay={0.2}
-                        className="flex flex-col justify-between"
-                    >
-                         <div>
-                            <div className="flex justify-between items-start mb-2">
-                                <h3 className="text-3xl font-black uppercase tracking-tight text-white leading-none">TESLA</h3>
-                                <Bot size={24} className="text-zinc-400" />
+                   <div className="flex flex-col gap-4 h-full">
+                        {/* MICRON CARD - Updated to variants for smooth entry and will-change-transform */}
+                        <motion.div 
+                            variants={{ 
+                                hidden: { opacity: 0, x: 20 },
+                                visible: { 
+                                    opacity: 1, 
+                                    x: 0,
+                                    transition: { duration: 1.2, ease: [0.22, 1, 0.36, 1] } 
+                                }
+                            }}
+                            className="bg-micron-eggplant rounded-xl p-6 text-white relative overflow-hidden flex flex-col justify-between shadow-lg flex-1 group hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 will-change-transform"
+                        >
+                            <div className="absolute top-4 right-4 opacity-30"><Cpu size={24} /></div>
+                            <div>
+                                <h3 className="text-3xl font-black uppercase mb-1">MICRON</h3>
+                                {/* UPDATED: Increased font size to text-sm */}
+                                <p className="text-sm font-bold uppercase tracking-widest text-white/50 mb-4">Sanjay Mehrotra, CEO</p>
+                                <div className="mb-2 pl-4 border-l-2 border-white/30">
+                                    {/* UPDATED: Standardized to text-lg for mobile/desktop (18px) */}
+                                    <p className="text-lg font-bold italic text-white/90 leading-relaxed tracking-tight">"Transform how the world uses information to enrich life for all."</p>
+                                </div>
                             </div>
-                            <p className="text-zinc-400 font-bold uppercase tracking-widest text-[10px] mb-4">Elon Musk, CEO</p>
-                            <p className="text-xl md:text-2xl font-bold leading-tight mb-4 text-white tracking-tight italic">
-                                "Accelerate the world's transition to sustainable energy" & "Build a world of amazing abundance."
+                            <div className="text-white/70 font-medium mt-4">
+                                <p className="text-base font-medium text-white">Founded 1978.</p>
+                            </div>
+                        </motion.div>
+
+                        {/* TESLA CARD - Updated variants + Increased Padding + Quote Padding */}
+                        <motion.div 
+                            variants={{ 
+                                hidden: { opacity: 0, x: 20 },
+                                visible: { 
+                                    opacity: 1, 
+                                    x: 0,
+                                    transition: { duration: 1.2, delay: 0.1, ease: [0.22, 1, 0.36, 1] } 
+                                }
+                            }}
+                            // UPDATED: Increased padding pl-10 md:pl-16
+                            className="bg-black rounded-xl p-6 pl-10 md:pl-16 text-white relative overflow-hidden flex flex-col justify-between shadow-lg flex-1 group hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 will-change-transform"
+                        >
+                            <div className="absolute top-4 right-4 opacity-30"><Bot size={24} /></div>
+                            <div>
+                                <h3 className="text-3xl font-black uppercase mb-1">TESLA</h3>
+                                {/* UPDATED: Increased font size to text-sm */}
+                                <p className="text-sm font-bold uppercase tracking-widest text-white/50 mb-4">Elon Musk, CEO</p>
+                                {/* UPDATED: Adjusted padding to pl-4 to match Micron card */}
+                                <div className="mb-2 pl-4 border-l-2 border-white/30">
+                                    {/* UPDATED: Standardized to text-lg for mobile/desktop (18px) */}
+                                    <p className="text-lg font-bold italic text-white/90 leading-relaxed tracking-tight">
+                                        "Accelerate the world's transition to sustainable energy. Build a world of amazing abundance."
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="text-white/70 font-medium mt-4">
+                                <p className="text-base font-medium text-white">Founded 2003.</p>
+                            </div>
+                        </motion.div>
+                   </div>
+               </div>
+               
+               {/* FUTURE SCALE - Updated variants + Increased Text Size */}
+               <motion.div 
+                    variants={{ 
+                        hidden: { opacity: 0, x: -20 },
+                        visible: { 
+                            opacity: 1, 
+                            x: 0,
+                            transition: { duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] } 
+                        }
+                    }}
+                    className="bg-micron-eggplant-light rounded-xl p-6 text-zinc-900 shadow-[0_20px_40px_-12px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_60px_-12px_rgba(0,0,0,0.25)] hover:-translate-y-1 transition-all duration-300 will-change-transform"
+               >
+                    {/* UPDATED: Arrow moved to left side next to title (justify-start gap-4) and increased icon size */}
+                    <div className="flex items-center justify-start gap-4 mb-4 pb-4 border-b border-micron-eggplant/20">
+                        <h3 className="text-3xl font-black uppercase tracking-tight text-white">FUTURE SCALE</h3>
+                        <TrendingUp className="text-white" size={32} />
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+                        <div className="md:col-span-4 flex flex-col gap-4 border-b md:border-b-0 md:border-r border-micron-eggplant/20 pb-4 md:pb-0 justify-center">
+                            <div>
+                                {/* UPDATED: Value text-white */}
+                                <h4 className="text-4xl font-black text-white tracking-tighter">$200B</h4>
+                                <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-600">Micron Investment</p>
+                            </div>
+                            <div>
+                                {/* UPDATED: Value text-white */}
+                                <h4 className="text-4xl font-black text-white tracking-tighter">1M+</h4>
+                                <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-600">Optimus Capacity</p>
+                            </div>
+                        </div>
+                        {/* UPDATED: Standardized to text-lg for mobile/desktop (18px) and Updated Text content */}
+                        <div className="md:col-span-8 flex flex-col gap-3 text-lg font-medium text-zinc-700 leading-relaxed justify-center">
+                            <p>
+                                In June 2025, Micron announced <strong className="text-micron-eggplant">$200 billion</strong> in U.S. semiconductor manufacturing — the largest memory infrastructure commitment in American history.
+                            </p>
+                            <p>
+                                Tesla is scaling toward <strong className="text-micron-eggplant">one million Optimus units per year at Fremont, with consumer sales targeted by late 2026</strong>. Every unit is a mobile supercomputer requiring Micron silicon.
+                            </p>
+                            <p>
+                                Musk and Mehrotra are building toward a <strong className="text-micron-eggplant">future where autonomous systems outnumber people</strong>. The pace of that deployment carries weight — and Micron House is where the implications are explored firsthand.
                             </p>
                         </div>
-                        <div className="mt-auto pt-4 border-t border-white/20">
-                            <p className="text-white/80 text-sm leading-relaxed font-medium">
-                                Founded 2003. Leading the world in autonomous robotics. Optimus and Cybercab require Micron's advanced memory infrastructure.
-                            </p>
-                        </div>
-                    </InnerBento>
-                </div>
-
-                {/* ROW 2: FUTURE SCALE & VIDEO */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 flex-1 min-h-[300px]">
-                    {/* FUTURE SCALE - Gray Box (Light Theme) */}
-                    <InnerBento 
-                        title="FUTURE SCALE" 
-                        gradient="bg-zinc-100" 
-                        textColor="text-zinc-900" 
-                        delay={0.3}
-                        className="flex flex-col justify-between border-black/5"
-                    >
-                         <div className="flex flex-col gap-6 h-full">
-                             {/* Stats Header */}
-                             <div className="grid grid-cols-2 gap-4 border-b border-zinc-200 pb-4">
-                                 <div>
-                                    <span className="block text-4xl lg:text-5xl font-black tracking-tighter text-micron-eggplant leading-none">$200B</span>
-                                    <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Micron Investment</span>
-                                 </div>
-                                 <div>
-                                    <span className="block text-4xl lg:text-5xl font-black tracking-tighter text-micron-eggplant leading-none">1M+</span>
-                                    <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Optimus Capacity</span>
-                                 </div>
-                             </div>
-                             
-                             {/* Narrative Content */}
-                             <div className="space-y-4 overflow-y-auto pr-2 custom-scrollbar flex-1">
-                                 <p className="text-sm leading-relaxed text-zinc-700 font-medium">
-                                    In June 2025, Micron announced <span className="font-bold text-zinc-900">$200 billion</span> in U.S. semiconductor manufacturing — the largest memory infrastructure commitment in American history, creating 90,000 jobs.
-                                 </p>
-                                 <p className="text-sm leading-relaxed text-zinc-700 font-medium">
-                                    Tesla is targeting 50,000 Optimus units by this year and million-unit annual capacity beyond that. Every unit is a mobile supercomputer requiring Micron silicon.
-                                 </p>
-                                 <p className="text-sm leading-relaxed text-zinc-700 font-medium">
-                                    Under Elon Musk and Sanjay Mehrotra, these two companies are scaling toward a future where autonomous systems outnumber people — and both leaders have acknowledged that the speed of this transition carries a shared responsibility.
-                                 </p>
-                             </div>
-                        </div>
-                    </InnerBento>
-
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.98 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: 0.4 }}
-                        className="relative h-full min-h-[300px] bg-black rounded-2xl overflow-hidden shadow-2xl group cursor-pointer border border-black/10"
-                    >
-                         <div className="absolute inset-0 opacity-80 bg-[url('https://images.unsplash.com/photo-1625314877391-492d53c7c4b4?q=80&w=987&auto=format&fit=crop')] bg-cover bg-center transition-transform duration-700 group-hover:scale-105"></div>
-                         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/30"></div>
-                         <div className="absolute inset-0 flex flex-col items-center justify-center z-20">
-                            <div className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center group-hover:scale-110 group-hover:bg-white/30 transition-all duration-300">
-                                <Play className="text-white fill-white ml-1" size={32} />
-                            </div>
-                         </div>
-                         <div className="absolute bottom-8 left-8 right-8 z-20">
-                             <h3 className="text-3xl font-black text-white uppercase tracking-tight leading-none mb-2">
-                                The Partnership
-                             </h3>
-                             <p className="text-white/70 text-xs font-bold uppercase tracking-widest">
-                                Watch the Story
-                             </p>
-                         </div>
-                    </motion.div>
-                </div>
+                    </div>
+                </motion.div>
             </div>
         )
     };
     case 4: return { 
         ...base, 
-        title: 'FOUNDATION', 
+        title: 'PLACE',
         subtitle: 'GROUNDING THE TECHNOLOGY', 
+        maxWidth: 'max-w-7xl',
+        paddingClassName: 'px-10 md:px-12 pt-0 pb-10 md:pb-12',
         content: (
         <div className="flex flex-col gap-4 h-full">
-           <div className="w-full bg-micron-eggplant p-8 md:p-12 rounded-2xl border border-white/10 shadow-lg flex items-center justify-center text-center">
-               <p className="text-xl md:text-3xl font-black uppercase leading-tight tracking-tight">
-                 <span className="block md:inline mb-6 md:mb-0">
-                    <span className="text-white/50">WITHOUT MEMORY, </span><span className="text-white">THERE IS NO MEANING. </span>
-                 </span>
-                 <span className="block md:inline">
-                    <span className="text-white/50">WITHOUT PLACE, </span><span className="text-white">THERE IS NO PERSPECTIVE.</span>
-                 </span>
-               </p>
-           </div>
-           
-           <motion.div 
-                initial={{ opacity: 0, scale: 0.98 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.1 }}
-                className="w-full aspect-video bg-zinc-900 rounded-2xl overflow-hidden shadow-lg relative group border border-white/10 shrink-0"
-            >
-                 <img 
-                    src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=2070&auto=format&fit=crop" 
-                    alt="Historic Foundation" 
-                    className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700"
-                 />
-                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                 <div className="absolute bottom-6 left-6 md:bottom-8 md:left-10">
-                    <span className="text-micron-green font-bold uppercase tracking-widest text-xs md:text-sm mb-1 block">Est. 1890</span>
-                    <h4 className="text-white font-bold text-2xl md:text-4xl uppercase tracking-tight">The Historic Bedrock</h4>
-                 </div>
-           </motion.div>
-
-           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 flex-1 min-h-0">
+           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-stretch">
+               {/* UPDATED: Added wrapper with immediate animation trigger to prevent delay */}
+               <motion.div 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.5 }}
+                    className="w-full aspect-[1.5/1.1]"
+               >
+                    <ModalVideo 
+                        src={VIDEO_PLACE} 
+                        className="w-full h-full shadow-[0_20px_40px_-12px_rgba(0,0,0,0.3)] border border-zinc-200"
+                    />
+               </motion.div>
+               
+               {/* UPDATED: ENERGY - First (0.2) */}
                <InnerBento 
-                    title="ADDRESS" 
-                    gradient="bg-micron-green"
-                    icon={<Globe />}
+                    gradient="bg-micron-eggplant-light" 
+                    className="h-full flex flex-col"
                     delay={0.2}
                >
-                   <p className="text-sm leading-relaxed">Warm Springs Avenue began as a stagecoach route in the 1890s. Stone carriage steps still line the street where horses were hitched.</p>
+                   <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-white/90 mb-3 font-sans flex items-center gap-2">
+                        <Activity size={18} strokeWidth={2.5} /> ENERGY
+                   </h3>
+                   <div className="w-full h-px bg-white/30 mb-4" />
+                   <div className="text-white/60 text-base md:text-lg font-medium leading-relaxed">
+                       <p>In 1892, C.W. Moore piped 177°F geothermal water into his mansion — the <span className="font-bold text-white drop-shadow-sm">first home in America heated by natural hot water</span>. The idea spread down the avenue, then downtown, and by 1982 to the State Capitol.</p>
+                       <p className="mt-3">Today, the same system delivers to roughly 300 homes — operational for over 130 years, the water temperature unchanged within one degree.</p>
+                   </div>
+               </InnerBento>
+           </div>
+           
+           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-stretch">
+               
+               <InnerBento 
+                    gradient="bg-micron-grey1" 
+                    className="h-full flex flex-col"
+                    delay={0.6} // Confluence is Third
+               >
+                   <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-400 mb-3 font-sans flex items-center gap-2">
+                        <Zap size={18} strokeWidth={2.5} /> CONFLUENCE
+                   </h3>
+                   <div className="w-full h-px bg-white/20 mb-4" />
+                   <div className="text-white/60 text-base md:text-lg font-medium leading-relaxed">
+                       <p><span className="font-bold text-white">The oldest residential energy system in the country meeting the newest</span> — on a street that has been absorbing the future for 130 years.</p>
+                   </div>
                </InnerBento>
 
                <InnerBento 
-                    title="ENERGY" 
-                    gradient="bg-micron-eggplant-light"
-                    icon={<Activity />}
-                    delay={0.3}
+                    gradient="bg-micron-green" 
+                    className="h-full flex flex-col"
+                    delay={0.4} // Address is Second
                >
-                   <p className="text-sm leading-relaxed">In 1892, banker C.W. Moore piped 177-degree geothermal water into his brick mansion — the first home in America heated by natural hot water.</p>
-               </InnerBento>
-
-               <InnerBento 
-                    title="CONVERGENCE" 
-                    gradient="bg-micron-black"
-                    icon={<Zap />}
-                    delay={0.4}
-               >
-                   <p className="text-sm leading-relaxed">Micron House draws heat from the same aquifer. Hot water rising from below. Data arriving from above.</p>
+                   <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-white/90 mb-3 font-sans flex items-center gap-2">
+                        <Globe size={18} strokeWidth={2.5} /> ADDRESS
+                   </h3>
+                   <div className="w-full h-px bg-white/30 mb-5" />
+                   <div className="text-white/60 text-base md:text-lg font-medium leading-relaxed">
+                       <p>Warm Springs Avenue is a tree-lined corridor on the <span className="font-bold text-white drop-shadow-sm">National Register of Historic Places</span> — where Boise's wealthiest families built homes heated by the city's most radical technology: hot water from the ground.</p>
+                   </div>
                </InnerBento>
            </div>
         </div>
@@ -421,52 +614,42 @@ const getCardData = (id: number): ModalContent => {
 
 export const SectionPrototype: React.FC = () => {
   const [modalData, setModalData] = useState<ModalContent | null>(null);
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   const mainTitleWords = ["MICRON.", "TESLA.", "BOISE."];
-  
+
   return (
-    // Reduced padding: py-16 instead of py-24, adjusted px for mobile (px-4) vs desktop (px-12)
-    <section id="prototype" className="container mx-auto px-4 md:px-12 py-8 md:py-16 bg-white text-zinc-900">
-      
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, amount: 0.1 }}
-        transition={{ duration: 1.0 }}
-        className="pointer-events-auto"
-      >
-        {/* Header - Aligned with other sections */}
+    <section id="prototype" className="container mx-auto px-8 md:px-12 pt-0 pb-6 md:pb-12 text-zinc-900">
         <motion.div 
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 100 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="mb-12 flex flex-col md:flex-row md:items-end gap-12 border-b border-zinc-200 pb-8"
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ duration: 2.5, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-col md:flex-row md:items-end gap-6 mb-12"
         >
             <div className="flex-shrink-0">
                 <span className="block text-xs font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2 font-sans">01 / VISION</span>
-                <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-tight text-micron-green leading-none font-sans">A NEW DAY</h2>
+                <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-tight text-micron-eggplant leading-none font-sans">WHY NOW</h2>
             </div>
+
             <div className="md:ml-auto max-w-2xl pb-1">
-                <div className="pl-6 border-l-4 border-micron-eggplant/20 hover:border-micron-eggplant transition-colors duration-500">
+                <div className="md:pl-6 md:border-l-4 md:border-micron-eggplant/20 md:hover:border-micron-eggplant md:transition-colors md:duration-500">
                     <div className="text-base font-light text-zinc-600 leading-snug font-body">
-                        {/* MAIN HEADER: Text-2xl to 3xl */}
                         <span className="font-bold text-micron-eggplant block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans cursor-default">
                             {mainTitleWords.map((word, i) => (
                                 <motion.span 
                                         key={i}
                                         initial={{ opacity: 0, x: -5 }}
                                         whileInView={{ opacity: 1, x: 0 }}
-                                        viewport={{ once: true }}
+                                        viewport={{ once: false }}
                                         whileHover={{ 
                                             y: -4, 
                                             x: 2, 
                                             scale: 1.05, 
-                                            // LOGIC: BOISE=Green, TESLA=Black, Default=Eggplant
                                             color: word === "BOISE." ? '#008f25' : (word === "TESLA." ? '#000000' : '#2c0f38'),
                                             transition: { duration: 0.2 } 
                                         }}
-                                        transition={{ duration: 0.4, delay: i * 0.2 }} 
+                                        transition={{ duration: 1.5, delay: i * 0.2 }} 
                                         className="mr-3 inline-block"
                                 >
                                     {word}
@@ -474,36 +657,36 @@ export const SectionPrototype: React.FC = () => {
                             ))}
                         </span>
                         
-                        {/* DESCRIPTION: Text-Base */}
                         <motion.span 
                                 initial={{ opacity: 0 }}
                                 whileInView={{ opacity: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.8, delay: (mainTitleWords.length * 0.2) + 0.2 }}
-                                className="text-micron-eggplant block text-base" // CHANGED: text-zinc-600 -> text-micron-eggplant
+                                viewport={{ once: false }}
+                                transition={{ duration: 1.5, delay: (mainTitleWords.length * 0.2) + 0.2 }}
+                                className="text-micron-eggplant block text-base"
                         >
-                            Creating the first autonomous corporate residence. Where Micron's semiconductor revolution, Tesla's autonomous ecosystem, and Boise's emergence as a global tech hub converge at an inflection point — and 1020 Warm Springs Avenue delivers the first tangible glimpse of the autonomous era.
+                            At the scale of infrastructure, memory, compute, autonomy, and mobility are converging. At the scale of daily life, those systems still require a place. Micron House proposes that place in Boise. <strong className="font-bold">Micron anchors Boise's technological identity.</strong>
                         </motion.span>
                     </div>
                 </div>
             </div>
         </motion.div>
 
-        {/* Bento Grid - RESPONSIVE FIX: grid-cols-1 (mobile) -> grid-cols-2 (tablet) -> grid-cols-4 (desktop) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            
-            {/* Card 1: PROTOTYPE (Black) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <BentoCard 
-            className="flex flex-col min-h-[320px] md:h-[480px] p-8 relative overflow-hidden group" 
-            gradient="bg-micron-black" 
-            textColor="text-white"
-            borderColor="border-white/10"
-            delay={0.1} 
-            hoverEffect={true}
-            onClick={() => setModalData(getCardData(1))}
+                className="flex flex-col min-h-[320px] md:min-h-[500px] p-6 relative overflow-hidden group" 
+                gradient="bg-micron-grey1" 
+                textColor="text-white"
+                borderColor="border-white/10"
+                delay={0}
+                hoverEffect={true}
+                arrowPosition="bottom-right"
+                onClick={() => setModalData(getCardData(1))}
+                onMouseEnter={() => setHoveredCard(1)}
+                onMouseLeave={() => setHoveredCard(null)}
             >
-                <div className="relative z-10 mt-auto">
-                    <h3 className="text-4xl font-black uppercase leading-[0.9] tracking-tighter text-white group-hover:text-micron-green transition-colors duration-300 mb-4">
+                <HoverVideoPlayer src={VIDEO_PROTOTYPE} isHovering={hoveredCard === 1} />
+                <div className="relative z-10 mt-auto pt-6">
+                    <h3 className="text-3xl font-black uppercase leading-[0.9] tracking-tighter text-white group-hover:text-micron-eggplant-light transition-colors duration-300 mb-4">
                         PROTOTYPE
                     </h3>
                     <p className="text-xs font-bold uppercase tracking-widest text-white/50 group-hover:text-white transition-colors">
@@ -512,18 +695,21 @@ export const SectionPrototype: React.FC = () => {
                 </div>
             </BentoCard>
 
-            {/* Card 2: COLLABORATION (Blue) */}
             <BentoCard 
-            className="flex flex-col min-h-[320px] md:h-[480px] p-8 relative overflow-hidden group" 
-            gradient="bg-micron-eggplant-light" 
-            textColor="text-white"
-            borderColor="border-white/10"
-            delay={0.2} 
-            hoverEffect={true}
-            onClick={() => setModalData(getCardData(3))}
+                className="flex flex-col min-h-[320px] md:min-h-[500px] p-6 relative overflow-hidden group" 
+                gradient="bg-micron-eggplant-light" 
+                textColor="text-white"
+                borderColor="border-white/10"
+                delay={0.3}
+                hoverEffect={true}
+                arrowPosition="bottom-right"
+                onClick={() => setModalData(getCardData(3))}
+                onMouseEnter={() => setHoveredCard(3)}
+                onMouseLeave={() => setHoveredCard(null)}
             >
-                <div className="relative z-10 mt-auto">
-                    <h3 className="text-4xl font-black uppercase leading-[0.9] tracking-tighter text-white group-hover:text-micron-black transition-colors duration-300 mb-4">
+                <HoverVideoPlayer src={VIDEO_COLLAB} isHovering={hoveredCard === 3} />
+                <div className="relative z-10 mt-auto pt-6">
+                    <h3 className="text-3xl font-black uppercase leading-[0.9] tracking-tighter text-white group-hover:text-zinc-500 transition-colors duration-300 mb-4">
                         COLLABORATION
                     </h3>
                     <p className="text-xs font-bold uppercase tracking-widest text-white/50 group-hover:text-white transition-colors">
@@ -532,50 +718,57 @@ export const SectionPrototype: React.FC = () => {
                 </div>
             </BentoCard>
 
-            {/* Card 3: TIMING (Green) */}
             <BentoCard 
-                className="flex flex-col min-h-[320px] md:h-[480px] p-8 relative overflow-hidden group" 
-                gradient="bg-micron-green"
+                className="flex flex-col min-h-[320px] md:min-h-[500px] p-6 relative overflow-hidden group" 
+                gradient="bg-micron-eggplant"
                 textColor="text-white"
                 borderColor="border-white/10"
-                delay={0.3} 
+                delay={0.1}
+                duration={2.5}
                 hoverEffect={true}
+                arrowPosition="bottom-right"
                 onClick={() => setModalData(getCardData(2))}
+                onMouseEnter={() => setHoveredCard(2)}
+                onMouseLeave={() => setHoveredCard(null)}
             >
-            <div className="relative z-10 mt-auto">
-                    <h3 className="text-4xl font-black uppercase leading-[0.9] tracking-tighter text-white group-hover:text-micron-eggplant transition-colors duration-300 mb-4">
+                <HoverVideoPlayer src={VIDEO_TIMING} isHovering={hoveredCard === 2} />
+                <div className="relative z-10 mt-auto pt-6">
+                    <h3 className="text-3xl font-black uppercase leading-[0.9] tracking-tighter text-white group-hover:text-zinc-500 transition-colors duration-300 mb-4">
                         TIMING
                     </h3>
                     <p className="text-xs font-bold uppercase tracking-widest text-white/70 group-hover:text-white transition-colors">
                         Boise's Moment
                     </p>
-            </div>
+                </div>
             </BentoCard>
 
-            {/* Card 4: FOUNDATION (Eggplant) */}
             <BentoCard 
-            className="flex flex-col min-h-[320px] md:h-[480px] p-8 relative overflow-hidden group" 
-            gradient="bg-micron-eggplant" 
-            textColor="text-white" 
-            borderColor="border-white/10"
-            delay={0.4} 
-            hoverEffect={true}
-            onClick={() => setModalData(getCardData(4))}
+                className="flex flex-col min-h-[320px] md:min-h-[500px] p-6 relative overflow-hidden group" 
+                gradient="bg-micron-green" 
+                textColor="text-white" 
+                borderColor="border-white/10" 
+                delay={0.4}
+                duration={2.5}
+                hoverEffect={true}
+                arrowPosition="bottom-right"
+                onClick={() => setModalData(getCardData(4))}
+                onMouseEnter={() => setHoveredCard(4)}
+                onMouseLeave={() => setHoveredCard(null)}
             >
-                <div className="relative z-10 mt-auto">
-                    {/* CHANGED: group-hover text color from micron-green to micron-eggplant-light (blue) */}
-                    <h3 className="text-4xl font-black uppercase leading-[0.9] tracking-tighter text-white group-hover:text-micron-eggplant-light transition-colors duration-300 mb-4">
-                        FOUNDATION
+                <HoverVideoPlayer src={VIDEO_PLACE} isHovering={hoveredCard === 4} />
+                <div className="relative z-10 mt-auto pt-6">
+                    <h3 className="text-3xl font-black uppercase leading-[0.9] tracking-tighter text-white group-hover:text-micron-eggplant-light transition-colors duration-300 mb-4">
+                        PLACE
                     </h3>
                     <p className="text-xs font-bold uppercase tracking-widest text-white/50 group-hover:text-white transition-colors">
-                        Place & Perspective
+                        GROUNDING THE TECHNOLOGY
                     </p>
                 </div>
             </BentoCard>
 
         </div>
-      </motion.div>
+
       <Modal isOpen={!!modalData} onClose={() => setModalData(null)} data={modalData} />
     </section>
   );
-};
+}

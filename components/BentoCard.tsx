@@ -1,69 +1,93 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { CardProps } from '../types';
 import { ArrowUpRight } from 'lucide-react';
 
-export const BentoCard: React.FC<CardProps & { textColor?: string; borderColor?: string; arrowPosition?: 'top-right' | 'bottom-right' }> = ({ 
+// Extended props to support mouse events
+export const BentoCard: React.FC<CardProps & { 
+  textColor?: string; 
+  borderColor?: string; 
+  arrowPosition?: 'top-right' | 'bottom-right'; 
+  hideArrow?: boolean;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
+  hoverY?: number; // New prop for hover vertical distance
+}> = ({ 
   className = "", 
   children, 
   delay = 0, 
   onClick,
   hoverEffect = true,
-  // Default to a dark zinc if not provided
   gradient = "bg-zinc-900",
-  // New props for theming
   textColor = "text-white",
-  // Removed default black/dark borders, using very subtle white/alpha or transparent
-  borderColor = "border-white/5",
-  arrowPosition = "top-right"
+  borderColor = "border-white/10",
+  arrowPosition = "top-right",
+  hideArrow = false,
+  onMouseEnter,
+  onMouseLeave,
+  hoverY = -8, // Default value
+  // UPDATED: Changed duration to 1.5s for slower population as requested
+  initial = { opacity: 0, y: 50 },
+  whileInView = { opacity: 1, y: 0 },
+  viewport = { once: false, amount: 0.1, margin: "0px 0px -50px 0px" },
+  duration = 1.5 
 }) => {
-  // Determine arrow color based on text color prop
   const arrowColor = textColor.includes('black') || textColor.includes('zinc-900') ? 'text-zinc-900' : 'text-white';
 
+  // UPDATED: Tighter corner positioning (reduced spacing from 4/6 to 3/4)
   const arrowPosClass = arrowPosition === 'bottom-right' 
-    ? 'bottom-4 right-4 md:bottom-6 md:right-6' 
-    : 'top-4 right-4 md:top-6 md:right-6';
+    ? 'bottom-4 right-4 md:bottom-5 md:right-5' 
+    : 'top-4 right-4 md:top-5 md:right-5';
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.1 }} 
+      initial={initial}
+      whileInView={whileInView}
+      viewport={viewport} 
       transition={{ 
-        duration: 1.0,
-        ease: [0.25, 0.4, 0.25, 1],
-        delay: delay
+        duration: duration,
+        ease: [0.22, 1, 0.36, 1], 
+        delay: delay 
       }}
-      whileHover={hoverEffect ? { y: -8, transition: { duration: 0.3 } } : undefined}
+      whileHover={hoverEffect ? { y: hoverY, transition: { duration: 0.3 } } : undefined}
       onClick={onClick}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
       className={`
         relative overflow-hidden rounded-xl 
         ${gradient} ${textColor}
         border ${borderColor}
-        shadow-[0_20px_40px_-12px_rgba(0,0,0,0.5)] 
+        /* ENHANCED SHADOW FOR STRONG FLOATING LOOK */
+        shadow-[0_40px_80px_-12px_rgba(0,0,0,0.5)] 
         p-6 md:p-8
         flex flex-col
-        transition-all duration-300 ease-out
+        transition-colors transition-shadow duration-300 ease-out
         group
-        ${hoverEffect && onClick ? 'cursor-pointer hover:shadow-[0_40px_80px_-12px_rgba(0,0,0,0.6)]' : ''}
-        ${hoverEffect && !onClick ? 'hover:shadow-[0_40px_80px_-12px_rgba(0,0,0,0.4)]' : ''}
+        ${hoverEffect && onClick ? 'cursor-pointer hover:shadow-[0_50px_90px_-12px_rgba(0,0,0,0.55)]' : ''}
+        ${hoverEffect && !onClick ? 'hover:shadow-[0_50px_90px_-12px_rgba(0,0,0,0.5)]' : ''}
         ${className}
       `}
     >
-      {/* Subtle top light source for 3D bevel effect (Only visible on dark cards) */}
       {textColor === 'text-white' && (
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-100" />
       )}
       
-      {/* Content Container */}
       <div className="relative z-10 w-full h-full flex flex-col">
         {children}
       </div>
       
-      {/* Hover Arrow */}
-      {onClick && hoverEffect && (
-        <div className={`absolute ${arrowPosClass} z-20 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0`}>
-             <ArrowUpRight className={`${arrowColor} opacity-70`} size={20} />
+      {onClick && hoverEffect && !hideArrow && (
+        <div className={`
+            absolute ${arrowPosClass} z-20 
+            transition-all duration-300 
+            /* MOBILE: Always visible, increased opacity to 80 for visibility */
+            opacity-80
+            /* DESKTOP: Hidden initially, visible on hover */
+            md:opacity-0 md:group-hover:opacity-100 md:translate-y-2 md:group-hover:translate-y-0
+        `}>
+             {/* UPDATED: Reduced size from 20 to 16 for subtle look */}
+             <ArrowUpRight className={arrowColor} size={16} />
         </div>
       )}
     </motion.div>

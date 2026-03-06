@@ -1,54 +1,182 @@
-
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { BentoCard } from './BentoCard';
-import { MapPin, Plane, Building2, Trees, GraduationCap, Stethoscope, Utensils, Sprout, BedDouble, Images, ArrowUpRight, FileText, Home, Zap, Leaf, Map, Car, Thermometer, Waves, Activity, Bot, History, Droplets, X } from 'lucide-react';
+import { MapPin, Plane, Building2, Leaf, GraduationCap, Stethoscope, Home, ArrowUp, ArrowUpRight, Cpu, TreeDeciduous, Zap, Waves, Activity, Sprout, Clock, Car, Bot, Grape, Thermometer, ShieldCheck, History, Landmark, Timer, FileText, X } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Modal } from './Modal';
-import { ModalContent } from '../types';
+import { BentoCard } from './BentoCard'; 
+import { ModalContent, GalleryItem } from '../types';
 
-// Helper component for inner bento cards (reused here to keep component self-contained)
-// REMOVED: Black outlines (border-black/40 -> border-black/10)
-const InnerBento = ({ title, children, gradient, icon, className = "", delay = 0 }: any) => (
-    <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ delay, duration: 0.5 }}
-        className={`
-            ${gradient} rounded-2xl p-6 md:p-8 text-white relative overflow-hidden group 
-            shadow-[0_20px_40px_-12px_rgba(0,0,0,0.5)] 
-            border-t border-l border-white/20 border-b border-black/10 border-r border-black/5
-            ${className}
-        `}
-    >
-        {/* Decorative background element - Only if icon exists */}
-        {icon && (
-            <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                {icon}
-            </div>
-        )}
+// --- CONFIGURATION ---
+const BUCKET_BASE_URL = "https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE";
+
+// Helper to build URL based on folder presence
+const buildUrl = (folder: string, filename: string) => {
+    // UPDATED: Encode folder and filename to handle spaces (e.g., "MAIN FLOOR" -> "MAIN%20FLOOR")
+    const encodedFolder = folder ? encodeURIComponent(folder) : '';
+    const encodedFile = encodeURIComponent(filename);
+    // If folder is empty, return path from root, otherwise add folder slash
+    const path = encodedFolder ? `${encodedFolder}/${encodedFile}` : encodedFile;
+    return `${BUCKET_BASE_URL}/${path}`;
+};
+
+// --- HELPER COMPONENTS ---
+
+const StatCard = ({ children, delay = 0, className }: any) => (
+  <motion.div
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, amount: 0.2 }}
+    transition={{ duration: 1.5, delay, ease: [0.22, 1, 0.36, 1] }}
+    whileHover={{ y: -5, boxShadow: "0 35px 60px -12px rgba(0, 0, 0, 0.6)" }}
+    className={`${className} shadow-[0_30px_60px_-12px_rgba(0,0,0,0.5)]`}
+  >
+      {children}
+  </motion.div>
+);
+
+const LocationPill = ({ label, time, color, icon, delay = 0 }: any) => (
+<motion.div 
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, amount: 0.2 }}
+    transition={{ duration: 1.5, delay, ease: [0.22, 1, 0.36, 1] }}
+    whileHover={{ y: -5, scale: 1.02, boxShadow: "0 35px 60px -12px rgba(0, 0, 0, 0.6)" }}
+    className={`${color} rounded-xl p-3 flex flex-col justify-between items-start text-white shadow-[0_30px_60px_-12px_rgba(0,0,0,0.5)] cursor-default h-[80px] border border-white/10`}
+>
+    <div className="opacity-80">{icon}</div>
+    <div className="w-full">
+        <div className="flex justify-between items-end w-full">
+            <span className="text-[10px] font-bold uppercase tracking-widest leading-none">{label}</span>
+            <span className="text-sm font-black leading-none">{time}</span>
+        </div>
+    </div>
+</motion.div>
+);
+
+const SpecCard = ({ title, icon, items, onGallery, className, gradient = "bg-zinc-900", delay = 0 }: any) => (
+  <BentoCard 
+    gradient={gradient}
+    delay={delay}
+    onClick={onGallery}
+    hoverEffect={true}
+    hoverY={-5}
+    viewport={{ once: true, amount: 0.1 }} 
+    textColor="text-white"
+    borderColor="border-white/10"
+    className={`flex flex-col h-full ${className}`}
+    hideArrow={true}
+  >
+      <div className="flex items-center gap-3 mb-4">
+          <div className={`text-white/70 group-hover:text-white transition-colors duration-300`}>
+              {React.cloneElement(icon, { size: 24 })}
+          </div>
+          <h4 className={`text-2xl font-black uppercase tracking-tight text-white/70 group-hover:text-white transition-colors`}>{title}</h4>
+      </div>
+      
+      <div className="w-full h-px bg-white/20 mb-4" />
+
+      <ul className="space-y-3 mb-2 flex-1">
+          {items.map((item: string, i: number) => (
+              <li key={i} className={`flex items-start gap-3 text-sm md:text-base font-medium leading-snug text-white`}>
+                  <div className={`w-1.5 h-1.5 rounded-full mt-2 shrink-0 bg-white opacity-50`} />
+                  {item}
+              </li>
+          ))}
+      </ul>
+      
+      <div className="mt-auto flex justify-end items-center gap-3">
+          <span className="text-[10px] font-bold uppercase tracking-widest text-white/60 group-hover:text-white transition-colors">
+              GALLERY
+          </span>
+          <div className="opacity-50 group-hover:opacity-100 transition-opacity duration-300">
+              <ArrowUpRight size={20} />
+          </div>
+      </div>
+  </BentoCard>
+);
+
+const InfoCard = ({ title, subtitle, icon, text, className, gradient, image, onClick, delay = 0 }: any) => (
+  <BentoCard 
+    gradient={gradient}
+    delay={delay}
+    onClick={onClick}
+    hoverEffect={true}
+    hoverY={-5}
+    viewport={{ once: true, amount: 0.1 }}
+    textColor="text-white"
+    borderColor="border-white/10"
+    className={`flex flex-col h-full min-h-[240px] relative ${className}`}
+    hideArrow={true}
+  >
+      {image && (
+         <div className="absolute inset-0 w-full h-full z-0">
+            <img src={image} alt={title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <div className="absolute inset-0 bg-black/50 group-hover:bg-black/60 transition-colors duration-300" />
+         </div>
+      )}
+
+      <div className="relative z-10 flex flex-col h-full">
+        <div className="flex justify-between items-start mb-4">
+             <div className="flex items-center gap-3">
+                 <div className={`text-white/70 group-hover:text-white group-hover:scale-110 transition-transform duration-300`}>{icon}</div>
+                 <h4 className="text-base md:text-lg font-black uppercase tracking-tight text-white/70 group-hover:text-white transition-colors leading-tight">{title}</h4>
+             </div>
+        </div>
         
-        {/* Top Highlight for 3D Bevel */}
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-50" />
+        <div className="h-px w-full bg-white/20 mb-6 group-hover:bg-white/40 transition-colors" />
 
-        <div className="relative z-10 h-full flex flex-col">
-            {(title || icon) && (
-                <h3 className="text-xl md:text-2xl font-black uppercase tracking-tight mb-4 flex items-center gap-3 drop-shadow-md">
-                    {icon && React.cloneElement(icon, { size: 24, strokeWidth: 1.5 })}
-                    {title}
-                </h3>
-            )}
-            <div className="text-white/90 text-sm md:text-base leading-relaxed font-body font-medium space-y-4 flex-1 drop-shadow-sm">
-                {children}
+        {/* UPDATED: Increased text size from text-sm md:text-base to text-base md:text-lg */}
+        <p className="text-base md:text-lg text-white/90 font-medium leading-relaxed mb-4 flex-1 drop-shadow-sm">
+           {text}
+        </p>
+        
+        <div className="mt-auto flex justify-end items-center gap-3">
+            <span className="text-[10px] font-bold uppercase tracking-widest text-white/60 group-hover:text-white transition-colors">
+                {subtitle}
+            </span>
+            <div className="opacity-50 group-hover:opacity-100 transition-opacity duration-300">
+                <ArrowUpRight size={20} />
             </div>
         </div>
-    </motion.div>
+      </div>
+  </BentoCard>
+);
+
+const ModalCard = ({ title, description, colorClass, icon, image, textColor="text-white" }: any) => (
+  <div className={`${colorClass} rounded-2xl p-6 ${textColor} shadow-[0_30px_60px_-12px_rgba(0,0,0,0.5)] hover:shadow-[0_40px_80px_-12px_rgba(0,0,0,0.6)] hover:-translate-y-1 transition-all duration-300 flex flex-col h-full relative overflow-hidden group border border-white/10`}>
+      {image && (
+           <>
+              <img src={image} alt={title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+           </>
+      )}
+      <div className="relative z-10 flex flex-col h-full justify-between">
+          <div>
+              <div className="flex items-center gap-3 mb-4">
+                  {icon && React.cloneElement(icon, { size: 24, className: "text-white/80" })}
+                  <h3 className="text-xl font-bold uppercase tracking-tight">{title}</h3>
+              </div>
+              
+              <div className="h-px w-full bg-white/20 mb-4" />
+
+              <div className="text-white/80 font-light leading-relaxed text-lg space-y-4">
+                  {description}
+              </div>
+          </div>
+      </div>
+  </div>
 );
 
 // PDF Whitepaper Viewer — opens as a lightbox overlay on top of existing modals
 const WhitepaperViewer: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen, onClose }) => {
     const [mounted, setMounted] = useState(false);
-    useEffect(() => { setMounted(true); return () => setMounted(false); }, []);
+    const [isMobile, setIsMobile] = useState(false);
+    
+    useEffect(() => { 
+        setMounted(true); 
+        setIsMobile(window.innerWidth < 768);
+        return () => setMounted(false); 
+    }, []);
     useEffect(() => {
         if (isOpen) {
             const handleEsc = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
@@ -59,6 +187,12 @@ const WhitepaperViewer: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ 
 
     if (!mounted || !isOpen) return null;
 
+    const pdfUrl = `${BUCKET_BASE_URL}/LOST-VIBRATIONS-WHITEPAPER%20(1).pdf`;
+    // Google Docs viewer scales PDFs properly on mobile
+    const viewerUrl = isMobile 
+        ? `https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(pdfUrl)}`
+        : pdfUrl;
+
     return createPortal(
         <>
             <motion.div
@@ -68,30 +202,29 @@ const WhitepaperViewer: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ 
                 onClick={onClose}
                 className="fixed inset-0 z-[200] bg-zinc-950/80 backdrop-blur-md"
             />
-            <div className="fixed inset-0 z-[201] flex items-center justify-center p-4 md:p-8 pointer-events-none">
+            <div className="fixed inset-0 z-[201] flex items-center justify-center p-2 md:p-8 pointer-events-none">
                 <motion.div
                     initial={{ opacity: 0, scale: 0.95, y: 20 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.95, y: 20 }}
                     transition={{ type: "spring", damping: 30, stiffness: 350 }}
-                    className="pointer-events-auto relative w-full max-w-4xl h-[90vh] flex flex-col overflow-hidden rounded-2xl md:rounded-3xl bg-white shadow-2xl border border-zinc-200 ring-1 ring-zinc-200"
+                    className="pointer-events-auto relative w-full max-w-4xl h-[92vh] md:h-[90vh] flex flex-col overflow-hidden rounded-2xl md:rounded-3xl bg-zinc-950 shadow-2xl border border-white/10 ring-1 ring-white/5"
                 >
-                    {/* Header */}
-                    <div className="px-6 md:px-8 py-5 flex justify-between items-center border-b border-zinc-200 bg-zinc-50 flex-shrink-0">
+                    <div className="px-4 md:px-8 py-4 md:py-5 flex justify-between items-center border-b border-white/10 bg-black/50 flex-shrink-0">
                         <div>
-                            <h2 className="text-lg md:text-xl font-bold uppercase tracking-tight text-zinc-900">Lost Vibrations</h2>
-                            <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-zinc-400 mt-0.5">White Paper — Lisa Wood 2025</p>
+                            <h2 className="text-base md:text-xl font-bold uppercase tracking-tight text-white">Lost Vibrations</h2>
+                            <p className="text-[9px] md:text-xs font-bold uppercase tracking-widest text-zinc-400 mt-0.5">White Paper — Lisa Wood 2025</p>
                         </div>
-                        <button onClick={onClose} className="rounded-full bg-zinc-100 p-2 text-zinc-500 hover:text-zinc-900 hover:bg-zinc-200 transition-colors border border-zinc-200">
+                        <button onClick={onClose} className="rounded-full bg-white/5 p-2 text-zinc-400 hover:text-white hover:bg-white/10 transition-colors border border-white/10">
                             <X size={20} />
                         </button>
                     </div>
-                    {/* PDF iframe */}
                     <div className="flex-1 min-h-0 bg-white">
                         <iframe
-                            src="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/LOST-VIBRATIONS-WHITEPAPER.pdf"
+                            src={viewerUrl}
                             className="w-full h-full border-0"
                             title="Lost Vibrations White Paper"
+                            allow="autoplay"
                         />
                     </div>
                 </motion.div>
@@ -105,486 +238,451 @@ export const SectionProperty: React.FC = () => {
   const [modalData, setModalData] = useState<ModalContent | null>(null);
   const [showWhitepaper, setShowWhitepaper] = useState(false);
 
-  const openGallery = () => {
-    setModalData({
-        title: "PROPERTY LIBRARY",
+  const openLevelGallery = (level: 'main' | 'upper' | 'grounds') => {
+      let title = "";
+      
+      const galleryConfig = {
+          main: {
+              folder: "MAIN_FLOOR", 
+              files: [
+                  "1.webp",
+                  "img_0701.webp",
+                  "img_0705.webp",
+                  "img_0709-copy.webp",
+                  "img_0710.webp",
+                  "img_0735.webp",
+                  "img_0736.webp",
+                  "img_0737.webp",
+                  "img_0738.webp",
+                  "img_0754.webp",
+                  "img_0761.webp",
+                  "img_0762.webp",
+                  "living.0.webp",
+                  "dining.2.webp",
+                  "dining.6.webp",
+                  "entry-0.webp",
+                  "entry-1.webp",
+                  "kitchen.1.webp",
+                  "living.3.webp",
+                  "living.4.webp",
+                  "living.5.webp",
+                  "living.9.webp",
+                  "office.1.webp",
+                  "office.3.webp"
+              ]
+          },
+          upper: {
+              folder: "UPPER_FLOOR", 
+              files: [
+                  "br3_0.webp",
+                  "br2.3.webp",
+                  "br1.6.webp",
+                  "br2_8.webp",
+                  "br2.7.webp",
+                  "br1.7.webp",
+                  "stairs.webp",
+                  "3rd-ba_2.webp",
+                  "dusting.webp",
+                  "dusting2.webp",
+                  "img_0728.webp"
+              ]
+          },
+          grounds: {
+              folder: "HOUSE_GROUNDS", 
+              files: [
+                  "garden.2.webp",
+                  "img_0304.webp",
+                  "back-yard.webp",
+                  "exterior.3.webp",
+                  "exterior-4b.webp",
+                  "exterior_3.webp",
+                  "exterior_4.webp",
+                  "fall.webp",
+                  "front.winter.webp",
+                  "garden.10.webp",
+                  "night.webp"
+              ]
+          }
+      };
+
+      const config = galleryConfig[level];
+      
+      if (level === 'main') title = "MAIN LEVEL";
+      if (level === 'upper') title = "UPPER LEVEL";
+      if (level === 'grounds') title = "EXTERIOR";
+
+      const images: GalleryItem[] = config.files.map(filename => ({
+          url: buildUrl(config.folder, filename),
+          className: "aspect-[4/3]",
+          objectFit: 'contain'
+      }));
+
+      setModalData({
+        title: title,
         category: 'gallery',
+        galleryImages: images,
         content: null,
-    });
+      });
   };
 
-  const getModalContent = (type: string) => {
-    const base = { category: 'showcase' as const, theme: 'light' as const };
-    
-    switch (type) {
-        case 'wellness':
-            return {
-                ...base,
-                title: "WELLNESS & NATURE",
-                subtitle: "RESTORATIVE INFRASTRUCTURE",
-                content: (
-                    <div className="flex flex-col gap-6 h-full">
-                        {/* Summary Paragraph Added */}
-                        <p className="text-base text-zinc-600 font-light leading-relaxed border-l-4 border-micron-green pl-6 py-1">
-                            Powered by a 177°F direct-use aquifer. Geothermal water flows through the home’s radiators and feeds the outdoor soaking tub. The grounds feature mature fruit trees and a Concord grapevine.
-                        </p>
+  const openInfoModal = (type: 'wellness' | 'autonomous' | 'history') => {
+      if (type === 'wellness') {
+        setModalData({
+            title: "WELLNESS & NATURE",
+            subtitle: "RESTORATIVE INFRASTRUCTURE",
+            category: 'showcase',
+            theme: 'light',
+            modalLayout: 'default',
+            maxWidth: 'max-w-7xl',
+            headerClassName: "text-micron-eggplant-light",
+            content: (
+                <div className="flex flex-col gap-8 pb-4">
+                    <div className="border-l-4 border-micron-eggplant-light pl-6 py-1">
+                         <p className="text-base md:text-lg font-light text-zinc-600 leading-relaxed font-body">
+                            Powered by a 177°F direct-use aquifer. Geothermal water flows through the home's radiators and feeds the outdoor soaking tub. The grounds feature mature fruit trees and a Concord grapevine.
+                         </p>
+                    </div>
 
-                        {/* REVERTED: Grid Layout to 3 columns for portrait cards */}
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 flex-1">
-                            
-                            {/* Card 1: CONTRAST THERAPY - Text Only, Paragraphs */}
-                            <InnerBento 
-                                title="CONTRAST THERAPY" 
-                                gradient="bg-micron-eggplant-light" 
-                                icon={<Waves />}
-                                delay={0.1}
-                                className="flex flex-col h-full"
-                            >
-                                <div className="flex flex-col h-full gap-4">
-                                    <p>
-                                        Alternating thermal exposure drives circulation to flush systemic inflammation and accelerate deep tissue recovery.
-                                    </p>
-                                    <p>
-                                        The rapid temperature shift triggers a proven 250% increase in dopamine, delivering sustained alertness, mental clarity, and elevated mood.
-                                    </p>
-                                </div>
-                            </InnerBento>
-                            
-                            {/* Card 2: WHOLE BODY VIBRATION - Text Only, Paragraphs */}
-                            <InnerBento 
-                                title="WHOLE BODY VIBRATION" 
-                                gradient="bg-micron-grey1" 
-                                icon={<Activity />}
-                                delay={0.2}
-                                className="flex flex-col h-full"
-                            >
-                                <div className="flex flex-col h-full gap-4">
-                                    <p>
-                                        Invented in 1960 by Vladimir Nazarov for the Soviet Space Program to combat zero-gravity bone loss.
-                                    </p>
-                                    <p>
-                                        By engaging 90% of muscle fibers (vs. 40% in standard training), it rapidly builds bone density, counteracts neuropathy, and stimulates neuro-repair for improved mental health.
-                                    </p>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 flex-1">
+                        <ModalCard 
+                            title="CONTRAST THERAPY" 
+                            colorClass="bg-micron-eggplant-light"
+                            icon={<Waves />} 
+                            description={
+                                <>
+                                    <p>Alternating thermal exposure drives circulation to flush systemic inflammation and accelerate deep tissue recovery.</p>
+                                    <p>The rapid temperature shift triggers a proven <strong className="text-white font-bold drop-shadow-md">250% increase in dopamine</strong>, delivering sustained alertness, mental clarity, and elevated mood.</p>
+                                </>
+                            }
+                        />
+                         <ModalCard 
+                            title="WHOLE BODY VIBRATION" 
+                            colorClass="bg-micron-grey1"
+                            icon={<Activity />} 
+                            description={
+                                <>
+                                    <p>Invented in 1960 by Vladimir Nazarov for the Soviet Space Program to combat zero-gravity bone loss.</p>
+                                    <p>By engaging 90% of muscle fibers (vs. 40% in standard training), it <strong className="text-white font-bold drop-shadow-md">rapidly builds bone density</strong>, counteracts neuropathy, and stimulates neuro-repair for improved mental health.</p>
                                     <button 
                                         onClick={() => setShowWhitepaper(true)}
-                                        className="mt-auto pt-2 inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-white/60 hover:text-white/95 transition-all duration-300 group/link bg-transparent border-0 cursor-pointer"
+                                        className="mt-2 inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-sky-300/80 hover:text-sky-200 transition-all duration-300 group/link bg-transparent border-0 cursor-pointer p-0"
                                     >
-                                        <FileText size={12} strokeWidth={2} className="opacity-70 group-hover/link:opacity-100 transition-opacity" />
+                                        <FileText size={12} strokeWidth={2} className="opacity-80 group-hover/link:opacity-100 transition-opacity" />
                                         Read the White Paper
-                                        <ArrowUpRight size={10} strokeWidth={2.5} className="opacity-60 group-hover/link:opacity-100 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-all duration-300" />
+                                        <ArrowUpRight size={10} strokeWidth={2.5} className="opacity-70 group-hover/link:opacity-100 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-all duration-300" />
                                     </button>
+                                </>
+                            }
+                        />
+                         <ModalCard 
+                            title="ORGANIC GARDEN" 
+                            colorClass="bg-micron-green"
+                            icon={<Sprout />} 
+                            description={
+                                <>
+                                    <p>2025 research on the 'Soil-Plant-Gut Axis' confirms fresh-harvested produce delivers essential soil-based probiotics missing from sterilized commercial food.</p>
+                                    <p>Homegrown crops <strong className="text-white font-bold drop-shadow-md">retain up to 50% more nutrient density</strong> than store-bought options, directly fueling the gut microbiome and immune system.</p>
+                                </>
+                            }
+                        />
+                    </div>
+                </div>
+            )
+        });
+      } else if (type === 'autonomous') {
+          setModalData({
+            title: "AUTONOMOUS SERVICE",
+            subtitle: "LIVING LAB",
+            category: 'showcase',
+            theme: 'light',
+            modalLayout: 'default',
+            maxWidth: 'max-w-7xl',
+            headerClassName: "text-zinc-900",
+            content: (
+                <div className="flex flex-col gap-8 pb-4">
+                     <div className="border-l-4 border-zinc-900 pl-6 py-1">
+                         {/* UPDATED: Removed "Autonomous service via Cybercab and Optimus." as requested */}
+                         <p className="text-base md:text-lg font-light text-zinc-600 leading-relaxed font-body">
+                            A functional proving ground where abstract technology becomes a seamless, daily reality.
+                         </p>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 flex-1">
+                        <div className="bg-black rounded-2xl p-6 text-white shadow-[0_30px_60px_-12px_rgba(0,0,0,0.5)] hover:shadow-[0_40px_80px_-12px_rgba(0,0,0,0.6)] hover:-translate-y-1 transition-all duration-300 flex flex-col h-full relative overflow-hidden group border border-white/10">
+                            <div className="relative z-10 flex flex-col h-full justify-between">
+                                <div>
+                                    <div className="flex items-center gap-3 mb-4">
+                                        <Car size={24} className="text-white" />
+                                        <h3 className="text-xl font-bold uppercase tracking-tight">CYBERCAB</h3>
+                                    </div>
+                                    <div className="h-px w-full bg-white/20 mb-4" />
+                                    <div className="text-white/90 font-medium leading-relaxed text-lg space-y-4">
+                                        <p>Tesla's first fully autonomous vehicle — a two-passenger cabin with butterfly doors, inductive charging, and a 20.5-inch display. Cybercab manages all airport transfers, downtown shuttles, and guest logistics autonomously.</p>
+                                    </div>
                                 </div>
-                            </InnerBento>
+                                <div className="mt-6 rounded-xl overflow-hidden aspect-[16/9] border border-white/10">
+                                     <img src="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/cybercab%20photpo.WEBP" alt="Cybercab" className="w-full h-full object-cover" onError={(e) => {
+                                        // Fallback if image doesn't exist yet
+                                        e.currentTarget.style.display = 'none';
+                                     }}/>
+                                     {/* Fallback gradient if image fails */}
+                                     <div className="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900" style={{ display: 'none' }}></div> 
+                                </div>
+                            </div>
+                        </div>
 
-                            {/* Card 3: ORGANIC GARDEN - Text Only, Paragraphs */}
-                            <InnerBento 
-                                title="ORGANIC GARDEN" 
-                                gradient="bg-micron-green" 
-                                icon={<Sprout />}
-                                delay={0.3}
-                                className="flex flex-col h-full"
-                            >
-                                <div className="flex flex-col h-full gap-4">
-                                    <p>
-                                        2025 research on the "Soil-Plant-Gut Axis" confirms fresh-harvested produce delivers essential soil-based probiotics missing from sterilized commercial food.
-                                    </p>
-                                    <p>
-                                        Homegrown crops retain up to 50% more nutrient density than store-bought options, directly fueling the gut microbiome and immune system.
-                                    </p>
+                         <div className="bg-micron-eggplant-light rounded-2xl p-6 text-white shadow-[0_30px_60px_-12px_rgba(0,0,0,0.5)] hover:shadow-[0_40px_80px_-12px_rgba(0,0,0,0.6)] hover:-translate-y-1 transition-all duration-300 flex flex-col h-full relative overflow-hidden group border border-white/10">
+                            <div className="relative z-10 flex flex-col h-full justify-between">
+                                <div>
+                                    <div className="flex items-center gap-3 mb-4">
+                                        <Bot size={24} className="text-white" />
+                                        <h3 className="text-xl font-bold uppercase tracking-tight">OPTIMUS</h3>
+                                    </div>
+                                    <div className="h-px w-full bg-white/20 mb-4" />
+                                    <div className="text-white/90 font-medium leading-relaxed text-lg space-y-4">
+                                        <p>Tesla's Gen 3 humanoid — 5'8", 125 lbs, with 22 degrees of freedom in each hand and vision-based autonomy. Optimus manages property maintenance, perimeter monitoring, and routine service tasks within defined geofenced zones across the residence.</p>
+                                    </div>
                                 </div>
-                            </InnerBento>
+                                <div className="mt-6 rounded-xl overflow-hidden aspect-[16/9] border border-white/10">
+                                     <img src="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/tesla-optimus-gen-3-delay.png" alt="Optimus" className="w-full h-full object-cover object-top" />
+                                </div>
+                            </div>
                         </div>
                     </div>
-                )
-            };
-        case 'autonomous':
-            return {
-                ...base,
-                title: "AUTONOMOUS SERVICE",
-                subtitle: "LIVING LAB",
-                content: (
-                    <div className="flex flex-col gap-6 h-full">
-                        {/* Summary Paragraph Added */}
-                        <p className="text-base text-zinc-600 font-light leading-relaxed border-l-4 border-micron-grey1 pl-6 py-1">
-                            Autonomous service via Cybercab and Optimus. A functional proving ground where abstract technology becomes a seamless, daily reality.
-                        </p>
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 flex-1">
-                            <InnerBento 
-                                title="CYBERCAB" 
-                                gradient="bg-micron-black" 
-                                // FLIPPED: scale-x-[-1] to face left
-                                icon={<Car className="scale-x-[-1]" />}
-                                delay={0.1}
-                                className="flex flex-col h-full"
-                            >
-                                <div className="flex flex-col h-full justify-between gap-6">
-                                    <p>Tesla's first fully autonomous vehicle — a two-passenger cabin with butterfly doors, inductive charging, and a 20.5-inch display. Cybercab manages all airport transfers, downtown shuttles, and guest logistics autonomously.</p>
-                                    <div className="aspect-square w-full rounded-xl overflow-hidden relative shadow-lg border border-white/10 mt-auto">
-                                        {/* Placeholder for Cybercab */}
-                                        <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?q=80&w=2070&auto=format&fit=crop" className="absolute inset-0 w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-700" alt="Cybercab" />
-                                    </div>
-                                </div>
-                            </InnerBento>
-                            
-                            <InnerBento 
-                                title="OPTIMUS" 
-                                gradient="bg-micron-eggplant-light" 
-                                icon={<Bot />}
-                                delay={0.2}
-                                className="flex flex-col h-full"
-                            >
-                                <div className="flex flex-col h-full justify-between gap-6">
-                                    <p>Tesla's Gen 3 humanoid — 5'8", 125 lbs, with 22 degrees of freedom in each hand and vision-based autonomy. Optimus manages property maintenance, perimeter monitoring, and routine service tasks within defined geofenced zones across the residence.</p>
-                                    <div className="aspect-square w-full rounded-xl overflow-hidden relative shadow-lg border border-white/10 mt-auto">
-                                        {/* Placeholder for Optimus */}
-                                        <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=2070&auto=format&fit=crop" className="absolute inset-0 w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-700" alt="Optimus" />
-                                    </div>
-                                </div>
-                            </InnerBento>
+                </div>
+            )
+          });
+      } else if (type === 'history') {
+          setModalData({
+            title: "HISTORIC LEGACY",
+            category: 'showcase',
+            theme: 'light',
+            modalLayout: 'default',
+            maxWidth: 'max-w-6xl',
+            headerClassName: "text-zinc-900",
+            content: (
+                <div className="flex flex-col md:flex-row gap-6 h-full pb-4 items-stretch">
+                     {/* LEFT: IMAGE */}
+                     <div className="w-full md:w-1/2 min-h-[400px] md:min-h-0">
+                        <div className="w-full h-full rounded-2xl overflow-hidden relative shadow-2xl border border-zinc-200">
+                             <img 
+                                src="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/old%20warm%20springs%20(1).webp" 
+                                alt="Historic Carriage" 
+                                className="absolute inset-0 w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                                onError={(e) => {
+                                    // Fallback to one of the gallery images if specific one fails
+                                    e.currentTarget.src = buildUrl("HOUSE_GROUNDS", "exterior_4.webp");
+                                }}
+                             />
+                             <div className="absolute inset-0 bg-zinc-900/10 pointer-events-none" />
                         </div>
-                    </div>
-                )
-            };
-        case 'historic':
-            return {
-                ...base,
-                title: "HISTORIC LEGACY",
-                subtitle: "1890 - PRESENT",
-                content: (
-                    <div className="flex flex-col gap-6 h-full">
-                        {/* Summary Paragraph Added */}
-                        <p className="text-base text-zinc-600 font-light leading-relaxed border-l-4 border-micron-eggplant pl-6 py-1">
-                            Anchored by the C.W. Moore House (1891) and the neighboring George Whitfield Russell House. A corridor defined by the legacy of Western pioneers and energy ingenuity.
-                        </p>
+                     </div>
 
-                        <div className="grid grid-cols-1 gap-6 flex-1">
-                            <InnerBento 
-                                title="C.W. MOORE & THE DISTRICT" 
-                                gradient="bg-micron-eggplant" 
-                                icon={<History />}
-                                delay={0.1}
-                                className="h-full"
-                            >
-                                {/* Changed to a more balanced grid layout to fill empty space */}
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center h-full">
-                                    <div className="flex flex-col justify-center gap-6">
-                                        <p>In 1890, Christopher W. Moore, founder of the First National Bank of Idaho, drilled two wells near the base of Table Rock. He struck 170-degree water. By 1892, he had piped it to his mansion on Warm Springs Avenue—marking the first use of geothermal water for home heating in the United States.</p>
-                                        <p>Today, the Boise Warm Springs Water District remains the oldest continuously operating geothermal district in North America. The Micron House sits on this historic line, utilizing the same clean, ancient energy source that Moore tapped over 130 years ago. It is a National Register of Historic Places corridor defined by energy innovation.</p>
-                                    </div>
-                                    <div className="w-full h-full min-h-[300px] md:min-h-0 bg-white/10 rounded-xl overflow-hidden relative border border-white/20">
-                                        <img src="https://images.unsplash.com/photo-1565692093863-79282363b829?q=80&w=2070&auto=format&fit=crop" alt="Historic Boise" className="absolute inset-0 w-full h-full object-cover opacity-80" />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-micron-eggplant/80 to-transparent"></div>
-                                        <div className="absolute bottom-6 left-6">
-                                            <span className="text-sm font-bold uppercase tracking-widest text-white block mb-1">Est. 1890</span>
-                                            <span className="text-white/80 text-xs">Warm Springs Avenue</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </InnerBento>
+                     {/* RIGHT: TEXT TILES */}
+                     <div className="w-full md:w-1/2 bg-micron-eggplant rounded-2xl p-8 md:p-10 text-white flex flex-col justify-center gap-8 shadow-2xl border border-white/10 relative overflow-hidden">
+                        <div className="absolute top-0 right-0 p-32 bg-micron-eggplant-light blur-[100px] opacity-20 pointer-events-none rounded-full" />
+                        
+                        <div className="relative z-10">
+                             <div className="flex items-center gap-3 mb-3 text-white">
+                                <History size={28} />
+                                <h3 className="text-2xl font-black uppercase tracking-tight">ORIGINS</h3>
+                             </div>
+                             <div className="w-12 h-1 bg-micron-eggplant-light mb-4" />
+                             <p className="text-white/70 text-base leading-relaxed font-medium">
+                                In 1890, Christopher W. Moore, founder of the First National Bank of Idaho, drilled two wells near the base of Table Rock. He struck 170-degree water.
+                             </p>
+                             <p className="text-white/70 text-base leading-relaxed font-medium mt-4">
+                                By 1892, he had piped it to his mansion on Warm Springs Avenue—marking the first use of geothermal water for home heating in the United States.
+                             </p>
                         </div>
-                    </div>
-                )
-            };
-        default: return null;
-    }
+
+                        <div className="w-full h-px bg-white/20 relative z-10" />
+
+                        <div className="relative z-10">
+                             <div className="flex items-center gap-3 mb-3 text-white">
+                                <TreeDeciduous size={28} />
+                                <h3 className="text-2xl font-black uppercase tracking-tight">CONTINUITY</h3>
+                             </div>
+                             <div className="w-12 h-1 bg-micron-green mb-4" />
+                             <p className="text-white/70 text-base leading-relaxed font-medium">
+                                Today, the Boise Warm Springs Water District remains the oldest continuously operating geothermal district in North America.
+                             </p>
+                             <p className="text-white/70 text-base leading-relaxed font-medium mt-4">
+                                The Micron House sits on this historic line, utilizing the same clean, ancient energy source that Moore tapped over 130 years ago. It is a National Register of Historic Places corridor defined by energy innovation.
+                             </p>
+                        </div>
+                     </div>
+                </div>
+            )
+          });
+      }
   };
 
+  const locations = [
+    { label: "MICRON HQ", time: "15 min", color: "bg-micron-green", icon: <Building2 size={20} /> },
+    { label: "AIRPORT", time: "10 min", color: "bg-micron-eggplant", icon: <Plane size={20} /> },
+    { label: "DOWNTOWN", time: "3 min", color: "bg-micron-eggplant-light", icon: <Building2 size={20} /> },
+    { label: "ST. LUKE'S", time: "2 min", color: "bg-zinc-800", icon: <Stethoscope size={20} /> },
+    { label: "CAPITOL", time: "5 min", color: "bg-zinc-600", icon: <Landmark size={20} /> },
+    { label: "BOISE STATE", time: "4 min", color: "bg-micron-eggplant-light", icon: <GraduationCap size={20} /> },
+    { label: "RIVER", time: "1 min", color: "bg-micron-green", icon: <Leaf size={20} /> },
+  ];
+
   return (
-    // Reduced Section Padding: py-8 md:py-16, px-4 mobile
-    <section id="property" className="container mx-auto px-4 md:px-12 py-8 md:py-16 bg-zinc-50 text-zinc-900">
-       {/* Header - Animated Reveal */}
-       <motion.div 
-         initial={{ opacity: 0, y: 30 }}
-         whileInView={{ opacity: 1, y: 0 }}
-         viewport={{ once: false, amount: 0.2 }}
-         transition={{ duration: 0.8, ease: "easeOut" }}
-         // Reduced margin-bottom: mb-10 (was mb-16)
-         className="mb-10 flex flex-col md:flex-row md:items-end gap-12 border-b border-zinc-200 pb-10"
-      >
-        <div className="flex-shrink-0">
-           <span className="block text-xs font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2 font-sans">02 / ASSET</span>
-           {/* Color changed to BLUE */}
-           <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-tight text-micron-eggplant-light leading-none font-sans">PROPERTY</h2>
-        </div>
-        
-        <div className="md:ml-auto max-w-2xl pb-1">
-             <div className="pl-6 border-l-4 border-micron-eggplant/20 hover:border-micron-eggplant transition-colors duration-500">
-                <div className="text-base font-light text-zinc-600 leading-snug font-body">
-                   {/* CHANGED: text-micron-eggplant to text-micron-eggplant-light (blue), Removed dot */}
-                   <span className="font-bold text-micron-eggplant-light block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
-                       HISTORIC CONTEXT
-                   </span>
-                   {/* Split text and new paragraph structure */}
-                   <p className="mb-4">
-                        A modest home drawing on North America’s oldest continuously operating geothermal district (est. 1890). This site taps into the nation's largest historic direct-use aquifer.
-                   </p>
-                   <p className="text-micron-eggplant font-semibold">
-                        A profound convergence of harnessed earth energy and energy from the stars.
-                   </p>
-                </div>
+    <section id="property" className="container mx-auto px-8 md:px-12 py-12 bg-white text-zinc-900">
+        <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.8 }}
+            // UPDATED: Reduced padding from mb-12 to mb-6 to tighten section
+            className="mb-6 flex flex-col md:flex-row md:items-end gap-12 border-b border-zinc-100 pb-8"
+        >
+            <div className="flex-shrink-0">
+                <span className="block text-sm font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2 font-sans">02 / ASSET</span>
+                <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-tight text-micron-eggplant-light leading-none font-sans">
+                    PROPERTY
+                </h2>
+            </div>
+            
+            <div className="md:ml-auto max-w-2xl pb-1">
+                 <div className="pl-6 border-l-4 border-micron-eggplant-light/20 hover:border-micron-eggplant-light transition-colors duration-500">
+                    <div className="text-base font-light text-zinc-600 leading-snug font-body">
+                       <span className="font-bold text-micron-eggplant-light block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
+                           HISTORIC CONTEXT
+                       </span>
+                       <p className="mb-4">
+                           Warm Springs gives the project historic depth, residential privacy, geothermal distinction, and immediate proximity to Boise's institutional core.
+                       </p>
+                       <p className="font-semibold text-micron-eggplant">
+                           Boise offers privacy, access, regional distinction, and a growing cultural field that can be hosted at a high standard.
+                       </p>
+                    </div>
+                 </div>
+            </div>
+        </motion.div>
+
+        {/* NEW STATS ROW - UPDATED: Reduced bottom padding (mb-6), Added Floating Effects */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+             {/* 1906 */}
+             <div className="bg-micron-eggplant text-white rounded-xl p-6 flex flex-col items-center justify-center shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] hover:shadow-[0_30px_60px_-12px_rgba(0,0,0,0.4)] hover:-translate-y-1 transition-all duration-300 border border-white/10">
+                 <span className="text-4xl md:text-5xl font-black tracking-tighter">1906</span>
+                 <span className="text-[10px] font-bold uppercase tracking-widest opacity-70 mt-1">Year Built</span>
+             </div>
+             {/* 3,374 */}
+             <div className="bg-micron-grey1 text-white rounded-xl p-6 flex flex-col items-center justify-center shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] hover:shadow-[0_30px_60px_-12px_rgba(0,0,0,0.4)] hover:-translate-y-1 transition-all duration-300 border border-white/10">
+                 <span className="text-4xl md:text-5xl font-black tracking-tighter">3,374</span>
+                 <span className="text-[10px] font-bold uppercase tracking-widest opacity-70 mt-1">Square Feet</span>
+             </div>
+             {/* 3/4 */}
+             <div className="bg-micron-green text-white rounded-xl p-6 flex flex-col items-center justify-center shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] hover:shadow-[0_30px_60px_-12px_rgba(0,0,0,0.4)] hover:-translate-y-1 transition-all duration-300 border border-white/10">
+                 <span className="text-4xl md:text-5xl font-black tracking-tighter">3/4</span>
+                 <span className="text-[10px] font-bold uppercase tracking-widest opacity-70 mt-1">Bed / Bath</span>
+             </div>
+             {/* 1892 */}
+             <div className="bg-micron-eggplant-light text-white rounded-xl p-6 flex flex-col items-center justify-center shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] hover:shadow-[0_30px_60px_-12px_rgba(0,0,0,0.4)] hover:-translate-y-1 transition-all duration-300 border border-white/10">
+                 <span className="text-4xl md:text-5xl font-black tracking-tighter">1892</span>
+                 <span className="text-[10px] font-bold uppercase tracking-widest opacity-70 mt-1">Geothermal Rights</span>
              </div>
         </div>
-      </motion.div>
 
-      {/* Reduced Main Layout Gap: gap-5 (was gap-6) */}
-      <div className="flex flex-col gap-5">
-        
-        {/* 1. Stats Grid - RESPONSIVE FIX */}
-        {/* Reduced grid gap: gap-4 */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-             {/* Reduced height from min-h-[160px] to min-h-[120px] */}
-             <BentoCard gradient="bg-micron-eggplant" className="min-h-[120px] flex flex-col items-center justify-center text-center" delay={0.1}>
-                 <h3 className="text-3xl md:text-5xl font-black text-white mb-2">1906</h3>
-                 {/* Text color changed to zinc-500 (faded) */}
-                 <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Year Built</p>
-             </BentoCard>
-             <BentoCard gradient="bg-micron-grey1" className="min-h-[120px] flex flex-col items-center justify-center text-center" delay={0.2}>
-                 <h3 className="text-3xl md:text-5xl font-black text-white mb-2">3,374</h3>
-                 <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Square Feet</p>
-             </BentoCard>
-             {/* Changed from bg-micron-grey2 to bg-micron-green */}
-             <BentoCard gradient="bg-micron-green" className="min-h-[120px] flex flex-col items-center justify-center text-center" delay={0.3}>
-                 <h3 className="text-3xl md:text-5xl font-black text-white mb-2">3 / 4</h3>
-                 <p className="text-[10px] font-bold uppercase tracking-widest text-white/80">Bed / Bath</p>
-             </BentoCard>
-             {/* Geothermal Rights Delay changed to 1.2s */}
-             <BentoCard gradient="bg-micron-eggplant-light" className="min-h-[120px] flex flex-col items-center justify-center text-center" delay={1.2}>
-                 <h3 className="text-3xl md:text-5xl font-black text-white mb-2">1892</h3>
-                 <p className="text-[10px] font-bold uppercase tracking-widest text-white/80">Geothermal Rights</p>
-             </BentoCard>
+        {/* Location Details Header - UPDATED: Reduced padding (mb-4) */}
+        <div className="flex items-center gap-2 mb-4">
+            <MapPin size={16} className="text-zinc-400" />
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-500 font-sans">LOCATION DETAILS</span>
+        </div>
 
-             {/* 5th Card: View Gallery Link - Removed Icon, Removed Underline, Changed Text Color */}
-             <BentoCard 
-                gradient="bg-zinc-900" 
-                className="min-h-[120px] flex flex-col items-center justify-center text-center group cursor-pointer col-span-2 md:col-span-1" 
+        {/* RESTORED: Location Pills - UPDATED: Reduced padding (mb-6) */}
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3 mb-6">
+            {locations.map((loc, i) => (
+                <LocationPill 
+                    key={i}
+                    label={loc.label}
+                    time={loc.time}
+                    color={loc.color}
+                    icon={loc.icon}
+                    delay={i * 0.1}
+                />
+            ))}
+        </div>
+
+        {/* RESTORED: Sub-header - UPDATED: Reduced padding (mb-4) */}
+        <div className="flex items-center gap-2 mb-4">
+            <Home size={16} className="text-zinc-400" />
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-500 font-sans">RESIDENCE SPECIFICATIONS</span>
+        </div>
+
+        {/* BENTO GRID 1: Specifications */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[minmax(280px,auto)] mb-8">
+            <SpecCard 
+                title="MAIN LEVEL" 
+                icon={<Home />} 
+                items={["Foyer Entry", "Living, Dining, & Fully Equipped Kitchen", "Office w/ Ensuite Bath", "French Door Access to Deck", "Antiques & Art throughout"]}
+                onGallery={() => openLevelGallery('main')}
+                gradient="bg-micron-grey1"
+                delay={0}
+            />
+
+            <SpecCard 
+                title="UPPER LEVEL" 
+                icon={<ArrowUp />} 
+                items={["3 Bedrooms", "2 Private En-Suite Baths", "1 Bedroom Served by Hall Bath", "Laundry Facilities"]}
+                onGallery={() => openLevelGallery('upper')}
+                gradient="bg-micron-eggplant"
+                delay={0.1}
+            />
+
+            <SpecCard 
+                title="GROUNDS" 
+                icon={<TreeDeciduous />} 
+                items={["Mature Fruit Trees (Peach, Plum, Cherry)", "Concord Grapevine", "Fully Fenced Yard & ~200 sq ft Deck", "Attached Carport via Private Alley"]}
+                onGallery={() => openLevelGallery('grounds')}
+                gradient="bg-micron-green"
+                delay={0.2}
+            />
+        </div>
+
+        {/* NEW FEATURES HEADER */}
+        <div className="flex items-center gap-2 mb-4">
+            <Zap size={16} className="text-zinc-400" />
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-500 font-sans">FEATURES</span>
+        </div>
+
+        {/* BENTO GRID 2: Features */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[minmax(280px,auto)]">
+            <InfoCard 
+                title="GEOTHERMAL & WELLNESS" 
+                subtitle="NATURE" 
+                icon={<Activity />} 
+                text="Powered by a 177°F direct-use aquifer. Geothermal water flows through the home's radiators and feeds the outdoor soaking tub. The grounds feature mature fruit trees and a Concord grapevine."
+                onClick={() => openInfoModal('wellness')}
+                gradient="bg-micron-eggplant-light"
+                delay={0.3}
+            />
+
+            <InfoCard 
+                title="AUTONOMOUS SECURITY & SERVICE" 
+                subtitle="INTELLIGENCE" 
+                icon={<Cpu />} 
+                text="Autonomous service via Cybercab and Optimus. A functional proving ground where abstract technology becomes a seamless, daily reality."
+                onClick={() => openInfoModal('autonomous')}
+                gradient="bg-zinc-800"
+                delay={0.4}
+            />
+
+            <InfoCard 
+                title="NATIONAL REGISTER OF HISTORIC PLACES" 
+                subtitle="LEGACY" 
+                icon={<History />} 
+                text="Anchored by the C.W. Moore House (1891) and the neighboring George Whitfield Russell House. A corridor defined by the legacy of Western pioneers and energy ingenuity."
+                onClick={() => openInfoModal('history')}
+                gradient="bg-micron-eggplant"
                 delay={0.5}
-                onClick={openGallery}
-             >
-                 {/* Changed text color to micron-eggplant-light and increased weight/size */}
-                 <h3 className="text-2xl md:text-4xl font-black text-micron-eggplant-light uppercase tracking-tighter leading-none">
-                    VIEW GALLERY
-                 </h3>
-             </BentoCard>
+            />
+
         </div>
 
-        {/* 2. Location Details - RESPONSIVE FIX */}
-        {/* ADDED: hoverEffect={true} and hover interactions for these cards */}
-        <div className="mt-6">
-             <div className="flex items-center gap-2 mb-3">
-                <MapPin className="text-micron-eggplant" size={20} />
-                <h3 className="font-bold uppercase tracking-widest text-sm text-micron-eggplant">Location Details</h3>
-             </div>
-             
-             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3 mb-4">
-                 <BentoCard gradient="bg-micron-green" className="min-h-[100px] flex flex-col justify-between p-4" hoverEffect={true} delay={0.1}>
-                    <div className="flex justify-between items-start">
-                        <MapPin size={16} className="text-white"/>
-                        <span className="text-xl md:text-2xl font-bold text-white">15<span className="text-[10px] font-normal align-top ml-0.5">min</span></span>
-                    </div>
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-white/90">Micron HQ</span>
-                 </BentoCard>
-
-                 <BentoCard gradient="bg-micron-eggplant" className="min-h-[100px] flex flex-col justify-between p-4" hoverEffect={true} delay={0.15}>
-                    <div className="flex justify-between items-start">
-                        <Plane size={16} className="text-white"/>
-                        <span className="text-xl md:text-2xl font-bold text-white">10<span className="text-[10px] font-normal align-top ml-0.5">min</span></span>
-                    </div>
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-white/90">Airport</span>
-                 </BentoCard>
-
-                 <BentoCard gradient="bg-micron-eggplant-light" className="min-h-[100px] flex flex-col justify-between p-4" hoverEffect={true} delay={0.2}>
-                    <div className="flex justify-between items-start">
-                        <Building2 size={16} className="text-white"/>
-                        <span className="text-xl md:text-2xl font-bold text-white">3<span className="text-[10px] font-normal align-top ml-0.5">min</span></span>
-                    </div>
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-white/90">Downtown</span>
-                 </BentoCard>
-
-                 <BentoCard gradient="bg-zinc-800" className="min-h-[100px] flex flex-col justify-between p-4" hoverEffect={true} delay={0.25}>
-                    <div className="flex justify-between items-start">
-                        <Stethoscope size={16} className="text-white"/>
-                        <span className="text-xl md:text-2xl font-bold text-white">2<span className="text-[10px] font-normal align-top ml-0.5">min</span></span>
-                    </div>
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-white/90">St. Luke's</span>
-                 </BentoCard>
-
-                 <BentoCard gradient="bg-micron-grey2" className="min-h-[100px] flex flex-col justify-between p-4" hoverEffect={true} delay={0.3}>
-                    <div className="flex justify-between items-start">
-                        <Building2 size={16} className="text-white"/>
-                        <span className="text-xl md:text-2xl font-bold text-white">5<span className="text-[10px] font-normal align-top ml-0.5">min</span></span>
-                    </div>
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-white/90">Capitol</span>
-                 </BentoCard>
-
-                 <BentoCard gradient="bg-micron-black" className="min-h-[100px] flex flex-col justify-between p-4" hoverEffect={true} delay={0.35}>
-                    <div className="flex justify-between items-start">
-                        <GraduationCap size={16} className="text-white"/>
-                        <span className="text-xl md:text-2xl font-bold text-white">4<span className="text-[10px] font-normal align-top ml-0.5">min</span></span>
-                    </div>
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-white/90">Boise State</span>
-                 </BentoCard>
-
-                 {/* Greenbelt */}
-                 <BentoCard gradient="bg-micron-green" className="min-h-[100px] flex flex-col justify-between p-4 relative overflow-hidden" hoverEffect={true} delay={0.4}>
-                     <div className="absolute top-0 right-0 w-16 h-16 bg-white/20 blur-xl -mr-4 -mt-4 rounded-full pointer-events-none"></div>
-                     <div className="flex justify-between items-start relative z-10">
-                         <Trees size={16} className="text-white"/>
-                         <span className="text-xl md:text-2xl font-bold text-white">1<span className="text-[10px] font-normal align-top ml-0.5">min</span></span>
-                     </div>
-                     <span className="text-[10px] font-bold uppercase tracking-widest text-white/90 relative z-10">River</span>
-                 </BentoCard>
-             </div>
-        </div>
-
-        {/* 3. Residence Specifications */}
-        {/* Reduced margin-top: mt-8 (was mt-12) */}
-        <div className="mt-8">
-             {/* Reduced margin-bottom: mb-3 (was mb-6) */}
-             <div className="flex items-center gap-2 mb-3">
-                <Home className="text-micron-eggplant" size={20} />
-                <h3 className="font-bold uppercase tracking-widest text-sm text-micron-eggplant">Residence Specifications</h3>
-             </div>
-             
-             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                 {/* Spec 1 - Changed gradient to bg-zinc-100 for 3D look */}
-                 <BentoCard gradient="bg-zinc-100" textColor="text-zinc-900" borderColor="border-zinc-200" className="min-h-[200px] shadow-sm" delay={0.1}>
-                     <div className="flex justify-between items-start mb-4">
-                        <Utensils className="text-micron-black" size={24} />
-                     </div>
-                     <h4 className="text-lg font-bold uppercase tracking-tight mb-3 text-micron-eggplant">Main Level</h4>
-                     <ul className="space-y-3 text-sm text-zinc-600 font-body">
-                        {/* Added Foyer */}
-                        <li className="flex gap-2 items-start"><span className="text-micron-green mt-1 text-[10px]">●</span> <span>Foyer Entry</span></li>
-                        <li className="flex gap-2 items-start"><span className="text-micron-green mt-1 text-[10px]">●</span> <span>Living, Dining, & Fully Equipped Kitchen</span></li>
-                        {/* Removed 'Main Floor' from text */}
-                        <li className="flex gap-2 items-start"><span className="text-micron-green mt-1 text-[10px]">●</span> <span>Office w/ Ensuite Bath</span></li>
-                        <li className="flex gap-2 items-start"><span className="text-micron-green mt-1 text-[10px]">●</span> <span>French Door Access to Deck</span></li>
-                        {/* Lowercased 'Throughout' */}
-                        <li className="flex gap-2 items-start"><span className="text-micron-green mt-1 text-[10px]">●</span> <span>Antiques & Art throughout</span></li>
-                     </ul>
-                 </BentoCard>
-
-                 {/* Spec 2 - Changed gradient to bg-zinc-100 for 3D look */}
-                 <BentoCard gradient="bg-zinc-100" textColor="text-zinc-900" borderColor="border-zinc-200" className="min-h-[200px] shadow-sm" delay={0.2}>
-                     <div className="flex justify-between items-start mb-4">
-                        <BedDouble className="text-micron-black" size={24} />
-                     </div>
-                     <h4 className="text-lg font-bold uppercase tracking-tight mb-3 text-micron-eggplant">Upper Level</h4>
-                     <ul className="space-y-3 text-sm text-zinc-600 font-body">
-                        <li className="flex gap-2 items-start"><span className="text-micron-green mt-1 text-[10px]">●</span> <span>3 Bedrooms</span></li>
-                        <li className="flex gap-2 items-start"><span className="text-micron-green mt-1 text-[10px]">●</span> <span>2 Private En-Suite Baths</span></li>
-                        <li className="flex gap-2 items-start"><span className="text-micron-green mt-1 text-[10px]">●</span> <span>1 Bedroom Served by Hall Bath</span></li>
-                        {/* Added Laundry */}
-                        <li className="flex gap-2 items-start"><span className="text-micron-green mt-1 text-[10px]">●</span> <span>Laundry Facilities</span></li>
-                     </ul>
-                 </BentoCard>
-
-                 {/* Spec 3 - Changed gradient to bg-zinc-100 for 3D look */}
-                 <BentoCard gradient="bg-zinc-100" textColor="text-zinc-900" borderColor="border-zinc-200" className="min-h-[200px] shadow-sm" delay={0.3}>
-                     <div className="flex justify-between items-start mb-4">
-                        <Sprout className="text-micron-black" size={24} />
-                     </div>
-                     <h4 className="text-lg font-bold uppercase tracking-tight mb-3 text-micron-eggplant">Grounds</h4>
-                     <ul className="space-y-3 text-sm text-zinc-600 font-body">
-                        <li className="flex gap-2 items-start"><span className="text-micron-green mt-1 text-[10px]">●</span> <span>Mature Fruit Trees (Peach, Plum, Cherry)</span></li>
-                        <li className="flex gap-2 items-start"><span className="text-micron-green mt-1 text-[10px]">●</span> <span>Concord Grapevine</span></li>
-                        <li className="flex gap-2 items-start"><span className="text-micron-green mt-1 text-[10px]">●</span> <span>Fully Fenced Yard & ~300 sq ft Deck</span></li>
-                        <li className="flex gap-2 items-start"><span className="text-micron-green mt-1 text-[10px]">●</span> <span>Attached Carport via Private Alley</span></li>
-                     </ul>
-                 </BentoCard>
-             </div>
-        </div>
-
-        {/* 4. Amenities & Systems */}
-        {/* Reduced margin-top: mt-8 (was mt-12) */}
-        <div className="mt-8">
-             {/* Reduced margin-bottom: mb-3 (was mb-6) */}
-             <div className="flex items-center gap-2 mb-3">
-                <Zap className="text-micron-eggplant" size={20} />
-                <h3 className="font-bold uppercase tracking-widest text-sm text-micron-eggplant">Technology, Wellness & Legacy</h3>
-             </div>
-             
-             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {/* GEOTHERMAL: Changed to GREEN (bg-micron-green) + White Text */}
-                <BentoCard 
-                    gradient="bg-micron-green" 
-                    textColor="text-white" 
-                    borderColor="border-white/10" 
-                    className="min-h-[220px] group cursor-pointer hover:shadow-2xl transition-all" 
-                    delay={0.1}
-                    onClick={() => setModalData(getModalContent('wellness'))}
-                    hoverEffect={true}
-                    arrowPosition="bottom-right"
-                >
-                    <div className="flex justify-between items-start mb-4">
-                        <Leaf className="text-white" />
-                        <span className="text-xs font-bold uppercase tracking-widest text-white/80">Nature</span>
-                    </div>
-                    {/* CHANGED: Title to "Wellness" */}
-                    <h4 className="text-xl font-bold uppercase tracking-tight mb-2">Wellness</h4>
-                    {/* Updated text: text-base + font-medium + pure white (CHANGED TO white/70) */}
-                    <p className="text-base text-white/70 font-medium leading-relaxed font-body">
-                        Powered by a 177°F direct-use aquifer. Geothermal water flows through the home’s radiators and feeds the outdoor soaking tub. The grounds feature mature fruit trees and a Concord grapevine.
-                    </p>
-                    {/* REMOVED: Redundant ArrowUpRight */}
-                </BentoCard>
-
-                {/* AUTONOMOUS SERVICE: Changed to DARK GRAY (bg-micron-grey1) */}
-                <BentoCard 
-                    gradient="bg-micron-grey1" 
-                    textColor="text-white" 
-                    borderColor="border-white/10" 
-                    className="min-h-[220px] group cursor-pointer hover:shadow-2xl transition-all" 
-                    delay={0.2}
-                    onClick={() => setModalData(getModalContent('autonomous'))}
-                    hoverEffect={true}
-                    arrowPosition="bottom-right"
-                >
-                    <div className="flex justify-between items-start mb-4">
-                        {/* Switched to Car (Side Profile) and darker gold (amber-600) */}
-                        {/* UPDATED: Face opposite direction (scale-x-[-1]) and more yellow gold */}
-                        <Car className="text-white scale-x-[-1]" />
-                        <span className="text-xs font-bold uppercase tracking-widest text-white/80">Intelligence</span>
-                    </div>
-                    <h4 className="text-xl font-bold uppercase tracking-tight mb-2">Autonomous Service</h4>
-                    {/* Updated text: Removed 'living lab' */}
-                    <p className="text-base text-white/70 font-medium leading-relaxed font-body">
-                        Autonomous service via Cybercab and Optimus. A functional proving ground where abstract technology becomes a seamless, daily reality.
-                    </p>
-                    {/* REMOVED: Redundant ArrowUpRight */}
-                </BentoCard>
-
-                {/* NATIONAL REGISTER: Kept EGGPLANT */}
-                <BentoCard 
-                    gradient="bg-micron-eggplant" 
-                    textColor="text-white" 
-                    borderColor="border-white/10" 
-                    className="min-h-[220px] group cursor-pointer hover:shadow-2xl transition-all"
-                    delay={0.3}
-                    onClick={() => setModalData(getModalContent('historic'))}
-                    hoverEffect={true}
-                    arrowPosition="bottom-right"
-                >
-                    <div className="flex justify-between items-start mb-4">
-                        {/* Switched to Map icon as requested */}
-                        <Map className="text-white" />
-                        {/* Changed Heritage to Legacy */}
-                        <span className="text-xs font-bold uppercase tracking-widest text-white/80">Legacy</span>
-                    </div>
-                    <h4 className="text-xl font-bold uppercase tracking-tight mb-2">National Register of Historic Places</h4>
-                    {/* Updated text: text-base + font-medium + pure white (CHANGED TO white/70) */}
-                    <p className="text-base text-white/70 font-medium leading-relaxed font-body">
-                        Anchored by the C.W. Moore House (1891) and the neighboring George Whitfield Russell House. A corridor defined by the legacy of Western pioneers and energy ingenuity.
-                    </p>
-                    {/* REMOVED: Redundant ArrowUpRight */}
-                </BentoCard>
-             </div>
-        </div>
-
-      </div>
-      <Modal isOpen={!!modalData} onClose={() => setModalData(null)} data={modalData} />
-      <WhitepaperViewer isOpen={showWhitepaper} onClose={() => setShowWhitepaper(false)} />
+        <Modal isOpen={!!modalData} onClose={() => setModalData(null)} data={modalData} />
+        <WhitepaperViewer isOpen={showWhitepaper} onClose={() => setShowWhitepaper(false)} />
     </section>
   );
 };

@@ -12,73 +12,68 @@ export const SectionIntro: React.FC<SectionIntroProps> = () => {
   const isInView = useInView(containerRef, { once: true, amount: 0.2 });
 
   // --- TIMING CONFIGURATION ---
-  const INITIAL_DELAY = 1.0;     // 1s Delay after Micron House populates
-  const WORD_DELAY = 0.4;        // Slow, readable speed per word
-  const SENTENCE_PAUSE = 0.8;    // Pause between sentences
-  const FADE_DURATION = 1.2;     // Smooth fade in for words
+  
+  // 1. HERO finishes roughly at 1.0s. 
+  // 2. GREEN CARD appears after Hero.
+  const GREEN_CARD_DELAY = 1.1; 
+  
+  // 3. TEXT Animation starts after Green Card is mostly visible
+  const TEXT_START_BASE = GREEN_CARD_DELAY + 0.5; 
 
-  // Configuration for sentence keywords
+  // CHANGED: Slowed down animation as requested
+  const WORD_DELAY = 0.3; // Slower word reveal
+  const SENTENCE_GAP = 0.6; // Double the word delay
+
+  // Text Data Structure
   const sentences = [
     { 
-      text: "Without memory, there's no meaning.",
-      boldWord: "memory,",    // Starts White/Bold -> Hover Eggplant
-      colorWord: "meaning.",  // Starts Eggplant/Regular -> Hover White
-      align: "md:justify-start" 
+      words: ["Without", "memory,", "there's", "no", "meaning."], 
+      align: "text-left items-start",
+      highlightPrimary: "memory,",
+      highlightSecondary: "meaning."
     },
     { 
-      text: "Without vision, there's no velocity.",
-      boldWord: "vision,",
-      colorWord: "velocity.",
-      align: "md:justify-center" 
+      words: ["Without", "vision,", "there's", "no", "velocity."], 
+      align: "text-center items-center justify-center",
+      highlightPrimary: "vision,",
+      highlightSecondary: "velocity."
     },
     { 
-      text: "Without place, there's no perspective.",
-      boldWord: "place,",
-      colorWord: "perspective.",
-      align: "md:justify-end" 
+      words: ["Without", "place,", "there's", "no", "perspective."], 
+      align: "text-right items-end justify-end",
+      highlightPrimary: "place,",
+      highlightSecondary: "perspective."
     }
   ];
 
-  // --- CALCULATE TOTAL DURATION ---
-  let currentDelayCounter = INITIAL_DELAY;
-  
-  // Helper to store word delays
-  const wordDelays: number[][] = sentences.map(s => {
-      const words = s.text.split(" ");
-      const delaysForSentence = words.map((_, i) => currentDelayCounter + (i * WORD_DELAY));
-      // Advance counter for next sentence: (words * duration) + pause
-      currentDelayCounter += (words.length * WORD_DELAY) + SENTENCE_PAUSE;
-      return delaysForSentence;
+  // Calculate total duration of the green box text animation to coordinate the next section
+  let currentWordDelayTracker = 0;
+  const wordAnimations = sentences.map((sentence) => {
+    const wordDelays = sentence.words.map((_, idx) => {
+        const delay = currentWordDelayTracker;
+        currentWordDelayTracker += WORD_DELAY;
+        return delay;
+    });
+    // Add gap after sentence
+    currentWordDelayTracker += SENTENCE_GAP; 
+    return wordDelays;
   });
 
-  // The moment the last word of the last sentence starts appearing
-  const lastSentenceIndex = sentences.length - 1;
-  const lastWordIndex = sentences[lastSentenceIndex].text.split(" ").length - 1;
-  const lastWordStartTime = wordDelays[lastSentenceIndex][lastWordIndex];
-  
-  // Paradigm Section starts AFTER the last word has fully faded in (plus a small buffer)
-  const PARADIGM_START_TIME = lastWordStartTime + FADE_DURATION + 0.2; 
-  
-  // Split into two lines for visual layout: "THE PARADIGM" and "SHIFTS."
+  // 4. PARADIGM SHIFTS starts after all text + pause
+  const PARADIGM_START_DELAY = TEXT_START_BASE + currentWordDelayTracker + 0.5; // +0.5s pause
+  const ADDRESS_START_TIME = PARADIGM_START_DELAY + 1.5; // Allow time for Paradigm to finish
+  const MAP_START_TIME = ADDRESS_START_TIME + 1.0;
+
+  // Split Paradigm text
   const paradigmLine1 = ["THE", "PARADIGM"];
   const paradigmLine2 = ["SHIFTS."];
   const paradigmWords = [...paradigmLine1, ...paradigmLine2];
-  
+  // Animate Paradigm word by word
+  const paradigmWordDelays = paradigmWords.map((_, i) => PARADIGM_START_DELAY + (i * 0.2));
+
   const addressLine1 = "Micron House";
   const addressLine2 = "1020 East Warm Springs Ave";
   const addressLine3 = "Boise, Idaho 83712";
-
-  // Calculate Paradigm Word Delays
-  const paradigmWordDelays = paradigmWords.map((_, i) => PARADIGM_START_TIME + (i * 0.15)); // Faster, punchy reveal for header
-  
-  // Address Starts after Paradigm Header
-  const ADDRESS_START_TIME = PARADIGM_START_TIME + (paradigmWords.length * 0.15) + 0.5;
-  const MAP_START_TIME = ADDRESS_START_TIME + 1.0;
-
-  // CONSTANTS FOR COLORS
-  const COLOR_WHITE = '#ffffff';
-  const COLOR_EGGPLANT = '#2c0f38';
-  const COLOR_FADED = 'rgba(255, 255, 255, 0.7)';
 
   return (
     // Reduced bottom padding: pb-6 md:pb-12, px-4 mobile
@@ -87,62 +82,40 @@ export const SectionIntro: React.FC<SectionIntroProps> = () => {
         
         {/* 1. Top Bento: Green, Animated Text */}
         <BentoCard 
-            className="min-h-[220px] md:min-h-[300px] justify-center shadow-2xl relative overflow-hidden group"
+            className="min-h-[280px] md:min-h-[340px] justify-center shadow-2xl relative overflow-hidden group flex flex-col"
             gradient="bg-micron-green"
             textColor="text-white"
             borderColor="border-white/20"
             hoverEffect={true}
-            // Increased delay to 1.3s to ensure Hero Black Box finishes first
-            delay={1.3} 
+            delay={GREEN_CARD_DELAY} 
         >
-            <div className="flex flex-col gap-4 md:gap-8 w-full mx-auto py-4 md:py-6 px-2 md:px-4 relative z-10">
-                {sentences.map((sentence, sIndex) => (
-                    <div 
-                        key={sIndex} 
-                        className={`flex flex-wrap ${sentence.align} gap-x-2 md:gap-x-5 text-2xl md:text-5xl lg:text-6xl leading-tight tracking-tight w-full cursor-default`}
-                    >
-                        {sentence.text.split(" ").map((word, wIndex) => {
-                            const isBold = word === sentence.boldWord;
-                            const isColor = word === sentence.colorWord;
-                            const delay = wordDelays[sIndex][wIndex];
+            {/* UPDATED: Increased gap-2 to gap-6 for mobile to ensure padding below each sentence */}
+            <div className="w-full h-full mx-auto py-4 md:py-6 px-2 md:px-8 relative z-10 flex flex-col justify-center gap-6 md:gap-4">
+                {sentences.map((sentence, sIdx) => (
+                    <div key={sIdx} className={`flex flex-wrap w-full ${sentence.align}`}>
+                        {sentence.words.map((word, wIdx) => {
+                            // Determine styling based on specific keywords
+                            const isPrimary = word === sentence.highlightPrimary;
+                            const isSecondary = word === sentence.highlightSecondary;
                             
-                            // Determine the base and hover colors explicitly
-                            // isBold: White base -> Eggplant hover
-                            // isColor: Eggplant base -> White hover
-                            // Default: Faded White -> No hover
-                            
-                            const baseColor = isBold ? COLOR_WHITE : (isColor ? COLOR_EGGPLANT : COLOR_FADED);
+                            let className = "mr-2 md:mr-3 inline-block text-2xl md:text-5xl lg:text-6xl leading-tight tracking-tight font-light italic text-white/70";
+                            if (isPrimary) {
+                                className = "mr-2 md:mr-3 inline-block text-2xl md:text-5xl lg:text-6xl leading-tight tracking-tight font-black italic text-white hover:text-micron-eggplant transition-colors duration-300";
+                            } else if (isSecondary) {
+                                className = "mr-0 md:mr-0 inline-block text-2xl md:text-5xl lg:text-6xl leading-tight tracking-tight font-normal italic text-micron-eggplant hover:text-white transition-colors duration-300";
+                            }
 
                             return (
                                 <motion.span
-                                    key={`${sIndex}-${wIndex}`}
-                                    // Use 'initial' and 'animate' for explicit color control to avoid CSS conflicts
-                                    initial={{ opacity: 0, y: 20, color: baseColor }} 
-                                    animate={isInView ? { opacity: 1, y: 0, color: baseColor } : { opacity: 0, y: 20, color: baseColor }}
-                                    // HOVER LOGIC:
-                                    // If Bold (memory/vision/place) -> Turn Eggplant (#2c0f38)
-                                    // If Color (meaning/velocity/perspective) -> Turn White (#ffffff)
-                                    whileHover={
-                                        isBold 
-                                            ? { color: COLOR_EGGPLANT, scale: 1.05, y: -2 }
-                                            : isColor 
-                                                ? { color: COLOR_WHITE, scale: 1.05, y: -2 }
-                                                : undefined
-                                    }
+                                    key={`${sIdx}-${wIdx}`}
+                                    initial={{ opacity: 0, x: 10 }}
+                                    animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 10 }}
                                     transition={{ 
-                                        // Fast duration for hover color change (0.2s)
-                                        default: { duration: 0.2, ease: "easeInOut" },
-                                        // Slower duration for entrance animation
-                                        opacity: { duration: 1.0, delay: delay, ease: "easeOut" },
-                                        y: { duration: 1.0, delay: delay, ease: "easeOut" }
+                                        duration: 0.8, // Slower fade in
+                                        ease: "easeOut",
+                                        delay: TEXT_START_BASE + wordAnimations[sIdx][wIdx] 
                                     }}
-                                    className={`inline-block ${
-                                        isBold 
-                                            ? "font-black italic" // Removed text-white class to rely on motion style
-                                            : isColor
-                                                ? "font-normal italic" // Regular weight as requested
-                                                : "font-light italic"
-                                    }`}
+                                    className={className}
                                 >
                                     {word}
                                 </motion.span>

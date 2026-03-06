@@ -1,130 +1,134 @@
 
 import React from 'react';
-import { BentoCard } from './BentoCard';
-import { Calendar, PenTool, Activity, Zap, FileText, Database, Shield, Radio, Cpu, Network } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-const timelineEvents = [
+const roadmapItems = [
   { 
     id: 1, 
-    date: "NOW",
-    title: "ARCHITECTURAL ALIGNMENT", 
-    desc: "Defining the physical API.",
-    detail: "Establishing the interface between historic infrastructure and autonomous logic. Mapping the residence for Optimus navigation.",
-    icon: <Database />,
-    gradient: "bg-micron-black",
+    date: "NOW", 
+    title: "AGREEMENT", 
+    subtitle: "Architectural interface.", 
+    // UPDATED: Changed from bg-micron-black to bg-micron-grey1 to match "Real-World Inference"
+    bg: "bg-micron-grey1",
+    text: "text-white"
   },
   { 
     id: 2, 
-    date: "DAY 60",
-    title: "PERCEPTION MAPPING", 
-    desc: "Digitizing the environment.",
-    detail: "Optimus neural networks ingest the property's geometry for centimeter-level navigation and semantic understanding.",
-    icon: <Network />,
-    gradient: "bg-micron-eggplant-light", // Changed to Blue
+    date: "MAR 1", 
+    title: "SYSTEMS ALIGNMENT", 
+    subtitle: "Infrastructure install.", 
+    bg: "bg-micron-eggplant-light", // Light Blue
+    text: "text-white"
   },
   { 
     id: 3, 
-    date: "DAY 90",
-    title: "BIOMETRIC INFRASTRUCTURE", 
-    desc: "Human optimization.",
-    detail: "Deploying contrast therapy, vibration systems, and circadian lighting to service the biological occupants.",
-    icon: <Activity />,
-    gradient: "bg-micron-green",
+    date: "APR 1", 
+    title: "WELLNESS INSTALL", 
+    subtitle: "Core logic ingest.", 
+    bg: "bg-micron-green",
+    text: "text-white"
   },
   { 
     id: 4, 
-    date: "DAY 120",
-    title: "PILOT ACTIVATION", 
-    desc: "The feedback loop begins.",
-    detail: "Executive stakeholders initiate residency. Initial feedback loops established between occupants and the autonomous OS.",
-    icon: <Radio />,
-    gradient: "bg-micron-grey3",
+    date: "MAY 1", 
+    title: "ACCESS BEGINS", 
+    subtitle: "Executive residence.", 
+    bg: "bg-[#878d9f]", // Grey/Slate manual override to match screenshot vibe
+    text: "text-white"
   },
   { 
     id: 5, 
-    date: "2027",
-    title: "AUTONOMOUS SCALE", 
-    desc: "The new standard.",
-    detail: "Transitioning to zero-intervention property management. Cybercab and Optimus assume full operational governance.",
-    icon: <Cpu />,
-    gradient: "bg-micron-eggplant",
+    // UPDATED: Changed from 'SEPT' to '2027' as requested
+    date: "2027", 
+    title: "FULL AUTONOMY", 
+    subtitle: "Zero human intervention.", 
+    bg: "bg-micron-eggplant",
+    text: "text-white"
   }
 ];
 
 export const SectionTimeline: React.FC = () => {
-  // Removed Modal State and Modal Component usage
-  
+
+  // Randomized staggered delay array for the 5 items
+  const staggeredDelays = [0, 0.3, 0.1, 0.4, 0.2];
+
   return (
-    // Reduced padding: py-16 instead of py-24, px-4 mobile
-    <section id="timeline" className="container mx-auto px-4 md:px-12 py-8 md:py-16 mb-20 bg-white text-zinc-900">
-      {/* Consistent Header */}
-      <motion.div 
-         initial={{ opacity: 0, y: 30 }}
-         whileInView={{ opacity: 1, y: 0 }}
-         viewport={{ once: false, amount: 0.2 }}
-         transition={{ duration: 0.8, ease: "easeOut" }}
-         className="mb-12 flex flex-col md:flex-row md:items-end gap-12 border-b border-zinc-200 pb-8"
-      >
-        <div className="flex-shrink-0">
-           <span className="block text-xs font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2 font-sans">06 / Roadmap</span>
-           <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-tight text-micron-grey1 leading-none font-sans">EXECUTION ROADMAP</h2>
-        </div>
-
-        <div className="md:ml-auto max-w-2xl pb-1">
-             <div className="pl-6 border-l-4 border-micron-grey1/20 hover:border-micron-grey1 transition-colors duration-500">
-                <p className="text-base font-light text-zinc-600 leading-snug font-body">
-                   <span className="font-bold text-micron-grey1 block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
-                       STRATEGIC DEPLOYMENT.
-                   </span>
-                   From physical alignment to full autonomy. A phased integration of robotics, biometrics, and historic infrastructure.
-                </p>
-             </div>
-        </div>
-      </motion.div>
-
-      {/* Grid - RESPONSIVE FIX */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
-        {timelineEvents.map((item, i) => (
-          <BentoCard 
-            key={item.id} 
-            delay={i * 0.1}
-            className={`flex flex-col min-h-[340px] relative hover:shadow-2xl transition-shadow duration-300`}
-            gradient={item.gradient}
-            textColor="text-white"
-            borderColor="border-white/10"
-            hoverEffect={false} // Disabled hover lift to keep focus on reading
-          >
-             {/* Icon Top Left */}
-             <div className="absolute top-8 left-8 text-white/80">
-                {React.cloneElement(item.icon as React.ReactElement<any>, { size: 24, strokeWidth: 1.5 })}
-             </div>
-
-             <div className="flex flex-col items-center justify-start h-full pt-16 text-center px-4">
-                 <div className="mb-6">
-                    <span className="text-xl font-bold uppercase tracking-widest text-white/60 font-sans block mb-1">
-                        {item.date}
-                    </span>
-                    <h3 className="text-xl font-black text-white uppercase tracking-tight leading-none mb-3">
-                        {item.title}
-                    </h3>
-                    <div className="h-0.5 w-8 bg-white/30 mx-auto mt-2"></div>
+    // REDUCED PADDING: py-16 -> py-10, UPDATED mobile padding to px-8
+    <section id="timeline" className="container mx-auto px-8 md:px-12 py-12 mb-20 bg-white text-zinc-900">
+      
+          {/* Header Row - REMOVED OUTER BENTO WRAPPER */}
+          <div className="mb-6 md:mb-12 flex flex-col md:flex-row md:items-end gap-6 md:gap-12 border-b border-zinc-100 pb-4 md:pb-8">
+              <div className="flex-shrink-0">
+                  <span className="block text-xs font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2 font-sans">06 / DEPLOYMENT</span>
+                  {/* UPDATED: Changed color to text-micron-green */}
+                  <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-tight text-micron-green leading-none font-sans">
+                      ROADMAP
+                  </h2>
+              </div>
+              
+              <div className="md:ml-auto max-w-2xl pb-1">
+                 {/* Updated Header Structure to match other sections */}
+                 <div className="pl-6 border-l-4 border-zinc-900/20 hover:border-zinc-900 transition-colors duration-500">
+                    <p className="text-base font-light text-zinc-600 leading-snug font-body">
+                       {/* UPDATED: Changed color to text-micron-green */}
+                       <span className="font-bold text-micron-green block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
+                           TIMELINE
+                       </span>
+                       {/* Increased description size to text-base */}
+                       From agreement to installation, then testing to full autonomy as Cybercab and Optimus deploy to the property.
+                    </p>
                  </div>
+              </div>
+          </div>
 
-                 <div className="mt-auto pb-4">
-                     <p className="text-white font-bold text-sm uppercase tracking-wide mb-3">
-                        {item.desc}
-                     </p>
-                     {/* Increased font size for readability as requested */}
-                     <p className="text-white/90 font-body text-sm md:text-base leading-relaxed font-medium">
-                        {item.detail}
-                     </p>
-                 </div>
-             </div>
-             
-          </BentoCard>
-        ))}
-      </div>
+          {/* Horizontal Cards Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            {roadmapItems.map((item, i) => (
+                <motion.div
+                    key={item.id}
+                    initial={{ opacity: 0, y: 100 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false, amount: 0.2 }}
+                    transition={{ delay: staggeredDelays[i] || 0, duration: 2.5, ease: [0.22, 1, 0.36, 1] }}
+                    className={`
+                        ${item.bg} ${item.text} 
+                        h-[220px] rounded-2xl p-6 flex flex-col justify-between 
+                        relative overflow-hidden group 
+                        /* FLOATING SHADOW UPDATE */
+                        shadow-[0_30px_60px_-10px_rgba(0,0,0,0.3)]
+                        hover:shadow-[0_45px_80px_-10px_rgba(0,0,0,0.4)] 
+                        hover:-translate-y-2
+                        transition-all duration-300
+                        border-t border-white/20 border-l border-white/10 border-b border-black/10 border-r border-black/10
+                    `}
+                >
+                    {/* 3D Bevel Highlight */}
+                    <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-100" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none" />
+
+                    {/* Top Left Icon/Number Indicator */}
+                    <div className="w-8 h-8 rounded-full border border-white/30 bg-white/10 backdrop-blur-sm flex items-center justify-center text-xs font-bold shadow-sm group-hover:bg-white/20 transition-colors">
+                        {item.id}
+                    </div>
+
+                    {/* Center Content */}
+                    <div className="mt-auto relative z-10">
+                        <div className="flex items-center gap-2 mb-3">
+                            <span className="text-xs font-bold uppercase tracking-widest opacity-90">{item.date}</span>
+                            <div className="h-px bg-white/40 flex-1"></div>
+                        </div>
+                        
+                        {/* UPDATED: Reduced font size to text-lg md:text-xl to ensure single line for "PROTOCOL ASSESSMENT" */}
+                        <h3 className="text-lg md:text-xl font-black uppercase leading-[0.9] mb-2 tracking-tight drop-shadow-md whitespace-nowrap overflow-hidden text-ellipsis">
+                            {item.title}
+                        </h3>
+                        
+                        {/* UPDATED: Removed subtitle text per instructions */}
+                    </div>
+                </motion.div>
+            ))}
+          </div>
+
     </section>
   );
 };
