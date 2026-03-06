@@ -143,10 +143,14 @@ export const SectionServingTesla: React.FC = () => {
                     className="bg-white rounded-[2rem] p-8 border border-zinc-200 flex flex-col gap-6 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] hover:shadow-[0_45px_80px_-10px_rgba(0,0,0,0.4)] hover:-translate-y-1 transition-all duration-300"
                 >
                      <div className="flex flex-col items-center text-center pb-4 border-b border-zinc-100">
-                        <img 
+                        <motion.img 
                             src="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/micron-overlap-no-border.png" 
                             alt="Micron House Icon"
                             className="w-40 h-40 object-contain opacity-90 mb-6"
+                            initial={{ x: 200, rotate: -360, opacity: 0 }}
+                            whileInView={{ x: 0, rotate: 0, opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ type: "spring", stiffness: 15, damping: 18, duration: 5.1, bounce: 0 }}
                         />
                         <h3 className="text-2xl font-bold text-micron-eggplant leading-tight tracking-tight">Concept & Design</h3>
                         <div className="text-base text-zinc-500 mt-3 font-medium text-left space-y-3 max-w-md">
@@ -427,7 +431,7 @@ export const SectionServingTesla: React.FC = () => {
                          <span className="font-bold text-micron-grey1 block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
                              INTEGRATED ECOSYSTEM
                          </span>
-                         The house also becomes a setting where autonomous systems are encountered at human scale. This gives Micron a private residential environment where service, security, movement, and daily use can be observed in practice.
+                         The house becomes a setting where autonomous systems are encountered at human scale. Micron maintains a dedicated residential environment where autonomous service, security, movement, and daily use can be observed in practice.
                       </p>
                    </div>
               </div>
