@@ -160,7 +160,7 @@ export const SectionServingTesla: React.FC = () => {
 
                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 flex-1">
                         {/* Earth - Green */}
-                        <div className="bg-micron-green text-white rounded-xl p-5 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] hover:shadow-[0_45px_80px_-10px_rgba(0,0,0,0.4)] hover:-translate-y-1 transition-all duration-300 border border-white/10 flex flex-col gap-2">
+                        <div className="order-3 sm:order-1 bg-micron-green text-white rounded-xl p-5 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] hover:shadow-[0_45px_80px_-10px_rgba(0,0,0,0.4)] hover:-translate-y-1 transition-all duration-300 border border-white/10 flex flex-col gap-2">
                             <div className="flex items-center gap-2 mb-1">
                                 <Mountain size={18} className="text-white/80" />
                                 <span className="font-bold uppercase text-xs tracking-widest">Earth</span>
@@ -169,7 +169,7 @@ export const SectionServingTesla: React.FC = () => {
                         </div>
 
                         {/* Sky - Blue */}
-                        <div className="bg-micron-eggplant-light text-white rounded-xl p-5 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] hover:shadow-[0_45px_80px_-10px_rgba(0,0,0,0.4)] hover:-translate-y-1 transition-all duration-300 border border-white/10 flex flex-col gap-2">
+                        <div className="order-1 sm:order-2 bg-micron-eggplant-light text-white rounded-xl p-5 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] hover:shadow-[0_45px_80px_-10px_rgba(0,0,0,0.4)] hover:-translate-y-1 transition-all duration-300 border border-white/10 flex flex-col gap-2">
                             <div className="flex items-center gap-2 mb-1">
                                 <Star size={18} className="text-white/80" />
                                 <span className="font-bold uppercase text-xs tracking-widest">Sky</span>
@@ -178,7 +178,7 @@ export const SectionServingTesla: React.FC = () => {
                         </div>
 
                         {/* Memory - Eggplant */}
-                        <div className="bg-micron-eggplant text-white rounded-xl p-5 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] hover:shadow-[0_45px_80px_-10px_rgba(0,0,0,0.4)] hover:-translate-y-1 transition-all duration-300 border border-white/10 flex flex-col gap-2">
+                        <div className="order-2 sm:order-3 bg-micron-eggplant text-white rounded-xl p-5 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] hover:shadow-[0_45px_80px_-10px_rgba(0,0,0,0.4)] hover:-translate-y-1 transition-all duration-300 border border-white/10 flex flex-col gap-2">
                             <div className="flex items-center gap-2 mb-1">
                                 <Layers size={18} className="text-white/80" />
                                 <span className="font-bold uppercase text-xs tracking-widest">Memory</span>
@@ -187,7 +187,7 @@ export const SectionServingTesla: React.FC = () => {
                         </div>
 
                         {/* Vision - Grey */}
-                        <div className="bg-micron-grey1 text-white rounded-xl p-5 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] hover:shadow-[0_45px_80px_-10px_rgba(0,0,0,0.4)] hover:-translate-y-1 transition-all duration-300 border border-white/10 flex flex-col gap-2">
+                        <div className="order-4 sm:order-4 bg-micron-grey1 text-white rounded-xl p-5 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] hover:shadow-[0_45px_80px_-10px_rgba(0,0,0,0.4)] hover:-translate-y-1 transition-all duration-300 border border-white/10 flex flex-col gap-2">
                             <div className="flex items-center gap-2 mb-1">
                                 <Eye size={18} className="text-white/80" />
                                 <span className="font-bold uppercase text-xs tracking-widest">Vision</span>
@@ -431,7 +431,7 @@ export const SectionServingTesla: React.FC = () => {
                          <span className="font-bold text-micron-grey1 block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
                              INTEGRATED ECOSYSTEM
                          </span>
-                         The house becomes a setting where autonomous systems are encountered at human scale. Micron maintains a dedicated residential environment where autonomous service, security, movement, and daily use can be observed in practice.
+                         <strong className="font-semibold text-zinc-800">The house becomes a setting where autonomous systems are encountered at human scale.</strong> Micron maintains a dedicated residential environment where autonomous service, security, movement, and daily use can be observed in practice.
                       </p>
                    </div>
               </div>
