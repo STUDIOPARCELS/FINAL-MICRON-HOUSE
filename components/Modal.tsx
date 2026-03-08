@@ -176,7 +176,7 @@ const ShowcaseModalContent: React.FC<{ data: ModalContent; onClose: () => void }
   } else {
     backgroundClass = 'bg-zinc-900 border-white/10 ring-1 ring-white/5';
   }
-  const paddingClass = data.paddingClassName || "px-10 md:px-12 pb-10 md:pb-12 pt-0";
+  const paddingClass = data.paddingClassName || "px-5 md:px-12 pb-10 md:pb-12 pt-0";
 
   return (
     <motion.div
@@ -213,7 +213,7 @@ const ShowcaseModalContent: React.FC<{ data: ModalContent; onClose: () => void }
         </div>
       <div className={`
           relative z-10 
-          px-10 py-5 md:px-12 md:py-6
+          px-5 py-5 md:px-12 md:py-6
           flex-shrink-0
           flex flex-col justify-center
           min-h-[80px] md:min-h-[100px]
@@ -233,7 +233,7 @@ const ShowcaseModalContent: React.FC<{ data: ModalContent; onClose: () => void }
             )}
          </motion.div>
       </div>
-      <div className="flex-1 overflow-y-auto custom-scrollbar relative z-10 min-h-0 overscroll-contain">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden custom-scrollbar relative z-10 min-h-0 overscroll-contain">
         <motion.div 
             initial="hidden" animate="visible"
             variants={{ visible: { transition: { staggerChildren: 0.05, delayChildren: 0.1 } } }}
