@@ -5,6 +5,11 @@
 html {
   scroll-padding-top: 100px;
   scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
 }
 
 ::-webkit-scrollbar {
