@@ -409,23 +409,24 @@ export const SectionServingTesla: React.FC = () => {
   };
 
   return (
-      <section id="serving-tesla" className="container mx-auto px-8 md:px-12 py-12 bg-white text-zinc-900">
+      {/* TABLET FIX: px-4 on mobile to prevent edge clipping. flex-row pushed to lg for portrait. */}
+      <section id="serving-tesla" className="container mx-auto px-4 md:px-8 lg:px-12 py-12 bg-white text-zinc-900 overflow-hidden">
           {/* Header */}
           <motion.div
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.8 }}
-              className="mb-12 flex flex-col md:flex-row md:items-end gap-12 border-b border-zinc-100 pb-8"
+              className="mb-12 flex flex-col lg:flex-row lg:items-end gap-8 lg:gap-12 border-b border-zinc-100 pb-8"
           >
               <div className="flex-shrink-0">
                   <span className="block text-sm font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2 font-sans">04 / PARTNERSHIP</span>
-                  <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-tight text-micron-grey1 leading-none font-sans">
+                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-micron-grey1 leading-none font-sans">
                       AUTONOMOUS LIVING
                   </h2>
               </div>
               
-              <div className="md:ml-auto max-w-2xl pb-1">
+              <div className="lg:ml-auto max-w-2xl pb-1">
                    <div className="pl-6 border-l-4 border-micron-eggplant-light/20 hover:border-micron-eggplant-light transition-colors duration-500">
                       <p className="text-base font-light text-zinc-600 leading-snug font-body">
                          <span className="font-bold text-micron-grey1 block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">

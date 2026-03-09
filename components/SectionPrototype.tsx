@@ -671,9 +671,12 @@ export const SectionPrototype: React.FC = () => {
             </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* TABLET FIX: lg:min-h reduced from 360→260 so 4-col cards fit iPad landscape.
+             md stays 320 for portrait 2-col. xl restores desktop height. 
+             Padding tightened at lg, text scaled down at lg. */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-4 xl:gap-6">
             <BentoCard 
-                className="flex flex-col min-h-[320px] md:min-h-[500px] p-6 relative overflow-hidden group" 
+                className="flex flex-col min-h-[280px] md:min-h-[320px] lg:min-h-[260px] xl:min-h-[500px] p-6 lg:p-4 xl:p-6 relative overflow-hidden group" 
                 gradient="bg-micron-grey1" 
                 textColor="text-white"
                 borderColor="border-white/10"
@@ -685,8 +688,8 @@ export const SectionPrototype: React.FC = () => {
                 onMouseLeave={() => setHoveredCard(null)}
             >
                 <HoverVideoPlayer src={VIDEO_PROTOTYPE} isHovering={hoveredCard === 1} />
-                <div className="relative z-10 mt-auto pt-6">
-                    <h3 className="text-3xl font-black uppercase leading-[0.9] tracking-tighter text-white group-hover:text-micron-eggplant-light transition-colors duration-300 mb-4">
+                <div className="relative z-10 mt-auto pt-4 lg:pt-3 xl:pt-6">
+                    <h3 className="text-3xl lg:text-xl xl:text-3xl font-black uppercase leading-[0.9] tracking-tighter text-white group-hover:text-micron-eggplant-light transition-colors duration-300 mb-3 lg:mb-2 xl:mb-4">
                         PROTOTYPE
                     </h3>
                     <p className="text-xs font-bold uppercase tracking-widest text-white/50 group-hover:text-white transition-colors">
@@ -696,7 +699,7 @@ export const SectionPrototype: React.FC = () => {
             </BentoCard>
 
             <BentoCard 
-                className="flex flex-col min-h-[320px] md:min-h-[500px] p-6 relative overflow-hidden group" 
+                className="flex flex-col min-h-[280px] md:min-h-[320px] lg:min-h-[260px] xl:min-h-[500px] p-6 lg:p-4 xl:p-6 relative overflow-hidden group" 
                 gradient="bg-micron-eggplant-light" 
                 textColor="text-white"
                 borderColor="border-white/10"
@@ -708,8 +711,8 @@ export const SectionPrototype: React.FC = () => {
                 onMouseLeave={() => setHoveredCard(null)}
             >
                 <HoverVideoPlayer src={VIDEO_COLLAB} isHovering={hoveredCard === 3} />
-                <div className="relative z-10 mt-auto pt-6">
-                    <h3 className="text-3xl font-black uppercase leading-[0.9] tracking-tighter text-white group-hover:text-zinc-500 transition-colors duration-300 mb-4">
+                <div className="relative z-10 mt-auto pt-4 lg:pt-3 xl:pt-6">
+                    <h3 className="text-3xl lg:text-xl xl:text-3xl font-black uppercase leading-[0.9] tracking-tighter text-white group-hover:text-zinc-500 transition-colors duration-300 mb-3 lg:mb-2 xl:mb-4">
                         COLLABORATION
                     </h3>
                     <p className="text-xs font-bold uppercase tracking-widest text-white/50 group-hover:text-white transition-colors">
@@ -719,7 +722,7 @@ export const SectionPrototype: React.FC = () => {
             </BentoCard>
 
             <BentoCard 
-                className="flex flex-col min-h-[320px] md:min-h-[500px] p-6 relative overflow-hidden group" 
+                className="flex flex-col min-h-[280px] md:min-h-[320px] lg:min-h-[260px] xl:min-h-[500px] p-6 lg:p-4 xl:p-6 relative overflow-hidden group" 
                 gradient="bg-micron-eggplant"
                 textColor="text-white"
                 borderColor="border-white/10"
@@ -732,8 +735,8 @@ export const SectionPrototype: React.FC = () => {
                 onMouseLeave={() => setHoveredCard(null)}
             >
                 <HoverVideoPlayer src={VIDEO_TIMING} isHovering={hoveredCard === 2} />
-                <div className="relative z-10 mt-auto pt-6">
-                    <h3 className="text-3xl font-black uppercase leading-[0.9] tracking-tighter text-white group-hover:text-zinc-500 transition-colors duration-300 mb-4">
+                <div className="relative z-10 mt-auto pt-4 lg:pt-3 xl:pt-6">
+                    <h3 className="text-3xl lg:text-xl xl:text-3xl font-black uppercase leading-[0.9] tracking-tighter text-white group-hover:text-zinc-500 transition-colors duration-300 mb-3 lg:mb-2 xl:mb-4">
                         TIMING
                     </h3>
                     <p className="text-xs font-bold uppercase tracking-widest text-white/70 group-hover:text-white transition-colors">
@@ -743,7 +746,7 @@ export const SectionPrototype: React.FC = () => {
             </BentoCard>
 
             <BentoCard 
-                className="flex flex-col min-h-[320px] md:min-h-[500px] p-6 relative overflow-hidden group" 
+                className="flex flex-col min-h-[280px] md:min-h-[320px] lg:min-h-[260px] xl:min-h-[500px] p-6 lg:p-4 xl:p-6 relative overflow-hidden group" 
                 gradient="bg-micron-green" 
                 textColor="text-white" 
                 borderColor="border-white/10" 
@@ -756,8 +759,8 @@ export const SectionPrototype: React.FC = () => {
                 onMouseLeave={() => setHoveredCard(null)}
             >
                 <HoverVideoPlayer src={VIDEO_PLACE} isHovering={hoveredCard === 4} />
-                <div className="relative z-10 mt-auto pt-6">
-                    <h3 className="text-3xl font-black uppercase leading-[0.9] tracking-tighter text-white group-hover:text-micron-eggplant-light transition-colors duration-300 mb-4">
+                <div className="relative z-10 mt-auto pt-4 lg:pt-3 xl:pt-6">
+                    <h3 className="text-3xl lg:text-xl xl:text-3xl font-black uppercase leading-[0.9] tracking-tighter text-white group-hover:text-micron-eggplant-light transition-colors duration-300 mb-3 lg:mb-2 xl:mb-4">
                         PLACE
                     </h3>
                     <p className="text-xs font-bold uppercase tracking-widest text-white/50 group-hover:text-white transition-colors">
