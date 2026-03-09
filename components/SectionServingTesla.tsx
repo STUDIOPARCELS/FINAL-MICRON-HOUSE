@@ -409,8 +409,8 @@ export const SectionServingTesla: React.FC = () => {
   };
 
   return (
-      {/* TABLET FIX: px-4 on mobile to prevent edge clipping. flex-row pushed to lg for portrait. */}
       <section id="serving-tesla" className="container mx-auto px-4 md:px-8 lg:px-12 py-12 bg-white text-zinc-900 overflow-hidden">
+          {/* TABLET FIX: px-4 on mobile to prevent edge clipping. flex-row pushed to lg for portrait. */}
           {/* Header */}
           <motion.div
               initial={{ opacity: 0, y: 50 }}
