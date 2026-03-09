@@ -581,7 +581,7 @@ export const Hero: React.FC = () => {
                         initial="hidden"
                         animate={shouldShowQuote ? "visible" : "hidden"}
                         variants={quoteContainerVariants}
-                        className="font-micron text-lg lg:text-lg xl:text-2xl text-white font-extralight leading-relaxed lg:leading-snug xl:leading-relaxed text-left -rotate-4 xl:-rotate-6 max-w-xs xl:max-w-lg w-full -translate-x-2 xl:-translate-x-4 pb-4 will-change-transform"
+                        className="font-micron text-lg lg:text-xl xl:text-2xl text-white font-extralight leading-relaxed lg:leading-relaxed xl:leading-relaxed text-left -rotate-2 xl:-rotate-6 max-w-sm xl:max-w-lg w-full -translate-x-2 xl:-translate-x-4 pb-4 will-change-transform"
                 >
                      <p className="inline">
                         {quoteWords.map((word, i) => (
