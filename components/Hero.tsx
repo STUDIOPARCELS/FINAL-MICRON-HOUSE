@@ -543,13 +543,13 @@ export const Hero: React.FC = () => {
                     <InteractiveParadigmTitle />
                  </div>
 
-                 {/* TABLET LANDSCAPE QUOTE - under title, tilted toward map */}
-                 <div className="hidden lg:block xl:hidden relative z-10 pl-2">
+                 {/* TABLET LANDSCAPE QUOTE - under title, no angle, fills horizontal space */}
+                 <div className="hidden lg:block xl:hidden relative z-10">
                       <motion.div
                          initial="hidden"
                          animate={shouldShowQuote ? "visible" : "hidden"}
                          variants={quoteContainerVariants}
-                         className="font-micron text-base text-white font-extralight leading-snug text-left rotate-2 will-change-transform"
+                         className="font-micron text-base text-white/90 font-extralight leading-relaxed text-left will-change-transform"
                       >
                          <p className="inline">
                              {quoteWords.map((word, i) => (
