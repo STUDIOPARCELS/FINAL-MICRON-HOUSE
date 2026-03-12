@@ -293,9 +293,9 @@ export const SectionServing: React.FC = () => {
                  <div className="pl-6 border-l-4 border-micron-eggplant/20 hover:border-micron-eggplant transition-colors duration-500">
                     <p className="text-base font-light text-zinc-600 leading-snug font-body">
                        <span className="font-bold text-micron-eggplant block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
-                           CORPORATIVE AUTONOMOUS RESIDENCE + ENTERTAINMENT HUB
+                           CORPORATE AUTONOMOUS RESIDENCE
                        </span>
-                       Micron House introduces the corporative autonomous residence and entertainment hub — a new corporate asset class delivered by the service, security, and mobility layer of Optimus and Cybercab.
+                       Micron House introduces the corporate autonomous residence and entertainment hub — a new corporate asset class delivered by the service, security, and mobility layer of Optimus and Cybercab.
                     </p>
                  </div>
             </div>
