@@ -193,7 +193,7 @@ function App() {
           {/* New Professional Footer */}
           <footer className="bg-zinc-950 text-zinc-400 py-24 border-t border-zinc-800">
             <div className="container mx-auto px-4 md:px-12">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8 mb-20">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-8 mb-20">
                     
                     {/* Brand Column */}
                     <div className="col-span-1 md:col-span-2">
@@ -209,8 +209,8 @@ function App() {
 
                     {/* Navigation Column */}
                     <div>
-                        <h4 className="text-white font-bold uppercase tracking-widest text-sm mb-8">Explore</h4>
-                        <ul className="space-y-4 text-base">
+                        <h4 className="text-white font-bold uppercase tracking-widest text-sm mb-4">Explore</h4>
+                        <ul className="space-y-2 text-base">
                             {navLinks.map(link => (
                                 <li key={link.id}>
                                     <a href={`#${link.id}`} onClick={(e) => scrollToSection(e, link.id)} className="hover:text-micron-green transition-colors">
@@ -223,8 +223,8 @@ function App() {
 
                     {/* Contact Column */}
                     <div>
-                        <h4 className="text-white font-bold uppercase tracking-widest text-sm mb-8">Contact</h4>
-                        <ul className="space-y-4 text-base">
+                        <h4 className="text-white font-bold uppercase tracking-widest text-sm mb-4">Contact</h4>
+                        <ul className="space-y-2 text-base">
                             <li className="flex items-center gap-3">
                                 <Mail size={20} />
                                 <a href="mailto:lisa@lisawoodstudio.com" className="hover:text-white transition-colors">lisa@lisawoodstudio.com</a>
