@@ -39,7 +39,7 @@ export const SectionTimeline: React.FC = () => {
     <section id="timeline" className="container mx-auto px-8 md:px-12 pt-12 pb-6 md:pb-12 bg-white text-zinc-900">
       
           {/* Header Row - REMOVED OUTER BENTO WRAPPER */}
-          <div className="flex flex-col md:flex-row md:items-end gap-6 mb-12">
+          <div className="flex flex-col md:flex-row md:items-end gap-6 mb-4 md:mb-12">
               <div className="flex-shrink-0">
                   <span className="block text-sm font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2 font-sans">05 / DEPLOYMENT</span>
                   {/* UPDATED: Changed color to text-micron-green */}
