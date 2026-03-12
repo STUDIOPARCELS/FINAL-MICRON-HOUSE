@@ -538,9 +538,9 @@ export const SectionProperty: React.FC = () => {
             className="mb-6 flex flex-col md:flex-row md:items-end gap-12 border-b border-zinc-100 pb-8"
         >
             <div className="flex-shrink-0">
-                <span className="block text-sm font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2 font-sans">02 / ASSET</span>
+                <span className="block text-sm font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2 font-sans">02 / READINESS</span>
                 <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-tight text-micron-eggplant-light leading-none font-sans">
-                    PROPERTY
+                    READINESS
                 </h2>
             </div>
             
@@ -550,11 +550,8 @@ export const SectionProperty: React.FC = () => {
                        <span className="font-bold text-micron-eggplant-light block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
                            HISTORIC CONTEXT
                        </span>
-                       <p className="mb-0">
-                           Warm Springs gives the project historic depth, residential privacy, geothermal distinction, and immediate proximity to Boise's institutional core.
-                       </p>
-                       <p className="font-medium text-zinc-700">
-                           Boise offers privacy, access, regional distinction, and a growing cultural field that can be hosted at a high standard.
+                       <p>
+                           Warm Springs gives the project historic depth, residential privacy, geothermal distinction, and immediate proximity to Boise's institutional core. Boise offers privacy, access, regional distinction, and a growing cultural field that can be hosted at a high standard.
                        </p>
                     </div>
                  </div>

@@ -48,7 +48,7 @@ function App() {
 
   const navLinks = [
     { label: "Critical Window", id: "prototype" },
-    { label: "The Property", id: "property" },
+    { label: "Readiness", id: "property" },
     { label: "Serving Micron", id: "serving" },
     { label: "Autonomous Living", id: "serving-tesla" },
     { label: "Roadmap", id: "timeline" },
