@@ -635,7 +635,7 @@ export const SectionPrototype: React.FC = () => {
             <div className="md:ml-auto max-w-2xl pb-1">
                 <div className="md:pl-6 md:border-l-4 md:border-micron-eggplant/20 md:hover:border-micron-eggplant md:transition-colors md:duration-500">
                     <div className="text-base font-light text-zinc-600 leading-snug font-body">
-                        <span className="font-bold text-micron-eggplant block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans cursor-default">
+                        <span className="font-bold text-micron-green block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans cursor-default">
                             {mainTitleWords.map((word, i) => (
                                 <motion.span 
                                         key={i}
