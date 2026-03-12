@@ -247,8 +247,8 @@ export const Hero: React.FC = () => {
           setCurrentSentenceIndex(null);
       }
       
-      // Sentence 1: Micron factory comes into view
-      if (t >= 12.0 && !fired.has('s1on')) {
+      // Sentence 1: Camera leaves foothills, Micron fab comes into view
+      if (t >= 10.5 && !fired.has('s1on')) {
           fired.add('s1on');
           setCurrentSentenceIndex(1);
       }
@@ -455,30 +455,30 @@ export const Hero: React.FC = () => {
                     shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 relative overflow-hidden group
                 `}
             >
-                 {/* BRAND REVEAL: MICRON stacked above HOUSE fades in, logo rolls in to fill */}
+                 {/* BRAND REVEAL: MICRON stacked above HOUSE fills bento, logo rolls in */}
                  {wordmarkVisible && (
-                   <div className="absolute inset-0 flex flex-row items-center justify-start z-20 pointer-events-none pl-6 xl:pl-12 gap-4 md:gap-6">
-                     {/* Wordmark — MICRON above HOUSE, fades in directly */}
+                   <div className="absolute inset-0 flex flex-row items-center justify-start z-20 pointer-events-none px-6 xl:px-12 gap-4 md:gap-6 xl:gap-8">
+                     {/* Wordmark — MICRON above HOUSE, fills the space */}
                      <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
                         className="flex flex-col"
                      >
-                        <span className="text-3xl md:text-4xl xl:text-5xl font-black uppercase tracking-tight text-micron-eggplant leading-[0.9]">
+                        <span className="text-5xl md:text-7xl xl:text-8xl font-black uppercase tracking-tight text-[#878d9f] leading-[0.85]">
                             Micron
                         </span>
-                        <span className="text-3xl md:text-4xl xl:text-5xl font-black uppercase tracking-tight text-micron-eggplant leading-[0.9]">
+                        <span className="text-5xl md:text-7xl xl:text-8xl font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]">
                             House
                         </span>
                      </motion.div>
-                     {/* Logo — rolls in second (on hyper zoom), fills in next to wordmark */}
+                     {/* Logo — rolls in to fill remaining space */}
                      <motion.img 
                         initial={{ x: 200, rotate: -360, opacity: 0 }}
                         animate={iconControls}
                         src="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/micron-overlap-no-border.png"
                         alt="Micron Logo"
-                        className="h-[80px] w-[80px] md:h-[120px] md:w-[120px] xl:h-[160px] xl:w-[160px] object-contain"
+                        className="h-[100px] w-[100px] md:h-[180px] md:w-[180px] xl:h-[260px] xl:w-[260px] object-contain"
                      />
                    </div>
                  )}
