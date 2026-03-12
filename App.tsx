@@ -198,7 +198,7 @@ function App() {
                     {/* Brand Column */}
                     <div className="col-span-1 md:col-span-2">
                         <h3 className="text-4xl font-bold text-white mb-4 uppercase tracking-tight">Micron House</h3>
-                        <p className="text-zinc-500 text-base max-w-md mb-10 leading-relaxed">
+                        <p className="text-zinc-500 text-lg max-w-md mb-6 leading-relaxed">
                             The first private corporate residence powered by autonomous systems.
                         </p>
                         <div className="flex items-start gap-4 mb-2 group cursor-pointer text-base">
