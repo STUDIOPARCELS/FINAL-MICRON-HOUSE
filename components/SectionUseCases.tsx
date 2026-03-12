@@ -97,7 +97,7 @@ export const SectionUseCases: React.FC = () => {
   };
 
   return (
-    <section id="use-cases" className="container mx-auto px-4 md:px-12 py-8 md:py-10 bg-white text-zinc-900">
+    <section id="use-cases" className="container mx-auto px-8 md:px-12 pt-0 pb-6 md:pb-12 bg-white text-zinc-900">
       
       {/* FLOATING BENTO WRAPPER ADDED */}
       <motion.div
@@ -109,7 +109,7 @@ export const SectionUseCases: React.FC = () => {
       >
           {/* Header */}
           <div 
-             className="mb-12 flex flex-col md:flex-row md:items-end gap-12 border-b border-zinc-200 pb-8"
+             className="flex flex-col md:flex-row md:items-end gap-6 mb-12"
           >
             <div className="flex-shrink-0">
                <span className="block text-xs font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2 font-sans">03 / USE CASE</span>
@@ -117,7 +117,7 @@ export const SectionUseCases: React.FC = () => {
             </div>
             
             <div className="md:ml-auto max-w-2xl pb-1">
-                 <div className="pl-6 border-l-4 border-micron-eggplant-light/20 hover:border-micron-eggplant-light transition-colors duration-500">
+                 <div className="md:pl-6 md:border-l-4 md:border-micron-eggplant/20 md:hover:border-micron-eggplant md:transition-colors md:duration-500">
                     <p className="text-base font-light text-zinc-600 leading-snug font-body">
                        <span className="font-bold text-micron-eggplant-light/50 block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
                            CURATED MOMENTS.
