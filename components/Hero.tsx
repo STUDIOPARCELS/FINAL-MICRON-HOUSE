@@ -6,7 +6,7 @@ const sentences = [
     {
         words: ["WITHOUT", "VISION,", "THERE'S", "NO", "VELOCITY."],
         color: "text-[#878d9f]",
-        highlightColor: "text-[#5d6270]",
+        highlightColor: "text-[#3d4250]",
         hoverColor: "hover:text-black", 
         highlights: ["VISION,", "VELOCITY."],
         textSize: "text-3xl sm:text-4xl md:text-5xl lg:text-7xl",
@@ -27,7 +27,7 @@ const sentences = [
         highlightColor: "text-micron-green",
         hoverColor: "hover:text-green-900", 
         highlights: ["PLACE,", "PERSPECTIVE."],
-        textSize: "text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem]",
+        textSize: "text-3xl sm:text-4xl md:text-5xl lg:text-7xl",
         layout: "default",
         lines: [["WITHOUT", "PLACE,"], ["THERE'S", "NO"], ["PERSPECTIVE."]],
     },
@@ -465,10 +465,10 @@ export const Hero: React.FC = () => {
                         transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
                         className="flex flex-col"
                      >
-                        <span className="text-5xl md:text-7xl xl:text-8xl font-black uppercase tracking-tight text-[#878d9f] leading-[0.85]">
+                        <span className="text-4xl md:text-5xl xl:text-7xl font-black uppercase tracking-tight text-[#878d9f] leading-[0.85]">
                             Micron
                         </span>
-                        <span className="text-5xl md:text-7xl xl:text-8xl font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]">
+                        <span className="text-4xl md:text-5xl xl:text-7xl font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]">
                             House
                         </span>
                      </motion.div>
@@ -478,7 +478,7 @@ export const Hero: React.FC = () => {
                         animate={iconControls}
                         src="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/micron-overlap-no-border.png"
                         alt="Micron Logo"
-                        className="h-[100px] w-[100px] md:h-[180px] md:w-[180px] xl:h-[260px] xl:w-[260px] object-contain"
+                        className="h-[80px] w-[80px] md:h-[140px] md:w-[140px] xl:h-[200px] xl:w-[200px] object-contain"
                      />
                    </div>
                  )}
