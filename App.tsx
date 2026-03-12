@@ -47,7 +47,7 @@ function App() {
   };
 
   const navLinks = [
-    { label: "Why Now", id: "prototype" },
+    { label: "Critical Window", id: "prototype" },
     { label: "The Property", id: "property" },
     { label: "Serving Micron", id: "serving" },
     { label: "Autonomous Living", id: "serving-tesla" },
@@ -86,7 +86,7 @@ function App() {
             </div>
             
             {/* Desktop Menu */}
-            <div className="hidden md:flex gap-5 text-sm font-semibold uppercase tracking-wider text-zinc-600">
+            <div className="hidden md:flex gap-5 text-xs font-medium uppercase tracking-wider text-zinc-500">
                {navLinks.map(link => (
                  <a 
                     key={link.id}
