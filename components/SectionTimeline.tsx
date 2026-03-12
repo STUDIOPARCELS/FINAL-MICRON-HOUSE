@@ -8,15 +8,15 @@ const roadmapItems = [
     date: "NOW", 
     title: "SITE VISIT", 
     subtitle: "Working session on fit, scope, and priorities.", 
-    bg: "bg-micron-grey1",
+    bg: "bg-micron-eggplant",
     text: "text-white"
   },
   { 
     id: 2, 
     date: "DAY 30", 
-    title: "PROGRAM ALIGNMENT", 
+    title: "INTEGRATION", 
     subtitle: "Define uses, hosting standards, privacy, and operating needs.", 
-    bg: "bg-micron-eggplant-light",
+    bg: "bg-micron-green",
     text: "text-white"
   },
   { 
@@ -24,7 +24,7 @@ const roadmapItems = [
     date: "DAY 60", 
     title: "PILOT USE", 
     subtitle: "Begin hosted use for recruitment, relocation, family support, and small strategic gatherings.", 
-    bg: "bg-[#878d9f]",
+    bg: "bg-micron-grey1",
     text: "text-white"
   }
 ];
