@@ -574,7 +574,7 @@ export const Hero: React.FC = () => {
             {/* TOP ROW: Paradigm + Quote + Map */}
             <div className="flex flex-col lg:flex-row lg:items-stretch flex-1 gap-4 lg:gap-6 xl:gap-8">
             {/* LEFT: Title + Quote (tablet) + Address Block */}
-            <div className="flex-shrink-0 lg:flex-1 flex flex-col justify-between items-start z-10 relative h-full lg:w-auto gap-6 lg:gap-4 xl:gap-12">
+            <div className="flex-shrink-0 flex flex-col justify-between items-start z-10 relative h-full md:w-auto gap-10 md:gap-12">
                  <div className="relative z-10 w-full">
                     <InteractiveParadigmTitle />
                  </div>
