@@ -277,8 +277,8 @@ export const Hero: React.FC = () => {
           });
       }
       
-      // Brand reveal: Logo rolls in slowly next to wordmark on hyper zoom
-      if (t >= 27.0 && !fired.has('logo')) {
+      // Brand reveal: Logo rolls in coordinated with the zoom-out spin
+      if (t >= 29.0 && !fired.has('logo')) {
           fired.add('logo');
           setLogoVisible(true);
           iconControls.start({
@@ -465,7 +465,7 @@ export const Hero: React.FC = () => {
                         transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
                         className="flex flex-col"
                      >
-                        <span className="text-4xl md:text-5xl xl:text-7xl font-black uppercase tracking-tight text-[#878d9f] leading-[0.85]">
+                        <span className="text-4xl md:text-5xl xl:text-7xl font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]">
                             Micron
                         </span>
                         <span className="text-4xl md:text-5xl xl:text-7xl font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]">
