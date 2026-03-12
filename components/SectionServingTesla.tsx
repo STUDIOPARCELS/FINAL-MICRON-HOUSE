@@ -422,7 +422,7 @@ export const SectionServingTesla: React.FC = () => {
               <div className="flex-shrink-0">
                   <span className="block text-sm font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2 font-sans">04 / PROVING GROUND</span>
                   <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-micron-grey1 leading-none font-sans">
-                      READINESS + A NEW ASSET CLASS
+                      FIRST ENCOUNTERS
                   </h2>
               </div>
               
