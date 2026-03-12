@@ -252,7 +252,7 @@ export const Hero: React.FC = () => {
           fired.add('s1on');
           setCurrentSentenceIndex(1);
       }
-      if (t >= 17.0 && !fired.has('s1off')) {
+      if (t >= 15.5 && !fired.has('s1off')) {
           fired.add('s1off');
           setCurrentSentenceIndex(null);
       }
