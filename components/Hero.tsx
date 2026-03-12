@@ -581,12 +581,32 @@ export const Hero: React.FC = () => {
         >
             {/* TOP ROW: Paradigm + Quote + Map */}
             <div className="flex flex-col lg:flex-row lg:items-stretch flex-1 gap-4 lg:gap-6 xl:gap-8">
-            {/* LEFT: Hero Description + Address Block */}
-            <div className="flex-shrink-0 flex flex-col justify-between items-start z-10 relative h-full md:w-auto gap-8 md:gap-10 lg:max-w-[55%]">
+            {/* LEFT: Title + Quote (tablet) + Address Block */}
+            <div className="flex-shrink-0 flex flex-col justify-between items-start z-10 relative h-full md:w-auto gap-10 md:gap-12">
                  <div className="relative z-10 w-full">
-                    <p className="text-white/90 text-lg md:text-xl lg:text-2xl font-light leading-relaxed font-body">
-                        The first private corporate residence powered by autonomous systems where Micron hosts, entertains, and demonstrates the future it's building – <strong className="font-semibold text-white">with Optimus and Cybercab handling logistics, service, and experience delivery.</strong>
-                    </p>
+                    <InteractiveParadigmTitle />
+                 </div>
+
+                 {/* TABLET LANDSCAPE QUOTE - under title, no angle, fills horizontal space */}
+                 <div className="hidden lg:block xl:hidden relative z-10">
+                      <motion.div
+                         initial="hidden"
+                         animate={shouldShowQuote ? "visible" : "hidden"}
+                         variants={quoteContainerVariants}
+                         className="font-micron text-base text-white/90 font-extralight leading-relaxed text-left will-change-transform"
+                      >
+                         <p className="inline">
+                             {quoteWords.map((word, i) => (
+                                <motion.span
+                                    key={i}
+                                    variants={quoteWordVariants}
+                                    className="mr-1 inline-block"
+                                >
+                                    {word}
+                                </motion.span>
+                             ))}
+                         </p>
+                      </motion.div>
                  </div>
                  
                  {/* ADDRESS BLOCK */}
@@ -595,9 +615,53 @@ export const Hero: React.FC = () => {
                         <p className="text-micron-eggplant font-semibold text-sm md:text-base uppercase tracking-widest leading-tight whitespace-nowrap overflow-hidden text-ellipsis">1020 East Warm Springs Ave</p>
                         <p className="text-micron-eggplant/80 text-xs md:text-sm uppercase tracking-widest leading-tight">Boise, Idaho 83712</p>
                  </div>
+
+                 {/* MOBILE + TABLET PORTRAIT QUOTE - centered */}
+                 <div className="lg:hidden w-full flex-grow pt-4 pb-12 flex items-center justify-center relative z-20">
+                      <motion.div
+                         initial="hidden"
+                         animate={shouldShowQuote ? "visible" : "hidden"}
+                         variants={quoteContainerVariants}
+                         className="font-micron text-xl text-center text-white font-extralight leading-relaxed -rotate-3 pb-4 will-change-transform"
+                      >
+                         <p className="inline">
+                             {quoteWords.map((word, i) => (
+                                <motion.span
+                                    key={i}
+                                    variants={quoteWordVariants}
+                                    className="mr-1.5 inline-block"
+                                >
+                                    {word}
+                                </motion.span>
+                             ))}
+                         </p>
+                      </motion.div>
+                 </div>
             </div>
 
-            {/* RIGHT: Map Card */}
+            {/* CENTER: DESKTOP-ONLY QUOTE CONTAINER */}
+            <div className="hidden xl:flex flex-grow items-center justify-center relative px-4 z-10">
+                <motion.div
+                        initial="hidden"
+                        animate={shouldShowQuote ? "visible" : "hidden"}
+                        variants={quoteContainerVariants}
+                        className="font-micron text-2xl text-white font-extralight leading-relaxed text-left -rotate-6 max-w-lg w-full -translate-x-4 pb-4 will-change-transform"
+                >
+                     <p className="inline">
+                        {quoteWords.map((word, i) => (
+                        <motion.span
+                            key={i}
+                            variants={quoteWordVariants}
+                            className="mr-2 inline-block"
+                        >
+                            {word}
+                        </motion.span>
+                        ))}
+                    </p>
+                </motion.div>
+            </div>
+
+            {/* RIGHT: Map Card — compact on tablet landscape, full on desktop */}
             <div className="w-full lg:w-[200px] xl:w-[340px] aspect-[4/3] lg:aspect-auto lg:h-auto bg-zinc-100 rounded-2xl overflow-hidden shadow-2xl relative border-4 border-white/20 z-10 mt-auto lg:mt-0 flex-shrink-0">
                  <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2889.234!2d-116.1898!3d43.6088!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54aef8d1b0b3b8e7%3A0x0!2s1020%20E%20Warm%20Springs%20Ave%2C%20Boise%2C%20ID%2083712!5e0!3m2!1sen!2sus!4v1706000000000"
