@@ -49,7 +49,7 @@ function App() {
   const navLinks = [
     { label: "Why Now", id: "prototype" },
     { label: "Readiness", id: "property" },
-    { label: "Serving Micron", id: "serving" },
+    { label: "A New Asset Class", id: "serving" },
     { label: "Autonomous Living", id: "serving-tesla" },
     { label: "Roadmap", id: "timeline" },
   ];

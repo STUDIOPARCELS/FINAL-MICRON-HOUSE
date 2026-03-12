@@ -283,9 +283,9 @@ export const SectionServing: React.FC = () => {
         >
             <div className="flex-shrink-0">
                 {/* UPDATED: Renumbered to 03 */}
-                <span className="block text-sm font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2 font-sans">03 / STAKEHOLDERS</span>
+                <span className="block text-sm font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2 font-sans">03 / OUTCOME</span>
                 <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-tight text-micron-eggplant leading-none font-sans">
-                    SERVING MICRON
+                    A NEW ASSET CLASS
                 </h2>
             </div>
             
@@ -293,9 +293,9 @@ export const SectionServing: React.FC = () => {
                  <div className="pl-6 border-l-4 border-micron-eggplant/20 hover:border-micron-eggplant transition-colors duration-500">
                     <p className="text-base font-light text-zinc-600 leading-snug font-body">
                        <span className="font-bold text-micron-eggplant block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
-                           ALIGNMENT
+                           CORPORATIVE AUTONOMOUS RESIDENCE + ENTERTAINMENT HUB
                        </span>
-                       A new class of corporate asset. Micron House supports leadership hosting, partner convening, recruitment, relocation, family care, and select hospitality in a private residential setting.
+                       Micron House introduces the corporative autonomous residence and entertainment hub — a new corporate asset class delivered by the service, security, and mobility layer of Optimus and Cybercab.
                     </p>
                  </div>
             </div>
