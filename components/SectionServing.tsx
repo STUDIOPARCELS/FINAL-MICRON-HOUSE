@@ -285,7 +285,7 @@ export const SectionServing: React.FC = () => {
                 {/* UPDATED: Renumbered to 03 */}
                 <span className="block text-sm font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2 font-sans">03 / OUTCOME</span>
                 <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-tight text-micron-eggplant leading-none font-sans">
-                    PILOT + A NEW ASSET CLASS
+                    PILOT + NEW CORPORATE ASSET
                 </h2>
             </div>
             
