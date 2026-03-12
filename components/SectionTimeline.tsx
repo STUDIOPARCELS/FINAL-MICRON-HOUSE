@@ -26,21 +26,13 @@ const roadmapItems = [
     subtitle: "Begin hosted use for recruitment, relocation, family support, and small strategic gatherings.", 
     bg: "bg-[#878d9f]",
     text: "text-white"
-  },
-  { 
-    id: 4, 
-    date: "NEXT PHASE", 
-    title: "AUTONOMY INTEGRATION", 
-    subtitle: "Evaluate early service and security systems and define the next operational step.", 
-    bg: "bg-micron-eggplant",
-    text: "text-white"
   }
 ];
 
 export const SectionTimeline: React.FC = () => {
 
   // Randomized staggered delay array for the 5 items
-  const staggeredDelays = [0, 0.3, 0.1, 0.4];
+  const staggeredDelays = [0, 0.3, 0.1];
 
   return (
     // REDUCED PADDING: py-16 -> py-10, UPDATED mobile padding to px-8
@@ -65,14 +57,14 @@ export const SectionTimeline: React.FC = () => {
                            NEXT STEP
                        </span>
                        {/* Increased description size to text-base */}
-                       From site visit to program alignment, pilot use, and autonomy integration.
+                       From site visit to program alignment and pilot use.
                     </p>
                  </div>
               </div>
           </div>
 
           {/* Horizontal Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
             {roadmapItems.map((item, i) => (
                 <motion.div
                     key={item.id}
