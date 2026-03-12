@@ -86,7 +86,7 @@ function App() {
             </div>
             
             {/* Desktop Menu */}
-            <div className="hidden md:flex gap-5 text-xs font-medium uppercase tracking-wider text-zinc-500">
+            <div className="hidden lg:flex gap-5 text-xs font-medium uppercase tracking-wider text-zinc-500">
                {navLinks.map(link => (
                  <a 
                     key={link.id}
@@ -101,7 +101,7 @@ function App() {
 
             {/* Mobile Menu Toggle */}
             <button 
-                className="md:hidden text-zinc-800 p-2 rounded-md hover:bg-zinc-100 transition-colors"
+                className="lg:hidden text-zinc-800 p-2 rounded-md hover:bg-zinc-100 transition-colors"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 aria-label="Toggle menu"
             >
@@ -124,7 +124,7 @@ function App() {
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.95 }}
                         transition={{ duration: 0.2, ease: "easeOut" }}
-                        className="fixed top-3 right-3 z-[120] w-64 bg-white rounded-xl shadow-2xl border border-zinc-100 flex flex-col overflow-hidden md:hidden"
+                        className="fixed top-3 right-3 z-[120] w-64 bg-white rounded-xl shadow-2xl border border-zinc-100 flex flex-col overflow-hidden lg:hidden"
                     >
                         {/* Close Button Row */}
                         <div className="flex justify-end p-2 border-b border-zinc-50">
