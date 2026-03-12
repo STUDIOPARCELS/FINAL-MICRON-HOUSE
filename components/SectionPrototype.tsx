@@ -629,7 +629,7 @@ export const SectionPrototype: React.FC = () => {
         >
             <div className="flex-shrink-0">
                 <span className="block text-sm font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2 font-sans">01 / CRITICAL WINDOW</span>
-                <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-tight text-micron-eggplant leading-none font-sans">CRITICAL WINDOW</h2>
+                <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-tight text-micron-eggplant leading-none font-sans">WHY NOW</h2>
             </div>
 
             <div className="md:ml-auto max-w-2xl pb-1">

@@ -47,7 +47,7 @@ function App() {
   };
 
   const navLinks = [
-    { label: "Critical Window", id: "prototype" },
+    { label: "Why Now", id: "prototype" },
     { label: "Readiness", id: "property" },
     { label: "Serving Micron", id: "serving" },
     { label: "Autonomous Living", id: "serving-tesla" },
