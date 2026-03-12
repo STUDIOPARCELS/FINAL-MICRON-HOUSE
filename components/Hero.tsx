@@ -188,7 +188,7 @@ export const Hero: React.FC = () => {
     setWordmarkVisible(false);
     setVideoIsPlaying(false);
     iconControls.set({ x: 200, rotate: -360, opacity: 0 });
-    wordmarkControls.set({ x: 200, opacity: 0 });
+    wordmarkControls.set({ opacity: 0 });
 
     // 3. Start Video — programmatic play only (no autoPlay attribute), matching bento pattern
     // If play succeeds: onPlaying fires → poster fades → sentence timers start (all synced)
@@ -222,9 +222,9 @@ export const Hero: React.FC = () => {
   // Footage cue points (in video currentTime):
   //   ~2.2s:  Starbase appears → Sentence 0 (VISION/VELOCITY)
   //   ~8.5s:  Transition → Sentence 0 out
-  //   ~10.3s: Micron factory → Sentence 1 (MEMORY/MEANING)  
-  //   ~15.7s: Transition → Sentence 1 out
-  //   ~17.1s: Warm Springs Road → Sentence 2 (PLACE/PERSPECTIVE)
+  //   ~12.0s: Micron factory comes into view → Sentence 1 (MEMORY/MEANING)  
+  //   ~17.0s: Transition → Sentence 1 out
+  //   ~19.0s: Camera goes down Warm Springs Ave → Sentence 2 (PLACE/PERSPECTIVE)
   //   ~23.0s: Sentence 2 out
   //   ~24.0s: Car drives off → Wordmark slides in
   //   ~27.0s: Hyper zoom → Logo slides in above wordmark
@@ -247,18 +247,18 @@ export const Hero: React.FC = () => {
           setCurrentSentenceIndex(null);
       }
       
-      // Sentence 1: Micron factory
-      if (t >= 10.3 && !fired.has('s1on')) {
+      // Sentence 1: Micron factory comes into view
+      if (t >= 12.0 && !fired.has('s1on')) {
           fired.add('s1on');
           setCurrentSentenceIndex(1);
       }
-      if (t >= 15.7 && !fired.has('s1off')) {
+      if (t >= 17.0 && !fired.has('s1off')) {
           fired.add('s1off');
           setCurrentSentenceIndex(null);
       }
       
-      // Sentence 2: Warm Springs Road
-      if (t >= 17.1 && !fired.has('s2on')) {
+      // Sentence 2: Camera goes down Warm Springs Avenue
+      if (t >= 19.0 && !fired.has('s2on')) {
           fired.add('s2on');
           setCurrentSentenceIndex(2);
       }
@@ -267,23 +267,23 @@ export const Hero: React.FC = () => {
           setCurrentSentenceIndex(null);
       }
       
-      // Brand reveal: Wordmark slides in when car drives off
+      // Brand reveal: Wordmark fades in when car drives off
       if (t >= 24.0 && !fired.has('wordmark')) {
           fired.add('wordmark');
           setWordmarkVisible(true);
           wordmarkControls.start({
-              x: 0, opacity: 1,
-              transition: { type: "spring", stiffness: 20, damping: 20, duration: 3.0, bounce: 0 }
+              opacity: 1,
+              transition: { duration: 2.0, ease: [0.16, 1, 0.3, 1] }
           });
       }
       
-      // Brand reveal: Logo slides in above wordmark on hyper zoom
+      // Brand reveal: Logo rolls in slowly next to wordmark on hyper zoom
       if (t >= 27.0 && !fired.has('logo')) {
           fired.add('logo');
           setLogoVisible(true);
           iconControls.start({
               x: 0, rotate: 0, opacity: 1,
-              transition: { type: "spring", stiffness: 15, damping: 18, duration: 5.1, bounce: 0 }
+              transition: { type: "spring", stiffness: 8, damping: 14, duration: 6.0, bounce: 0 }
           });
           setTimeout(() => setLayoutShift(true), 1000);
       }
@@ -312,7 +312,7 @@ export const Hero: React.FC = () => {
           setVideoCompleted(false);
           setVideoIsPlaying(false);
           iconControls.set({ x: 200, rotate: -360, opacity: 0 });
-          wordmarkControls.set({ x: 200, opacity: 0 });
+          wordmarkControls.set({ opacity: 0 });
       }
 
       return () => {
@@ -449,32 +449,32 @@ export const Hero: React.FC = () => {
                 layout
                 transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
                 className={`
-                    min-h-[180px] p-6 pb-8
-                    xl:min-h-[300px] xl:h-full xl:p-12
-                    w-full flex flex-col items-center justify-center order-2 bg-white rounded-3xl 
+                    min-h-[180px] p-6 justify-end pb-8
+                    xl:min-h-[300px] xl:h-full xl:justify-end xl:p-12
+                    w-full flex flex-col items-start order-2 bg-white rounded-3xl 
                     shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 relative overflow-hidden group
                 `}
             >
-                 {/* BRAND REVEAL: Wordmark rolls in first, logo rolls in next to it */}
+                 {/* BRAND REVEAL: Wordmark fades in left-justified, logo rolls in next to it */}
                  {wordmarkVisible && (
-                   <div className="absolute inset-0 flex flex-row items-center justify-center z-20 pointer-events-none gap-3 md:gap-5">
-                     {/* Logo — rolls in second (on hyper zoom), original size */}
-                     <motion.img 
-                        initial={{ x: 200, rotate: -360, opacity: 0 }}
-                        animate={iconControls}
-                        src="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/micron-overlap-no-border.png"
-                        alt="Micron Logo"
-                        className="h-[60px] w-[60px] md:h-[80px] md:w-[80px] xl:h-[120px] xl:w-[120px] object-contain"
-                     />
-                     {/* Wordmark — rolls in first (when car drives off) */}
+                   <div className="absolute inset-0 flex flex-row items-center justify-start z-20 pointer-events-none pl-6 xl:pl-12 gap-3 md:gap-5">
+                     {/* Wordmark — fades in first (when car drives off) */}
                      <motion.div
-                        initial={{ x: 200, opacity: 0 }}
+                        initial={{ opacity: 0 }}
                         animate={wordmarkControls}
                      >
                         <h2 className="text-xl md:text-2xl xl:text-3xl font-black uppercase tracking-tight text-micron-eggplant leading-none whitespace-nowrap">
                             Micron House
                         </h2>
                      </motion.div>
+                     {/* Logo — rolls in second (on hyper zoom), doubled size, slow */}
+                     <motion.img 
+                        initial={{ x: 200, rotate: -360, opacity: 0 }}
+                        animate={iconControls}
+                        src="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/micron-overlap-no-border.png"
+                        alt="Micron Logo"
+                        className="h-[100px] w-[100px] md:h-[140px] md:w-[140px] xl:h-[200px] xl:w-[200px] object-contain"
+                     />
                    </div>
                  )}
                  
