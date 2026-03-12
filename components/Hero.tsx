@@ -455,25 +455,30 @@ export const Hero: React.FC = () => {
                     shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 relative overflow-hidden group
                 `}
             >
-                 {/* BRAND REVEAL: Wordmark fades in left-justified, logo rolls in next to it */}
+                 {/* BRAND REVEAL: MICRON stacked above HOUSE fades in, logo rolls in to fill */}
                  {wordmarkVisible && (
-                   <div className="absolute inset-0 flex flex-row items-center justify-start z-20 pointer-events-none pl-6 xl:pl-12 gap-3 md:gap-5">
-                     {/* Wordmark — fades in first (when car drives off) */}
+                   <div className="absolute inset-0 flex flex-row items-center justify-start z-20 pointer-events-none pl-6 xl:pl-12 gap-4 md:gap-6">
+                     {/* Wordmark — MICRON above HOUSE, fades in directly */}
                      <motion.div
                         initial={{ opacity: 0 }}
-                        animate={wordmarkControls}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
+                        className="flex flex-col"
                      >
-                        <h2 className="text-xl md:text-2xl xl:text-3xl font-black uppercase tracking-tight text-micron-eggplant leading-none whitespace-nowrap">
-                            Micron House
-                        </h2>
+                        <span className="text-3xl md:text-4xl xl:text-5xl font-black uppercase tracking-tight text-micron-eggplant leading-[0.9]">
+                            Micron
+                        </span>
+                        <span className="text-3xl md:text-4xl xl:text-5xl font-black uppercase tracking-tight text-micron-eggplant leading-[0.9]">
+                            House
+                        </span>
                      </motion.div>
-                     {/* Logo — rolls in second (on hyper zoom), doubled size, slow */}
+                     {/* Logo — rolls in second (on hyper zoom), fills in next to wordmark */}
                      <motion.img 
                         initial={{ x: 200, rotate: -360, opacity: 0 }}
                         animate={iconControls}
                         src="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/micron-overlap-no-border.png"
                         alt="Micron Logo"
-                        className="h-[100px] w-[100px] md:h-[140px] md:w-[140px] xl:h-[200px] xl:w-[200px] object-contain"
+                        className="h-[80px] w-[80px] md:h-[120px] md:w-[120px] xl:h-[160px] xl:w-[160px] object-contain"
                      />
                    </div>
                  )}
