@@ -430,7 +430,7 @@ export const SectionServingTesla: React.FC = () => {
                    <div className="pl-6 border-l-4 border-micron-eggplant-light/20 hover:border-micron-eggplant-light transition-colors duration-500">
                       <p className="text-base font-light text-zinc-600 leading-snug font-body">
                          <span className="font-bold text-micron-grey1 block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
-                             INTEGRATED ECOSYSTEM
+                             DAILY LIFE
                          </span>
                          <strong className="font-semibold text-zinc-800">The house becomes a setting where autonomous systems are encountered at human scale.</strong> Micron maintains a dedicated residential environment where autonomous service, security, movement, and daily use can be observed in practice.
                       </p>
