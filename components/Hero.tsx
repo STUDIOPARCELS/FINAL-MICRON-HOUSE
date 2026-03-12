@@ -278,12 +278,12 @@ export const Hero: React.FC = () => {
       }
       
       // Brand reveal: Logo rolls in as video starts spinning out from overhead
-      if (t >= 26.5 && !fired.has('logo')) {
+      if (t >= 27.5 && !fired.has('logo')) {
           fired.add('logo');
           setLogoVisible(true);
           iconControls.start({
               x: 0, rotate: 0, opacity: 1,
-              transition: { type: "spring", stiffness: 8, damping: 14, duration: 6.0, bounce: 0 }
+              transition: { type: "spring", stiffness: 5, damping: 12, duration: 8.0, bounce: 0 }
           });
           setTimeout(() => setLayoutShift(true), 1000);
       }
