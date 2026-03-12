@@ -432,7 +432,7 @@ export const SectionServingTesla: React.FC = () => {
                          <span className="font-bold text-micron-grey1/50 block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
                              DAILY LIFE
                          </span>
-                         Here, guests come into contact with Optimus and Cybercab for the first time on Warm Springs Avenue, a tree-lined, century-old neighborhood on the National Register of Historic Places, where geothermal ingenuity and residential life give the experience <strong className="font-semibold text-zinc-800">context, weight, and grounding.</strong>
+                         Here, guests come into contact with Optimus and Cybercab for the first time on Warm Springs Avenue, a tree-lined, century-old neighborhood on the National Register of Historic Places, where geothermal ingenuity and residential life give the experience <strong className="font-semibold text-zinc-800">perspective, place, and grounding.</strong>
                       </div>
                    </div>
               </div>
