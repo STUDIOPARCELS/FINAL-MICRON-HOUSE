@@ -236,11 +236,6 @@ function App() {
                                 <Phone size={20} />
                                 <a href="tel:2087202433" className="hover:text-white transition-colors">208.720.2433</a>
                             </li>
-                            <li className="mt-8">
-                                <a href="mailto:lisa@lisawoodstudio.com?subject=Micron%20House%20%E2%80%94%20Site%20Visit%20Request" className="inline-block px-6 py-2.5 bg-micron-green text-white rounded-full text-sm font-bold uppercase tracking-widest hover:bg-micron-green/80 transition-colors">
-                                    Request a Site Visit
-                                </a>
-                            </li>
                         </ul>
                     </div>
                 </div>

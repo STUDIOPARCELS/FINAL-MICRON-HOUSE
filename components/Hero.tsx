@@ -151,11 +151,15 @@ export const Hero: React.FC = () => {
   const [videoCompleted, setVideoCompleted] = useState(false);
   const [videoIsPlaying, setVideoIsPlaying] = useState(false);
 
+  // Brand reveal states
+  const [wordmarkVisible, setWordmarkVisible] = useState(false);
+
   // Timer Ref to manage cleanup
   const sequenceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Icon Controls
+  // Animation Controls
   const iconControls = useAnimation();
+  const wordmarkControls = useAnimation();
 
   // Scroll Listener
   useEffect(() => {
@@ -181,13 +185,16 @@ export const Hero: React.FC = () => {
     setCurrentSentenceIndex(null);
     setLayoutShift(false);
     setLogoVisible(false);
+    setWordmarkVisible(false);
     setVideoIsPlaying(false);
     iconControls.set({ x: 200, rotate: -360, opacity: 0 });
+    wordmarkControls.set({ x: 200, opacity: 0 });
 
     // 3. Start Video — programmatic play only (no autoPlay attribute), matching bento pattern
     // If play succeeds: onPlaying fires → poster fades → sentence timers start (all synced)
     // If play blocked: poster stays visible, nothing else happens until user taps
     videoStarted.current = false;
+    firedCues.current.clear();
     if (videoRef.current) {
         videoRef.current.currentTime = 0;
         videoRef.current.muted = true;
@@ -198,70 +205,92 @@ export const Hero: React.FC = () => {
     }
   };
 
-  // Start sentence timers - called when video actually plays or as fallback
+  // Start sentence timers - now just marks video as started (actual triggers are in handleVideoTimeUpdate)
   const startSentenceTimers = () => {
-    if (videoStarted.current) return; // Prevent double-start
+    if (videoStarted.current) return;
     videoStarted.current = true;
-
-    // 4. Sentence timeline (real time at 0.45x playback)
-    sentenceTimers.current.forEach(t => clearTimeout(t));
-    sentenceTimers.current = [];
-    
-    // Sentence 1 at 3s (rockets)
-    sentenceTimers.current.push(setTimeout(() => setCurrentSentenceIndex(0), 5000));
-    // Sentence 1 out at 14s
-    sentenceTimers.current.push(setTimeout(() => setCurrentSentenceIndex(null), 19000));
-    // Sentence 2 at 22s (Micron)
-    sentenceTimers.current.push(setTimeout(() => setCurrentSentenceIndex(1), 23000));
-    // Sentence 2 out at 32s
-    sentenceTimers.current.push(setTimeout(() => setCurrentSentenceIndex(null), 35000));
-    // Sentence 3 at 37s (Capitol → House)
-    sentenceTimers.current.push(setTimeout(() => setCurrentSentenceIndex(2), 38000));
-    // Sentence 3 out at 50s — fades to white
-    sentenceTimers.current.push(setTimeout(() => setCurrentSentenceIndex(null), 61000));
-    // Logo rolls in at 63s (1s after fade to white at 62s)
-    sentenceTimers.current.push(setTimeout(() => {
-        setLogoVisible(true);
-        iconControls.start({
-            x: 0, rotate: 0, opacity: 1,
-            transition: { type: "spring", stiffness: 15, damping: 18, duration: 5.1, bounce: 0 }
-        });
-        setTimeout(() => setLayoutShift(true), 1000);
-    }, 63000));
-    // Blue bento box at 68s
-    sentenceTimers.current.push(setTimeout(() => setVideoCompleted(true), 68000));
   };
 
   // Handle Video End — freeze on last frame
-  const handleVideoEnd = () => {
-      // videoCompleted already set at 32.5s mark
-      // Video naturally pauses on last frame since loop={false}
-  };
+  const handleVideoEnd = () => {};
   
-  // SYNC ALL ANIMATIONS TO VIDEO TIME
-  // Video is 34.8s at 1x, plays at 0.6x = ~58s real time
-  // Scene map (real time at 0.6x):
-  //   0-13s:  Space → Starbase → Rockets  
-  //   13-23s: Mountains → Micron facility
-  //   23-30s: Capitol → transition
-  //   30-40s: Warm Springs Ave → House approach  
-  //   40-57s: House close-up
+  // VIDEO-TIME-DRIVEN CUE SYSTEM
+  // All animations are anchored to video.currentTime instead of setTimeout.
+  // Video is 34.8s at 1x, plays at 0.45x = ~77s real time.
+  // currentTime advances at 0.45x of real time.
   //
-  // Animation timeline (real time):
-  //   5s:  Sentence 1 starts (rockets)
-  //   22s: Sentence 1 fades out
-  //   24s: Sentence 2 starts (Micron)
-  //   38s: Sentence 2 fades out  
-  //   40s: Sentence 3 starts (Capitol→House)
-  //   50s: Logo slides in
-  //   52s: Blue bento appears
+  // Footage cue points (in video currentTime):
+  //   ~2.2s:  Starbase appears → Sentence 0 (VISION/VELOCITY)
+  //   ~8.5s:  Transition → Sentence 0 out
+  //   ~10.3s: Micron factory → Sentence 1 (MEMORY/MEANING)  
+  //   ~15.7s: Transition → Sentence 1 out
+  //   ~17.1s: Warm Springs Road → Sentence 2 (PLACE/PERSPECTIVE)
+  //   ~23.0s: Sentence 2 out
+  //   ~24.0s: Car drives off → Wordmark slides in
+  //   ~27.0s: Hyper zoom → Logo slides in above wordmark
+  //   ~30.6s: Blue bento appears
+  
   const sentenceTimers = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const firedCues = useRef<Set<string>>(new Set());
   
   const handleVideoTimeUpdate = (e: React.SyntheticEvent<HTMLVideoElement>) => {
-      const time = e.currentTarget.currentTime;
-      // Logo handled by timer now
-      // Blue bento at video time 31s  
-      if (time >= 31 && !videoCompleted) {
+      const t = e.currentTarget.currentTime;
+      const fired = firedCues.current;
+      
+      // Sentence 0: Starbase
+      if (t >= 2.2 && !fired.has('s0on')) {
+          fired.add('s0on');
+          setCurrentSentenceIndex(0);
+      }
+      if (t >= 8.5 && !fired.has('s0off')) {
+          fired.add('s0off');
+          setCurrentSentenceIndex(null);
+      }
+      
+      // Sentence 1: Micron factory
+      if (t >= 10.3 && !fired.has('s1on')) {
+          fired.add('s1on');
+          setCurrentSentenceIndex(1);
+      }
+      if (t >= 15.7 && !fired.has('s1off')) {
+          fired.add('s1off');
+          setCurrentSentenceIndex(null);
+      }
+      
+      // Sentence 2: Warm Springs Road
+      if (t >= 17.1 && !fired.has('s2on')) {
+          fired.add('s2on');
+          setCurrentSentenceIndex(2);
+      }
+      if (t >= 23.0 && !fired.has('s2off')) {
+          fired.add('s2off');
+          setCurrentSentenceIndex(null);
+      }
+      
+      // Brand reveal: Wordmark slides in when car drives off
+      if (t >= 24.0 && !fired.has('wordmark')) {
+          fired.add('wordmark');
+          setWordmarkVisible(true);
+          wordmarkControls.start({
+              x: 0, opacity: 1,
+              transition: { type: "spring", stiffness: 20, damping: 20, duration: 3.0, bounce: 0 }
+          });
+      }
+      
+      // Brand reveal: Logo slides in above wordmark on hyper zoom
+      if (t >= 27.0 && !fired.has('logo')) {
+          fired.add('logo');
+          setLogoVisible(true);
+          iconControls.start({
+              x: 0, rotate: 0, opacity: 1,
+              transition: { type: "spring", stiffness: 15, damping: 18, duration: 5.1, bounce: 0 }
+          });
+          setTimeout(() => setLayoutShift(true), 1000);
+      }
+      
+      // Blue bento appears
+      if (t >= 30.6 && !fired.has('bento')) {
+          fired.add('bento');
           setVideoCompleted(true);
       }
   };
@@ -275,12 +304,15 @@ export const Hero: React.FC = () => {
           // Clean up if we scroll away
           if (sequenceTimer.current) clearTimeout(sequenceTimer.current);
           sentenceTimers.current.forEach(t => clearTimeout(t));
+          firedCues.current.clear();
           setCurrentSentenceIndex(null);
           setLayoutShift(false);
           setLogoVisible(false);
+          setWordmarkVisible(false);
           setVideoCompleted(false);
           setVideoIsPlaying(false);
           iconControls.set({ x: 200, rotate: -360, opacity: 0 });
+          wordmarkControls.set({ x: 200, opacity: 0 });
       }
 
       return () => {
@@ -417,33 +449,42 @@ export const Hero: React.FC = () => {
                 layout
                 transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
                 className={`
-                    /* Text bento matches video height */
-                    min-h-[180px] p-6 justify-end pb-8
-                    xl:min-h-[300px] xl:h-full xl:justify-end xl:p-12
-                    w-full flex flex-col items-start order-2 bg-white rounded-3xl 
+                    min-h-[180px] p-6 pb-8
+                    xl:min-h-[300px] xl:h-full xl:p-12
+                    w-full flex flex-col items-center justify-center order-2 bg-white rounded-3xl 
                     shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 relative overflow-hidden group
                 `}
             >
-                 {/* Logo Animation - UPDATED: Hidden on Mobile */}
-                 <motion.div 
-                    initial={{ x: 200, rotate: -360, opacity: 0 }}
-                    animate={iconControls}
-                    className="flex absolute inset-0 items-center justify-center z-20 pointer-events-none"
-                 >
-                    <motion.img 
-                        whileHover={{ rotate: 6 }}
-                        transition={{ type: "spring", stiffness: 300, damping: 10 }}
+                 {/* STACKED BRAND REVEAL: Logo above wordmark, both slide from right */}
+                 {wordmarkVisible && (
+                   <div className="absolute inset-0 flex flex-col items-center justify-center z-20 pointer-events-none gap-2 md:gap-4">
+                     {/* Logo — slides in second (on hyper zoom) */}
+                     <motion.img 
+                        initial={{ x: 200, rotate: -360, opacity: 0 }}
+                        animate={iconControls}
                         src="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/micron-overlap-no-border.png"
                         alt="Micron Logo"
-                        // UPDATED: Logo reduced 20%
-                        className="h-[160px] w-[160px] md:h-[200px] md:w-[200px] xl:h-[320px] xl:w-[320px] object-contain cursor-pointer"
-                    />
-                 </motion.div>
+                        className="h-[80px] w-[80px] md:h-[120px] md:w-[120px] xl:h-[160px] xl:w-[160px] object-contain"
+                     />
+                     {/* Wordmark — slides in first (when car drives off) */}
+                     <motion.div
+                        initial={{ x: 200, opacity: 0 }}
+                        animate={wordmarkControls}
+                        className="flex flex-col items-center"
+                     >
+                        <h2 className="text-2xl md:text-3xl xl:text-4xl font-black uppercase tracking-tight text-micron-eggplant leading-none text-center">
+                            Micron House
+                        </h2>
+                     </motion.div>
+                   </div>
+                 )}
                  
+                 {/* Sentence text — visible during video, fades when brand appears */}
                  <motion.div 
                     layout
                     transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
-                    className={`w-full relative z-10 mt-0 md:mt-0`}
+                    className={`w-full relative z-10 mt-auto`}
+                    style={{ opacity: wordmarkVisible ? 0 : 1 }}
                  >
                      <AnimatePresence mode="wait">
                        {currentSentenceIndex !== null && (
