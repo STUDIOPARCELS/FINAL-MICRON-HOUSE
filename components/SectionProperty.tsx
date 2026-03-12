@@ -551,7 +551,7 @@ export const SectionProperty: React.FC = () => {
                            HISTORIC CONTEXT
                        </span>
                        <p>
-                           Warm Springs gives the project historic depth, residential privacy, geothermal distinction, and immediate proximity to Boise's institutional core. Boise offers privacy, access, regional distinction, and a growing cultural field that can be hosted at a high standard.
+                           Warm Springs gives Micron House historic depth, residential privacy, geothermal grounding, and direct access to Boise's real-world autonomy ecosystem — where Micron, the Capitol, major hospital systems, Boise State, and cross-sector leaders converge.
                        </p>
                     </div>
                  </div>
