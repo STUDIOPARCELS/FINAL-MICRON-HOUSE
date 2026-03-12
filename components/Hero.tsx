@@ -30,6 +30,7 @@ const sentences = [
         textSize: "text-3xl sm:text-4xl md:text-5xl lg:text-7xl",
         layout: "default",
         lines: [["WITHOUT", "PLACE,"], ["THERE'S", "NO"], ["PERSPECTIVE."]],
+        secondHalfDelay: 7.0,
     },
 ];
 
@@ -248,7 +249,7 @@ export const Hero: React.FC = () => {
       }
       
       // Sentence 1: Camera leaves foothills, Micron fab comes into view
-      if (t >= 12.0 && !fired.has('s1on')) {
+      if (t >= 11.0 && !fired.has('s1on')) {
           fired.add('s1on');
           setCurrentSentenceIndex(1);
       }
@@ -262,13 +263,13 @@ export const Hero: React.FC = () => {
           fired.add('s2on');
           setCurrentSentenceIndex(2);
       }
-      if (t >= 23.0 && !fired.has('s2off')) {
+      if (t >= 25.0 && !fired.has('s2off')) {
           fired.add('s2off');
           setCurrentSentenceIndex(null);
       }
       
       // Brand reveal: Wordmark fades in when car drives off
-      if (t >= 24.0 && !fired.has('wordmark')) {
+      if (t >= 26.0 && !fired.has('wordmark')) {
           fired.add('wordmark');
           setWordmarkVisible(true);
           wordmarkControls.start({
@@ -278,7 +279,7 @@ export const Hero: React.FC = () => {
       }
       
       // Brand reveal: Logo rolls in as video starts spinning out from overhead
-      if (t >= 27.5 && !fired.has('logo')) {
+      if (t >= 29.0 && !fired.has('logo')) {
           fired.add('logo');
           setLogoVisible(true);
           iconControls.start({
@@ -379,7 +380,7 @@ export const Hero: React.FC = () => {
                        transition: { 
                            duration: 3.0, 
                            ease: [0.16, 1, 0.3, 1],
-                           delay: i < 2 ? i * 1.2 : 4.0 + (i - 2) * 0.8
+                           delay: i < 2 ? i * 1.2 : (currentSet.secondHalfDelay || 4.0) + (i - 2) * 0.8
                        } 
                    },
                    exit: {
