@@ -528,14 +528,13 @@ export const SectionProperty: React.FC = () => {
   ];
 
   return (
-    <section id="property" className="container mx-auto px-8 md:px-12 py-12 bg-white text-zinc-900">
+    <section id="property" className="container mx-auto px-8 md:px-12 pt-0 pb-6 md:pb-12 bg-white text-zinc-900">
         <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.8 }}
-            // UPDATED: Reduced padding from mb-12 to mb-6 to tighten section
-            className="mb-6 flex flex-col md:flex-row md:items-end gap-12 border-b border-zinc-100 pb-8"
+            className="flex flex-col md:flex-row md:items-end gap-6 mb-12"
         >
             <div className="flex-shrink-0">
                 <span className="block text-sm font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2 font-sans">02 / READINESS</span>
@@ -548,7 +547,7 @@ export const SectionProperty: React.FC = () => {
                  <div className="pl-6 border-l-4 border-micron-eggplant-light/20 hover:border-micron-eggplant-light transition-colors duration-500">
                     <div className="text-base font-light text-zinc-600 leading-snug font-body">
                        <span className="font-bold text-micron-eggplant-light block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
-                           AUTONOMOUS ECOSYSTEM
+                           PROXIMITY
                        </span>
                        <p>
                            Warm Springs gives Micron House historic depth, residential privacy, geothermal grounding, and direct access to Boise's institutional ecosystem — where Micron, Tesla, the Capitol, major hospital systems, Boise State, and cross-sector leadership <strong className="font-semibold text-zinc-800">come together to tackle the hardest questions before autonomy scales.</strong>
