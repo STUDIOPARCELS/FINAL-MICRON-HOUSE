@@ -646,8 +646,13 @@ export const SectionPrototype: React.FC = () => {
                                             y: -4, 
                                             x: 2, 
                                             scale: 1.05, 
-                                            color: word === "BOISE." ? '#008f25' : (word === "TESLA." ? '#000000' : '#2c0f38'),
+                                            color: word === "BOISE." ? '#14532d' : (word === "TESLA." ? '#353942' : '#2c0f38'),
                                             transition: { duration: 0.2 } 
+                                        }}
+                                        whileTap={{ 
+                                            color: word === "BOISE." ? '#14532d' : (word === "TESLA." ? '#353942' : '#2c0f38'),
+                                            scale: 0.98,
+                                            transition: { duration: 0.1 } 
                                         }}
                                         transition={{ duration: 1.5, delay: i * 0.2 }} 
                                         className="mr-3 inline-block"
