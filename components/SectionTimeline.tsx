@@ -69,7 +69,7 @@ export const SectionTimeline: React.FC = () => {
                  <div className="pl-6 border-l-4 border-zinc-900/20 hover:border-zinc-900 transition-colors duration-500">
                     <p className="text-base font-light text-zinc-600 leading-snug font-body">
                        {/* UPDATED: Changed color to text-micron-green */}
-                       <span className="font-bold text-micron-green block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
+                       <span className="font-bold text-micron-green/50 block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
                            NEXT STEP
                        </span>
                        {/* Increased description size to text-base */}

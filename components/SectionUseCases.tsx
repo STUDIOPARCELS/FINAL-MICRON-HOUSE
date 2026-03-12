@@ -119,7 +119,7 @@ export const SectionUseCases: React.FC = () => {
             <div className="md:ml-auto max-w-2xl pb-1">
                  <div className="pl-6 border-l-4 border-micron-eggplant-light/20 hover:border-micron-eggplant-light transition-colors duration-500">
                     <p className="text-base font-light text-zinc-600 leading-snug font-body">
-                       <span className="font-bold text-micron-eggplant-light block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
+                       <span className="font-bold text-micron-eggplant-light/50 block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
                            CURATED MOMENTS.
                        </span>
                        The residence adapts fluidly to the specific demands of the occasion. From private dining to executive off-sites, the property configures itself to support the intent of the guest.

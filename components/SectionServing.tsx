@@ -292,7 +292,7 @@ export const SectionServing: React.FC = () => {
             <div className="md:ml-auto max-w-2xl pb-1">
                  <div className="pl-6 border-l-4 border-micron-eggplant/20 hover:border-micron-eggplant transition-colors duration-500">
                     <p className="text-base font-light text-zinc-600 leading-snug font-body">
-                       <span className="font-bold text-micron-eggplant block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
+                       <span className="font-bold text-micron-eggplant/50 block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
                            CORPORATE AUTONOMOUS RESIDENCE
                        </span>
                        Micron House begins as a lived readiness proving ground for autonomy in practice. It then introduces the corporate autonomous residence and entertainment hub — a corporate residential model <strong className="font-semibold text-zinc-800">enabled by Optimus and Cybercab's service, security, and mobility layer.</strong>

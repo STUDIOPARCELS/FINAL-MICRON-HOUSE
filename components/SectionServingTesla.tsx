@@ -429,7 +429,7 @@ export const SectionServingTesla: React.FC = () => {
               <div className="lg:ml-auto max-w-2xl pb-1">
                    <div className="pl-6 border-l-4 border-micron-eggplant-light/20 hover:border-micron-eggplant-light transition-colors duration-500">
                       <div className="text-base font-light text-zinc-600 leading-snug font-body">
-                         <span className="font-bold text-micron-grey1 block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
+                         <span className="font-bold text-micron-grey1/50 block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
                              CORPORATE AUTONOMOUS RESIDENCE
                          </span>
                          <p className="mb-3">Micron House begins as a lived readiness proving ground for autonomy in practice.</p>
