@@ -47,20 +47,6 @@ export const SectionTimeline: React.FC = () => {
                       ROADMAP
                   </h2>
               </div>
-              
-              <div className="md:ml-auto max-w-2xl pb-1">
-                 {/* Updated Header Structure to match other sections */}
-                 <div className="md:pl-6 md:border-l-4 md:border-micron-eggplant/20 md:hover:border-micron-eggplant md:transition-colors md:duration-500">
-                    <p className="text-base font-light text-zinc-600 leading-snug font-body">
-                       {/* UPDATED: Changed color to text-micron-green */}
-                       <span className="font-bold text-micron-green/50 block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
-                           NEXT STEP
-                       </span>
-                       {/* Increased description size to text-base */}
-                       From site visit to program alignment and pilot use.
-                    </p>
-                 </div>
-              </div>
           </div>
 
           {/* Horizontal Cards Grid */}
