@@ -248,17 +248,17 @@ export const Hero: React.FC = () => {
       }
       
       // Sentence 1: Camera leaves foothills, Micron fab comes into view
-      if (t >= 10.5 && !fired.has('s1on')) {
+      if (t >= 12.0 && !fired.has('s1on')) {
           fired.add('s1on');
           setCurrentSentenceIndex(1);
       }
-      if (t >= 15.5 && !fired.has('s1off')) {
+      if (t >= 17.0 && !fired.has('s1off')) {
           fired.add('s1off');
           setCurrentSentenceIndex(null);
       }
       
       // Sentence 2: Capitol still in view, just before camera turns to Warm Springs
-      if (t >= 16.0 && !fired.has('s2on')) {
+      if (t >= 18.5 && !fired.has('s2on')) {
           fired.add('s2on');
           setCurrentSentenceIndex(2);
       }
