@@ -277,8 +277,8 @@ export const Hero: React.FC = () => {
           });
       }
       
-      // Brand reveal: Logo rolls in coordinated with the zoom-out spin
-      if (t >= 29.0 && !fired.has('logo')) {
+      // Brand reveal: Logo rolls in as video starts spinning out from overhead
+      if (t >= 26.5 && !fired.has('logo')) {
           fired.add('logo');
           setLogoVisible(true);
           iconControls.start({
