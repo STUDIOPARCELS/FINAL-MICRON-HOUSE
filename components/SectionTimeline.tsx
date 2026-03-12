@@ -103,10 +103,6 @@ export const SectionTimeline: React.FC = () => {
 
                     {/* Center Content */}
                     <div className="mt-auto relative z-10">
-                        <div className="flex items-center gap-2 mb-3">
-                            <span className="text-xs font-bold uppercase tracking-widest opacity-90">{item.date}</span>
-                            <div className="h-px bg-white/40 flex-1"></div>
-                        </div>
                         
                         {/* UPDATED: Reduced font size to text-lg md:text-xl to ensure single line for "PROTOCOL ASSESSMENT" */}
                         <h3 className="text-lg md:text-xl font-black uppercase leading-[0.9] mb-2 tracking-tight drop-shadow-md">
