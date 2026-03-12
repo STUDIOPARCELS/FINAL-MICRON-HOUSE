@@ -257,8 +257,8 @@ export const Hero: React.FC = () => {
           setCurrentSentenceIndex(null);
       }
       
-      // Sentence 2: Camera goes down Warm Springs Avenue
-      if (t >= 19.0 && !fired.has('s2on')) {
+      // Sentence 2: Capitol in full view
+      if (t >= 17.5 && !fired.has('s2on')) {
           fired.add('s2on');
           setCurrentSentenceIndex(2);
       }
@@ -449,15 +449,15 @@ export const Hero: React.FC = () => {
                 layout
                 transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
                 className={`
-                    min-h-[180px] p-6 justify-end pb-8
-                    xl:min-h-[300px] xl:h-full xl:justify-end xl:p-12
-                    w-full flex flex-col items-start order-2 bg-white rounded-3xl 
+                    min-h-[180px] p-6
+                    xl:min-h-[300px] xl:h-full xl:p-12
+                    w-full flex flex-col items-center justify-center order-2 bg-white rounded-3xl 
                     shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 relative overflow-hidden group
                 `}
             >
                  {/* BRAND REVEAL: MICRON stacked above HOUSE fills bento, logo rolls in */}
                  {wordmarkVisible && (
-                   <div className="absolute inset-0 flex flex-row items-center justify-start z-20 pointer-events-none px-6 xl:px-12 gap-4 md:gap-6 xl:gap-8">
+                   <div className="absolute inset-0 flex flex-row items-center justify-center z-20 pointer-events-none px-6 xl:px-12 gap-4 md:gap-6 xl:gap-8">
                      {/* Wordmark — MICRON above HOUSE, fills the space */}
                      <motion.div
                         initial={{ opacity: 0 }}
@@ -487,14 +487,14 @@ export const Hero: React.FC = () => {
                  <motion.div 
                     layout
                     transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
-                    className={`w-full relative z-10 mt-auto`}
+                    className={`w-full relative z-10 flex items-center justify-center`}
                     style={{ opacity: wordmarkVisible ? 0 : 1 }}
                  >
                      <AnimatePresence mode="wait">
                        {currentSentenceIndex !== null && (
                            <motion.div 
                               key={`${currentSentenceIndex}-${key}`}
-                              className="flex flex-wrap gap-x-4 md:gap-x-6 gap-y-4 w-full max-w-5xl"
+                              className="flex flex-wrap gap-x-4 md:gap-x-6 gap-y-4 w-full max-w-5xl justify-center"
                               initial="hidden"
                               animate="visible"
                               exit="exit"
@@ -516,7 +516,7 @@ export const Hero: React.FC = () => {
                                      // Forced line layout: render each line as a block
                                      let wordIndex = 0;
                                      return currentSet.lines.map((line: string[], lineIdx: number) => (
-                                         <div key={`line-${lineIdx}`} className="w-full flex flex-wrap gap-x-4 md:gap-x-6">
+                                         <div key={`line-${lineIdx}`} className="w-full flex flex-wrap gap-x-4 md:gap-x-6 justify-center">
                                              {line.map((word: string) => {
                                                  const el = renderWord(word, wordIndex, currentSet);
                                                  wordIndex++;
