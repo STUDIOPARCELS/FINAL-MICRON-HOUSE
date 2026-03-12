@@ -15,7 +15,7 @@ const roadmapItems = [
     id: 2, 
     date: "DAY 30", 
     title: "INTEGRATION", 
-    subtitle: "Define uses, hosting standards, privacy, and operating needs.", 
+    subtitle: "Install, configure, and test Optimus and Cybercab systems in a residential environment.", 
     bg: "bg-micron-green",
     text: "text-white"
   },
