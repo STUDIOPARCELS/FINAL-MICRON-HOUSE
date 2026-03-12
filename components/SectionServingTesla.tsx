@@ -430,10 +430,9 @@ export const SectionServingTesla: React.FC = () => {
                    <div className="md:pl-6 md:border-l-4 md:border-micron-eggplant/20 md:hover:border-micron-eggplant md:transition-colors md:duration-500">
                       <div className="text-base font-light text-zinc-600 leading-snug font-body">
                          <span className="font-bold text-micron-grey1/50 block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
-                             CORPORATE AUTONOMOUS RESIDENCE
+                             DAILY LIFE
                          </span>
-                         <p className="mb-3">Micron House begins as a lived readiness proving ground for autonomy in practice.</p>
-                         <p>It then introduces the corporate autonomous residence and entertainment hub — <strong className="font-semibold text-zinc-800">a new corporate asset class delivered by Optimus and Cybercab's service, security, and mobility layer.</strong></p>
+                         Here, people come into contact with autonomous technology for the first time on Warm Springs Avenue, a tree-lined, century-old neighborhood on the National Register of Historic Places, where geothermal ingenuity and residential life give the experience context, weight, and grounding.
                       </div>
                    </div>
               </div>
