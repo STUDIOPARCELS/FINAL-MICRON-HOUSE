@@ -540,7 +540,7 @@ export const SectionProperty: React.FC = () => {
             <div className="flex-shrink-0">
                 <span className="block text-sm font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2 font-sans">02 / READINESS</span>
                 <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-tight text-micron-eggplant-light leading-none font-sans">
-                    READINESS
+                    SETTING
                 </h2>
             </div>
             
