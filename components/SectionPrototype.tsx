@@ -664,7 +664,7 @@ export const SectionPrototype: React.FC = () => {
                                 transition={{ duration: 1.5, delay: (mainTitleWords.length * 0.2) + 0.2 }}
                                 className="text-micron-eggplant block text-base"
                         >
-                            Memory, compute, autonomy, and mobility are converging at an industrial scale. At the scale of daily life, those systems require a place. Micron defines Boise's technological identity. Micron House gives that identity a physical address.
+                            The opportunity to shape policy and narrative is now. Every stakeholder in the autonomous future — Micron, Tesla, policymakers, and civic leaders — must experience the technology together in an environment everyone understands, to build frameworks that earn public trust. <strong className="font-semibold text-zinc-800">5 min from the capitol and downtown. 15 from the airport and Micron.</strong>
                         </motion.span>
                     </div>
                 </div>
