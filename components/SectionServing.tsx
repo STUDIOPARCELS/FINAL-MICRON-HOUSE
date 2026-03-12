@@ -273,13 +273,13 @@ export const SectionServing: React.FC = () => {
   const staggeredDelays = [0, 0.3, 0.1, 0.4, 0.2, 0.5, 0.15];
 
   return (
-    <section id="serving" className="container mx-auto px-8 md:px-12 py-12 bg-white text-zinc-900">
+    <section id="serving" className="container mx-auto px-8 md:px-12 pt-0 pb-6 md:pb-12 bg-white text-zinc-900">
         <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.8 }}
-            className="mb-12 flex flex-col md:flex-row md:items-end gap-12 border-b border-zinc-100 pb-8"
+            className="flex flex-col md:flex-row md:items-end gap-6 mb-12"
         >
             <div className="flex-shrink-0">
                 {/* UPDATED: Renumbered to 03 */}
