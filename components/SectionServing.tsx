@@ -279,7 +279,7 @@ export const SectionServing: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.8 }}
-            className="flex flex-col lg:flex-row lg:items-end gap-6 mb-12"
+            className="flex flex-col md:flex-row md:items-end gap-6 mb-12"
         >
             <div className="flex-shrink-0">
                 {/* UPDATED: Renumbered to 03 */}
@@ -289,8 +289,8 @@ export const SectionServing: React.FC = () => {
                 </h2>
             </div>
             
-            <div className="lg:ml-auto max-w-2xl pb-1">
-                 <div className="lg:pl-6 lg:border-l-4 lg:border-micron-eggplant/20 lg:hover:border-micron-eggplant lg:transition-colors lg:duration-500">
+            <div className="md:ml-auto max-w-2xl pb-1">
+                 <div className="md:pl-6 md:border-l-4 md:border-micron-eggplant/20 md:hover:border-micron-eggplant md:transition-colors md:duration-500">
                     <p className="text-base font-light text-zinc-600 leading-snug font-body">
                        <span className="font-bold text-micron-eggplant/50 block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
                            CORPORATE AUTONOMOUS RESIDENCE
