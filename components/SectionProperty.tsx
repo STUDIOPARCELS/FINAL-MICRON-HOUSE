@@ -528,7 +528,7 @@ export const SectionProperty: React.FC = () => {
   ];
 
   return (
-    <section id="property" className="container mx-auto px-8 md:px-12 pt-0 pb-6 md:pb-12 bg-white text-zinc-900">
+    <section id="property" className="container mx-auto px-8 md:px-12 pt-12 pb-6 md:pb-12 bg-white text-zinc-900">
         <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
