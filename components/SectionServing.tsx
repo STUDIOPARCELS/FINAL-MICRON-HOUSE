@@ -295,7 +295,7 @@ export const SectionServing: React.FC = () => {
                        <span className="font-bold text-micron-eggplant/50 block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
                            CORPORATE AUTONOMOUS RESIDENCE
                        </span>
-                       Micron House begins as a lived readiness proving ground for autonomy in practice. It then introduces the corporate autonomous residence and entertainment hub — a corporate residential model <strong className="font-semibold text-zinc-800">enabled by Optimus and Cybercab's service, security, and mobility layer.</strong>
+                       The prototype begins as a lived readiness proving ground for autonomy in practice. It then introduces the corporate autonomous residence and entertainment hub — a corporate residential model <strong className="font-semibold text-zinc-800">enabled by Optimus and Cybercab's service, security, and mobility layer.</strong>
                     </p>
                  </div>
             </div>
