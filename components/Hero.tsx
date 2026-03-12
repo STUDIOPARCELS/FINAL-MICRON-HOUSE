@@ -257,8 +257,8 @@ export const Hero: React.FC = () => {
           setCurrentSentenceIndex(null);
       }
       
-      // Sentence 2: Capitol in full view
-      if (t >= 17.5 && !fired.has('s2on')) {
+      // Sentence 2: Capitol still in view, just before camera turns to Warm Springs
+      if (t >= 16.0 && !fired.has('s2on')) {
           fired.add('s2on');
           setCurrentSentenceIndex(2);
       }
