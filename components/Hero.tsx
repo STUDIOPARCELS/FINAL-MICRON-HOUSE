@@ -460,17 +460,24 @@ export const Hero: React.FC = () => {
                    <div className="absolute inset-0 flex flex-row items-center justify-center z-20 pointer-events-none px-6 xl:px-12 gap-4 md:gap-6 xl:gap-8">
                      {/* Wordmark — MICRON above HOUSE, fills the space */}
                      <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
                         className="flex flex-col"
                      >
-                        <span className="text-4xl md:text-5xl xl:text-7xl font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]">
+                        <motion.span
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 3.0, ease: [0.16, 1, 0.3, 1], delay: 0 }}
+                            className="text-4xl md:text-5xl xl:text-7xl font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]"
+                        >
                             Micron
-                        </span>
-                        <span className="text-4xl md:text-5xl xl:text-7xl font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]">
+                        </motion.span>
+                        <motion.span
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 3.0, ease: [0.16, 1, 0.3, 1], delay: 1.2 }}
+                            className="text-4xl md:text-5xl xl:text-7xl font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]"
+                        >
                             House
-                        </span>
+                        </motion.span>
                      </motion.div>
                      {/* Logo — rolls in to fill remaining space */}
                      <motion.img 
