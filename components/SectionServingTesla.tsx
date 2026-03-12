@@ -409,7 +409,7 @@ export const SectionServingTesla: React.FC = () => {
   };
 
   return (
-      <section id="serving-tesla" className="container mx-auto px-4 md:px-8 lg:px-12 py-12 bg-white text-zinc-900 overflow-hidden">
+      <section id="serving-tesla" className="container mx-auto px-8 md:px-12 pt-0 pb-6 md:pb-12 bg-white text-zinc-900 overflow-hidden">
           {/* TABLET FIX: px-4 on mobile to prevent edge clipping. flex-row pushed to lg for portrait. */}
           {/* Header */}
           <motion.div
@@ -417,7 +417,7 @@ export const SectionServingTesla: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.8 }}
-              className="mb-12 flex flex-col lg:flex-row lg:items-end gap-8 lg:gap-12 border-b border-zinc-100 pb-8"
+              className="flex flex-col md:flex-row md:items-end gap-6 mb-12"
           >
               <div className="flex-shrink-0">
                   <span className="block text-sm font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2 font-sans">04 / PROVING GROUND</span>
@@ -426,8 +426,8 @@ export const SectionServingTesla: React.FC = () => {
                   </h2>
               </div>
               
-              <div className="lg:ml-auto max-w-2xl pb-1">
-                   <div className="pl-6 border-l-4 border-micron-eggplant-light/20 hover:border-micron-eggplant-light transition-colors duration-500">
+              <div className="md:ml-auto max-w-2xl pb-1">
+                   <div className="md:pl-6 md:border-l-4 md:border-micron-eggplant/20 md:hover:border-micron-eggplant md:transition-colors md:duration-500">
                       <div className="text-base font-light text-zinc-600 leading-snug font-body">
                          <span className="font-bold text-micron-grey1/50 block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
                              CORPORATE AUTONOMOUS RESIDENCE

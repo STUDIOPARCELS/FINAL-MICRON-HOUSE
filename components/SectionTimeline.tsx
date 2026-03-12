@@ -44,10 +44,10 @@ export const SectionTimeline: React.FC = () => {
 
   return (
     // REDUCED PADDING: py-16 -> py-10, UPDATED mobile padding to px-8
-    <section id="timeline" className="container mx-auto px-8 md:px-12 py-12 mb-20 bg-white text-zinc-900">
+    <section id="timeline" className="container mx-auto px-8 md:px-12 pt-0 pb-6 md:pb-12 bg-white text-zinc-900">
       
           {/* Header Row - REMOVED OUTER BENTO WRAPPER */}
-          <div className="mb-6 md:mb-12 flex flex-col md:flex-row md:items-end gap-6 md:gap-12 border-b border-zinc-100 pb-4 md:pb-8">
+          <div className="flex flex-col md:flex-row md:items-end gap-6 mb-12">
               <div className="flex-shrink-0">
                   <span className="block text-sm font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2 font-sans">05 / DEPLOYMENT</span>
                   {/* UPDATED: Changed color to text-micron-green */}
@@ -58,7 +58,7 @@ export const SectionTimeline: React.FC = () => {
               
               <div className="md:ml-auto max-w-2xl pb-1">
                  {/* Updated Header Structure to match other sections */}
-                 <div className="pl-6 border-l-4 border-zinc-900/20 hover:border-zinc-900 transition-colors duration-500">
+                 <div className="md:pl-6 md:border-l-4 md:border-micron-eggplant/20 md:hover:border-micron-eggplant md:transition-colors md:duration-500">
                     <p className="text-base font-light text-zinc-600 leading-snug font-body">
                        {/* UPDATED: Changed color to text-micron-green */}
                        <span className="font-bold text-micron-green/50 block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">

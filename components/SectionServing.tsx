@@ -290,7 +290,7 @@ export const SectionServing: React.FC = () => {
             </div>
             
             <div className="md:ml-auto max-w-2xl pb-1">
-                 <div className="pl-6 border-l-4 border-micron-eggplant/20 hover:border-micron-eggplant transition-colors duration-500">
+                 <div className="md:pl-6 md:border-l-4 md:border-micron-eggplant/20 md:hover:border-micron-eggplant md:transition-colors md:duration-500">
                     <p className="text-base font-light text-zinc-600 leading-snug font-body">
                        <span className="font-bold text-micron-eggplant/50 block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
                            CORPORATE AUTONOMOUS RESIDENCE
