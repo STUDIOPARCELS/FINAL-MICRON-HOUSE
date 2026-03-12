@@ -197,13 +197,12 @@ function App() {
                     
                     {/* Brand Column */}
                     <div className="col-span-1 md:col-span-2">
-                        <h3 className="text-4xl font-bold text-white mb-6 uppercase tracking-tight">Micron House</h3>
-                        <p className="text-zinc-500 text-lg max-w-md mb-2 leading-relaxed">
-                            The first private corporate residence powered by autonomous systems where Micron hosts, entertains, and demonstrates the future it's building.
-                        </p>
-                        <p className="text-zinc-600 text-base max-w-md mb-8 leading-relaxed">
-                            With Optimus and Cybercab handling logistics, service, and experience delivery.
-                        </p>
+                        <h3 className="text-4xl font-bold text-white mb-8 uppercase tracking-tight">Micron House</h3>
+                        <div className="border-l-2 border-micron-green/40 pl-5 mb-10 max-w-md">
+                            <p className="text-sm uppercase tracking-[0.15em] text-zinc-400 font-medium leading-relaxed">
+                                The first private corporate residence powered by autonomous systems where Micron hosts, entertains, and demonstrates the future it's building.
+                            </p>
+                        </div>
                         <div className="flex items-start gap-4 mb-2 group cursor-pointer text-base">
                             <MapPin className="text-micron-green mt-1 group-hover:text-white transition-colors flex-shrink-0" size={20} />
                             <span className="text-zinc-300 group-hover:text-white transition-colors leading-relaxed">1020 E Warm Springs Ave<br/>Boise, ID 83712</span>
