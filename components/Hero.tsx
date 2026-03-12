@@ -455,24 +455,23 @@ export const Hero: React.FC = () => {
                     shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 relative overflow-hidden group
                 `}
             >
-                 {/* STACKED BRAND REVEAL: Logo above wordmark, both slide from right */}
+                 {/* BRAND REVEAL: Wordmark rolls in first, logo rolls in next to it */}
                  {wordmarkVisible && (
-                   <div className="absolute inset-0 flex flex-col items-center justify-center z-20 pointer-events-none gap-2 md:gap-4">
-                     {/* Logo — slides in second (on hyper zoom) */}
+                   <div className="absolute inset-0 flex flex-row items-center justify-center z-20 pointer-events-none gap-3 md:gap-5">
+                     {/* Logo — rolls in second (on hyper zoom), original size */}
                      <motion.img 
                         initial={{ x: 200, rotate: -360, opacity: 0 }}
                         animate={iconControls}
                         src="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/micron-overlap-no-border.png"
                         alt="Micron Logo"
-                        className="h-[80px] w-[80px] md:h-[120px] md:w-[120px] xl:h-[160px] xl:w-[160px] object-contain"
+                        className="h-[60px] w-[60px] md:h-[80px] md:w-[80px] xl:h-[120px] xl:w-[120px] object-contain"
                      />
-                     {/* Wordmark — slides in first (when car drives off) */}
+                     {/* Wordmark — rolls in first (when car drives off) */}
                      <motion.div
                         initial={{ x: 200, opacity: 0 }}
                         animate={wordmarkControls}
-                        className="flex flex-col items-center"
                      >
-                        <h2 className="text-2xl md:text-3xl xl:text-4xl font-black uppercase tracking-tight text-micron-eggplant leading-none text-center">
+                        <h2 className="text-xl md:text-2xl xl:text-3xl font-black uppercase tracking-tight text-micron-eggplant leading-none whitespace-nowrap">
                             Micron House
                         </h2>
                      </motion.div>
@@ -553,17 +552,8 @@ export const Hero: React.FC = () => {
                     onTimeUpdate={handleVideoTimeUpdate}
                     className="absolute inset-0 w-full h-full object-cover opacity-100"
                 />
-                {/* Invisible overlay blocks iOS from rendering native play button — matches bento video pattern */}
+                {/* Invisible overlay blocks iOS from rendering native play button */}
                 <div className="absolute inset-0 z-[1]" style={{ WebkitTapHighlightColor: 'transparent' }} />
-                {/* Poster image overlay — shows until video actually plays, then fades out */}
-                <motion.img
-                    src="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/MH_VIDEOS/hero-poster.jpg"
-                    alt=""
-                    initial={{ opacity: 1 }}
-                    animate={{ opacity: videoIsPlaying ? 0 : 1 }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="absolute inset-0 w-full h-full object-cover pointer-events-none z-[2]"
-                />
             </div>
 
         </div>
