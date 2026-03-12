@@ -50,7 +50,7 @@ function App() {
     { label: "Why Now", id: "prototype" },
     { label: "Readiness", id: "property" },
     { label: "A New Asset Class", id: "serving" },
-    { label: "Living Lab", id: "serving-tesla" },
+    { label: "Proving Ground", id: "serving-tesla" },
     { label: "Roadmap", id: "timeline" },
   ];
 

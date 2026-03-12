@@ -285,7 +285,7 @@ export const SectionServing: React.FC = () => {
                 {/* UPDATED: Renumbered to 03 */}
                 <span className="block text-sm font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2 font-sans">03 / OUTCOME</span>
                 <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-tight text-micron-eggplant leading-none font-sans">
-                    A NEW ASSET CLASS
+                    READINESS + A NEW ASSET CLASS
                 </h2>
             </div>
             
@@ -295,7 +295,7 @@ export const SectionServing: React.FC = () => {
                        <span className="font-bold text-micron-eggplant block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
                            CORPORATE AUTONOMOUS RESIDENCE
                        </span>
-                       Micron House introduces the corporate autonomous residence and entertainment hub — a new corporate asset class <strong className="font-semibold text-zinc-800">delivered by the service, security, and mobility layer of Optimus and Cybercab.</strong>
+                       Micron House begins as a lived readiness proving ground for autonomy in practice.<br /><br />It then introduces the corporate autonomous residence and entertainment hub — a new corporate asset class <strong className="font-semibold text-zinc-800">delivered by Optimus and Cybercab's service, security, and mobility layer.</strong>
                     </p>
                  </div>
             </div>

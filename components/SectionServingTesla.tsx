@@ -422,18 +422,19 @@ export const SectionServingTesla: React.FC = () => {
               <div className="flex-shrink-0">
                   <span className="block text-sm font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2 font-sans">04 / PROVING GROUND</span>
                   <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-micron-grey1 leading-none font-sans">
-                      LIVING LAB
+                      READINESS + A NEW ASSET CLASS
                   </h2>
               </div>
               
               <div className="lg:ml-auto max-w-2xl pb-1">
                    <div className="pl-6 border-l-4 border-micron-eggplant-light/20 hover:border-micron-eggplant-light transition-colors duration-500">
-                      <p className="text-base font-light text-zinc-600 leading-snug font-body">
+                      <div className="text-base font-light text-zinc-600 leading-snug font-body">
                          <span className="font-bold text-micron-grey1 block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
-                             DAILY LIFE
+                             CORPORATE AUTONOMOUS RESIDENCE
                          </span>
-                         <strong className="font-semibold text-zinc-800">Here, guests engage with autonomous technology for the first time</strong> in a residential setting on Warm Springs Avenue, a tree-lined, century-old neighborhood on the National Register of Historic Places, where geothermal ingenuity and residential life give the experience context, weight, and grounding.
-                      </p>
+                         <p className="mb-3">Micron House begins as a lived readiness proving ground for autonomy in practice.</p>
+                         <p>It then introduces the corporate autonomous residence and entertainment hub — <strong className="font-semibold text-zinc-800">a new corporate asset class delivered by Optimus and Cybercab's service, security, and mobility layer.</strong></p>
+                      </div>
                    </div>
               </div>
           </motion.div>
