@@ -249,17 +249,17 @@ export const Hero: React.FC = () => {
       }
       
       // Sentence 1: Camera leaves foothills, Micron fab comes into view
-      if (t >= 11.0 && !fired.has('s1on')) {
+      if (t >= 10.0 && !fired.has('s1on')) {
           fired.add('s1on');
           setCurrentSentenceIndex(1);
       }
-      if (t >= 17.0 && !fired.has('s1off')) {
+      if (t >= 16.0 && !fired.has('s1off')) {
           fired.add('s1off');
           setCurrentSentenceIndex(null);
       }
       
       // Sentence 2: Capitol still in view, just before camera turns to Warm Springs
-      if (t >= 18.5 && !fired.has('s2on')) {
+      if (t >= 17.0 && !fired.has('s2on')) {
           fired.add('s2on');
           setCurrentSentenceIndex(2);
       }
@@ -458,7 +458,7 @@ export const Hero: React.FC = () => {
             >
                  {/* BRAND REVEAL: MICRON stacked above HOUSE fills bento, logo rolls in */}
                  {wordmarkVisible && (
-                   <div className="absolute inset-0 flex flex-row items-center justify-center z-20 pointer-events-none px-6 xl:px-12 gap-4 md:gap-6 xl:gap-8">
+                   <div className="absolute inset-0 flex flex-row items-center justify-center z-20 pointer-events-none px-6 xl:px-12 gap-2 md:gap-3 xl:gap-4">
                      {/* Wordmark — MICRON above HOUSE, fills the space */}
                      <motion.div
                         className="flex flex-col"
