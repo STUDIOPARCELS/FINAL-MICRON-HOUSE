@@ -548,10 +548,10 @@ export const SectionProperty: React.FC = () => {
                  <div className="pl-6 border-l-4 border-micron-eggplant-light/20 hover:border-micron-eggplant-light transition-colors duration-500">
                     <div className="text-base font-light text-zinc-600 leading-snug font-body">
                        <span className="font-bold text-micron-eggplant-light block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
-                           HISTORIC CONTEXT
+                           AUTONOMOUS ECOSYSTEM
                        </span>
                        <p>
-                           Warm Springs gives Micron House historic depth, residential privacy, geothermal grounding, and direct access to Boise's real-world autonomy ecosystem — where Micron, the Capitol, major hospital systems, Boise State, and cross-sector leaders converge.
+                           Warm Springs gives Micron House historic depth, residential privacy, geothermal grounding, and direct access to Boise's real-world autonomy ecosystem — where Micron, Tesla, the Capitol, major hospital systems, Boise State, and cross-sector leadership <strong className="font-semibold text-zinc-800">come together to tackle the hardest questions before autonomy scales.</strong>
                        </p>
                     </div>
                  </div>
