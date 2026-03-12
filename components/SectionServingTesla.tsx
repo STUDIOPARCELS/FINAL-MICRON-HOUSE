@@ -432,7 +432,7 @@ export const SectionServingTesla: React.FC = () => {
                          <span className="font-bold text-micron-grey1 block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
                              DAILY LIFE
                          </span>
-                         <strong className="font-semibold text-zinc-800">Here, guests engage with autonomous technology for the first time in a residential setting</strong> on Warm Springs Avenue, a tree-lined, century-old neighborhood on the National Register of Historic Places, where geothermal ingenuity and residential life give the experience context, weight, and grounding.
+                         <strong className="font-semibold text-zinc-800">Here, guests engage with autonomous technology for the first time</strong> in a residential setting on Warm Springs Avenue, a tree-lined, century-old neighborhood on the National Register of Historic Places, where geothermal ingenuity and residential life give the experience context, weight, and grounding.
                       </p>
                    </div>
               </div>
