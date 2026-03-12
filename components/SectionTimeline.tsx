@@ -44,7 +44,7 @@ export const SectionTimeline: React.FC = () => {
 
   return (
     // REDUCED PADDING: py-16 -> py-10, UPDATED mobile padding to px-8
-    <section id="timeline" className="container mx-auto px-8 md:px-12 pt-0 pb-6 md:pb-12 bg-white text-zinc-900">
+    <section id="timeline" className="container mx-auto px-8 md:px-12 pt-12 pb-6 md:pb-12 bg-white text-zinc-900">
       
           {/* Header Row - REMOVED OUTER BENTO WRAPPER */}
           <div className="flex flex-col md:flex-row md:items-end gap-6 mb-12">

@@ -97,7 +97,7 @@ export const SectionUseCases: React.FC = () => {
   };
 
   return (
-    <section id="use-cases" className="container mx-auto px-8 md:px-12 pt-0 pb-6 md:pb-12 bg-white text-zinc-900">
+    <section id="use-cases" className="container mx-auto px-8 md:px-12 pt-12 pb-6 md:pb-12 bg-white text-zinc-900">
       
       {/* FLOATING BENTO WRAPPER ADDED */}
       <motion.div
