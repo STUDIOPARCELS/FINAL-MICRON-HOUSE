@@ -199,10 +199,10 @@ function App() {
                     <div className="col-span-1 md:col-span-2">
                         <h3 className="text-4xl font-bold text-white mb-6 uppercase tracking-tight">Micron House</h3>
                         <p className="text-zinc-500 text-lg max-w-md mb-2 leading-relaxed">
-                            A private residence, hospitality platform, and real-world autonomy environment for Micron.
+                            The first private corporate residence powered by autonomous systems where Micron hosts, entertains, and demonstrates the future it's building.
                         </p>
                         <p className="text-zinc-600 text-base max-w-md mb-8 leading-relaxed">
-                            A proposed new corporate asset class shaped by autonomous security, service, and place.
+                            With Optimus and Cybercab handling logistics, service, and experience delivery.
                         </p>
                         <div className="flex items-start gap-4 mb-2 group cursor-pointer text-base">
                             <MapPin className="text-micron-green mt-1 group-hover:text-white transition-colors flex-shrink-0" size={20} />
