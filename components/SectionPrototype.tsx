@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { BentoCard } from './BentoCard';
 import { Modal } from './Modal';
 import { ModalContent } from '../types';
-import { Zap, TrendingUp, Globe, Activity, Cpu, Bot, Mountain, Wine } from 'lucide-react';
+import { Zap, TrendingUp, Globe, Activity, Cpu, Bot, Mountain, Music } from 'lucide-react';
 import { motion, useInView } from 'framer-motion';
 
 // --- GLOBAL iOS VIDEO UNLOCK ---
@@ -363,9 +363,9 @@ const getCardData = (id: number): ModalContent => {
                         <InnerBento 
                             title="CULTURE" 
                             gradient="bg-micron-grey1" 
-                            icon={<Wine />} 
+                            icon={<Music />} 
                             className="flex-1"
-                            padding="pt-6 pb-12 px-6 md:pt-8 md:pb-16 md:px-8"
+                            padding="pt-6 pb-20 px-6 md:pt-8 md:pb-24 md:px-8"
                             delay={0.4}
                         >
                             <div className="w-full h-px bg-white/20 mb-4" />
