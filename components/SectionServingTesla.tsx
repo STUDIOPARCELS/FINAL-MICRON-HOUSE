@@ -337,7 +337,7 @@ export const SectionServingTesla: React.FC = () => {
                  <div>
                     <h5 className="text-3xl font-black text-white mb-3 uppercase leading-none tracking-tight">SHARED READINESS</h5>
                     <p className="text-white font-medium leading-relaxed text-base">
-                        Micron and Tesla engineers sit with lawmakers, educators, healthcare leaders, labor counsel, and community leaders to walk through fear, failure, and shared readiness together.
+                        Micron and Tesla engineers sit with lawmakers, educators, healthcare leaders, and community voices to build trust, shape understanding, and define the human experience of autonomy — while the window to lead that conversation is still open.
                     </p>
                  </div>
             </motion.div>
