@@ -200,9 +200,9 @@ const WhitepaperViewer: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ 
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onClick={onClose}
-                className="fixed inset-0 z-[200] bg-zinc-950/80 backdrop-blur-md"
+                className="fixed inset-0 z-[250] bg-zinc-950/80 backdrop-blur-md"
             />
-            <div className="fixed inset-0 z-[201] flex items-center justify-center p-2 md:p-8 pointer-events-none">
+            <div className="fixed inset-0 z-[251] flex items-center justify-center p-2 md:p-8 pointer-events-none">
                 <motion.div
                     initial={{ opacity: 0, scale: 0.95, y: 20 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -364,12 +364,12 @@ export const SectionProperty: React.FC = () => {
                                     <p>Invented in 1960 by Vladimir Nazarov for the Soviet Space Program to combat zero-gravity bone loss.</p>
                                     <p>By engaging 90% of muscle fibers (vs. 40% in standard training), it <strong className="text-white font-bold drop-shadow-md">rapidly builds bone density</strong>, counteracts neuropathy, and stimulates neuro-repair for improved mental health.</p>
                                     <button 
-                                        onClick={() => setShowWhitepaper(true)}
-                                        className="mt-2 inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-sky-300/80 hover:text-sky-200 transition-all duration-300 group/link bg-transparent border-0 cursor-pointer p-0"
+                                        onClick={(e) => { e.stopPropagation(); setShowWhitepaper(true); }}
+                                        className="mt-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-sky-300/80 hover:text-sky-200 active:text-sky-100 transition-all duration-300 group/link bg-transparent border-0 cursor-pointer p-2 -ml-2 rounded-lg"
                                     >
-                                        <FileText size={12} strokeWidth={2} className="opacity-80 group-hover/link:opacity-100 transition-opacity" />
+                                        <FileText size={14} strokeWidth={2} className="opacity-80 group-hover/link:opacity-100 transition-opacity" />
                                         Read the White Paper
-                                        <ArrowUpRight size={10} strokeWidth={2.5} className="opacity-70 group-hover/link:opacity-100 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-all duration-300" />
+                                        <ArrowUpRight size={12} strokeWidth={2.5} className="opacity-70 group-hover/link:opacity-100 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-all duration-300" />
                                     </button>
                                 </>
                             }
