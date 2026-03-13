@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { BentoCard } from './BentoCard';
 import { Modal } from './Modal';
 import { ModalContent } from '../types';
-import { Scan, Cpu, MessageSquare, ShieldCheck, Users, Eye, Info, Activity, Feather, FileSignature, Palette, User, Layers, Zap, Droplets, Mountain, Star, Car, Bot, ArrowRight } from 'lucide-react';
+import { MessageSquare, ShieldCheck, Eye, Activity, Layers, Mountain, Star } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 // --- HELPER COMPONENT (Matched to SectionPrototype) ---

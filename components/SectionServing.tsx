@@ -3,7 +3,7 @@ import { BentoCard } from './BentoCard';
 import { Modal } from './Modal';
 import { ModalContent } from '../types';
 import { motion } from 'framer-motion';
-import { Wine, Car, BedDouble, Shield, Music, Mic, Armchair, Heart, Trophy, Snowflake, Utensils, Cpu, Users, Map, Fish, Stethoscope, ArrowRight } from 'lucide-react';
+import { Wine, BedDouble, Shield, Music, Mic, Heart, Trophy, Utensils, Cpu, Users, Map, Fish, Stethoscope } from 'lucide-react';
 
 interface Experience {
   title: string;

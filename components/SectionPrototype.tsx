@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { BentoCard } from './BentoCard';
 import { Modal } from './Modal';
 import { ModalContent } from '../types';
-import { Play, Zap, ShieldCheck, TrendingUp, Globe, Activity, Cpu, Bot, Building2, Check, ArrowRight, MessageSquare, Quote, Mountain } from 'lucide-react';
+import { Zap, TrendingUp, Globe, Activity, Cpu, Bot, Mountain } from 'lucide-react';
 import { motion, useInView } from 'framer-motion';
 
 // --- GLOBAL iOS VIDEO UNLOCK ---
