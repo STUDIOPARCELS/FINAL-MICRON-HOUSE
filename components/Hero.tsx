@@ -223,9 +223,9 @@ export const Hero: React.FC = () => {
   // currentTime advances at 0.45x of real time.
   //
   // Footage cue points (in video currentTime):
-  //   ~2.2s:  Starbase appears → Sentence 0 (VISION/VELOCITY)
+  //   ~5.0s:  Camera closes in on rocket → Sentence 0 (VISION/VELOCITY)
   //   ~8.5s:  Transition → Sentence 0 out
-  //   ~12.0s: Camera settled on Micron fab (logo visible) → Sentence 1 (MEMORY/MEANING)  
+  //   ~10.5s: Fab first visible over foothills → Sentence 1 (MEMORY/MEANING)  
   //   ~15.5s: Transition → Sentence 1 out
   //   ~16.0s: Capitol building in frame → Sentence 2 (PLACE/PERSPECTIVE)
   //   ~23.0s: Sentence 2 out
@@ -240,8 +240,8 @@ export const Hero: React.FC = () => {
       const t = e.currentTarget.currentTime;
       const fired = firedCues.current;
       
-      // Sentence 0: Starbase
-      if (t >= 2.2 && !fired.has('s0on')) {
+      // Sentence 0: Camera closes in on rocket
+      if (t >= 5.0 && !fired.has('s0on')) {
           fired.add('s0on');
           setCurrentSentenceIndex(0);
       }
@@ -250,8 +250,8 @@ export const Hero: React.FC = () => {
           setCurrentSentenceIndex(null);
       }
       
-      // Sentence 1: Camera settles on Micron fab
-      if (t >= 12.0 && !fired.has('s1on')) {
+      // Sentence 1: Fab first visible over foothills
+      if (t >= 10.5 && !fired.has('s1on')) {
           fired.add('s1on');
           setCurrentSentenceIndex(1);
       }
