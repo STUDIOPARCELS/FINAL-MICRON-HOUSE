@@ -373,22 +373,7 @@ const getCardData = (id: number): ModalContent => {
                              </div>
                         </InnerBento>
 
-                        {/* 3. RUNWAY (Green) */}
-                        <InnerBento 
-                            title="RUNWAY" 
-                            gradient="bg-micron-green" 
-                            icon={<Activity />} 
-                            className="flex-1" 
-                            padding="pt-6 pb-6 px-6"
-                            delay={0.6}
-                        >
-                            <div className="w-full h-px bg-white/20 mb-4" />
-                            <p className="mb-2 text-base text-white/90 leading-relaxed">
-                                Micron executives, employees, and their guests live alongside, interact, and engage with the technology before the world does.
-                            </p>
-                        </InnerBento>
-
-                        {/* RECREATION (Blue) - Mobile only, appears after Runway */}
+                        {/* RECREATION (Blue) - Mobile only */}
                         <div className="lg:hidden">
                         <InnerBento 
                             title="RECREATION" 
