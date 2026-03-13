@@ -64,7 +64,7 @@ const teslaCards = [
     id: 1,
     title: "A TECTONIC SHIFT", 
     subtitle: "Social Conditions",
-    content: "Autonomous systems will enter daily life in a society already strained by AI-driven white-collar displacement, institutional pressure, and public distrust.",
+    content: "Autonomous systems will enter daily life in a society already strained by AI-driven displacement, institutional pressure, and public distrust.",
     icon: null,
     gradient: "bg-micron-eggplant-light", 
     border: "border-white/10",
@@ -356,7 +356,7 @@ export const SectionServingTesla: React.FC = () => {
                         <span className="text-white font-bold uppercase text-sm tracking-widest">DISPLACEMENT</span>
                         <div className="w-full h-px bg-white/20" />
                         <p className="text-white/80 font-medium leading-relaxed text-base">
-                            AI is already restructuring white-collar labor. Autonomous systems extend that disruption into physical work, service, and logistics — simultaneously.
+                            AI is already restructuring labor. Autonomous systems extend that disruption into physical work, service, and logistics — simultaneously.
                         </p>
                     </div>
                     
