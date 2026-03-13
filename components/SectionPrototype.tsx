@@ -360,19 +360,22 @@ const getCardData = (id: number): ModalContent => {
                         </InnerBento>
 
                         {/* 2. THE CITY (White) */}
-                        <motion.div 
-                            initial={{ opacity: 0, x: 20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 0.4, duration: 0.8 }}
-                            className="w-full bg-white rounded-xl p-6 md:p-8 text-zinc-900 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] relative group flex flex-col justify-center lg:flex-1"
+                        <InnerBento 
+                            title="THE CITY" 
+                            gradient="bg-white" 
+                            textColor="text-zinc-900"
+                            icon={<Globe />} 
+                            className="flex-1 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]"
+                            padding="p-6 md:p-8"
+                            delay={0.4}
                         >
-                            <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-400 mb-3">THE CITY</h3>
-                            <div className="text-zinc-600 text-base font-medium leading-relaxed relative z-10">
+                            <div className="w-full h-px bg-zinc-200 mb-4" />
+                            <div className="text-zinc-600 text-base font-medium leading-relaxed">
                                 <p>
                                     A city once known for potatoes and public land now supports a James Beard-nominated culinary scene, world-class wineries across the Snake River Valley, a thriving arts and entertainment culture, and the kind of civic energy that comes with a Division I University town.
                                 </p>
                             </div>
-                        </motion.div>
+                        </InnerBento>
 
                         {/* RECREATION (Blue) - Mobile only */}
                         <div className="lg:hidden">
