@@ -66,9 +66,9 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, data }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 z-[99] bg-zinc-950/80 backdrop-blur-sm"
+            className="fixed inset-0 z-[200] bg-zinc-950/80 backdrop-blur-sm"
           />
-          <div className="fixed top-16 left-0 right-0 bottom-0 z-[100] flex items-center justify-center p-4 pointer-events-none overflow-hidden">
+          <div className="fixed inset-0 z-[210] flex items-center justify-center p-4 pt-8 pointer-events-none overflow-hidden">
              {(() => {
                 switch (data.category) {
                   case 'cinematic':
@@ -311,7 +311,7 @@ const GalleryModalContent: React.FC<{ data: ModalContent; onClose: () => void }>
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.2 }}
-                        className="fixed inset-0 bg-black/80 z-[100] flex items-center justify-center cursor-pointer backdrop-blur-sm"
+                        className="fixed inset-0 bg-black/80 z-[300] flex items-center justify-center cursor-pointer backdrop-blur-sm"
                         onClick={() => setLightboxImg(null)}
                     >
                         <motion.img
