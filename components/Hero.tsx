@@ -4,32 +4,32 @@ import { motion, useInView, AnimatePresence, useAnimation, Variants } from 'fram
 // Defined outside to prevent re-creation on render
 const sentences = [
     {
-        words: ["WITHOUT", "VISION,", "THERE'S", "NO", "VELOCITY."],
+        words: ["WITHOUT", "VISION", "THERE'S", "NO", "VELOCITY"],
         color: "text-[#878d9f]",
         highlightColor: "text-[#3d4250]",
         hoverColor: "hover:text-black", 
-        highlights: ["VISION,", "VELOCITY."],
+        highlights: ["VISION", "VELOCITY"],
         textSize: "text-3xl sm:text-4xl md:text-5xl lg:text-7xl",
         layout: "default"
     },
     {
-        words: ["WITHOUT", "MEMORY,", "THERE'S", "NO", "MEANING."],
+        words: ["WITHOUT", "MEMORY", "THERE'S", "NO", "MEANING"],
         color: "text-[#878d9f]",
         highlightColor: "text-micron-eggplant",
         hoverColor: "hover:text-micron-eggplant/60", 
-        highlights: ["MEMORY,", "MEANING."],
+        highlights: ["MEMORY", "MEANING"],
         textSize: "text-3xl sm:text-4xl md:text-5xl lg:text-7xl",
         layout: "default"
     },
     {
-        words: ["WITHOUT", "PLACE,", "THERE'S", "NO", "PERSPECTIVE."], 
+        words: ["WITHOUT", "PLACE", "THERE'S", "NO", "PERSPECTIVE"], 
         color: "text-[#878d9f]",
         highlightColor: "text-micron-green",
         hoverColor: "hover:text-green-900", 
-        highlights: ["PLACE,", "PERSPECTIVE."],
+        highlights: ["PLACE", "PERSPECTIVE"],
         textSize: "text-3xl sm:text-4xl md:text-5xl lg:text-7xl",
         layout: "default",
-        lines: [["WITHOUT", "PLACE,"], ["THERE'S", "NO"], ["PERSPECTIVE."]],
+        lines: [["WITHOUT", "PLACE"], ["THERE'S", "NO"], ["PERSPECTIVE"]],
         secondHalfDelay: 7.0,
     },
 ];
