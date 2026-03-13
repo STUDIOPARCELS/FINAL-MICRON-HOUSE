@@ -340,30 +340,16 @@ const getCardData = (id: number): ModalContent => {
                        </div>
                    </div>
                    
-                   {/* RIGHT COLUMN: NEW INTRO TILE + PURPLE + GREEN TILES */}
+                   {/* RIGHT COLUMN: 3 ARCS + BOISE TILE + RECREATION (mobile) */}
                    <div className="flex flex-col gap-6 h-full lg:col-span-2">
                         
-                        {/* 1. NEW INTRO TILE (White) - UPDATED: FLOATING EFFECT (No border, strong shadow) */}
-                        <motion.div 
-                            initial={{ opacity: 0, x: 20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 0.2, duration: 0.8 }}
-                            className="w-full bg-white rounded-xl p-6 md:p-8 text-zinc-900 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] relative group flex flex-col justify-center lg:flex-1"
-                        >
-                            <div className="text-zinc-600 text-base font-medium leading-relaxed relative z-10">
-                                <p>
-                                    Boise has arrived. A city once known for potatoes and public land now supports a James Beard-nominated culinary scene, world-class wineries across the Snake River Valley, a thriving arts and entertainment culture, and the kind of civic energy that comes with a Division I University town.
-                                </p>
-                            </div>
-                        </motion.div>
-
-                        {/* 2. 3 ARCS CONVERGING (Purple) */}
+                        {/* 1. 3 ARCS CONVERGING (Purple) — TOP */}
                         <InnerBento 
                             title="3 ARCS CONVERGING" 
                             gradient="bg-micron-eggplant" 
                             icon={<Zap />} 
                             className="flex-1"
-                            delay={0.4}
+                            delay={0.2}
                         >
                              <div className="w-full h-px bg-white/20 mb-4" />
                              <div className="space-y-4 text-white/90 text-base mb-3 leading-relaxed">
@@ -372,6 +358,21 @@ const getCardData = (id: number): ModalContent => {
                                 </p>
                              </div>
                         </InnerBento>
+
+                        {/* 2. THE CITY (White) */}
+                        <motion.div 
+                            initial={{ opacity: 0, x: 20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.4, duration: 0.8 }}
+                            className="w-full bg-white rounded-xl p-6 md:p-8 text-zinc-900 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] relative group flex flex-col justify-center lg:flex-1"
+                        >
+                            <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-400 mb-3">THE CITY</h3>
+                            <div className="text-zinc-600 text-base font-medium leading-relaxed relative z-10">
+                                <p>
+                                    A city once known for potatoes and public land now supports a James Beard-nominated culinary scene, world-class wineries across the Snake River Valley, a thriving arts and entertainment culture, and the kind of civic energy that comes with a Division I University town.
+                                </p>
+                            </div>
+                        </motion.div>
 
                         {/* RECREATION (Blue) - Mobile only */}
                         <div className="lg:hidden">
