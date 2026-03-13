@@ -160,7 +160,7 @@ export const SectionServingTesla: React.FC = () => {
 
                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 flex-1">
                         {/* Earth - Green */}
-                        <div className="order-3 sm:order-1 bg-micron-green text-white rounded-xl p-5 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] hover:shadow-[0_45px_80px_-10px_rgba(0,0,0,0.4)] hover:-translate-y-1 transition-all duration-300 border border-white/10 flex flex-col gap-2">
+                        <div className="order-2 sm:order-1 bg-micron-green text-white rounded-xl p-5 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] hover:shadow-[0_45px_80px_-10px_rgba(0,0,0,0.4)] hover:-translate-y-1 transition-all duration-300 border border-white/10 flex flex-col gap-2">
                             <div className="flex items-center gap-2 mb-1">
                                 <Mountain size={18} className="text-white/80" />
                                 <span className="font-bold uppercase text-xs tracking-widest">Earth</span>
@@ -178,7 +178,7 @@ export const SectionServingTesla: React.FC = () => {
                         </div>
 
                         {/* Memory - Eggplant */}
-                        <div className="order-2 sm:order-3 bg-micron-eggplant text-white rounded-xl p-5 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] hover:shadow-[0_45px_80px_-10px_rgba(0,0,0,0.4)] hover:-translate-y-1 transition-all duration-300 border border-white/10 flex flex-col gap-2">
+                        <div className="order-3 sm:order-3 bg-micron-eggplant text-white rounded-xl p-5 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] hover:shadow-[0_45px_80px_-10px_rgba(0,0,0,0.4)] hover:-translate-y-1 transition-all duration-300 border border-white/10 flex flex-col gap-2">
                             <div className="flex items-center gap-2 mb-1">
                                 <Layers size={18} className="text-white/80" />
                                 <span className="font-bold uppercase text-xs tracking-widest">Memory</span>
