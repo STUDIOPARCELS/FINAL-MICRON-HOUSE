@@ -154,7 +154,7 @@ export const SectionServingTesla: React.FC = () => {
                         />
                         <h3 className="text-2xl font-bold text-micron-eggplant leading-tight tracking-tight">Concept & Design</h3>
                         <div className="text-base text-zinc-500 mt-3 font-medium text-left space-y-3 max-w-md">
-                            <p>Four foundational elements unite to form the emblem. Earth and sky meet intelligence and autonomy, revealing a star at the core. The resulting mark represents balance for the autonomous house.</p>
+                            <p>Earth and sky join as the foundation. Intelligence and vision layer over the top. The elements balance to form a star, representing the autonomous home.</p>
                         </div>
                      </div>
 
