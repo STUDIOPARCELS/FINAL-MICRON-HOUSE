@@ -70,7 +70,7 @@ const teslaCards = [
     border: "border-white/10",
     subtitleColor: "text-zinc-900", 
     descriptionColor: "text-white/90 group-hover:text-white transition-colors duration-300",
-    titleHoverColor: "group-hover:text-zinc-100"
+    titleHoverColor: "group-hover:text-micron-eggplant"
   },
   // CARD 3: GENESIS
   {
