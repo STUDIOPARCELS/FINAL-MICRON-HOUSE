@@ -359,18 +359,17 @@ const getCardData = (id: number): ModalContent => {
                              </div>
                         </InnerBento>
 
-                        {/* 2. THE CITY (White) */}
+                        {/* 2. CULTURE (Dark Grey) */}
                         <InnerBento 
-                            title="THE CITY" 
-                            gradient="bg-white" 
-                            textColor="text-zinc-900"
+                            title="CULTURE" 
+                            gradient="bg-micron-grey1" 
                             icon={<Globe />} 
-                            className="flex-1 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]"
+                            className="flex-1"
                             padding="p-6 md:p-8"
                             delay={0.4}
                         >
-                            <div className="w-full h-px bg-zinc-200 mb-4" />
-                            <div className="text-zinc-600 text-base font-medium leading-relaxed">
+                            <div className="w-full h-px bg-white/20 mb-4" />
+                            <div className="text-white/90 text-base font-medium leading-relaxed">
                                 <p>
                                     A city once known for potatoes and public land now supports a James Beard-nominated culinary scene, world-class wineries across the Snake River Valley, a thriving arts and entertainment culture, and the kind of civic energy that comes with a Division I University town.
                                 </p>
