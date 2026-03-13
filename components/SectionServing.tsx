@@ -90,6 +90,25 @@ const departments: Department[] = [
     ]
   },
   { 
+    id: "mobility", 
+    title: "Global Mobility", 
+    value: "Soft landings", 
+    detail: "Real neighborhood experience, family accommodation, transition support before permanent housing.", 
+    gradient: "bg-micron-eggplant-light", 
+    modalHeaderColor: "text-micron-eggplant-light", 
+    modalIconColor: "text-zinc-400", 
+    modalTagColor: "border-micron-grey1",
+    modalMaxWidth: "max-w-md", 
+    experiences: [
+      {
+        title: "Soft Landings",
+        icon: <BedDouble />,
+        description: "Executives relocating from Munich, Seoul, or Tel Aviv. Two weeks in a real Boise neighborhood. An environment of fruit trees, geothermal heat, and a private hot tub.",
+        customGradient: "bg-micron-eggplant-light"
+      }
+    ]
+  }, 
+  { 
     id: "exec", 
     title: "Executive Office", 
     value: "Confidential off-sites", 
@@ -109,25 +128,6 @@ const departments: Department[] = [
         title: "Visiting Voices",
         icon: <Mic />,
         description: "Intimate fireside lectures with semiconductor leaders. Dinner prepared by Nathan Whitley (Terroir, 2026 James Beard semifinalist).",
-        customGradient: "bg-micron-eggplant-light"
-      }
-    ]
-  }, 
-  { 
-    id: "mobility", 
-    title: "Global Mobility", 
-    value: "Soft landings", 
-    detail: "Real neighborhood experience, family accommodation, transition support before permanent housing.", 
-    gradient: "bg-micron-eggplant-light", 
-    modalHeaderColor: "text-micron-eggplant-light", 
-    modalIconColor: "text-zinc-400", 
-    modalTagColor: "border-micron-grey1",
-    modalMaxWidth: "max-w-md", 
-    experiences: [
-      {
-        title: "Soft Landings",
-        icon: <BedDouble />,
-        description: "Executives relocating from Munich, Seoul, or Tel Aviv. Two weeks in a real Boise neighborhood. An environment of fruit trees, geothermal heat, and a private hot tub.",
         customGradient: "bg-micron-eggplant-light"
       }
     ]
