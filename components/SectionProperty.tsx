@@ -612,7 +612,7 @@ export const SectionProperty: React.FC = () => {
             <SpecCard 
                 title="MAIN LEVEL" 
                 icon={<Home />} 
-                items={["Foyer Entry", "Living, Dining, & Fully Equipped Kitchen", "Office w/ Ensuite Bath", "French Door Access to Deck", "Antiques & Art throughout"]}
+                items={["Foyer Entry", "Living, Dining, & Kitchen", "Office w/ Ensuite Bath", "French Door Access to Deck", "Antiques & Art throughout"]}
                 onGallery={() => openLevelGallery('main')}
                 gradient="bg-micron-grey1"
                 delay={0}
@@ -621,7 +621,7 @@ export const SectionProperty: React.FC = () => {
             <SpecCard 
                 title="UPPER LEVEL" 
                 icon={<ArrowUp />} 
-                items={["3 Bedrooms", "2 Private En-Suite Baths", "1 Bedroom Served by Hall Bath", "Laundry Facilities"]}
+                items={["3 Bedrooms", "2 En-Suite Baths", "1 Bedroom Served by Hall Bath", "Laundry"]}
                 onGallery={() => openLevelGallery('upper')}
                 gradient="bg-micron-eggplant"
                 delay={0.1}
@@ -630,7 +630,7 @@ export const SectionProperty: React.FC = () => {
             <SpecCard 
                 title="GROUNDS" 
                 icon={<TreeDeciduous />} 
-                items={["Mature Fruit Trees (Peach, Plum, Cherry)", "Concord Grapevine", "Fully Fenced Yard & ~200 sq ft Deck", "Attached Carport via Private Alley"]}
+                items={["Mature Fruit Trees (Peach, Plum, Cherry)", "Concord Grapevine", "Fully Fenced Yard & ~200 sq ft Deck", "Attached Carport via Alley"]}
                 onGallery={() => openLevelGallery('grounds')}
                 gradient="bg-micron-green"
                 delay={0.2}
