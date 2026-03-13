@@ -462,7 +462,7 @@ export const SectionProperty: React.FC = () => {
             content: (
                 <div className="flex flex-col lg:flex-row gap-6 h-full pb-4 items-stretch">
                      {/* LEFT: IMAGE */}
-                     <div className="w-full lg:w-1/2 min-h-[300px] md:min-h-[400px] lg:min-h-0">
+                     <div className="w-full lg:w-1/2 h-[300px] md:h-[400px] lg:h-auto">
                         <div className="w-full h-full rounded-2xl overflow-hidden relative shadow-2xl border border-zinc-200">
                              <img 
                                 src="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/old%20warm%20springs%20(1).webp" 
