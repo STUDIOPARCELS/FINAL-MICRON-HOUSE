@@ -81,13 +81,10 @@ export const BentoCard: React.FC<CardProps & {
         <div className={`
             absolute ${arrowPosClass} z-20 
             transition-all duration-300 
-            /* MOBILE: Always visible, increased opacity to 80 for visibility */
-            opacity-80
-            /* DESKTOP: Hidden initially, visible on hover */
-            md:opacity-0 md:group-hover:opacity-100 md:translate-y-2 md:group-hover:translate-y-0
+            opacity-60
+            md:opacity-40 md:group-hover:opacity-100 md:translate-y-1 md:group-hover:translate-y-0
         `}>
-             {/* UPDATED: Reduced size from 20 to 16 for subtle look */}
-             <ArrowUpRight className={arrowColor} size={16} />
+             <ArrowUpRight className={arrowColor} size={20} />
         </div>
       )}
     </motion.div>
