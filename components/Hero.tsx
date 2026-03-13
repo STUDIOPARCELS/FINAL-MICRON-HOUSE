@@ -223,9 +223,9 @@ export const Hero: React.FC = () => {
   // Footage cue points (in video currentTime):
   //   ~2.2s:  Starbase appears → Sentence 0 (VISION/VELOCITY)
   //   ~8.5s:  Transition → Sentence 0 out
-  //   ~10.5s: Camera settles on Micron fab → Sentence 1 (MEMORY/MEANING)  
-  //   ~14.5s: Transition → Sentence 1 out
-  //   ~15.5s: Capitol building in view → Sentence 2 (PLACE/PERSPECTIVE)
+  //   ~12.0s: Camera settled on Micron fab (logo visible) → Sentence 1 (MEMORY/MEANING)  
+  //   ~15.5s: Transition → Sentence 1 out
+  //   ~16.0s: Capitol building in frame → Sentence 2 (PLACE/PERSPECTIVE)
   //   ~23.0s: Sentence 2 out
   //   ~24.0s: Car drives off → Wordmark slides in
   //   ~27.0s: Hyper zoom → Logo slides in above wordmark
@@ -249,17 +249,17 @@ export const Hero: React.FC = () => {
       }
       
       // Sentence 1: Camera settles on Micron fab
-      if (t >= 10.5 && !fired.has('s1on')) {
+      if (t >= 12.0 && !fired.has('s1on')) {
           fired.add('s1on');
           setCurrentSentenceIndex(1);
       }
-      if (t >= 14.5 && !fired.has('s1off')) {
+      if (t >= 15.5 && !fired.has('s1off')) {
           fired.add('s1off');
           setCurrentSentenceIndex(null);
       }
       
       // Sentence 2: Capitol building in view
-      if (t >= 15.5 && !fired.has('s2on')) {
+      if (t >= 16.0 && !fired.has('s2on')) {
           fired.add('s2on');
           setCurrentSentenceIndex(2);
       }
