@@ -10,7 +10,8 @@ const sentences = [
         hoverColor: "hover:text-black", 
         highlights: ["VISION", "VELOCITY"],
         textSize: "text-3xl sm:text-4xl md:text-5xl lg:text-7xl",
-        layout: "default"
+        layout: "default",
+        lines: [["WITHOUT", "VISION"], ["THERE'S", "NO", "VELOCITY"]]
     },
     {
         words: ["WITHOUT", "MEMORY", "THERE'S", "NO", "MEANING"],
@@ -19,7 +20,8 @@ const sentences = [
         hoverColor: "hover:text-micron-eggplant/60", 
         highlights: ["MEMORY", "MEANING"],
         textSize: "text-3xl sm:text-4xl md:text-5xl lg:text-7xl",
-        layout: "default"
+        layout: "default",
+        lines: [["WITHOUT", "MEMORY"], ["THERE'S", "NO", "MEANING"]]
     },
     {
         words: ["WITHOUT", "PLACE", "THERE'S", "NO", "PERSPECTIVE"], 
@@ -524,7 +526,7 @@ export const Hero: React.FC = () => {
                                      // Forced line layout: render each line as a block
                                      let wordIndex = 0;
                                      return currentSet.lines.map((line: string[], lineIdx: number) => (
-                                         <div key={`line-${lineIdx}`} className="w-full flex flex-wrap gap-x-4 md:gap-x-6 justify-center">
+                                         <div key={`line-${lineIdx}`} className="w-full flex flex-nowrap gap-x-4 md:gap-x-6 justify-center">
                                              {line.map((word: string) => {
                                                  const el = renderWord(word, wordIndex, currentSet);
                                                  wordIndex++;
