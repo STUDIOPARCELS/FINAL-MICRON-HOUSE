@@ -460,9 +460,9 @@ export const SectionProperty: React.FC = () => {
             maxWidth: 'max-w-6xl',
             headerClassName: "text-zinc-900",
             content: (
-                <div className="flex flex-col md:flex-row gap-6 h-full pb-4 items-stretch">
+                <div className="flex flex-col lg:flex-row gap-6 h-full pb-4 items-stretch">
                      {/* LEFT: IMAGE */}
-                     <div className="w-full md:w-1/2 min-h-[400px] md:min-h-0">
+                     <div className="w-full lg:w-1/2 min-h-[300px] md:min-h-[400px] lg:min-h-0">
                         <div className="w-full h-full rounded-2xl overflow-hidden relative shadow-2xl border border-zinc-200">
                              <img 
                                 src="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/old%20warm%20springs%20(1).webp" 
@@ -478,7 +478,7 @@ export const SectionProperty: React.FC = () => {
                      </div>
 
                      {/* RIGHT: TEXT TILES */}
-                     <div className="w-full md:w-1/2 bg-micron-eggplant rounded-2xl p-8 md:p-10 text-white flex flex-col justify-center gap-8 shadow-2xl border border-white/10 relative overflow-hidden">
+                     <div className="w-full lg:w-1/2 bg-micron-eggplant rounded-2xl p-8 md:p-10 text-white flex flex-col justify-center gap-8 shadow-2xl border border-white/10 relative overflow-hidden">
                         <div className="absolute top-0 right-0 p-32 bg-micron-eggplant-light blur-[100px] opacity-20 pointer-events-none rounded-full" />
                         
                         <div className="relative z-10">
