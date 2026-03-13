@@ -662,7 +662,7 @@ export const Hero: React.FC = () => {
             </div>
 
             {/* RIGHT: Map Card — compact on tablet landscape, full on desktop */}
-            <div className="w-full lg:w-[200px] xl:w-[340px] aspect-[4/3] lg:aspect-auto lg:h-auto bg-zinc-100 rounded-2xl overflow-hidden shadow-2xl relative border-4 border-white/20 z-10 mt-auto lg:mt-0 flex-shrink-0">
+            <div className="w-full lg:w-[260px] xl:w-[340px] aspect-[4/3] lg:aspect-[3/4] lg:h-auto bg-zinc-100 rounded-2xl overflow-hidden shadow-2xl relative border-4 border-white/20 z-10 mt-auto lg:mt-0 flex-shrink-0">
                  <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2889.234!2d-116.1898!3d43.6088!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54aef8d1b0b3b8e7%3A0x0!2s1020%20E%20Warm%20Springs%20Ave%2C%20Boise%2C%20ID%2083712!5e0!3m2!1sen!2sus!4v1706000000000"
                     width="100%"
