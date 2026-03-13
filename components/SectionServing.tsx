@@ -307,7 +307,7 @@ export const SectionServing: React.FC = () => {
                     key={dept.id}
                     className={`
                         flex flex-col min-h-[160px] p-6 relative overflow-hidden group transition-all duration-300 ${dept.gradient}
-                        w-full md:w-[calc(50%-12px)] lg:w-[calc(25%-18px)]
+                        w-full md:w-[calc(50%-12px)] xl:w-[calc(25%-18px)]
                     `}
                     gradient={dept.gradient}
                     textColor="text-white"
