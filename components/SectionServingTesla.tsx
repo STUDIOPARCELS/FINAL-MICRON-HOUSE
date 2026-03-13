@@ -63,7 +63,7 @@ const teslaCards = [
   {
     id: 1,
     title: "A TECTONIC SHIFT", 
-    subtitle: "Societal Context",
+    subtitle: "Social Conditions",
     content: "Autonomous systems will enter daily life in a society already strained by AI-driven white-collar displacement, institutional pressure, and public distrust.",
     icon: null,
     gradient: "bg-micron-eggplant-light", 
@@ -329,13 +329,13 @@ export const SectionServingTesla: React.FC = () => {
     // CONTENT FOR "A TECTONIC SHIFT" (ID 1)
     return (
         <div className="flex flex-col gap-6 h-full pb-8">
-            {/* SOCIETAL CONTEXT */}
+            {/* SOCIAL CONDITIONS */}
             <motion.div 
                 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
                 className="bg-micron-eggplant-light text-white rounded-[2rem] p-8 md:p-10 border border-white/20 flex flex-col gap-8 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] hover:shadow-[0_45px_80px_-10px_rgba(0,0,0,0.4)] hover:-translate-y-1 transition-all duration-300"
             >
                  <div>
-                    <h5 className="text-3xl font-black text-white mb-3 uppercase leading-none tracking-tight">SOCIETAL CONTEXT</h5>
+                    <h5 className="text-3xl font-black text-white mb-3 uppercase leading-none tracking-tight">SOCIAL CONDITIONS</h5>
                     <p className="text-white font-medium leading-relaxed text-base">
                         Autonomous systems will arrive amid AI-driven labor disruption, civic strain, and public fear. White-collar displacement is accelerating. Institutional trust is eroding. Communities are already overwhelmed by the pace of technological change.
                     </p>
