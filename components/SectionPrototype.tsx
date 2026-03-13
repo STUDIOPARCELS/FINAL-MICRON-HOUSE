@@ -657,7 +657,7 @@ export const SectionPrototype: React.FC = () => {
                                 transition={{ duration: 1.5, delay: (mainTitleWords.length * 0.2) + 0.2 }}
                                 className="text-micron-eggplant block text-base"
                         >
-                            The opportunity to shape policy and narrative is now. Every stakeholder in the autonomous future – Micron, Tesla, policymakers, and civic leaders experience the technology together to build frameworks that earn public trust. <strong className="font-semibold text-zinc-800">5 min from the capitol and downtown, 15 min from Micron and airport.</strong>
+                            The opportunity to shape policy and narrative is now. Every stakeholder in the autonomous future – Micron, Tesla, policymakers, and civic leaders experience the technology together to build frameworks that earn public trust. <strong className="font-semibold text-zinc-800">Once this window closes, it closes permanently.</strong>
                         </motion.span>
                     </div>
                 </div>

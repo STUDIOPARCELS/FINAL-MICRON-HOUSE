@@ -550,7 +550,7 @@ export const SectionProperty: React.FC = () => {
                            PROXIMITY
                        </span>
                        <p>
-                           Warm Springs gives Micron House historic depth, residential privacy, geothermal grounding, and direct access to Boise's institutional ecosystem where Micron, Tesla, the Capitol, major hospital systems, Boise State, and <strong className="font-semibold text-zinc-800">cross-sector leaders come together to prepare our communities</strong> for the smooth integration of autonomous technology at scale.
+                           Warm Springs gives Micron House historic depth, residential privacy, geothermal grounding, and direct access to Boise's institutional ecosystem where Micron, Tesla, the Capitol, major hospital systems, Boise State, and <strong className="font-semibold text-zinc-800">cross-sector leaders come together to prepare our communities</strong> for the smooth integration of autonomous technology at scale. <strong className="font-semibold text-zinc-800">5 min from the capitol and downtown, 15 min from Micron and airport.</strong>
                        </p>
                     </div>
                  </div>
