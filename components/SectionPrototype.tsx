@@ -657,7 +657,7 @@ export const SectionPrototype: React.FC = () => {
                                 transition={{ duration: 1.5, delay: (mainTitleWords.length * 0.2) + 0.2 }}
                                 className="text-micron-eggplant block text-base"
                         >
-                            The opportunity to lead is now. Every stakeholder in the autonomous future – Micron, Tesla, and civic leaders experience the technology together to build frameworks that earn public trust. <strong className="font-semibold text-zinc-800">Once the window closes, it closes permanently.</strong>
+                            The window to shape first contact with Optimus and Cybercab is open now. Before rollout sets the terms, Micron, Tesla, and civic leaders need one place to see the technology, pressure-test the hard questions, and decide how it enters daily life. <strong className="font-semibold text-zinc-800">Once the window closes, it closes permanently.</strong>
                         </motion.span>
                     </div>
                 </div>
@@ -686,7 +686,7 @@ export const SectionPrototype: React.FC = () => {
                         PROTOTYPE
                     </h3>
                     <p className="text-xs font-bold uppercase tracking-widest text-white/50 group-hover:text-white transition-colors">
-                        A New Paradigm
+                        The Residence
                     </p>
                 </div>
             </BentoCard>
@@ -709,7 +709,7 @@ export const SectionPrototype: React.FC = () => {
                         COLLABORATION
                     </h3>
                     <p className="text-xs font-bold uppercase tracking-widest text-white/50 group-hover:text-white transition-colors">
-                        Shared Missions
+                        Micron + Tesla
                     </p>
                 </div>
             </BentoCard>
@@ -733,7 +733,7 @@ export const SectionPrototype: React.FC = () => {
                         TIMING
                     </h3>
                     <p className="text-xs font-bold uppercase tracking-widest text-white/70 group-hover:text-white transition-colors">
-                        Boise's Moment
+                        Why Boise
                     </p>
                 </div>
             </BentoCard>

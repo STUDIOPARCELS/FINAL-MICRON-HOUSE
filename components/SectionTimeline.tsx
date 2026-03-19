@@ -7,24 +7,32 @@ const roadmapItems = [
     id: 1, 
     date: "NOW", 
     title: "SITE VISIT", 
-    subtitle: "Working session on fit, scope, and priorities.", 
+    subtitle: "Confirm fit, scope, and operating priorities on site.", 
     bg: "bg-micron-eggplant",
     text: "text-white"
   },
   { 
     id: 2, 
     date: "DAY 30", 
-    title: "INTEGRATION", 
-    subtitle: "Install, configure, and test Optimus and Cybercab systems in a residential environment.", 
+    title: "PROGRAM ALIGNMENT", 
+    subtitle: "Define privacy, hosting, security, service, and mobility requirements.", 
     bg: "bg-micron-green",
     text: "text-white"
   },
   { 
     id: 3, 
-    date: "DAY 60", 
-    title: "PILOT USE", 
-    subtitle: "Begin hosted use for recruitment, relocation, family support, and small strategic gatherings.", 
+    date: "MONTHS 1–18", 
+    title: "TESTING", 
+    subtitle: "Run the living-lab phase across arrivals, stays, dinners, events, and daily household use.", 
     bg: "bg-micron-grey1",
+    text: "text-white"
+  },
+  { 
+    id: 4, 
+    date: "PHASE 2", 
+    title: "OPERATIONAL LAUNCH", 
+    subtitle: "Activate Micron House in full operation.", 
+    bg: "bg-micron-eggplant-light",
     text: "text-white"
   }
 ];
@@ -32,7 +40,7 @@ const roadmapItems = [
 export const SectionTimeline: React.FC = () => {
 
   // Randomized staggered delay array for the 5 items
-  const staggeredDelays = [0, 0.3, 0.1];
+  const staggeredDelays = [0, 0.3, 0.1, 0.4];
 
   return (
     // REDUCED PADDING: py-16 -> py-10, UPDATED mobile padding to px-8
@@ -50,7 +58,7 @@ export const SectionTimeline: React.FC = () => {
           </div>
 
           {/* Horizontal Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
             {roadmapItems.map((item, i) => (
                 <motion.div
                     key={item.id}
@@ -75,8 +83,11 @@ export const SectionTimeline: React.FC = () => {
                     <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none" />
 
                     {/* Top Left Icon/Number Indicator */}
-                    <div className="w-8 h-8 rounded-full border border-white/30 bg-white/10 backdrop-blur-sm flex items-center justify-center text-xs font-bold shadow-sm group-hover:bg-white/20 transition-colors">
-                        {item.id}
+                    <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-full border border-white/30 bg-white/10 backdrop-blur-sm flex items-center justify-center text-xs font-bold shadow-sm group-hover:bg-white/20 transition-colors">
+                            {item.id}
+                        </div>
+                        <span className="text-xs font-bold uppercase tracking-widest text-white/60">{item.date}</span>
                     </div>
 
                     {/* Center Content */}

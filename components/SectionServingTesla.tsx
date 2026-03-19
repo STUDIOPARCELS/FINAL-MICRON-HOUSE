@@ -51,7 +51,7 @@ const teslaCards = [
     id: 2, 
     title: "REAL-WORLD INFERENCE", 
     subtitle: "A Living Laboratory",
-    content: "Where Micron executives, engineers, guests, and partners generate domestic intelligence from Optimus and Cybercab — across real dinners, real stays, and real events.",
+    content: "Where Micron executives, engineers, guests, and partners see Optimus and Cybercab across real dinners, real stays, and real events.",
     icon: null,
     gradient: "bg-micron-grey1", 
     border: "border-white/10",
@@ -63,8 +63,8 @@ const teslaCards = [
   {
     id: 1,
     title: "A TECTONIC SHIFT", 
-    subtitle: "Social Conditions",
-    content: "Autonomous systems will enter daily life in a society already strained by AI-driven displacement, institutional pressure, and public distrust.",
+    subtitle: "The Moment",
+    content: "Optimus and Cybercab will enter daily life after AI has already unsettled work and public confidence. Micron House brings the hard questions forward early and lets Micron and Tesla frame first contact before ubiquity does.",
     icon: null,
     gradient: "bg-micron-eggplant-light", 
     border: "border-white/10",
@@ -119,20 +119,12 @@ export const SectionServingTesla: React.FC = () => {
                         className="bg-[#2c2e33] text-white rounded-[2rem] p-8 border border-zinc-700 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] hover:shadow-[0_45px_80px_-10px_rgba(0,0,0,0.4)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
                     >
                         <div>
-                            <h3 className="text-2xl font-bold tracking-tight text-white/90 mb-4">Partnership</h3>
+                            <h3 className="text-2xl font-bold tracking-tight text-white/90 mb-4">Access</h3>
                             <div className="text-zinc-300 font-light leading-relaxed text-base space-y-4">
                                 <p>
-                                    Micron House is conceived as a long-term relationship whose value grows through use: leadership stays, partner hosting, recruitment, relocation, and family support.
+                                    Micron House is a working relationship built through use: leadership stays, partner hosting, recruitment, relocation, and family support.
                                 </p>
                             </div>
-                        </div>
-
-                        <div className="mt-8 pt-6 border-t border-zinc-600">
-                             <p className="text-white font-bold text-lg mb-1">Lisa Wood</p>
-                             <div className="flex flex-col gap-1 text-zinc-400 font-medium">
-                                <a href="tel:2087202433" className="hover:text-white transition-colors w-fit">208.720.2433</a>
-                                <a href="mailto:lisa@lisawoodstudio.com" className="hover:text-white transition-colors w-fit border-b border-transparent hover:border-white">lisa@lisawoodstudio.com</a>
-                             </div>
                         </div>
                     </motion.div>
                 </div>
@@ -287,7 +279,7 @@ export const SectionServingTesla: React.FC = () => {
                             ))}
                         </ul>
                         <p className="text-sm text-white/60 font-bold tracking-wide leading-relaxed border-t border-white/10 pt-3">
-                            Three scenarios. Three emotional registers. Each one training autonomous systems.
+                            Three scenarios. Three emotional registers. Each one reveals how the systems behave under real social conditions.
                         </p>
                     </InnerBento>
 
@@ -309,10 +301,7 @@ export const SectionServingTesla: React.FC = () => {
                         <div className="w-full h-px bg-white/20 mb-4" />
                         <div className="space-y-4 text-white/90 text-base font-medium leading-relaxed">
                             <p>
-                                Micron's leadership experiences Optimus and Cybercab across the full spectrum of real life before any consumer on earth.
-                            </p>
-                            <p>
-                                Operational variety builds institutional knowledge. Every scenario deepens the data, sharpens the model, and strengthens the partnership.
+                                Micron leadership experiences Optimus and Cybercab across the full range of daily life before any consumer on earth. Every scenario builds institutional knowledge.
                             </p>
                             <div className="w-full h-px bg-white/20 mt-4 mb-3" />
                             {/* UPDATED: Removed "Political" */}
@@ -329,15 +318,28 @@ export const SectionServingTesla: React.FC = () => {
     // CONTENT FOR "A TECTONIC SHIFT" (ID 1)
     return (
         <div className="flex flex-col gap-6 h-full pb-8">
-            {/* SHARED READINESS */}
+            {/* THE MOMENT */}
             <motion.div 
                 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
                 className="bg-micron-eggplant-light text-white rounded-[2rem] p-8 md:p-10 border border-white/20 flex flex-col gap-8 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] hover:shadow-[0_45px_80px_-10px_rgba(0,0,0,0.4)] hover:-translate-y-1 transition-all duration-300"
             >
                  <div>
-                    <h5 className="text-3xl font-black text-white mb-3 uppercase leading-none tracking-tight">SHARED READINESS</h5>
+                    <h5 className="text-3xl font-black text-white mb-3 uppercase leading-none tracking-tight">THE MOMENT</h5>
                     <p className="text-white font-medium leading-relaxed text-base">
-                        Micron and Tesla engineers sit with lawmakers, educators, healthcare leaders, and community voices to build trust, shape understanding, and define the human experience of autonomy — while the window to lead that conversation is still open.
+                        By the time Optimus and Cybercab are ordinary, AI will already have altered work and public mood. First encounters with autonomy will happen in that climate.
+                    </p>
+                 </div>
+            </motion.div>
+
+            {/* THE OPPORTUNITY */}
+            <motion.div 
+                variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+                className="bg-micron-eggplant text-white rounded-[2rem] p-8 md:p-10 border border-white/20 flex flex-col gap-8 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] hover:shadow-[0_45px_80px_-10px_rgba(0,0,0,0.4)] hover:-translate-y-1 transition-all duration-300"
+            >
+                 <div>
+                    <h5 className="text-3xl font-black text-white mb-3 uppercase leading-none tracking-tight">THE OPPORTUNITY</h5>
+                    <p className="text-white font-medium leading-relaxed text-base">
+                        Micron and Tesla meet leaders here while the technology is still early enough to be interpreted in person: hard scenarios on the table, practical benefits in view, terms of first contact set early.
                     </p>
                  </div>
             </motion.div>
@@ -356,7 +358,7 @@ export const SectionServingTesla: React.FC = () => {
                         <span className="text-white font-bold uppercase text-sm tracking-widest">DISPLACEMENT</span>
                         <div className="w-full h-px bg-white/20" />
                         <p className="text-white/80 font-medium leading-relaxed text-base">
-                            AI is already restructuring labor. Autonomous systems extend that disruption into physical work, service, and logistics — simultaneously.
+                            AI has already unsettled white-collar work. Optimus and Cybercab arrive into that strain.
                         </p>
                     </div>
                     
@@ -364,7 +366,7 @@ export const SectionServingTesla: React.FC = () => {
                         <span className="text-white font-bold uppercase text-sm tracking-widest">DISTRUST</span>
                         <div className="w-full h-px bg-white/20" />
                         <p className="text-white/80 font-medium leading-relaxed text-base">
-                            Public confidence in institutions and technology companies is at historic lows. Autonomous systems carry cameras, sensors, and decision-making into private life.
+                            Cameras, sensors, and machine judgment push that tension into daily life.
                         </p>
                     </div>
                     
@@ -372,7 +374,7 @@ export const SectionServingTesla: React.FC = () => {
                         <span className="text-white font-bold uppercase text-sm tracking-widest">PACE</span>
                         <div className="w-full h-px bg-white/20" />
                         <p className="text-white/80 font-medium leading-relaxed text-base">
-                            Speed of deployment will outpace public readiness. Without controlled environments to develop trust and protocol, the first encounters will define the narrative.
+                            Rollout will move faster than social adaptation. First encounters will set the tone.
                         </p>
                     </div>
                 </div>
@@ -416,7 +418,7 @@ export const SectionServingTesla: React.FC = () => {
                          <span className="font-bold text-micron-grey1/50 block mb-2 text-2xl md:text-3xl uppercase tracking-tighter font-sans">
                              DAILY LIFE
                          </span>
-                         <strong className="font-semibold text-zinc-800">Here guests come into contact with Optimus and Cybercab for the first time</strong> on Warm Springs Avenue, a tree-lined, century-old neighborhood on the National Register of Historic Places, where geothermal ingenuity and residential life give the experience perspective, place, and grounding.
+                         Here, leaders and guests meet Optimus and Cybercab for the first time on Warm Springs Avenue — a National Register historic district shaped by geothermal ingenuity and residential life.
                       </div>
                    </div>
               </div>

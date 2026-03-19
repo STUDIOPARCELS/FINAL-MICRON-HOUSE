@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
@@ -13,11 +13,29 @@ interface ModalProps {
 
 export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, data }) => {
   const [mounted, setMounted] = useState(false);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     setMounted(true);
     return () => setMounted(false);
   }, []);
+
+  // Escape key close + focus management
+  useEffect(() => {
+    if (isOpen) {
+      previousFocusRef.current = document.activeElement as HTMLElement;
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') onClose();
+      };
+      document.addEventListener('keydown', handleKeyDown);
+      return () => document.removeEventListener('keydown', handleKeyDown);
+    } else {
+      if (previousFocusRef.current) {
+        previousFocusRef.current.focus();
+        previousFocusRef.current = null;
+      }
+    }
+  }, [isOpen, onClose]);
 
   // Handle Body Scroll Lock to prevent layout shift
   useEffect(() => {
@@ -68,7 +86,7 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, data }) => {
             onClick={onClose}
             className="fixed inset-0 z-[200] bg-zinc-950/80 backdrop-blur-sm"
           />
-          <div className="fixed inset-0 z-[210] flex items-center justify-center p-4 pt-8 pointer-events-none overflow-hidden">
+          <div className="fixed inset-0 z-[210] flex items-center justify-center p-4 pt-8 pointer-events-none overflow-hidden" role="dialog" aria-modal="true" aria-label={data.title || 'Modal'}>
              {(() => {
                 switch (data.category) {
                   case 'cinematic':
