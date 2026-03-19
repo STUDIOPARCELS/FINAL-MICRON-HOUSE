@@ -5,219 +5,218 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Micron House — Policy Briefs</title>
   <link rel="icon" href="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/FINAL%20LOGO%20DARK.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --eggplant: #2c0f38; --green: #008f25; --grey1: #353942; --blue: #7db0d3; --bg: #fafafa; --border: #e4e4e7; --text: #18181b; --text2: #71717a; --muted: #a1a1aa; }
-    body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; line-height: 1.5; }
-
-    .header { background: var(--eggplant); border-bottom: 2px solid var(--green); padding: 0 32px; height: 56px; display: flex; align-items: center; justify-content: space-between; position: fixed; top: 0; left: 0; right: 0; z-index: 100; }
-    .header-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff; font-weight: 800; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; }
-    .header-brand img { height: 24px; width: 24px; filter: brightness(10); }
-    .header-nav { display: flex; gap: 24px; }
-    .header-nav a { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.5); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
-    .header-nav a:hover { color: #fff; }
-    .header-nav a.active { color: var(--green); }
-
-    .page { max-width: 1100px; margin: 0 auto; padding: 80px 32px 48px; }
-
-    .page-title { padding: 32px 0 24px; border-bottom: 1px solid var(--border); margin-bottom: 32px; }
-    .page-title h1 { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
-    .page-title h2 { font-size: 32px; font-weight: 900; letter-spacing: -0.03em; text-transform: uppercase; color: var(--text); line-height: 1; margin-bottom: 10px; }
-    .page-title p { font-size: 14px; color: var(--text2); max-width: 640px; }
-
-    .briefs { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); margin-bottom: 32px; }
-    @media (max-width: 768px) { .briefs { grid-template-columns: 1fr; } }
-    .brief { background: #fff; padding: 28px; display: flex; flex-direction: column; transition: background 0.2s; }
-    .brief:hover { background: #fcfcfc; }
-    .brief-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
-    .brief-tag-dot { width: 6px; height: 6px; }
-    .brief h3 { font-size: 16px; font-weight: 800; letter-spacing: -0.01em; color: var(--text); margin-bottom: 4px; line-height: 1.3; }
-    .brief .target { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500; color: var(--muted); margin-bottom: 14px; }
-    .brief .desc { font-size: 13px; color: var(--text2); line-height: 1.65; flex: 1; margin-bottom: 20px; }
-    .brief-actions { display: flex; gap: 8px; padding-top: 16px; border-top: 1px solid var(--border); }
-    .btn { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; padding: 8px 16px; border: 1px solid var(--border); background: #fff; color: var(--text); cursor: pointer; transition: all 0.15s; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
-    .btn:hover { background: var(--text); color: #fff; border-color: var(--text); }
-    .btn-primary { background: var(--eggplant); color: #fff; border-color: var(--eggplant); }
-    .btn-primary:hover { background: #1a0824; border-color: #1a0824; }
-
-    .viewer { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,0.7); }
-    .viewer.active { display: flex; align-items: center; justify-content: center; }
-    .viewer-inner { background: #fff; width: 92vw; max-width: 960px; height: 90vh; display: flex; flex-direction: column; box-shadow: 0 40px 80px -20px rgba(0,0,0,0.5); }
-    .viewer-header { padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; background: var(--bg); }
-    .viewer-header h3 { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text); }
-    .viewer-close { width: 32px; height: 32px; border: 1px solid var(--border); background: #fff; cursor: pointer; font-size: 16px; color: var(--text2); display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
-    .viewer-close:hover { background: var(--text); color: #fff; border-color: var(--text); }
-    .viewer iframe { flex: 1; border: none; }
-
-    .chat { background: #fff; border: 1px solid var(--border); margin-bottom: 32px; }
-    .chat-header { padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none; background: var(--bg); }
-    .chat-header-left { display: flex; align-items: center; gap: 10px; }
-    .chat-status { width: 6px; height: 6px; background: var(--green); animation: pulse 2s ease infinite; }
-    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
-    .chat-header h3 { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text); }
-    .chat-header .meta { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500; color: var(--muted); }
-    .chat-toggle { width: 28px; height: 28px; border: 1px solid var(--border); background: #fff; cursor: pointer; font-size: 14px; color: var(--text2); display: flex; align-items: center; justify-content: center; transition: transform 0.2s; }
-    .chat-toggle.open { transform: rotate(180deg); }
-
-    .chat-body { display: none; }
-    .chat-body.open { display: block; }
-    .chat-messages { height: 380px; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 12px; background: #fff; }
-    .chat-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 16px; text-align: center; }
-    .chat-empty-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
-    .chat-empty p { font-size: 13px; color: var(--text2); max-width: 440px; line-height: 1.6; }
-    .chat-prompts { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-top: 8px; }
-    .chat-prompt { font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 7px 14px; border: 1px solid var(--border); background: #fff; color: var(--text2); cursor: pointer; transition: all 0.15s; }
-    .chat-prompt:hover { border-color: var(--eggplant); color: var(--eggplant); }
-
-    .msg { max-width: 78%; padding: 10px 16px; font-size: 13px; line-height: 1.65; }
-    .msg-user { align-self: flex-end; background: var(--eggplant); color: #fff; }
-    .msg-assistant { align-self: flex-start; background: var(--bg); color: var(--text); border: 1px solid var(--border); }
-    .msg-loading { align-self: flex-start; background: var(--bg); color: var(--muted); border: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; font-size: 11px; display: flex; align-items: center; gap: 8px; }
-    .spinner { width: 12px; height: 12px; border: 1.5px solid #d4d4d8; border-top-color: var(--eggplant); animation: spin 0.7s linear infinite; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #fafafa; color: #18181b;
+      -webkit-font-smoothing: antialiased; line-height: 1.6;
+    }
+    .topbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: #fff; border-bottom: 1px solid #e4e4e7;
+      padding: 16px 32px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .topbar-brand {
+      display: flex; align-items: center; gap: 10px; text-decoration: none; color: #18181b;
+      font-weight: 900; font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase;
+    }
+    .topbar-brand img { height: 28px; width: 28px; }
+    .topbar-back {
+      font-size: 12px; font-weight: 600; color: #a1a1aa; text-decoration: none;
+      letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s;
+    }
+    .topbar-back:hover { color: #18181b; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 100px 32px 60px; }
+    .page-header { margin-bottom: 40px; }
+    .page-header h1 {
+      font-size: 42px; font-weight: 900; letter-spacing: -0.03em;
+      text-transform: uppercase; color: #18181b; line-height: 1; margin-bottom: 10px;
+    }
+    .page-header p { font-size: 15px; color: #71717a; font-weight: 400; max-width: 560px; line-height: 1.6; }
+    .main-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+    @media (max-width: 960px) { .main-grid { grid-template-columns: 1fr; } }
+    .briefs-stack { display: flex; flex-direction: column; gap: 20px; }
+    .brief-card {
+      background: #fff; border: 1px solid #e4e4e7; border-radius: 14px;
+      padding: 28px; transition: all 0.3s ease;
+    }
+    .brief-card:hover { border-color: #d4d4d8; box-shadow: 0 12px 32px -8px rgba(0,0,0,0.06); transform: translateY(-1px); }
+    .brief-card-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: #a1a1aa; margin-bottom: 14px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .brief-card-dot { width: 7px; height: 7px; border-radius: 50%; }
+    .brief-card h2 { font-size: 18px; font-weight: 800; letter-spacing: -0.01em; color: #18181b; margin-bottom: 4px; line-height: 1.3; }
+    .brief-card .subtitle { font-size: 12px; font-weight: 500; color: #a1a1aa; margin-bottom: 14px; }
+    .brief-card .description { font-size: 14px; color: #52525b; line-height: 1.65; margin-bottom: 20px; }
+    .brief-card-actions { display: flex; gap: 10px; }
+    .btn {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 10px 20px; border-radius: 8px; border: 1px solid #e4e4e7;
+      background: #f4f4f5; color: #3f3f46; cursor: pointer; transition: all 0.2s;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+    }
+    .btn:hover { background: #e4e4e7; border-color: #d4d4d8; }
+    .chat-panel {
+      background: #fff; border: 1px solid #e4e4e7; border-radius: 14px;
+      display: flex; flex-direction: column; min-height: 520px; position: sticky; top: 80px;
+    }
+    .chat-header {
+      padding: 20px 24px; border-bottom: 1px solid #f4f4f5;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .chat-header h3 {
+      font-size: 13px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+      color: #18181b; display: flex; align-items: center; gap: 8px;
+    }
+    .chat-header .dot { width: 7px; height: 7px; border-radius: 50%; background: #008f25; }
+    .chat-header .meta { font-size: 11px; font-weight: 500; color: #a1a1aa; letter-spacing: 0.04em; }
+    .chat-messages { flex: 1; overflow-y: auto; padding: 24px; display: flex; flex-direction: column; gap: 12px; }
+    .chat-empty { padding: 40px 16px; color: #a1a1aa; }
+    .chat-empty p { font-size: 13px; margin-bottom: 16px; line-height: 1.6; }
+    .chat-suggestions { display: flex; flex-direction: column; gap: 6px; }
+    .chat-suggestion {
+      font-size: 12px; padding: 10px 14px; border-radius: 8px; text-align: left;
+      border: 1px solid #e4e4e7; background: #fafafa; color: #52525b;
+      cursor: pointer; transition: all 0.2s; width: 100%;
+    }
+    .chat-suggestion:hover { border-color: #d4d4d8; background: #f4f4f5; color: #18181b; }
+    .msg { max-width: 88%; padding: 12px 16px; border-radius: 14px; font-size: 14px; line-height: 1.6; }
+    .msg-user { align-self: flex-end; background: #18181b; color: #fff; border-bottom-right-radius: 4px; }
+    .msg-assistant { align-self: flex-start; background: #f4f4f5; color: #27272a; border-bottom-left-radius: 4px; }
+    .msg-loading {
+      align-self: flex-start; background: #f4f4f5; color: #a1a1aa;
+      border-bottom-left-radius: 4px; font-size: 13px; display: flex; align-items: center; gap: 8px;
+    }
+    .spinner { width: 14px; height: 14px; border: 2px solid #d4d4d8; border-top-color: #71717a; border-radius: 50%; animation: spin 0.8s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
-
-    .chat-input-bar { padding: 14px 20px; border-top: 1px solid var(--border); display: flex; gap: 8px; align-items: center; background: var(--bg); }
-    .chat-input { flex: 1; padding: 10px 14px; border: 1px solid var(--border); font-size: 13px; font-family: 'Inter', sans-serif; outline: none; transition: border-color 0.15s; color: var(--text); background: #fff; }
-    .chat-input:focus { border-color: var(--eggplant); }
-    .chat-input::placeholder { color: #c4c4cc; }
-    .chat-send { width: 40px; height: 40px; border: 1px solid var(--eggplant); background: var(--eggplant); color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.15s; flex-shrink: 0; }
-    .chat-send:hover { background: #1a0824; }
+    .chat-input-bar { padding: 16px 20px; border-top: 1px solid #f4f4f5; display: flex; gap: 10px; align-items: center; }
+    .chat-input {
+      flex: 1; padding: 11px 14px; border-radius: 10px; border: 1px solid #e4e4e7;
+      font-size: 14px; font-family: inherit; outline: none; transition: border-color 0.2s;
+      color: #18181b; background: #fafafa;
+    }
+    .chat-input:focus { border-color: #a1a1aa; background: #fff; }
+    .chat-input::placeholder { color: #a1a1aa; }
+    .chat-send {
+      width: 40px; height: 40px; border-radius: 10px; border: none;
+      background: #18181b; color: #fff; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; transition: background 0.2s; flex-shrink: 0;
+    }
+    .chat-send:hover { background: #27272a; }
     .chat-send:disabled { opacity: 0.25; cursor: default; }
     .chat-send svg { width: 16px; height: 16px; }
-
-    .footer { padding: 20px 0; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
-    .footer p { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.04em; }
-
-    .fade-in { opacity: 0; transform: translateY(12px); animation: fadeUp 0.4s ease forwards; }
-    .d1 { animation-delay: 0.05s; } .d2 { animation-delay: 0.1s; } .d3 { animation-delay: 0.18s; }
+    .pdf-viewer { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); }
+    .pdf-viewer.active { display: flex; align-items: center; justify-content: center; }
+    .pdf-viewer-inner {
+      background: #fff; border-radius: 16px; width: 90vw; max-width: 860px; height: 88vh;
+      display: flex; flex-direction: column; box-shadow: 0 40px 80px -20px rgba(0,0,0,0.25); overflow: hidden;
+    }
+    .pdf-viewer-header {
+      padding: 18px 24px; border-bottom: 1px solid #f4f4f5;
+      display: flex; align-items: center; justify-content: space-between; flex-shrink: 0;
+    }
+    .pdf-viewer-header h3 { font-size: 15px; font-weight: 700; color: #18181b; }
+    .pdf-viewer-close {
+      width: 34px; height: 34px; border-radius: 50%; border: none;
+      background: #f4f4f5; cursor: pointer; font-size: 16px; color: #71717a;
+      display: flex; align-items: center; justify-content: center; transition: all 0.2s;
+    }
+    .pdf-viewer-close:hover { background: #e4e4e7; color: #18181b; }
+    .pdf-viewer iframe { flex: 1; border: none; }
+    .page-footer { margin-top: 48px; padding: 24px 0; border-top: 1px solid #e4e4e7; }
+    .page-footer p { font-size: 11px; color: #a1a1aa; letter-spacing: 0.03em; }
+    .fade-in { opacity: 0; transform: translateY(16px); animation: fadeUp 0.5s ease forwards; }
+    .fade-in-delay-1 { animation-delay: 0.08s; }
+    .fade-in-delay-2 { animation-delay: 0.16s; }
+    .fade-in-delay-3 { animation-delay: 0.24s; }
     @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
 <body>
-  <div class="header">
-    <a href="/" class="header-brand">
+  <div class="topbar">
+    <a href="/" class="topbar-brand">
       <img src="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/FINAL%20LOGO%20DARK.png" alt="" />
       Micron House
     </a>
-    <div class="header-nav">
-      <a href="/">Site</a>
-      <a href="/policy.html" class="active">Policy</a>
-    </div>
+    <a href="/" class="topbar-back">← Back to site</a>
   </div>
-
-  <div class="page">
-    <div class="page-title fade-in">
-      <h1>06 / Framework</h1>
-      <h2>Policy Briefs</h2>
+  <div class="container">
+    <div class="page-header fade-in">
+      <h1>Policy Briefs</h1>
       <p>Two legislative packages prepared for the Idaho Legislature and Boise City Council. Autonomous driving systems at the state level, robot-enabled building operations at the municipal level.</p>
     </div>
-
-    <div class="briefs fade-in d1">
-      <div class="brief">
-        <div class="brief-tag" style="color: var(--green);"><span class="brief-tag-dot" style="background: var(--green);"></span>Brief A · State Legislature</div>
-        <h3>Idaho Automated Driving Systems and Driverless Passenger Service Act</h3>
-        <div class="target">New Chapter 38, Title 49, Idaho Code · March 2026</div>
-        <div class="desc">Modeled on Utah HB 101 (House 70–0, Senate 23–0). Defines automated driving systems using SAE J3016, creates a driverless passenger-service category, and establishes fleet operator accountability. Zero new agencies, zero new taxes, zero new fees.</div>
-        <div class="brief-actions">
-          <button class="btn btn-primary" onclick="openPdf('a')">Read Brief</button>
-          <a class="btn" href="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/POLICY%20BRIEFS/BRIEF-A-Idaho-ADS-Driverless-Passenger-Service-Act_NEW_DRAFT.docx" download>Download</a>
+    <div class="main-grid">
+      <div class="briefs-stack">
+        <div class="brief-card fade-in fade-in-delay-1">
+          <div class="brief-card-label"><span class="brief-card-dot" style="background:#008f25;"></span> Brief A · State Legislature</div>
+          <h2>Idaho Automated Driving Systems and Driverless Passenger Service Act</h2>
+          <div class="subtitle">New Chapter 38, Title 49, Idaho Code · March 2026</div>
+          <div class="description">Modeled on Utah's HB 101 (House 70–0, Senate 23–0). Defines automated driving systems using SAE J3016, creates a driverless passenger-service category, and establishes fleet operator accountability. Zero new agencies, zero new taxes, zero new fees.</div>
+          <div class="brief-card-actions">
+            <button class="btn" onclick="openPdf('a')">Read Brief</button>
+            <a class="btn" href="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/POLICY%20BRIEFS/BRIEF-A-Idaho-ADS-Driverless-Passenger-Service-Act_NEW_DRAFT.docx" download>Download</a>
+          </div>
+        </div>
+        <div class="brief-card fade-in fade-in-delay-2">
+          <div class="brief-card-label"><span class="brief-card-dot" style="background:#2c0f38;"></span> Brief B · City Council</div>
+          <h2>Boise Robot-Enabled Operations Pilot Ordinance</h2>
+          <div class="subtitle">State PDD Amendments + City Pilot · March 2026</div>
+          <div class="description">Extends Boise AI governance (Regulation 4.30q) to physical robotic systems. Three-year sunset, voluntary opt-in, administered through existing PDS and Fire Department infrastructure. Zero new agencies, zero new taxes, zero new commissions.</div>
+          <div class="brief-card-actions">
+            <button class="btn" onclick="openPdf('b')">Read Brief</button>
+            <a class="btn" href="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/POLICY%20BRIEFS/BRIEF-B-Boise-Robot-Enabled-Operations-Pilot-Ordinance_NEW_DRAFT.docx" download>Download</a>
+          </div>
         </div>
       </div>
-      <div class="brief">
-        <div class="brief-tag" style="color: var(--eggplant);"><span class="brief-tag-dot" style="background: var(--eggplant);"></span>Brief B · City Council</div>
-        <h3>Boise Robot-Enabled Operations Pilot Ordinance</h3>
-        <div class="target">State PDD Amendments + City Pilot · March 2026</div>
-        <div class="desc">Extends Boise AI governance (Regulation 4.30q) to physical robotic systems. Three-year sunset, voluntary opt-in, administered through existing PDS and Fire Department infrastructure. Zero new agencies, zero new taxes, zero new commissions.</div>
-        <div class="brief-actions">
-          <button class="btn btn-primary" onclick="openPdf('b')">Read Brief</button>
-          <a class="btn" href="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/POLICY%20BRIEFS/BRIEF-B-Boise-Robot-Enabled-Operations-Pilot-Ordinance_NEW_DRAFT.docx" download>Download</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="chat fade-in d2">
-      <div class="chat-header" onclick="toggleChat()">
-        <div class="chat-header-left"><span class="chat-status"></span><h3>Policy Research Assistant</h3></div>
-        <div style="display:flex;align-items:center;gap:16px;">
+      <div class="chat-panel fade-in fade-in-delay-3">
+        <div class="chat-header">
+          <h3><span class="dot"></span> Research Assistant</h3>
           <span class="meta">97 documents indexed</span>
-          <button class="chat-toggle" id="chatToggle" onclick="event.stopPropagation();toggleChat()">▾</button>
         </div>
-      </div>
-      <div class="chat-body" id="chatBody">
         <div class="chat-messages" id="chatMessages">
           <div class="chat-empty" id="chatEmpty">
-            <div class="chat-empty-label">Query the archive</div>
             <p>Ask about Idaho ADS legislation, the Boise pilot ordinance, vote counts, research methodology, federal timelines, or any document in the policy brief archive.</p>
-            <div class="chat-prompts">
-              <button class="chat-prompt" onclick="useSuggestion(this)">Utah HB 101 vote count</button>
-              <button class="chat-prompt" onclick="useSuggestion(this)">How does the Boise pilot work?</button>
-              <button class="chat-prompt" onclick="useSuggestion(this)">SELF DRIVE Act status</button>
-              <button class="chat-prompt" onclick="useSuggestion(this)">What is Regulation 4.30q?</button>
-              <button class="chat-prompt" onclick="useSuggestion(this)">Private property authorization</button>
+            <div class="chat-suggestions">
+              <button class="chat-suggestion" onclick="useSuggestion(this)">What vote count did Utah HB 101 achieve?</button>
+              <button class="chat-suggestion" onclick="useSuggestion(this)">How does the Boise pilot ordinance work?</button>
+              <button class="chat-suggestion" onclick="useSuggestion(this)">What is Regulation 4.30q?</button>
+              <button class="chat-suggestion" onclick="useSuggestion(this)">What federal AV legislation is pending?</button>
             </div>
           </div>
         </div>
         <div class="chat-input-bar">
-          <input class="chat-input" id="chatInput" type="text" placeholder="Enter query..." onkeydown="if(event.key==='Enter')sendChat()" />
+          <input class="chat-input" id="chatInput" type="text" placeholder="Ask about the briefs..." onkeydown="if(event.key==='Enter')sendChat()" />
           <button class="chat-send" id="chatSend" onclick="sendChat()">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
           </button>
         </div>
       </div>
     </div>
-
-    <div class="footer fade-in d3">
-      <p>© 2026 Lisa Wood Studio</p>
-      <p>Micron House Policy Research · Boise, Idaho</p>
-    </div>
+    <div class="page-footer"><p>© 2026 Lisa Wood Studio · Micron House Policy Research</p></div>
   </div>
-
-  <div class="viewer" id="pdfViewer" onclick="if(event.target===this)closePdf()">
-    <div class="viewer-inner">
-      <div class="viewer-header">
+  <div class="pdf-viewer" id="pdfViewer" onclick="if(event.target===this)closePdf()">
+    <div class="pdf-viewer-inner">
+      <div class="pdf-viewer-header">
         <h3 id="pdfTitle"></h3>
-        <button class="viewer-close" onclick="closePdf()">✕</button>
+        <button class="pdf-viewer-close" onclick="closePdf()">✕</button>
       </div>
       <iframe id="pdfFrame" src=""></iframe>
     </div>
   </div>
-
   <script>
-    const PDF_BASE = 'https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/POLICY%20BRIEFS';
-    const briefs = {
-      a: { title: 'Brief A — Idaho ADS Act', url: `${PDF_BASE}/brief-a.pdf` },
-      b: { title: 'Brief B — Boise Robot-Enabled Operations', url: `${PDF_BASE}/brief-b.pdf` },
-    };
-    function openPdf(id) { const b = briefs[id]; document.getElementById('pdfTitle').textContent = b.title; document.getElementById('pdfFrame').src = b.url; document.getElementById('pdfViewer').classList.add('active'); document.body.style.overflow = 'hidden'; }
-    function closePdf() { document.getElementById('pdfViewer').classList.remove('active'); document.getElementById('pdfFrame').src = ''; document.body.style.overflow = ''; }
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closePdf(); });
-
-    let chatOpen = false, chatHistory = [];
-    function toggleChat() { chatOpen = !chatOpen; document.getElementById('chatBody').classList.toggle('open', chatOpen); document.getElementById('chatToggle').classList.toggle('open', chatOpen); if (chatOpen) document.getElementById('chatInput').focus(); }
-    function useSuggestion(btn) { document.getElementById('chatInput').value = btn.textContent; if (!chatOpen) toggleChat(); sendChat(); }
-    async function sendChat() {
-      const input = document.getElementById('chatInput'), msg = input.value.trim();
-      if (!msg) return;
-      input.value = '';
-      const empty = document.getElementById('chatEmpty'); if (empty) empty.remove();
-      appendMsg('user', msg); chatHistory.push({ role: 'user', content: msg });
-      const loader = appendMsg('loading', '');
-      document.getElementById('chatSend').disabled = true;
-      try {
-        const res = await fetch('/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message: msg, history: chatHistory.slice(-10) }) });
-        const data = await res.json(); loader.remove();
-        const reply = data.response || data.error || 'Error processing request.';
-        appendMsg('assistant', reply); chatHistory.push({ role: 'assistant', content: reply });
-      } catch { loader.remove(); appendMsg('assistant', 'Connection error. Retry.'); }
-      document.getElementById('chatSend').disabled = false;
-    }
-    function appendMsg(type, text) {
-      const c = document.getElementById('chatMessages'), el = document.createElement('div');
-      if (type === 'loading') { el.className = 'msg msg-loading'; el.innerHTML = '<div class="spinner"></div> Querying archive...'; }
-      else { el.className = `msg msg-${type}`; el.textContent = text; }
-      c.appendChild(el); c.scrollTop = c.scrollHeight; return el;
-    }
+    const PDF_BASE='https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/POLICY%20BRIEFS';
+    const briefs={a:{title:'Idaho ADS and Driverless Passenger Service Act',url:`${PDF_BASE}/brief-a.pdf`},b:{title:'Boise Robot-Enabled Operations Pilot Ordinance',url:`${PDF_BASE}/brief-b.pdf`}};
+    function openPdf(id){const b=briefs[id];document.getElementById('pdfTitle').textContent=b.title;document.getElementById('pdfFrame').src=b.url;document.getElementById('pdfViewer').classList.add('active');document.body.style.overflow='hidden';}
+    function closePdf(){document.getElementById('pdfViewer').classList.remove('active');document.getElementById('pdfFrame').src='';document.body.style.overflow='';}
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')closePdf();});
+    let chatHistory=[];
+    function useSuggestion(btn){document.getElementById('chatInput').value=btn.textContent;sendChat();}
+    async function sendChat(){const input=document.getElementById('chatInput');const msg=input.value.trim();if(!msg)return;input.value='';const empty=document.getElementById('chatEmpty');if(empty)empty.remove();appendMsg('user',msg);chatHistory.push({role:'user',content:msg});const loadingEl=appendMsg('loading','');document.getElementById('chatSend').disabled=true;try{const res=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:msg,history:chatHistory.slice(-10)})});const data=await res.json();loadingEl.remove();const reply=data.response||data.error||'Something went wrong.';appendMsg('assistant',reply);chatHistory.push({role:'assistant',content:reply});}catch{loadingEl.remove();appendMsg('assistant','Connection error. Try again.');}document.getElementById('chatSend').disabled=false;}
+    function appendMsg(type,text){const container=document.getElementById('chatMessages');const el=document.createElement('div');if(type==='loading'){el.className='msg msg-loading';el.innerHTML='<div class="spinner"></div> Searching briefs...';}else{el.className=`msg msg-${type}`;el.textContent=text;}container.appendChild(el);container.scrollTop=container.scrollHeight;return el;}
   </script>
 </body>
 </html>
