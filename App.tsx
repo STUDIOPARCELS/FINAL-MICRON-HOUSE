@@ -5,7 +5,6 @@ import { SectionProperty } from './components/SectionProperty';
 import { SectionServing } from './components/SectionServing';
 import { SectionServingTesla } from './components/SectionServingTesla';
 import { SectionTimeline } from './components/SectionTimeline';
-import { SectionPolicy } from './components/SectionPolicy';
 import { Menu, X, ArrowRight, MapPin, Mail, Phone, ArrowUp } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -53,7 +52,7 @@ function App() {
     { label: "Outcome", id: "serving" },
     { label: "Living Lab", id: "serving-tesla" },
     { label: "Roadmap", id: "timeline" },
-    { label: "Policy", id: "policy" },
+    { label: "Policy", id: "policy", external: true },
   ];
 
   return (
@@ -90,14 +89,26 @@ function App() {
             {/* Desktop Menu */}
             <div className="hidden lg:flex gap-5 text-xs font-medium uppercase tracking-wider text-zinc-500">
                {navLinks.map(link => (
-                 <a 
-                    key={link.id}
-                    href={`#${link.id}`} 
-                    onClick={(e) => scrollToSection(e, link.id)} 
-                    className="hover:text-micron-green transition-colors"
-                 >
-                    {link.label}
-                 </a>
+                 link.external ? (
+                   <a 
+                      key={link.id}
+                      href="/policy.html"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-micron-green transition-colors"
+                   >
+                      {link.label}
+                   </a>
+                 ) : (
+                   <a 
+                      key={link.id}
+                      href={`#${link.id}`} 
+                      onClick={(e) => scrollToSection(e, link.id)} 
+                      className="hover:text-micron-green transition-colors"
+                   >
+                      {link.label}
+                   </a>
+                 )
                ))}
             </div>
 
@@ -141,6 +152,19 @@ function App() {
                         {/* Links */}
                         <div className="flex flex-col py-2">
                              {navLinks.map(link => (
+                               link.external ? (
+                                 <a 
+                                    key={link.id}
+                                    href="/policy.html"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    onClick={() => setMobileMenuOpen(false)}
+                                    className="px-6 py-3 text-sm font-bold uppercase tracking-widest text-zinc-700 hover:text-micron-eggplant hover:bg-zinc-50 flex justify-between items-center transition-colors group"
+                                 >
+                                    {link.label}
+                                    <ArrowRight size={14} className="text-micron-green transition-transform group-hover:translate-x-1" />
+                                 </a>
+                               ) : (
                                  <a 
                                     key={link.id} 
                                     href={`#${link.id}`} 
@@ -150,6 +174,7 @@ function App() {
                                     {link.label}
                                     <ArrowRight size={14} className="text-micron-green transition-transform group-hover:translate-x-1" />
                                  </a>
+                               )
                              ))}
                         </div>
 
@@ -191,7 +216,6 @@ function App() {
           <SectionServing />
           <SectionServingTesla />
           <SectionTimeline />
-          <SectionPolicy />
 
           {/* New Professional Footer */}
           <footer className="bg-zinc-950 text-zinc-400 py-24 border-t border-zinc-800">
