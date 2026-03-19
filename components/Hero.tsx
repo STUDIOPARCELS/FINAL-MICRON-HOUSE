@@ -9,7 +9,7 @@ const sentences = [
         highlightColor: "text-[#3d4250]",
         hoverColor: "hover:text-black", 
         highlights: ["VISION", "VELOCITY"],
-        textSize: "text-3xl sm:text-4xl md:text-5xl xl:text-4xl",
+        textSize: "text-3xl sm:text-4xl md:text-5xl xl:text-5xl",
         layout: "default",
         lines: [["WITHOUT", "VISION"], ["THERE'S", "NO", "VELOCITY"]]
     },
@@ -19,7 +19,7 @@ const sentences = [
         highlightColor: "text-micron-eggplant",
         hoverColor: "hover:text-micron-eggplant/60", 
         highlights: ["MEMORY", "MEANING"],
-        textSize: "text-3xl sm:text-4xl md:text-5xl xl:text-4xl",
+        textSize: "text-3xl sm:text-4xl md:text-5xl xl:text-5xl",
         layout: "default",
         lines: [["WITHOUT", "MEMORY"], ["THERE'S", "NO", "MEANING"]]
     },
@@ -29,7 +29,7 @@ const sentences = [
         highlightColor: "text-micron-green",
         hoverColor: "hover:text-green-900", 
         highlights: ["PLACE", "PERSPECTIVE"],
-        textSize: "text-3xl sm:text-4xl md:text-5xl xl:text-4xl",
+        textSize: "text-3xl sm:text-4xl md:text-5xl xl:text-5xl",
         layout: "default",
         lines: [["WITHOUT", "PLACE"], ["THERE'S", "NO"], ["PERSPECTIVE"]],
         secondHalfDelay: 7.0,
@@ -444,7 +444,7 @@ export const Hero: React.FC = () => {
         
         {/* TOP SECTION */}
         {/* UPDATED: Changed grid layout to [55fr_45fr] for desktop to make video wider */}
-        <div className="flex flex-col xl:grid xl:grid-cols-[55fr_45fr] gap-8 xl:gap-4 h-auto xl:h-[500px] w-full">
+        <div className="flex flex-col xl:grid xl:grid-cols-[50fr_50fr] gap-8 xl:gap-4 h-auto xl:h-[500px] w-full">
             
             {/* 1. TEXT ANIMATION AREA (White Bento) */}
             {/* UPDATED: Changed order to order-2 (Bottom on Mobile, Right on Desktop) */}
