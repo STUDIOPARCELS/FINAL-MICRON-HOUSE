@@ -9,7 +9,7 @@ const sentences = [
         highlightColor: "text-[#3d4250]",
         hoverColor: "hover:text-black", 
         highlights: ["VISION", "VELOCITY"],
-        textSize: "text-3xl sm:text-4xl md:text-5xl xl:text-5xl",
+        textSize: "text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,3.5vw,3.75rem)]",
         layout: "default",
         lines: [["WITHOUT", "VISION"], ["THERE'S", "NO", "VELOCITY"]]
     },
@@ -19,7 +19,7 @@ const sentences = [
         highlightColor: "text-micron-eggplant",
         hoverColor: "hover:text-micron-eggplant/60", 
         highlights: ["MEMORY", "MEANING"],
-        textSize: "text-3xl sm:text-4xl md:text-5xl xl:text-5xl",
+        textSize: "text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,3.5vw,3.75rem)]",
         layout: "default",
         lines: [["WITHOUT", "MEMORY"], ["THERE'S", "NO", "MEANING"]]
     },
@@ -29,7 +29,7 @@ const sentences = [
         highlightColor: "text-micron-green",
         hoverColor: "hover:text-green-900", 
         highlights: ["PLACE", "PERSPECTIVE"],
-        textSize: "text-3xl sm:text-4xl md:text-5xl xl:text-5xl",
+        textSize: "text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,3.5vw,3.75rem)]",
         layout: "default",
         lines: [["WITHOUT", "PLACE"], ["THERE'S", "NO"], ["PERSPECTIVE"]],
         secondHalfDelay: 7.0,
@@ -241,31 +241,31 @@ export const Hero: React.FC = () => {
       const fired = firedCues.current;
       
       // Sentence 0: Camera closes in on rocket
-      if (t >= 5.0 && !fired.has('s0on')) {
+      if (t >= 4.0 && !fired.has('s0on')) {
           fired.add('s0on');
           setCurrentSentenceIndex(0);
       }
-      if (t >= 8.5 && !fired.has('s0off')) {
+      if (t >= 7.5 && !fired.has('s0off')) {
           fired.add('s0off');
           setCurrentSentenceIndex(null);
       }
       
       // Sentence 1: Fab first visible over foothills
-      if (t >= 10.5 && !fired.has('s1on')) {
+      if (t >= 9.5 && !fired.has('s1on')) {
           fired.add('s1on');
           setCurrentSentenceIndex(1);
       }
-      if (t >= 15.5 && !fired.has('s1off')) {
+      if (t >= 14.5 && !fired.has('s1off')) {
           fired.add('s1off');
           setCurrentSentenceIndex(null);
       }
       
       // Sentence 2: Capitol building in view
-      if (t >= 16.0 && !fired.has('s2on')) {
+      if (t >= 15.0 && !fired.has('s2on')) {
           fired.add('s2on');
           setCurrentSentenceIndex(2);
       }
-      if (t >= 25.0 && !fired.has('s2off')) {
+      if (t >= 24.0 && !fired.has('s2off')) {
           fired.add('s2off');
           setCurrentSentenceIndex(null);
       }
