@@ -110,7 +110,7 @@
       background: #fff; border: none; border-radius: 20px;
       display: flex; flex-direction: column; position: sticky; top: 90px;
       box-shadow: 0 20px 50px -12px rgba(0,0,0,0.1);
-      height: calc(100vh - 110px); max-height: 680px;
+      height: fit-content; max-height: calc(100vh - 110px);
     }
     .chat-header {
       padding: 24px 28px 20px; border-bottom: 1px solid #f4f4f5;
@@ -126,10 +126,10 @@
       font-size: 10px; font-weight: 600; color: #a1a1aa; letter-spacing: 0.05em; text-transform: uppercase;
     }
     .chat-messages {
-      flex: 1; overflow-y: auto; padding: 24px 28px;
+      flex: 1; overflow-y: auto; padding: 24px 28px; min-height: 320px; max-height: 420px;
       display: flex; flex-direction: column; gap: 12px;
     }
-    .chat-empty { padding: 24px 0; color: #a1a1aa; }
+    .chat-empty { padding: 16px 0; color: #a1a1aa; }
     .chat-empty p { font-size: 13px; margin-bottom: 20px; line-height: 1.6; }
     .chat-suggestions { display: flex; flex-direction: column; gap: 8px; }
     .chat-suggestion {
@@ -203,13 +203,6 @@
     .pdf-close:hover { background: #e4e4e7; color: #18181b; }
     .pdf-viewer iframe { flex: 1; border: none; width: 100%; }
 
-    /* FOOTER */
-    .page-footer { margin-top: 60px; padding: 28px 0; border-top: 1px solid #f4f4f5; }
-    .page-footer p {
-      font-size: 11px; color: #a1a1aa; letter-spacing: 0.03em;
-      font-family: 'Outfit', sans-serif;
-    }
-
     /* FADE */
     .fade-in { opacity: 0; transform: translateY(16px); animation: fadeUp 0.6s ease forwards; }
     .d1 { animation-delay: 0.08s; } .d2 { animation-delay: 0.16s; } .d3 { animation-delay: 0.24s; }
@@ -270,8 +263,8 @@
       <!-- RIGHT: Chat -->
       <div class="chat-panel fade-in d3">
         <div class="chat-header">
-          <h3><span class="dot"></span> Claude</h3>
-          <span class="meta">97 documents indexed</span>
+          <h3><span class="dot"></span> Claude Opus 4.6</h3>
+          <span class="meta">Policy Brief Research</span>
         </div>
         <div class="chat-messages" id="chatMessages">
           <div class="chat-empty" id="chatEmpty">
@@ -295,6 +288,49 @@
 
     <div class="page-footer"><p>© 2026 Lisa Wood Studio · Micron House Policy Research</p></div>
   </div>
+
+  <!-- FOOTER — same as main site -->
+  <footer style="background:#09090b; color:#a1a1aa; padding:96px 0; border-top:1px solid #27272a;">
+    <div style="max-width:1280px; margin:0 auto; padding:0 48px;">
+      <div style="display:grid; grid-template-columns:2fr 1fr 1fr; gap:32px; margin-bottom:80px;">
+        <div>
+          <h3 style="font-family:'Outfit',sans-serif; font-size:36px; font-weight:700; color:#fff; margin-bottom:16px; text-transform:uppercase; letter-spacing:-0.02em;">Micron House</h3>
+          <p style="color:#71717a; font-size:18px; max-width:400px; margin-bottom:24px; line-height:1.6;">The first private corporate residence powered by autonomous systems.</p>
+          <div style="display:flex; align-items:flex-start; gap:12px; color:#d4d4d8; font-size:16px; line-height:1.5;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#008f25" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:3px; flex-shrink:0;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>1020 E Warm Springs Ave<br/>Boise, ID 83712</span>
+          </div>
+        </div>
+        <div>
+          <h4 style="font-family:'Outfit',sans-serif; color:#fff; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; font-size:14px; margin-bottom:16px;">Explore</h4>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:8px; font-size:16px;">
+            <li><a href="/#prototype" style="color:#a1a1aa; text-decoration:none; transition:color 0.2s;">Why Now</a></li>
+            <li><a href="/#property" style="color:#a1a1aa; text-decoration:none;">Readiness</a></li>
+            <li><a href="/#serving" style="color:#a1a1aa; text-decoration:none;">Outcome</a></li>
+            <li><a href="/#serving-tesla" style="color:#a1a1aa; text-decoration:none;">Living Lab</a></li>
+            <li><a href="/#timeline" style="color:#a1a1aa; text-decoration:none;">Roadmap</a></li>
+            <li><a href="/policy.html" style="color:#a1a1aa; text-decoration:none;">Policy</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="font-family:'Outfit',sans-serif; color:#fff; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; font-size:14px; margin-bottom:16px;">Contact</h4>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:8px; font-size:16px;">
+            <li style="display:flex; align-items:center; gap:12px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              <a href="mailto:lisa@lisawoodstudio.com" style="color:#a1a1aa; text-decoration:none;">lisa@lisawoodstudio.com</a>
+            </li>
+            <li style="display:flex; align-items:center; gap:12px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <a href="tel:2087202433" style="color:#a1a1aa; text-decoration:none;">208.720.2433</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div style="border-top:1px solid rgba(255,255,255,0.05); padding-top:40px; font-size:14px; color:#52525b; text-transform:uppercase; letter-spacing:0.05em; font-weight:500;">
+        <p>© 2026 Lisa Wood Studio</p>
+      </div>
+    </div>
+  </footer>
 
   <!-- PDF VIEWER -->
   <div class="pdf-viewer" id="pdfViewer">
