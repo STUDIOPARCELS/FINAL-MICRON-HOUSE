@@ -520,7 +520,7 @@ export const SectionProperty: React.FC = () => {
   const locations = [
     { label: "MICRON HQ", time: "15 min", color: "bg-micron-green", icon: <Building2 size={20} /> },
     { label: "AIRPORT", time: "10 min", color: "bg-micron-eggplant", icon: <Plane size={20} /> },
-    { label: "DOWNTOWN", time: "3 min", color: "bg-micron-eggplant-light", icon: <Building2 size={20} /> },
+    { label: "DOWNTOWN", time: "5 min", color: "bg-micron-eggplant-light", icon: <Building2 size={20} /> },
     { label: "ST. LUKE'S", time: "2 min", color: "bg-zinc-800", icon: <Stethoscope size={20} /> },
     { label: "CAPITOL", time: "5 min", color: "bg-zinc-600", icon: <Landmark size={20} /> },
     { label: "BOISE STATE", time: "4 min", color: "bg-micron-eggplant-light", icon: <GraduationCap size={20} /> },
@@ -550,7 +550,7 @@ export const SectionProperty: React.FC = () => {
                            PROXIMITY
                        </span>
                        <p>
-                           Warm Springs gives Micron House historic depth, residential privacy, geothermal grounding, and direct access to Boise's institutional core. Micron, the Capitol, major hospital systems, and Boise State are all within reach.
+                           Warm Springs gives Micron House historic depth, residential privacy, geothermal grounding, and direct access to Boise's institutional core. Micron, the Capitol, major hospital systems, and Boise State are all within reach. <strong className="font-semibold text-zinc-800">5 min from the capitol and downtown, 15 min from Micron and airport.</strong>
                        </p>
                     </div>
                  </div>
