@@ -5,6 +5,7 @@ import { SectionProperty } from './components/SectionProperty';
 import { SectionServing } from './components/SectionServing';
 import { SectionServingTesla } from './components/SectionServingTesla';
 import { SectionTimeline } from './components/SectionTimeline';
+import { SectionPolicy } from './components/SectionPolicy';
 import { Menu, X, ArrowRight, MapPin, Mail, Phone, ArrowUp } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -52,6 +53,7 @@ function App() {
     { label: "Outcome", id: "serving" },
     { label: "Living Lab", id: "serving-tesla" },
     { label: "Roadmap", id: "timeline" },
+    { label: "Policy", id: "policy" },
   ];
 
   return (
@@ -189,6 +191,7 @@ function App() {
           <SectionServing />
           <SectionServingTesla />
           <SectionTimeline />
+          <SectionPolicy />
 
           {/* New Professional Footer */}
           <footer className="bg-zinc-950 text-zinc-400 py-24 border-t border-zinc-800">
