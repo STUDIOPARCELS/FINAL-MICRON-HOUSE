@@ -9,7 +9,7 @@ const sentences = [
         highlightColor: "text-[#3d4250]",
         hoverColor: "hover:text-black", 
         highlights: ["VISION", "VELOCITY"],
-        textSize: "text-3xl sm:text-4xl md:text-5xl lg:text-7xl",
+        textSize: "text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl",
         layout: "default",
         lines: [["WITHOUT", "VISION"], ["THERE'S", "NO", "VELOCITY"]]
     },
@@ -19,7 +19,7 @@ const sentences = [
         highlightColor: "text-micron-eggplant",
         hoverColor: "hover:text-micron-eggplant/60", 
         highlights: ["MEMORY", "MEANING"],
-        textSize: "text-3xl sm:text-4xl md:text-5xl lg:text-7xl",
+        textSize: "text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl",
         layout: "default",
         lines: [["WITHOUT", "MEMORY"], ["THERE'S", "NO", "MEANING"]]
     },
@@ -29,7 +29,7 @@ const sentences = [
         highlightColor: "text-micron-green",
         hoverColor: "hover:text-green-900", 
         highlights: ["PLACE", "PERSPECTIVE"],
-        textSize: "text-3xl sm:text-4xl md:text-5xl lg:text-7xl",
+        textSize: "text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl",
         layout: "default",
         lines: [["WITHOUT", "PLACE"], ["THERE'S", "NO"], ["PERSPECTIVE"]],
         secondHalfDelay: 7.0,
