@@ -150,6 +150,14 @@
       align-self: flex-start; background: #f4f4f5; color: #27272a;
       border-bottom-left-radius: 4px;
     }
+    .msg-assistant strong, .msg-assistant b { font-weight: 700; color: #18181b; }
+    .msg-assistant em, .msg-assistant i { font-style: italic; }
+    .msg-assistant p { margin-bottom: 10px; }
+    .msg-assistant p:last-child { margin-bottom: 0; }
+    .msg-assistant ul { margin: 8px 0; padding-left: 18px; }
+    .msg-assistant li { margin-bottom: 6px; list-style: disc; }
+    .msg-assistant h4 { font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 0.04em; color: #18181b; margin: 12px 0 6px; }
+    .msg-assistant h4:first-child { margin-top: 0; }
     .msg-loading {
       align-self: flex-start; background: #f4f4f5; color: #a1a1aa;
       border-bottom-left-radius: 4px; font-size: 13px;
@@ -241,7 +249,7 @@
           <div class="brief-card-label"><span class="brief-card-dot" style="background:#008f25;"></span> Brief A · State Legislature</div>
           <h2>Idaho Automated Driving Systems and Driverless Passenger Service Act</h2>
           <div class="subtitle">New Chapter 38, Title 49, Idaho Code · March 2026</div>
-          <div class="description">Modeled on Utah's HB 101 (House 70–0, Senate 23–0). Defines automated driving systems using SAE J3016, creates a driverless passenger-service category, and establishes fleet operator accountability. Zero new agencies, zero new taxes, zero new fees.</div>
+          <div class="description">Modeled on Utah's HB 101 (House 70–0, Senate 23–0). Defines automated driving systems using SAE J3016, creates a statewide driverless passenger-service category, and assigns fleet operator accountability — with no new regulatory bodies or fiscal burden.</div>
           <div class="brief-card-actions">
             <button class="btn" onclick="openPdf('a')">Read Brief</button>
             <a class="btn" href="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/POLICY%20BRIEFS/BRIEF-A-Idaho-ADS-Driverless-Passenger-Service-Act_NEW_DRAFT.docx" download>Download</a>
@@ -251,7 +259,7 @@
           <div class="brief-card-label"><span class="brief-card-dot" style="background:#2c0f38;"></span> Brief B · City Council</div>
           <h2>Boise Robot-Enabled Operations Pilot Ordinance</h2>
           <div class="subtitle">State PDD Amendments + City Pilot · March 2026</div>
-          <div class="description">Extends Boise AI governance (Regulation 4.30q) to physical robotic systems. Three-year sunset, voluntary opt-in, administered through existing PDS and Fire Department infrastructure. Zero new agencies, zero new taxes, zero new commissions.</div>
+          <div class="description">Extends Boise's AI governance framework (Regulation 4.30q) to physical robotic systems operating in occupied buildings. Voluntary three-year pilot administered through existing city permitting and fire department infrastructure.</div>
           <div class="brief-card-actions">
             <button class="btn" onclick="openPdf('b')">Read Brief</button>
             <a class="btn" href="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/POLICY%20BRIEFS/BRIEF-B-Boise-Robot-Enabled-Operations-Pilot-Ordinance_NEW_DRAFT.docx" download>Download</a>
@@ -351,9 +359,30 @@
         });
         const data = await res.json();
         const count = data.filter(f => f.metadata).length;
-        document.getElementById('docCount').textContent = count + ' documents indexed';
+        document.getElementById('docCount').textContent = count + ' documents';
       } catch { document.getElementById('docCount').textContent = 'Policy Brief Research'; }
     })();
+
+    // Simple markdown to HTML
+    function md(text) {
+      return text
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.+?)\*/g, '<em>$1</em>')
+        .replace(/^#### (.+)$/gm, '<h4>$1</h4>')
+        .replace(/^### (.+)$/gm, '<h4>$1</h4>')
+        .replace(/^- (.+)$/gm, '<li>$1</li>')
+        .replace(/(<li>.*<\/li>)/gs, function(m) { return '<ul>' + m + '</ul>'; })
+        .replace(/<\/ul>\s*<ul>/g, '')
+        .replace(/\n\n/g, '</p><p>')
+        .replace(/\n/g, '<br/>')
+        .replace(/^(.+)/, '<p>$1')
+        .replace(/(.+)$/, '$1</p>')
+        .replace(/<p><h4>/g, '<h4>')
+        .replace(/<\/h4><\/p>/g, '</h4>')
+        .replace(/<p><ul>/g, '<ul>')
+        .replace(/<\/ul><\/p>/g, '</ul>')
+        .replace(/<p>\s*<\/p>/g, '');
+    }
     const briefs={a:{title:'Idaho ADS and Driverless Passenger Service Act',url:`${PDF_BASE}/brief-a.pdf`},b:{title:'Boise Robot-Enabled Operations Pilot Ordinance',url:`${PDF_BASE}/brief-b.pdf`}};
     function openPdf(id){const b=briefs[id];document.getElementById('pdfTitle').textContent=b.title;document.getElementById('pdfFrame').src=b.url;document.getElementById('pdfViewer').classList.add('active');document.body.style.overflow='hidden';}
     function closePdf(){document.getElementById('pdfViewer').classList.remove('active');document.getElementById('pdfFrame').src='';document.body.style.overflow='';}
@@ -361,7 +390,7 @@
     let chatHistory=[];
     function useSuggestion(btn){document.getElementById('chatInput').value=btn.textContent;sendChat();}
     async function sendChat(){const input=document.getElementById('chatInput');const msg=input.value.trim();if(!msg)return;input.value='';const empty=document.getElementById('chatEmpty');if(empty)empty.remove();appendMsg('user',msg);chatHistory.push({role:'user',content:msg});const loadingEl=appendMsg('loading','');document.getElementById('chatSend').disabled=true;try{const res=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:msg,history:chatHistory.slice(-10)})});const data=await res.json();loadingEl.remove();const reply=data.response||data.error||'Something went wrong.';appendMsg('assistant',reply);chatHistory.push({role:'assistant',content:reply});}catch{loadingEl.remove();appendMsg('assistant','Connection error. Try again.');}document.getElementById('chatSend').disabled=false;}
-    function appendMsg(type,text){const container=document.getElementById('chatMessages');const el=document.createElement('div');if(type==='loading'){el.className='msg msg-loading';el.innerHTML='<div class="spinner"></div> Searching briefs...';}else{el.className=`msg msg-${type}`;el.textContent=text;}container.appendChild(el);container.scrollTop=container.scrollHeight;return el;}
+    function appendMsg(type,text){const container=document.getElementById('chatMessages');const el=document.createElement('div');if(type==='loading'){el.className='msg msg-loading';el.innerHTML='<div class="spinner"></div> Searching briefs...';}else if(type==='assistant'){el.className='msg msg-assistant';el.innerHTML=md(text);}else{el.className='msg msg-user';el.textContent=text;}container.appendChild(el);container.scrollTop=container.scrollHeight;return el;}
   </script>
 </body>
 </html>
