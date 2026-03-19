@@ -56,7 +56,7 @@
       margin-bottom: 16px;
     }
     .page-header p {
-      font-size: 16px; color: #52525b; font-weight: 300; max-width: 520px;
+      font-size: 16px; color: #52525b; font-weight: 300; width: 100%;
       line-height: 1.55; font-family: 'Inter', sans-serif;
     }
 
@@ -264,7 +264,7 @@
       <div class="chat-panel fade-in d3">
         <div class="chat-header">
           <h3><span class="dot"></span> Claude Opus 4.6</h3>
-          <span class="meta">Policy Brief Research</span>
+          <span class="meta" id="docCount">Loading...</span>
         </div>
         <div class="chat-messages" id="chatMessages">
           <div class="chat-empty" id="chatEmpty">
@@ -343,6 +343,19 @@
 
   <script>
     const PDF_BASE='https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/POLICY%20BRIEFS';
+    // Fetch document count from Supabase
+    (async function(){
+      try {
+        const res = await fetch('https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/list/MICRON%20HOUSE', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFjd2dpcnJsZG50anB6cmhxbWRoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzYyMDI5MzgsImV4cCI6MjA1MTc3ODkzOH0.LfLTqMYfPmPXCSD7jeNneQvSYSfSfZO5EBFwqR-gqkA' },
+          body: JSON.stringify({ prefix: 'POLICY BRIEFS/', limit: 500 })
+        });
+        const data = await res.json();
+        const count = data.filter(f => f.metadata).length;
+        document.getElementById('docCount').textContent = count + ' documents indexed';
+      } catch { document.getElementById('docCount').textContent = 'Policy Brief Research'; }
+    })();
     const briefs={a:{title:'Idaho ADS and Driverless Passenger Service Act',url:`${PDF_BASE}/brief-a.pdf`},b:{title:'Boise Robot-Enabled Operations Pilot Ordinance',url:`${PDF_BASE}/brief-b.pdf`}};
     function openPdf(id){const b=briefs[id];document.getElementById('pdfTitle').textContent=b.title;document.getElementById('pdfFrame').src=b.url;document.getElementById('pdfViewer').classList.add('active');document.body.style.overflow='hidden';}
     function closePdf(){document.getElementById('pdfViewer').classList.remove('active');document.getElementById('pdfFrame').src='';document.body.style.overflow='';}
