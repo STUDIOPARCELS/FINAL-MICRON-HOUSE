@@ -68,7 +68,7 @@ export const SectionTimeline: React.FC = () => {
                     transition={{ delay: staggeredDelays[i] || 0, duration: 2.5, ease: [0.22, 1, 0.36, 1] }}
                     className={`
                         ${item.bg} ${item.text} 
-                        h-[220px] rounded-2xl p-6 flex flex-col justify-between 
+                        h-[260px] rounded-2xl p-6 flex flex-col justify-between 
                         relative overflow-hidden group 
                         /* FLOATING SHADOW UPDATE */
                         shadow-[0_30px_60px_-10px_rgba(0,0,0,0.3)]
@@ -99,7 +99,7 @@ export const SectionTimeline: React.FC = () => {
                         </h3>
                         
                         {/* Subtitle text */}
-                        <p className="text-sm text-white/70 font-medium leading-snug mt-1">
+                        <p className="text-base text-white/70 font-medium leading-relaxed mt-1">
                             {item.subtitle}
                         </p>
                     </div>
