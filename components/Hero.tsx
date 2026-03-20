@@ -388,9 +388,10 @@ export const Hero: React.FC = () => {
   
   // Color segments for the quote
   const getQuoteWordColor = (i: number): string => {
-    if (i <= 14) return "#2c0f38";  // "Micron House is the immediate venue to test Cybercab and Optimus in a real home," → eggplant
-    if (i <= 24) return "#ffffff";  // "convene leaders around firsthand experience — and shape public rollout" → white
-    return "#008f25";               // "from a historic neighborhood...airport." → green
+    if (i <= 5) return "#2c0f38";               // "Micron House is the immediate venue" → eggplant
+    if (i <= 14) return "rgba(255,255,255,0.5)"; // "to test Cybercab and Optimus in a real home," → soft gray
+    if (i <= 24) return "#ffffff";               // "convene...shape public rollout" → bright white
+    return "#008f25";                            // "from a historic neighborhood...airport." → green
   };
 
   // Shared container variants for the word-by-word animation
