@@ -52,7 +52,7 @@ function App() {
     { label: "Outcome", id: "serving" },
     { label: "Living Lab", id: "serving-tesla" },
     { label: "Roadmap", id: "timeline" },
-    { label: "Policy", id: "policy", external: true },
+    { label: "Briefings", id: "policy", external: true },
   ];
 
   return (
