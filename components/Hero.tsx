@@ -37,9 +37,8 @@ const sentences = [
 ];
 
 const InteractiveParadigmTitle: React.FC = () => {
-    const paradigmLine1 = ["THE"];
-    const paradigmLine2 = ["CRITICAL"];
-    const paradigmLine3 = ["WINDOW."];
+    const paradigmLine1 = ["CRITICAL"];
+    const paradigmLine2 = ["WINDOW."];
 
     // Colors
     const cGreen = "#008f25";
@@ -83,7 +82,7 @@ const InteractiveParadigmTitle: React.FC = () => {
 
     return (
         <div className="flex flex-col items-start cursor-default">
-            {/* Line 1 & 2 */}
+            {/* Line 1 */}
             <div className="flex flex-wrap gap-x-2 md:gap-x-4 items-baseline">
                 {paradigmLine1.map((word, i) => (
                     <motion.span
@@ -91,22 +90,7 @@ const InteractiveParadigmTitle: React.FC = () => {
                         custom={i}
                         initial="hidden"
                         whileInView="visible"
-                        whileHover="hover" // Independent interaction
-                        viewport={{ once: true }} 
-                        variants={standardVariant}
-                        className="text-4xl sm:text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.9] inline-block cursor-pointer"
-                    >
-                        {word}
-                    </motion.span>
-                ))}
-                
-                {paradigmLine2.map((word, i) => (
-                    <motion.span
-                        key={`l2-${i}`}
-                        custom={i + paradigmLine1.length}
-                        initial="hidden"
-                        whileInView="visible"
-                        whileHover="hover" // Independent interaction
+                        whileHover="hover"
                         viewport={{ once: true }} 
                         variants={standardVariant}
                         className="text-4xl sm:text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.9] inline-block cursor-pointer"
@@ -115,15 +99,15 @@ const InteractiveParadigmTitle: React.FC = () => {
                     </motion.span>
                 ))}
             </div>
-            {/* Line 3 */}
+            {/* Line 2 */}
             <div className="flex flex-wrap gap-x-2 md:gap-x-4">
-                {paradigmLine3.map((word, i) => (
+                {paradigmLine2.map((word, i) => (
                     <motion.span
-                        key={`l3-${i}`}
-                        custom={i + paradigmLine1.length + paradigmLine2.length}
+                        key={`l2-${i}`}
+                        custom={i + paradigmLine1.length}
                         initial="hidden"
                         whileInView="visible"
-                        whileHover="hover" // Independent interaction
+                        whileHover="hover"
                         viewport={{ once: true }} 
                         variants={shiftsVariant}
                         className="text-4xl sm:text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.9] inline-block cursor-pointer"
@@ -612,11 +596,11 @@ export const Hero: React.FC = () => {
                  </div>
                  
                  {/* ADDRESS BLOCK */}
-                 <div className="flex flex-col gap-0 border-l-4 border-micron-eggplant pl-3 relative z-10 mt-auto lg:mt-auto h-fit">
-                        <h3 className="text-white font-bold text-lg uppercase tracking-wider leading-tight">Micron House</h3>
-                        <p className="text-micron-eggplant font-semibold text-sm md:text-base uppercase tracking-widest leading-tight whitespace-nowrap overflow-hidden text-ellipsis">1020 East Warm Springs Ave</p>
-                        <p className="text-micron-eggplant/80 text-xs md:text-sm uppercase tracking-widest leading-tight">Boise, Idaho 83712</p>
-                        <p className="text-white/50 text-[10px] md:text-xs uppercase tracking-widest leading-tight mt-2">5 min downtown · 15 min Micron · 15 min airport</p>
+                 <div className="flex flex-col gap-0.5 border-l-4 border-micron-eggplant pl-3 relative z-10 mt-auto lg:mt-auto h-fit">
+                        <h3 className="text-white font-bold text-xl md:text-2xl uppercase tracking-wider leading-tight">Micron House</h3>
+                        <p className="text-micron-eggplant font-semibold text-base md:text-lg uppercase tracking-widest leading-tight whitespace-nowrap overflow-hidden text-ellipsis">1020 East Warm Springs Ave</p>
+                        <p className="text-micron-eggplant/80 text-sm md:text-base uppercase tracking-widest leading-tight">Boise, Idaho 83712</p>
+                        <p className="text-white/50 text-xs md:text-sm uppercase tracking-widest leading-tight mt-2">5 min downtown · 15 min Micron · 15 min airport</p>
                  </div>
 
                  {/* MOBILE + TABLET PORTRAIT QUOTE - centered */}
