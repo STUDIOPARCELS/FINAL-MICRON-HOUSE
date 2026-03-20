@@ -593,7 +593,7 @@ export const Hero: React.FC = () => {
                  {/* ADDRESS BLOCK */}
                  <div className="flex flex-col gap-0 border-l-4 border-micron-eggplant pl-3 relative z-10 mt-auto h-fit">
                         <h3 className="text-white font-bold text-lg uppercase tracking-wider leading-tight">Micron House</h3>
-                        <p className="text-[#14532d] font-semibold text-sm md:text-base uppercase tracking-widest leading-tight whitespace-nowrap overflow-hidden text-ellipsis">1020 East Warm Springs Ave</p>
+                        <p className="text-micron-eggplant font-semibold text-sm md:text-base uppercase tracking-widest leading-tight whitespace-nowrap overflow-hidden text-ellipsis">1020 East Warm Springs Ave</p>
                         <p className="text-micron-eggplant/80 text-xs md:text-sm uppercase tracking-widest leading-tight">Boise, Idaho 83712</p>
                  </div>
             </div>
