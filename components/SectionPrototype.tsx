@@ -528,7 +528,7 @@ const getCardData = (id: number): ModalContent => {
     case 4: return { 
         ...base, 
         title: 'PLACE',
-        subtitle: 'GROUNDING THE TECHNOLOGY', 
+        subtitle: 'GROUNDING TECHNOLOGY', 
         maxWidth: 'max-w-7xl',
         paddingClassName: 'px-10 md:px-12 pt-0 pb-10 md:pb-12',
         content: (
@@ -757,7 +757,7 @@ export const SectionPrototype: React.FC = () => {
                         PLACE
                     </h3>
                     <p className="text-xs font-bold uppercase tracking-widest text-white/50 group-hover:text-white transition-colors">
-                        GROUNDING THE TECHNOLOGY
+                        GROUNDING TECHNOLOGY
                     </p>
                 </div>
             </BentoCard>
