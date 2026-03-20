@@ -599,12 +599,12 @@ export const Hero: React.FC = () => {
             </div>
 
             {/* CENTER: Quote — shows on all sizes, diagonal on desktop */}
-            <div className="flex flex-grow items-center justify-center relative z-10 py-4 xl:py-0 xl:px-4">
+            <div className="flex flex-grow items-center justify-start relative z-10 py-4 xl:py-0 xl:px-4">
                 <motion.div
                         initial="hidden"
                         animate={shouldShowQuote ? "visible" : "hidden"}
                         variants={quoteContainerVariants}
-                        className="font-micron text-lg md:text-xl xl:text-2xl text-white font-extralight leading-relaxed text-center xl:text-left -rotate-2 xl:-rotate-6 max-w-lg w-full pb-4 will-change-transform"
+                        className="font-micron text-lg md:text-xl xl:text-2xl text-white font-extralight leading-relaxed text-left -rotate-2 xl:-rotate-6 max-w-lg w-full pb-4 will-change-transform"
                 >
                      <p className="inline">
                         {quoteWords.map((word, i) => (

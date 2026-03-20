@@ -12,265 +12,172 @@ interface Experience {
   customGradient?: string; 
 }
 
-interface Department {
+interface ChildDept {
   id: string;
   title: string;
   value: string;
   detail: string;
   gradient: string;
+  tagColor: string;
   experiences: Experience[];
-  modalHeaderColor: string; 
-  modalIconColor: string;   
-  modalTagColor: string;
-  // New optional properties for modal sizing
-  modalAspectRatio?: string;
-  modalMaxWidth?: string;    
-  tileAspectRatio?: string; // New: optional property to force aspect ratio on inner tiles
 }
 
-const departments: Department[] = [
+// ─── EXECUTIVE HOSTING children ───
+const execChildren: ChildDept[] = [
   { 
-    id: "travel", 
-    title: "Travel & Entertainment", 
-    value: "Board hosting, VIP visits", 
+    id: "travel", title: "Travel & Entertainment", value: "Board hosting, VIP visits", 
     detail: "A private retreat for Micron executives, employees, and guests—designed to host a spectrum of intimate social and professional experiences.", 
-    gradient: "bg-micron-eggplant", 
-    modalHeaderColor: "text-micron-eggplant",
-    modalIconColor: "text-zinc-400", 
-    modalTagColor: "border-micron-green",
+    gradient: "bg-micron-eggplant", tagColor: "border-micron-green",
     experiences: [
-      {
-        title: "Game Days",
-        icon: <Trophy />,
-        description: "BSU football Saturday. Tailgate brunch catered by Kris Komori (KIN, Idaho's first James Beard winner). Gathering at the House before and after the game.",
-        customGradient: "bg-micron-eggplant"
-      },
-      {
-        title: "The Prelude",
-        icon: <Music />,
-        description: "Pre-event cocktails by Remi McManus (Bar, Please!) in the living room. Cybercab transfer to Albertsons Stadium suites for Post Malone or the 2026 concert series.",
-        customGradient: "bg-micron-green"
-      },
-      {
-        title: "Fly Fishing",
-        icon: <Fish />,
-        description: "Cybercab to Jackson Jet Center (15 min). Helicopter into the Sawtooth National Forest. Guided morning on a private stretch, riverside lunch paired with Snake River Valley wines.",
-        customGradient: "bg-micron-eggplant-light"
-      }
+      { title: "Game Days", icon: <Trophy />, description: "BSU football Saturday. Tailgate brunch catered by Kris Komori (KIN, Idaho\u2019s first James Beard winner). Gathering at the House before and after the game.", customGradient: "bg-micron-eggplant" },
+      { title: "The Prelude", icon: <Music />, description: "Pre-event cocktails by Remi McManus (Bar, Please!) in the living room. Cybercab transfer to Albertsons Stadium suites for Post Malone or the 2026 concert series.", customGradient: "bg-micron-green" },
+      { title: "Fly Fishing", icon: <Fish />, description: "Cybercab to Jackson Jet Center (15 min). Helicopter into the Sawtooth National Forest. Guided morning on a private stretch, riverside lunch paired with Snake River Valley wines.", customGradient: "bg-micron-eggplant-light" }
     ]
   }, 
   { 
-    id: "events", 
-    title: "Events & Meetings", 
-    value: "Private dinners", 
+    id: "events", title: "Events & Meetings", value: "Private dinners", 
     detail: "Consistent environment, curated experiences, cultural calendar integration.", 
-    gradient: "bg-micron-green", 
-    modalHeaderColor: "text-micron-green",
-    modalIconColor: "text-zinc-400", 
-    modalTagColor: "border-micron-eggplant",
+    gradient: "bg-micron-green", tagColor: "border-micron-eggplant",
     experiences: [
-      {
-        title: "Snake River Tasting",
-        icon: <Wine />,
-        description: "Four winemakers from Sunnyslope: Ste. Chapelle, Telaya, Huston, Koenig. Pouring Parma Ridge Gewürztraminer (93 pts) and Huston Sparkling Grüner Veltliner (92 pts).",
-        customGradient: "bg-micron-green"
-      },
-      {
-        title: "Basque Supper",
-        icon: <Utensils />,
-        description: "Traditional Basque dinner by Dan Ansotegui (Ansots, 2026 Outstanding Hospitality nominee). Lamb, chorizos, pimientos. Celebrating Boise's heritage with eight guests.",
-        customGradient: "bg-micron-eggplant"
-      },
-      {
-        title: "Rocky Bar",
-        icon: <Map />,
-        description: "Cybercab to Jackson Jet Center (15 min). Helicopter to a ghost town in the Boise Mountains. Tour ruins of the old jail and cabins in a National Register district.",
-        customGradient: "bg-micron-grey1"
-      }
+      { title: "Snake River Tasting", icon: <Wine />, description: "Four winemakers from Sunnyslope: Ste. Chapelle, Telaya, Huston, Koenig. Pouring Parma Ridge Gew\u00fcrztraminer (93 pts) and Huston Sparkling Gr\u00fcner Veltliner (92 pts).", customGradient: "bg-micron-green" },
+      { title: "Basque Supper", icon: <Utensils />, description: "Traditional Basque dinner by Dan Ansotegui (Ansots, 2026 Outstanding Hospitality nominee). Lamb, chorizos, pimientos. Celebrating Boise\u2019s heritage with eight guests.", customGradient: "bg-micron-eggplant" },
+      { title: "Rocky Bar", icon: <Map />, description: "Cybercab to Jackson Jet Center (15 min). Helicopter to a ghost town in the Boise Mountains. Tour ruins of the old jail and cabins in a National Register district.", customGradient: "bg-micron-grey1" }
     ]
   },
   { 
-    id: "mobility", 
-    title: "Global Mobility", 
-    value: "Soft landings", 
-    detail: "Real neighborhood experience, family accommodation, transition support before permanent housing.", 
-    gradient: "bg-micron-eggplant-light", 
-    modalHeaderColor: "text-micron-eggplant-light", 
-    modalIconColor: "text-zinc-400", 
-    modalTagColor: "border-micron-grey1",
-    modalMaxWidth: "max-w-md", 
-    experiences: [
-      {
-        title: "Soft Landings",
-        icon: <BedDouble />,
-        description: "Executives relocating from Munich, Seoul, or Tel Aviv. Two weeks in a real Boise neighborhood. An environment of fruit trees, geothermal heat, and a private hot tub.",
-        customGradient: "bg-micron-eggplant-light"
-      }
-    ]
-  }, 
-  { 
-    id: "exec", 
-    title: "Executive Office", 
-    value: "Confidential off-sites", 
+    id: "exec", title: "Executive Office", value: "Confidential off-sites", 
     detail: "Strategy sessions, sensitive conversations, total discretion, no hotel staff.", 
-    gradient: "bg-micron-grey1", 
-    modalHeaderColor: "text-micron-grey1",
-    modalIconColor: "text-zinc-400", 
-    modalTagColor: "border-micron-eggplant-light",
+    gradient: "bg-micron-grey1", tagColor: "border-micron-eggplant-light",
     experiences: [
-      {
-        title: "Confidential Counsel",
-        icon: <Shield />,
-        description: "Fireside conversations with the Governor or key investors. Optimus and Cybercab manage all logistics for total discretion.",
-        customGradient: "bg-micron-grey1"
-      },
-      {
-        title: "Visiting Voices",
-        icon: <Mic />,
-        description: "Intimate fireside lectures with semiconductor leaders. Dinner prepared by Nathan Whitley (Terroir, 2026 James Beard semifinalist).",
-        customGradient: "bg-micron-eggplant-light"
-      }
+      { title: "Confidential Counsel", icon: <Shield />, description: "Fireside conversations with the Governor or key investors. Optimus and Cybercab manage all logistics for total discretion.", customGradient: "bg-micron-grey1" },
+      { title: "Visiting Voices", icon: <Mic />, description: "Intimate fireside lectures with semiconductor leaders. Dinner prepared by Nathan Whitley (Terroir, 2026 James Beard semifinalist).", customGradient: "bg-micron-eggplant-light" }
     ]
   }, 
   { 
-    id: "talent", 
-    title: "Talent Acquisition", 
-    value: "Recruiting closes", 
+    id: "talent", title: "Talent Acquisition", value: "Recruiting closes", 
     detail: "Differentiated candidate experience, memorable final impression, demonstrates company culture.", 
-    gradient: "bg-micron-eggplant-light", 
-    modalHeaderColor: "text-micron-eggplant-light", 
-    modalIconColor: "text-zinc-400", 
-    modalTagColor: "border-micron-eggplant-light",
+    gradient: "bg-micron-eggplant-light", tagColor: "border-micron-eggplant-light",
     experiences: [
-      {
-        title: "Chef's Table",
-        icon: <Wine />,
-        description: "Salvador Alamilla (Amano, 2025 James Beard Best Chef Mountain) prepares a multi-course dinner to impress a top candidate.",
-        customGradient: "bg-micron-grey1"
-      },
-      {
-        title: "The Closer",
-        icon: <Shield />,
-        description: "Final offer discussions by the living room fireplace. A neutral setting in the 1906 home, away from the boardroom.",
-        customGradient: "bg-micron-eggplant-light"
-      },
-      {
-        title: "Family Basecamp",
-        icon: <Heart />,
-        description: "While the candidate interviews at HQ (15m away), the family starts their \"Day in Boise\" with breakfast on the private terrace.",
-        customGradient: "bg-micron-green"
-      }
+      { title: "Chef\u2019s Table", icon: <Wine />, description: "Salvador Alamilla (Amano, 2025 James Beard Best Chef Mountain) prepares a multi-course dinner to impress a top candidate.", customGradient: "bg-micron-grey1" },
+      { title: "The Closer", icon: <Shield />, description: "Final offer discussions by the living room fireplace. A neutral setting in the 1906 home, away from the boardroom.", customGradient: "bg-micron-eggplant-light" },
+      { title: "Family Basecamp", icon: <Heart />, description: "While the candidate interviews at HQ (15m away), the family starts their \u201cDay in Boise\u201d with breakfast on the private terrace.", customGradient: "bg-micron-green" }
+    ]
+  }
+];
+
+// ─── RESIDENTIAL SUPPORT children ───
+const resChildren: ChildDept[] = [
+  { 
+    id: "mobility", title: "Global Mobility", value: "Soft landings", 
+    detail: "Real neighborhood experience, family accommodation, transition support before permanent housing.", 
+    gradient: "bg-micron-eggplant-light", tagColor: "border-micron-grey1",
+    experiences: [
+      { title: "Soft Landings", icon: <BedDouble />, description: "Executives relocating from Munich, Seoul, or Tel Aviv. Two weeks in a real Boise neighborhood. An environment of fruit trees, geothermal heat, and a private hot tub.", customGradient: "bg-micron-eggplant-light" }
     ]
   }, 
   { 
-    id: "foundation", 
-    title: "Micron Foundation", 
-    value: "Community events", 
-    detail: "Hosting community leaders, nonprofit partners, civic engagement.", 
-    gradient: "bg-micron-grey2", 
-    modalHeaderColor: "text-micron-grey2", 
-    modalIconColor: "text-zinc-400", 
-    modalTagColor: "border-micron-green",
-    experiences: [
-      {
-        title: "Art + Appetite",
-        icon: <Music />,
-        description: "Boise Art Museum leads a private discussion on National Gallery of Art loans. Dinner by Alex Cardoza (Susina).",
-        customGradient: "bg-micron-grey2"
-      },
-      {
-        title: "Young Innovators",
-        icon: <Cpu />,
-        description: "STEM immersion featuring live Optimus and Cybercab demonstrations. Students engage directly with autonomous systems.",
-        customGradient: "bg-micron-green"
-      },
-      {
-        title: "Chip & Chair",
-        icon: <Users />,
-        description: "Micron engineers mentor Boise State CS students fireside. A cohort conversation on the semiconductor industry.",
-        customGradient: "bg-micron-eggplant"
-      }
-    ]
-  }, 
-  { 
-    id: "family", 
-    title: "Family Support", 
-    value: "St. Luke's lodging", 
+    id: "family", title: "Family Support", value: "St. Luke\u2019s lodging", 
     detail: "Less than 1 mile to medical center, home environment during difficult times, compassionate use.", 
-    gradient: "bg-micron-eggplant", 
-    modalHeaderColor: "text-micron-eggplant", 
-    modalIconColor: "text-zinc-400", 
-    modalTagColor: "border-micron-grey1",
+    gradient: "bg-micron-eggplant", tagColor: "border-micron-grey1",
     experiences: [
-      {
-        title: "Medical Proximity",
-        icon: <Stethoscope />, 
-        description: "Located 0.8 miles from St. Luke's Boise Medical Center. Immediate access for families while retaining privacy.",
-        customGradient: "bg-micron-eggplant"
-      },
-      {
-        title: "Compassionate Stay",
-        icon: <Heart />,
-        description: "A private, fully equipped home for families facing long-term treatment scenarios. Dignity and comfort during crisis.",
-        customGradient: "bg-micron-grey1"
-      }
+      { title: "Medical Proximity", icon: <Stethoscope />, description: "Located 0.8 miles from St. Luke\u2019s Boise Medical Center. Immediate access for families while retaining privacy.", customGradient: "bg-micron-eggplant" },
+      { title: "Compassionate Stay", icon: <Heart />, description: "A private, fully equipped home for families facing long-term treatment scenarios. Dignity and comfort during crisis.", customGradient: "bg-micron-grey1" }
     ]
+  },
+  { 
+    id: "foundation", title: "Micron Foundation", value: "Community events", 
+    detail: "Hosting community leaders, nonprofit partners, civic engagement.", 
+    gradient: "bg-micron-grey2", tagColor: "border-micron-green",
+    experiences: [
+      { title: "Art + Appetite", icon: <Music />, description: "Boise Art Museum leads a private discussion on National Gallery of Art loans. Dinner by Alex Cardoza (Susina).", customGradient: "bg-micron-grey2" },
+      { title: "Young Innovators", icon: <Cpu />, description: "STEM immersion featuring live Optimus and Cybercab demonstrations. Students engage directly with autonomous systems.", customGradient: "bg-micron-green" },
+      { title: "Chip & Chair", icon: <Users />, description: "Micron engineers mentor Boise State CS students fireside. A cohort conversation on the semiconductor industry.", customGradient: "bg-micron-eggplant" }
+    ]
+  }
+];
+
+interface ParentCard {
+  id: string;
+  title: string;
+  subtitle: string;
+  summary: string;
+  gradient: string;
+  children: ChildDept[];
+}
+
+const parentCards: ParentCard[] = [
+  {
+    id: "executive",
+    title: "EXECUTIVE HOSTING",
+    subtitle: "Board stays, private dinners, off-sites, recruiting",
+    summary: "A private residence for VIP visits, confidential meetings, candidate closes, and hosted gatherings.",
+    gradient: "bg-micron-eggplant",
+    children: execChildren,
+  },
+  {
+    id: "residential",
+    title: "RESIDENTIAL SUPPORT",
+    subtitle: "Relocation, family stays, community use",
+    summary: "Soft landings for relocation, family lodging, St. Luke\u2019s proximity, and selected foundation or community use.",
+    gradient: "bg-micron-eggplant-light",
+    children: resChildren,
   }
 ];
 
 export const SectionServing: React.FC = () => {
   const [modalData, setModalData] = useState<ModalContent | null>(null);
 
-  const openModal = (dept: Department) => {
-    // Determine grid columns dynamically based on number of items
-    const gridCols = dept.experiences.length === 1 ? 'md:grid-cols-1' : dept.experiences.length === 2 ? 'md:grid-cols-2' : 'md:grid-cols-3';
-
+  const openParentModal = (parent: ParentCard) => {
     setModalData({
-      title: dept.title,
-      subtitle: dept.value,
+      title: parent.title,
+      subtitle: parent.subtitle,
       category: 'showcase',
       theme: 'light',
-      maxWidth: dept.modalMaxWidth || 'max-w-6xl',
-      aspectRatio: dept.modalAspectRatio,
-      headerClassName: dept.modalHeaderColor,
+      maxWidth: 'max-w-6xl',
+      headerClassName: parent.gradient === 'bg-micron-eggplant' ? 'text-micron-eggplant' : 'text-micron-eggplant-light',
       content: (
-        // REMOVED h-full from this wrapper to allow natural height sizing
         <div className="flex flex-col gap-8 pb-4">
-             <div className={`border-l-4 ${dept.modalTagColor.replace('border-', 'border-')} pl-6 py-1`}>
-                {/* UPDATED: Reduced to text-base to match Living Lab subtitle */}
-                <p className="text-base font-light text-zinc-600 leading-relaxed font-body">
-                    {dept.detail}
-                </p>
-            </div>
+          <div className="border-l-4 border-micron-green pl-6 py-1">
+            <p className="text-base font-light text-zinc-600 leading-relaxed font-body">
+              {parent.summary}
+            </p>
+          </div>
 
-            <div className={`grid grid-cols-1 ${gridCols} gap-6 flex-1`}>
+          {parent.children.map((dept, deptIdx) => (
+            <div key={dept.id} className="flex flex-col gap-4">
+              <div className="flex items-baseline gap-3">
+                <h4 className="text-lg font-bold uppercase tracking-tight text-zinc-900">{dept.title}</h4>
+                <span className="text-xs font-bold uppercase tracking-widest text-zinc-400">{dept.value}</span>
+              </div>
+              <div className={`border-l-4 ${dept.tagColor} pl-5 py-0.5 mb-1`}>
+                <p className="text-sm font-light text-zinc-500 leading-relaxed">{dept.detail}</p>
+              </div>
+
+              <div className={`grid grid-cols-1 ${dept.experiences.length === 1 ? 'md:grid-cols-1 max-w-md' : dept.experiences.length === 2 ? 'md:grid-cols-2' : 'md:grid-cols-3'} gap-4`}>
                 {dept.experiences.map((exp, i) => (
-                    // UPDATED: Added floating/shadow classes and removed 'shadow-lg'
-                    <div 
-                        key={i} 
-                        className={`${exp.customGradient || dept.gradient} text-white p-6 rounded-2xl shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] hover:shadow-[0_30px_60px_-12px_rgba(0,0,0,0.4)] hover:-translate-y-1 transition-all duration-300 flex flex-col gap-4 border border-white/10 ${dept.tileAspectRatio || ''} h-full justify-between`}
-                    >
-                        <div>
-                            <div className="flex items-center gap-3 mb-4">
-                                {React.cloneElement(exp.icon as React.ReactElement<any>, { size: 24, className: "text-white/80" })}
-                                <h4 className="text-xl font-bold uppercase tracking-tight">{exp.title}</h4>
-                            </div>
-                            <div className="h-px w-full bg-white/20 mb-4" />
-                            {/* UPDATED: Verified font size is text-lg to match Wellness modal tiles standard */}
-                            <p className="text-white/80 font-medium leading-relaxed text-base">
-                                {exp.description}
-                            </p>
-                        </div>
+                  <div 
+                    key={i} 
+                    className={`${exp.customGradient || dept.gradient} text-white p-5 rounded-2xl shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] hover:shadow-[0_30px_60px_-12px_rgba(0,0,0,0.4)] hover:-translate-y-1 transition-all duration-300 flex flex-col gap-3 border border-white/10`}
+                  >
+                    <div className="flex items-center gap-3">
+                      {React.cloneElement(exp.icon as React.ReactElement<any>, { size: 20, className: "text-white/80" })}
+                      <h5 className="text-base font-bold uppercase tracking-tight">{exp.title}</h5>
                     </div>
+                    <div className="h-px w-full bg-white/20" />
+                    <p className="text-white/80 font-medium leading-relaxed text-sm">{exp.description}</p>
+                  </div>
                 ))}
+              </div>
+
+              {deptIdx < parent.children.length - 1 && (
+                <div className="h-px w-full bg-zinc-200 mt-2" />
+              )}
             </div>
+          ))}
         </div>
       )
     });
   };
-
-  // Randomized staggered delay array for the 7 items
-  const staggeredDelays = [0, 0.3, 0.1, 0.4, 0.2, 0.5, 0.15];
 
   return (
     <section id="serving" className="container mx-auto px-8 md:px-12 pt-12 pb-6 md:pb-12 text-zinc-900">
@@ -282,7 +189,6 @@ export const SectionServing: React.FC = () => {
             className="flex flex-col md:flex-row md:items-end gap-6 mb-12"
         >
             <div className="flex-shrink-0">
-                {/* UPDATED: Renumbered to 03 */}
                 <span className="block text-sm font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2 font-sans">03 / OUTCOME</span>
                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-micron-eggplant leading-none font-sans">
                     PROOF OF CONCEPT
@@ -301,33 +207,33 @@ export const SectionServing: React.FC = () => {
             </div>
         </motion.div>
 
-        <div className="flex flex-wrap justify-center gap-6">
-            {departments.map((dept, i) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+            {parentCards.map((parent, i) => (
                 <BentoCard
-                    key={dept.id}
-                    className={`
-                        flex flex-col min-h-[160px] p-6 relative overflow-hidden group transition-all duration-300 ${dept.gradient}
-                        w-full md:w-[calc(50%-12px)] xl:w-[calc(25%-18px)]
-                    `}
-                    gradient={dept.gradient}
+                    key={parent.id}
+                    className={`flex flex-col min-h-[260px] md:min-h-[320px] p-8 relative overflow-hidden group transition-all duration-300 ${parent.gradient}`}
+                    gradient={parent.gradient}
                     textColor="text-white"
                     borderColor="border-white/10"
-                    delay={staggeredDelays[i] || 0}
+                    delay={i * 0.2}
                     hoverEffect={true}
                     arrowPosition="bottom-right"
-                    onClick={() => openModal(dept)}
+                    onClick={() => openParentModal(parent)}
                 >
-                    <div className="relative z-10 flex flex-col h-full">
+                    <div className="relative z-10 flex flex-col h-full justify-between">
                         <div>
-                             <h3 className="text-2xl font-black uppercase tracking-tight leading-none text-white line-clamp-2 mb-1">{dept.title}</h3>
-                             <p className="text-xs font-bold uppercase tracking-widest text-white/70 mb-4">{dept.value}</p>
-                             <div className="h-px w-full bg-white/30" />
+                            <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tight leading-none text-white mb-2">{parent.title}</h3>
+                            <p className="text-xs font-bold uppercase tracking-widest text-white/60 mb-5">{parent.subtitle}</p>
+                            <div className="h-px w-full bg-white/20 mb-5" />
                         </div>
-                        
-                        {/* UPDATED: Increased text size from text-sm to text-base */}
-                        <p className="text-base font-medium text-white/80 mt-3 leading-relaxed">
-                            {dept.detail}
-                        </p>
+                        <p className="text-base font-medium text-white/80 leading-relaxed">{parent.summary}</p>
+                        <div className="flex flex-wrap gap-2 mt-5">
+                            {parent.children.map((child) => (
+                                <span key={child.id} className="text-[10px] font-bold uppercase tracking-wider bg-white/10 text-white/70 px-3 py-1.5 rounded-full border border-white/10">
+                                    {child.title}
+                                </span>
+                            ))}
+                        </div>
                     </div>
                 </BentoCard>
             ))}
