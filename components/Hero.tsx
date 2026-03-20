@@ -38,7 +38,7 @@ const sentences = [
 
 const InteractiveParadigmTitle: React.FC = () => {
     const paradigmLine1 = ["CRITICAL"];
-    const paradigmLine2 = ["WINDOW."];
+    const paradigmLine2 = ["WINDOW"];
 
     // Colors
     const cGreen = "#008f25";
