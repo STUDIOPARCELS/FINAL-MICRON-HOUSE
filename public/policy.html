@@ -84,9 +84,19 @@
       margin-bottom: 16px;
     }
     .page-header p {
-      font-size: 16px; color: #52525b; font-weight: 300; width: 100%;
-      line-height: 1.55; font-family: 'Inter', sans-serif;
+      font-size: 15px; color: #52525b; font-weight: 400; width: 100%;
+      line-height: 1.5; font-family: 'Inter', sans-serif;
     }
+    .scope-row {
+      display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap;
+    }
+    .scope-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 600;
+      letter-spacing: 0.02em; color: #3f3f46;
+      background: #f4f4f5; padding: 8px 16px; border-radius: 8px;
+    }
+    .scope-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
 
     /* MAIN GRID */
     .main-grid {
@@ -277,6 +287,8 @@
       .page-header { margin-bottom: 28px; }
       .page-header h1 { font-size: 30px; margin-bottom: 10px; }
       .page-header p { font-size: 14px; }
+      .scope-row { gap: 8px; margin-top: 12px; }
+      .scope-pill { font-size: 11px; padding: 6px 12px; }
       .briefs-stack { gap: 16px; }
       .brief-card { padding: 20px; border-radius: 16px; }
       .brief-card h2 { font-size: 17px; }
@@ -346,8 +358,11 @@
   <div class="container">
     <div class="page-header fade-in">
       <h1>Briefings</h1>
-      <p>Two legislative packages prepared for the Idaho Legislature and Boise City Council.</p>
-      <p style="margin-top:6px;">Autonomous driving systems at the state level. Robot-enabled building operations at the municipal level.</p>
+      <p class="page-subtitle">Two legislative packages prepared for the Idaho Legislature and Boise City Council.</p>
+      <div class="scope-row">
+        <span class="scope-pill"><span class="scope-dot" style="background:#008f25;"></span>State — Autonomous Driving Systems</span>
+        <span class="scope-pill"><span class="scope-dot" style="background:#7db0d3;"></span>Municipal — Robot-Enabled Building Operations</span>
+      </div>
     </div>
 
     <div class="main-grid">
