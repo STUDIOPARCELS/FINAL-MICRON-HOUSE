@@ -1,10 +1,14 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
-const SUPABASE_URL = 'https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/POLICY%20BRIEFS';
+const BASE = 'https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/POLICY%20BRIEFS';
 
-// Pre-built list of all policy brief filenames for context
-const BRIEF_INDEX_URL = `${SUPABASE_URL}/brief-a.html`;
-const BRIEF_B_URL = `${SUPABASE_URL}/brief-b.html`;
+const DOCS = [
+  { id: 'brief-a', label: 'BRIEF A — Idaho ADS and Driverless Passenger Service Act', url: `${BASE}/brief-a.html`, type: 'html', limit: 15000 },
+  { id: 'brief-b', label: 'BRIEF B — Boise Robot-Enabled Operations Pilot Ordinance', url: `${BASE}/brief-b.html`, type: 'html', limit: 15000 },
+  { id: 'utah-hb101', label: 'REFERENCE — Utah HB 101 Autonomous Vehicle Regulations (Enrolled, 2019)', url: `${BASE}/utah-hb101-text.txt`, type: 'text', limit: 25000 },
+  { id: 'texas-sb2807', label: 'REFERENCE — Texas SB 2807 Automated Motor Vehicles (Enrolled, 2025)', url: `${BASE}/texas-sb2807-text.txt`, type: 'text', limit: 25000 },
+  { id: 'txdmv-ch220', label: 'REFERENCE — TxDMV Chapter 220 Implementing Rules (Adopted, Eff. Feb 2026)', url: `${BASE}/texas-ch220-text.txt`, type: 'text', limit: 20000 },
+];
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') {
@@ -17,46 +21,54 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   const { message, history = [] } = req.body;
-
   if (!message) {
     return res.status(400).json({ error: 'Message is required' });
   }
 
   try {
-    // Fetch both featured brief HTML contents for context
-    const [briefARes, briefBRes] = await Promise.all([
-      fetch(BRIEF_INDEX_URL).then(r => r.text()).catch(() => ''),
-      fetch(BRIEF_B_URL).then(r => r.text()).catch(() => ''),
-    ]);
+    const results = await Promise.all(
+      DOCS.map(async (doc) => {
+        try {
+          const r = await fetch(doc.url);
+          let text = await r.text();
+          if (doc.type === 'html') {
+            text = text.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+          }
+          return { ...doc, content: text.slice(0, doc.limit) };
+        } catch {
+          return { ...doc, content: '' };
+        }
+      })
+    );
 
-    // Strip HTML tags for plain text context
-    const stripHtml = (html: string) => html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
-    const briefAText = stripHtml(briefARes).slice(0, 12000);
-    const briefBText = stripHtml(briefBRes).slice(0, 12000);
+    const docContext = results
+      .filter(d => d.content.length > 0)
+      .map(d => `=== ${d.label} ===\n${d.content}`)
+      .join('\n\n');
 
-    const systemPrompt = `You are the Micron House policy research assistant, powered by Claude Opus 4.6. You help users understand autonomous technology policy briefs prepared by Lisa Wood Studio for Idaho and Boise.
+    const systemPrompt = `You are the Micron House policy research assistant, powered by Claude Opus 4.6. You help users understand autonomous technology policy and legislation.
 
-You have access to two primary policy briefs:
+You have access to the following documents from the Micron House research archive (${results.filter(d => d.content).length} of 113+ total documents loaded):
 
-BRIEF A — Idaho Automated Driving Systems and Driverless Passenger Service Act:
-${briefAText}
-
-BRIEF B — Boise Robot-Enabled Operations Pilot Ordinance:
-${briefBText}
-
-Additional context: The research archive contains policy-related documents including bill texts, fiscal notes, staff analyses, executive summaries, research compilations, legislative packages, and methodology documents. These cover Idaho ADS legislation modeled on Utah HB 101, Boise robot-enabled building operations pilots, and supporting research on autonomous technology policy across U.S. states.
+${docContext}
 
 Key entities: Lisa Wood Studio (author), Micron House (the proposed corporate autonomous residence in Boise), Micron Technology, Tesla (Optimus, Cybercab), Theo Wold (policy advisor).
 
-Response formatting — MANDATORY:
+Key vote records:
+- Utah HB 101 (2019): House 70–0, Senate 23–0, signed by Governor Herbert
+- Texas SB 2807 (2025): House 96–42, Senate 30–1, signed by Governor Abbott, effective 9/1/25
+- TxDMV Chapter 220 implementing rules effective February 27, 2026
+
+When answering:
+- **Cite specific provisions** by section number when available (e.g., §545.451, §220.3)
+- **Compare frameworks** across states when relevant — show how Idaho's proposed legislation builds on Utah and Texas precedent
 - Use **bold** for key terms, names, vote counts, and important figures
 - Use bullet points (- item) to break up lists of facts, provisions, or requirements
 - Use short paragraphs separated by blank lines — never a wall of text
 - Lead with the direct answer, then provide supporting detail
-- Keep total response length to 3-6 short paragraphs maximum
 - Write in professional, concise language — the way a senior policy advisor speaks
 - Affirmative framing only. Describe what provisions accomplish, how frameworks operate, what outcomes result.
-- Never use repetitive patterns like "zero new X, zero new Y, zero new Z"`;
+- If asked about a document you have partial content for, cite what you can and note the user can open the full document from the reference panel.`;
 
     const messages = [
       ...history.map((h: any) => ({ role: h.role, content: h.content })),
@@ -72,7 +84,7 @@ Response formatting — MANDATORY:
       },
       body: JSON.stringify({
         model: 'claude-sonnet-4-20250514',
-        max_tokens: 1024,
+        max_tokens: 1500,
         system: systemPrompt,
         messages,
       }),
