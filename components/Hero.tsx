@@ -579,7 +579,7 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 100 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
             transition={{ duration: 2.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="w-full bg-micron-eggplant-light rounded-3xl shadow-[0_40px_80px_-15px_rgba(0,0,0,0.3)] border border-white/20 relative overflow-hidden flex flex-col p-[60px] gap-4 md:gap-6 group"
+            className="w-full bg-micron-eggplant-light rounded-3xl shadow-[0_40px_80px_-15px_rgba(0,0,0,0.3)] border border-white/20 relative overflow-hidden flex flex-col p-6 md:p-8 xl:p-[60px] gap-4 md:gap-6 group"
         >
             {/* TOP ROW: Paradigm + Quote + Map */}
             <div className="flex flex-col lg:flex-row lg:items-stretch flex-1 gap-3 lg:gap-4 xl:gap-6">
