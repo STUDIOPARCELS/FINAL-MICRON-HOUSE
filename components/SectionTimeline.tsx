@@ -90,16 +90,12 @@ export const SectionTimeline: React.FC = () => {
                         <span className="text-xs font-bold uppercase tracking-widest text-white/60">{item.date}</span>
                     </div>
 
-                    {/* Center Content */}
+                    {/* Bottom Content — fixed height for alignment */}
                     <div className="mt-auto relative z-10">
-                        
-                        {/* UPDATED: Reduced font size to text-lg md:text-xl to ensure single line for "PROTOCOL ASSESSMENT" */}
                         <h3 className="text-lg md:text-xl font-black uppercase leading-[0.9] mb-2 tracking-tight drop-shadow-md">
                             {item.title}
                         </h3>
-                        
-                        {/* Subtitle text */}
-                        <p className="text-base text-white/70 font-medium leading-relaxed mt-1">
+                        <p className="text-sm text-white/70 font-medium leading-snug mt-1 min-h-[3rem]">
                             {item.subtitle}
                         </p>
                     </div>

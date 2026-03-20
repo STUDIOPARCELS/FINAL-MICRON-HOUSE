@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Micron House — Policy Briefs</title>
-  <link rel="icon" type="image/png" href="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/FINAL%20LOGO%20DARK.png" />
+  <link rel="icon" type="image/png" href="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/FINAL%20LOGO%20DARK.png?v=2" />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -327,7 +327,8 @@
   <div class="container">
     <div class="page-header fade-in">
       <h1>Policy</h1>
-      <p>Two legislative packages prepared for the Idaho Legislature and Boise City Council. Autonomous driving systems at the state level, robot-enabled building operations at the municipal level.</p>
+      <p>Two legislative packages prepared for the Idaho Legislature and Boise City Council.</p>
+      <p style="margin-top:6px;">Autonomous driving systems at the state level. Robot-enabled building operations at the municipal level.</p>
     </div>
 
     <div class="main-grid">
@@ -444,17 +445,20 @@
   <script>
     const PDF_BASE='https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/POLICY%20BRIEFS';
     // Fetch document count from Supabase
+    const ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFjd2dpcnJsZG50anB6cmhxbWRoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzYyMDI5MzgsImV4cCI6MjA1MTc3ODkzOH0.LfLTqMYfPmPXCSD7jeNneQvSYSfSfZO5EBFwqR-gqkA';
     (async function(){
       try {
         const res = await fetch('https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/list/MICRON%20HOUSE', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFjd2dpcnJsZG50anB6cmhxbWRoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzYyMDI5MzgsImV4cCI6MjA1MTc3ODkzOH0.LfLTqMYfPmPXCSD7jeNneQvSYSfSfZO5EBFwqR-gqkA' },
+          headers: { 'Content-Type': 'application/json', 'apikey': ANON_KEY, 'Authorization': 'Bearer ' + ANON_KEY },
           body: JSON.stringify({ prefix: 'POLICY BRIEFS/', limit: 500 })
         });
         const data = await res.json();
-        const count = data.filter(f => f.metadata).length;
-        document.getElementById('docCount').textContent = count + ' documents · Policy Brief Research';
-      } catch { document.getElementById('docCount').textContent = 'Policy Brief Research'; }
+        if (Array.isArray(data)) {
+          const count = data.filter(f => f.metadata).length;
+          document.getElementById('docCount').textContent = count + ' documents · Policy Brief Research';
+        }
+      } catch(e) { console.log('Count fetch failed', e); }
     })();
 
     // Simple markdown to HTML
