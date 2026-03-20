@@ -161,7 +161,7 @@
     .chat-messages {
       overflow-y: auto; padding: 20px 24px;
       display: flex; flex-direction: column; gap: 10px;
-      max-height: 400px; min-height: 200px;
+      max-height: 500px; min-height: 200px;
     }
     .chat-empty { padding: 4px 0; color: #a1a1aa; }
     .chat-empty p { font-size: 12px; margin-bottom: 12px; line-height: 1.5; }
@@ -173,6 +173,7 @@
       box-shadow: 0 2px 8px -2px rgba(0,0,0,0.06);
     }
     .chat-suggestion:hover { background: rgba(0,143,37,0.08); color: #008f25; box-shadow: 0 4px 12px -2px rgba(0,143,37,0.1); }
+    .ref-btn:hover { background: rgba(0,143,37,0.08) !important; border-color: rgba(0,143,37,0.2) !important; }
     .msg {
       max-width: 88%; padding: 14px 18px; border-radius: 16px;
       font-size: 14px; line-height: 1.6;
@@ -390,15 +391,15 @@
         <div style="padding:16px 24px 12px; border-bottom:1px solid #f4f4f5;">
           <p style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#a1a1aa; margin-bottom:8px;">Reference Legislation</p>
           <div style="display:flex; flex-direction:column; gap:6px;">
-            <button onclick="openPdf('utah')" style="display:flex; align-items:center; justify-content:space-between; padding:10px 14px; border-radius:10px; border:1px solid #e4e4e7; background:#fff; color:#18181b; cursor:pointer; font-size:11px; font-weight:600; text-align:left; transition:all 0.2s; box-shadow:0 4px 16px -4px rgba(0,0,0,0.1);">
+            <button onclick="openPdf('utah')" class="ref-btn" style="display:flex; align-items:center; justify-content:space-between; padding:10px 14px; border-radius:10px; border:1px solid #e4e4e7; background:#fff; color:#18181b; cursor:pointer; font-size:11px; font-weight:600; text-align:left; transition:all 0.2s; box-shadow:0 4px 16px -4px rgba(0,0,0,0.1);">
               <span style="display:flex; align-items:center; gap:8px;"><span style="width:6px; height:6px; border-radius:50%; background:#008f25; flex-shrink:0;"></span>Utah HB 101</span>
               <span style="font-size:9px; color:#a1a1aa; font-weight:700;">70–0 · 23–0</span>
             </button>
-            <button onclick="openPdf('texas')" style="display:flex; align-items:center; justify-content:space-between; padding:10px 14px; border-radius:10px; border:1px solid #e4e4e7; background:#fff; color:#18181b; cursor:pointer; font-size:11px; font-weight:600; text-align:left; transition:all 0.2s; box-shadow:0 4px 16px -4px rgba(0,0,0,0.1);">
+            <button onclick="openPdf('texas')" class="ref-btn" style="display:flex; align-items:center; justify-content:space-between; padding:10px 14px; border-radius:10px; border:1px solid #e4e4e7; background:#fff; color:#18181b; cursor:pointer; font-size:11px; font-weight:600; text-align:left; transition:all 0.2s; box-shadow:0 4px 16px -4px rgba(0,0,0,0.1);">
               <span style="display:flex; align-items:center; gap:8px;"><span style="width:6px; height:6px; border-radius:50%; background:#7db0d3; flex-shrink:0;"></span>Texas SB 2807</span>
               <span style="font-size:9px; color:#a1a1aa; font-weight:700;">96–42 · 30–1</span>
             </button>
-            <button onclick="openPdf('txrules')" style="display:flex; align-items:center; justify-content:space-between; padding:10px 14px; border-radius:10px; border:1px solid #e4e4e7; background:#fff; color:#18181b; cursor:pointer; font-size:11px; font-weight:600; text-align:left; transition:all 0.2s; box-shadow:0 4px 16px -4px rgba(0,0,0,0.1);">
+            <button onclick="openPdf('txrules')" class="ref-btn" style="display:flex; align-items:center; justify-content:space-between; padding:10px 14px; border-radius:10px; border:1px solid #e4e4e7; background:#fff; color:#18181b; cursor:pointer; font-size:11px; font-weight:600; text-align:left; transition:all 0.2s; box-shadow:0 4px 16px -4px rgba(0,0,0,0.1);">
               <span style="display:flex; align-items:center; gap:8px;"><span style="width:6px; height:6px; border-radius:50%; background:#878d9f; flex-shrink:0;"></span>TxDMV Chapter 220</span>
               <span style="font-size:9px; color:#a1a1aa; font-weight:700;">EFF. FEB 2026</span>
             </button>
@@ -415,6 +416,11 @@
               <button class="chat-suggestion" onclick="useSuggestion(this)">What FTE impact does the Idaho ADS Act have on ITD?</button>
               <button class="chat-suggestion" onclick="useSuggestion(this)">What states were benchmarked and what criteria were used?</button>
               <button class="chat-suggestion" onclick="useSuggestion(this)">How does private property authorization work under the Act?</button>
+              <button class="chat-suggestion" onclick="useSuggestion(this)">What insurance requirements exist in Utah HB 101 versus what Idaho proposes?</button>
+              <button class="chat-suggestion" onclick="useSuggestion(this)">What does the staff analysis say about Boise's existing permitting infrastructure?</button>
+              <button class="chat-suggestion" onclick="useSuggestion(this)">What safety data supports autonomous vehicle deployment?</button>
+              <button class="chat-suggestion" onclick="useSuggestion(this)">What are the key talking points for presenting the ADS Act to legislators?</button>
+              <button class="chat-suggestion" onclick="useSuggestion(this)">What was included in the transmittal memo?</button>
             </div>
           </div>
         </div>
@@ -552,7 +558,7 @@
     document.addEventListener('keydown',e=>{if(e.key==='Escape')closePdf();});
     let chatHistory=[];
     function useSuggestion(btn){document.getElementById('chatInput').value=btn.textContent;sendChat();}
-    async function sendChat(){const input=document.getElementById('chatInput');const msg=input.value.trim();if(!msg)return;input.value='';const sug=document.getElementById('chatSuggestions');if(sug)sug.style.display='none';appendMsg('user',msg);chatHistory.push({role:'user',content:msg});const loadingEl=appendMsg('loading','');document.getElementById('chatSend').disabled=true;try{const res=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:msg,history:chatHistory.slice(-10)})});const data=await res.json();loadingEl.remove();const reply=data.response||data.error||'Something went wrong.';appendMsg('assistant',reply);chatHistory.push({role:'assistant',content:reply});}catch{loadingEl.remove();appendMsg('assistant','Connection error. Try again.');}document.getElementById('chatSend').disabled=false;}
+    async function sendChat(){const input=document.getElementById('chatInput');const msg=input.value.trim();if(!msg)return;input.value='';appendMsg('user',msg);chatHistory.push({role:'user',content:msg});const loadingEl=appendMsg('loading','');document.getElementById('chatSend').disabled=true;try{const res=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:msg,history:chatHistory.slice(-10)})});const data=await res.json();loadingEl.remove();const reply=data.response||data.error||'Something went wrong.';appendMsg('assistant',reply);chatHistory.push({role:'assistant',content:reply});}catch{loadingEl.remove();appendMsg('assistant','Connection error. Try again.');}document.getElementById('chatSend').disabled=false;}
     function appendMsg(type,text){const container=document.getElementById('chatMessages');const el=document.createElement('div');if(type==='loading'){el.className='msg msg-loading';el.innerHTML='<div class="spinner"></div> Searching briefs...';}else if(type==='assistant'){el.className='msg msg-assistant';el.innerHTML=md(text);}else{el.className='msg msg-user';el.textContent=text;}container.appendChild(el);if(type==='assistant'){el.scrollIntoView({behavior:'smooth',block:'start'});}else{container.scrollTop=container.scrollHeight;}return el;}
   </script>
 </body>
