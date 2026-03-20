@@ -37,9 +37,8 @@ const sentences = [
 ];
 
 const InteractiveParadigmTitle: React.FC = () => {
-    const paradigmLine1 = ["THE"];
-    const paradigmLine2 = ["PARADIGM"];
-    const paradigmLine3 = ["SHIFTS."];
+    const paradigmLine1 = ["CRITICAL"];
+    const paradigmLine2 = ["WINDOW"];
 
     // Colors
     const cGreen = "#008f25";
@@ -47,7 +46,7 @@ const InteractiveParadigmTitle: React.FC = () => {
     const cEggplant = "#2c0f38"; 
     const cWhite = "#ffffff";
 
-    // "THE PARADIGM" — Eggplant base, slowly cycles eggplant→dark green→green→eggplant
+    // "CRITICAL" — Eggplant base, slowly cycles eggplant→dark green→green→eggplant
     const standardVariant: Variants = {
         hidden: { y: 20, opacity: 0, color: cEggplant },
         visible: (i: number) => ({
@@ -63,7 +62,7 @@ const InteractiveParadigmTitle: React.FC = () => {
         }
     };
 
-    // "SHIFTS." — Starts eggplant, settles on white. Hover: white→green→dark green→green→white
+    // "WINDOW" — Starts eggplant, settles on white. Hover: white→green→dark green→green→white
     const shiftsVariant: Variants = {
         hidden: { y: 20, opacity: 0, color: cEggplant },
         visible: (i: number) => ({
@@ -83,7 +82,7 @@ const InteractiveParadigmTitle: React.FC = () => {
 
     return (
         <div className="flex flex-col items-start cursor-default">
-            {/* Line 1 & 2 */}
+            {/* Line 1: CRITICAL */}
             <div className="flex flex-wrap gap-x-2 md:gap-x-4 items-baseline">
                 {paradigmLine1.map((word, i) => (
                     <motion.span
@@ -91,22 +90,7 @@ const InteractiveParadigmTitle: React.FC = () => {
                         custom={i}
                         initial="hidden"
                         whileInView="visible"
-                        whileHover="hover" // Independent interaction
-                        viewport={{ once: true }} 
-                        variants={standardVariant}
-                        className="text-4xl sm:text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.9] inline-block cursor-pointer"
-                    >
-                        {word}
-                    </motion.span>
-                ))}
-                
-                {paradigmLine2.map((word, i) => (
-                    <motion.span
-                        key={`l2-${i}`}
-                        custom={i + paradigmLine1.length}
-                        initial="hidden"
-                        whileInView="visible"
-                        whileHover="hover" // Independent interaction
+                        whileHover="hover"
                         viewport={{ once: true }} 
                         variants={standardVariant}
                         className="text-4xl sm:text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.9] inline-block cursor-pointer"
@@ -115,15 +99,15 @@ const InteractiveParadigmTitle: React.FC = () => {
                     </motion.span>
                 ))}
             </div>
-            {/* Line 3 */}
+            {/* Line 2: WINDOW */}
             <div className="flex flex-wrap gap-x-2 md:gap-x-4">
-                {paradigmLine3.map((word, i) => (
+                {paradigmLine2.map((word, i) => (
                     <motion.span
-                        key={`l3-${i}`}
-                        custom={i + paradigmLine1.length + paradigmLine2.length}
+                        key={`l2-${i}`}
+                        custom={i + paradigmLine1.length}
                         initial="hidden"
                         whileInView="visible"
-                        whileHover="hover" // Independent interaction
+                        whileHover="hover"
                         viewport={{ once: true }} 
                         variants={shiftsVariant}
                         className="text-4xl sm:text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.9] inline-block cursor-pointer"
@@ -398,7 +382,7 @@ export const Hero: React.FC = () => {
   }
 
   // UPDATED: Single Paragraph Quote with hyphen and lowercase 'd'
-  const quoteText = "A convergence of historic stewardship and autonomous future. The first corporate residence - designed for the era of artificial intelligence.";
+  const quoteText = "Micron House is the immediate venue to test Cybercab and Optimus in a real home, convene leaders around firsthand experience, and shape public rollout from a historic neighborhood near the Capitol, downtown, Micron, and the airport.";
   const quoteWords = quoteText.split(" ");
 
   // Shared container variants for the word-by-word animation
