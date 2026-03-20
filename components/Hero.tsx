@@ -38,8 +38,8 @@ const sentences = [
 
 const InteractiveParadigmTitle: React.FC = () => {
     const paradigmLine1 = ["THE"];
-    const paradigmLine2 = ["PARADIGM"];
-    const paradigmLine3 = ["SHIFTS."];
+    const paradigmLine2 = ["CRITICAL"];
+    const paradigmLine3 = ["WINDOW."];
 
     // Colors
     const cGreen = "#008f25";
@@ -398,7 +398,7 @@ export const Hero: React.FC = () => {
   }
 
   // UPDATED: Single Paragraph Quote with hyphen and lowercase 'd'
-  const quoteText = "A private residence for first encounters with Optimus and Cybercab.";
+  const quoteText = "Micron House is the immediate venue to test Cybercab and Optimus in a real home, convene leaders around firsthand experience, and shape public rollout from a historic neighborhood near the Capitol, downtown, Micron, and the airport.";
   const quoteWords = quoteText.split(" ");
 
   // Shared container variants for the word-by-word animation
@@ -595,7 +595,7 @@ export const Hero: React.FC = () => {
                          initial="hidden"
                          animate={shouldShowQuote ? "visible" : "hidden"}
                          variants={quoteContainerVariants}
-                         className="font-micron text-base text-white/90 font-extralight leading-relaxed text-left will-change-transform"
+                         className="font-micron text-sm text-white/90 font-extralight leading-relaxed text-left will-change-transform"
                       >
                          <p className="inline">
                              {quoteWords.map((word, i) => (
@@ -616,6 +616,7 @@ export const Hero: React.FC = () => {
                         <h3 className="text-white font-bold text-lg uppercase tracking-wider leading-tight">Micron House</h3>
                         <p className="text-micron-eggplant font-semibold text-sm md:text-base uppercase tracking-widest leading-tight whitespace-nowrap overflow-hidden text-ellipsis">1020 East Warm Springs Ave</p>
                         <p className="text-micron-eggplant/80 text-xs md:text-sm uppercase tracking-widest leading-tight">Boise, Idaho 83712</p>
+                        <p className="text-white/50 text-[10px] md:text-xs uppercase tracking-widest leading-tight mt-2">5 min downtown · 15 min Micron · 15 min airport</p>
                  </div>
 
                  {/* MOBILE + TABLET PORTRAIT QUOTE - centered */}
@@ -624,7 +625,7 @@ export const Hero: React.FC = () => {
                          initial="hidden"
                          animate={shouldShowQuote ? "visible" : "hidden"}
                          variants={quoteContainerVariants}
-                         className="font-micron text-xl text-center text-white font-extralight leading-relaxed -rotate-3 pb-4 will-change-transform"
+                         className="font-micron text-base text-center text-white font-extralight leading-relaxed -rotate-2 pb-4 will-change-transform"
                       >
                          <p className="inline">
                              {quoteWords.map((word, i) => (
@@ -647,7 +648,7 @@ export const Hero: React.FC = () => {
                         initial="hidden"
                         animate={shouldShowQuote ? "visible" : "hidden"}
                         variants={quoteContainerVariants}
-                        className="font-micron text-2xl text-white font-extralight leading-relaxed text-left -rotate-6 max-w-lg w-full -translate-x-4 pb-4 will-change-transform"
+                        className="font-micron text-lg text-white font-extralight leading-relaxed text-left -rotate-3 max-w-xl w-full -translate-x-4 pb-4 will-change-transform"
                 >
                      <p className="inline">
                         {quoteWords.map((word, i) => (
