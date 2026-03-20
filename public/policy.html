@@ -142,7 +142,7 @@
     }
     .chat-header {
       padding: 24px 28px 20px; border-bottom: 1px solid #f4f4f5;
-      display: flex; align-items: center; justify-content: space-between;
+      display: flex; align-items: flex-start; justify-content: space-between;
     }
     .chat-header h3 {
       font-family: 'Outfit', sans-serif;
@@ -150,8 +150,12 @@
       color: #18181b; display: flex; align-items: center; gap: 8px;
     }
     .chat-header .dot { width: 7px; height: 7px; border-radius: 50%; background: #008f25; }
+    .chat-header-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
     .chat-header .meta {
       font-size: 10px; font-weight: 600; color: #a1a1aa; letter-spacing: 0.05em; text-transform: uppercase;
+    }
+    .chat-header .doc-count {
+      font-size: 11px; font-weight: 700; color: #008f25; letter-spacing: 0.03em;
     }
     .chat-messages {
       flex: 1; overflow-y: auto; padding: 20px 24px;
@@ -360,7 +364,10 @@
       <div class="chat-panel fade-in d3">
         <div class="chat-header">
           <h3><span class="dot"></span> Claude Opus 4.6</h3>
-          <span class="meta" id="docCount">Policy Brief Research</span>
+          <div class="chat-header-right">
+            <span class="meta">Policy Brief Research</span>
+            <span class="doc-count" id="docCount"></span>
+          </div>
         </div>
         <div class="chat-messages" id="chatMessages">
           <div class="chat-empty" id="chatEmpty">
@@ -450,7 +457,7 @@
         const res = await fetch('/api/doc-count');
         const data = await res.json();
         if (data.count > 0) {
-          document.getElementById('docCount').textContent = data.count + ' documents · Policy Brief Research';
+          document.getElementById('docCount').textContent = data.count + ' documents indexed';
         }
       } catch(e) { console.log('Count fetch failed', e); }
     })();
