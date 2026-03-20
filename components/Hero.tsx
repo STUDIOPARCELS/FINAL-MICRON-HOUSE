@@ -383,7 +383,7 @@ export const Hero: React.FC = () => {
   }
 
   // UPDATED: Single Paragraph Quote with hyphen and lowercase 'd'
-  const quoteText = "Micron House is the immediate venue to test Cybercab and Optimus in a real home, convene leaders around firsthand experience — and shape public rollout from a historic neighborhood near the Capitol, downtown, Micron, and the airport.";
+  const quoteText = "Micron House is the immediate venue to test Cybercab and Optimus in a 1906 home, convene leaders around firsthand experience — and shape public rollout from a historic neighborhood near the Capitol, downtown, Micron, and the airport.";
   const quoteWords = quoteText.split(" ");
   
   // Color segments for the quote
