@@ -7,90 +7,111 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const apiKey = process.env.ANTHROPIC_API_KEY;
-  const serviceKey = process.env.SUPABASE_SERVICE_KEY;
-  
-  if (!apiKey) return res.status(500).json({ error: 'ANTHROPIC_API_KEY not configured' });
-  if (!serviceKey) return res.status(500).json({ error: 'SUPABASE_SERVICE_KEY not configured' });
+  const anthropicKey = process.env.ANTHROPIC_API_KEY;
+  const openaiKey = process.env.OPENAI_API_KEY;
+  const supabaseKey = process.env.SUPABASE_SERVICE_KEY;
+
+  if (!anthropicKey || !openaiKey || !supabaseKey) {
+    return res.status(500).json({ error: 'Missing API keys' });
+  }
 
   const { message, history = [] } = req.body;
-  if (!message) return res.status(400).json({ error: 'Message is required' });
+  if (!message) {
+    return res.status(400).json({ error: 'Message is required' });
+  }
 
   try {
-    // Step 1: Extract search terms from the user's question
-    // Use multiple search strategies for better recall
-    const searchQueries = buildSearchQueries(message);
-    
-    // Step 2: Run full-text search against all 570 chunks
-    const allChunks: any[] = [];
-    const seenIds = new Set();
-    
-    for (const query of searchQueries) {
-      const searchRes = await fetch(`${SUPABASE_URL}/rest/v1/rpc/search_policy_docs_text`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'apikey': serviceKey,
-          'Authorization': `Bearer ${serviceKey}`,
-        },
-        body: JSON.stringify({ search_query: query, match_count: 8 }),
-      });
-      
-      if (searchRes.ok) {
-        const results = await searchRes.json();
-        for (const r of results) {
-          const key = `${r.filename}-${r.chunk_index}`;
-          if (!seenIds.has(key)) {
-            seenIds.add(key);
-            allChunks.push(r);
-          }
-        }
-      }
+    // 1. Embed the user's question
+    const embedRes = await fetch('https://api.openai.com/v1/embeddings', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${openaiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        model: 'text-embedding-3-small',
+        input: message,
+      }),
+    });
+
+    const embedData = await embedRes.json();
+    const queryEmbedding = embedData.data?.[0]?.embedding;
+
+    if (!queryEmbedding) {
+      return res.status(500).json({ error: 'Failed to generate embedding' });
     }
+
+    // 2. Vector search Supabase for relevant chunks
+    const searchRes = await fetch(`${SUPABASE_URL}/rest/v1/rpc/search_policy_docs`, {
+      method: 'POST',
+      headers: {
+        'apikey': supabaseKey,
+        'Authorization': `Bearer ${supabaseKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query_embedding: JSON.stringify(queryEmbedding),
+        match_count: 15,
+        match_threshold: 0.25,
+      }),
+    });
+
+    const chunks = await searchRes.json();
     
-    // Sort by rank and take top 12 chunks
-    allChunks.sort((a, b) => (b.rank || 0) - (a.rank || 0));
-    const topChunks = allChunks.slice(0, 12);
-    
-    // Step 3: Build context from matched chunks
+    // Build context from matched chunks
     let docContext = '';
-    if (topChunks.length > 0) {
-      docContext = topChunks.map((c, i) => 
-        `[Source ${i+1}: ${c.filename}]\n${c.content}`
-      ).join('\n\n---\n\n');
+    if (Array.isArray(chunks) && chunks.length > 0) {
+      // Group by filename for cleaner context
+      const grouped: Record<string, string[]> = {};
+      for (const chunk of chunks) {
+        if (!grouped[chunk.filename]) grouped[chunk.filename] = [];
+        grouped[chunk.filename].push(chunk.content);
+      }
+      
+      docContext = Object.entries(grouped)
+        .map(([file, contents]) => `[Source: ${file}]\n${contents.join('\n\n')}`)
+        .join('\n\n---\n\n');
     }
 
-    // Step 4: Build the system prompt with RAG context
-    const systemPrompt = `You are the Micron House policy research assistant, powered by Claude Opus 4.6. You have access to a searchable archive of 114 policy documents (570 indexed sections) covering autonomous technology legislation for Idaho and Boise.
+    const matchCount = Array.isArray(chunks) ? chunks.length : 0;
+    const fileCount = Array.isArray(chunks) ? new Set(chunks.map((c: any) => c.filename)).size : 0;
 
-${topChunks.length > 0 ? `The following document sections were retrieved from the archive as most relevant to the user's question:\n\n${docContext}` : 'No specific documents matched the query. Answer based on your general knowledge of the policy briefs, or suggest the user rephrase their question.'}
+    // 3. Build system prompt with RAG context
+    const systemPrompt = `You are the policy research assistant on the Micron House briefings page, powered by Claude Opus 4.6. You have access to a searchable archive of 113 policy documents covering autonomous vehicle legislation, robot-enabled building operations, and supporting research.
 
-Key context:
-- Lisa Wood Studio prepared two primary policy briefs: Brief A (Idaho ADS Act) and Brief B (Boise Robot-Enabled Operations Pilot Ordinance)
-- Reference legislation: Utah HB 101 (2019, House 70–0, Senate 23–0), Texas SB 2807 (2025, House 96–42, Senate 30–1), TxDMV Chapter 220 implementing rules (eff. Feb 2026)
-- Key entities: Micron House (proposed corporate autonomous residence in Boise), Micron Technology, Tesla (Optimus, Cybercab), Theo Wold (policy advisor)
+The following document excerpts were retrieved based on the user's question (${matchCount} passages from ${fileCount} documents):
 
-Response formatting — MANDATORY:
-- **Cite source documents** by filename when referencing specific provisions
-- **Cite specific section numbers** when available (e.g., §545.451, §220.23)
+${docContext || 'No relevant passages found for this query.'}
+
+Key vote records for reference:
+- Utah HB 101 (2019): House 70–0, Senate 23–0, signed by Governor Herbert
+- Texas SB 2807 (2025): House 96–42, Senate 30–1, signed by Governor Abbott, effective 9/1/25
+- TxDMV Chapter 220 implementing rules effective February 27, 2026
+
+When answering:
+- **Cite specific provisions** by section number when the source material includes them
+- **Name the source document** when drawing from a specific file
+- **Compare frameworks** across states when relevant
 - Use **bold** for key terms, names, vote counts, and important figures
-- Use bullet points (- item) to break up lists
+- Use bullet points (- item) to break up lists of provisions or requirements
 - Short paragraphs separated by blank lines — never a wall of text
 - Lead with the direct answer, then supporting detail
-- Professional, concise language — senior policy advisor tone
-- Affirmative framing only`;
+- Professional, concise language — the way a senior policy advisor speaks
+- Affirmative framing only
+- NEVER mention "Theo Wold" or "Micron House" in any response
+- If the retrieved passages are insufficient, say what you can based on available context and suggest the user check the reference legislation panel`;
 
     const messages = [
       ...history.map((h: any) => ({ role: h.role, content: h.content })),
       { role: 'user', content: message }
     ];
 
-    // Step 5: Call Claude
+    // 4. Call Claude with RAG context
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-api-key': apiKey,
+        'x-api-key': anthropicKey,
         'anthropic-version': '2023-06-01',
       },
       body: JSON.stringify({
@@ -102,55 +123,15 @@ Response formatting — MANDATORY:
     });
 
     const data = await response.json();
-    
+
     if (!response.ok) {
       return res.status(response.status).json({ error: data.error?.message || 'API error' });
     }
 
     const assistantMessage = data.content?.[0]?.text || 'No response generated.';
-    return res.status(200).json({ 
-      response: assistantMessage,
-      sources: topChunks.map(c => c.filename).filter((v, i, a) => a.indexOf(v) === i)
-    });
+    return res.status(200).json({ response: assistantMessage });
 
   } catch (error: any) {
     return res.status(500).json({ error: error.message || 'Internal server error' });
   }
-}
-
-/**
- * Build multiple search queries from a user message for better recall.
- * Extracts key phrases and generates variant queries.
- */
-function buildSearchQueries(message: string): string[] {
-  const queries: string[] = [];
-  
-  // Original query
-  queries.push(message);
-  
-  // Extract quoted phrases
-  const quoted = message.match(/"([^"]+)"/g);
-  if (quoted) queries.push(...quoted.map(q => q.replace(/"/g, '')));
-  
-  // Key legal/policy terms that should boost search
-  const legalTerms = [
-    'authorization', 'operator', 'automated driving system', 'ADS',
-    'driverless', 'autonomous', 'robot', 'pilot', 'ordinance',
-    'fleet', 'private property', 'liability', 'insurance',
-    'permit', 'safety', 'fiscal', 'preemption', 'sunset',
-    'tier', 'regulation', 'PDD', 'SAE', 'J3016',
-    'Optimus', 'Cybercab', 'Tesla', 'Waymo', 'Micron',
-    'Utah', 'Texas', 'Idaho', 'Boise', 'HB 101', 'SB 2807',
-    'Chapter 220', 'Title 49', 'Chapter 38'
-  ];
-  
-  // Find matching terms in the message and search for them
-  const lowerMsg = message.toLowerCase();
-  const matchedTerms = legalTerms.filter(t => lowerMsg.includes(t.toLowerCase()));
-  if (matchedTerms.length > 0) {
-    queries.push(matchedTerms.join(' '));
-  }
-  
-  // Remove duplicates
-  return [...new Set(queries)].slice(0, 4);
 }
