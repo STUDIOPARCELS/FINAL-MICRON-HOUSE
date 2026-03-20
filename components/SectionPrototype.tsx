@@ -709,7 +709,7 @@ export const SectionPrototype: React.FC = () => {
                         COLLABORATION
                     </h3>
                     <p className="text-xs font-bold uppercase tracking-widest text-white/50 group-hover:text-white transition-colors">
-                        Micron + Tesla
+                        Micron + Tesla + Boise
                     </p>
                 </div>
             </BentoCard>
