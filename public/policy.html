@@ -222,26 +222,37 @@
     .chat-send:disabled { opacity: 0.25; cursor: default; }
     .chat-send svg { width: 16px; height: 16px; }
 
-    /* PDF VIEWER — full screen */
+    /* PDF VIEWER — full screen, locked on mobile */
     .pdf-viewer {
       display: none; position: fixed; inset: 0; z-index: 200; background: #fff;
+      overscroll-behavior: contain; touch-action: none;
     }
     .pdf-viewer.active { display: flex; flex-direction: column; }
     .pdf-viewer-header {
       padding: 14px 24px; border-bottom: 1px solid #e4e4e7; background: #fff;
       display: flex; align-items: center; justify-content: space-between; flex-shrink: 0;
+      min-height: 52px;
     }
     .pdf-viewer-header h3 {
       font-family: 'Outfit', sans-serif;
       font-size: 14px; font-weight: 700; color: #18181b;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: calc(100% - 50px);
     }
     .pdf-close {
       width: 34px; height: 34px; border-radius: 50%; border: none;
       background: #f4f4f5; cursor: pointer; font-size: 16px; color: #71717a;
       display: flex; align-items: center; justify-content: center; transition: all 0.2s;
+      flex-shrink: 0;
     }
     .pdf-close:hover { background: #e4e4e7; color: #18181b; }
-    .pdf-viewer iframe { flex: 1; border: none; width: 100%; }
+    .pdf-viewer iframe {
+      flex: 1; border: none; width: 100%; height: 100%;
+      -webkit-overflow-scrolling: touch;
+    }
+    @media (max-width: 600px) {
+      .pdf-viewer-header { padding: 10px 16px; }
+      .pdf-viewer-header h3 { font-size: 12px; }
+    }
 
     /* RESPONSIVE — TABLET (960px and below) */
     @media (max-width: 960px) {
@@ -374,17 +385,17 @@
             <!-- Reference Legislation -->
             <p style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#18181b; margin-bottom:12px;">Reference Legislation</p>
             <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:24px;">
-              <button onclick="openPdf('utah')" style="display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border-radius:10px; border:none; background:#f0fdf4; color:#166534; cursor:pointer; font-size:12px; font-weight:600; text-align:left; transition:all 0.2s; box-shadow:0 2px 8px -2px rgba(0,0,0,0.06);">
+              <button onclick="openPdf('utah')" style="display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border-radius:10px; border:none; background:#008f25; color:#fff; cursor:pointer; font-size:12px; font-weight:600; text-align:left; transition:all 0.2s; box-shadow:0 4px 12px -2px rgba(0,143,37,0.3);">
                 <span>Utah HB 101 — Autonomous Vehicle Regulations</span>
-                <span style="font-size:10px; color:#86efac; font-weight:700;">HOUSE 70–0 · SENATE 23–0</span>
+                <span style="font-size:10px; color:rgba(255,255,255,0.7); font-weight:700;">70–0 · 23–0</span>
               </button>
-              <button onclick="openPdf('texas')" style="display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border-radius:10px; border:none; background:#faf5ff; color:#581c87; cursor:pointer; font-size:12px; font-weight:600; text-align:left; transition:all 0.2s; box-shadow:0 2px 8px -2px rgba(0,0,0,0.06);">
+              <button onclick="openPdf('texas')" style="display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border-radius:10px; border:none; background:#7db0d3; color:#fff; cursor:pointer; font-size:12px; font-weight:600; text-align:left; transition:all 0.2s; box-shadow:0 4px 12px -2px rgba(125,176,211,0.3);">
                 <span>Texas SB 2807 — Automated Motor Vehicles</span>
-                <span style="font-size:10px; color:#c084fc; font-weight:700;">HOUSE 96–42 · SENATE 30–1</span>
+                <span style="font-size:10px; color:rgba(255,255,255,0.7); font-weight:700;">96–42 · 30–1</span>
               </button>
-              <button onclick="openPdf('txrules')" style="display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border-radius:10px; border:none; background:#f8fafc; color:#334155; cursor:pointer; font-size:12px; font-weight:600; text-align:left; transition:all 0.2s; box-shadow:0 2px 8px -2px rgba(0,0,0,0.06);">
+              <button onclick="openPdf('txrules')" style="display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border-radius:10px; border:none; background:#353942; color:#fff; cursor:pointer; font-size:12px; font-weight:600; text-align:left; transition:all 0.2s; box-shadow:0 4px 12px -2px rgba(53,57,66,0.3);">
                 <span>TxDMV Chapter 220 — Implementing Rules</span>
-                <span style="font-size:10px; color:#94a3b8; font-weight:700;">EFF. FEB 2026</span>
+                <span style="font-size:10px; color:rgba(255,255,255,0.5); font-weight:700;">EFF. FEB 2026</span>
               </button>
             </div>
 
@@ -502,8 +513,8 @@
       texas:{title:'Texas SB 2807 — Automated Motor Vehicles (Enrolled)',url:`${PDF_BASE}/texas-sb2807-enrolled.pdf`},
       txrules:{title:'TxDMV Chapter 220 — Implementing Rules',url:`${PDF_BASE}/texas-ch220-rules.pdf`}
     };
-    function openPdf(id){const b=briefs[id];document.getElementById('pdfTitle').textContent=b.title;document.getElementById('pdfFrame').src=b.url;document.getElementById('pdfViewer').classList.add('active');document.body.style.overflow='hidden';}
-    function closePdf(){document.getElementById('pdfViewer').classList.remove('active');document.getElementById('pdfFrame').src='';document.body.style.overflow='';}
+    function openPdf(id){const b=briefs[id];document.getElementById('pdfTitle').textContent=b.title;document.getElementById('pdfFrame').src=b.url;document.getElementById('pdfViewer').classList.add('active');document.body.style.overflow='hidden';document.body.style.position='fixed';document.body.style.width='100%';document.body.style.top='-'+window.scrollY+'px';}
+    function closePdf(){const scrollY=document.body.style.top;document.getElementById('pdfViewer').classList.remove('active');document.getElementById('pdfFrame').src='';document.body.style.overflow='';document.body.style.position='';document.body.style.width='';document.body.style.top='';window.scrollTo(0,parseInt(scrollY||'0')*-1);}
     document.addEventListener('keydown',e=>{if(e.key==='Escape')closePdf();});
     let chatHistory=[];
     function useSuggestion(btn){document.getElementById('chatInput').value=btn.textContent;sendChat();}
