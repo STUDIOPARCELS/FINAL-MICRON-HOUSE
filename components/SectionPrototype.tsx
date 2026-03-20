@@ -616,7 +616,7 @@ export const SectionPrototype: React.FC = () => {
             className="flex flex-col md:flex-row md:items-end gap-6 mb-12"
         >
             <div className="flex-shrink-0">
-                <span className="block text-sm font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2 font-sans">01 / CRITICAL WINDOW</span>
+                <span className="block text-sm font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2 font-sans">01 / GUIDED INTRODUCTION</span>
                 <h2 className="text-5xl md:text-6xl font-bold uppercase tracking-tight text-micron-green leading-none font-sans">WHY NOW</h2>
             </div>
 
