@@ -37,8 +37,9 @@ const sentences = [
 ];
 
 const InteractiveParadigmTitle: React.FC = () => {
-    const paradigmLine1 = ["CRITICAL"];
-    const paradigmLine2 = ["WINDOW"];
+    const paradigmLine1 = ["THE"];
+    const paradigmLine2 = ["PARADIGM"];
+    const paradigmLine3 = ["SHIFTS."];
 
     // Colors
     const cGreen = "#008f25";
@@ -82,7 +83,7 @@ const InteractiveParadigmTitle: React.FC = () => {
 
     return (
         <div className="flex flex-col items-start cursor-default">
-            {/* Line 1 */}
+            {/* Line 1 & 2 */}
             <div className="flex flex-wrap gap-x-2 md:gap-x-4 items-baseline">
                 {paradigmLine1.map((word, i) => (
                     <motion.span
@@ -90,7 +91,22 @@ const InteractiveParadigmTitle: React.FC = () => {
                         custom={i}
                         initial="hidden"
                         whileInView="visible"
-                        whileHover="hover"
+                        whileHover="hover" // Independent interaction
+                        viewport={{ once: true }} 
+                        variants={standardVariant}
+                        className="text-4xl sm:text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.9] inline-block cursor-pointer"
+                    >
+                        {word}
+                    </motion.span>
+                ))}
+                
+                {paradigmLine2.map((word, i) => (
+                    <motion.span
+                        key={`l2-${i}`}
+                        custom={i + paradigmLine1.length}
+                        initial="hidden"
+                        whileInView="visible"
+                        whileHover="hover" // Independent interaction
                         viewport={{ once: true }} 
                         variants={standardVariant}
                         className="text-4xl sm:text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.9] inline-block cursor-pointer"
@@ -99,15 +115,15 @@ const InteractiveParadigmTitle: React.FC = () => {
                     </motion.span>
                 ))}
             </div>
-            {/* Line 2 */}
+            {/* Line 3 */}
             <div className="flex flex-wrap gap-x-2 md:gap-x-4">
-                {paradigmLine2.map((word, i) => (
+                {paradigmLine3.map((word, i) => (
                     <motion.span
-                        key={`l2-${i}`}
-                        custom={i + paradigmLine1.length}
+                        key={`l3-${i}`}
+                        custom={i + paradigmLine1.length + paradigmLine2.length}
                         initial="hidden"
                         whileInView="visible"
-                        whileHover="hover"
+                        whileHover="hover" // Independent interaction
                         viewport={{ once: true }} 
                         variants={shiftsVariant}
                         className="text-4xl sm:text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.9] inline-block cursor-pointer"
@@ -382,7 +398,7 @@ export const Hero: React.FC = () => {
   }
 
   // UPDATED: Single Paragraph Quote with hyphen and lowercase 'd'
-  const quoteText = "Micron House is the immediate venue to test Cybercab and Optimus in a real home, convene leaders around firsthand experience, and shape public rollout from a historic neighborhood near the Capitol, downtown, Micron, and the airport.";
+  const quoteText = "A convergence of historic stewardship and autonomous future. The first corporate residence - designed for the era of artificial intelligence.";
   const quoteWords = quoteText.split(" ");
 
   // Shared container variants for the word-by-word animation
@@ -510,7 +526,7 @@ export const Hero: React.FC = () => {
                                      // Forced line layout: render each line as a block
                                      let wordIndex = 0;
                                      return currentSet.lines.map((line: string[], lineIdx: number) => (
-                                         <div key={`line-${lineIdx}`} className="w-full flex flex-nowrap gap-x-4 md:gap-x-6 xl:gap-x-3 2xl:gap-x-6 justify-center">
+                                         <div key={`line-${lineIdx}`} className="w-full flex flex-nowrap gap-x-4 md:gap-x-6 justify-center">
                                              {line.map((word: string) => {
                                                  const el = renderWord(word, wordIndex, currentSet);
                                                  wordIndex++;
@@ -557,61 +573,111 @@ export const Hero: React.FC = () => {
 
         </div>
 
-        {/* BOTTOM SECTION: CRITICAL WINDOW BENTO */}
+        {/* BOTTOM SECTION: PARADIGM & QUOTE */}
+        {/* Appears on scroll like all other sections */}
         <motion.div 
             initial={{ opacity: 0, y: 100 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
             transition={{ duration: 2.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="w-full bg-micron-eggplant-light rounded-3xl shadow-[0_40px_80px_-15px_rgba(0,0,0,0.3)] border border-white/20 relative overflow-hidden p-6 md:p-8 lg:p-10 group"
+            className="w-full bg-micron-eggplant-light rounded-3xl shadow-[0_40px_80px_-15px_rgba(0,0,0,0.3)] border border-white/20 relative overflow-hidden flex flex-col p-6 md:p-8 gap-4 md:gap-6 group"
         >
-            {/* TOP ROW: Title left + Map right (horizontal, fills space) */}
-            <div className="flex flex-col md:flex-row md:items-start gap-6 md:gap-8 mb-6">
-                {/* TITLE */}
-                <div className="relative z-10 flex-shrink-0">
+            {/* TOP ROW: Paradigm + Quote + Map */}
+            <div className="flex flex-col lg:flex-row lg:items-stretch flex-1 gap-4 lg:gap-6 xl:gap-8">
+            {/* LEFT: Title + Quote (tablet) + Address Block */}
+            <div className="flex-shrink-0 flex flex-col justify-between items-start z-10 relative h-full md:w-auto gap-10 md:gap-12">
+                 <div className="relative z-10 w-full">
                     <InteractiveParadigmTitle />
-                </div>
-                {/* MAP — horizontal, fills remaining width */}
-                <div className="w-full md:flex-1 h-[180px] md:h-[200px] bg-zinc-100 rounded-2xl overflow-hidden shadow-2xl relative border-4 border-white/20 z-10">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2889.234!2d-116.1898!3d43.6088!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54aef8d1b0b3b8e7%3A0x0!2s1020%20E%20Warm%20Springs%20Ave%2C%20Boise%2C%20ID%2083712!5e0!3m2!1sen!2sus!4v1706000000000"
-                        width="100%"
-                        height="100%"
-                        style={{ border: 0, filter: 'grayscale(100%) contrast(100%)' }}
-                        allowFullScreen={false}
-                        loading="lazy"
-                        title="Micron House Map"
-                        className="absolute inset-0 w-full h-full opacity-90"
-                    />
-                </div>
+                 </div>
+
+                 {/* TABLET LANDSCAPE QUOTE - under title, no angle, fills horizontal space */}
+                 <div className="hidden lg:block xl:hidden relative z-10">
+                      <motion.div
+                         initial="hidden"
+                         animate={shouldShowQuote ? "visible" : "hidden"}
+                         variants={quoteContainerVariants}
+                         className="font-micron text-base text-white/90 font-extralight leading-relaxed text-left will-change-transform"
+                      >
+                         <p className="inline">
+                             {quoteWords.map((word, i) => (
+                                <motion.span
+                                    key={i}
+                                    variants={quoteWordVariants}
+                                    className="mr-1 inline-block"
+                                >
+                                    {word}
+                                </motion.span>
+                             ))}
+                         </p>
+                      </motion.div>
+                 </div>
+                 
+                 {/* ADDRESS BLOCK */}
+                 <div className="flex flex-col gap-0 border-l-4 border-micron-eggplant pl-3 relative z-10 mt-auto lg:mt-auto h-fit">
+                        <h3 className="text-white font-bold text-lg uppercase tracking-wider leading-tight">Micron House</h3>
+                        <p className="text-micron-eggplant font-semibold text-sm md:text-base uppercase tracking-widest leading-tight whitespace-nowrap overflow-hidden text-ellipsis">1020 East Warm Springs Ave</p>
+                        <p className="text-micron-eggplant/80 text-xs md:text-sm uppercase tracking-widest leading-tight">Boise, Idaho 83712</p>
+                 </div>
+
+                 {/* MOBILE + TABLET PORTRAIT QUOTE - centered */}
+                 <div className="lg:hidden w-full flex-grow pt-4 pb-12 flex items-center justify-center relative z-20">
+                      <motion.div
+                         initial="hidden"
+                         animate={shouldShowQuote ? "visible" : "hidden"}
+                         variants={quoteContainerVariants}
+                         className="font-micron text-xl text-center text-white font-extralight leading-relaxed -rotate-3 pb-4 will-change-transform"
+                      >
+                         <p className="inline">
+                             {quoteWords.map((word, i) => (
+                                <motion.span
+                                    key={i}
+                                    variants={quoteWordVariants}
+                                    className="mr-1.5 inline-block"
+                                >
+                                    {word}
+                                </motion.span>
+                             ))}
+                         </p>
+                      </motion.div>
+                 </div>
             </div>
 
-            {/* MIDDLE: Quote flows horizontally across the full width */}
-            <motion.div
-                initial="hidden"
-                animate={shouldShowQuote ? "visible" : "hidden"}
-                variants={quoteContainerVariants}
-                className="relative z-10 mb-6 -rotate-2"
-            >
-                <p className="inline">
-                    {quoteWords.map((word, i) => (
+            {/* CENTER: DESKTOP-ONLY QUOTE CONTAINER */}
+            <div className="hidden xl:flex flex-grow items-center justify-center relative px-4 z-10">
+                <motion.div
+                        initial="hidden"
+                        animate={shouldShowQuote ? "visible" : "hidden"}
+                        variants={quoteContainerVariants}
+                        className="font-micron text-2xl text-white font-extralight leading-relaxed text-left -rotate-6 max-w-lg w-full -translate-x-4 pb-4 will-change-transform"
+                >
+                     <p className="inline">
+                        {quoteWords.map((word, i) => (
                         <motion.span
                             key={i}
                             variants={quoteWordVariants}
-                            className="mr-1.5 md:mr-2 inline-block text-white/90 text-base md:text-lg lg:text-xl font-light italic leading-relaxed tracking-wide font-sans"
+                            className="mr-2 inline-block"
                         >
                             {word}
                         </motion.span>
-                    ))}
-                </p>
-            </motion.div>
-
-            {/* BOTTOM: Address */}
-            <div className="flex flex-col gap-0.5 border-l-4 border-[#14532d] pl-4 relative z-10">
-                <h3 className="text-white font-bold text-lg md:text-xl uppercase tracking-wider leading-tight">Micron House</h3>
-                <p className="text-[#14532d] font-semibold text-xs md:text-sm uppercase tracking-widest leading-tight">1020 East Warm Springs Ave</p>
-                <p className="text-[#14532d]/80 text-[10px] md:text-xs uppercase tracking-widest leading-tight">Boise, Idaho 83712</p>
-                <p className="text-white/40 text-[9px] md:text-[10px] uppercase tracking-widest leading-tight mt-1.5">5 min downtown · 15 min Micron · 15 min airport</p>
+                        ))}
+                    </p>
+                </motion.div>
             </div>
+
+            {/* RIGHT: Map Card — compact on tablet landscape, full on desktop */}
+            <div className="w-full lg:w-[260px] xl:w-[340px] aspect-[4/3] lg:aspect-[3/4] lg:h-auto bg-zinc-100 rounded-2xl overflow-hidden shadow-2xl relative border-4 border-white/20 z-10 mt-auto lg:mt-0 flex-shrink-0">
+                 <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2889.234!2d-116.1898!3d43.6088!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54aef8d1b0b3b8e7%3A0x0!2s1020%20E%20Warm%20Springs%20Ave%2C%20Boise%2C%20ID%2083712!5e0!3m2!1sen!2sus!4v1706000000000"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0, filter: 'grayscale(100%) contrast(100%)' }}
+                    allowFullScreen={false}
+                    loading="lazy"
+                    title="Micron House Map"
+                    className="absolute inset-0 w-full h-full opacity-90"
+                />
+            </div>
+            </div>
+
         </motion.div>
 
       </div>
