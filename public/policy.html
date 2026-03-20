@@ -520,16 +520,12 @@
       txrules:{title:'TxDMV Chapter 220 — Implementing Rules',url:`${PDF_BASE}/texas-ch220-rules.pdf`}
     };
     let savedScrollY = 0;
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth <= 960;
     function openPdf(id){
       const b=briefs[id];
-      if (isMobile) {
-        window.open(b.url, '_blank');
-        return;
-      }
       savedScrollY = window.scrollY;
       document.getElementById('pdfTitle').textContent=b.title;
-      document.getElementById('pdfFrame').src=b.url;
+      // Use Google Docs viewer — renders PDF as images, no mobile bounce
+      document.getElementById('pdfFrame').src='https://docs.google.com/gview?embedded=true&url='+encodeURIComponent(b.url);
       document.getElementById('pdfViewer').classList.add('active');
       document.body.style.overflow='hidden';
       document.body.style.position='fixed';
