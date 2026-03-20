@@ -563,12 +563,12 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 100 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
             transition={{ duration: 2.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="w-full bg-micron-eggplant-light rounded-3xl shadow-[0_40px_80px_-15px_rgba(0,0,0,0.3)] border border-white/20 relative overflow-hidden flex flex-col p-6 md:p-8 gap-4 md:gap-6 group"
+            className="w-full bg-micron-eggplant-light rounded-3xl shadow-[0_40px_80px_-15px_rgba(0,0,0,0.3)] border border-white/20 relative overflow-hidden flex flex-col p-4 md:p-6 gap-3 md:gap-4 group"
         >
             {/* TOP ROW: Paradigm + Quote + Map */}
-            <div className="flex flex-col lg:flex-row lg:items-stretch flex-1 gap-4 lg:gap-6 xl:gap-8">
+            <div className="flex flex-col lg:flex-row lg:items-stretch flex-1 gap-3 lg:gap-4 xl:gap-6">
             {/* LEFT: Title + Quote (tablet) + Address Block */}
-            <div className="flex-shrink-0 flex flex-col justify-between items-start z-10 relative h-full md:w-auto gap-10 md:gap-12">
+            <div className="flex-shrink-0 flex flex-col justify-between items-start z-10 relative h-full md:w-auto gap-6 md:gap-8">
                  <div className="relative z-10 w-full">
                     <InteractiveParadigmTitle />
                  </div>
@@ -579,7 +579,7 @@ export const Hero: React.FC = () => {
                          initial="hidden"
                          animate={shouldShowQuote ? "visible" : "hidden"}
                          variants={quoteContainerVariants}
-                         className="font-sans text-base text-white/50 font-[200] italic leading-relaxed text-left will-change-transform"
+                         className="font-micron text-base text-white font-extralight leading-relaxed text-left will-change-transform"
                       >
                          <p className="inline">
                              {quoteWords.map((word, i) => (
@@ -603,12 +603,12 @@ export const Hero: React.FC = () => {
                  </div>
 
                  {/* MOBILE + TABLET PORTRAIT QUOTE - centered */}
-                 <div className="lg:hidden w-full flex-grow pt-4 pb-12 flex items-center justify-center relative z-20">
+                 <div className="lg:hidden w-full flex-grow pt-2 pb-8 flex items-center justify-center relative z-20">
                       <motion.div
                          initial="hidden"
                          animate={shouldShowQuote ? "visible" : "hidden"}
                          variants={quoteContainerVariants}
-                         className="font-sans text-xl text-center text-white/50 font-[200] italic leading-relaxed -rotate-3 pb-4 will-change-transform"
+                         className="font-micron text-xl text-center text-white font-extralight leading-relaxed -rotate-3 pb-4 will-change-transform"
                       >
                          <p className="inline">
                              {quoteWords.map((word, i) => (
@@ -631,7 +631,7 @@ export const Hero: React.FC = () => {
                         initial="hidden"
                         animate={shouldShowQuote ? "visible" : "hidden"}
                         variants={quoteContainerVariants}
-                        className="font-sans text-2xl text-white/50 font-[200] italic leading-relaxed text-left -rotate-6 max-w-lg w-full -translate-x-4 pb-4 will-change-transform"
+                        className="font-micron text-2xl text-white font-extralight leading-relaxed text-left -rotate-6 max-w-lg w-full -translate-x-4 pb-4 will-change-transform"
                 >
                      <p className="inline">
                         {quoteWords.map((word, i) => (
@@ -648,7 +648,7 @@ export const Hero: React.FC = () => {
             </div>
 
             {/* RIGHT: Map Card — compact on tablet landscape, full on desktop */}
-            <div className="w-full lg:w-[260px] xl:w-[340px] aspect-[4/3] lg:aspect-[3/4] lg:h-auto bg-zinc-100 rounded-2xl overflow-hidden shadow-2xl relative border-4 border-white/20 z-10 mt-auto lg:mt-0 flex-shrink-0">
+            <div className="w-full lg:w-[195px] xl:w-[255px] aspect-[4/3] lg:aspect-[4/3] lg:h-auto bg-zinc-100 rounded-2xl overflow-hidden shadow-2xl relative border-4 border-white/20 z-10 mt-auto lg:mt-0 flex-shrink-0">
                  <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2889.234!2d-116.1898!3d43.6088!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54aef8d1b0b3b8e7%3A0x0!2s1020%20E%20Warm%20Springs%20Ave%2C%20Boise%2C%20ID%2083712!5e0!3m2!1sen!2sus!4v1706000000000"
                     width="100%"
