@@ -284,7 +284,7 @@ export const SectionServing: React.FC = () => {
             <div className="flex-shrink-0">
                 {/* UPDATED: Renumbered to 03 */}
                 <span className="block text-sm font-bold uppercase tracking-[0.2em] text-zinc-400 mb-2 font-sans">03 / OUTCOME</span>
-                <h2 className="text-2xl md:text-4xl lg:text-6xl font-bold uppercase tracking-tight text-micron-eggplant leading-none font-sans">
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-micron-eggplant leading-none font-sans">
                     PROOF OF CONCEPT
                 </h2>
             </div>
