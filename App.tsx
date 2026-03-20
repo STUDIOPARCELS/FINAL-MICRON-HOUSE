@@ -28,17 +28,11 @@ function App() {
   // Helper function to handle smooth scrolling with header offset
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
-    setMobileMenuOpen(false); // Close mobile menu on click
+    setMobileMenuOpen(false);
     const element = document.getElementById(id);
     if (element) {
-      const headerOffset = 85; // Height of fixed header + breathing room
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.scrollY - headerOffset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
+      // Use scrollIntoView — scroll-margin-top on sections handles the nav offset
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
