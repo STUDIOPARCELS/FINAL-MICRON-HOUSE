@@ -388,10 +388,8 @@ export const Hero: React.FC = () => {
   
   // Color segments for the quote
   const getQuoteWordColor = (i: number): string => {
-    if (i <= 5) return "#2c0f38";               // "Micron House is the immediate venue" → eggplant
-    if (i <= 14) return "rgba(255,255,255,0.5)"; // "to test Cybercab and Optimus in a real home," → soft gray
-    if (i <= 24) return "#ffffff";               // "convene...shape public rollout" → bright white
-    return "#008f25";                            // "from a historic neighborhood...airport." → green
+    if (i >= 20) return "#14532d"; // "— and shape public rollout...airport." → dark green
+    return "#ffffff";              // everything before → white
   };
 
   // Shared container variants for the word-by-word animation
@@ -581,12 +579,12 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 100 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
             transition={{ duration: 2.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="w-full bg-micron-eggplant-light rounded-3xl shadow-[0_40px_80px_-15px_rgba(0,0,0,0.3)] border border-white/20 relative overflow-hidden flex flex-col p-12 gap-4 md:gap-6 group"
+            className="w-full bg-micron-eggplant-light rounded-3xl shadow-[0_40px_80px_-15px_rgba(0,0,0,0.3)] border border-white/20 relative overflow-hidden flex flex-col p-[30px] gap-4 md:gap-6 group"
         >
             {/* TOP ROW: Paradigm + Quote + Map */}
             <div className="flex flex-col lg:flex-row lg:items-stretch flex-1 gap-3 lg:gap-4 xl:gap-6">
             {/* LEFT: Title + Quote (tablet) + Address Block */}
-            <div className="flex-shrink-0 flex flex-col justify-between items-start z-10 relative h-full md:w-auto gap-6 md:gap-8">
+            <div className="flex-shrink-0 flex flex-col justify-between items-start z-10 relative h-full md:w-auto gap-7 md:gap-9">
                  <div className="relative z-10 w-full">
                     <InteractiveParadigmTitle />
                  </div>
@@ -617,7 +615,7 @@ export const Hero: React.FC = () => {
                  {/* ADDRESS BLOCK */}
                  <div className="flex flex-col gap-0 border-l-4 border-micron-eggplant pl-3 relative z-10 mt-auto lg:mt-auto h-fit">
                         <h3 className="text-white font-bold text-lg uppercase tracking-wider leading-tight">Micron House</h3>
-                        <p className="text-micron-eggplant font-semibold text-sm md:text-base uppercase tracking-widest leading-tight whitespace-nowrap overflow-hidden text-ellipsis">1020 East Warm Springs Ave</p>
+                        <p className="text-micron-green font-semibold text-sm md:text-base uppercase tracking-widest leading-tight whitespace-nowrap overflow-hidden text-ellipsis">1020 East Warm Springs Ave</p>
                         <p className="text-micron-eggplant/80 text-xs md:text-sm uppercase tracking-widest leading-tight">Boise, Idaho 83712</p>
                  </div>
 
@@ -669,7 +667,7 @@ export const Hero: React.FC = () => {
             </div>
 
             {/* RIGHT: Map Card — compact on tablet landscape, full on desktop */}
-            <div className="w-full lg:w-[195px] xl:w-[255px] aspect-[4/3] lg:aspect-[4/3] lg:h-auto bg-zinc-100 rounded-2xl overflow-hidden shadow-2xl relative border-4 border-white/20 z-10 mt-auto lg:mt-0 flex-shrink-0">
+            <div className="w-full lg:w-[215px] xl:w-[280px] aspect-[4/3] lg:aspect-[4/3] lg:h-auto bg-zinc-100 rounded-2xl overflow-hidden shadow-2xl relative border-4 border-white/20 z-10 mt-auto lg:mt-0 flex-shrink-0">
                  <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2889.234!2d-116.1898!3d43.6088!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54aef8d1b0b3b8e7%3A0x0!2s1020%20E%20Warm%20Springs%20Ave%2C%20Boise%2C%20ID%2083712!5e0!3m2!1sen!2sus!4v1706000000000"
                     width="100%"
