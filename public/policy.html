@@ -371,18 +371,31 @@
         </div>
         <div class="chat-messages" id="chatMessages">
           <div class="chat-empty" id="chatEmpty">
-            <p>Ask about Idaho ADS legislation, the Boise pilot ordinance, vote counts, research methodology, federal timelines, or any document in the policy brief archive.</p>
+            <!-- Reference Legislation -->
+            <p style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#18181b; margin-bottom:12px;">Reference Legislation</p>
+            <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:24px;">
+              <button onclick="openPdf('utah')" style="display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border-radius:10px; border:none; background:#f0fdf4; color:#166534; cursor:pointer; font-size:12px; font-weight:600; text-align:left; transition:all 0.2s; box-shadow:0 2px 8px -2px rgba(0,0,0,0.06);">
+                <span>Utah HB 101 — Autonomous Vehicle Regulations</span>
+                <span style="font-size:10px; color:#86efac; font-weight:700;">HOUSE 70–0 · SENATE 23–0</span>
+              </button>
+              <button onclick="openPdf('texas')" style="display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border-radius:10px; border:none; background:#faf5ff; color:#581c87; cursor:pointer; font-size:12px; font-weight:600; text-align:left; transition:all 0.2s; box-shadow:0 2px 8px -2px rgba(0,0,0,0.06);">
+                <span>Texas SB 2807 — Automated Motor Vehicles</span>
+                <span style="font-size:10px; color:#c084fc; font-weight:700;">HOUSE 96–42 · SENATE 30–1</span>
+              </button>
+              <button onclick="openPdf('txrules')" style="display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border-radius:10px; border:none; background:#f8fafc; color:#334155; cursor:pointer; font-size:12px; font-weight:600; text-align:left; transition:all 0.2s; box-shadow:0 2px 8px -2px rgba(0,0,0,0.06);">
+                <span>TxDMV Chapter 220 — Implementing Rules</span>
+                <span style="font-size:10px; color:#94a3b8; font-weight:700;">EFF. FEB 2026</span>
+              </button>
+            </div>
+
+            <!-- Chat Suggestions -->
+            <p style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#18181b; margin-bottom:10px;">Ask the Research</p>
             <div class="chat-suggestions">
-              <button class="chat-suggestion" onclick="useSuggestion(this)">What vote count did Utah HB 101 achieve?</button>
-              <button class="chat-suggestion" onclick="useSuggestion(this)">How does the Boise pilot ordinance work?</button>
-              <button class="chat-suggestion" onclick="useSuggestion(this)">What is Regulation 4.30q?</button>
-              <button class="chat-suggestion" onclick="useSuggestion(this)">What federal AV legislation is pending in 2026?</button>
-              <button class="chat-suggestion" onclick="useSuggestion(this)">Which states have passed ADS legislation?</button>
-              <button class="chat-suggestion" onclick="useSuggestion(this)">What is the timeline for the SELF DRIVE Act?</button>
-              <button class="chat-suggestion" onclick="useSuggestion(this)">How does Arizona's AV framework compare to Utah's?</button>
+              <button class="chat-suggestion" onclick="useSuggestion(this)">How does Idaho's proposed Act compare to Utah HB 101?</button>
               <button class="chat-suggestion" onclick="useSuggestion(this)">What safety data supports autonomous vehicle deployment?</button>
-              <button class="chat-suggestion" onclick="useSuggestion(this)">What is Coeur d'Alene's robotics ordinance?</button>
-              <button class="chat-suggestion" onclick="useSuggestion(this)">How does private property authorization work in the Act?</button>
+              <button class="chat-suggestion" onclick="useSuggestion(this)">How does the Boise pilot ordinance work?</button>
+              <button class="chat-suggestion" onclick="useSuggestion(this)">What is the timeline for the SELF DRIVE Act?</button>
+              <button class="chat-suggestion" onclick="useSuggestion(this)">How does private property authorization work?</button>
             </div>
           </div>
         </div>
@@ -482,7 +495,13 @@
         .replace(/<\/ul><\/p>/g, '</ul>')
         .replace(/<p>\s*<\/p>/g, '');
     }
-    const briefs={a:{title:'Idaho ADS and Driverless Passenger Service Act',url:`${PDF_BASE}/brief-a.pdf`},b:{title:'Boise Robot-Enabled Operations Pilot Ordinance',url:`${PDF_BASE}/brief-b.pdf`}};
+    const briefs={
+      a:{title:'Idaho ADS and Driverless Passenger Service Act',url:`${PDF_BASE}/brief-a.pdf`},
+      b:{title:'Boise Robot-Enabled Operations Pilot Ordinance',url:`${PDF_BASE}/brief-b.pdf`},
+      utah:{title:'Utah HB 101 — Autonomous Vehicle Regulations (Enrolled)',url:`${PDF_BASE}/utah-hb101-enrolled.pdf`},
+      texas:{title:'Texas SB 2807 — Automated Motor Vehicles (Enrolled)',url:`${PDF_BASE}/texas-sb2807-enrolled.pdf`},
+      txrules:{title:'TxDMV Chapter 220 — Implementing Rules',url:`${PDF_BASE}/texas-ch220-rules.pdf`}
+    };
     function openPdf(id){const b=briefs[id];document.getElementById('pdfTitle').textContent=b.title;document.getElementById('pdfFrame').src=b.url;document.getElementById('pdfViewer').classList.add('active');document.body.style.overflow='hidden';}
     function closePdf(){document.getElementById('pdfViewer').classList.remove('active');document.getElementById('pdfFrame').src='';document.body.style.overflow='';}
     document.addEventListener('keydown',e=>{if(e.key==='Escape')closePdf();});
