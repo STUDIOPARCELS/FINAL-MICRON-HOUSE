@@ -599,7 +599,7 @@ export const Hero: React.FC = () => {
             </div>
 
             {/* CENTER: Quote — shows on all sizes, diagonal on desktop */}
-            <div className="flex flex-grow items-center justify-start relative z-10 py-4 xl:py-0 xl:px-4">
+            <div className="flex flex-grow items-center justify-center relative z-10 py-4 xl:py-0 xl:px-4">
                 <motion.div
                         initial="hidden"
                         animate={shouldShowQuote ? "visible" : "hidden"}
