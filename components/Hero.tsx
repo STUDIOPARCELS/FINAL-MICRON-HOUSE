@@ -140,6 +140,7 @@ export const Hero: React.FC = () => {
 
   // Brand reveal states
   const [wordmarkVisible, setWordmarkVisible] = useState(false);
+  const [quoteSettled, setQuoteSettled] = useState(false);
 
   // Timer Ref to manage cleanup
   const sequenceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -425,6 +426,15 @@ export const Hero: React.FC = () => {
   // Quote shows only after the hero video sequence finishes
   const shouldShowQuote = videoCompleted || hasScrolled;
 
+  // After all quote words have animated in, transition colors to white
+  useEffect(() => {
+    if (shouldShowQuote && !quoteSettled) {
+      // 37 words × 0.48s stagger + 0.2s delay + 1s buffer
+      const timer = setTimeout(() => setQuoteSettled(true), 20000);
+      return () => clearTimeout(timer);
+    }
+  }, [shouldShowQuote, quoteSettled]);
+
   return (
     <section 
         ref={containerRef}
@@ -594,7 +604,7 @@ export const Hero: React.FC = () => {
                                     key={i}
                                     variants={quoteWordVariants}
                                     className="mr-1 inline-block"
-                                    style={{ color: getQuoteWordColor(i) }}
+                                    style={{ color: quoteSettled ? '#ffffff' : getQuoteWordColor(i), transition: 'color 2s ease' }}
                                 >
                                     {word}
                                 </motion.span>
@@ -624,7 +634,7 @@ export const Hero: React.FC = () => {
                                     key={i}
                                     variants={quoteWordVariants}
                                     className="mr-1.5 inline-block"
-                                    style={{ color: getQuoteWordColor(i) }}
+                                    style={{ color: quoteSettled ? '#ffffff' : getQuoteWordColor(i), transition: 'color 2s ease' }}
                                 >
                                     {word}
                                 </motion.span>
@@ -648,7 +658,7 @@ export const Hero: React.FC = () => {
                             key={i}
                             variants={quoteWordVariants}
                             className="mr-2 inline-block"
-                            style={{ color: getQuoteWordColor(i) }}
+                            style={{ color: quoteSettled ? '#ffffff' : getQuoteWordColor(i), transition: 'color 2s ease' }}
                         >
                             {word}
                         </motion.span>

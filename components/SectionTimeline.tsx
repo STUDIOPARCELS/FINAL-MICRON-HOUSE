@@ -21,7 +21,7 @@ const roadmapItems = [
   },
   { 
     id: 3, 
-    date: "MONTHS 1–12", 
+    date: "MONTHS 3–12", 
     title: "TESTING", 
     subtitle: "Run the living-lab phase across arrivals, stays, dinners, events, and daily household use.", 
     bg: "bg-micron-grey1",
