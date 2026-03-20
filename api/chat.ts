@@ -1,14 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
-const BASE = 'https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/POLICY%20BRIEFS';
-
-const DOCS = [
-  { id: 'brief-a', label: 'BRIEF A — Idaho ADS and Driverless Passenger Service Act', url: `${BASE}/brief-a.html`, type: 'html', limit: 15000 },
-  { id: 'brief-b', label: 'BRIEF B — Boise Robot-Enabled Operations Pilot Ordinance', url: `${BASE}/brief-b.html`, type: 'html', limit: 15000 },
-  { id: 'utah-hb101', label: 'REFERENCE — Utah HB 101 Autonomous Vehicle Regulations (Enrolled, 2019)', url: `${BASE}/utah-hb101-text.txt`, type: 'text', limit: 25000 },
-  { id: 'texas-sb2807', label: 'REFERENCE — Texas SB 2807 Automated Motor Vehicles (Enrolled, 2025)', url: `${BASE}/texas-sb2807-text.txt`, type: 'text', limit: 25000 },
-  { id: 'txdmv-ch220', label: 'REFERENCE — TxDMV Chapter 220 Implementing Rules (Adopted, Eff. Feb 2026)', url: `${BASE}/texas-ch220-text.txt`, type: 'text', limit: 20000 },
-];
+const SUPABASE_URL = 'https://acwgirrldntjpzrhqmdh.supabase.co';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') {
@@ -16,65 +8,84 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   const apiKey = process.env.ANTHROPIC_API_KEY;
-  if (!apiKey) {
-    return res.status(500).json({ error: 'ANTHROPIC_API_KEY not configured' });
-  }
+  const serviceKey = process.env.SUPABASE_SERVICE_KEY;
+  
+  if (!apiKey) return res.status(500).json({ error: 'ANTHROPIC_API_KEY not configured' });
+  if (!serviceKey) return res.status(500).json({ error: 'SUPABASE_SERVICE_KEY not configured' });
 
   const { message, history = [] } = req.body;
-  if (!message) {
-    return res.status(400).json({ error: 'Message is required' });
-  }
+  if (!message) return res.status(400).json({ error: 'Message is required' });
 
   try {
-    const results = await Promise.all(
-      DOCS.map(async (doc) => {
-        try {
-          const r = await fetch(doc.url);
-          let text = await r.text();
-          if (doc.type === 'html') {
-            text = text.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+    // Step 1: Extract search terms from the user's question
+    // Use multiple search strategies for better recall
+    const searchQueries = buildSearchQueries(message);
+    
+    // Step 2: Run full-text search against all 570 chunks
+    const allChunks: any[] = [];
+    const seenIds = new Set();
+    
+    for (const query of searchQueries) {
+      const searchRes = await fetch(`${SUPABASE_URL}/rest/v1/rpc/search_policy_docs_text`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': serviceKey,
+          'Authorization': `Bearer ${serviceKey}`,
+        },
+        body: JSON.stringify({ search_query: query, match_count: 8 }),
+      });
+      
+      if (searchRes.ok) {
+        const results = await searchRes.json();
+        for (const r of results) {
+          const key = `${r.filename}-${r.chunk_index}`;
+          if (!seenIds.has(key)) {
+            seenIds.add(key);
+            allChunks.push(r);
           }
-          return { ...doc, content: text.slice(0, doc.limit) };
-        } catch {
-          return { ...doc, content: '' };
         }
-      })
-    );
+      }
+    }
+    
+    // Sort by rank and take top 12 chunks
+    allChunks.sort((a, b) => (b.rank || 0) - (a.rank || 0));
+    const topChunks = allChunks.slice(0, 12);
+    
+    // Step 3: Build context from matched chunks
+    let docContext = '';
+    if (topChunks.length > 0) {
+      docContext = topChunks.map((c, i) => 
+        `[Source ${i+1}: ${c.filename}]\n${c.content}`
+      ).join('\n\n---\n\n');
+    }
 
-    const docContext = results
-      .filter(d => d.content.length > 0)
-      .map(d => `=== ${d.label} ===\n${d.content}`)
-      .join('\n\n');
+    // Step 4: Build the system prompt with RAG context
+    const systemPrompt = `You are the Micron House policy research assistant, powered by Claude Opus 4.6. You have access to a searchable archive of 114 policy documents (570 indexed sections) covering autonomous technology legislation for Idaho and Boise.
 
-    const systemPrompt = `You are the Micron House policy research assistant, powered by Claude Opus 4.6. You help users understand autonomous technology policy and legislation.
+${topChunks.length > 0 ? `The following document sections were retrieved from the archive as most relevant to the user's question:\n\n${docContext}` : 'No specific documents matched the query. Answer based on your general knowledge of the policy briefs, or suggest the user rephrase their question.'}
 
-You have access to the following documents from the Micron House research archive (${results.filter(d => d.content).length} of 113+ total documents loaded):
+Key context:
+- Lisa Wood Studio prepared two primary policy briefs: Brief A (Idaho ADS Act) and Brief B (Boise Robot-Enabled Operations Pilot Ordinance)
+- Reference legislation: Utah HB 101 (2019, House 70–0, Senate 23–0), Texas SB 2807 (2025, House 96–42, Senate 30–1), TxDMV Chapter 220 implementing rules (eff. Feb 2026)
+- Key entities: Micron House (proposed corporate autonomous residence in Boise), Micron Technology, Tesla (Optimus, Cybercab), Theo Wold (policy advisor)
 
-${docContext}
-
-Key entities: Lisa Wood Studio (author), Micron House (the proposed corporate autonomous residence in Boise), Micron Technology, Tesla (Optimus, Cybercab), Theo Wold (policy advisor).
-
-Key vote records:
-- Utah HB 101 (2019): House 70–0, Senate 23–0, signed by Governor Herbert
-- Texas SB 2807 (2025): House 96–42, Senate 30–1, signed by Governor Abbott, effective 9/1/25
-- TxDMV Chapter 220 implementing rules effective February 27, 2026
-
-When answering:
-- **Cite specific provisions** by section number when available (e.g., §545.451, §220.3)
-- **Compare frameworks** across states when relevant — show how Idaho's proposed legislation builds on Utah and Texas precedent
+Response formatting — MANDATORY:
+- **Cite source documents** by filename when referencing specific provisions
+- **Cite specific section numbers** when available (e.g., §545.451, §220.23)
 - Use **bold** for key terms, names, vote counts, and important figures
-- Use bullet points (- item) to break up lists of facts, provisions, or requirements
-- Use short paragraphs separated by blank lines — never a wall of text
-- Lead with the direct answer, then provide supporting detail
-- Write in professional, concise language — the way a senior policy advisor speaks
-- Affirmative framing only. Describe what provisions accomplish, how frameworks operate, what outcomes result.
-- If asked about a document you have partial content for, cite what you can and note the user can open the full document from the reference panel.`;
+- Use bullet points (- item) to break up lists
+- Short paragraphs separated by blank lines — never a wall of text
+- Lead with the direct answer, then supporting detail
+- Professional, concise language — senior policy advisor tone
+- Affirmative framing only`;
 
     const messages = [
       ...history.map((h: any) => ({ role: h.role, content: h.content })),
       { role: 'user', content: message }
     ];
 
+    // Step 5: Call Claude
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
@@ -97,9 +108,49 @@ When answering:
     }
 
     const assistantMessage = data.content?.[0]?.text || 'No response generated.';
-    return res.status(200).json({ response: assistantMessage });
+    return res.status(200).json({ 
+      response: assistantMessage,
+      sources: topChunks.map(c => c.filename).filter((v, i, a) => a.indexOf(v) === i)
+    });
 
   } catch (error: any) {
     return res.status(500).json({ error: error.message || 'Internal server error' });
   }
+}
+
+/**
+ * Build multiple search queries from a user message for better recall.
+ * Extracts key phrases and generates variant queries.
+ */
+function buildSearchQueries(message: string): string[] {
+  const queries: string[] = [];
+  
+  // Original query
+  queries.push(message);
+  
+  // Extract quoted phrases
+  const quoted = message.match(/"([^"]+)"/g);
+  if (quoted) queries.push(...quoted.map(q => q.replace(/"/g, '')));
+  
+  // Key legal/policy terms that should boost search
+  const legalTerms = [
+    'authorization', 'operator', 'automated driving system', 'ADS',
+    'driverless', 'autonomous', 'robot', 'pilot', 'ordinance',
+    'fleet', 'private property', 'liability', 'insurance',
+    'permit', 'safety', 'fiscal', 'preemption', 'sunset',
+    'tier', 'regulation', 'PDD', 'SAE', 'J3016',
+    'Optimus', 'Cybercab', 'Tesla', 'Waymo', 'Micron',
+    'Utah', 'Texas', 'Idaho', 'Boise', 'HB 101', 'SB 2807',
+    'Chapter 220', 'Title 49', 'Chapter 38'
+  ];
+  
+  // Find matching terms in the message and search for them
+  const lowerMsg = message.toLowerCase();
+  const matchedTerms = legalTerms.filter(t => lowerMsg.includes(t.toLowerCase()));
+  if (matchedTerms.length > 0) {
+    queries.push(matchedTerms.join(' '));
+  }
+  
+  // Remove duplicates
+  return [...new Set(queries)].slice(0, 4);
 }
