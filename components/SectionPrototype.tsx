@@ -686,7 +686,7 @@ export const SectionPrototype: React.FC = () => {
                         PROTOTYPE
                     </h3>
                     <p className="text-xs font-bold uppercase tracking-widest text-white/50 group-hover:text-white transition-colors">
-                        The Residence
+                        Corporate Asset
                     </p>
                 </div>
             </BentoCard>
