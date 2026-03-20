@@ -444,19 +444,13 @@
 
   <script>
     const PDF_BASE='https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/POLICY%20BRIEFS';
-    // Fetch document count from Supabase
-    const ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFjd2dpcnJsZG50anB6cmhxbWRoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzYyMDI5MzgsImV4cCI6MjA1MTc3ODkzOH0.LfLTqMYfPmPXCSD7jeNneQvSYSfSfZO5EBFwqR-gqkA';
+    // Fetch document count from server
     (async function(){
       try {
-        const res = await fetch('https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/list/MICRON%20HOUSE', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'apikey': ANON_KEY, 'Authorization': 'Bearer ' + ANON_KEY },
-          body: JSON.stringify({ prefix: 'POLICY BRIEFS/', limit: 500 })
-        });
+        const res = await fetch('/api/doc-count');
         const data = await res.json();
-        if (Array.isArray(data)) {
-          const count = data.filter(f => f.metadata).length;
-          document.getElementById('docCount').textContent = count + ' documents · Policy Brief Research';
+        if (data.count > 0) {
+          document.getElementById('docCount').textContent = data.count + ' documents · Policy Brief Research';
         }
       } catch(e) { console.log('Count fetch failed', e); }
     })();
