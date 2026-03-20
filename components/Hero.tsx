@@ -575,19 +575,20 @@ export const Hero: React.FC = () => {
                         <InteractiveParadigmTitle />
                     </div>
 
-                    {/* QUOTE — large, readable, Inter font */}
+                    {/* QUOTE — script italic, diagonal */}
                     <motion.div
                         initial="hidden"
                         animate={shouldShowQuote ? "visible" : "hidden"}
                         variants={quoteContainerVariants}
-                        className="relative z-10 my-8 lg:my-6"
+                        className="relative z-10 my-6 lg:my-4 -rotate-3 max-w-xl"
                     >
                         <p className="inline">
                             {quoteWords.map((word, i) => (
                                 <motion.span
                                     key={i}
                                     variants={quoteWordVariants}
-                                    className="mr-1.5 md:mr-2 inline-block text-white/90 text-base md:text-lg lg:text-xl font-light leading-relaxed tracking-wide"
+                                    className="mr-1.5 md:mr-2 inline-block text-white/90 text-base md:text-lg lg:text-xl font-light italic leading-relaxed tracking-wide"
+                                    style={{ fontFamily: "'Georgia', 'Times New Roman', serif" }}
                                 >
                                     {word}
                                 </motion.span>
@@ -595,12 +596,12 @@ export const Hero: React.FC = () => {
                         </p>
                     </motion.div>
 
-                    {/* ADDRESS — pinned to bottom, green text */}
-                    <div className="flex flex-col gap-1 border-l-4 border-micron-green pl-4 relative z-10 mt-auto">
-                        <h3 className="text-white font-bold text-xl md:text-2xl uppercase tracking-wider leading-tight">Micron House</h3>
-                        <p className="text-micron-green font-semibold text-sm md:text-base uppercase tracking-widest leading-tight">1020 East Warm Springs Ave</p>
-                        <p className="text-micron-green/80 text-xs md:text-sm uppercase tracking-widest leading-tight">Boise, Idaho 83712</p>
-                        <p className="text-white/40 text-[11px] md:text-xs uppercase tracking-widest leading-tight mt-2">5 min downtown · 15 min Micron · 15 min airport</p>
+                    {/* ADDRESS — pinned to bottom, dark green, smaller */}
+                    <div className="flex flex-col gap-0.5 border-l-4 border-[#14532d] pl-4 relative z-10 mt-auto">
+                        <h3 className="text-white font-bold text-lg md:text-xl uppercase tracking-wider leading-tight">Micron House</h3>
+                        <p className="text-[#14532d] font-semibold text-xs md:text-sm uppercase tracking-widest leading-tight">1020 East Warm Springs Ave</p>
+                        <p className="text-[#14532d]/80 text-[10px] md:text-xs uppercase tracking-widest leading-tight">Boise, Idaho 83712</p>
+                        <p className="text-white/40 text-[9px] md:text-[10px] uppercase tracking-widest leading-tight mt-1.5">5 min downtown · 15 min Micron · 15 min airport</p>
                     </div>
                 </div>
 
