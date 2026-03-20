@@ -562,51 +562,16 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 100 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
             transition={{ duration: 2.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="w-full bg-micron-eggplant-light rounded-3xl shadow-[0_40px_80px_-15px_rgba(0,0,0,0.3)] border border-white/20 relative overflow-hidden p-8 md:p-10 lg:p-12 group"
+            className="w-full bg-micron-eggplant-light rounded-3xl shadow-[0_40px_80px_-15px_rgba(0,0,0,0.3)] border border-white/20 relative overflow-hidden p-6 md:p-8 lg:p-10 group"
         >
-            {/* GRID: 2 columns on desktop */}
-            <div className="flex flex-col lg:grid lg:grid-cols-[1fr_280px] xl:grid-cols-[1fr_320px] gap-8 lg:gap-10">
-
-                {/* LEFT COLUMN: Title + Quote + Address */}
-                <div className="flex flex-col justify-between z-10 relative min-h-[360px]">
-                    
-                    {/* TITLE */}
-                    <div className="relative z-10">
-                        <InteractiveParadigmTitle />
-                    </div>
-
-                    {/* QUOTE — script italic, diagonal */}
-                    <motion.div
-                        initial="hidden"
-                        animate={shouldShowQuote ? "visible" : "hidden"}
-                        variants={quoteContainerVariants}
-                        className="relative z-10 my-6 lg:my-4 -rotate-3 max-w-xl"
-                    >
-                        <p className="inline">
-                            {quoteWords.map((word, i) => (
-                                <motion.span
-                                    key={i}
-                                    variants={quoteWordVariants}
-                                    className="mr-1.5 md:mr-2 inline-block text-white/90 text-base md:text-lg lg:text-xl font-light italic leading-relaxed tracking-wide"
-                                    style={{ fontFamily: "'Georgia', 'Times New Roman', serif" }}
-                                >
-                                    {word}
-                                </motion.span>
-                            ))}
-                        </p>
-                    </motion.div>
-
-                    {/* ADDRESS — pinned to bottom, dark green, smaller */}
-                    <div className="flex flex-col gap-0.5 border-l-4 border-[#14532d] pl-4 relative z-10 mt-auto">
-                        <h3 className="text-white font-bold text-lg md:text-xl uppercase tracking-wider leading-tight">Micron House</h3>
-                        <p className="text-[#14532d] font-semibold text-xs md:text-sm uppercase tracking-widest leading-tight">1020 East Warm Springs Ave</p>
-                        <p className="text-[#14532d]/80 text-[10px] md:text-xs uppercase tracking-widest leading-tight">Boise, Idaho 83712</p>
-                        <p className="text-white/40 text-[9px] md:text-[10px] uppercase tracking-widest leading-tight mt-1.5">5 min downtown · 15 min Micron · 15 min airport</p>
-                    </div>
+            {/* TOP ROW: Title left + Map right (horizontal, fills space) */}
+            <div className="flex flex-col md:flex-row md:items-start gap-6 md:gap-8 mb-6">
+                {/* TITLE */}
+                <div className="relative z-10 flex-shrink-0">
+                    <InteractiveParadigmTitle />
                 </div>
-
-                {/* RIGHT COLUMN: Map — top-aligned, smaller */}
-                <div className="w-full aspect-square lg:aspect-auto lg:h-full bg-zinc-100 rounded-2xl overflow-hidden shadow-2xl relative border-4 border-white/20 z-10 flex-shrink-0 min-h-[240px]">
+                {/* MAP — horizontal, fills remaining width */}
+                <div className="w-full md:flex-1 h-[180px] md:h-[200px] bg-zinc-100 rounded-2xl overflow-hidden shadow-2xl relative border-4 border-white/20 z-10">
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2889.234!2d-116.1898!3d43.6088!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54aef8d1b0b3b8e7%3A0x0!2s1020%20E%20Warm%20Springs%20Ave%2C%20Boise%2C%20ID%2083712!5e0!3m2!1sen!2sus!4v1706000000000"
                         width="100%"
@@ -618,7 +583,34 @@ export const Hero: React.FC = () => {
                         className="absolute inset-0 w-full h-full opacity-90"
                     />
                 </div>
+            </div>
 
+            {/* MIDDLE: Quote flows horizontally across the full width */}
+            <motion.div
+                initial="hidden"
+                animate={shouldShowQuote ? "visible" : "hidden"}
+                variants={quoteContainerVariants}
+                className="relative z-10 mb-6 -rotate-2"
+            >
+                <p className="inline">
+                    {quoteWords.map((word, i) => (
+                        <motion.span
+                            key={i}
+                            variants={quoteWordVariants}
+                            className="mr-1.5 md:mr-2 inline-block text-white/90 text-base md:text-lg lg:text-xl font-light italic leading-relaxed tracking-wide font-sans"
+                        >
+                            {word}
+                        </motion.span>
+                    ))}
+                </p>
+            </motion.div>
+
+            {/* BOTTOM: Address */}
+            <div className="flex flex-col gap-0.5 border-l-4 border-[#14532d] pl-4 relative z-10">
+                <h3 className="text-white font-bold text-lg md:text-xl uppercase tracking-wider leading-tight">Micron House</h3>
+                <p className="text-[#14532d] font-semibold text-xs md:text-sm uppercase tracking-widest leading-tight">1020 East Warm Springs Ave</p>
+                <p className="text-[#14532d]/80 text-[10px] md:text-xs uppercase tracking-widest leading-tight">Boise, Idaho 83712</p>
+                <p className="text-white/40 text-[9px] md:text-[10px] uppercase tracking-widest leading-tight mt-1.5">5 min downtown · 15 min Micron · 15 min airport</p>
             </div>
         </motion.div>
 
