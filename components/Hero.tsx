@@ -387,10 +387,9 @@ export const Hero: React.FC = () => {
   
   // Color segments for the quote
   const getQuoteWordColor = (i: number): string => {
-    if (i <= 5) return "#2c0f38";               // "Micron House is the immediate venue" → eggplant
-    if (i <= 14) return "rgba(255,255,255,0.5)"; // "to test Cybercab and Optimus in a real home," → soft white
-    if (i <= 24) return "#ffffff";               // "convene...shape public rollout" → bright white
-    return "#008f25";                            // "from a historic neighborhood...airport." → green
+    if (i <= 14) return "#2c0f38";  // "Micron House is the immediate venue to test Cybercab and Optimus in a real home," → eggplant
+    if (i <= 24) return "#ffffff";  // "convene leaders around firsthand experience — and shape public rollout" → white
+    return "#008f25";               // "from a historic neighborhood...airport." → green
   };
 
   // Shared container variants for the word-by-word animation
@@ -571,7 +570,7 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 100 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
             transition={{ duration: 2.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="w-full bg-micron-eggplant-light rounded-3xl shadow-[0_40px_80px_-15px_rgba(0,0,0,0.3)] border border-white/20 relative overflow-hidden flex flex-col p-8 gap-4 md:gap-6 group"
+            className="w-full bg-micron-eggplant-light rounded-3xl shadow-[0_40px_80px_-15px_rgba(0,0,0,0.3)] border border-white/20 relative overflow-hidden flex flex-col p-12 gap-4 md:gap-6 group"
         >
             {/* TOP ROW: Paradigm + Quote + Map */}
             <div className="flex flex-col lg:flex-row lg:items-stretch flex-1 gap-3 lg:gap-4 xl:gap-6">
@@ -587,7 +586,7 @@ export const Hero: React.FC = () => {
                          initial="hidden"
                          animate={shouldShowQuote ? "visible" : "hidden"}
                          variants={quoteContainerVariants}
-                         className="font-micron text-base text-white font-extralight leading-relaxed text-left will-change-transform"
+                         className="font-micron text-base text-white font-thin leading-relaxed text-left will-change-transform"
                       >
                          <p className="inline">
                              {quoteWords.map((word, i) => (
@@ -617,7 +616,7 @@ export const Hero: React.FC = () => {
                          initial="hidden"
                          animate={shouldShowQuote ? "visible" : "hidden"}
                          variants={quoteContainerVariants}
-                         className="font-micron text-xl text-center text-white font-extralight leading-relaxed -rotate-3 pb-4 will-change-transform"
+                         className="font-micron text-xl text-center text-white font-thin leading-relaxed -rotate-3 pb-4 will-change-transform"
                       >
                          <p className="inline">
                              {quoteWords.map((word, i) => (
@@ -641,7 +640,7 @@ export const Hero: React.FC = () => {
                         initial="hidden"
                         animate={shouldShowQuote ? "visible" : "hidden"}
                         variants={quoteContainerVariants}
-                        className="font-micron text-2xl text-white font-extralight leading-relaxed text-left -rotate-6 max-w-lg w-full -translate-x-4 pb-4 will-change-transform"
+                        className="font-micron text-2xl text-white font-thin leading-relaxed text-left -rotate-6 max-w-lg w-full -translate-x-4 pb-4 will-change-transform"
                 >
                      <p className="inline">
                         {quoteWords.map((word, i) => (
