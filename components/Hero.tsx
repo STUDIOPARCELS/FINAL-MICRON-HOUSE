@@ -9,7 +9,7 @@ const sentences = [
         highlightColor: "text-[#3d4250]",
         hoverColor: "hover:text-black", 
         highlights: ["VISION", "VELOCITY"],
-        textSize: "text-base sm:text-xl md:text-4xl lg:text-[clamp(2.5rem,3.5vw,3.75rem)]",
+        textSize: "text-2xl sm:text-3xl md:text-4xl lg:text-[clamp(2.5rem,3.5vw,3.75rem)]",
         layout: "default",
         lines: [["WITHOUT", "VISION"], ["THERE'S", "NO", "VELOCITY"]],
         secondHalfDelay: 6.0,
@@ -20,7 +20,7 @@ const sentences = [
         highlightColor: "text-micron-eggplant",
         hoverColor: "hover:text-micron-eggplant/60", 
         highlights: ["MEMORY", "MEANING"],
-        textSize: "text-base sm:text-xl md:text-4xl lg:text-[clamp(2.5rem,3.5vw,3.75rem)]",
+        textSize: "text-2xl sm:text-3xl md:text-4xl lg:text-[clamp(2.5rem,3.5vw,3.75rem)]",
         layout: "default",
         lines: [["WITHOUT", "MEMORY"], ["THERE'S", "NO", "MEANING"]],
         secondHalfDelay: 6.0,
@@ -31,7 +31,7 @@ const sentences = [
         highlightColor: "text-micron-green",
         hoverColor: "hover:text-green-900", 
         highlights: ["PLACE", "PERSPECTIVE"],
-        textSize: "text-base sm:text-xl md:text-4xl lg:text-[clamp(2.5rem,3.5vw,3.75rem)]",
+        textSize: "text-2xl sm:text-3xl md:text-4xl lg:text-[clamp(2.5rem,3.5vw,3.75rem)]",
         layout: "default",
         lines: [["WITHOUT", "PLACE"], ["THERE'S", "NO"], ["PERSPECTIVE"]],
         secondHalfDelay: 9.0,
@@ -474,7 +474,7 @@ export const Hero: React.FC = () => {
         <motion.div 
             layout
             transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
-            className="w-full min-h-[80px] md:min-h-[120px] xl:min-h-[160px] flex flex-col items-center justify-center bg-white rounded-3xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 relative overflow-hidden py-5 md:py-0"
+            className="w-full min-h-[120px] md:min-h-[120px] xl:min-h-[160px] flex flex-col items-center justify-center bg-white rounded-3xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 relative overflow-hidden py-5 md:py-0"
         >
              {/* BRAND REVEAL — stacks on mobile, row on tablet+ */}
              {wordmarkVisible && (
@@ -522,18 +522,17 @@ export const Hero: React.FC = () => {
                </div>
              )}
              
-             {/* Sentence text — wraps on mobile, single line on tablet+ */}
+             {/* Sentence text — stacked on mobile, single line on tablet+ */}
              <motion.div 
                 layout
                 transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
-                className="w-full relative z-10 flex items-center justify-center px-3 md:px-4"
+                className="w-full relative z-10 flex items-center justify-center px-5 md:px-4"
                 style={{ opacity: wordmarkVisible ? 0 : 1 }}
              >
                  <AnimatePresence mode="wait">
                    {currentSentenceIndex !== null && (
                        <motion.div 
                           key={`${currentSentenceIndex}-${key}`}
-                          className="flex flex-wrap md:flex-nowrap gap-x-2 md:gap-x-5 gap-y-0 w-full max-w-5xl justify-center items-baseline"
                           initial="hidden"
                           animate="visible"
                           exit="exit"
@@ -548,8 +547,25 @@ export const Hero: React.FC = () => {
                                   transition: { staggerChildren: 0.15, staggerDirection: -1, duration: 1.5 } 
                               }
                           }}
+                          className="w-full max-w-5xl"
                        >
-                         {sentences[currentSentenceIndex].words.map((word: string, i: number) => renderWord(word, i, sentences[currentSentenceIndex]))}
+                         {/* MOBILE: stacked two lines, left-justified */}
+                         <div className="flex flex-col items-start md:hidden">
+                           {sentences[currentSentenceIndex].lines?.map((line: string[], lineIdx: number) => (
+                             <div key={`line-${lineIdx}`} className="flex flex-nowrap gap-x-2 items-baseline">
+                               {line.map((word: string, wi: number) => {
+                                 const globalIdx = sentences[currentSentenceIndex].lines!
+                                   .slice(0, lineIdx)
+                                   .reduce((sum: number, l: string[]) => sum + l.length, 0) + wi;
+                                 return renderWord(word, globalIdx, sentences[currentSentenceIndex]);
+                               })}
+                             </div>
+                           ))}
+                         </div>
+                         {/* TABLET+: single horizontal line, centered */}
+                         <div className="hidden md:flex flex-nowrap gap-x-5 justify-center items-baseline">
+                           {sentences[currentSentenceIndex].words.map((word: string, i: number) => renderWord(word, i, sentences[currentSentenceIndex]))}
+                         </div>
                        </motion.div>
                    )}
                  </AnimatePresence>
