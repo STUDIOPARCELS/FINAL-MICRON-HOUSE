@@ -344,6 +344,36 @@ export const Hero: React.FC = () => {
     };
   }, []);
 
+  // Render an independently-animated comma between sentence halves
+  const renderComma = (currentSet: any) => {
+      // Comma appears midway between first half settling and second half starting
+      const commaDelay = (currentSet.secondHalfDelay || 4.0) * 0.45;
+      return (
+          <motion.span
+              key="comma"
+              variants={{
+                  hidden: { opacity: 0 },
+                  visible: { 
+                      opacity: 1,
+                      transition: { 
+                          duration: 2.0, 
+                          ease: [0.16, 1, 0.3, 1],
+                          delay: commaDelay
+                      } 
+                  },
+                  exit: {
+                      opacity: 0,
+                      transition: { duration: 0.8, ease: "easeIn" }
+                  }
+              }}
+              className={`${currentSet.textSize} font-black tracking-tighter leading-[0.9] ${currentSet.color}`}
+              style={{ marginLeft: '-0.15em' }}
+          >
+              ,
+          </motion.span>
+      );
+  }
+
   const renderWord = (word: string, i: number, currentSet: any) => {
       const isHighlight = currentSet.highlights.includes(word);
       const colorClass = isHighlight ? currentSet.highlightColor : currentSet.color;
@@ -477,7 +507,7 @@ export const Hero: React.FC = () => {
                     className="absolute inset-0 z-[2] flex items-center justify-center px-4"
                     style={{ background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.1) 50%, transparent 80%)' }}
                   >
-                    <div className="flex flex-col items-center gap-0.5 md:gap-1 leading-none">
+                    <div className="flex flex-col items-center gap-1 md:gap-2 lg:gap-2.5 xl:gap-3 leading-none">
                       <div className="flex gap-x-1.5 md:gap-x-2.5">
                         {"The First Corporate".split(" ").map((word, i) => (
                           <motion.span
@@ -485,7 +515,7 @@ export const Hero: React.FC = () => {
                             initial={{ opacity: 0, y: 8 }}
                             animate={{ opacity: 0.6, y: 0 }}
                             transition={{ duration: 2.0, delay: 1.0 + (i * 0.6), ease: [0.16, 1, 0.3, 1] }}
-                            className="text-white text-[12px] md:text-[15px] lg:text-[18px] xl:text-[22px] font-thin uppercase tracking-[0.2em] md:tracking-[0.25em]"
+                            className="text-white text-[12px] md:text-[16px] lg:text-[20px] xl:text-[28px] font-thin uppercase tracking-[0.2em] md:tracking-[0.25em]"
                           >
                             {word}
                           </motion.span>
@@ -498,7 +528,7 @@ export const Hero: React.FC = () => {
                             initial={{ opacity: 0, y: 8 }}
                             animate={{ opacity: 0.6, y: 0 }}
                             transition={{ duration: 2.0, delay: 2.8 + (i * 0.6), ease: [0.16, 1, 0.3, 1] }}
-                            className="text-white text-[12px] md:text-[15px] lg:text-[18px] xl:text-[22px] font-thin uppercase tracking-[0.2em] md:tracking-[0.25em]"
+                            className="text-white text-[12px] md:text-[16px] lg:text-[20px] xl:text-[28px] font-thin uppercase tracking-[0.2em] md:tracking-[0.25em]"
                           >
                             {word}
                           </motion.span>
@@ -526,7 +556,7 @@ export const Hero: React.FC = () => {
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ duration: 3.0, ease: [0.16, 1, 0.3, 1], delay: 0 }}
-                          className="text-[1.8rem] md:text-[1.6rem] lg:text-[2.2rem] xl:text-[3rem] font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]"
+                          className="text-[2rem] md:text-[1.6rem] lg:text-[2.2rem] xl:text-[3rem] font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]"
                       >
                           Micron
                       </motion.span>
@@ -534,7 +564,7 @@ export const Hero: React.FC = () => {
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ duration: 3.0, ease: [0.16, 1, 0.3, 1], delay: 1.2 }}
-                          className="text-[1.8rem] md:text-[1.6rem] lg:text-[2.2rem] xl:text-[3rem] font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]"
+                          className="text-[2rem] md:text-[1.6rem] lg:text-[2.2rem] xl:text-[3rem] font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]"
                       >
                           House
                       </motion.span>
@@ -544,7 +574,7 @@ export const Hero: React.FC = () => {
                       animate={iconControls}
                       src="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/micron-overlap-no-border.png"
                       alt="Micron Logo"
-                      className="h-[56px] w-[56px] md:h-[60px] md:w-[60px] lg:h-[80px] lg:w-[80px] xl:h-[110px] xl:w-[110px] object-contain"
+                      className="h-[62px] w-[62px] md:h-[60px] md:w-[60px] lg:h-[80px] lg:w-[80px] xl:h-[110px] xl:w-[110px] object-contain"
                    />
                  </div>
                </div>
@@ -587,12 +617,18 @@ export const Hero: React.FC = () => {
                                    .reduce((sum: number, l: string[]) => sum + l.length, 0) + wi;
                                  return renderWord(word, globalIdx, sentences[currentSentenceIndex]);
                                })}
+                               {lineIdx === 0 && renderComma(sentences[currentSentenceIndex])}
                              </div>
                            ))}
                          </div>
                          {/* TABLET+: single horizontal line, centered */}
                          <div className="hidden md:flex flex-nowrap gap-x-3 lg:gap-x-5 justify-center items-baseline">
-                           {sentences[currentSentenceIndex].words.map((word: string, i: number) => renderWord(word, i, sentences[currentSentenceIndex]))}
+                           {sentences[currentSentenceIndex].words.map((word: string, i: number) => (
+                             <React.Fragment key={`word-group-${i}`}>
+                               {renderWord(word, i, sentences[currentSentenceIndex])}
+                               {i === 1 && renderComma(sentences[currentSentenceIndex])}
+                             </React.Fragment>
+                           ))}
                          </div>
                        </motion.div>
                    )}
