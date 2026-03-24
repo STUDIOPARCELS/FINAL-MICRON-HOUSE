@@ -468,21 +468,24 @@ export const Hero: React.FC = () => {
                 />
                 <div className="absolute inset-0 z-[1]" style={{ WebkitTapHighlightColor: 'transparent' }} />
                 
-                {/* MOBILE ONLY: tagline overlaid centered on video */}
+                {/* MOBILE ONLY: tagline word-by-word fade over video */}
                 {videoCompleted && (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 3.0, delay: 1.0 }}
-                    className="absolute inset-0 z-[2] flex flex-col items-center justify-center md:hidden"
-                    style={{ background: 'rgba(0,0,0,0.4)' }}
-                  >
-                    <p className="text-white font-bold uppercase tracking-[0.12em] text-[17px] leading-relaxed text-center"
-                       style={{ textShadow: '0 2px 12px rgba(0,0,0,0.8)' }}
-                    >
-                      The First Corporate<br/>Autonomous Residence
-                    </p>
-                  </motion.div>
+                  <div className="absolute inset-0 z-[2] flex items-end justify-center pb-6 md:hidden pointer-events-none">
+                    <div className="flex flex-wrap justify-center gap-x-2 px-6">
+                      {"The First Corporate Autonomous Residence".split(" ").map((word, i) => (
+                        <motion.span
+                          key={i}
+                          initial={{ opacity: 0, y: 8 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 1.5, delay: 0.8 + (i * 0.4), ease: [0.16, 1, 0.3, 1] }}
+                          className="text-white/90 text-sm font-light uppercase tracking-[0.2em]"
+                          style={{ textShadow: '0 1px 6px rgba(0,0,0,0.6)' }}
+                        >
+                          {word}
+                        </motion.span>
+                      ))}
+                    </div>
+                  </div>
                 )}
             </div>
         </div>
