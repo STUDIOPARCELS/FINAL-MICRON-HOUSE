@@ -9,7 +9,7 @@ const sentences = [
         highlightColor: "text-[#3d4250]",
         hoverColor: "hover:text-black", 
         highlights: ["VISION", "VELOCITY"],
-        textSize: "text-2xl sm:text-3xl md:text-4xl lg:text-[clamp(2.5rem,3.5vw,3.75rem)]",
+        textSize: "text-2xl sm:text-3xl md:text-3xl lg:text-[clamp(2.5rem,3.5vw,3.75rem)]",
         layout: "default",
         lines: [["WITHOUT", "VISION"], ["THERE'S", "NO", "VELOCITY"]],
         secondHalfDelay: 6.5,
@@ -20,7 +20,7 @@ const sentences = [
         highlightColor: "text-micron-eggplant",
         hoverColor: "hover:text-micron-eggplant/60", 
         highlights: ["MEMORY", "MEANING"],
-        textSize: "text-2xl sm:text-3xl md:text-4xl lg:text-[clamp(2.5rem,3.5vw,3.75rem)]",
+        textSize: "text-2xl sm:text-3xl md:text-3xl lg:text-[clamp(2.5rem,3.5vw,3.75rem)]",
         layout: "default",
         lines: [["WITHOUT", "MEMORY"], ["THERE'S", "NO", "MEANING"]],
         secondHalfDelay: 6.0,
@@ -31,7 +31,7 @@ const sentences = [
         highlightColor: "text-micron-green",
         hoverColor: "hover:text-green-900", 
         highlights: ["PLACE", "PERSPECTIVE"],
-        textSize: "text-2xl sm:text-3xl md:text-4xl lg:text-[clamp(2.5rem,3.5vw,3.75rem)]",
+        textSize: "text-2xl sm:text-3xl md:text-3xl lg:text-[clamp(2.5rem,3.5vw,3.75rem)]",
         layout: "default",
         lines: [["WITHOUT", "PLACE"], ["THERE'S", "NO", "PERSPECTIVE"]],
         secondHalfDelay: 9.0,
@@ -566,7 +566,7 @@ export const Hero: React.FC = () => {
              <motion.div 
                 layout
                 transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
-                className="w-full relative z-10 flex items-center justify-center px-6 md:px-4"
+                className="w-full relative z-10 flex items-center justify-center px-8 md:px-12 xl:px-16"
                 style={{ opacity: wordmarkVisible ? 0 : 1 }}
              >
                  <AnimatePresence mode="wait">
@@ -603,7 +603,7 @@ export const Hero: React.FC = () => {
                            ))}
                          </div>
                          {/* TABLET+: single horizontal line, centered */}
-                         <div className="hidden md:flex flex-nowrap gap-x-5 justify-center items-baseline">
+                         <div className="hidden md:flex flex-nowrap gap-x-3 lg:gap-x-5 justify-center items-baseline">
                            {sentences[currentSentenceIndex].words.map((word: string, i: number) => renderWord(word, i, sentences[currentSentenceIndex]))}
                          </div>
                        </motion.div>
