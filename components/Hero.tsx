@@ -445,7 +445,7 @@ export const Hero: React.FC = () => {
       <div className="container mx-auto px-4 md:px-12 h-full flex flex-col gap-4 md:gap-8 xl:gap-12">
         
         {/* VIDEO — 30% smaller with white Polaroid bento frame */}
-        <div className="w-full bg-white rounded-3xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 p-10 md:p-16 xl:p-20">
+        <div className="w-full bg-white rounded-3xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 p-14 md:p-20 xl:p-28">
             <div 
                 className="aspect-video w-full rounded-2xl overflow-hidden relative group"
             >
