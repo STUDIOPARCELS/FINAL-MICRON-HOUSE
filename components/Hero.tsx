@@ -440,12 +440,12 @@ export const Hero: React.FC = () => {
     <section 
         ref={containerRef}
         // UPDATED: pt-24 on mobile (was pt-32) to reduce padding by ~20%. md:pt-24 remains.
-        className="relative w-full bg-white text-zinc-900 pt-20 md:pt-40 pb-12 md:pb-16 flex flex-col justify-end"
+        className="relative w-full bg-white text-zinc-900 pt-16 md:pt-32 pb-12 md:pb-16 flex flex-col justify-end"
     >
-      <div className="container mx-auto px-4 md:px-12 h-full flex flex-col gap-4 md:gap-8 xl:gap-12">
+      <div className="container mx-auto px-4 md:px-12 h-full flex flex-col gap-3 md:gap-8 xl:gap-12">
         
         {/* VIDEO — 30% smaller with white Polaroid bento frame */}
-        <div className="w-full bg-white rounded-3xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 p-2 md:p-12 xl:p-28">
+        <div className="w-full bg-white rounded-3xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 p-4 md:p-12 xl:p-28">
             <div 
                 className="aspect-video w-full rounded-2xl overflow-hidden relative group"
             >
@@ -474,7 +474,7 @@ export const Hero: React.FC = () => {
         <motion.div 
             layout
             transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
-            className="w-full min-h-[100px] md:min-h-[120px] xl:min-h-[160px] flex flex-col items-center justify-center bg-white rounded-3xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 relative overflow-hidden py-5 md:py-0"
+            className="w-full min-h-[80px] md:min-h-[120px] xl:min-h-[160px] flex flex-col items-center justify-center bg-white rounded-3xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 relative overflow-hidden py-5 md:py-0"
         >
              {/* BRAND REVEAL — stacks on mobile, row on tablet+ */}
              {wordmarkVisible && (
