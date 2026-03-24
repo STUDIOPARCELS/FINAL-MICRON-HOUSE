@@ -468,14 +468,14 @@ export const Hero: React.FC = () => {
                 />
                 <div className="absolute inset-0 z-[1]" style={{ WebkitTapHighlightColor: 'transparent' }} />
                 
-                {/* MOBILE ONLY: tagline word-by-word over video */}
+                {/* MOBILE ONLY: tagline in the trees, top of video */}
                 {videoCompleted && (
                   <motion.div 
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ duration: 2.0 }}
-                    className="absolute inset-0 z-[2] flex items-end justify-center pb-6 px-4 md:hidden"
-                    style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.2) 50%, transparent 100%)' }}
+                    transition={{ duration: 3.0 }}
+                    className="absolute inset-0 z-[2] flex items-start justify-center pt-6 px-4 md:hidden"
+                    style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.15) 40%, transparent 100%)' }}
                   >
                     <div className="flex flex-col items-center gap-0.5">
                       <div className="flex gap-x-2">
@@ -483,9 +483,9 @@ export const Hero: React.FC = () => {
                           <motion.span
                             key={i}
                             initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 1.5, delay: 1.0 + (i * 0.5), ease: [0.16, 1, 0.3, 1] }}
-                            className="text-white/90 text-[13px] font-extralight uppercase tracking-[0.25em]"
+                            animate={{ opacity: 0.6, y: 0 }}
+                            transition={{ duration: 2.0, delay: 1.0 + (i * 0.6), ease: [0.16, 1, 0.3, 1] }}
+                            className="text-white text-[13px] font-extralight uppercase tracking-[0.25em]"
                           >
                             {word}
                           </motion.span>
@@ -496,9 +496,9 @@ export const Hero: React.FC = () => {
                           <motion.span
                             key={i}
                             initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 1.5, delay: 2.5 + (i * 0.5), ease: [0.16, 1, 0.3, 1] }}
-                            className="text-white/90 text-[13px] font-extralight uppercase tracking-[0.25em]"
+                            animate={{ opacity: 0.6, y: 0 }}
+                            transition={{ duration: 2.0, delay: 2.8 + (i * 0.6), ease: [0.16, 1, 0.3, 1] }}
+                            className="text-white text-[13px] font-extralight uppercase tracking-[0.25em]"
                           >
                             {word}
                           </motion.span>
