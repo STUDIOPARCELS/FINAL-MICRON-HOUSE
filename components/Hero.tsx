@@ -33,7 +33,7 @@ const sentences = [
         highlights: ["PLACE", "PERSPECTIVE"],
         textSize: "text-2xl sm:text-3xl md:text-4xl lg:text-[clamp(2.5rem,3.5vw,3.75rem)]",
         layout: "default",
-        lines: [["WITHOUT", "PLACE"], ["THERE'S", "NO"], ["PERSPECTIVE"]],
+        lines: [["WITHOUT", "PLACE"], ["THERE'S", "NO", "PERSPECTIVE"]],
         secondHalfDelay: 9.0,
     },
 ];
@@ -268,7 +268,7 @@ export const Hero: React.FC = () => {
       }
       
       // Brand reveal: Logo rolls in from the LEFT
-      if (t >= 29.0 && !fired.has('logo')) {
+      if (t >= 27.0 && !fired.has('logo')) {
           fired.add('logo');
           setLogoVisible(true);
           iconControls.start({
@@ -467,6 +467,19 @@ export const Hero: React.FC = () => {
                     className="absolute inset-0 w-full h-full object-cover opacity-100"
                 />
                 <div className="absolute inset-0 z-[1]" style={{ WebkitTapHighlightColor: 'transparent' }} />
+                
+                {/* MOBILE ONLY: tagline overlaid on video */}
+                {videoCompleted && (
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 2.0, delay: 0.5 }}
+                    className="absolute bottom-4 left-0 right-0 z-[2] text-center text-white font-bold uppercase tracking-[0.1em] text-[11px] md:hidden"
+                    style={{ textShadow: '0 2px 8px rgba(0,0,0,0.7)' }}
+                  >
+                    The First Corporate Autonomous Residence
+                  </motion.p>
+                )}
             </div>
         </div>
 
@@ -514,7 +527,7 @@ export const Hero: React.FC = () => {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 2.5, delay: 1.5, ease: [0.16, 1, 0.3, 1] }}
-                      className="text-[11px] md:text-xl xl:text-2xl font-bold uppercase tracking-[0.08em] md:tracking-[0.15em] text-zinc-400 leading-tight font-sans text-center md:text-left"
+                      className="hidden md:block text-lg md:text-xl xl:text-2xl font-bold uppercase tracking-[0.08em] md:tracking-[0.15em] text-zinc-400 leading-tight font-sans text-left"
                    >
                       The First Corporate Autonomous Residence
                    </motion.p>
