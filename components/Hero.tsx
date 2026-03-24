@@ -440,12 +440,12 @@ export const Hero: React.FC = () => {
     <section 
         ref={containerRef}
         // UPDATED: pt-24 on mobile (was pt-32) to reduce padding by ~20%. md:pt-24 remains.
-        className="relative w-full bg-white text-zinc-900 pt-16 md:pt-24 lg:pt-32 pb-12 md:pb-16 flex flex-col justify-end"
+        className="relative w-full bg-white text-zinc-900 pt-16 md:pt-24 lg:pt-32 pb-8 md:pb-12 lg:pb-16 flex flex-col justify-end"
     >
-      <div className="container mx-auto px-4 md:px-8 lg:px-12 h-full flex flex-col gap-3 md:gap-5 lg:gap-8 xl:gap-12">
+      <div className="container mx-auto px-4 md:px-8 lg:px-12 h-full flex flex-col gap-3 md:gap-4 lg:gap-6 xl:gap-10">
         
-        {/* VIDEO — 30% smaller with white Polaroid bento frame */}
-        <div className="w-full bg-white rounded-3xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 p-4 md:p-8 lg:p-14 xl:p-28">
+        {/* VIDEO — Polaroid bento frame */}
+        <div className="w-full bg-white rounded-3xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 p-4 md:p-10 lg:p-16 xl:p-28">
             <div 
                 className="aspect-video w-full rounded-2xl overflow-hidden relative group"
             >
@@ -477,7 +477,7 @@ export const Hero: React.FC = () => {
                     className="absolute inset-0 z-[2] flex items-start justify-center pt-5 px-4 md:hidden"
                     style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.1) 35%, transparent 100%)' }}
                   >
-                    <div className="flex flex-col items-center gap-0">
+                    <div className="flex flex-col items-center gap-0 leading-none">
                       <div className="flex gap-x-1.5">
                         {"The First Corporate".split(" ").map((word, i) => (
                           <motion.span
@@ -485,7 +485,7 @@ export const Hero: React.FC = () => {
                             initial={{ opacity: 0, y: 8 }}
                             animate={{ opacity: 0.55, y: 0 }}
                             transition={{ duration: 2.0, delay: 1.0 + (i * 0.6), ease: [0.16, 1, 0.3, 1] }}
-                            className="text-white text-[12px] font-light uppercase tracking-[0.2em]"
+                            className="text-white text-[12px] font-thin uppercase tracking-[0.2em]"
                           >
                             {word}
                           </motion.span>
@@ -498,7 +498,7 @@ export const Hero: React.FC = () => {
                             initial={{ opacity: 0, y: 8 }}
                             animate={{ opacity: 0.55, y: 0 }}
                             transition={{ duration: 2.0, delay: 2.8 + (i * 0.6), ease: [0.16, 1, 0.3, 1] }}
-                            className="text-white text-[12px] font-light uppercase tracking-[0.2em]"
+                            className="text-white text-[12px] font-thin uppercase tracking-[0.2em]"
                           >
                             {word}
                           </motion.span>
@@ -514,7 +514,7 @@ export const Hero: React.FC = () => {
         <motion.div 
             layout
             transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
-            className="w-full min-h-[120px] md:min-h-[100px] lg:min-h-[130px] xl:min-h-[160px] flex flex-col items-center justify-center bg-white rounded-3xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 relative overflow-hidden py-5 md:py-4"
+            className="w-full min-h-[120px] md:min-h-[110px] lg:min-h-[130px] xl:min-h-[160px] flex flex-col items-center justify-center bg-white rounded-3xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 relative overflow-hidden py-5 md:py-3 lg:py-4"
         >
              {/* BRAND REVEAL */}
              {wordmarkVisible && (
@@ -526,7 +526,7 @@ export const Hero: React.FC = () => {
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ duration: 3.0, ease: [0.16, 1, 0.3, 1], delay: 0 }}
-                          className="text-[1.8rem] md:text-[2.2rem] xl:text-[3rem] font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]"
+                          className="text-[1.8rem] md:text-[1.6rem] lg:text-[2.2rem] xl:text-[3rem] font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]"
                       >
                           Micron
                       </motion.span>
@@ -534,7 +534,7 @@ export const Hero: React.FC = () => {
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ duration: 3.0, ease: [0.16, 1, 0.3, 1], delay: 1.2 }}
-                          className="text-[1.8rem] md:text-[2.2rem] xl:text-[3rem] font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]"
+                          className="text-[1.8rem] md:text-[1.6rem] lg:text-[2.2rem] xl:text-[3rem] font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]"
                       >
                           House
                       </motion.span>
@@ -544,7 +544,7 @@ export const Hero: React.FC = () => {
                       animate={iconControls}
                       src="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/micron-overlap-no-border.png"
                       alt="Micron Logo"
-                      className="h-[56px] w-[56px] md:h-[80px] md:w-[80px] xl:h-[110px] xl:w-[110px] object-contain"
+                      className="h-[56px] w-[56px] md:h-[60px] md:w-[60px] lg:h-[80px] lg:w-[80px] xl:h-[110px] xl:w-[110px] object-contain"
                    />
                  </div>
                  
@@ -554,7 +554,7 @@ export const Hero: React.FC = () => {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 2.5, delay: 1.5, ease: [0.16, 1, 0.3, 1] }}
-                      className="hidden md:block text-base md:text-lg xl:text-2xl font-light uppercase tracking-[0.08em] md:tracking-[0.12em] text-zinc-400 leading-tight font-sans text-left"
+                      className="hidden md:block text-sm lg:text-base xl:text-xl font-thin uppercase tracking-[0.15em] lg:tracking-[0.18em] text-zinc-400/80 leading-tight font-sans text-left"
                    >
                       The First Corporate Autonomous Residence
                    </motion.p>
