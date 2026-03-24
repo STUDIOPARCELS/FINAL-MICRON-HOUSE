@@ -202,7 +202,9 @@ export const Hero: React.FC = () => {
   };
 
   // Handle Video End — freeze on last frame
-  const handleVideoEnd = () => {};
+  const handleVideoEnd = () => {
+      setVideoCompleted(true);
+  };
   
   // VIDEO-TIME-DRIVEN CUE SYSTEM
   // All animations are anchored to video.currentTime instead of setTimeout.
@@ -281,7 +283,6 @@ export const Hero: React.FC = () => {
       // Blue bento appears
       if (t >= 30.6 && !fired.has('bento')) {
           fired.add('bento');
-          setVideoCompleted(true);
       }
   };
 
