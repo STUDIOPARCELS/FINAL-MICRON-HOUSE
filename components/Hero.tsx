@@ -367,9 +367,9 @@ export const Hero: React.FC = () => {
                    visible: { 
                        opacity: 1,
                        transition: { 
-                           duration: 3.0, 
+                           duration: 3.6, 
                            ease: [0.16, 1, 0.3, 1],
-                           delay: i < 2 ? i * 1.2 : (currentSet.secondHalfDelay || 4.0) + (i - 2) * 0.8
+                           delay: i < 2 ? i * 1.5 : (currentSet.secondHalfDelay || 4.0) + (i - 2) * 1.0
                        } 
                    },
                    exit: {
