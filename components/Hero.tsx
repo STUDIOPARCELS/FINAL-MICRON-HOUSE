@@ -440,12 +440,12 @@ export const Hero: React.FC = () => {
     <section 
         ref={containerRef}
         // UPDATED: pt-24 on mobile (was pt-32) to reduce padding by ~20%. md:pt-24 remains.
-        className="relative w-full bg-white text-zinc-900 pt-16 md:pt-32 pb-12 md:pb-16 flex flex-col justify-end"
+        className="relative w-full bg-white text-zinc-900 pt-16 md:pt-24 lg:pt-32 pb-12 md:pb-16 flex flex-col justify-end"
     >
-      <div className="container mx-auto px-4 md:px-12 h-full flex flex-col gap-3 md:gap-8 xl:gap-12">
+      <div className="container mx-auto px-4 md:px-8 lg:px-12 h-full flex flex-col gap-3 md:gap-5 lg:gap-8 xl:gap-12">
         
         {/* VIDEO — 30% smaller with white Polaroid bento frame */}
-        <div className="w-full bg-white rounded-3xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 p-4 md:p-12 xl:p-28">
+        <div className="w-full bg-white rounded-3xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 p-4 md:p-8 lg:p-14 xl:p-28">
             <div 
                 className="aspect-video w-full rounded-2xl overflow-hidden relative group"
             >
@@ -474,31 +474,31 @@ export const Hero: React.FC = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 3.0 }}
-                    className="absolute inset-0 z-[2] flex items-start justify-center pt-6 px-4 md:hidden"
-                    style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.15) 40%, transparent 100%)' }}
+                    className="absolute inset-0 z-[2] flex items-start justify-center pt-5 px-4 md:hidden"
+                    style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.1) 35%, transparent 100%)' }}
                   >
-                    <div className="flex flex-col items-center gap-0.5">
-                      <div className="flex gap-x-2">
+                    <div className="flex flex-col items-center gap-0">
+                      <div className="flex gap-x-1.5">
                         {"The First Corporate".split(" ").map((word, i) => (
                           <motion.span
                             key={i}
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 0.6, y: 0 }}
+                            initial={{ opacity: 0, y: 8 }}
+                            animate={{ opacity: 0.55, y: 0 }}
                             transition={{ duration: 2.0, delay: 1.0 + (i * 0.6), ease: [0.16, 1, 0.3, 1] }}
-                            className="text-white text-[13px] font-extralight uppercase tracking-[0.25em]"
+                            className="text-white text-[12px] font-light uppercase tracking-[0.2em]"
                           >
                             {word}
                           </motion.span>
                         ))}
                       </div>
-                      <div className="flex gap-x-2">
+                      <div className="flex gap-x-1.5">
                         {"Autonomous Residence".split(" ").map((word, i) => (
                           <motion.span
                             key={i}
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 0.6, y: 0 }}
+                            initial={{ opacity: 0, y: 8 }}
+                            animate={{ opacity: 0.55, y: 0 }}
                             transition={{ duration: 2.0, delay: 2.8 + (i * 0.6), ease: [0.16, 1, 0.3, 1] }}
-                            className="text-white text-[13px] font-extralight uppercase tracking-[0.25em]"
+                            className="text-white text-[12px] font-light uppercase tracking-[0.2em]"
                           >
                             {word}
                           </motion.span>
@@ -514,7 +514,7 @@ export const Hero: React.FC = () => {
         <motion.div 
             layout
             transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
-            className="w-full min-h-[120px] md:min-h-[120px] xl:min-h-[160px] flex flex-col items-center justify-center bg-white rounded-3xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 relative overflow-hidden py-5 md:py-0"
+            className="w-full min-h-[120px] md:min-h-[100px] lg:min-h-[130px] xl:min-h-[160px] flex flex-col items-center justify-center bg-white rounded-3xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 relative overflow-hidden py-5 md:py-4"
         >
              {/* BRAND REVEAL */}
              {wordmarkVisible && (
@@ -554,7 +554,7 @@ export const Hero: React.FC = () => {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 2.5, delay: 1.5, ease: [0.16, 1, 0.3, 1] }}
-                      className="hidden md:block text-lg md:text-xl xl:text-2xl font-bold uppercase tracking-[0.08em] md:tracking-[0.15em] text-zinc-400 leading-tight font-sans text-left"
+                      className="hidden md:block text-base md:text-lg xl:text-2xl font-light uppercase tracking-[0.08em] md:tracking-[0.12em] text-zinc-400 leading-tight font-sans text-left"
                    >
                       The First Corporate Autonomous Residence
                    </motion.p>
@@ -618,7 +618,7 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 100 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
             transition={{ duration: 2.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="w-full bg-micron-eggplant-light rounded-3xl shadow-[0_40px_80px_-15px_rgba(0,0,0,0.3)] border border-white/20 relative overflow-hidden flex flex-col p-6 md:p-10 xl:p-[60px] gap-4 md:gap-6 group"
+            className="w-full bg-micron-eggplant-light rounded-3xl shadow-[0_40px_80px_-15px_rgba(0,0,0,0.3)] border border-white/20 relative overflow-hidden flex flex-col p-6 md:p-8 lg:p-10 xl:p-[60px] gap-4 md:gap-6 group"
         >
             {/* MAIN LAYOUT: stacks on mobile+tablet, side-by-side on xl+ */}
             <div className="flex flex-col xl:flex-row xl:items-stretch flex-1 gap-4 xl:gap-8">
