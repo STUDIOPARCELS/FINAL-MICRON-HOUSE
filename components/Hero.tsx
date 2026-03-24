@@ -9,7 +9,7 @@ const sentences = [
         highlightColor: "text-[#3d4250]",
         hoverColor: "hover:text-black", 
         highlights: ["VISION", "VELOCITY"],
-        textSize: "text-2xl sm:text-3xl md:text-3xl lg:text-[clamp(2.5rem,3.5vw,3.75rem)]",
+        textSize: "text-2xl sm:text-3xl md:text-3xl lg:text-[clamp(1.6rem,2.4vw,2.5rem)]",
         layout: "default",
         lines: [["WITHOUT", "VISION"], ["THERE'S", "NO", "VELOCITY"]],
         secondHalfDelay: 6.5,
@@ -20,7 +20,7 @@ const sentences = [
         highlightColor: "text-micron-eggplant",
         hoverColor: "hover:text-micron-eggplant/60", 
         highlights: ["MEMORY", "MEANING"],
-        textSize: "text-2xl sm:text-3xl md:text-3xl lg:text-[clamp(2.5rem,3.5vw,3.75rem)]",
+        textSize: "text-2xl sm:text-3xl md:text-3xl lg:text-[clamp(1.6rem,2.4vw,2.5rem)]",
         layout: "default",
         lines: [["WITHOUT", "MEMORY"], ["THERE'S", "NO", "MEANING"]],
         secondHalfDelay: 6.0,
@@ -31,7 +31,7 @@ const sentences = [
         highlightColor: "text-micron-green",
         hoverColor: "hover:text-green-900", 
         highlights: ["PLACE", "PERSPECTIVE"],
-        textSize: "text-2xl sm:text-3xl md:text-3xl lg:text-[clamp(2.5rem,3.5vw,3.75rem)]",
+        textSize: "text-2xl sm:text-3xl md:text-3xl lg:text-[clamp(1.6rem,2.4vw,2.5rem)]",
         layout: "default",
         lines: [["WITHOUT", "PLACE"], ["THERE'S", "NO", "PERSPECTIVE"]],
         secondHalfDelay: 9.0,
@@ -537,7 +537,7 @@ export const Hero: React.FC = () => {
         <motion.div 
             layout
             transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
-            className="w-full lg:w-[87%] lg:mx-auto min-h-[80px] md:min-h-[110px] lg:min-h-[130px] xl:min-h-[160px] flex flex-col items-center justify-center bg-white rounded-3xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 relative overflow-hidden py-3 md:py-3 lg:py-4"
+            className="w-full lg:w-[87%] lg:mx-auto min-h-[80px] md:min-h-[100px] lg:min-h-[90px] xl:min-h-[100px] flex flex-col items-center justify-center bg-white rounded-3xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 relative overflow-hidden py-3 md:py-3 lg:py-3"
         >
              {/* BRAND REVEAL */}
              {wordmarkVisible && (
@@ -549,7 +549,7 @@ export const Hero: React.FC = () => {
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ duration: 3.9, ease: [0.16, 1, 0.3, 1], delay: 0 }}
-                          className="text-[2rem] md:text-[1.6rem] lg:text-[2.2rem] xl:text-[3rem] font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]"
+                          className="text-[2rem] md:text-[1.6rem] lg:text-[1.6rem] xl:text-[2rem] font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]"
                       >
                           Micron
                       </motion.span>
@@ -557,7 +557,7 @@ export const Hero: React.FC = () => {
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ duration: 3.9, ease: [0.16, 1, 0.3, 1], delay: 1.2 }}
-                          className="text-[2rem] md:text-[1.6rem] lg:text-[2.2rem] xl:text-[3rem] font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]"
+                          className="text-[2rem] md:text-[1.6rem] lg:text-[1.6rem] xl:text-[2rem] font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]"
                       >
                           House
                       </motion.span>
@@ -567,7 +567,7 @@ export const Hero: React.FC = () => {
                       animate={iconControls}
                       src="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/micron-overlap-no-border.png"
                       alt="Micron Logo"
-                      className="h-[62px] w-[62px] md:h-[60px] md:w-[60px] lg:h-[80px] lg:w-[80px] xl:h-[110px] xl:w-[110px] object-contain"
+                      className="h-[62px] w-[62px] md:h-[60px] md:w-[60px] lg:h-[56px] lg:w-[56px] xl:h-[70px] xl:w-[70px] object-contain"
                    />
                  </div>
                </div>
