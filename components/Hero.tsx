@@ -12,7 +12,7 @@ const sentences = [
         textSize: "text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,3.5vw,3.75rem)]",
         layout: "default",
         lines: [["WITHOUT", "VISION"], ["THERE'S", "NO", "VELOCITY"]],
-        secondHalfDelay: 5.0,
+        secondHalfDelay: 6.0,
     },
     {
         words: ["WITHOUT", "MEMORY", "THERE'S", "NO", "MEANING"],
@@ -23,7 +23,7 @@ const sentences = [
         textSize: "text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,3.5vw,3.75rem)]",
         layout: "default",
         lines: [["WITHOUT", "MEMORY"], ["THERE'S", "NO", "MEANING"]],
-        secondHalfDelay: 5.0,
+        secondHalfDelay: 6.0,
     },
     {
         words: ["WITHOUT", "PLACE", "THERE'S", "NO", "PERSPECTIVE"], 
@@ -34,7 +34,7 @@ const sentences = [
         textSize: "text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,3.5vw,3.75rem)]",
         layout: "default",
         lines: [["WITHOUT", "PLACE"], ["THERE'S", "NO"], ["PERSPECTIVE"]],
-        secondHalfDelay: 8.0,
+        secondHalfDelay: 9.0,
     },
 ];
 
@@ -228,7 +228,7 @@ export const Hero: React.FC = () => {
       const fired = firedCues.current;
       
       // Sentence 0: Camera closes in on rocket
-      if (t >= 4.0 && !fired.has('s0on')) {
+      if (t >= 3.0 && !fired.has('s0on')) {
           fired.add('s0on');
           setCurrentSentenceIndex(0);
       }
@@ -514,7 +514,7 @@ export const Hero: React.FC = () => {
                       initial={{ opacity: 0, x: 40 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 2.5, delay: 1.5, ease: [0.16, 1, 0.3, 1] }}
-                      className="text-sm md:text-xl xl:text-2xl font-bold uppercase tracking-tight text-zinc-300 leading-snug font-sans"
+                      className="text-lg md:text-3xl xl:text-4xl font-bold uppercase tracking-[0.15em] text-zinc-300 leading-snug font-sans"
                    >
                       The First Corporate Autonomous Residence
                    </motion.p>
