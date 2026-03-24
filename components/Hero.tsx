@@ -468,37 +468,37 @@ export const Hero: React.FC = () => {
                 />
                 <div className="absolute inset-0 z-[1]" style={{ WebkitTapHighlightColor: 'transparent' }} />
                 
-                {/* MOBILE ONLY: tagline in the trees, top of video */}
+                {/* TAGLINE — centered in video frame, ALL viewports */}
                 {videoCompleted && (
                   <motion.div 
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 3.0 }}
-                    className="absolute inset-0 z-[2] flex items-start justify-center pt-5 px-4 md:hidden"
-                    style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.1) 35%, transparent 100%)' }}
+                    className="absolute inset-0 z-[2] flex items-center justify-center px-4"
+                    style={{ background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.1) 50%, transparent 80%)' }}
                   >
-                    <div className="flex flex-col items-center gap-0 leading-none">
-                      <div className="flex gap-x-1.5">
+                    <div className="flex flex-col items-center gap-0.5 md:gap-1 leading-none">
+                      <div className="flex gap-x-1.5 md:gap-x-2.5">
                         {"The First Corporate".split(" ").map((word, i) => (
                           <motion.span
                             key={i}
                             initial={{ opacity: 0, y: 8 }}
-                            animate={{ opacity: 0.55, y: 0 }}
+                            animate={{ opacity: 0.6, y: 0 }}
                             transition={{ duration: 2.0, delay: 1.0 + (i * 0.6), ease: [0.16, 1, 0.3, 1] }}
-                            className="text-white text-[12px] font-thin uppercase tracking-[0.2em]"
+                            className="text-white text-[12px] md:text-[15px] lg:text-[18px] xl:text-[22px] font-thin uppercase tracking-[0.2em] md:tracking-[0.25em]"
                           >
                             {word}
                           </motion.span>
                         ))}
                       </div>
-                      <div className="flex gap-x-1.5">
+                      <div className="flex gap-x-1.5 md:gap-x-2.5">
                         {"Autonomous Residence".split(" ").map((word, i) => (
                           <motion.span
                             key={i}
                             initial={{ opacity: 0, y: 8 }}
-                            animate={{ opacity: 0.55, y: 0 }}
+                            animate={{ opacity: 0.6, y: 0 }}
                             transition={{ duration: 2.0, delay: 2.8 + (i * 0.6), ease: [0.16, 1, 0.3, 1] }}
-                            className="text-white text-[12px] font-thin uppercase tracking-[0.2em]"
+                            className="text-white text-[12px] md:text-[15px] lg:text-[18px] xl:text-[22px] font-thin uppercase tracking-[0.2em] md:tracking-[0.25em]"
                           >
                             {word}
                           </motion.span>
@@ -518,8 +518,8 @@ export const Hero: React.FC = () => {
         >
              {/* BRAND REVEAL */}
              {wordmarkVisible && (
-               <div className="absolute inset-0 flex flex-col md:flex-row items-center justify-center md:justify-start z-20 pointer-events-none px-6 md:px-12 xl:px-16 gap-2 md:gap-4">
-                 {/* MICRON HOUSE + Logo */}
+               <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none px-6 md:px-12 xl:px-16">
+                 {/* MICRON HOUSE + Logo — centered on all viewports */}
                  <div className="flex flex-row items-center gap-2 md:gap-3 flex-shrink-0">
                    <motion.div className="flex flex-col">
                       <motion.span
@@ -547,18 +547,6 @@ export const Hero: React.FC = () => {
                       className="h-[56px] w-[56px] md:h-[60px] md:w-[60px] lg:h-[80px] lg:w-[80px] xl:h-[110px] xl:w-[110px] object-contain"
                    />
                  </div>
-                 
-                 {/* Tagline */}
-                 {logoVisible && (
-                   <motion.p
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 2.5, delay: 1.5, ease: [0.16, 1, 0.3, 1] }}
-                      className="hidden md:block text-sm lg:text-base xl:text-xl font-thin uppercase tracking-[0.15em] lg:tracking-[0.18em] text-zinc-400/80 leading-tight font-sans text-left"
-                   >
-                      The First Corporate Autonomous Residence
-                   </motion.p>
-                 )}
                </div>
              )}
              
