@@ -537,7 +537,7 @@ export const Hero: React.FC = () => {
         <motion.div 
             layout
             transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
-            className="w-full min-h-[80px] md:min-h-[110px] lg:min-h-[130px] xl:min-h-[160px] flex flex-col items-center justify-center bg-white rounded-3xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 relative overflow-hidden py-3 md:py-3 lg:py-4"
+            className="w-full lg:w-[87%] lg:mx-auto min-h-[80px] md:min-h-[110px] lg:min-h-[130px] xl:min-h-[160px] flex flex-col items-center justify-center bg-white rounded-3xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 relative overflow-hidden py-3 md:py-3 lg:py-4"
         >
              {/* BRAND REVEAL */}
              {wordmarkVisible && (
