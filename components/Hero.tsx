@@ -469,8 +469,8 @@ export const Hero: React.FC = () => {
   return (
     <section 
         ref={containerRef}
-        // UPDATED: pt-24 on mobile (was pt-32) to reduce padding by ~20%. md:pt-24 remains.
-        className="relative w-full bg-white text-zinc-900 pt-16 md:pt-24 lg:pt-32 pb-8 md:pb-12 lg:pb-16 flex flex-col justify-end"
+        // UPDATED: pt-24 on mobile restored. md:pt-24 remains.
+        className="relative w-full bg-white text-zinc-900 pt-24 md:pt-24 lg:pt-32 pb-8 md:pb-12 lg:pb-16 flex flex-col justify-end"
     >
       <div className="container mx-auto px-4 md:px-8 lg:px-12 h-full flex flex-col gap-3 md:gap-4 lg:gap-6 xl:gap-10">
         
