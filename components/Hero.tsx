@@ -476,7 +476,7 @@ export const Hero: React.FC = () => {
       <div className="container mx-auto px-4 md:px-8 lg:px-12 h-full flex flex-col gap-3 md:gap-4 lg:gap-6 xl:gap-10">
         
         {/* VIDEO — Polaroid bento frame */}
-        <div className="w-full bg-white rounded-3xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 p-4 md:p-10 lg:p-16 xl:p-28">
+        <div className="w-full bg-white rounded-3xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 p-4 md:p-10 lg:p-20 xl:p-36">
             <div 
                 className="aspect-video w-full rounded-2xl overflow-hidden relative group"
             >
@@ -489,7 +489,7 @@ export const Hero: React.FC = () => {
                     preload="auto"
                     src="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/HERO%20NEWcropped.mp4"
                     onPlaying={() => {
-                        if (videoRef.current) videoRef.current.playbackRate = 0.90;
+                        if (videoRef.current) videoRef.current.playbackRate = 1.0;
                         setVideoIsPlaying(true);
                         startSentenceTimers();
                     }}
