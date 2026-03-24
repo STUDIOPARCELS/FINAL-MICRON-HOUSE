@@ -468,24 +468,27 @@ export const Hero: React.FC = () => {
                 />
                 <div className="absolute inset-0 z-[1]" style={{ WebkitTapHighlightColor: 'transparent' }} />
                 
-                {/* MOBILE ONLY: tagline word-by-word fade over video */}
+                {/* MOBILE ONLY: cinematic tagline word-by-word over video */}
                 {videoCompleted && (
-                  <div className="absolute inset-0 z-[2] flex items-end justify-center pb-6 md:hidden pointer-events-none">
-                    <div className="flex flex-wrap justify-center gap-x-2 px-6">
-                      {"The First Corporate Autonomous Residence".split(" ").map((word, i) => (
-                        <motion.span
-                          key={i}
-                          initial={{ opacity: 0, y: 8 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 1.5, delay: 0.8 + (i * 0.4), ease: [0.16, 1, 0.3, 1] }}
-                          className="text-white/90 text-sm font-light uppercase tracking-[0.2em]"
-                          style={{ textShadow: '0 1px 6px rgba(0,0,0,0.6)' }}
-                        >
-                          {word}
-                        </motion.span>
-                      ))}
-                    </div>
-                  </div>
+                  <motion.div 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1.5 }}
+                    className="absolute bottom-0 left-0 right-0 z-[2] flex flex-wrap justify-center gap-x-2 py-5 px-5 md:hidden"
+                    style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 60%, transparent 100%)' }}
+                  >
+                    {"The First Corporate Autonomous Residence".split(" ").map((word, i) => (
+                      <motion.span
+                        key={i}
+                        initial={{ opacity: 0, y: 6 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1.4, delay: 0.5 + (i * 0.5), ease: [0.16, 1, 0.3, 1] }}
+                        className="text-white text-[15px] font-semibold uppercase tracking-[0.18em]"
+                      >
+                        {word}
+                      </motion.span>
+                    ))}
+                  </motion.div>
                 )}
             </div>
         </div>
