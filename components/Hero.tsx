@@ -275,7 +275,7 @@ export const Hero: React.FC = () => {
           setLogoVisible(true);
           iconControls.start({
               x: 0, rotate: 0, opacity: 1,
-              transition: { type: "spring", stiffness: 5, damping: 12, duration: 8.0, bounce: 0 }
+              transition: { type: "spring", stiffness: 5, damping: 12, duration: 6.0, bounce: 0 }
           });
           setTimeout(() => setLayoutShift(true), 1000);
       }
@@ -499,42 +499,34 @@ export const Hero: React.FC = () => {
                 />
                 <div className="absolute inset-0 z-[1]" style={{ WebkitTapHighlightColor: 'transparent' }} />
                 
-                {/* TAGLINE — centered in video frame, ALL viewports */}
+                {/* TAGLINE — centered in video frame, ALL viewports, word at a time */}
                 {videoCompleted && (
                   <motion.div 
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ duration: 3.0 }}
+                    transition={{ duration: 1.0 }}
                     className="absolute inset-0 z-[2] flex items-center justify-center px-4"
                     style={{ background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.1) 50%, transparent 80%)' }}
                   >
                     <div className="flex flex-col items-center gap-1 md:gap-2 lg:gap-2.5 xl:gap-3 leading-none">
-                      <div className="flex gap-x-1.5 md:gap-x-2.5">
-                        {"The First Corporate".split(" ").map((word, i) => (
-                          <motion.span
-                            key={i}
-                            initial={{ opacity: 0, y: 8 }}
-                            animate={{ opacity: 0.6, y: 0 }}
-                            transition={{ duration: 2.0, delay: 1.0 + (i * 0.6), ease: [0.16, 1, 0.3, 1] }}
-                            className="text-white text-[12px] md:text-[16px] lg:text-[20px] xl:text-[28px] font-thin uppercase tracking-[0.2em] md:tracking-[0.25em]"
-                          >
-                            {word}
-                          </motion.span>
-                        ))}
-                      </div>
-                      <div className="flex gap-x-1.5 md:gap-x-2.5">
-                        {"Autonomous Residence".split(" ").map((word, i) => (
-                          <motion.span
-                            key={i}
-                            initial={{ opacity: 0, y: 8 }}
-                            animate={{ opacity: 0.6, y: 0 }}
-                            transition={{ duration: 2.0, delay: 2.8 + (i * 0.6), ease: [0.16, 1, 0.3, 1] }}
-                            className="text-white text-[12px] md:text-[16px] lg:text-[20px] xl:text-[28px] font-thin uppercase tracking-[0.2em] md:tracking-[0.25em]"
-                          >
-                            {word}
-                          </motion.span>
-                        ))}
-                      </div>
+                      {[["The", "First", "Corporate"], ["Autonomous", "Residence"]].map((line, lineIdx) => (
+                        <div key={lineIdx} className="flex gap-x-1.5 md:gap-x-2.5">
+                          {line.map((word, wi) => {
+                            const globalIdx = lineIdx === 0 ? wi : 3 + wi;
+                            return (
+                              <motion.span
+                                key={`${lineIdx}-${wi}`}
+                                initial={{ opacity: 0, y: 8 }}
+                                animate={{ opacity: 0.6, y: 0 }}
+                                transition={{ duration: 2.0, delay: 2.0 + (globalIdx * 0.6), ease: [0.16, 1, 0.3, 1] }}
+                                className="text-white text-[12px] md:text-[16px] lg:text-[20px] xl:text-[28px] font-thin uppercase tracking-[0.2em] md:tracking-[0.25em]"
+                              >
+                                {word}
+                              </motion.span>
+                            );
+                          })}
+                        </div>
+                      ))}
                     </div>
                   </motion.div>
                 )}
@@ -556,7 +548,7 @@ export const Hero: React.FC = () => {
                       <motion.span
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
-                          transition={{ duration: 3.0, ease: [0.16, 1, 0.3, 1], delay: 0 }}
+                          transition={{ duration: 3.9, ease: [0.16, 1, 0.3, 1], delay: 0 }}
                           className="text-[2rem] md:text-[1.6rem] lg:text-[2.2rem] xl:text-[3rem] font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]"
                       >
                           Micron
@@ -564,7 +556,7 @@ export const Hero: React.FC = () => {
                       <motion.span
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
-                          transition={{ duration: 3.0, ease: [0.16, 1, 0.3, 1], delay: 1.2 }}
+                          transition={{ duration: 3.9, ease: [0.16, 1, 0.3, 1], delay: 1.2 }}
                           className="text-[2rem] md:text-[1.6rem] lg:text-[2.2rem] xl:text-[3rem] font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]"
                       >
                           House
