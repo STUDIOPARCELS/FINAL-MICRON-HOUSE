@@ -489,7 +489,7 @@ export const Hero: React.FC = () => {
                     preload="auto"
                     src="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/HERO%20NEWcropped.mp4"
                     onPlaying={() => {
-                        if (videoRef.current) videoRef.current.playbackRate = 0.45;
+                        if (videoRef.current) videoRef.current.playbackRate = 0.90;
                         setVideoIsPlaying(true);
                         startSentenceTimers();
                     }}
