@@ -509,7 +509,7 @@ export const Hero: React.FC = () => {
                     style={{ background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.1) 50%, transparent 80%)' }}
                   >
                     <div className="flex flex-col items-center gap-1 md:gap-2 lg:gap-2.5 xl:gap-3 leading-none">
-                      {[["The", "First", "Corporate"], ["Autonomous", "Residence"]].map((line, lineIdx) => (
+                      {[["The", "First", "Autonomous"], ["Corporate", "Residence"]].map((line, lineIdx) => (
                         <div key={lineIdx} className="flex gap-x-1.5 md:gap-x-2.5">
                           {line.map((word, wi) => {
                             const globalIdx = lineIdx === 0 ? wi : 3 + wi;
