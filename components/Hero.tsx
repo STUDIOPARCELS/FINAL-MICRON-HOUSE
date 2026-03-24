@@ -468,17 +468,21 @@ export const Hero: React.FC = () => {
                 />
                 <div className="absolute inset-0 z-[1]" style={{ WebkitTapHighlightColor: 'transparent' }} />
                 
-                {/* MOBILE ONLY: tagline overlaid on video */}
+                {/* MOBILE ONLY: tagline overlaid centered on video */}
                 {videoCompleted && (
-                  <motion.p
+                  <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ duration: 2.0, delay: 0.5 }}
-                    className="absolute bottom-4 left-0 right-0 z-[2] text-center text-white font-bold uppercase tracking-[0.1em] text-[11px] md:hidden"
-                    style={{ textShadow: '0 2px 8px rgba(0,0,0,0.7)' }}
+                    transition={{ duration: 3.0, delay: 1.0 }}
+                    className="absolute inset-0 z-[2] flex flex-col items-center justify-center md:hidden"
+                    style={{ background: 'rgba(0,0,0,0.4)' }}
                   >
-                    The First Corporate Autonomous Residence
-                  </motion.p>
+                    <p className="text-white font-bold uppercase tracking-[0.12em] text-[17px] leading-relaxed text-center"
+                       style={{ textShadow: '0 2px 12px rgba(0,0,0,0.8)' }}
+                    >
+                      The First Corporate<br/>Autonomous Residence
+                    </p>
+                  </motion.div>
                 )}
             </div>
         </div>
@@ -563,7 +567,7 @@ export const Hero: React.FC = () => {
                           className="w-full max-w-5xl"
                        >
                          {/* MOBILE: stacked two lines, centered with equal padding */}
-                         <div className="flex flex-col items-center gap-4 md:hidden">
+                         <div className="flex flex-col items-center gap-2 md:hidden">
                            {sentences[currentSentenceIndex].lines?.map((line: string[], lineIdx: number) => (
                              <div key={`line-${lineIdx}`} className="flex flex-nowrap gap-x-2 items-baseline">
                                {line.map((word: string, wi: number) => {
