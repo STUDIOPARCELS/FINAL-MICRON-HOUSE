@@ -9,7 +9,7 @@ const sentences = [
         highlightColor: "text-[#3d4250]",
         hoverColor: "hover:text-black", 
         highlights: ["VISION", "VELOCITY"],
-        textSize: "text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,3.5vw,3.75rem)]",
+        textSize: "text-xl sm:text-2xl md:text-5xl lg:text-[clamp(2.5rem,3.5vw,3.75rem)]",
         layout: "default",
         lines: [["WITHOUT", "VISION"], ["THERE'S", "NO", "VELOCITY"]],
         secondHalfDelay: 6.0,
@@ -20,7 +20,7 @@ const sentences = [
         highlightColor: "text-micron-eggplant",
         hoverColor: "hover:text-micron-eggplant/60", 
         highlights: ["MEMORY", "MEANING"],
-        textSize: "text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,3.5vw,3.75rem)]",
+        textSize: "text-xl sm:text-2xl md:text-5xl lg:text-[clamp(2.5rem,3.5vw,3.75rem)]",
         layout: "default",
         lines: [["WITHOUT", "MEMORY"], ["THERE'S", "NO", "MEANING"]],
         secondHalfDelay: 6.0,
@@ -31,7 +31,7 @@ const sentences = [
         highlightColor: "text-micron-green",
         hoverColor: "hover:text-green-900", 
         highlights: ["PLACE", "PERSPECTIVE"],
-        textSize: "text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,3.5vw,3.75rem)]",
+        textSize: "text-xl sm:text-2xl md:text-5xl lg:text-[clamp(2.5rem,3.5vw,3.75rem)]",
         layout: "default",
         lines: [["WITHOUT", "PLACE"], ["THERE'S", "NO"], ["PERSPECTIVE"]],
         secondHalfDelay: 9.0,
@@ -445,7 +445,7 @@ export const Hero: React.FC = () => {
       <div className="container mx-auto px-4 md:px-12 h-full flex flex-col gap-4 md:gap-8 xl:gap-12">
         
         {/* VIDEO — 30% smaller with white Polaroid bento frame */}
-        <div className="w-full bg-white rounded-3xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 p-14 md:p-20 xl:p-28">
+        <div className="w-full bg-white rounded-3xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 p-3 md:p-20 xl:p-28">
             <div 
                 className="aspect-video w-full rounded-2xl overflow-hidden relative group"
             >
@@ -474,11 +474,11 @@ export const Hero: React.FC = () => {
         <motion.div 
             layout
             transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
-            className="w-full min-h-[80px] md:min-h-[120px] xl:min-h-[160px] flex flex-col items-center justify-center bg-white rounded-3xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 relative overflow-hidden"
+            className="w-full min-h-[60px] md:min-h-[120px] xl:min-h-[160px] flex flex-col items-center justify-center bg-white rounded-3xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 relative overflow-hidden py-4 md:py-0"
         >
              {/* BRAND REVEAL — slides left, tagline appears right */}
              {wordmarkVisible && (
-               <div className="absolute inset-0 flex flex-row items-center z-20 pointer-events-none px-8 md:px-12 xl:px-16 gap-4 md:gap-6">
+               <div className="absolute inset-0 flex flex-col md:flex-row items-center justify-center md:justify-start z-20 pointer-events-none px-4 md:px-12 xl:px-16 gap-2 md:gap-4">
                  {/* Left: MICRON HOUSE + Logo */}
                  <div className="flex flex-row items-center gap-2 md:gap-3">
                    <motion.div className="flex flex-col">
@@ -486,7 +486,7 @@ export const Hero: React.FC = () => {
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ duration: 3.0, ease: [0.16, 1, 0.3, 1], delay: 0 }}
-                          className="text-[1.5rem] md:text-[2.2rem] xl:text-[3rem] font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]"
+                          className="text-[1.2rem] md:text-[2.2rem] xl:text-[3rem] font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]"
                       >
                           Micron
                       </motion.span>
@@ -494,7 +494,7 @@ export const Hero: React.FC = () => {
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ duration: 3.0, ease: [0.16, 1, 0.3, 1], delay: 1.2 }}
-                          className="text-[1.5rem] md:text-[2.2rem] xl:text-[3rem] font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]"
+                          className="text-[1.2rem] md:text-[2.2rem] xl:text-[3rem] font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]"
                       >
                           House
                       </motion.span>
@@ -504,17 +504,17 @@ export const Hero: React.FC = () => {
                       animate={iconControls}
                       src="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/micron-overlap-no-border.png"
                       alt="Micron Logo"
-                      className="h-[48px] w-[48px] md:h-[80px] md:w-[80px] xl:h-[110px] xl:w-[110px] object-contain"
+                      className="h-[36px] w-[36px] md:h-[80px] md:w-[80px] xl:h-[110px] xl:w-[110px] object-contain"
                    />
                  </div>
                  
-                 {/* Right: Tagline in blocky sans-serif */}
+                 {/* Right: Tagline */}
                  {logoVisible && (
                    <motion.p
                       initial={{ opacity: 0, x: 40 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 2.5, delay: 1.5, ease: [0.16, 1, 0.3, 1] }}
-                      className="text-lg md:text-3xl xl:text-4xl font-bold uppercase tracking-[0.15em] text-zinc-300 leading-snug font-sans"
+                      className="text-[9px] md:text-xl xl:text-2xl font-bold uppercase tracking-[0.08em] md:tracking-[0.15em] text-zinc-300 leading-snug font-sans text-center md:text-left"
                    >
                       The First Corporate Autonomous Residence
                    </motion.p>
@@ -533,7 +533,7 @@ export const Hero: React.FC = () => {
                    {currentSentenceIndex !== null && (
                        <motion.div 
                           key={`${currentSentenceIndex}-${key}`}
-                          className="flex flex-nowrap gap-x-3 md:gap-x-5 w-full max-w-5xl justify-center items-baseline"
+                          className="flex flex-wrap md:flex-nowrap gap-x-2 md:gap-x-5 gap-y-1 w-full max-w-5xl justify-center items-baseline"
                           initial="hidden"
                           animate="visible"
                           exit="exit"
