@@ -177,7 +177,7 @@ export const Hero: React.FC = () => {
     setLogoVisible(false);
     setWordmarkVisible(false);
     setVideoIsPlaying(false);
-    iconControls.set({ x: 200, rotate: -360, opacity: 0 });
+    iconControls.set({ x: -200, rotate: 360, opacity: 0 });
     wordmarkControls.set({ opacity: 0 });
 
     // 3. Start Video — programmatic play only (no autoPlay attribute), matching bento pattern
@@ -247,8 +247,8 @@ export const Hero: React.FC = () => {
           setCurrentSentenceIndex(null);
       }
       
-      // Sentence 2: Capitol building in view
-      if (t >= 15.0 && !fired.has('s2on')) {
+      // Sentence 2: Capitol building in view — 2s pause after sentence 1
+      if (t >= 17.0 && !fired.has('s2on')) {
           fired.add('s2on');
           setCurrentSentenceIndex(2);
       }
@@ -267,7 +267,7 @@ export const Hero: React.FC = () => {
           });
       }
       
-      // Brand reveal: Logo rolls in as video starts spinning out from overhead
+      // Brand reveal: Logo rolls in from the LEFT
       if (t >= 29.0 && !fired.has('logo')) {
           fired.add('logo');
           setLogoVisible(true);
@@ -301,7 +301,7 @@ export const Hero: React.FC = () => {
           setWordmarkVisible(false);
           setVideoCompleted(false);
           setVideoIsPlaying(false);
-          iconControls.set({ x: 200, rotate: -360, opacity: 0 });
+          iconControls.set({ x: -200, rotate: 360, opacity: 0 });
           wordmarkControls.set({ opacity: 0 });
       }
 
@@ -500,7 +500,7 @@ export const Hero: React.FC = () => {
                       </motion.span>
                    </motion.div>
                    <motion.img 
-                      initial={{ x: 200, rotate: -360, opacity: 0 }}
+                      initial={{ x: -200, rotate: 360, opacity: 0 }}
                       animate={iconControls}
                       src="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/micron-overlap-no-border.png"
                       alt="Micron Logo"
@@ -508,13 +508,13 @@ export const Hero: React.FC = () => {
                    />
                  </div>
                  
-                 {/* Right: Tagline in script font */}
+                 {/* Right: Tagline in blocky sans-serif */}
                  {logoVisible && (
                    <motion.p
                       initial={{ opacity: 0, x: 40 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 2.5, delay: 1.5, ease: [0.16, 1, 0.3, 1] }}
-                      className="font-micron text-lg md:text-2xl xl:text-3xl text-micron-eggplant/60 font-extralight leading-snug ml-auto"
+                      className="text-sm md:text-xl xl:text-2xl font-bold uppercase tracking-tight text-zinc-300 leading-snug font-sans"
                    >
                       The First Corporate Autonomous Residence
                    </motion.p>
