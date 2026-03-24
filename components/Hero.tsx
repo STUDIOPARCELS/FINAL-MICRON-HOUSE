@@ -221,66 +221,8 @@ export const Hero: React.FC = () => {
   const sentenceTimers = useRef<ReturnType<typeof setTimeout>[]>([]);
   const firedCues = useRef<Set<string>>(new Set());
   
-  const handleVideoTimeUpdate = (e: React.SyntheticEvent<HTMLVideoElement>) => {
-      const t = e.currentTarget.currentTime;
-      const fired = firedCues.current;
-      
-      // Sentence 0: Camera closes in on rocket
-      if (t >= 4.0 && !fired.has('s0on')) {
-          fired.add('s0on');
-          setCurrentSentenceIndex(0);
-      }
-      if (t >= 7.5 && !fired.has('s0off')) {
-          fired.add('s0off');
-          setCurrentSentenceIndex(null);
-      }
-      
-      // Sentence 1: Fab first visible over foothills
-      if (t >= 9.5 && !fired.has('s1on')) {
-          fired.add('s1on');
-          setCurrentSentenceIndex(1);
-      }
-      if (t >= 14.5 && !fired.has('s1off')) {
-          fired.add('s1off');
-          setCurrentSentenceIndex(null);
-      }
-      
-      // Sentence 2: Capitol building in view
-      if (t >= 15.0 && !fired.has('s2on')) {
-          fired.add('s2on');
-          setCurrentSentenceIndex(2);
-      }
-      if (t >= 24.0 && !fired.has('s2off')) {
-          fired.add('s2off');
-          setCurrentSentenceIndex(null);
-      }
-      
-      // Brand reveal: Wordmark fades in when car drives off
-      if (t >= 26.0 && !fired.has('wordmark')) {
-          fired.add('wordmark');
-          setWordmarkVisible(true);
-          wordmarkControls.start({
-              opacity: 1,
-              transition: { duration: 2.0, ease: [0.16, 1, 0.3, 1] }
-          });
-      }
-      
-      // Brand reveal: Logo rolls in as video starts spinning out from overhead
-      if (t >= 29.0 && !fired.has('logo')) {
-          fired.add('logo');
-          setLogoVisible(true);
-          iconControls.start({
-              x: 0, rotate: 0, opacity: 1,
-              transition: { type: "spring", stiffness: 5, damping: 12, duration: 8.0, bounce: 0 }
-          });
-          setTimeout(() => setLayoutShift(true), 1000);
-      }
-      
-      // Blue bento appears
-      if (t >= 30.6 && !fired.has('bento')) {
-          fired.add('bento');
-          setVideoCompleted(true);
-      }
+  const handleVideoTimeUpdate = () => {
+      // Blue bento appears on video end or scroll — no mid-video cues needed for new hero
   };
 
   // Handle Scroll Visibility (Scroll back up triggers replay)
@@ -442,113 +384,10 @@ export const Hero: React.FC = () => {
     >
       <div className="container mx-auto px-4 md:px-12 h-full flex flex-col gap-4 xl:gap-16">
         
-        {/* TOP SECTION */}
-        {/* UPDATED: Changed grid layout to [55fr_45fr] for desktop to make video wider */}
-        <div className="flex flex-col xl:grid xl:grid-cols-[50fr_50fr] gap-8 xl:gap-4 h-auto xl:h-[500px] w-full">
-            
-            {/* 1. TEXT ANIMATION AREA (White Bento) */}
-            {/* UPDATED: Changed order to order-2 (Bottom on Mobile, Right on Desktop) */}
-            <motion.div 
-                layout
-                transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
-                className={`
-                    min-h-[180px] p-6
-                    xl:min-h-[300px] xl:h-full xl:p-12
-                    w-full flex flex-col items-center justify-center order-2 bg-white rounded-3xl 
-                    shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 relative overflow-hidden group
-                `}
-            >
-                 {/* BRAND REVEAL: MICRON stacked above HOUSE fills bento, logo rolls in */}
-                 {wordmarkVisible && (
-                   <div className="absolute inset-0 flex flex-row items-center justify-center z-20 pointer-events-none px-6 xl:px-12 gap-2 md:gap-3 xl:gap-4">
-                     {/* Wordmark — MICRON above HOUSE, fills the space */}
-                     <motion.div
-                        className="flex flex-col"
-                     >
-                        <motion.span
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 3.0, ease: [0.16, 1, 0.3, 1], delay: 0 }}
-                            className="text-[2.5rem] md:text-[3.3rem] xl:text-[5rem] font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]"
-                        >
-                            Micron
-                        </motion.span>
-                        <motion.span
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 3.0, ease: [0.16, 1, 0.3, 1], delay: 1.2 }}
-                            className="text-[2.5rem] md:text-[3.3rem] xl:text-[5rem] font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]"
-                        >
-                            House
-                        </motion.span>
-                     </motion.div>
-                     {/* Logo — rolls in to fill remaining space */}
-                     <motion.img 
-                        initial={{ x: 200, rotate: -360, opacity: 0 }}
-                        animate={iconControls}
-                        src="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/micron-overlap-no-border.png"
-                        alt="Micron Logo"
-                        className="h-[88px] w-[88px] md:h-[154px] md:w-[154px] xl:h-[220px] xl:w-[220px] object-contain"
-                     />
-                   </div>
-                 )}
-                 
-                 {/* Sentence text — visible during video, fades when brand appears */}
-                 <motion.div 
-                    layout
-                    transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
-                    className={`w-full relative z-10 flex items-center justify-center`}
-                    style={{ opacity: wordmarkVisible ? 0 : 1 }}
-                 >
-                     <AnimatePresence mode="wait">
-                       {currentSentenceIndex !== null && (
-                           <motion.div 
-                              key={`${currentSentenceIndex}-${key}`}
-                              className="flex flex-wrap gap-x-4 md:gap-x-6 gap-y-4 w-full max-w-5xl justify-center"
-                              initial="hidden"
-                              animate="visible"
-                              exit="exit"
-                              variants={{
-                                  hidden: { opacity: 1 },
-                                  visible: { 
-                                      opacity: 1,
-                                      transition: { staggerChildren: 0 } 
-                                  },
-                                  exit: { 
-                                      opacity: 1, 
-                                      transition: { staggerChildren: 0.15, staggerDirection: -1, duration: 1.5 } 
-                                  }
-                              }}
-                           >
-                             {(() => {
-                                 const currentSet = sentences[currentSentenceIndex];
-                                 if (currentSet.lines) {
-                                     // Forced line layout: render each line as a block
-                                     let wordIndex = 0;
-                                     return currentSet.lines.map((line: string[], lineIdx: number) => (
-                                         <div key={`line-${lineIdx}`} className="w-full flex flex-nowrap gap-x-4 md:gap-x-6 justify-center">
-                                             {line.map((word: string) => {
-                                                 const el = renderWord(word, wordIndex, currentSet);
-                                                 wordIndex++;
-                                                 return el;
-                                             })}
-                                         </div>
-                                     ));
-                                 }
-                                 return currentSet.words.map((word: string, i: number) => renderWord(word, i, currentSet));
-                             })()}
-                           </motion.div>
-                       )}
-                     </AnimatePresence>
-                 </motion.div>
-            </motion.div>
-
-            {/* 2. VIDEO AREA */}
-            {/* UPDATED: Changed order to order-1 (Top on Mobile, Left on Desktop) */}
-            {/* UPDATED: REMOVED DELAY so video plays instantly */}
-            {/* UPDATED: Changed mobile height from aspect-[1.4/1] to aspect-[1.4/1] (Taller by ~10%) */}
+        {/* TOP SECTION: Full-width cinematic video */}
+        <div className="w-full">
             <div 
-                className="aspect-[1.4/1] h-auto xl:aspect-auto xl:h-full w-full rounded-3xl overflow-hidden relative shadow-[0_40px_80px_-15px_rgba(0,0,0,0.3)] hover:-translate-y-1 transition-transform duration-500 bg-black order-1 group"
+                className="aspect-[2.35/1] w-full rounded-3xl overflow-hidden relative shadow-[0_40px_80px_-15px_rgba(0,0,0,0.3)] bg-black group"
             >
                 <video 
                     ref={videoRef}
@@ -557,21 +396,41 @@ export const Hero: React.FC = () => {
                     muted 
                     playsInline
                     preload="auto"
-                    src="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/MH_VIDEOS/micron-house-hero-compressed.mp4"
+                    src="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/HERO%20NEW.mp4"
                     onPlaying={() => {
                         if (videoRef.current) videoRef.current.playbackRate = 0.45;
                         setVideoIsPlaying(true);
                         startSentenceTimers();
                     }}
-                    onEnded={handleVideoEnd}
+                    onEnded={() => setVideoCompleted(true)}
                     onTimeUpdate={handleVideoTimeUpdate}
                     className="absolute inset-0 w-full h-full object-cover opacity-100"
                 />
-                {/* Invisible overlay blocks iOS from rendering native play button */}
                 <div className="absolute inset-0 z-[1]" style={{ WebkitTapHighlightColor: 'transparent' }} />
             </div>
-
         </div>
+
+        {/* TAGLINE: Without vision there's no velocity */}
+        <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 2.0, delay: 1.5, ease: [0.22, 1, 0.36, 1] }}
+            className="w-full flex items-center justify-center py-6 md:py-10"
+        >
+            <h2 className="text-2xl md:text-4xl xl:text-5xl font-black uppercase tracking-tight text-micron-eggplant leading-none text-center font-sans">
+                {"Without vision there's no velocity".split(" ").map((word, i) => (
+                    <motion.span
+                        key={i}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                        transition={{ duration: 1.2, delay: 2.0 + (i * 0.15), ease: "easeOut" }}
+                        className="inline-block mr-2 md:mr-3"
+                    >
+                        {word}
+                    </motion.span>
+                ))}
+            </h2>
+        </motion.div>
 
         {/* BOTTOM SECTION: PARADIGM & QUOTE */}
         {/* Appears on scroll like all other sections */}
