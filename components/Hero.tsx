@@ -550,7 +550,7 @@ export const Hero: React.FC = () => {
                           className="w-full max-w-5xl"
                        >
                          {/* MOBILE: stacked two lines, centered with equal padding */}
-                         <div className="flex flex-col items-center md:hidden">
+                         <div className="flex flex-col items-center gap-4 md:hidden">
                            {sentences[currentSentenceIndex].lines?.map((line: string[], lineIdx: number) => (
                              <div key={`line-${lineIdx}`} className="flex flex-nowrap gap-x-2 items-baseline">
                                {line.map((word: string, wi: number) => {
