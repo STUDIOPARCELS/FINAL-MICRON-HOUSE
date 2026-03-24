@@ -12,7 +12,7 @@ const sentences = [
         textSize: "text-2xl sm:text-3xl md:text-4xl lg:text-[clamp(2.5rem,3.5vw,3.75rem)]",
         layout: "default",
         lines: [["WITHOUT", "VISION"], ["THERE'S", "NO", "VELOCITY"]],
-        secondHalfDelay: 6.0,
+        secondHalfDelay: 6.5,
     },
     {
         words: ["WITHOUT", "MEMORY", "THERE'S", "NO", "MEANING"],
@@ -228,7 +228,7 @@ export const Hero: React.FC = () => {
       const fired = firedCues.current;
       
       // Sentence 0: Camera closes in on rocket
-      if (t >= 3.0 && !fired.has('s0on')) {
+      if (t >= 2.5 && !fired.has('s0on')) {
           fired.add('s0on');
           setCurrentSentenceIndex(0);
       }
