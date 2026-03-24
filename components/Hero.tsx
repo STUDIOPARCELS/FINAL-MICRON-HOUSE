@@ -444,10 +444,10 @@ export const Hero: React.FC = () => {
     >
       <div className="container mx-auto px-4 md:px-12 h-full flex flex-col gap-4 md:gap-8 xl:gap-12">
         
-        {/* FULL-WIDTH VIDEO */}
-        <div className="w-full">
+        {/* VIDEO — 30% smaller with white Polaroid bento frame */}
+        <div className="w-full bg-white rounded-3xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 p-6 md:p-10 xl:p-14">
             <div 
-                className="aspect-video w-full rounded-3xl overflow-hidden relative shadow-[0_40px_80px_-15px_rgba(0,0,0,0.3)] group"
+                className="aspect-video w-full rounded-2xl overflow-hidden relative group"
             >
                 <video 
                     ref={videoRef}
@@ -476,34 +476,49 @@ export const Hero: React.FC = () => {
             transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
             className="w-full min-h-[80px] md:min-h-[120px] xl:min-h-[160px] flex flex-col items-center justify-center bg-white rounded-3xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 relative overflow-hidden"
         >
-             {/* BRAND REVEAL */}
+             {/* BRAND REVEAL — slides left, tagline appears right */}
              {wordmarkVisible && (
-               <div className="absolute inset-0 flex flex-row items-center justify-center z-20 pointer-events-none px-6 gap-3 md:gap-4">
-                 <motion.div className="flex flex-col">
-                    <motion.span
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 3.0, ease: [0.16, 1, 0.3, 1], delay: 0 }}
-                        className="text-[2rem] md:text-[3rem] xl:text-[4rem] font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]"
-                    >
-                        Micron
-                    </motion.span>
-                    <motion.span
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 3.0, ease: [0.16, 1, 0.3, 1], delay: 1.2 }}
-                        className="text-[2rem] md:text-[3rem] xl:text-[4rem] font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]"
-                    >
-                        House
-                    </motion.span>
-                 </motion.div>
-                 <motion.img 
-                    initial={{ x: 200, rotate: -360, opacity: 0 }}
-                    animate={iconControls}
-                    src="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/micron-overlap-no-border.png"
-                    alt="Micron Logo"
-                    className="h-[64px] w-[64px] md:h-[110px] md:w-[110px] xl:h-[150px] xl:w-[150px] object-contain"
-                 />
+               <div className="absolute inset-0 flex flex-row items-center z-20 pointer-events-none px-8 md:px-12 xl:px-16 gap-4 md:gap-6">
+                 {/* Left: MICRON HOUSE + Logo */}
+                 <div className="flex flex-row items-center gap-2 md:gap-3">
+                   <motion.div className="flex flex-col">
+                      <motion.span
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ duration: 3.0, ease: [0.16, 1, 0.3, 1], delay: 0 }}
+                          className="text-[1.5rem] md:text-[2.2rem] xl:text-[3rem] font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]"
+                      >
+                          Micron
+                      </motion.span>
+                      <motion.span
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ duration: 3.0, ease: [0.16, 1, 0.3, 1], delay: 1.2 }}
+                          className="text-[1.5rem] md:text-[2.2rem] xl:text-[3rem] font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]"
+                      >
+                          House
+                      </motion.span>
+                   </motion.div>
+                   <motion.img 
+                      initial={{ x: 200, rotate: -360, opacity: 0 }}
+                      animate={iconControls}
+                      src="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/micron-overlap-no-border.png"
+                      alt="Micron Logo"
+                      className="h-[48px] w-[48px] md:h-[80px] md:w-[80px] xl:h-[110px] xl:w-[110px] object-contain"
+                   />
+                 </div>
+                 
+                 {/* Right: Tagline in script font */}
+                 {logoVisible && (
+                   <motion.p
+                      initial={{ opacity: 0, x: 40 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 2.5, delay: 1.5, ease: [0.16, 1, 0.3, 1] }}
+                      className="font-micron text-lg md:text-2xl xl:text-3xl text-micron-eggplant/60 font-extralight leading-snug ml-auto"
+                   >
+                      The First Corporate Autonomous Residence
+                   </motion.p>
+                 )}
                </div>
              )}
              
