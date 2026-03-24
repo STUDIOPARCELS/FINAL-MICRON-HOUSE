@@ -11,7 +11,8 @@ const sentences = [
         highlights: ["VISION", "VELOCITY"],
         textSize: "text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,3.5vw,3.75rem)]",
         layout: "default",
-        lines: [["WITHOUT", "VISION"], ["THERE'S", "NO", "VELOCITY"]]
+        lines: [["WITHOUT", "VISION"], ["THERE'S", "NO", "VELOCITY"]],
+        secondHalfDelay: 5.0,
     },
     {
         words: ["WITHOUT", "MEMORY", "THERE'S", "NO", "MEANING"],
@@ -21,7 +22,8 @@ const sentences = [
         highlights: ["MEMORY", "MEANING"],
         textSize: "text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,3.5vw,3.75rem)]",
         layout: "default",
-        lines: [["WITHOUT", "MEMORY"], ["THERE'S", "NO", "MEANING"]]
+        lines: [["WITHOUT", "MEMORY"], ["THERE'S", "NO", "MEANING"]],
+        secondHalfDelay: 5.0,
     },
     {
         words: ["WITHOUT", "PLACE", "THERE'S", "NO", "PERSPECTIVE"], 
@@ -32,7 +34,7 @@ const sentences = [
         textSize: "text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(2.5rem,3.5vw,3.75rem)]",
         layout: "default",
         lines: [["WITHOUT", "PLACE"], ["THERE'S", "NO"], ["PERSPECTIVE"]],
-        secondHalfDelay: 7.0,
+        secondHalfDelay: 8.0,
     },
 ];
 
@@ -225,7 +227,7 @@ export const Hero: React.FC = () => {
       const t = e.currentTarget.currentTime;
       const fired = firedCues.current;
       
-      // Sentence 0: Camera zooms into Starbase
+      // Sentence 0: Camera closes in on rocket
       if (t >= 4.0 && !fired.has('s0on')) {
           fired.add('s0on');
           setCurrentSentenceIndex(0);
@@ -235,7 +237,7 @@ export const Hero: React.FC = () => {
           setCurrentSentenceIndex(null);
       }
       
-      // Sentence 1: Camera heads over Boise foothills
+      // Sentence 1: Fab first visible over foothills
       if (t >= 9.5 && !fired.has('s1on')) {
           fired.add('s1on');
           setCurrentSentenceIndex(1);
@@ -245,7 +247,7 @@ export const Hero: React.FC = () => {
           setCurrentSentenceIndex(null);
       }
       
-      // Sentence 2: Camera settles on Capitol
+      // Sentence 2: Capitol building in view
       if (t >= 15.0 && !fired.has('s2on')) {
           fired.add('s2on');
           setCurrentSentenceIndex(2);
@@ -255,7 +257,7 @@ export const Hero: React.FC = () => {
           setCurrentSentenceIndex(null);
       }
       
-      // Brand reveal: MICRON HOUSE + logo
+      // Brand reveal: Wordmark fades in when car drives off
       if (t >= 26.0 && !fired.has('wordmark')) {
           fired.add('wordmark');
           setWordmarkVisible(true);
@@ -265,6 +267,7 @@ export const Hero: React.FC = () => {
           });
       }
       
+      // Brand reveal: Logo rolls in as video starts spinning out from overhead
       if (t >= 29.0 && !fired.has('logo')) {
           fired.add('logo');
           setLogoVisible(true);
@@ -272,6 +275,7 @@ export const Hero: React.FC = () => {
               x: 0, rotate: 0, opacity: 1,
               transition: { type: "spring", stiffness: 5, damping: 12, duration: 8.0, bounce: 0 }
           });
+          setTimeout(() => setLayoutShift(true), 1000);
       }
       
       // Blue bento appears
@@ -438,12 +442,115 @@ export const Hero: React.FC = () => {
         // UPDATED: pt-24 on mobile (was pt-32) to reduce padding by ~20%. md:pt-24 remains.
         className="relative w-full bg-white text-zinc-900 pt-20 md:pt-40 pb-12 md:pb-16 flex flex-col justify-end"
     >
-      <div className="container mx-auto px-4 md:px-12 h-full flex flex-col gap-4 md:gap-6">
+      <div className="container mx-auto px-4 md:px-12 h-full flex flex-col gap-4 md:gap-8 xl:gap-12">
         
-        {/* TOP SECTION: Full-width cinematic video at native 16:9 */}
-        <div className="w-full">
+        {/* TOP SECTION */}
+        {/* UPDATED: Changed grid layout to [55fr_45fr] for desktop to make video wider */}
+        <div className="flex flex-col xl:grid xl:grid-cols-[50fr_50fr] gap-8 xl:gap-4 h-auto xl:h-[500px] w-full">
+            
+            {/* 1. TEXT ANIMATION AREA (White Bento) */}
+            {/* UPDATED: Changed order to order-2 (Bottom on Mobile, Right on Desktop) */}
+            <motion.div 
+                layout
+                transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
+                className={`
+                    min-h-[180px] p-6
+                    xl:min-h-[300px] xl:h-full xl:p-12
+                    w-full flex flex-col items-center justify-center order-2 bg-white rounded-3xl 
+                    shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 relative overflow-hidden group
+                `}
+            >
+                 {/* BRAND REVEAL: MICRON stacked above HOUSE fills bento, logo rolls in */}
+                 {wordmarkVisible && (
+                   <div className="absolute inset-0 flex flex-row items-center justify-center z-20 pointer-events-none px-6 xl:px-12 gap-2 md:gap-3 xl:gap-4">
+                     {/* Wordmark — MICRON above HOUSE, fills the space */}
+                     <motion.div
+                        className="flex flex-col"
+                     >
+                        <motion.span
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 3.0, ease: [0.16, 1, 0.3, 1], delay: 0 }}
+                            className="text-[2.5rem] md:text-[3.3rem] xl:text-[5rem] font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]"
+                        >
+                            Micron
+                        </motion.span>
+                        <motion.span
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 3.0, ease: [0.16, 1, 0.3, 1], delay: 1.2 }}
+                            className="text-[2.5rem] md:text-[3.3rem] xl:text-[5rem] font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]"
+                        >
+                            House
+                        </motion.span>
+                     </motion.div>
+                     {/* Logo — rolls in to fill remaining space */}
+                     <motion.img 
+                        initial={{ x: 200, rotate: -360, opacity: 0 }}
+                        animate={iconControls}
+                        src="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/micron-overlap-no-border.png"
+                        alt="Micron Logo"
+                        className="h-[88px] w-[88px] md:h-[154px] md:w-[154px] xl:h-[220px] xl:w-[220px] object-contain"
+                     />
+                   </div>
+                 )}
+                 
+                 {/* Sentence text — visible during video, fades when brand appears */}
+                 <motion.div 
+                    layout
+                    transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
+                    className={`w-full relative z-10 flex items-center justify-center`}
+                    style={{ opacity: wordmarkVisible ? 0 : 1 }}
+                 >
+                     <AnimatePresence mode="wait">
+                       {currentSentenceIndex !== null && (
+                           <motion.div 
+                              key={`${currentSentenceIndex}-${key}`}
+                              className="flex flex-wrap gap-x-4 md:gap-x-6 gap-y-4 w-full max-w-5xl justify-center"
+                              initial="hidden"
+                              animate="visible"
+                              exit="exit"
+                              variants={{
+                                  hidden: { opacity: 1 },
+                                  visible: { 
+                                      opacity: 1,
+                                      transition: { staggerChildren: 0 } 
+                                  },
+                                  exit: { 
+                                      opacity: 1, 
+                                      transition: { staggerChildren: 0.15, staggerDirection: -1, duration: 1.5 } 
+                                  }
+                              }}
+                           >
+                             {(() => {
+                                 const currentSet = sentences[currentSentenceIndex];
+                                 if (currentSet.lines) {
+                                     // Forced line layout: render each line as a block
+                                     let wordIndex = 0;
+                                     return currentSet.lines.map((line: string[], lineIdx: number) => (
+                                         <div key={`line-${lineIdx}`} className="w-full flex flex-nowrap gap-x-4 md:gap-x-6 justify-center">
+                                             {line.map((word: string) => {
+                                                 const el = renderWord(word, wordIndex, currentSet);
+                                                 wordIndex++;
+                                                 return el;
+                                             })}
+                                         </div>
+                                     ));
+                                 }
+                                 return currentSet.words.map((word: string, i: number) => renderWord(word, i, currentSet));
+                             })()}
+                           </motion.div>
+                       )}
+                     </AnimatePresence>
+                 </motion.div>
+            </motion.div>
+
+            {/* 2. VIDEO AREA */}
+            {/* UPDATED: Changed order to order-1 (Top on Mobile, Left on Desktop) */}
+            {/* UPDATED: REMOVED DELAY so video plays instantly */}
+            {/* UPDATED: Changed mobile height from aspect-[1.4/1] to aspect-[1.4/1] (Taller by ~10%) */}
             <div 
-                className="aspect-video w-full rounded-3xl overflow-hidden relative shadow-[0_40px_80px_-15px_rgba(0,0,0,0.3)] bg-black group"
+                className="aspect-[1.4/1] h-auto xl:aspect-auto xl:h-full w-full rounded-3xl overflow-hidden relative shadow-[0_40px_80px_-15px_rgba(0,0,0,0.3)] hover:-translate-y-1 transition-transform duration-500 bg-black order-1 group"
             >
                 <video 
                     ref={videoRef}
@@ -452,95 +559,20 @@ export const Hero: React.FC = () => {
                     muted 
                     playsInline
                     preload="auto"
-                    src="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/HERO%20NEW.mp4"
+                    src="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/MH_VIDEOS/micron-house-hero-compressed.mp4"
                     onPlaying={() => {
                         if (videoRef.current) videoRef.current.playbackRate = 0.45;
                         setVideoIsPlaying(true);
                         startSentenceTimers();
                     }}
-                    onEnded={() => setVideoCompleted(true)}
+                    onEnded={handleVideoEnd}
                     onTimeUpdate={handleVideoTimeUpdate}
                     className="absolute inset-0 w-full h-full object-cover opacity-100"
                 />
+                {/* Invisible overlay blocks iOS from rendering native play button */}
                 <div className="absolute inset-0 z-[1]" style={{ WebkitTapHighlightColor: 'transparent' }} />
             </div>
-        </div>
 
-        {/* SENTENCE ANIMATION STRIP — horizontal, between video and blue bento */}
-        <div className="w-full min-h-[100px] md:min-h-[140px] flex items-center justify-center relative overflow-hidden">
-            
-            {/* Cycling sentences — same timing as before, horizontal single line */}
-            {!wordmarkVisible && (
-                <AnimatePresence mode="wait">
-                    {currentSentenceIndex !== null && (
-                        <motion.div 
-                            key={`${currentSentenceIndex}-${key}`}
-                            className="flex flex-wrap gap-x-3 md:gap-x-5 gap-y-2 w-full max-w-5xl justify-center items-baseline px-4"
-                            initial="hidden"
-                            animate="visible"
-                            exit="exit"
-                            variants={{
-                                hidden: { opacity: 1 },
-                                visible: { 
-                                    opacity: 1,
-                                    transition: { staggerChildren: 0 } 
-                                },
-                                exit: { 
-                                    opacity: 1, 
-                                    transition: { staggerChildren: 0.15, staggerDirection: -1, duration: 1.5 } 
-                                }
-                            }}
-                        >
-                            {sentences[currentSentenceIndex].words.map((word: string, i: number) => renderWord(word, i, sentences[currentSentenceIndex]))}
-                        </motion.div>
-                    )}
-                </AnimatePresence>
-            )}
-
-            {/* Brand reveal: MICRON HOUSE + Logo */}
-            {wordmarkVisible && (
-                <div className="flex flex-row items-center justify-center gap-3 md:gap-5">
-                    <motion.div className="flex flex-col">
-                        <motion.span
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 3.0, ease: [0.16, 1, 0.3, 1], delay: 0 }}
-                            className="text-3xl md:text-5xl xl:text-6xl font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]"
-                        >
-                            Micron
-                        </motion.span>
-                        <motion.span
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 3.0, ease: [0.16, 1, 0.3, 1], delay: 1.2 }}
-                            className="text-3xl md:text-5xl xl:text-6xl font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]"
-                        >
-                            House
-                        </motion.span>
-                    </motion.div>
-                    {logoVisible && (
-                        <motion.img 
-                            initial={{ x: 200, rotate: -360, opacity: 0 }}
-                            animate={iconControls}
-                            src="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/micron-overlap-no-border.png"
-                            alt="Micron Logo"
-                            className="h-[72px] w-[72px] md:h-[120px] md:w-[120px] xl:h-[160px] xl:w-[160px] object-contain"
-                        />
-                    )}
-                </div>
-            )}
-
-            {/* Final tagline — appears after brand and stays */}
-            {videoCompleted && (
-                <motion.p
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 2.0, delay: 0.5, ease: "easeOut" }}
-                    className="absolute bottom-2 md:bottom-4 text-xs md:text-sm font-bold uppercase tracking-[0.2em] text-zinc-400 text-center w-full"
-                >
-                    The First Corporate Autonomous Residence
-                </motion.p>
-            )}
         </div>
 
         {/* BOTTOM SECTION: PARADIGM & QUOTE */}
