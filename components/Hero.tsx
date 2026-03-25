@@ -551,7 +551,7 @@ export const Hero: React.FC = () => {
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ duration: 5.0, ease: [0.16, 1, 0.3, 1], delay: 0 }}
-                          className="text-[2rem] md:text-[1.6rem] lg:text-[1.85rem] xl:text-[2.3rem] font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]"
+                          className="text-[2rem] md:text-[1.6rem] lg:text-[2.05rem] xl:text-[2.55rem] font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]"
                       >
                           Micron
                       </motion.span>
@@ -559,7 +559,7 @@ export const Hero: React.FC = () => {
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ duration: 5.0, ease: [0.16, 1, 0.3, 1], delay: 1.5 }}
-                          className="text-[2rem] md:text-[1.6rem] lg:text-[1.85rem] xl:text-[2.3rem] font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]"
+                          className="text-[2rem] md:text-[1.6rem] lg:text-[2.05rem] xl:text-[2.55rem] font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]"
                       >
                           House
                       </motion.span>
@@ -569,7 +569,7 @@ export const Hero: React.FC = () => {
                       animate={iconControls}
                       src="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/micron-overlap-no-border.png"
                       alt="Micron Logo"
-                      className="h-[62px] w-[62px] md:h-[60px] md:w-[60px] lg:h-[64px] lg:w-[64px] xl:h-[80px] xl:w-[80px] object-contain"
+                      className="h-[62px] w-[62px] md:h-[60px] md:w-[60px] lg:h-[70px] lg:w-[70px] xl:h-[88px] xl:w-[88px] object-contain"
                    />
                  </div>
                </div>
