@@ -476,7 +476,7 @@ export const Hero: React.FC = () => {
         {/* VIDEO — Polaroid bento frame */}
         <div className="w-full bg-white rounded-3xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 p-4 md:p-10 lg:p-12 xl:p-16">
             <div 
-                className="aspect-video w-full rounded-2xl overflow-hidden relative group"
+                className="aspect-video w-[85%] md:w-[80%] lg:w-[75%] mx-auto rounded-2xl overflow-hidden relative group"
             >
                 <video 
                     ref={videoRef}
