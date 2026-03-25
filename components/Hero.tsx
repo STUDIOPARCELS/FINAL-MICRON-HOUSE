@@ -23,7 +23,7 @@ const sentences = [
         textSize: "text-2xl sm:text-3xl md:text-3xl lg:text-[clamp(1.6rem,2.4vw,2.5rem)]",
         layout: "default",
         lines: [["WITHOUT", "MEMORY"], ["THERE'S", "NO", "MEANING"]],
-        secondHalfDelay: 3.9,
+        secondHalfDelay: 2.5,
     },
     {
         words: ["WITHOUT", "PLACE", "THERE'S", "NO", "PERSPECTIVE"], 
@@ -251,23 +251,23 @@ export const Hero: React.FC = () => {
       }
       
       // Clear sentence before brand reveal
-      if (t >= 25.5 && !fired.has('s2off')) {
+      if (t >= 28.0 && !fired.has('s2off')) {
           fired.add('s2off');
           setCurrentSentenceIndex(null);
       }
       
-      // Brand reveal: Wordmark fades in
-      if (t >= 26.0 && !fired.has('wordmark')) {
+      // Brand reveal: Wordmark fades in — car parked in front of house
+      if (t >= 30.0 && !fired.has('wordmark')) {
           fired.add('wordmark');
           setWordmarkVisible(true);
           wordmarkControls.start({
               opacity: 1,
-              transition: { duration: 2.0, ease: [0.16, 1, 0.3, 1] }
+              transition: { duration: 4.0, ease: [0.16, 1, 0.3, 1] }
           });
       }
       
-      // Brand reveal: Logo rolls in
-      if (t >= 30.0 && !fired.has('logo')) {
+      // Brand reveal: Logo rolls in as car drives off
+      if (t >= 32.0 && !fired.has('logo')) {
           fired.add('logo');
           setLogoVisible(true);
           iconControls.start({
@@ -545,7 +545,7 @@ export const Hero: React.FC = () => {
                       <motion.span
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
-                          transition={{ duration: 3.9, ease: [0.16, 1, 0.3, 1], delay: 0 }}
+                          transition={{ duration: 5.0, ease: [0.16, 1, 0.3, 1], delay: 0 }}
                           className="text-[2rem] md:text-[1.6rem] lg:text-[1.6rem] xl:text-[2rem] font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]"
                       >
                           Micron
@@ -553,7 +553,7 @@ export const Hero: React.FC = () => {
                       <motion.span
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
-                          transition={{ duration: 3.9, ease: [0.16, 1, 0.3, 1], delay: 1.2 }}
+                          transition={{ duration: 5.0, ease: [0.16, 1, 0.3, 1], delay: 1.5 }}
                           className="text-[2rem] md:text-[1.6rem] lg:text-[1.6rem] xl:text-[2rem] font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]"
                       >
                           House
