@@ -12,7 +12,7 @@ const sentences = [
         textSize: "text-2xl sm:text-3xl md:text-3xl lg:text-[clamp(1.6rem,2.4vw,2.5rem)]",
         layout: "default",
         lines: [["WITHOUT", "VISION"], ["THERE'S", "NO", "VELOCITY"]],
-        secondHalfDelay: 3.0,
+        secondHalfDelay: 7.8,
     },
     {
         words: ["WITHOUT", "MEMORY", "THERE'S", "NO", "MEANING"],
@@ -23,7 +23,7 @@ const sentences = [
         textSize: "text-2xl sm:text-3xl md:text-3xl lg:text-[clamp(1.6rem,2.4vw,2.5rem)]",
         layout: "default",
         lines: [["WITHOUT", "MEMORY"], ["THERE'S", "NO", "MEANING"]],
-        secondHalfDelay: 3.0,
+        secondHalfDelay: 3.9,
     },
     {
         words: ["WITHOUT", "PLACE", "THERE'S", "NO", "PERSPECTIVE"], 
@@ -34,7 +34,7 @@ const sentences = [
         textSize: "text-2xl sm:text-3xl md:text-3xl lg:text-[clamp(1.6rem,2.4vw,2.5rem)]",
         layout: "default",
         lines: [["WITHOUT", "PLACE"], ["THERE'S", "NO", "PERSPECTIVE"]],
-        secondHalfDelay: 4.0,
+        secondHalfDelay: 6.7,
     },
 ];
 
@@ -229,38 +229,38 @@ export const Hero: React.FC = () => {
       const t = e.currentTarget.currentTime;
       const fired = firedCues.current;
       
-      // Sentence 0: Camera closes in on rocket
-      if (t >= 2.5 && !fired.has('s0on')) {
+      // Sentence 0: Earth from space — starts immediately
+      if (t >= 0.5 && !fired.has('s0on')) {
           fired.add('s0on');
           setCurrentSentenceIndex(0);
       }
-      if (t >= 10.5 && !fired.has('s0off')) {
+      if (t >= 9.0 && !fired.has('s0off')) {
           fired.add('s0off');
           setCurrentSentenceIndex(null);
       }
       
-      // Sentence 1: Fab first visible over foothills
-      if (t >= 11.5 && !fired.has('s1on')) {
+      // Sentence 1: Over the foothills
+      if (t >= 9.5 && !fired.has('s1on')) {
           fired.add('s1on');
           setCurrentSentenceIndex(1);
       }
-      if (t >= 19.5 && !fired.has('s1off')) {
+      if (t >= 15.5 && !fired.has('s1off')) {
           fired.add('s1off');
           setCurrentSentenceIndex(null);
       }
       
-      // Sentence 2: Capitol building in view
-      if (t >= 20.5 && !fired.has('s2on')) {
+      // Sentence 2: Hyper zoom to Capitol
+      if (t >= 16.0 && !fired.has('s2on')) {
           fired.add('s2on');
           setCurrentSentenceIndex(2);
       }
-      if (t >= 28.5 && !fired.has('s2off')) {
+      if (t >= 25.0 && !fired.has('s2off')) {
           fired.add('s2off');
           setCurrentSentenceIndex(null);
       }
       
       // Brand reveal: Wordmark fades in
-      if (t >= 29.5 && !fired.has('wordmark')) {
+      if (t >= 26.0 && !fired.has('wordmark')) {
           fired.add('wordmark');
           setWordmarkVisible(true);
           wordmarkControls.start({
@@ -489,7 +489,7 @@ export const Hero: React.FC = () => {
                     preload="auto"
                     src="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/HERO%20NEWcropped.mp4"
                     onPlaying={() => {
-                        if (videoRef.current) videoRef.current.playbackRate = 1.0;
+                        if (videoRef.current) videoRef.current.playbackRate = 0.90;
                         setVideoIsPlaying(true);
                         startSentenceTimers();
                     }}
