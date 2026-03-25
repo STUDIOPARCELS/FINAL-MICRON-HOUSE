@@ -497,10 +497,13 @@ export const Hero: React.FC = () => {
                 <div className="absolute inset-0 z-[1]" style={{ WebkitTapHighlightColor: 'transparent' }} />
                 
                 {/* TAGLINE — centered in video frame, ALL viewports, word at a time */}
+                <AnimatePresence>
                 {videoCompleted && (
                   <motion.div 
+                    key="tagline"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
+                    exit={{ opacity: 0, transition: { duration: 1.5, ease: "easeOut" } }}
                     transition={{ duration: 1.0 }}
                     className="absolute inset-0 z-[2] flex items-center justify-center px-4"
                     style={{ background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.1) 50%, transparent 80%)' }}
@@ -527,6 +530,7 @@ export const Hero: React.FC = () => {
                     </div>
                   </motion.div>
                 )}
+                </AnimatePresence>
             </div>
         </div>
 
