@@ -23,7 +23,7 @@ const sentences = [
         textSize: "text-2xl sm:text-3xl md:text-3xl lg:text-[clamp(1.6rem,2.4vw,2.5rem)]",
         layout: "default",
         lines: [["WITHOUT", "MEMORY"], ["THERE'S", "NO", "MEANING"]],
-        secondHalfDelay: 3.0,
+        secondHalfDelay: 4.0,
     },
     {
         words: ["WITHOUT", "PLACE", "THERE'S", "NO", "PERSPECTIVE"], 
@@ -345,8 +345,8 @@ export const Hero: React.FC = () => {
 
   // Render an independently-animated comma between sentence halves
   const renderComma = (currentSet: any) => {
-      // Comma appears midway between first half settling and second half starting
-      const commaDelay = (currentSet.secondHalfDelay || 4.0) - 0.8;
+      // Comma appears right after the highlight word settles
+      const commaDelay = 2.2;
       return (
           <motion.span
               key="comma"
@@ -355,7 +355,7 @@ export const Hero: React.FC = () => {
                   visible: { 
                       opacity: 1,
                       transition: { 
-                          duration: 2.0, 
+                          duration: 1.5, 
                           ease: [0.16, 1, 0.3, 1],
                           delay: commaDelay
                       } 
@@ -366,7 +366,7 @@ export const Hero: React.FC = () => {
                   }
               }}
               className={`${currentSet.textSize} font-black tracking-tighter leading-[0.9] ${currentSet.color}`}
-              style={{ marginLeft: '-0.15em' }}
+              style={{ marginLeft: '-0.35em' }}
           >
               ,
           </motion.span>
