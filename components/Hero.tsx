@@ -12,7 +12,7 @@ const sentences = [
         textSize: "text-2xl sm:text-3xl md:text-3xl lg:text-[clamp(1.6rem,2.4vw,2.5rem)]",
         layout: "default",
         lines: [["WITHOUT", "VISION"], ["THERE'S", "NO", "VELOCITY"]],
-        secondHalfDelay: 6.5,
+        secondHalfDelay: 3.0,
     },
     {
         words: ["WITHOUT", "MEMORY", "THERE'S", "NO", "MEANING"],
@@ -23,7 +23,7 @@ const sentences = [
         textSize: "text-2xl sm:text-3xl md:text-3xl lg:text-[clamp(1.6rem,2.4vw,2.5rem)]",
         layout: "default",
         lines: [["WITHOUT", "MEMORY"], ["THERE'S", "NO", "MEANING"]],
-        secondHalfDelay: 6.0,
+        secondHalfDelay: 3.0,
     },
     {
         words: ["WITHOUT", "PLACE", "THERE'S", "NO", "PERSPECTIVE"], 
@@ -34,7 +34,7 @@ const sentences = [
         textSize: "text-2xl sm:text-3xl md:text-3xl lg:text-[clamp(1.6rem,2.4vw,2.5rem)]",
         layout: "default",
         lines: [["WITHOUT", "PLACE"], ["THERE'S", "NO", "PERSPECTIVE"]],
-        secondHalfDelay: 9.0,
+        secondHalfDelay: 4.0,
     },
 ];
 
@@ -234,33 +234,33 @@ export const Hero: React.FC = () => {
           fired.add('s0on');
           setCurrentSentenceIndex(0);
       }
-      if (t >= 7.5 && !fired.has('s0off')) {
+      if (t >= 10.5 && !fired.has('s0off')) {
           fired.add('s0off');
           setCurrentSentenceIndex(null);
       }
       
       // Sentence 1: Fab first visible over foothills
-      if (t >= 9.5 && !fired.has('s1on')) {
+      if (t >= 11.5 && !fired.has('s1on')) {
           fired.add('s1on');
           setCurrentSentenceIndex(1);
       }
-      if (t >= 14.5 && !fired.has('s1off')) {
+      if (t >= 19.5 && !fired.has('s1off')) {
           fired.add('s1off');
           setCurrentSentenceIndex(null);
       }
       
-      // Sentence 2: Capitol building in view — 2s pause after sentence 1
-      if (t >= 17.0 && !fired.has('s2on')) {
+      // Sentence 2: Capitol building in view
+      if (t >= 20.5 && !fired.has('s2on')) {
           fired.add('s2on');
           setCurrentSentenceIndex(2);
       }
-      if (t >= 24.0 && !fired.has('s2off')) {
+      if (t >= 28.5 && !fired.has('s2off')) {
           fired.add('s2off');
           setCurrentSentenceIndex(null);
       }
       
-      // Brand reveal: Wordmark fades in when car drives off
-      if (t >= 26.0 && !fired.has('wordmark')) {
+      // Brand reveal: Wordmark fades in
+      if (t >= 29.5 && !fired.has('wordmark')) {
           fired.add('wordmark');
           setWordmarkVisible(true);
           wordmarkControls.start({
@@ -269,8 +269,8 @@ export const Hero: React.FC = () => {
           });
       }
       
-      // Brand reveal: Logo rolls in from the LEFT
-      if (t >= 27.0 && !fired.has('logo')) {
+      // Brand reveal: Logo rolls in
+      if (t >= 30.0 && !fired.has('logo')) {
           fired.add('logo');
           setLogoVisible(true);
           iconControls.start({
@@ -281,7 +281,7 @@ export const Hero: React.FC = () => {
       }
       
       // Blue bento appears
-      if (t >= 30.6 && !fired.has('bento')) {
+      if (t >= 32.0 && !fired.has('bento')) {
           fired.add('bento');
       }
   };
