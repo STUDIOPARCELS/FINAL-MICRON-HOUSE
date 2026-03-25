@@ -12,7 +12,7 @@ const sentences = [
         textSize: "text-2xl sm:text-3xl md:text-3xl lg:text-[clamp(1.6rem,2.4vw,2.5rem)]",
         layout: "default",
         lines: [["WITHOUT", "VISION"], ["THERE'S", "NO", "VELOCITY"]],
-        secondHalfDelay: 3.0,
+        secondHalfDelay: 4.5,
     },
     {
         words: ["WITHOUT", "MEMORY", "THERE'S", "NO", "MEANING"],
@@ -23,7 +23,7 @@ const sentences = [
         textSize: "text-2xl sm:text-3xl md:text-3xl lg:text-[clamp(1.6rem,2.4vw,2.5rem)]",
         layout: "default",
         lines: [["WITHOUT", "MEMORY"], ["THERE'S", "NO", "MEANING"]],
-        secondHalfDelay: 3.0,
+        secondHalfDelay: 4.5,
     },
     {
         words: ["WITHOUT", "PLACE", "THERE'S", "NO", "PERSPECTIVE"], 
@@ -176,6 +176,7 @@ export const Hero: React.FC = () => {
     setLayoutShift(false);
     setLogoVisible(false);
     setWordmarkVisible(false);
+    setVideoCompleted(false);
     setVideoIsPlaying(false);
     iconControls.set({ x: 200, rotate: -360, opacity: 0 });
     wordmarkControls.set({ opacity: 0 });
@@ -236,9 +237,9 @@ export const Hero: React.FC = () => {
           setCurrentSentenceIndex(0);
       }
       
-      // Sentence 1: replaces sentence 0 — over the foothills
-      // WITHOUT MEMORY at t=9.5, THERE'S NO MEANING when Micron focuses (~t=13)
-      if (t >= 9.5 && !fired.has('s1on')) {
+      // Sentence 1: replaces sentence 0 — before Fab comes into view
+      // WITHOUT MEMORY at t=8, THERE'S NO MEANING on hyper zoom from Fab to Capitol
+      if (t >= 8.0 && !fired.has('s1on')) {
           fired.add('s1on');
           setCurrentSentenceIndex(1);
       }
@@ -473,7 +474,7 @@ export const Hero: React.FC = () => {
       <div className="container mx-auto px-4 md:px-8 lg:px-12 h-full flex flex-col gap-3 md:gap-4 lg:gap-6 xl:gap-10">
         
         {/* VIDEO — Polaroid bento frame */}
-        <div className="w-full lg:w-[75%] lg:mx-auto bg-white rounded-3xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 p-4 md:p-10 lg:p-12 xl:p-16">
+        <div className="w-full bg-white rounded-3xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 p-4 md:p-10 lg:p-12 xl:p-16">
             <div 
                 className="aspect-video w-full rounded-2xl overflow-hidden relative group"
             >
@@ -519,7 +520,7 @@ export const Hero: React.FC = () => {
                                 initial={{ opacity: 0, y: 8 }}
                                 animate={{ opacity: 0.6, y: 0 }}
                                 transition={{ duration: 2.0, delay: 2.0 + (globalIdx * 0.6), ease: [0.16, 1, 0.3, 1] }}
-                                className="text-white text-[12px] md:text-[16px] lg:text-[20px] xl:text-[28px] font-thin uppercase tracking-[0.2em] md:tracking-[0.25em]"
+                                className="text-white text-[12px] md:text-[16px] lg:text-[18px] xl:text-[26px] font-thin uppercase tracking-[0.2em] md:tracking-[0.25em]"
                               >
                                 {word}
                               </motion.span>
@@ -538,7 +539,7 @@ export const Hero: React.FC = () => {
         <motion.div 
             layout
             transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
-            className="w-full lg:w-[75%] lg:mx-auto min-h-[80px] md:min-h-[100px] lg:min-h-[90px] xl:min-h-[100px] flex flex-col items-center justify-center relative overflow-hidden py-3 md:py-3 lg:py-3 px-[50px] lg:px-[60px]"
+            className="w-full min-h-[80px] md:min-h-[100px] lg:min-h-[90px] xl:min-h-[100px] flex flex-col items-center justify-center relative overflow-hidden py-3 md:py-3 lg:py-3 px-[50px] lg:px-[60px]"
         >
              {/* BRAND REVEAL */}
              {wordmarkVisible && (
@@ -550,7 +551,7 @@ export const Hero: React.FC = () => {
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ duration: 5.0, ease: [0.16, 1, 0.3, 1], delay: 0 }}
-                          className="text-[2rem] md:text-[1.6rem] lg:text-[1.6rem] xl:text-[2rem] font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]"
+                          className="text-[2rem] md:text-[1.6rem] lg:text-[1.85rem] xl:text-[2.3rem] font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]"
                       >
                           Micron
                       </motion.span>
@@ -558,7 +559,7 @@ export const Hero: React.FC = () => {
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ duration: 5.0, ease: [0.16, 1, 0.3, 1], delay: 1.5 }}
-                          className="text-[2rem] md:text-[1.6rem] lg:text-[1.6rem] xl:text-[2rem] font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]"
+                          className="text-[2rem] md:text-[1.6rem] lg:text-[1.85rem] xl:text-[2.3rem] font-black uppercase tracking-tight text-micron-eggplant leading-[0.85]"
                       >
                           House
                       </motion.span>
@@ -568,7 +569,7 @@ export const Hero: React.FC = () => {
                       animate={iconControls}
                       src="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/micron-overlap-no-border.png"
                       alt="Micron Logo"
-                      className="h-[62px] w-[62px] md:h-[60px] md:w-[60px] lg:h-[56px] lg:w-[56px] xl:h-[70px] xl:w-[70px] object-contain"
+                      className="h-[62px] w-[62px] md:h-[60px] md:w-[60px] lg:h-[64px] lg:w-[64px] xl:h-[80px] xl:w-[80px] object-contain"
                    />
                  </div>
                </div>
