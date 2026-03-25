@@ -230,31 +230,28 @@ export const Hero: React.FC = () => {
       const fired = firedCues.current;
       
       // Sentence 0: Earth from space — starts immediately
+      // WITHOUT VISION at t=0.5, THERE'S NO VELOCITY at hyper zoom away from Starbase (~t=7)
       if (t >= 0.5 && !fired.has('s0on')) {
           fired.add('s0on');
           setCurrentSentenceIndex(0);
       }
-      if (t >= 9.0 && !fired.has('s0off')) {
-          fired.add('s0off');
-          setCurrentSentenceIndex(null);
-      }
       
-      // Sentence 1: Over the foothills
+      // Sentence 1: replaces sentence 0 — over the foothills
+      // WITHOUT MEMORY at t=9.5, THERE'S NO MEANING when Micron focuses (~t=13)
       if (t >= 9.5 && !fired.has('s1on')) {
           fired.add('s1on');
           setCurrentSentenceIndex(1);
       }
-      if (t >= 15.5 && !fired.has('s1off')) {
-          fired.add('s1off');
-          setCurrentSentenceIndex(null);
-      }
       
-      // Sentence 2: Hyper zoom to Capitol
+      // Sentence 2: replaces sentence 1 — hyper zoom to Capitol
+      // WITHOUT PLACE at t=16, THERE'S NO PERSPECTIVE when house settles (~t=22)
       if (t >= 16.0 && !fired.has('s2on')) {
           fired.add('s2on');
           setCurrentSentenceIndex(2);
       }
-      if (t >= 25.0 && !fired.has('s2off')) {
+      
+      // Clear sentence before brand reveal
+      if (t >= 25.5 && !fired.has('s2off')) {
           fired.add('s2off');
           setCurrentSentenceIndex(null);
       }
@@ -400,7 +397,7 @@ export const Hero: React.FC = () => {
                        transition: { 
                            duration: 3.6, 
                            ease: [0.16, 1, 0.3, 1],
-                           delay: i < 2 ? i * 1.5 : (currentSet.secondHalfDelay || 4.0) + (i - 2) * 1.0
+                           delay: i < 2 ? i * 1.5 : (currentSet.secondHalfDelay || 4.0) + (i - 2) * 0.6
                        } 
                    },
                    exit: {
