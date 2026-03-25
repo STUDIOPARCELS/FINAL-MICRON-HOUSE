@@ -12,7 +12,7 @@ const sentences = [
         textSize: "text-2xl sm:text-3xl md:text-3xl lg:text-[clamp(1.6rem,2.4vw,2.5rem)]",
         layout: "default",
         lines: [["WITHOUT", "VISION"], ["THERE'S", "NO", "VELOCITY"]],
-        secondHalfDelay: 3.5,
+        secondHalfDelay: 3.0,
     },
     {
         words: ["WITHOUT", "MEMORY", "THERE'S", "NO", "MEANING"],
@@ -23,7 +23,7 @@ const sentences = [
         textSize: "text-2xl sm:text-3xl md:text-3xl lg:text-[clamp(1.6rem,2.4vw,2.5rem)]",
         layout: "default",
         lines: [["WITHOUT", "MEMORY"], ["THERE'S", "NO", "MEANING"]],
-        secondHalfDelay: 2.5,
+        secondHalfDelay: 3.0,
     },
     {
         words: ["WITHOUT", "PLACE", "THERE'S", "NO", "PERSPECTIVE"], 
@@ -34,7 +34,7 @@ const sentences = [
         textSize: "text-2xl sm:text-3xl md:text-3xl lg:text-[clamp(1.6rem,2.4vw,2.5rem)]",
         layout: "default",
         lines: [["WITHOUT", "PLACE"], ["THERE'S", "NO", "PERSPECTIVE"]],
-        secondHalfDelay: 6.7,
+        secondHalfDelay: 3.0,
     },
 ];
 
@@ -244,8 +244,8 @@ export const Hero: React.FC = () => {
       }
       
       // Sentence 2: replaces sentence 1 — hyper zoom to Capitol
-      // WITHOUT PLACE at t=16, THERE'S NO PERSPECTIVE when house settles (~t=22)
-      if (t >= 16.0 && !fired.has('s2on')) {
+      // WITHOUT PLACE at t=17, THERE'S NO PERSPECTIVE when house settles (~t=22)
+      if (t >= 17.0 && !fired.has('s2on')) {
           fired.add('s2on');
           setCurrentSentenceIndex(2);
       }
