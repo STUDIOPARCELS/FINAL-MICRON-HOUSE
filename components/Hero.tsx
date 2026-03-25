@@ -34,7 +34,7 @@ const sentences = [
         textSize: "text-2xl sm:text-3xl md:text-3xl lg:text-[clamp(1.6rem,2.4vw,2.5rem)]",
         layout: "default",
         lines: [["WITHOUT", "PLACE"], ["THERE'S", "NO", "PERSPECTIVE"]],
-        secondHalfDelay: 3.0,
+        secondHalfDelay: 6.0,
     },
 ];
 
@@ -238,15 +238,15 @@ export const Hero: React.FC = () => {
       }
       
       // Sentence 1: replaces sentence 0 — before Fab comes into view
-      // WITHOUT MEMORY at t=8, THERE'S NO MEANING on hyper zoom from Fab to Capitol
-      if (t >= 8.0 && !fired.has('s1on')) {
+      // WITHOUT MEMORY at t=7, THERE'S NO MEANING on hyper zoom from Fab to Capitol
+      if (t >= 7.0 && !fired.has('s1on')) {
           fired.add('s1on');
           setCurrentSentenceIndex(1);
       }
       
-      // Sentence 2: replaces sentence 1 — hyper zoom to Capitol
-      // WITHOUT PLACE at t=17, THERE'S NO PERSPECTIVE when house settles (~t=22)
-      if (t >= 17.0 && !fired.has('s2on')) {
+      // Sentence 2: replaces sentence 1 — Capitol hyper zoom begins
+      // WITHOUT PLACE at t=15, pause, THERE'S NO PERSPECTIVE when camera moves down Warm Springs (~t=21)
+      if (t >= 15.0 && !fired.has('s2on')) {
           fired.add('s2on');
           setCurrentSentenceIndex(2);
       }
