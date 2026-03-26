@@ -164,6 +164,7 @@ export const Hero: React.FC = () => {
 
   // Track if video has actually started playing
   const videoStarted = useRef(false);
+  const hasPlayedOnce = useRef(false);
 
   // Unified Start Sequence Function
   // Resets everything, starts video immediately, waits for video to play before starting text
@@ -284,29 +285,12 @@ export const Hero: React.FC = () => {
       }
   };
 
-  // Handle Scroll Visibility (Scroll back up triggers replay)
-  // This also handles the initial mount because isInView becomes true on load
+  // Handle initial mount — play once, then only replay on hover
   useEffect(() => {
-      if (isInView) {
+      if (isInView && !hasPlayedOnce.current) {
+          hasPlayedOnce.current = true;
           startSequence();
-      } else {
-          // Clean up if we scroll away
-          if (sequenceTimer.current) clearTimeout(sequenceTimer.current);
-          sentenceTimers.current.forEach(t => clearTimeout(t));
-          firedCues.current.clear();
-          setCurrentSentenceIndex(null);
-          setLayoutShift(false);
-          setLogoVisible(false);
-          setWordmarkVisible(false);
-          setVideoCompleted(false);
-          setVideoIsPlaying(false);
-          iconControls.set({ x: 200, rotate: -360, opacity: 0 });
-          wordmarkControls.set({ opacity: 0 });
       }
-
-      return () => {
-          if (sequenceTimer.current) clearTimeout(sequenceTimer.current);
-      };
   }, [isInView]);
   
   // Sentence cycling is now fully driven by setTimeout in startSequence
@@ -474,7 +458,14 @@ export const Hero: React.FC = () => {
       <div className="container mx-auto px-4 md:px-8 lg:px-12 h-full flex flex-col gap-3 md:gap-4 lg:gap-6 xl:gap-10">
         
         {/* VIDEO — Polaroid bento frame */}
-        <div className="w-full bg-white rounded-3xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 p-4 md:p-10 lg:p-12 xl:p-16">
+        <div 
+            className="w-full bg-white rounded-3xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 p-4 md:p-10 lg:p-12 xl:p-16 cursor-pointer"
+            onMouseEnter={() => {
+                if (videoCompleted) {
+                    startSequence();
+                }
+            }}
+        >
             <div 
                 className="aspect-video w-[85%] md:w-[80%] lg:w-[75%] mx-auto rounded-2xl overflow-hidden relative group"
             >
