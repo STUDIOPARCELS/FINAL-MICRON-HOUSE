@@ -7,6 +7,7 @@ import { SectionServingTesla } from './components/SectionServingTesla';
 import { SectionTimeline } from './components/SectionTimeline';
 import { Menu, X, ArrowRight, MapPin, Mail, Phone, ArrowUp } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { WebMCPProvider } from './components/WebMCPProvider';
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -51,6 +52,7 @@ function App() {
 
   return (
     <div className="min-h-screen w-full bg-white text-zinc-900 font-sans">
+      <WebMCPProvider />
       {/* Navigation Overlay - Z-100 to stay on top */}
       <nav className="fixed top-0 left-0 right-0 z-[100] bg-white/95 backdrop-blur-xl border-b border-zinc-200 shadow-sm transition-colors duration-300">
         <div className="container mx-auto px-4 md:px-6 py-3 flex items-center justify-between relative z-[110]">
