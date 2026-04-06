@@ -77,7 +77,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const fileCount = Array.isArray(chunks) ? new Set(chunks.map((c: any) => c.filename)).size : 0;
 
     // 3. Build system prompt with RAG context
-    const systemPrompt = `You are the policy research assistant on the Micron House briefings page, powered by Claude Opus 4.6. You have access to a searchable archive of 113 policy documents covering autonomous vehicle legislation, robot-enabled building operations, and supporting research.
+    const systemPrompt = `You are the policy research assistant on the Micron House briefings page. You have access to a searchable archive of 113 policy documents covering autonomous vehicle legislation, robot-enabled building operations, and supporting research.
 
 The following document excerpts were retrieved based on the user's question (${matchCount} passages from ${fileCount} documents):
 
