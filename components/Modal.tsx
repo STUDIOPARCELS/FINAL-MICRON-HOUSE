@@ -369,6 +369,8 @@ const GalleryModalContent: React.FC<{ data: ModalContent; onClose: () => void }>
                  {/* CSS Grid for Gallery — Polaroid cards */}
                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-5 pb-8 max-w-[78rem] mx-auto">
                     {items.map((img, i) => {
+                        const displaySrc = img.thumbnailUrl || img.url;
+                        const shouldPrioritize = i < 3;
                         return (
                             <div 
                                 key={`${img.url}-${i}`}
@@ -376,11 +378,16 @@ const GalleryModalContent: React.FC<{ data: ModalContent; onClose: () => void }>
                                 onClick={() => setLightboxImg(img.url)}
                             >
                                 <img 
-                                    src={img.url} 
+                                    src={displaySrc}
                                     alt={img.caption || "Property gallery photo"} 
-                                    loading="eager"
+                                    loading={shouldPrioritize ? "eager" : "lazy"}
                                     decoding="async"
-                                    fetchPriority="high"
+                                    fetchPriority={shouldPrioritize ? "high" : "auto"}
+                                    onError={(event) => {
+                                        if (event.currentTarget.src !== img.url) {
+                                            event.currentTarget.src = img.url;
+                                        }
+                                    }}
                                     className="w-full h-full object-contain drop-shadow-sm" 
                                 />
                             </div>

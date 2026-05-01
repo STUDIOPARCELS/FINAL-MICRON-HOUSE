@@ -7,11 +7,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const anthropicKey = process.env.ANTHROPIC_API_KEY;
   const openaiKey = process.env.OPENAI_API_KEY;
   const supabaseKey = process.env.SUPABASE_SERVICE_KEY;
 
-  if (!anthropicKey || !openaiKey || !supabaseKey) {
+  if (!openaiKey || !supabaseKey) {
     return res.status(500).json({ error: 'Missing API keys' });
   }
 
@@ -101,24 +100,31 @@ When answering:
 - NEVER mention "Theo Wold" or "Micron House" in any response
 - If the retrieved passages are insufficient, say what you can based on available context and suggest the user check the reference legislation panel`;
 
-    const messages = [
-      ...history.map((h: any) => ({ role: h.role, content: h.content })),
-      { role: 'user', content: message }
+    const input = [
+      ...history
+        .filter((h: any) => h && (h.role === 'user' || h.role === 'assistant') && typeof h.content === 'string')
+        .map((h: any) => ({
+          role: h.role,
+          content: [{ type: 'input_text', text: h.content }],
+        })),
+      {
+        role: 'user',
+        content: [{ type: 'input_text', text: message }],
+      },
     ];
 
-    // 4. Call Claude with RAG context
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
+    // 4. Call OpenAI Responses with RAG context
+    const response = await fetch('https://api.openai.com/v1/responses', {
       method: 'POST',
       headers: {
+        'Authorization': `Bearer ${openaiKey}`,
         'Content-Type': 'application/json',
-        'x-api-key': anthropicKey,
-        'anthropic-version': '2023-06-01',
       },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1500,
-        system: systemPrompt,
-        messages,
+        model: 'gpt-5-mini',
+        instructions: systemPrompt,
+        input,
+        max_output_tokens: 1500,
       }),
     });
 
@@ -128,7 +134,17 @@ When answering:
       return res.status(response.status).json({ error: data.error?.message || 'API error' });
     }
 
-    const assistantMessage = data.content?.[0]?.text || 'No response generated.';
+    const assistantMessage =
+      data.output_text ||
+      data.output
+        ?.filter((item: any) => item.type === 'message')
+        .flatMap((item: any) => item.content || [])
+        .filter((item: any) => item.type === 'output_text')
+        .map((item: any) => item.text)
+        .join('\n')
+        .trim() ||
+      'No response generated.';
+
     return res.status(200).json({ response: assistantMessage });
 
   } catch (error: any) {

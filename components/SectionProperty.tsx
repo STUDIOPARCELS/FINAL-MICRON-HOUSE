@@ -8,16 +8,31 @@ import { ModalContent, GalleryItem } from '../types';
 
 // --- CONFIGURATION ---
 const BUCKET_BASE_URL = "https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE";
+const BUCKET_RENDER_BASE_URL = "https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/render/image/public/MICRON%20HOUSE";
 
-// Helper to build URL based on folder presence
-const buildUrl = (folder: string, filename: string) => {
-    // UPDATED: Encode folder and filename to handle spaces (e.g., "MAIN FLOOR" -> "MAIN%20FLOOR")
+const buildPath = (folder: string, filename: string) => {
     const encodedFolder = folder ? encodeURIComponent(folder) : '';
     const encodedFile = encodeURIComponent(filename);
-    // If folder is empty, return path from root, otherwise add folder slash
-    const path = encodedFolder ? `${encodedFolder}/${encodedFile}` : encodedFile;
+    return encodedFolder ? `${encodedFolder}/${encodedFile}` : encodedFile;
+};
+
+const buildUrl = (folder: string, filename: string) => {
+    const path = buildPath(folder, filename);
     return `${BUCKET_BASE_URL}/${path}`;
 };
+
+const buildThumbnailUrl = (folder: string, filename: string, width = 900, quality = 80) => {
+    const path = buildPath(folder, filename);
+    return `${BUCKET_RENDER_BASE_URL}/${path}?width=${width}&quality=${quality}`;
+};
+
+const buildCaption = (filename: string) =>
+    filename
+        .replace(/\.[^.]+$/, '')
+        .replace(/[-_.]+/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim()
+        .toUpperCase();
 
 // --- HELPER COMPONENTS ---
 
@@ -313,6 +328,8 @@ export const SectionProperty: React.FC = () => {
 
       const images: GalleryItem[] = config.files.map(filename => ({
           url: buildUrl(config.folder, filename),
+          thumbnailUrl: buildThumbnailUrl(config.folder, filename),
+          caption: buildCaption(filename),
           className: "aspect-[4/3]",
           objectFit: 'contain'
       }));

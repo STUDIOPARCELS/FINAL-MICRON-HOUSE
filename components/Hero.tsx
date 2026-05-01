@@ -38,6 +38,9 @@ const sentences = [
     },
 ];
 
+const HERO_VIDEO_URL = "https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/MH_VIDEOS/micron-house-hero-compressed.mp4";
+const HERO_POSTER_URL = "/hero-first-frame.jpg";
+
 const InteractiveParadigmTitle: React.FC = () => {
     const paradigmLine1 = ["CRITICAL"];
     const paradigmLine2 = ["WINDOW"];
@@ -138,7 +141,7 @@ export const Hero: React.FC = () => {
   // New States for Quote Animation Control
   const [hasScrolled, setHasScrolled] = useState(false);
   const [videoCompleted, setVideoCompleted] = useState(false);
-  const [videoIsPlaying, setVideoIsPlaying] = useState(false);
+  const [videoReady, setVideoReady] = useState(false);
 
   // Brand reveal states
   const [wordmarkVisible, setWordmarkVisible] = useState(false);
@@ -178,7 +181,7 @@ export const Hero: React.FC = () => {
     setLogoVisible(false);
     setWordmarkVisible(false);
     setVideoCompleted(false);
-    setVideoIsPlaying(false);
+    setVideoReady(false);
     iconControls.set({ x: 200, rotate: -360, opacity: 0 });
     wordmarkControls.set({ opacity: 0 });
 
@@ -230,6 +233,10 @@ export const Hero: React.FC = () => {
   const handleVideoTimeUpdate = (e: React.SyntheticEvent<HTMLVideoElement>) => {
       const t = e.currentTarget.currentTime;
       const fired = firedCues.current;
+
+      if (t >= 0.15 && !videoReady) {
+          setVideoReady(true);
+      }
       
       // Sentence 0: Earth from space — starts immediately
       // WITHOUT VISION at t=0.5, THERE'S NO VELOCITY at hyper zoom away from Starbase (~t=7)
@@ -304,12 +311,6 @@ export const Hero: React.FC = () => {
   // Video Speed — 0.45x for slower cinematic feel
   // playbackRate is set in onPlaying callback to avoid blocking autoplay on mobile
   useEffect(() => {
-    // Try to play immediately on mount — hero is always at top of page
-    if (videoRef.current) {
-        videoRef.current.muted = true;
-        videoRef.current.play().catch(() => {});
-    }
-    
     // Force play on first user interaction — fallback for mobile browsers that block autoplay
     const forcePlay = () => {
         if (videoRef.current && videoRef.current.paused) {
@@ -467,7 +468,7 @@ export const Hero: React.FC = () => {
             }}
         >
             <div 
-                className="aspect-video w-[85%] md:w-[80%] lg:w-[75%] mx-auto rounded-2xl overflow-hidden relative group"
+                className="aspect-video w-[85%] md:w-[80%] lg:w-[75%] mx-auto rounded-2xl overflow-hidden relative group bg-zinc-950"
             >
                 <video 
                     ref={videoRef}
@@ -475,54 +476,26 @@ export const Hero: React.FC = () => {
                     loop={false} 
                     muted 
                     playsInline
-                    preload="auto"
-                    src="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/HERO%20NEWcropped.mp4"
+                    preload="metadata"
+                    poster={HERO_POSTER_URL}
+                    src={HERO_VIDEO_URL}
                     onPlaying={() => {
                         if (videoRef.current) videoRef.current.playbackRate = 0.90;
-                        setVideoIsPlaying(true);
                         startSentenceTimers();
                     }}
                     onEnded={handleVideoEnd}
                     onTimeUpdate={handleVideoTimeUpdate}
                     className="absolute inset-0 w-full h-full object-cover opacity-100"
                 />
-                <div className="absolute inset-0 z-[1]" style={{ WebkitTapHighlightColor: 'transparent' }} />
-                
-                {/* TAGLINE — centered in video frame, ALL viewports, word at a time */}
-                <AnimatePresence>
-                {videoCompleted && (
-                  <motion.div 
-                    key="tagline"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0, transition: { duration: 1.5, ease: "easeOut" } }}
-                    transition={{ duration: 1.0 }}
-                    className="absolute inset-0 z-[2] flex items-center justify-center px-4"
-                    style={{ background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.1) 50%, transparent 80%)' }}
-                  >
-                    <div className="flex flex-col items-center gap-1 md:gap-2 lg:gap-2.5 xl:gap-3 leading-none">
-                      {[["The", "First", "Autonomous"], ["Corporate", "Residence"]].map((line, lineIdx) => (
-                        <div key={lineIdx} className="flex gap-x-1.5 md:gap-x-2.5">
-                          {line.map((word, wi) => {
-                            const globalIdx = lineIdx === 0 ? wi : 3 + wi;
-                            return (
-                              <motion.span
-                                key={`${lineIdx}-${wi}`}
-                                initial={{ opacity: 0, y: 8 }}
-                                animate={{ opacity: 0.6, y: 0 }}
-                                transition={{ duration: 2.0, delay: 2.0 + (globalIdx * 0.6), ease: [0.16, 1, 0.3, 1] }}
-                                className="text-white text-[12px] md:text-[16px] lg:text-[18px] xl:text-[26px] font-thin uppercase tracking-[0.2em] md:tracking-[0.25em]"
-                              >
-                                {word}
-                              </motion.span>
-                            );
-                          })}
-                        </div>
-                      ))}
-                    </div>
-                  </motion.div>
+                {!videoReady && (
+                    <img
+                        src={HERO_POSTER_URL}
+                        alt=""
+                        aria-hidden="true"
+                        className="absolute inset-0 z-[2] h-full w-full object-cover"
+                    />
                 )}
-                </AnimatePresence>
+                <div className="absolute inset-0 z-[1]" style={{ WebkitTapHighlightColor: 'transparent' }} />
             </div>
         </div>
 

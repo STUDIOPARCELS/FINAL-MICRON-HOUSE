@@ -112,7 +112,7 @@ const HoverVideoPlayer = ({ src, className = "", isHovering = false }: { src: st
                 className="absolute inset-0 w-full h-full object-cover" 
                 muted 
                 playsInline 
-                preload="auto"
+                preload="metadata"
                 loop={false}
                 onEnded={() => setHasPlayed(true)}
             />
