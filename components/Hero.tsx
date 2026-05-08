@@ -466,11 +466,11 @@ export const Hero: React.FC = () => {
             <div 
                 className="aspect-video w-[85%] md:w-[80%] lg:w-[75%] mx-auto rounded-2xl overflow-hidden relative group bg-zinc-950"
             >
-                <video 
+                <video
                     ref={videoRef}
                     autoPlay
-                    loop={false} 
-                    muted 
+                    loop={false}
+                    muted
                     playsInline
                     preload="metadata"
                     poster={HERO_POSTER_URL}
@@ -481,7 +481,8 @@ export const Hero: React.FC = () => {
                     }}
                     onEnded={handleVideoEnd}
                     onTimeUpdate={handleVideoTimeUpdate}
-                    className="absolute inset-0 w-full h-full object-cover opacity-100"
+                    className="absolute inset-0 w-full h-full object-cover transition-opacity duration-[1800ms] ease-out"
+                    style={{ opacity: videoCompleted ? 0.25 : 1 }}
                 />
                 {!videoReady && (
                     <img
