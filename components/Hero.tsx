@@ -12,7 +12,7 @@ const sentences = [
         textSize: "text-2xl sm:text-3xl md:text-3xl lg:text-[clamp(1.6rem,2.4vw,2.5rem)]",
         layout: "default",
         lines: [["WITHOUT", "VISION"], ["THERE'S", "NO", "VELOCITY"]],
-        secondHalfDelay: 4.5,
+        secondHalfDelay: 5.0,
     },
     {
         words: ["WITHOUT", "MEMORY", "THERE'S", "NO", "MEANING"],
@@ -219,7 +219,7 @@ export const Hero: React.FC = () => {
   // Footage cue points (in video currentTime):
   //   ~0.5s:  Earth from space → Sentence 0 (VISION/VELOCITY)
   //   ~7.0s:  Fab visible → Sentence 1 (MEMORY/MEANING)
-  //   ~14.0s: Capitol / Warm Springs → Sentence 2 (PLACE/PERSPECTIVE)
+  //   ~13.5s: Capitol / Warm Springs → Sentence 2 (PLACE/PERSPECTIVE)
   //   ~28.0s: Sentence 2 fades out
   //   ~30.0s: MICRON HOUSE wordmark fades in (strip below)
   //   ~32.0s: Logo rolls in
@@ -251,8 +251,8 @@ export const Hero: React.FC = () => {
       }
       
       // Sentence 2: replaces sentence 1 — Capitol hyper zoom begins
-      // WITHOUT PLACE at t=14, pause, THERE'S NO PERSPECTIVE when camera moves down Warm Springs (~t=20)
-      if (t >= 14.0 && !fired.has('s2on')) {
+      // WITHOUT PLACE at t=13.5, pause, THERE'S NO PERSPECTIVE when camera moves down Warm Springs (~t=20)
+      if (t >= 13.5 && !fired.has('s2on')) {
           fired.add('s2on');
           setCurrentSentenceIndex(2);
       }
@@ -544,7 +544,7 @@ export const Hero: React.FC = () => {
                                   key={`${lineIdx}-${wi}`}
                                   initial={{ opacity: 0, y: 8 }}
                                   animate={{ opacity: targetOpacity, y: 0 }}
-                                  transition={{ duration: 2.4, delay: 1.6 + (globalIdx * 0.35), ease: [0.16, 1, 0.3, 1] }}
+                                  transition={{ duration: 3.1, delay: 2.1 + (globalIdx * 0.46), ease: [0.16, 1, 0.3, 1] }}
                                   className="text-white text-[9px] sm:text-[10px] md:text-[16px] lg:text-[18px] xl:text-[26px] font-thin uppercase tracking-[0.14em] sm:tracking-[0.16em] md:tracking-[0.25em]"
                                 >
                                   {word}
@@ -567,7 +567,7 @@ export const Hero: React.FC = () => {
                                   key={`${lineIdx}-${wi}`}
                                   initial={{ opacity: 0, y: 8 }}
                                   animate={{ opacity: targetOpacity, y: 0 }}
-                                  transition={{ duration: 2.4, delay: 1.6 + (globalIdx * 0.35), ease: [0.16, 1, 0.3, 1] }}
+                                  transition={{ duration: 3.1, delay: 2.1 + (globalIdx * 0.46), ease: [0.16, 1, 0.3, 1] }}
                                   className="text-white text-[16px] lg:text-[18px] xl:text-[26px] font-thin uppercase tracking-[0.25em]"
                                 >
                                   {word}
