@@ -217,7 +217,7 @@ export const Hero: React.FC = () => {
   // Footage cue points (in video currentTime):
   //   ~0.5s:  Earth from space → Sentence 0 (VISION/VELOCITY)
   //   ~7.0s:  Fab visible → Sentence 1 (MEMORY/MEANING)
-  //   ~15.0s: Capitol / Warm Springs → Sentence 2 (PLACE/PERSPECTIVE)
+  //   ~14.0s: Capitol / Warm Springs → Sentence 2 (PLACE/PERSPECTIVE)
   //   ~28.0s: Sentence 2 fades out
   //   ~30.0s: MICRON HOUSE wordmark fades in (strip below)
   //   ~32.0s: Logo rolls in
@@ -249,8 +249,8 @@ export const Hero: React.FC = () => {
       }
       
       // Sentence 2: replaces sentence 1 — Capitol hyper zoom begins
-      // WITHOUT PLACE at t=15, pause, THERE'S NO PERSPECTIVE when camera moves down Warm Springs (~t=21)
-      if (t >= 15.0 && !fired.has('s2on')) {
+      // WITHOUT PLACE at t=14, pause, THERE'S NO PERSPECTIVE when camera moves down Warm Springs (~t=20)
+      if (t >= 14.0 && !fired.has('s2on')) {
           fired.add('s2on');
           setCurrentSentenceIndex(2);
       }
