@@ -503,7 +503,7 @@ export const Hero: React.FC = () => {
                     className="absolute inset-0 z-[2] bg-black pointer-events-none transition-opacity ease-out"
                     style={{
                         opacity: videoCompleted ? 0.7 : 0,
-                        transitionDuration: videoCompleted ? '6000ms' : '600ms',
+                        transitionDuration: videoCompleted ? '2600ms' : '600ms',
                     }}
                 />
 
@@ -544,7 +544,7 @@ export const Hero: React.FC = () => {
                                   key={`${lineIdx}-${wi}`}
                                   initial={{ opacity: 0, y: 8 }}
                                   animate={{ opacity: targetOpacity, y: 0 }}
-                                  transition={{ duration: 2.0, delay: 4.0 + (globalIdx * 0.6), ease: [0.16, 1, 0.3, 1] }}
+                                  transition={{ duration: 2.4, delay: 1.6 + (globalIdx * 0.35), ease: [0.16, 1, 0.3, 1] }}
                                   className="text-white text-[9px] sm:text-[10px] md:text-[16px] lg:text-[18px] xl:text-[26px] font-thin uppercase tracking-[0.14em] sm:tracking-[0.16em] md:tracking-[0.25em]"
                                 >
                                   {word}
@@ -567,7 +567,7 @@ export const Hero: React.FC = () => {
                                   key={`${lineIdx}-${wi}`}
                                   initial={{ opacity: 0, y: 8 }}
                                   animate={{ opacity: targetOpacity, y: 0 }}
-                                  transition={{ duration: 2.0, delay: 4.0 + (globalIdx * 0.6), ease: [0.16, 1, 0.3, 1] }}
+                                  transition={{ duration: 2.4, delay: 1.6 + (globalIdx * 0.35), ease: [0.16, 1, 0.3, 1] }}
                                   className="text-white text-[16px] lg:text-[18px] xl:text-[26px] font-thin uppercase tracking-[0.25em]"
                                 >
                                   {word}
