@@ -510,14 +510,18 @@ export const Hero: React.FC = () => {
                 {/* TAGLINE — written over the dark fade, word-by-word */}
                 <AnimatePresence>
                 {sequenceStarted && videoCompleted && (() => {
-                  const taglineLines = [
+                  const mobileTaglineLines = [
+                      ["The", "First", "Autonomous"],
+                      ["Corporate", "Residence", "and"],
+                      ["Entertainment", "Hub"],
+                  ];
+                  const desktopTaglineLines = [
                       ["The", "First", "Autonomous"],
                       ["Corporate", "Residence"],
                       ["and", "Entertainment", "Hub"],
                   ];
                   // Words that should appear in solid white; others stay slightly softer
                   const solidWhite = new Set(["Autonomous", "Residence", "Hub"]);
-                  let runningIdx = 0;
                   return (
                     <motion.div
                       key="tagline"
@@ -527,11 +531,13 @@ export const Hero: React.FC = () => {
                       transition={{ duration: 1.0 }}
                       className="absolute inset-0 z-[4] flex items-center justify-center px-4"
                     >
-                      <div className="flex flex-col items-center gap-1 md:gap-2 lg:gap-2.5 xl:gap-3 leading-none">
-                        {taglineLines.map((line, lineIdx) => (
+                      <div className="flex flex-col items-center gap-1 leading-none md:hidden">
+                        {mobileTaglineLines.map((line, lineIdx) => (
                           <div key={lineIdx} className="flex gap-x-1.5 md:gap-x-2.5">
                             {line.map((word, wi) => {
-                              const globalIdx = runningIdx++;
+                              const globalIdx = mobileTaglineLines
+                                .slice(0, lineIdx)
+                                .reduce((sum, currentLine) => sum + currentLine.length, 0) + wi;
                               const targetOpacity = solidWhite.has(word) ? 1 : 0.85;
                               return (
                                 <motion.span
@@ -540,6 +546,29 @@ export const Hero: React.FC = () => {
                                   animate={{ opacity: targetOpacity, y: 0 }}
                                   transition={{ duration: 2.0, delay: 4.0 + (globalIdx * 0.6), ease: [0.16, 1, 0.3, 1] }}
                                   className="text-white text-[9px] sm:text-[10px] md:text-[16px] lg:text-[18px] xl:text-[26px] font-thin uppercase tracking-[0.14em] sm:tracking-[0.16em] md:tracking-[0.25em]"
+                                >
+                                  {word}
+                                </motion.span>
+                              );
+                            })}
+                          </div>
+                        ))}
+                      </div>
+                      <div className="hidden flex-col items-center gap-2 leading-none md:flex lg:gap-2.5 xl:gap-3">
+                        {desktopTaglineLines.map((line, lineIdx) => (
+                          <div key={lineIdx} className="flex gap-x-2.5">
+                            {line.map((word, wi) => {
+                              const globalIdx = desktopTaglineLines
+                                .slice(0, lineIdx)
+                                .reduce((sum, currentLine) => sum + currentLine.length, 0) + wi;
+                              const targetOpacity = solidWhite.has(word) ? 1 : 0.85;
+                              return (
+                                <motion.span
+                                  key={`${lineIdx}-${wi}`}
+                                  initial={{ opacity: 0, y: 8 }}
+                                  animate={{ opacity: targetOpacity, y: 0 }}
+                                  transition={{ duration: 2.0, delay: 4.0 + (globalIdx * 0.6), ease: [0.16, 1, 0.3, 1] }}
+                                  className="text-white text-[16px] lg:text-[18px] xl:text-[26px] font-thin uppercase tracking-[0.25em]"
                                 >
                                   {word}
                                 </motion.span>
