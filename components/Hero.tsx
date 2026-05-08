@@ -501,9 +501,8 @@ export const Hero: React.FC = () => {
                 <AnimatePresence>
                 {videoCompleted && (() => {
                   const taglineLines = [
-                      ["The", "First", "Corporate"],
-                      ["Autonomous", "Residence"],
-                      ["and", "Entertainment", "Hub"],
+                      ["The", "First", "Corporate", "Autonomous"],
+                      ["Residence", "and", "Entertainment", "Hub"],
                   ];
                   let runningIdx = 0;
                   return (
