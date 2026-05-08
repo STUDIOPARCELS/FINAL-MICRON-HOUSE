@@ -510,8 +510,9 @@ export const Hero: React.FC = () => {
                 <AnimatePresence>
                 {videoCompleted && (() => {
                   const taglineLines = [
-                      ["The", "First", "Corporate", "Autonomous"],
-                      ["Residence", "and", "Entertainment", "Hub"],
+                      ["The", "First", "Autonomous"],
+                      ["Corporate", "Residence"],
+                      ["+", "Entertainment", "Hub"],
                   ];
                   let runningIdx = 0;
                   return (
@@ -579,12 +580,12 @@ export const Hero: React.FC = () => {
                           House
                       </motion.span>
                    </motion.div>
-                   <motion.img 
+                   <motion.img
                       initial={{ x: 200, rotate: -360, opacity: 0 }}
                       animate={iconControls}
                       src="https://acwgirrldntjpzrhqmdh.supabase.co/storage/v1/object/public/MICRON%20HOUSE/micron-overlap-no-border.png"
                       alt="Micron Logo"
-                      className="h-[62px] w-[62px] md:h-[60px] md:w-[60px] lg:h-[70px] lg:w-[70px] xl:h-[88px] xl:w-[88px] object-contain"
+                      className="h-[68px] w-[68px] md:h-[66px] md:w-[66px] lg:h-[77px] lg:w-[77px] xl:h-[97px] xl:w-[97px] object-contain"
                    />
                  </div>
                </div>
