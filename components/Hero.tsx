@@ -497,11 +497,11 @@ export const Hero: React.FC = () => {
                 <div className="absolute inset-0 z-[1]" style={{ WebkitTapHighlightColor: 'transparent' }} />
 
                 {/* DARK OVERLAY — fades in slowly over the parting Earth shot.
-                    70% black so the Earth's outline still reads through. Reset is fast. */}
+                    85% black so only a faint outline of the Earth reads through. Reset is fast. */}
                 <div
                     className="absolute inset-0 z-[2] bg-black pointer-events-none transition-opacity ease-out"
                     style={{
-                        opacity: videoCompleted ? 0.7 : 0,
+                        opacity: videoCompleted ? 0.85 : 0,
                         transitionDuration: videoCompleted ? '6000ms' : '600ms',
                     }}
                 />
