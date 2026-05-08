@@ -227,10 +227,6 @@ export const Hero: React.FC = () => {
   const firedCues = useRef<Set<string>>(new Set());
   
   const handleVideoTimeUpdate = (e: React.SyntheticEvent<HTMLVideoElement>) => {
-      // Belt-and-suspenders: never fire any cue (sentence text, tagline, brand reveal)
-      // unless the user has explicitly initiated playback via playOrReplay.
-      if (!hasPlayedOnce.current) return;
-
       const t = e.currentTarget.currentTime;
       const fired = firedCues.current;
 
@@ -290,11 +286,18 @@ export const Hero: React.FC = () => {
       // and the tagline write-over.
   };
 
-  // No auto-play. Page loads with the still poster visible; first play and every
-  // replay are user-triggered (hover on desktop, tap on mobile).
+  // Auto-play on first scroll into view; replay on hover/tap once the sequence completes.
+  useEffect(() => {
+      if (isInView && !hasPlayedOnce.current) {
+          hasPlayedOnce.current = true;
+          startSequence();
+      }
+  }, [isInView]);
+
+  // Hover/tap handler: replays once the sequence has finished. No-op during playback
+  // and no-op before first play (autoplay handles that).
   const playOrReplay = () => {
-      // Ignore mid-playback hovers; only fire on first play or after completion.
-      if (hasPlayedOnce.current && !videoCompleted) return;
+      if (!videoCompleted) return;
       hasPlayedOnce.current = true;
       startSequence();
   };
@@ -306,6 +309,25 @@ export const Hero: React.FC = () => {
         sentenceTimers.current.forEach(t => clearTimeout(t));
     };
   }, []);
+
+  // Mobile autoplay fallback: some browsers block programmatic play() until first
+  // user gesture. If the video is still paused after touch/click/scroll, kick it.
+  useEffect(() => {
+    const forcePlay = () => {
+        if (videoRef.current && videoRef.current.paused && !videoCompleted) {
+            videoRef.current.muted = true;
+            videoRef.current.play().catch(() => {});
+        }
+    };
+    document.addEventListener('touchstart', forcePlay, { once: true });
+    document.addEventListener('click', forcePlay, { once: true });
+    document.addEventListener('scroll', forcePlay, { once: true });
+    return () => {
+        document.removeEventListener('touchstart', forcePlay);
+        document.removeEventListener('click', forcePlay);
+        document.removeEventListener('scroll', forcePlay);
+    };
+  }, [videoCompleted]);
 
   // Render an independently-animated comma between sentence halves
   const renderComma = (currentSet: any) => {
@@ -437,8 +459,8 @@ export const Hero: React.FC = () => {
     >
       <div className="container mx-auto px-4 md:px-8 lg:px-12 h-full flex flex-col gap-3 md:gap-4 lg:gap-6 xl:gap-10">
         
-        {/* VIDEO — Polaroid bento frame. No auto-play.
-            Hover (desktop) or click/tap (mobile) starts and replays the video. */}
+        {/* VIDEO — Polaroid bento frame. Auto-plays on page load.
+            Hover (desktop) or tap (mobile) replays once the sequence has finished. */}
         <div
             className="w-full bg-white rounded-3xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 p-4 md:p-10 lg:p-12 xl:p-16 cursor-pointer"
             onMouseEnter={playOrReplay}
@@ -449,6 +471,7 @@ export const Hero: React.FC = () => {
             >
                 <video
                     ref={videoRef}
+                    autoPlay
                     loop={false}
                     muted
                     playsInline
