@@ -172,8 +172,10 @@ export const Hero: React.FC = () => {
   // Unified Start Sequence Function
   // Resets everything, starts video immediately, waits for video to play before starting text
   const startSequence = () => {
-    // 1. Clear any pending timers
+    // 1. Clear any pending timers (incl. brand-reveal timeouts scheduled at the house pause)
     if (sequenceTimer.current) clearTimeout(sequenceTimer.current);
+    sentenceTimers.current.forEach(t => clearTimeout(t));
+    sentenceTimers.current = [];
 
     // 2. Reset Text & Icon State
     setCurrentSentenceIndex(null);
@@ -212,20 +214,18 @@ export const Hero: React.FC = () => {
   };
   
   // VIDEO-TIME-DRIVEN CUE SYSTEM
-  // All animations are anchored to video.currentTime instead of setTimeout.
-  // Video is 34.8s at 1x, plays at 0.45x = ~77s real time.
-  // currentTime advances at 0.45x of real time.
+  // Sentence cues are anchored to video.currentTime. Video is 34.8s at 1x, plays at 0.72x.
+  // The video is intentionally paused at t=25.5 on the house frame (before hyper zoom /
+  // cybercab) — the tagline overlay fades in here and the brand reveal below follows on
+  // real-time delays from the pause.
   //
   // Footage cue points (in video currentTime):
-  //   ~5.0s:  Camera closes in on rocket → Sentence 0 (VISION/VELOCITY)
-  //   ~8.5s:  Transition → Sentence 0 out
-  //   ~10.5s: Fab first visible over foothills → Sentence 1 (MEMORY/MEANING)  
-  //   ~15.5s: Transition → Sentence 1 out
-  //   ~16.0s: Capitol building in frame → Sentence 2 (PLACE/PERSPECTIVE)
-  //   ~23.0s: Sentence 2 out
-  //   ~24.0s: Car drives off → Wordmark slides in
-  //   ~27.0s: Hyper zoom → Logo slides in above wordmark
-  //   ~30.6s: Blue bento appears
+  //   ~0.5s:  Earth from space → Sentence 0 (VISION/VELOCITY)
+  //   ~7.0s:  Fab visible → Sentence 1 (MEMORY/MEANING)
+  //   ~15.0s: Capitol / Warm Springs → Sentence 2 (PLACE/PERSPECTIVE)
+  //   ~25.5s: Car has driven off, house in frame → PAUSE + tagline overlay fires
+  //           +5s after pause → MICRON HOUSE wordmark fades in (strip below)
+  //           +7s after pause → Logo rolls in
   
   const sentenceTimers = useRef<ReturnType<typeof setTimeout>[]>([]);
   const firedCues = useRef<Set<string>>(new Set());
@@ -259,36 +259,32 @@ export const Hero: React.FC = () => {
           setCurrentSentenceIndex(2);
       }
       
-      // Clear sentence before brand reveal
-      if (t >= 28.0 && !fired.has('s2off')) {
-          fired.add('s2off');
+      // Clear sentence + freeze video on the house frame (before hyper zoom / cybercab)
+      // Tagline overlay fires here, brand reveal in strip below follows on real-time delays.
+      if (t >= 25.5 && !fired.has('housePause')) {
+          fired.add('housePause');
           setCurrentSentenceIndex(null);
-      }
-      
-      // Brand reveal: Wordmark fades in — car parked in front of house
-      if (t >= 30.0 && !fired.has('wordmark')) {
-          fired.add('wordmark');
-          setWordmarkVisible(true);
-          wordmarkControls.start({
-              opacity: 1,
-              transition: { duration: 4.0, ease: [0.16, 1, 0.3, 1] }
-          });
-      }
-      
-      // Brand reveal: Logo rolls in as car drives off
-      if (t >= 32.0 && !fired.has('logo')) {
-          fired.add('logo');
-          setLogoVisible(true);
-          iconControls.start({
-              x: 0, rotate: 0, opacity: 1,
-              transition: { type: "spring", stiffness: 5, damping: 12, duration: 6.0, bounce: 0 }
-          });
-          setTimeout(() => setLayoutShift(true), 1000);
-      }
-      
-      // Blue bento appears
-      if (t >= 32.0 && !fired.has('bento')) {
-          fired.add('bento');
+          if (videoRef.current) videoRef.current.pause();
+          setVideoCompleted(true); // triggers tagline overlay (gated on videoCompleted)
+
+          // Brand reveal in strip below — relative to pause, in real time.
+          // Tracked in sentenceTimers so a replay (startSequence) cancels them cleanly.
+          sentenceTimers.current.push(setTimeout(() => {
+              setWordmarkVisible(true);
+              wordmarkControls.start({
+                  opacity: 1,
+                  transition: { duration: 4.0, ease: [0.16, 1, 0.3, 1] }
+              });
+          }, 5000));
+
+          sentenceTimers.current.push(setTimeout(() => {
+              setLogoVisible(true);
+              iconControls.start({
+                  x: 0, rotate: 0, opacity: 1,
+                  transition: { type: "spring", stiffness: 5, damping: 12, duration: 6.0, bounce: 0 }
+              });
+              sentenceTimers.current.push(setTimeout(() => setLayoutShift(true), 1000));
+          }, 7000));
       }
   };
 
@@ -480,7 +476,7 @@ export const Hero: React.FC = () => {
                     poster={HERO_POSTER_URL}
                     src={HERO_VIDEO_URL}
                     onPlaying={() => {
-                        if (videoRef.current) videoRef.current.playbackRate = 0.90;
+                        if (videoRef.current) videoRef.current.playbackRate = 0.72;
                         startSentenceTimers();
                     }}
                     onEnded={handleVideoEnd}
