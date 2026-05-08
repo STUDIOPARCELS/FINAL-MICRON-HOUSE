@@ -211,17 +211,17 @@ export const Hero: React.FC = () => {
   
   // VIDEO-TIME-DRIVEN CUE SYSTEM
   // Sentence cues are anchored to video.currentTime. Video is 34.8s at 1x, plays at 0.72x.
-  // The video is intentionally paused at t=25.5 on the house frame (before hyper zoom /
-  // cybercab) — the tagline overlay fades in here and the brand reveal below follows on
-  // real-time delays from the pause.
+  // The video plays through end-to-end. After it lands on the parting shot (Earth zoom-out),
+  // a slow 70% dark overlay fades in over the final frame and the tagline writes over it.
   //
   // Footage cue points (in video currentTime):
   //   ~0.5s:  Earth from space → Sentence 0 (VISION/VELOCITY)
   //   ~7.0s:  Fab visible → Sentence 1 (MEMORY/MEANING)
   //   ~15.0s: Capitol / Warm Springs → Sentence 2 (PLACE/PERSPECTIVE)
-  //   ~25.5s: Car has driven off, house in frame → PAUSE + tagline overlay fires
-  //           +5s after pause → MICRON HOUSE wordmark fades in (strip below)
-  //           +7s after pause → Logo rolls in
+  //   ~28.0s: Sentence 2 fades out
+  //   ~30.0s: MICRON HOUSE wordmark fades in (strip below)
+  //   ~32.0s: Logo rolls in
+  //   onEnded (~34.8s, parting Earth shot) → 70% dark overlay fades in + tagline writes over
   
   const sentenceTimers = useRef<ReturnType<typeof setTimeout>[]>([]);
   const firedCues = useRef<Set<string>>(new Set());
@@ -259,37 +259,35 @@ export const Hero: React.FC = () => {
           setCurrentSentenceIndex(2);
       }
       
-      // Clear sentence + rewind to the Earth scene at t=0, pause, dim & overlay tagline.
-      // The cybercab and house share the same frame, so we don't try to find a clean
-      // "house only" frame — instead we return to the calm Earth backdrop and dim it.
-      if (t >= 25.5 && !fired.has('housePause')) {
-          fired.add('housePause');
+      // Clear sentence 2 before the brand reveal
+      if (t >= 28.0 && !fired.has('s2off')) {
+          fired.add('s2off');
           setCurrentSentenceIndex(null);
-          if (videoRef.current) {
-              videoRef.current.currentTime = 0; // rewind to Earth view
-              videoRef.current.pause();
-          }
-          setVideoCompleted(true); // triggers dim + tagline overlay (gated on videoCompleted)
-
-          // Brand reveal in strip below — relative to pause, in real time.
-          // Tracked in sentenceTimers so a replay (startSequence) cancels them cleanly.
-          sentenceTimers.current.push(setTimeout(() => {
-              setWordmarkVisible(true);
-              wordmarkControls.start({
-                  opacity: 1,
-                  transition: { duration: 4.0, ease: [0.16, 1, 0.3, 1] }
-              });
-          }, 5000));
-
-          sentenceTimers.current.push(setTimeout(() => {
-              setLogoVisible(true);
-              iconControls.start({
-                  x: 0, rotate: 0, opacity: 1,
-                  transition: { type: "spring", stiffness: 5, damping: 12, duration: 6.0, bounce: 0 }
-              });
-              sentenceTimers.current.push(setTimeout(() => setLayoutShift(true), 1000));
-          }, 7000));
       }
+
+      // Brand reveal: MICRON HOUSE wordmark fades in (in strip below the video)
+      if (t >= 30.0 && !fired.has('wordmark')) {
+          fired.add('wordmark');
+          setWordmarkVisible(true);
+          wordmarkControls.start({
+              opacity: 1,
+              transition: { duration: 4.0, ease: [0.16, 1, 0.3, 1] }
+          });
+      }
+
+      // Brand reveal: Logo rolls in alongside the wordmark
+      if (t >= 32.0 && !fired.has('logo')) {
+          fired.add('logo');
+          setLogoVisible(true);
+          iconControls.start({
+              x: 0, rotate: 0, opacity: 1,
+              transition: { type: "spring", stiffness: 5, damping: 12, duration: 6.0, bounce: 0 }
+          });
+          sentenceTimers.current.push(setTimeout(() => setLayoutShift(true), 1000));
+      }
+      // Video then plays through to its natural end (the parting shot — Earth zoom out).
+      // onEnded → handleVideoEnd → setVideoCompleted(true) triggers the 70% dark overlay
+      // and the tagline write-over.
   };
 
   // No auto-play. Page loads with the still poster visible; first play and every
@@ -463,20 +461,29 @@ export const Hero: React.FC = () => {
                     }}
                     onEnded={handleVideoEnd}
                     onTimeUpdate={handleVideoTimeUpdate}
-                    className="absolute inset-0 w-full h-full object-cover transition-opacity duration-[6000ms] ease-out"
-                    style={{ opacity: videoCompleted ? 0.45 : 1 }}
+                    className="absolute inset-0 w-full h-full object-cover"
                 />
                 {!videoReady && (
                     <img
                         src={HERO_POSTER_URL}
                         alt=""
                         aria-hidden="true"
-                        className="absolute inset-0 z-[2] h-full w-full object-cover"
+                        className="absolute inset-0 z-[3] h-full w-full object-cover"
                     />
                 )}
                 <div className="absolute inset-0 z-[1]" style={{ WebkitTapHighlightColor: 'transparent' }} />
 
-                {/* TAGLINE — centered in video frame, ALL viewports, word at a time */}
+                {/* DARK OVERLAY — fades in slowly over the parting Earth shot.
+                    70% black so the Earth's outline still reads through. Reset is fast. */}
+                <div
+                    className="absolute inset-0 z-[2] bg-black pointer-events-none transition-opacity ease-out"
+                    style={{
+                        opacity: videoCompleted ? 0.7 : 0,
+                        transitionDuration: videoCompleted ? '6000ms' : '600ms',
+                    }}
+                />
+
+                {/* TAGLINE — written over the dark fade, word-by-word */}
                 <AnimatePresence>
                 {videoCompleted && (() => {
                   const taglineLines = [
@@ -489,10 +496,9 @@ export const Hero: React.FC = () => {
                       key="tagline"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
-                      exit={{ opacity: 0, transition: { duration: 1.5, ease: "easeOut" } }}
+                      exit={{ opacity: 0, transition: { duration: 1.0, ease: "easeOut" } }}
                       transition={{ duration: 1.0 }}
-                      className="absolute inset-0 z-[2] flex items-center justify-center px-4"
-                      style={{ background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.1) 50%, transparent 80%)' }}
+                      className="absolute inset-0 z-[4] flex items-center justify-center px-4"
                     >
                       <div className="flex flex-col items-center gap-1 md:gap-2 lg:gap-2.5 xl:gap-3 leading-none">
                         {taglineLines.map((line, lineIdx) => (
@@ -503,8 +509,8 @@ export const Hero: React.FC = () => {
                                 <motion.span
                                   key={`${lineIdx}-${wi}`}
                                   initial={{ opacity: 0, y: 8 }}
-                                  animate={{ opacity: 0.6, y: 0 }}
-                                  transition={{ duration: 2.0, delay: 2.0 + (globalIdx * 0.6), ease: [0.16, 1, 0.3, 1] }}
+                                  animate={{ opacity: 0.85, y: 0 }}
+                                  transition={{ duration: 2.0, delay: 4.0 + (globalIdx * 0.6), ease: [0.16, 1, 0.3, 1] }}
                                   className="text-white text-[12px] md:text-[16px] lg:text-[18px] xl:text-[26px] font-thin uppercase tracking-[0.2em] md:tracking-[0.25em]"
                                 >
                                   {word}
