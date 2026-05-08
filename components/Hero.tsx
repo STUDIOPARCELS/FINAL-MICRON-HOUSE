@@ -259,13 +259,17 @@ export const Hero: React.FC = () => {
           setCurrentSentenceIndex(2);
       }
       
-      // Clear sentence + freeze video on the house frame (before hyper zoom / cybercab)
-      // Tagline overlay fires here, brand reveal in strip below follows on real-time delays.
+      // Clear sentence + rewind to the Earth scene at t=0, pause, dim & overlay tagline.
+      // The cybercab and house share the same frame, so we don't try to find a clean
+      // "house only" frame — instead we return to the calm Earth backdrop and dim it.
       if (t >= 25.5 && !fired.has('housePause')) {
           fired.add('housePause');
           setCurrentSentenceIndex(null);
-          if (videoRef.current) videoRef.current.pause();
-          setVideoCompleted(true); // triggers tagline overlay (gated on videoCompleted)
+          if (videoRef.current) {
+              videoRef.current.currentTime = 0; // rewind to Earth view
+              videoRef.current.pause();
+          }
+          setVideoCompleted(true); // triggers dim + tagline overlay (gated on videoCompleted)
 
           // Brand reveal in strip below — relative to pause, in real time.
           // Tracked in sentenceTimers so a replay (startSequence) cancels them cleanly.
@@ -288,39 +292,19 @@ export const Hero: React.FC = () => {
       }
   };
 
-  // Handle initial mount — play once, then only replay on hover
-  useEffect(() => {
-      if (isInView && !hasPlayedOnce.current) {
-          hasPlayedOnce.current = true;
-          startSequence();
-      }
-  }, [isInView]);
-  
+  // No auto-play. First play and every replay are user-triggered (hover or tap).
+  const playOrReplay = () => {
+      // Ignore hover during in-flight playback; only fire on first play or after completion.
+      if (hasPlayedOnce.current && !videoCompleted) return;
+      hasPlayedOnce.current = true;
+      startSequence();
+  };
+
   // Sentence cycling is now fully driven by setTimeout in startSequence
   // Clean up all timers on unmount or view change
   useEffect(() => {
     return () => {
         sentenceTimers.current.forEach(t => clearTimeout(t));
-    };
-  }, []);
-
-  // Video Speed — 0.45x for slower cinematic feel
-  // playbackRate is set in onPlaying callback to avoid blocking autoplay on mobile
-  useEffect(() => {
-    // Force play on first user interaction — fallback for mobile browsers that block autoplay
-    const forcePlay = () => {
-        if (videoRef.current && videoRef.current.paused) {
-            videoRef.current.muted = true;
-            videoRef.current.play().catch(() => {});
-        }
-    };
-    document.addEventListener('touchstart', forcePlay, { once: true });
-    document.addEventListener('click', forcePlay, { once: true });
-    document.addEventListener('scroll', forcePlay, { once: true });
-    return () => {
-        document.removeEventListener('touchstart', forcePlay);
-        document.removeEventListener('click', forcePlay);
-        document.removeEventListener('scroll', forcePlay);
     };
   }, []);
 
@@ -454,21 +438,18 @@ export const Hero: React.FC = () => {
     >
       <div className="container mx-auto px-4 md:px-8 lg:px-12 h-full flex flex-col gap-3 md:gap-4 lg:gap-6 xl:gap-10">
         
-        {/* VIDEO — Polaroid bento frame */}
-        <div 
+        {/* VIDEO — Polaroid bento frame.
+            User-triggered playback only: hover (desktop) or click/tap (mobile). */}
+        <div
             className="w-full bg-white rounded-3xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 p-4 md:p-10 lg:p-12 xl:p-16 cursor-pointer"
-            onMouseEnter={() => {
-                if (videoCompleted) {
-                    startSequence();
-                }
-            }}
+            onMouseEnter={playOrReplay}
+            onClick={playOrReplay}
         >
             <div 
                 className="aspect-video w-[85%] md:w-[80%] lg:w-[75%] mx-auto rounded-2xl overflow-hidden relative group bg-zinc-950"
             >
                 <video
                     ref={videoRef}
-                    autoPlay
                     loop={false}
                     muted
                     playsInline
