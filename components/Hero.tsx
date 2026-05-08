@@ -496,6 +496,50 @@ export const Hero: React.FC = () => {
                     />
                 )}
                 <div className="absolute inset-0 z-[1]" style={{ WebkitTapHighlightColor: 'transparent' }} />
+
+                {/* TAGLINE — centered in video frame, ALL viewports, word at a time */}
+                <AnimatePresence>
+                {videoCompleted && (() => {
+                  const taglineLines = [
+                      ["The", "First", "Corporate"],
+                      ["Autonomous", "Residence"],
+                      ["and", "Entertainment", "Hub"],
+                  ];
+                  let runningIdx = 0;
+                  return (
+                    <motion.div
+                      key="tagline"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0, transition: { duration: 1.5, ease: "easeOut" } }}
+                      transition={{ duration: 1.0 }}
+                      className="absolute inset-0 z-[2] flex items-center justify-center px-4"
+                      style={{ background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.1) 50%, transparent 80%)' }}
+                    >
+                      <div className="flex flex-col items-center gap-1 md:gap-2 lg:gap-2.5 xl:gap-3 leading-none">
+                        {taglineLines.map((line, lineIdx) => (
+                          <div key={lineIdx} className="flex gap-x-1.5 md:gap-x-2.5">
+                            {line.map((word, wi) => {
+                              const globalIdx = runningIdx++;
+                              return (
+                                <motion.span
+                                  key={`${lineIdx}-${wi}`}
+                                  initial={{ opacity: 0, y: 8 }}
+                                  animate={{ opacity: 0.6, y: 0 }}
+                                  transition={{ duration: 2.0, delay: 2.0 + (globalIdx * 0.6), ease: [0.16, 1, 0.3, 1] }}
+                                  className="text-white text-[12px] md:text-[16px] lg:text-[18px] xl:text-[26px] font-thin uppercase tracking-[0.2em] md:tracking-[0.25em]"
+                                >
+                                  {word}
+                                </motion.span>
+                              );
+                            })}
+                          </div>
+                        ))}
+                      </div>
+                    </motion.div>
+                  );
+                })()}
+                </AnimatePresence>
             </div>
         </div>
 
