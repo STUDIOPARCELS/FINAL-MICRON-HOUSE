@@ -382,7 +382,6 @@ const GalleryModalContent: React.FC<{ data: ModalContent; onClose: () => void }>
                                     alt={img.caption || "Property gallery photo"} 
                                     loading={shouldPrioritize ? "eager" : "lazy"}
                                     decoding="async"
-                                    fetchPriority={shouldPrioritize ? "high" : "auto"}
                                     onError={(event) => {
                                         if (event.currentTarget.src !== img.url) {
                                             event.currentTarget.src = img.url;

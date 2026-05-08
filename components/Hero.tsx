@@ -140,6 +140,7 @@ export const Hero: React.FC = () => {
   
   // New States for Quote Animation Control
   const [hasScrolled, setHasScrolled] = useState(false);
+  const [sequenceStarted, setSequenceStarted] = useState(false);
   const [videoCompleted, setVideoCompleted] = useState(false);
   const [videoReady, setVideoReady] = useState(false);
 
@@ -182,6 +183,7 @@ export const Hero: React.FC = () => {
     setLayoutShift(false);
     setLogoVisible(false);
     setWordmarkVisible(false);
+    setSequenceStarted(true);
     setVideoCompleted(false);
     setVideoReady(false);
     iconControls.set({ x: 200, rotate: -360, opacity: 0 });
@@ -314,7 +316,7 @@ export const Hero: React.FC = () => {
   // user gesture. If the video is still paused after touch/click/scroll, kick it.
   useEffect(() => {
     const forcePlay = () => {
-        if (videoRef.current && videoRef.current.paused && !videoCompleted) {
+        if (hasPlayedOnce.current && videoRef.current && videoRef.current.paused && !videoCompleted) {
             videoRef.current.muted = true;
             videoRef.current.play().catch(() => {});
         }
@@ -471,7 +473,6 @@ export const Hero: React.FC = () => {
             >
                 <video
                     ref={videoRef}
-                    autoPlay
                     loop={false}
                     muted
                     playsInline
@@ -508,7 +509,7 @@ export const Hero: React.FC = () => {
 
                 {/* TAGLINE — written over the dark fade, word-by-word */}
                 <AnimatePresence>
-                {videoCompleted && (() => {
+                {sequenceStarted && videoCompleted && (() => {
                   const taglineLines = [
                       ["The", "First", "Autonomous"],
                       ["Corporate", "Residence"],
@@ -538,7 +539,7 @@ export const Hero: React.FC = () => {
                                   initial={{ opacity: 0, y: 8 }}
                                   animate={{ opacity: targetOpacity, y: 0 }}
                                   transition={{ duration: 2.0, delay: 4.0 + (globalIdx * 0.6), ease: [0.16, 1, 0.3, 1] }}
-                                  className="text-white text-[12px] md:text-[16px] lg:text-[18px] xl:text-[26px] font-thin uppercase tracking-[0.2em] md:tracking-[0.25em]"
+                                  className="text-white text-[9px] sm:text-[10px] md:text-[16px] lg:text-[18px] xl:text-[26px] font-thin uppercase tracking-[0.14em] sm:tracking-[0.16em] md:tracking-[0.25em]"
                                 >
                                   {word}
                                 </motion.span>

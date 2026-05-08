@@ -23,7 +23,7 @@ const buildUrl = (folder: string, filename: string) => {
 
 const buildThumbnailUrl = (folder: string, filename: string, width = 900, quality = 80) => {
     const path = buildPath(folder, filename);
-    return `${BUCKET_RENDER_BASE_URL}/${path}?width=${width}&quality=${quality}`;
+    return `${BUCKET_RENDER_BASE_URL}/${path}?width=${width}&quality=${quality}&resize=contain`;
 };
 
 const buildCaption = (filename: string) =>
