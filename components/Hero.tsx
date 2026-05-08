@@ -187,18 +187,14 @@ export const Hero: React.FC = () => {
     iconControls.set({ x: 200, rotate: -360, opacity: 0 });
     wordmarkControls.set({ opacity: 0 });
 
-    // 3. Start Video — programmatic play only (no autoPlay attribute), matching bento pattern
-    // If play succeeds: onPlaying fires → poster fades → sentence timers start (all synced)
-    // If play blocked: poster stays visible, nothing else happens until user taps
+    // 3. Start Video — programmatic play only (no autoPlay attribute).
+    // Triggered exclusively from playOrReplay on hover/click/tap.
     videoStarted.current = false;
     firedCues.current.clear();
     if (videoRef.current) {
         videoRef.current.currentTime = 0;
         videoRef.current.muted = true;
-        videoRef.current.play().catch(() => {
-            // Autoplay blocked — do nothing. User will tap, forcePlay triggers, onPlaying syncs everything.
-            console.log("Autoplay blocked — waiting for user interaction");
-        });
+        videoRef.current.play().catch(() => {});
     }
   };
 
@@ -231,6 +227,10 @@ export const Hero: React.FC = () => {
   const firedCues = useRef<Set<string>>(new Set());
   
   const handleVideoTimeUpdate = (e: React.SyntheticEvent<HTMLVideoElement>) => {
+      // Belt-and-suspenders: never fire any cue (sentence text, tagline, brand reveal)
+      // unless the user has explicitly initiated playback via playOrReplay.
+      if (!hasPlayedOnce.current) return;
+
       const t = e.currentTarget.currentTime;
       const fired = firedCues.current;
 
@@ -292,9 +292,10 @@ export const Hero: React.FC = () => {
       }
   };
 
-  // No auto-play. First play and every replay are user-triggered (hover or tap).
+  // No auto-play. Page loads with the still poster visible; first play and every
+  // replay are user-triggered (hover on desktop, tap on mobile).
   const playOrReplay = () => {
-      // Ignore hover during in-flight playback; only fire on first play or after completion.
+      // Ignore mid-playback hovers; only fire on first play or after completion.
       if (hasPlayedOnce.current && !videoCompleted) return;
       hasPlayedOnce.current = true;
       startSequence();
@@ -438,8 +439,8 @@ export const Hero: React.FC = () => {
     >
       <div className="container mx-auto px-4 md:px-8 lg:px-12 h-full flex flex-col gap-3 md:gap-4 lg:gap-6 xl:gap-10">
         
-        {/* VIDEO — Polaroid bento frame.
-            User-triggered playback only: hover (desktop) or click/tap (mobile). */}
+        {/* VIDEO — Polaroid bento frame. No auto-play.
+            Hover (desktop) or click/tap (mobile) starts and replays the video. */}
         <div
             className="w-full bg-white rounded-3xl shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3)] border border-zinc-200 p-4 md:p-10 lg:p-12 xl:p-16 cursor-pointer"
             onMouseEnter={playOrReplay}
@@ -462,8 +463,8 @@ export const Hero: React.FC = () => {
                     }}
                     onEnded={handleVideoEnd}
                     onTimeUpdate={handleVideoTimeUpdate}
-                    className="absolute inset-0 w-full h-full object-cover transition-opacity duration-[1800ms] ease-out"
-                    style={{ opacity: videoCompleted ? 0.25 : 1 }}
+                    className="absolute inset-0 w-full h-full object-cover transition-opacity duration-[6000ms] ease-out"
+                    style={{ opacity: videoCompleted ? 0.45 : 1 }}
                 />
                 {!videoReady && (
                     <img
