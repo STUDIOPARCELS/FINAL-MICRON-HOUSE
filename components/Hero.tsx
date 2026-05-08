@@ -512,8 +512,10 @@ export const Hero: React.FC = () => {
                   const taglineLines = [
                       ["The", "First", "Autonomous"],
                       ["Corporate", "Residence"],
-                      ["+", "Entertainment", "Hub"],
+                      ["and", "Entertainment", "Hub"],
                   ];
+                  // Words that should appear in solid white; others stay slightly softer
+                  const solidWhite = new Set(["Autonomous", "Residence", "Hub"]);
                   let runningIdx = 0;
                   return (
                     <motion.div
@@ -529,11 +531,12 @@ export const Hero: React.FC = () => {
                           <div key={lineIdx} className="flex gap-x-1.5 md:gap-x-2.5">
                             {line.map((word, wi) => {
                               const globalIdx = runningIdx++;
+                              const targetOpacity = solidWhite.has(word) ? 1 : 0.85;
                               return (
                                 <motion.span
                                   key={`${lineIdx}-${wi}`}
                                   initial={{ opacity: 0, y: 8 }}
-                                  animate={{ opacity: 0.85, y: 0 }}
+                                  animate={{ opacity: targetOpacity, y: 0 }}
                                   transition={{ duration: 2.0, delay: 4.0 + (globalIdx * 0.6), ease: [0.16, 1, 0.3, 1] }}
                                   className="text-white text-[12px] md:text-[16px] lg:text-[18px] xl:text-[26px] font-thin uppercase tracking-[0.2em] md:tracking-[0.25em]"
                                 >
