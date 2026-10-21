@@ -21,7 +21,7 @@ CARD 3 — SECURITY + SERVICE + MOBILITY
 
 Security + Service + Mobility
 
-A residential test kitchen. Tesla is invited to bring Optimus for security and service and Cybercab for mobility, with one or two Tesla engineers living and working on site.
+A residential test kitchen. Optimus provides security and service. Cybercab provides mobility. One or two Tesla engineers live and work on site.
 
 Tesla outlines technical scope and operating requirements. Participating teams determine timing and visibility, including an entirely private residency.
 
