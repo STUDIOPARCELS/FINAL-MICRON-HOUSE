@@ -24,5 +24,5 @@ html=f'''<div class="col">
 <div class="lab" style="margin-top:30px">Presented by Lisa Wood Studio</div>
 <div class="sm" style="margin-top:8px">lisa@lisawoodstudio.com &nbsp;·&nbsp; 208 720 2433</div>
 <div class="fine" style="margin-top:26px">Independent proposal. Partners not yet confirmed.<br>Not affiliated with or endorsed by Tesla, Inc.</div></div>
-<div style="padding-right:6px;transform:translateY(-20px)">{mark(236)}</div></div></div>'''
+<div style="padding-right:6px;transform:translateY(-20px)">{mark(190)}</div></div></div>'''
 open('card6-cal-FINAL.html','w').write(HEAD+html+END)
