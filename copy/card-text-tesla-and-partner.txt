@@ -1,12 +1,11 @@
 WARM SPRINGS HOUSE — CARD TEXT (CURRENT)
 
 MICRON
-1 A NEW CORPORATE ASSET | WARM SPRINGS HOUSE, Boise. Service, security and mobility through Tesla Optimus + Cybercab. Available now. Ready to host.
-2 GROUNDED IN ENERGY INGENUITY | A modest 1906 home with geothermal heat, on a historic avenue five minutes from Capitol.
-3 PROOF OF CONCEPT | Now: Tesla test kitchen, with Tesla engineers living and working on site alongside Optimus and Cybercab. Next: as testing hardens, Micron and Tesla prove it together. Then: fully autonomous, on Micron's long-term lease.
-4 CORPORATE RESIDENCE + ENTERTAINMENT HUB | Board dinners by celebrity chefs, fireside strategy sessions, VIP visits, family stays near St. Luke's. Optimus serves and walks security rounds. Cybercab runs guests to Boise Airport and private jets. Micron decides who stays and who visits.
-5 A BLUEPRINT, CITY BY CITY | Autonomous systems run on memory. Micron and Tesla bring in university, hospital and Capitol leaders to shape a careful rollout: a blueprint for other cities. Groundwork: Cybercab fleet application submitted; Idaho and Boise policy work underway.
-6 RESERVED FOR MICRON | Founding partnership and naming rights, through December 15, 2026. Founding partner confirmed by December 31. To discuss a proposed partnership with Tesla, contact Lisa Wood.
+1 OFFERED FIRST TO MICRON | WARM SPRINGS HOUSE, Boise: first corporate residence and entertainment hub served by Tesla Optimus and Cybercab.
+2 BOARD DINNERS. VIP VISITS. RECRUITING. | Micron hosts at WARM SPRINGS HOUSE with celebrity chefs and total discretion, and houses executives minutes from downtown and St. Luke's. Optimus serves and walks security rounds. Cybercab meets guests at Boise Airport and private jets. Micron decides who comes.
+3 AUTONOMY RUNS ON MEMORY | Micron leads how autonomy arrives in its hometown. With Tesla, Micron brings university, hospital and Capitol leaders to WARM SPRINGS HOUSE to shape a responsible rollout, a model for other cities. Both companies share credit.
+4 READY NOW, PROVEN IN STAGES | A 1906 home on Boise's historic geothermal avenue, five minutes from Capitol, available now. First, Tesla engineers live and test on site. Then Micron and Tesla prove it together, ending in a fully autonomous residence on Micron's long-term lease. Cybercab fleet application submitted; Idaho and Boise policy work underway.
+5 RESERVED FOR MICRON | Founding partnership and naming rights, through December 15, 2026. Founding partner confirmed by December 31. To discuss a proposed partnership with Tesla, contact Lisa Wood.
 
 TESLA
 1 TESLA IN BOISE | WARM SPRINGS HOUSE. A residential test kitchen for Optimus + Cybercab. Available now. Ready to host.
@@ -16,7 +15,7 @@ TESLA
 5 A BLUEPRINT, CITY BY CITY | University, hospital and Capitol leaders, minutes away, shape a careful rollout in Idaho's capital with Tesla and its corporate partner: a blueprint for collaboration and rollout, city by city.
 6 GROUNDWORK | Cybercab fleet application submitted for Boise. Idaho and Boise policy work underway. Arrange a site visit with Lisa Wood.
 
-OTHER PARTNERS: Micron set with company name, no memory line, and card 6:
+OTHER PARTNERS: Micron set with company name (card 1 headline: OFFERED TO [COMPANY]; card 3 headline: A RESPONSIBLE ROLLOUT, without memory reference), and card 5:
 FOUNDING PARTNER | Offered first to Micron through December 15, 2026. Should Micron pass, first company committed becomes founding partner. To discuss a proposed partnership with Tesla, contact Lisa Wood.
 
 CLOSE (all sets)
