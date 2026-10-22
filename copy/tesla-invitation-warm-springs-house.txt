@@ -17,29 +17,28 @@ The autonomous corporate residence + entertainment hub.
 Available now. Ready to host.
 
 
-CARD 3 — THE TEST KITCHEN  [conceptual: Optimus inside, Cybercab outside on private grounds]
+CARD 3 — TEST KITCHEN  [conceptual: Optimus inside, Cybercab outside on private grounds]
 
 Security + Service + Mobility
 
 A proposed pilot where Tesla Optimus and Cybercab are tested in daily life, in a lived-in 1906 home on a historic Boise street.
 
-One Optimus.
+Optimus.
 Cybercab service.
-A Tesla engineer in residence.
-Data under Tesla's terms.
+Tesla engineer(s) in residence.
 
-Tesla engineers watch Optimus and Cybercab handle real dinners, real stays, and real events — and capture the data.
+Tesla engineer(s) watch Optimus and Cybercab handle real dinners, real stays, and real events — and capture data.
 
 Caption: Conceptual images.
 
 
-CARD 4 — THE CORPORATE AUTONOMOUS RESIDENCE  [actual living, dining + gathering spaces]
+CARD 4 — CORPORATE AUTONOMOUS RESIDENCE  [actual living, dining + gathering spaces]
 
-The Corporate Autonomous Residence
+Corporate Autonomous Residence
 
-A new corporate asset: a private residence and entertainment hub where Optimus and Cybercab provide the service, security, and mobility layer, leased by a Boise company that leads its city's rollout of autonomy.
+A new corporate asset: a private residence and entertainment hub where Optimus and Cybercab provide service, security, and mobility, leased by a Boise company that leads its city's rollout of autonomy.
 
-Micron receives the first opportunity. [8] other Boise corporate partners may be approached afterward if needed.
+Micron receives first opportunity. [8] other Boise corporate partners may be approached afterward if needed.
 
 
 CARD 5 — PUBLIC TRUST  [the house as a setting for conversation]
@@ -53,19 +52,17 @@ At the house, Boise's universities, hospitals, government and community leaders 
 Early 2027 is the envisioned window. The ambition: a model for other cities.
 
 
-CARD 6 — POLICY GROUNDWORK  [restrained close]
+CARD 6 — GROUNDWORK  [restrained close]
 
-Policy Groundwork
+Groundwork
 
-Two legislative packages prepared for the Idaho Legislature and Boise City Council.
+[ADA COUNTY CYBERCAB APPLICATION — Lisa's details]
 
-Idaho Automated Driving Systems and Driverless Passenger Service Act. Modeled on Utah's HB 101 (House 70–0, Senate 23–0).
+Two legislative packages prepared for Idaho Legislature and Boise City Council:
+Idaho Automated Driving Systems and Driverless Passenger Service Act, modeled on Utah's HB 101.
+Boise Robot-Enabled Operations Pilot Ordinance.
 
-Boise Robot-Enabled Operations Pilot Ordinance. Voluntary three-year pilot administered through existing city permitting and fire department infrastructure.
-
-[ADA COUNTY CYBERCAB APPLICATION — wording pending Lisa's details]
-
-Now — Site visit: Tesla walks the house and defines the test zones.
+Now — Site visit: Tesla walks the house and defines test zones.
 
 PRESENTED BY LISA WOOD STUDIO
 Lisa Wood
@@ -74,7 +71,7 @@ lisa@lisawoodstudio.com
 
 
 SOURCES (warmspringshouse.com, fetched 2026-10-22)
-Card 3: /test-kitchen (intro, "The pilot", "A living laboratory"); headline from the site's "security, service, and mobility layers"
+Card 3: /test-kitchen (intro, "The pilot", "A living laboratory"); "Data under Tesla's terms" removed; engineer(s) per Lisa; headline from the site's "security, service, and mobility layers"
 Card 4: /corporate-residence (intro); second paragraph from Lisa's brief, not the website; [8] to be confirmed
-Card 6: /policy (Briefings, Brief A, Brief B); /roadmap ("Now — Site visit")
+Card 6: /policy (Briefings, Brief A, Brief B names); /roadmap ("Now — Site visit"); Ada County line pending
 Cards 1, 2, 5: approved as written
