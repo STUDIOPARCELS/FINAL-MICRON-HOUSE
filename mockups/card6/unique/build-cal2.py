@@ -16,13 +16,13 @@ def cal():
 <div style="margin-top:12px;display:grid;grid-template-columns:repeat(7,1fr);grid-auto-rows:80px">{cells}</div></div>'''
 html=f'''<div class="col">
 <div><div class="h">Founding partner</div>
-<div class="serif" style="margin-top:22px;font-size:76px;line-height:1.06">Reserved for <i>Micron</i><br><span style="font-size:52px">through December 15, 2026.</span></div></div>
+<div class="serif" style="margin-top:22px;font-size:76px;line-height:1.06">Reserved for <i>Micron</i><br><span style="font-size:52px">until December 15, 2026.</span></div></div>
 {cal()}
 <div class="p">{PASS}</div>
-<div class="rule" style="padding-top:40px;display:grid;grid-template-columns:1fr auto;column-gap:30px;align-items:end">
+<div class="rule" style="padding-top:40px;display:grid;grid-template-columns:1fr auto;column-gap:30px;align-items:center">
 <div><div class="h" style="font-size:29px">Book a private site visit<br>with Lisa Wood.</div>
 <div class="lab" style="margin-top:30px">Presented by Lisa Wood Studio</div>
 <div class="sm" style="margin-top:8px">lisa@lisawoodstudio.com &nbsp;·&nbsp; 208 720 2433</div>
 <div class="fine" style="margin-top:26px">Independent proposal. Partners not yet confirmed.<br>Not affiliated with or endorsed by Tesla, Inc.</div></div>
-<div style="padding-bottom:4px">{mark(150)}</div></div></div>'''
+<div style="padding-right:6px;transform:translateY(-20px)">{mark(236)}</div></div></div>'''
 open('card6-cal-FINAL.html','w').write(HEAD+html+END)
