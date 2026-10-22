@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="71 71 882 882">
+  <defs><mask id="star"><rect x="0" y="0" width="1024" height="1024" fill="#fff"/>
+    <path fill="#000" d="M512 195 A325 325 0 0 0 808 512 A325 325 0 0 0 512 828 A325 325 0 0 0 215 512 A325 325 0 0 0 512 195 Z"/></mask></defs>
+  <g mask="url(#star)">
+    <circle cx="512" cy="306" r="234" fill="#7db0d3"/>
+    <circle cx="512" cy="718" r="234" fill="#008f25"/>
+    <circle cx="307" cy="512" r="235" fill="#2c0f38"/>
+    <circle cx="717" cy="512" r="235" fill="#353942"/>
+  </g>
+</svg>
