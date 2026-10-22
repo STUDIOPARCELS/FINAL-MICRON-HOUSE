@@ -25,7 +25,7 @@ TOP=f'''<div class="c brand">Warm Springs House</div>
 <div class="c st">{lines}</div>
 <div class="rule" style="padding-top:30px;display:grid;grid-template-columns:1fr 1fr 1fr">
 <div class="pt" style="color:{M}">Micron</div><div class="pt c" style="color:{T}">Tesla</div><div class="pt" style="color:{B};text-align:right">Boise</div></div>'''
-OPP='<b>Micron&#8217;s opportunity:</b> shape how autonomy reaches Boise,<br>with Tesla and university, hospital and Capitol leaders.'
+OPP='<b>Micron&#8217;s opportunity:</b> host Boise&#8217;s first encounter<br>with autonomy, with Tesla and university,<br>hospital and Capitol leaders.'
 GW='Cybercab fleet application submitted.<br>Idaho and Boise policy work underway.'
 BOTTOM={
  # A · one left edge, two type sizes, blueprint as a sentence, groundwork on the partner grid
@@ -45,7 +45,7 @@ BOTTOM={
  'C': f'''<div class="rule" style="padding-top:44px">
 <div class="h">A collaborative rollout</div>
 <div style="margin-top:30px;display:grid;grid-template-columns:1fr 2fr;row-gap:30px;align-items:baseline">
-<div class="lab">Micron&#8217;s<br>opportunity</div><div class="p" style="font-size:24px">Shape how autonomy reaches Boise, with Tesla and university, hospital and Capitol leaders. <span style="color:{P};font-weight:600">A blueprint for other cities.</span></div>
+<div class="lab">Micron&#8217;s<br>opportunity</div><div class="p" style="font-size:24px">Host Boise&#8217;s first encounter with autonomy, with Tesla and university, hospital and Capitol leaders. <span style="color:{P};font-weight:600">A blueprint for other cities.</span></div>
 <div class="lab">Groundwork</div><div class="sm">{GW}</div></div></div>''',
 }
 for k,b in BOTTOM.items(): open(f'card5-clean-{k}.html','w').write(HEAD+TOP+b+END)
