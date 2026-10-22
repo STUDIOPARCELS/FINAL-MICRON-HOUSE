@@ -36,9 +36,9 @@ CARD 4 — CORPORATE AUTONOMOUS RESIDENCE  [actual living, dining + gathering sp
 
 Corporate Autonomous Residence
 
-A new corporate asset: a private residence and entertainment hub where Optimus and Cybercab provide service, security, and mobility, leased by a Boise company that leads its city's rollout of autonomy.
+A new corporate asset: a private residence and entertainment hub where Optimus and Cybercab provide service, security, and mobility, leased by a leading Boise company.
 
-Micron receives first opportunity. [8] other Boise corporate partners may be approached afterward if needed.
+Micron receives first opportunity to lease. Nine other leading Boise-area companies may follow.
 
 
 CARD 5 — PUBLIC TRUST  [the house as a setting for conversation]
@@ -72,6 +72,6 @@ lisa@lisawoodstudio.com
 
 SOURCES (warmspringshouse.com, fetched 2026-10-22)
 Card 3: /test-kitchen (intro, "The pilot", "A living laboratory"); "Data under Tesla's terms" removed; engineer(s) per Lisa; headline from the site's "security, service, and mobility layers"
-Card 4: /corporate-residence (intro); second paragraph from Lisa's brief, not the website; [8] to be confirmed
+Card 4: /corporate-residence (intro); second paragraph from Lisa (Micron first; nine other companies)
 Card 6: /policy (Briefings, Brief A, Brief B names); /roadmap ("Now — Site visit"); application made through Tesla's Cybercab website (nothing filed with Ada County)
 Cards 1, 2, 5: approved as written
