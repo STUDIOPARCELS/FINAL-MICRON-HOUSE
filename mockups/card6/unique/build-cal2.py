@@ -20,9 +20,11 @@ html=f'''<div class="col">
 {cal()}
 <div class="p">{PASS}</div>
 <div class="rule" style="padding-top:40px;display:grid;grid-template-columns:1fr auto;column-gap:30px;align-items:center">
-<div><div class="serif" style="font-size:36px;line-height:1.25;color:{P}">Please contact me to schedule<br>a call or site visit.</div>
+<div><div class="serif" style="font-size:36px;line-height:1.25;color:{P}">To schedule a call<br>or site visit:</div>
 <div class="h" style="margin-top:26px;font-size:30px;letter-spacing:.08em">Lisa Wood</div>
-<div class="sm" style="margin-top:10px;font-size:23px">208 720 2433 &nbsp;·&nbsp; lisa@lisawoodstudio.com</div>
+<div class="sm" style="margin-top:10px;font-size:23px">208 720 2433 &nbsp;·&nbsp; <a class="lk" href="mailto:lisa@lisawoodstudio.com">lisa@lisawoodstudio.com</a></div>
+<div class="sm" style="margin-top:4px;font-size:23px"><a class="lk" href="https://warmspringshouse.com/">warmspringshouse.com</a></div>
 <div class="lab" style="margin-top:22px">Presented by Lisa Wood Studio</div></div>
 <div style="padding-right:6px;transform:translateY(-20px)">{mark(190)}</div></div></div>'''
-open('card6-cal-FINAL.html','w').write(HEAD+html+END)
+CSS='<style>@page{size:941px 1672px;margin:0}a.lk{color:inherit;text-decoration:underline;text-decoration-color:rgba(63,36,72,.35);text-decoration-thickness:1px;text-underline-offset:5px}</style>'
+open('card6-cal-FINAL.html','w').write(HEAD.replace('</head>',CSS+'</head>')+html+END)
