@@ -20,9 +20,10 @@ html=f'''<div class="col">
 {cal()}
 <div class="p">{PASS}</div>
 <div class="rule" style="padding-top:40px;display:grid;grid-template-columns:1fr auto;column-gap:30px;align-items:center">
-<div><div class="h" style="font-size:29px">Book a private site visit<br>with Lisa Wood.</div>
-<div class="lab" style="margin-top:30px">Presented by Lisa Wood Studio</div>
-<div class="sm" style="margin-top:8px">lisa@lisawoodstudio.com &nbsp;·&nbsp; 208 720 2433</div>
+<div><div class="h" style="font-size:34px;letter-spacing:.08em">Lisa Wood</div>
+<div class="sm" style="margin-top:14px;font-size:24px">208 720 2433</div>
+<div class="sm" style="margin-top:2px;font-size:24px">lisa@lisawoodstudio.com</div>
+<div class="lab" style="margin-top:26px">Presented by Lisa Wood Studio</div>
 <div class="fine" style="margin-top:26px">Independent proposal. Partners not yet confirmed.<br>Not affiliated with or endorsed by Tesla, Inc.</div></div>
 <div style="padding-right:6px;transform:translateY(-20px)">{mark(190)}</div></div></div>'''
 open('card6-cal-FINAL.html','w').write(HEAD+html+END)
