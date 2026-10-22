@@ -1,5 +1,5 @@
 # Card 5, cleaned from layout 5: python3 build.py (run from mockups/card5/clean)
-M='#2c0f38'; T='#353942'; B='#008f25'; P='#3f2448'; C2='#6a5571'; HR='#cfc8be'
+M='#2c0f38'; T='#353942'; B='#00782a'; P='#3f2448'; C2='#6a5571'; HR='#cfc8be'
 HEAD=f'''<!doctype html><html><head><meta charset="utf-8">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>html,body{{margin:0;background:#fff}}
