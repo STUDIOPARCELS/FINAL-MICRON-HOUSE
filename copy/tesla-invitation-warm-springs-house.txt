@@ -1,6 +1,7 @@
 WARM SPRINGS HOUSE — SIX-CARD INVITATION WORDING (TESLA)
+Layout canvas: https://claude.ai/artifact/PpvJFgWmouJUd1uGumzusL
 
-CARD 1 — OPENING  [white paper, logo seal; no Tesla marks]
+CARD 1 — OPENING  [seal; visual not chosen]
 
 WARM SPRINGS HOUSE
 BOISE, IDAHO
@@ -8,40 +9,39 @@ BOISE, IDAHO
 A residential test kitchen for Optimus + Cybercab.
 
 
-CARD 2 — HOUSE REVEAL  [autumn house]
-
-A Real Home
+CARD 2 — HOUSE REVEAL  [visual not chosen]
 
 The autonomous corporate residence + entertainment hub.
 
 Available now. Ready to host.
 
 
-CARD 3 — TEST KITCHEN  [conceptual: Optimus inside, Cybercab outside on private grounds]
+CARD 3 — SERVICE + SECURITY + MOBILITY  [conceptual: Optimus inside, Cybercab outside; visual not chosen]
 
-Security + Service + Mobility
+Caption: Conceptual images.
+
+Service + Security + Mobility
 
 A proposed pilot where Tesla Optimus and Cybercab are tested in daily life, in a lived-in 1906 home on a historic Boise street.
 
 Optimus.
-Cybercab service.
+Cybercab service: 5 min downtown, 15 min airport.
 Tesla engineer(s) in residence.
 
-Tesla engineer(s) watch Optimus and Cybercab handle real dinners, real stays, and real events — and capture data.
-
-Caption: Conceptual images.
+Tesla engineer(s) watch Optimus handle real dinners, real stays, and real events, and Cybercab handle arrivals and departures — and capture data.
 
 
-CARD 4 — CORPORATE AUTONOMOUS RESIDENCE  [actual living, dining + gathering spaces]
+CARD 4 — CORPORATE AUTONOMOUS RESIDENCE  [living, dining + gathering spaces; visual not chosen]
 
 Corporate Autonomous Residence
 
 A new corporate asset: a private residence and entertainment hub where Optimus and Cybercab provide service, security, and mobility, leased by a leading Boise company.
 
-Micron receives first opportunity to lease. Nine other leading Boise-area companies may follow.
+Micron receives first opportunity to lease.
+Nine other leading Boise-area companies may follow.
 
 
-CARD 5 — PUBLIC TRUST  [the house as a setting for conversation]
+CARD 5 — PUBLIC TRUST  [house as a setting for conversation; visual not chosen]
 
 Public Trust
 
@@ -52,11 +52,11 @@ At the house, Boise's universities, hospitals, government and community leaders 
 Early 2027 is the envisioned window. The ambition: a model for other cities.
 
 
-CARD 6 — GROUNDWORK  [restrained close]
+CARD 6 — GROUNDWORK  [no visual]
 
 Groundwork
 
-Cybercab fleet application submitted through Tesla's Cybercab website for Boise, Idaho.
+Cybercab fleet application for Boise, Idaho, submitted through Tesla's Cybercab website.
 
 Two legislative packages drafted March 2026 for Idaho Legislature and Boise City Council:
 Idaho Automated Driving Systems and Driverless Passenger Service Act, modeled on Utah's HB 101.
@@ -69,9 +69,4 @@ Lisa Wood
 lisa@lisawoodstudio.com
 208 720 2433
 
-
-SOURCES (warmspringshouse.com, fetched 2026-10-22)
-Card 3: /test-kitchen (intro, "The pilot", "A living laboratory"); "Data under Tesla's terms" removed; engineer(s) per Lisa; headline from the site's "security, service, and mobility layers"
-Card 4: /corporate-residence (intro); second paragraph from Lisa (Micron first; nine other companies)
-Card 6: /policy (Briefings, Brief A, Brief B names); /roadmap ("Now — Site visit"); application made through Tesla's Cybercab website (nothing filed with Ada County)
-Cards 1, 2, 5: approved as written
+An independent proposal. Not affiliated with or endorsed by Tesla, Inc.
