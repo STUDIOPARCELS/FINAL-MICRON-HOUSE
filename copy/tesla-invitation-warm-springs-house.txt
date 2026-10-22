@@ -56,7 +56,7 @@ CARD 6 — GROUNDWORK  [restrained close]
 
 Groundwork
 
-[ADA COUNTY CYBERCAB APPLICATION — Lisa's details]
+Cybercab fleet application submitted through Tesla's Cybercab website for Boise, Idaho.
 
 Two legislative packages prepared for Idaho Legislature and Boise City Council:
 Idaho Automated Driving Systems and Driverless Passenger Service Act, modeled on Utah's HB 101.
@@ -73,5 +73,5 @@ lisa@lisawoodstudio.com
 SOURCES (warmspringshouse.com, fetched 2026-10-22)
 Card 3: /test-kitchen (intro, "The pilot", "A living laboratory"); "Data under Tesla's terms" removed; engineer(s) per Lisa; headline from the site's "security, service, and mobility layers"
 Card 4: /corporate-residence (intro); second paragraph from Lisa's brief, not the website; [8] to be confirmed
-Card 6: /policy (Briefings, Brief A, Brief B names); /roadmap ("Now — Site visit"); Ada County line pending
+Card 6: /policy (Briefings, Brief A, Brief B names); /roadmap ("Now — Site visit"); application made through Tesla's Cybercab website (nothing filed with Ada County)
 Cards 1, 2, 5: approved as written
