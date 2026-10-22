@@ -23,7 +23,7 @@ Security + Service + Mobility
 
 WARM SPRINGS HOUSE is a residential test kitchen. Optimus is tested on security rounds and household service; Cybercab, on mobility. One or two Tesla engineers live and work on site.
 
-Tesla sets the scope, safety and operating requirements for its technology and directs its own people and data. [COMPANY] and Tesla set timing and visibility. The residency can be entirely private.
+Tesla sets the scope, safety and operating requirements for its technology and directs its own people and data. [COMPANY] and Tesla decide what is shown, when and to whom.
 
 Participation by [COMPANY], Tesla and Boise institutions remains to be confirmed, as do technology availability, operating approvals and program dates.
 
