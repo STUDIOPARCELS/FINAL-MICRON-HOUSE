@@ -1,6 +1,8 @@
 # Hero-line type treatments on Card 5 version B: python3 hero.py (run from mockups/card5/clean)
 import re
-src=open('card5-clean-B.html').read()
+import sys
+base=sys.argv[1] if len(sys.argv)>1 else 'B'
+src=open(f'card5-clean-{base}.html').read()
 src=src.replace('family=Montserrat:wght@400;500;600;700;800','family=Montserrat:wght@300;400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500')
 base_css=re.search(r'\.st\{\{?[^}]*\}\}?\n\.st b\{\{?[^}]*\}\}?',src).group(0)
 V={
@@ -14,4 +16,4 @@ V={
  'H4':('.st{font-family:Newsreader,Georgia,serif;font-size:44px;line-height:1.42;font-weight:300;color:#6f6475}\n.st b{font-weight:500}','b'),
 }
 for k,(css,_) in V.items():
-    open(f'card5-{k}.html','w').write(src.replace(base_css,css))
+    open(f'card5-{k}.html' if base=='B' else f'card5-{base}-{k}.html','w').write(src.replace(base_css,css))
