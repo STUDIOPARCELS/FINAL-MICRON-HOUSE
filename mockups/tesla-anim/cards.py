@@ -205,18 +205,20 @@ assets={'__PAPER__':('paper-gray.webp','image/webp'),'__HOUSE__':('house-photo.w
 # Card 6: the Cybercab photo wipes in, the call to action rises, then the contact block and the logo assemble
 CARD6=dict(id="card6", label="Card 6", dur=4.6, css=f"""
 $S{{background:#f4f4f3 url(__PAPER__) center/941px 1672px no-repeat}}
-$S .wrap{{position:absolute;left:60px;right:60px;top:60px;bottom:76px;display:flex;flex-direction:column;justify-content:space-between}}
+$S .wrap{{position:absolute;left:60px;right:60px;top:60px;bottom:60px;display:flex;flex-direction:column;justify-content:space-between}}
 $S .wrap>.im{{flex:none;width:821px;height:462px}}
 $S .cta{{font-size:120px;line-height:.98;letter-spacing:-.015em;font-weight:800;text-transform:uppercase}}
 $S .sub{{margin-top:34px;font-size:24px;line-height:1.42;font-weight:500;color:{INK2}}}
 $S .rule{{background:{RULE}}}
-$S .ad{{margin-top:30px;font-size:21px;line-height:1.75;letter-spacing:.14em;font-weight:800;text-transform:uppercase}}
+$S .adr{{margin-bottom:26px;font-size:22px;line-height:1.45;font-weight:500;color:{INK2}}}
+$S .fx{{padding:9px 0;font-size:20px;line-height:1.3;letter-spacing:.14em;font-weight:800;text-transform:uppercase}}
+$S .fx i{{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:14px;vertical-align:2px}}
 $S .ct{{display:grid;grid-template-columns:1fr auto;align-items:center;column-gap:40px}}
 $S .nm{{font-size:38px;line-height:1.1;letter-spacing:.08em;font-weight:800;text-transform:uppercase}}
 $S .dt{{margin-top:18px;font-size:26px;line-height:1.55;font-weight:500}}
 $S .dt a{{color:inherit;text-decoration:underline;text-decoration-color:{RULE};text-decoration-thickness:1px;text-underline-offset:5px}}
 $S .pb{{margin-top:26px;font-size:15px;letter-spacing:.3em;font-weight:700;text-transform:uppercase;color:{INK2}}}
-$S .mk{{display:block;width:340px;height:340px;overflow:visible}}
+$S .mk{{display:block;width:300px;height:300px;overflow:visible}}
 $S .mk .k{{transform-box:fill-box;transform-origin:center;opacity:0}}
 $S.play .mk .k{{animation:kin 1.1s cubic-bezier(.2,.7,.2,1) var(--d) both}}
 $S.done .mk .k{{opacity:1}}
@@ -226,8 +228,9 @@ $S.done .mk .k{{opacity:1}}
 <div>
 <div class="cta"><span class="m"><span style="--d:1.3s">See it</span></span><span class="m"><span style="--d:1.48s">in person.</span></span></div>
 <div class="sub"><span class="m"><span style="--d:1.85s">Warm Springs House is ready now for Tesla engineers,</span></span><span class="m"><span style="--d:1.97s">Optimus and Cybercab.</span></span></div>
-<div class="ad"><span class="m"><span style="--d:2.15s">1020 E Warm Springs Ave &nbsp;&#183;&nbsp; Boise, Idaho</span></span><span class="m"><span style="--d:2.27s">At no cost to Tesla.</span></span><span class="m"><span style="--d:2.39s">15 minutes from the airport.</span></span><span class="m"><span style="--d:2.51s">Private, quiet and discreet.</span></span></div></div>
-<div class="rule ln" style="--d:2.7s"></div>
+</div>
+<div><div class="adr"><span class="m"><span style="--d:2.15s">1020 E Warm Springs Ave &#183; Boise, Idaho</span></span></div><div class="fx r" style="--d:2.35s"><i style="background:#00782a"></i>At no cost to Tesla</div><div class="fx r" style="--d:2.49s"><i style="background:#7db0d3"></i>15 minutes from the airport</div><div class="fx r" style="--d:2.63s"><i style="background:#2c0f38"></i>Private, quiet and discreet</div></div>
+<div class="rule ln" style="--d:2.85s"></div>
 <div class="ct"><div>
 <div class="nm"><span class="m"><span style="--d:2.55s">Lisa Wood</span></span></div>
 <div class="dt"><span class="m"><span style="--d:2.75s">208 720 2433</span></span><span class="m"><span style="--d:2.85s"><a href="mailto:lisa@lisawoodstudio.com">lisa@lisawoodstudio.com</a></span></span><span class="m"><span style="--d:2.95s"><a href="https://warmspringshouse.com/" target="_blank" rel="noopener">warmspringshouse.com</a></span></span></div>
