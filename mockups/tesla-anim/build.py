@@ -17,8 +17,8 @@ html,body{{margin:0;height:100%;background:var(--bg)}}
 body{{display:grid;place-items:center;overflow:hidden}}
 .stage{{width:941px;height:1672px;transform-origin:center;flex:none}}
 .card{{position:relative;width:941px;height:1672px;overflow:hidden;background:#fbfbfa;font-family:Montserrat,Arial,sans-serif;color:{INK};box-shadow:0 2px 4px rgba(0,0,0,.08),0 24px 60px rgba(0,0,0,.16);cursor:pointer}}
-.house{{position:absolute;inset:0;background:url({HOUSE}) center/cover no-repeat}}
-.wm{{position:absolute;top:165px;right:40px;width:250px}}
+.house{{position:absolute;inset:0;--h:url({HOUSE});background:var(--h) 0 -70px/941px 1672px no-repeat,var(--h) 0 0/941px 1672px no-repeat}}
+.wm{{position:absolute;top:158px;left:683px;width:212px}}
 .txt{{position:absolute;left:60px;right:60px;bottom:42px}}
 .lab{{font-size:15px;letter-spacing:.24em;text-transform:uppercase;color:{INK2};font-weight:700}}
 .h{{margin-top:10px;font-size:38px;line-height:1.08;letter-spacing:-.01em;font-weight:800;text-transform:uppercase}}
@@ -48,8 +48,7 @@ body{{display:grid;place-items:center;overflow:hidden}}
 <div class="house"></div>
 <img class="wm" src="{WORD}" alt="WARM SPRINGS HOUSE">
 <div class="txt">
-<div class="m lab"><span style="--d:1.7s">An invitation to Tesla</span></div>
-<div class="h"><span class="m"><span style="--d:1.95s">A residential test bed</span></span><span class="m"><span style="--d:2.1s">for Optimus + Cybercab.</span></span></div>
+<div class="h" style="margin-top:0"><span class="m"><span style="--d:1.95s">A residential test bed</span></span><span class="m"><span style="--d:2.1s">for Optimus + Cybercab.</span></span></div>
 <div class="sub"><span class="m"><span style="--d:2.45s">A modest 1906 three-bedroom home on a historic tree-lined avenue,</span></span><span class="m"><span style="--d:2.57s">heated by Boise&#8217;s geothermal springs.</span></span></div>
 <div class="caps m"><span style="--d:2.95s">Available now. Ready to host.</span></div>
 <div class="rule"></div>
