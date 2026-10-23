@@ -143,7 +143,7 @@ MARK='''<svg class="mk" viewBox="71 71 882 882" role="img" aria-label="Warm Spri
 <g class="k" style="--d:1.35s;--k:translateX(14%)"><circle cx="717" cy="512" r="235" fill="#353942" opacity=".93"/></g>
 <g class="k" style="--d:1.9s;--k:scale(.2) rotate(-45deg)"><path fill="#fff" d="M512 195 A325 325 0 0 0 808 512 A325 325 0 0 0 512 828 A325 325 0 0 0 215 512 A325 325 0 0 0 512 195 Z"/></g>
 </svg>'''
-CARD4=dict(id='card4', label='Card 4', dur=5.4, css=f"""
+CARD4=dict(id='card4', label='Card 4', dur=5.7, css=f"""
 $S{{background:#f4f4f3 url(__PAPER__) center/941px 1672px no-repeat}}
 $S .wrap{{position:absolute;left:76px;right:76px;top:124px;bottom:112px;display:flex;flex-direction:column;justify-content:space-between}}
 $S .half{{display:flex;flex-direction:column}}
@@ -170,7 +170,7 @@ $S .t{{font-size:24px;line-height:1.4;font-weight:500;color:{INK2}}}
 <div class="h"><span class="m"><span style="--d:2.75s">A collaborative blueprint</span></span></div>
 <div class="st"><span class="m"><span style="--d:2.95s">One place to see Optimus and Cybercab,</span></span><span class="m"><span style="--d:3.07s">test the hard questions and decide together</span></span><span class="m"><span style="--d:3.19s">how they enter daily life,</span></span><span class="m"><span style="--d:3.31s">before the headlines do.</span></span></div>
 <div class="it"><span class="m"><span style="--d:3.6s">When Tesla is ready, together with the founding partner:</span></span></div>
-<div class="row"><div class="rule ln" style="--d:3.85s"></div><div class="cells"><div class="vb r" style="--d:3.95s;color:#00782a">Host</div><div class="t"><span class="m"><span style="--d:4.0s">Boise&#8217;s civic and business leaders.</span></span></div></div></div><div class="row"><div class="rule ln" style="--d:4.10s"></div><div class="cells"><div class="vb r" style="--d:4.20s;color:#353942">Show</div><div class="t"><span class="m"><span style="--d:4.25s">them autonomous technology firsthand.</span></span></div></div></div><div class="row"><div class="rule ln" style="--d:4.35s"></div><div class="cells"><div class="vb r" style="--d:4.45s;color:#393c41">Create</div><div class="t"><span class="m"><span style="--d:4.5s">a playbook other cities can adopt.</span></span></div></div></div><div class="rule ln" style="--d:4.6s"></div>
+<div class="row"><div class="rule ln" style="--d:3.85s"></div><div class="cells"><div class="vb r" style="--d:3.95s;color:#00782a">Host</div><div class="t"><span class="m"><span style="--d:4.0s">Boise&#8217;s civic and business leaders.</span></span></div></div></div><div class="row"><div class="rule ln" style="--d:4.10s"></div><div class="cells"><div class="vb r" style="--d:4.20s;color:#353942">Show</div><div class="t"><span class="m"><span style="--d:4.25s">them autonomous technology firsthand.</span></span></div></div></div><div class="row"><div class="rule ln" style="--d:4.35s"></div><div class="cells"><div class="vb r" style="--d:4.45s;color:#2c0f38">Shape</div><div class="t"><span class="m"><span style="--d:4.5s">how autonomous technology enters daily life.</span></span></div></div></div><div class="row"><div class="rule ln" style="--d:4.60s"></div><div class="cells"><div class="vb r" style="--d:4.70s;color:#393c41">Create</div><div class="t"><span class="m"><span style="--d:4.75s">a playbook other cities can adopt.</span></span></div></div></div><div class="rule ln" style="--d:4.85s"></div>
 </div></div>""",
 assets={'__PAPER__':('paper-gray.webp','image/webp')})
 
