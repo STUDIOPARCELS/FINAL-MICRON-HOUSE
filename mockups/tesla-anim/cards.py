@@ -143,32 +143,35 @@ MARK='''<svg class="mk" viewBox="71 71 882 882" role="img" aria-label="Warm Spri
 <g class="k" style="--d:1.35s;--k:translateX(14%)"><circle cx="717" cy="512" r="235" fill="#353942" opacity=".93"/></g>
 <g class="k" style="--d:1.9s;--k:scale(.2) rotate(-45deg)"><path fill="#fff" d="M512 195 A325 325 0 0 0 808 512 A325 325 0 0 0 512 828 A325 325 0 0 0 215 512 A325 325 0 0 0 512 195 Z"/></g>
 </svg>'''
-CARD4=dict(id='card4', label='Card 4', dur=5.5, css=f"""
+CARD4=dict(id='card4', label='Card 4', dur=5.4, css=f"""
 $S{{background:#f4f4f3 url(__PAPER__) center/941px 1672px no-repeat}}
-$S .wrap{{position:absolute;left:76px;right:76px;top:124px;bottom:112px;display:flex;flex-direction:column;justify-content:space-between;text-align:center}}
-$S .top{{font-size:22px;letter-spacing:.24em;font-weight:800;text-transform:uppercase}}
-$S .mk{{display:block;width:220px;height:220px;margin:0 auto;overflow:visible}}
+$S .wrap{{position:absolute;left:76px;right:76px;top:124px;bottom:112px;display:flex;flex-direction:column;justify-content:space-between}}
+$S .half{{display:flex;flex-direction:column}}
+$S .top{{text-align:center;font-size:22px;letter-spacing:.24em;font-weight:800;text-transform:uppercase}}
+$S .mk{{display:block;width:250px;height:250px;margin:0 auto;overflow:visible}}
 $S .mk .k{{transform-box:fill-box;transform-origin:center;opacity:0}}
 $S.play .mk .k{{animation:kin 1.1s cubic-bezier(.2,.7,.2,1) var(--d) both}}
 $S.done .mk .k{{opacity:1}}
-$S .hero{{margin-top:40px;font-family:Newsreader,Georgia,serif;font-size:32px;line-height:1.36;font-weight:400;color:{INK2}}}
+$S .hero{{margin-top:44px;text-align:center;font-family:Newsreader,Georgia,serif;font-size:34px;line-height:1.36;font-weight:400;color:{INK2}}}
 $S .hero b{{font-style:italic;font-weight:500}}
-$S .rule{{background:{RULE}}} $S .short{{width:80px;margin:0 auto 34px}}
-$S .h{{font-size:32px;line-height:1.15;letter-spacing:.06em;font-weight:800;text-transform:uppercase}}
-$S .st{{margin-top:20px;font-family:Newsreader,Georgia,serif;font-size:38px;line-height:1.28;color:{INK}}}
-$S .lead{{font-family:Newsreader,Georgia,serif;font-style:italic;font-size:27px;line-height:1.35;color:{INK}}}
-$S .sec{{margin-top:26px;padding:22px 6px;display:flex;justify-content:space-between;font-size:17px;letter-spacing:.18em;font-weight:800;text-transform:uppercase}}
-$S .sec i{{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:11px;vertical-align:1px}}
-$S .close{{margin-top:26px;font-size:22px;line-height:1.45;font-weight:700}}
+$S .h{{text-align:center;font-size:32px;line-height:1.15;letter-spacing:.06em;font-weight:800;text-transform:uppercase}}
+$S .st{{margin-top:18px;text-align:center;font-family:Newsreader,Georgia,serif;font-size:31px;line-height:1.3;color:{INK}}}
+$S .it{{text-align:center;margin:48px 0 26px;font-family:Newsreader,Georgia,serif;font-style:italic;font-size:27px;line-height:1.35;color:{INK}}}
+$S .rule{{background:{RULE}}}
+$S .cells{{display:grid;grid-template-columns:150px 1fr;align-items:baseline;padding:22px 0}}
+$S .vb{{font-size:18px;letter-spacing:.18em;font-weight:800;text-transform:uppercase}}
+$S .t{{font-size:24px;line-height:1.4;font-weight:500;color:{INK2}}}
 @media (prefers-reduced-motion:reduce){{$S .mk .k{{opacity:1}}}}
 """, html="""<div class="wrap">
 <div class="top r" style="--d:.2s">Warm Springs House</div>
-<div>"""+MARK.replace('style="--d:1.9s','style="--d:1.75s')+"""<div class="hero"><span class="m"><span style="--d:2.2s">Without <b style="color:#353942">vision</b>, there&#8217;s no <b style="color:#353942">velocity</b>.</span></span><span class="m"><span style="--d:2.34s">Without <b style="color:#2c0f38">memory</b>, there&#8217;s no <b style="color:#2c0f38">meaning</b>.</span></span><span class="m"><span style="--d:2.48s">Without <b style="color:#00782a">place</b>, there&#8217;s no <b style="color:#00782a">perspective</b>.</span></span></div></div>
-<div><div class="rule short ln" style="--d:2.7s"></div><div class="h"><span class="m"><span style="--d:2.85s">A collaborative blueprint</span></span></div><div class="st"><span class="m"><span style="--d:3.05s">One place to see Optimus and Cybercab,</span></span><span class="m"><span style="--d:3.17s">test the hard questions and decide together</span></span><span class="m"><span style="--d:3.29s">how they enter daily life,</span></span><span class="m"><span style="--d:3.41s">before the headlines do.</span></span></div></div>
-<div><div class="lead"><span class="m"><span style="--d:3.7s">When Tesla is ready, host Boise&#8217;s civic and business leaders</span></span><span class="m"><span style="--d:3.8s">alongside the founding partner:</span></span></div>
-<div class="rule ln" style="--d:3.95s;margin-top:26px"></div><div class="sec" style="margin-top:0"><div class="r" style="--d:4.05s"><i style="background:#353942"></i>Government</div><div class="r" style="--d:4.15s"><i style="background:#00782a"></i>Health care</div><div class="r" style="--d:4.25s"><i style="background:#7db0d3"></i>Education</div><div class="r" style="--d:4.35s"><i style="background:#2c0f38"></i>Business</div></div><div class="rule ln" style="--d:4.45s"></div>
-<div class="close"><span class="m"><span style="--d:4.6s">Together, create a playbook other cities can adopt.</span></span></div></div>
-</div>""",
+<div class="half">"""+MARK.replace('style="--d:1.9s','style="--d:1.75s')+"""
+<div class="hero"><span class="m"><span style="--d:2.2s">Without <b style="color:#353942">vision</b>, there&#8217;s no <b style="color:#353942">velocity</b>.</span></span><span class="m"><span style="--d:2.34s">Without <b style="color:#2c0f38">memory</b>, there&#8217;s no <b style="color:#2c0f38">meaning</b>.</span></span><span class="m"><span style="--d:2.48s">Without <b style="color:#00782a">place</b>, there&#8217;s no <b style="color:#00782a">perspective</b>.</span></span></div></div>
+<div class="half">
+<div class="h"><span class="m"><span style="--d:2.75s">A collaborative blueprint</span></span></div>
+<div class="st"><span class="m"><span style="--d:2.95s">One place to see Optimus and Cybercab,</span></span><span class="m"><span style="--d:3.07s">test the hard questions and decide together</span></span><span class="m"><span style="--d:3.19s">how they enter daily life,</span></span><span class="m"><span style="--d:3.31s">before the headlines do.</span></span></div>
+<div class="it"><span class="m"><span style="--d:3.6s">When Tesla is ready, together with the founding partner:</span></span></div>
+<div class="row"><div class="rule ln" style="--d:3.85s"></div><div class="cells"><div class="vb r" style="--d:3.95s;color:#00782a">Host</div><div class="t"><span class="m"><span style="--d:4.0s">Boise&#8217;s civic and business leaders.</span></span></div></div></div><div class="row"><div class="rule ln" style="--d:4.10s"></div><div class="cells"><div class="vb r" style="--d:4.20s;color:#353942">Show</div><div class="t"><span class="m"><span style="--d:4.25s">them autonomous technology firsthand.</span></span></div></div></div><div class="row"><div class="rule ln" style="--d:4.35s"></div><div class="cells"><div class="vb r" style="--d:4.45s;color:#393c41">Create</div><div class="t"><span class="m"><span style="--d:4.5s">a playbook other cities can adopt.</span></span></div></div></div><div class="rule ln" style="--d:4.6s"></div>
+</div></div>""",
 assets={'__PAPER__':('paper-gray.webp','image/webp')})
 
 CARDS=[OPENING,CARD1,CARD2,CARD3,CARD4]
