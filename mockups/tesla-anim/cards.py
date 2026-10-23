@@ -148,11 +148,11 @@ $S{{background:#f4f4f3 url(__PAPER__) center/941px 1672px no-repeat}}
 $S .wrap{{position:absolute;left:76px;right:76px;top:124px;bottom:112px;display:flex;flex-direction:column;justify-content:space-between}}
 $S .half{{display:flex;flex-direction:column}}
 $S .top{{text-align:center;font-size:22px;letter-spacing:.24em;font-weight:800;text-transform:uppercase}}
-$S .mk{{display:block;width:240px;height:240px;margin:0 auto;overflow:visible}}
+$S .mk{{display:block;width:290px;height:290px;margin:64px auto 0;overflow:visible}}
 $S .mk .k{{transform-box:fill-box;transform-origin:center;opacity:0}}
 $S.play .mk .k{{animation:kin 1.1s cubic-bezier(.2,.7,.2,1) var(--d) both}}
 $S.done .mk .k{{opacity:1}}
-$S .hero{{margin-top:40px;text-align:center;font-family:Newsreader,Georgia,serif;font-size:34px;line-height:1.36;font-weight:400;color:{INK2}}}
+$S .hero{{margin-top:48px;text-align:center;font-family:Newsreader,Georgia,serif;font-size:37px;line-height:1.36;font-weight:400;color:{INK2}}}
 $S .hero b{{font-style:italic;font-weight:500}}
 $S .h{{font-size:26px;line-height:1.15;letter-spacing:.1em;font-weight:800;text-transform:uppercase}}
 $S .st{{margin-top:18px;font-family:Newsreader,Georgia,serif;font-size:27px;line-height:1.36;color:{INK}}} $S .st em{{font-style:italic}}
@@ -167,13 +167,12 @@ $S .facts b{{display:block;font-size:30px;line-height:1;font-weight:800;letter-s
 $S .facts span{{display:block;margin-top:9px;font-size:12px;letter-spacing:.1em;font-weight:700;text-transform:uppercase;opacity:.88;white-space:nowrap}}
 @media (prefers-reduced-motion:reduce){{$S .mk .k{{opacity:1}}}}
 """, html="""<div class="wrap">
-<div class="top r" style="--d:.2s">Warm Springs House</div>
-<div class="half">"""+MARK.replace('style="--d:1.9s','style="--d:1.75s')+"""
+<div class="half"><div class="top r" style="--d:.2s">Warm Springs House</div>"""+MARK.replace('style="--d:1.9s','style="--d:1.75s')+"""
 <div class="hero"><span class="m"><span style="--d:2.2s">Without <b style="color:#353942">vision</b>, there&#8217;s no <b style="color:#353942">velocity</b>.</span></span><span class="m"><span style="--d:2.34s">Without <b style="color:#2c0f38">memory</b>, there&#8217;s no <b style="color:#2c0f38">meaning</b>.</span></span><span class="m"><span style="--d:2.48s">Without <b style="color:#00782a">place</b>, there&#8217;s no <b style="color:#00782a">perspective</b>.</span></span></div></div>
 <div class="facts"><div class="r" style="--d:2.75s;background:#2c0f38"><b>1906</b><span>Year built</span></div><div class="r" style="--d:2.85s;background:#353942"><b>3,374</b><span>Square feet</span></div><div class="r" style="--d:2.95s;background:#00782a"><b>3/4</b><span>Bed / bath</span></div><div class="r" style="--d:3.05s;background:#7db0d3"><b>1892</b><span>Geothermal rights</span></div></div>
 <div class="half">
 <div class="h"><span class="m"><span style="--d:3.25s">A collaborative blueprint</span></span></div>
-<div class="st"><span class="m"><span style="--d:3.45s">One place to see Optimus and Cybercab, test the hard</span></span><span class="m"><span style="--d:3.57s">questions and decide together how they enter daily life,</span></span><span class="m"><span style="--d:3.69s"><em>before the headlines do.</em></span></span></div>
+<div class="st"><span class="m"><span style="--d:3.45s">A central, historic home to experience Optimus and Cybercab for the</span></span><span class="m"><span style="--d:3.57s">first time and shape together how this technology enters daily life.</span></span></div>
 <div class="it"><span class="m"><span style="--d:4.10s">When Tesla is ready, together with the founding partner:</span></span></div>
 <div class="row"><div class="rule ln" style="--d:4.35s"></div><div class="cells"><div class="vb r" style="--d:4.45s">Host</div><div class="t"><span class="m"><span style="--d:4.50s">Boise&#8217;s civic and business leaders.</span></span></div></div></div><div class="row"><div class="rule ln" style="--d:4.60s"></div><div class="cells"><div class="vb r" style="--d:4.70s">Show</div><div class="t"><span class="m"><span style="--d:4.75s">them autonomous technology firsthand.</span></span></div></div></div><div class="row"><div class="rule ln" style="--d:4.85s"></div><div class="cells"><div class="vb r" style="--d:4.95s">Shape</div><div class="t"><span class="m"><span style="--d:5.00s">how autonomous technology enters daily life.</span></span></div></div></div><div class="row"><div class="rule ln" style="--d:5.10s"></div><div class="cells"><div class="vb r" style="--d:5.20s">Create</div><div class="t"><span class="m"><span style="--d:5.25s">a playbook other cities can adopt.</span></span></div></div></div><div class="rule ln" style="--d:5.35s"></div>
 </div></div>""",
@@ -202,7 +201,8 @@ $S .sub.a{{margin-top:32px}} $S .sub.b{{padding-top:22px}}
 </div></div>""",
 assets={'__PAPER__':('paper-gray.webp','image/webp'),'__HOUSE__':('house-photo.webp','image/webp'),'__LISA__':('lisa-bw.webp','image/webp')})
 
-CARDS=[OPENING,CARD1,CARD2,CARD3,CARD4,CARD5]
+# Card 5 joins the list once a layout is chosen
+CARDS=[OPENING,CARD1,CARD2,CARD3,CARD4]
 
 # Shared card box. The card is printed stock, so its colours stay fixed in both themes.
 CARD_BASE=f'''.card{{position:relative;width:941px;height:1672px;overflow:hidden;font-family:Montserrat,Arial,sans-serif;color:{INK};cursor:pointer}}
