@@ -84,7 +84,7 @@ $S.play .wm{{animation:fadeup 1.2s cubic-bezier(.2,.7,.2,1) .9s both}}
 assets={'__HOUSE__':('../tesla-v2/card1/house.webp','image/webp'),'__WORD__':('../tesla-v2/card1/wordmark-gray.png','image/png')})
 
 # Card 2: Optimus room and Cybercab wipe in, then the text line by line
-CARD2=dict(id='card2', label='Card 2', dur=4.4, css=f"""
+CARD2=dict(id="card2", label="Card 2", dur=4.5, css=f"""
 $S{{background:#f4f4f3 url(__PAPER__) center/941px 1672px no-repeat}}
 $S .wrap{{position:absolute;left:60px;right:60px;top:60px;bottom:76px;display:flex;flex-direction:column;gap:38px}}
 $S .pics{{flex:1;min-height:0;display:flex;flex-direction:column;gap:17px}}
@@ -92,17 +92,18 @@ $S .pics .im:first-child{{flex:1;min-height:0}} $S .pics .im:first-child img{{ob
 $S .pics .im:last-child{{height:400px;flex:none}}
 $S .h{{font-size:50px;line-height:1.04;letter-spacing:-.01em;font-weight:800;text-transform:uppercase}}
 $S .lede{{margin-top:20px;font-size:28px;line-height:1.36;font-weight:500;color:{INK2}}}
-$S .rule{{margin-top:24px;background:{RULE}}}
-$S .p{{padding-top:20px;font-size:24px;line-height:1.45;font-weight:500}}
-$S .close{{margin-top:12px;font-size:24px;line-height:1.45;font-weight:700}}
+$S .rule{{margin-top:30px;background:{RULE}}}
+$S .p{{padding-top:22px;font-size:24px;line-height:1.45;font-weight:500}}
+$S .caps{{margin-top:20px;font-size:21px;letter-spacing:.12em;font-weight:800;text-transform:uppercase}}
 """, html="""<div class="wrap">
 <div class="pics"><div class="im" style="--d:.2s"><img src="__ROOM__" alt="Optimus in the living room"></div><div class="im" style="--d:.65s"><img src="__CAB__" alt="Cybercab at the house"></div></div>
 <div>
 <div class="h"><span class="m"><span style="--d:1.45s">Tesla engineers</span></span><span class="m"><span style="--d:1.6s">in residence</span></span></div>
-<div class="lede"><span class="m"><span style="--d:1.95s">Test Optimus where it&#8217;s hardest: a 1906 home</span></span><span class="m"><span style="--d:2.07s">with stairs, narrow doorways and daily life.</span></span></div>
-<div class="rule ln" style="--d:2.4s"></div>
-<div class="p"><span class="m"><span style="--d:2.7s">One or more Tesla engineers live and work alongside</span></span><span class="m"><span style="--d:2.82s">Optimus and Cybercab, discreetly, minutes from downtown,</span></span><span class="m"><span style="--d:2.94s">the airport and Boise&#8217;s largest employers.</span></span></div>
-<div class="close"><span class="m"><span style="--d:3.3s">At no cost to Tesla.</span></span><span class="m"><span style="--d:3.42s">The environment is under Tesla&#8217;s control.</span></span></div>
+<div class="lede"><span class="m"><span style="--d:1.95s">Grounding Optimus and Cybercab in a historic home.</span></span></div>
+<div class="caps m"><span style="--d:2.3s">At no cost to Tesla.</span></div>
+<div class="rule ln" style="--d:2.6s"></div>
+<div class="p"><span class="m"><span style="--d:2.9s">One or more Tesla engineers live and work alongside</span></span><span class="m"><span style="--d:3.02s">Optimus and Cybercab, readying them for service in the</span></span><span class="m"><span style="--d:3.14s">first autonomous corporate residence + entertainment hub.</span></span><span class="m"><span style="--d:3.26s">Private, discreet and minutes from downtown.</span></span></div>
+</div>
 </div></div>""",
 assets={'__PAPER__':('paper-gray.webp','image/webp'),'__ROOM__':('../tesla-v2/room-optimus.webp','image/webp'),'__CAB__':('../tesla-v2/cybercab.webp','image/webp')})
 
