@@ -2,7 +2,7 @@
 # Each card's CSS uses $S for its own scope (#c0, #c1, ...); keyframes are shared in KEYFRAMES.
 import base64
 b64=lambda p,m: f"data:{m};base64,"+base64.b64encode(open(p,'rb').read()).decode()
-INK='#393c41'; INK2='#5c5e62'; RULE='#cfd0d2'; GREEN='#00782a'
+INK='#393c41'; INK2='#5c5e62'; RULE='#cfd0d2'; GREEN='#00782a'; PLUM='#3f2448'
 
 KEYFRAMES='''
 @keyframes in{from{opacity:0;transform:scale(1.02)}to{opacity:1;transform:none}}
@@ -109,29 +109,28 @@ $S .sub.a{{margin-top:32px}} $S .sub.b{{padding-top:22px}}
 assets={'__PAPER__':('paper-gray.webp','image/webp'),'__ROOM__':('../tesla-v2/room-optimus.webp','image/webp'),'__CAB__':('../tesla-v2/cybercab.webp','image/webp')})
 
 # Card 3: dining room wipes in, green label, headline, hub name, founding partner, caps line, then the six uses one by one
-CARD3=dict(id='card3', label='Card 3', dur=4.8, css=f"""
+CARD3=dict(id='card3', label='Card 3', dur=4.7, css=f"""
 $S{{background:#f4f4f3 url(__PAPER__) center/941px 1672px no-repeat}}
 $S .wrap{{position:absolute;left:60px;right:60px;top:60px;bottom:76px;display:flex;flex-direction:column;gap:38px}}
 $S .wrap>.im{{flex:1;min-height:0}} $S .wrap>.im img{{object-position:50% 40%}}
-$S .lab{{display:flex;align-items:center;gap:12px;margin-bottom:14px;font-size:15px;letter-spacing:.24em;font-weight:800;text-transform:uppercase;color:{GREEN}}}
+$S .lab{{display:flex;align-items:center;gap:12px;margin-bottom:26px;font-size:15px;letter-spacing:.24em;font-weight:800;text-transform:uppercase;color:{GREEN}}}
 $S .lab::before{{content:"";width:9px;height:9px;border-radius:50%;background:{GREEN}}}
 $S .h{{font-size:38px;line-height:1.08;letter-spacing:-.01em;font-weight:800;text-transform:uppercase}}
 $S .sub{{font-size:21px;line-height:1.42;font-weight:500;color:{INK2}}}
 $S .caps{{margin-top:20px;font-size:21px;letter-spacing:.12em;font-weight:800;text-transform:uppercase}}
-$S .rule{{margin-top:34px;background:{RULE}}}
+$S .rule{{margin-top:40px;background:{RULE}}}
 $S em{{font-family:Newsreader,Georgia,serif;font-style:italic;font-size:25px;font-weight:400;color:{INK}}}
-$S .hub{{margin-top:22px;line-height:1.3}} $S .sub.a{{margin-top:10px}}
-$S .uses{{padding-top:20px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px 12px;font-size:17px;letter-spacing:.12em;font-weight:700;text-transform:uppercase;line-height:1.3}}
+$S .hub{{margin-top:18px;line-height:1.3}} $S .sub.a{{margin-top:28px}}
+$S .uses{{padding-top:26px;color:{PLUM};display:grid;grid-template-columns:repeat(3,1fr);gap:20px 12px;font-size:17px;letter-spacing:.12em;font-weight:700;text-transform:uppercase;line-height:1.3}}
 """, html="""<div class="wrap">
 <div class="im" style="--d:.2s"><img src="__DINING__" alt="The dining room through the French doors"></div>
 <div>
 <div class="lab r" style="--d:1.2s">Proof of concept</div>
-<div class="h"><span class="m"><span style="--d:1.4s">A new corporate asset</span></span><span class="m"><span style="--d:1.55s">for the autonomous age.</span></span></div>
-<div class="hub"><span class="m"><span style="--d:1.9s"><em>The first autonomous corporate residence + entertainment hub.</em></span></span></div>
-<div class="sub a"><span class="m"><span style="--d:2.2s">When Tesla is ready, a leading Boise corporation joins</span></span><span class="m"><span style="--d:2.32s">as founding partner to prove it with Optimus and Cybercab.</span></span></div>
-<div class="caps m"><span style="--d:2.65s">Hosted by Optimus. Every arrival by Cybercab.</span></div>
-<div class="rule ln" style="--d:2.95s"></div>
-<div class="uses"><div class="r" style="--d:3.25s">Board hosting</div><div class="r" style="--d:3.37s">Executive off-sites</div><div class="r" style="--d:3.49s">Recruiting</div><div class="r" style="--d:3.61s">Relocation</div><div class="r" style="--d:3.73s">Employee incentives</div><div class="r" style="--d:3.85s">Corporate events</div></div>
+<div class="h"><span class="m"><span style="--d:1.4s">The first autonomous</span></span><span class="m"><span style="--d:1.52s">corporate residence</span></span><span class="m"><span style="--d:1.64s">+ entertainment hub.</span></span></div>
+<div class="hub"><span class="m"><span style="--d:2.0s"><em>A new corporate asset for the autonomous age.</em></span></span></div>
+<div class="sub a"><span class="m"><span style="--d:2.3s">When Tesla is ready, a leading Boise corporation joins as founding</span></span><span class="m"><span style="--d:2.42s">partner to prove the concept, with Optimus and Cybercab providing</span></span><span class="m"><span style="--d:2.54s">service, security and mobility.</span></span></div>
+<div class="rule ln" style="--d:2.9s"></div>
+<div class="uses"><div class="r" style="--d:3.20s">Board hosting</div><div class="r" style="--d:3.32s">Executive off-sites</div><div class="r" style="--d:3.44s">Recruiting</div><div class="r" style="--d:3.56s">Relocation</div><div class="r" style="--d:3.68s">Employee incentives</div><div class="r" style="--d:3.80s">Corporate events</div></div>
 </div></div>""",
 assets={'__PAPER__':('paper-gray.webp','image/webp'),'__DINING__':('../tesla-v2/dining.6.webp','image/webp')})
 
