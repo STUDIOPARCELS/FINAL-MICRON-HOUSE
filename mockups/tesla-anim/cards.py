@@ -110,7 +110,7 @@ $S .sub.a{{margin-top:32px}} $S .sub.b{{padding-top:22px}}
 assets={'__PAPER__':('paper-gray.webp','image/webp'),'__ROOM__':('../tesla-v2/room-optimus.webp','image/webp'),'__CAB__':('../tesla-v2/cybercab.webp','image/webp')})
 
 # Card 3: dining room wipes in, green label, headline, hub name, founding partner, caps line, then the six uses one by one
-CARD3=dict(id='card3', label='Card 3', dur=4.7, css=f"""
+CARD3=dict(id='card3', label='Card 3', dur=4.7, hold=10.4, css=f"""
 $S{{background:#f4f4f3 url(__PAPER__) center/941px 1672px no-repeat}}
 $S .wrap{{position:absolute;left:60px;right:60px;top:60px;bottom:76px;display:flex;flex-direction:column;gap:38px}}
 $S .wrap>.im{{flex:1;min-height:0}} $S .wrap>.im img{{object-position:50% 40%}}
