@@ -103,13 +103,36 @@ $S .pds{{margin-top:16px;font-family:Newsreader,Georgia,serif;font-style:italic;
 <div class="lede"><span class="m"><span style="--d:1.95s">Grounding Optimus and Cybercab in a historic home.</span></span></div>
 <div class="caps m"><span style="--d:2.3s">At no cost to Tesla.</span></div>
 <div class="rule ln" style="--d:2.6s"></div>
-<div class="p"><span class="m"><span style="--d:2.9s">One or more Tesla engineers live and work alongside</span></span><span class="m"><span style="--d:3.02s">Optimus and Cybercab, readying them for service in the</span></span><span class="m"><span style="--d:3.14s">first autonomous corporate residence + entertainment hub.</span></span></div>
+<div class="p"><span class="m"><span style="--d:2.9s">One or more Tesla engineers live and work alongside</span></span><span class="m"><span style="--d:3.02s">Optimus and Cybercab, readying them for service for the</span></span><span class="m"><span style="--d:3.14s">first autonomous corporate residence + entertainment hub.</span></span></div>
 <div class="pds m"><span style="--d:3.5s">Private, discreet and secure.</span></div>
 </div>
 </div></div>""",
 assets={'__PAPER__':('paper-gray.webp','image/webp'),'__ROOM__':('../tesla-v2/room-optimus.webp','image/webp'),'__CAB__':('../tesla-v2/cybercab.webp','image/webp')})
 
-CARDS=[OPENING,CARD1,CARD2]
+# Card 3: dining room wipes in, then label, headline, subtitle, paragraph, and the six uses one by one
+CARD3=dict(id='card3', label='Card 3', dur=4.9, css=f"""
+$S{{background:#f4f4f3 url(__PAPER__) center/941px 1672px no-repeat}}
+$S .wrap{{position:absolute;left:60px;right:60px;top:60px;bottom:76px;display:flex;flex-direction:column;gap:36px}}
+$S .wrap>.im{{flex:1;min-height:0}} $S .wrap>.im img{{object-position:50% 40%}}
+$S .lab{{font-size:18px;letter-spacing:.24em;font-weight:700;text-transform:uppercase;color:{INK2}}}
+$S .h{{margin-top:12px;font-size:48px;line-height:1.04;letter-spacing:-.01em;font-weight:800;text-transform:uppercase}}
+$S .sub{{margin-top:18px;font-size:28px;line-height:1.36;font-weight:500;color:{INK2}}}
+$S .rule{{margin-top:28px;background:{RULE}}}
+$S .p{{padding-top:22px;font-size:24px;line-height:1.45;font-weight:500}}
+$S .uses{{margin-top:20px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px 12px;font-size:16px;letter-spacing:.1em;font-weight:700;text-transform:uppercase;line-height:1.3}}
+""", html="""<div class="wrap">
+<div class="im" style="--d:.2s"><img src="__DINING__" alt="The dining room through the French doors"></div>
+<div>
+<div class="lab r" style="--d:1.2s">Proof of concept</div>
+<div class="h"><span class="m"><span style="--d:1.45s">A new corporate asset</span></span><span class="m"><span style="--d:1.6s">for the autonomous age.</span></span></div>
+<div class="sub"><span class="m"><span style="--d:1.95s">The first autonomous corporate residence</span></span><span class="m"><span style="--d:2.07s">+ entertainment hub.</span></span></div>
+<div class="rule ln" style="--d:2.4s"></div>
+<div class="p"><span class="m"><span style="--d:2.7s">When Tesla is ready, a leading Boise corporation</span></span><span class="m"><span style="--d:2.82s">joins as founding partner.</span></span><span class="m" style="margin-top:10px"><span style="--d:2.94s">Here, Optimus and Cybercab are readied for service,</span></span><span class="m"><span style="--d:3.06s">security and mobility:</span></span></div>
+<div class="uses"><div class="r" style="--d:3.40s">Board hosting</div><div class="r" style="--d:3.52s">Executive off-sites</div><div class="r" style="--d:3.64s">Recruiting</div><div class="r" style="--d:3.76s">Relocation</div><div class="r" style="--d:3.88s">Employee incentives</div><div class="r" style="--d:4.00s">Corporate events</div></div>
+</div></div>""",
+assets={'__PAPER__':('paper-gray.webp','image/webp'),'__DINING__':('../tesla-v2/dining.6.webp','image/webp')})
+
+CARDS=[OPENING,CARD1,CARD2,CARD3]
 
 # Shared card box. The card is printed stock, so its colours stay fixed in both themes.
 CARD_BASE=f'''.card{{position:relative;width:941px;height:1672px;overflow:hidden;font-family:Montserrat,Arial,sans-serif;color:{INK};cursor:pointer}}
