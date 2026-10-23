@@ -73,13 +73,29 @@ ol.steps p{margin:0;color:var(--ink2);max-width:66ch}
 code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:var(--bubble);padding:1px 6px;border-radius:5px}
 @media (max-width:760px){.mbody{grid-template-columns:1fr}.mbody .gifcol{max-width:260px}.dms{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){button{transition:none}}
+.mtext a{color:inherit;text-decoration:underline;text-decoration-color:var(--rule);text-underline-offset:3px}
+.web{display:grid;grid-template-columns:minmax(0,1fr) 210px;gap:28px;align-items:center}
+.browser{display:block;border-radius:12px;overflow:hidden;box-shadow:var(--shadow);background:var(--paper);text-decoration:none;color:var(--ink2);transition:transform .25s}
+.browser:hover,.handset:hover{transform:translateY(-3px)}
+.bar{display:flex;align-items:center;gap:6px;padding:10px 12px;border-bottom:1px solid var(--rule);font-size:12px}
+.bar i{width:9px;height:9px;border-radius:50%;background:var(--rule)}
+.bar span{margin-left:10px;flex:1;min-width:0;background:var(--bg);border-radius:6px;padding:4px 10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.browser img{display:block;width:100%;height:auto}
+.handset{display:block;border-radius:30px;overflow:hidden;border:8px solid var(--ink);box-shadow:var(--shadow);transition:transform .25s}
+.handset img{display:block;width:100%;height:auto}
+.btn{font:700 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink);border:1px solid var(--rule);border-radius:999px;padding:10px 16px;text-decoration:none;transition:border-color .2s}
+.btn:hover{border-color:var(--ink2)}
+.player{max-width:340px;border-radius:16px;overflow:hidden;box-shadow:var(--shadow);background:#000}
+.player video{display:block;width:100%;height:auto}
+@media (max-width:760px){.web{grid-template-columns:1fr}.handset{max-width:220px;justify-self:center}.player{max-width:100%}}
+@media (prefers-reduced-motion:reduce){.browser,.handset{transition:none}.browser:hover,.handset:hover{transform:none}}
 </style>
 
 <div class="wrap">
 <header>
   <div class="eyebrow">Warm Springs House</div>
   <h1>Tesla Send Kit</h1>
-  <p class="lede">How the invitation reaches Tesla: one email for your introduction, and direct messages on X or Instagram. Every file is in the <code>send-kit</code> folder on your branch.</p>
+  <p class="lede">How the invitation reaches Tesla: one email for your introduction, direct messages on X or Instagram, the invitation online and the video. Every file is in the <code>send-kit</code> folder on your branch.</p>
 </header>
 
 <section class="sec" aria-labelledby="h-mail">
@@ -88,19 +104,20 @@ code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background
     <dl class="mhead">
       <dt>From</dt><dd>Lisa Wood &lt;lisa@lisawoodstudio.com&gt;</dd>
       <dt>To</dt><dd>[Name]</dd>
-      <dt>Subject</dt><dd class="subj" id="subj">Prepared for Tesla: Warm Springs House, Boise</dd>
+      <dt>Subject</dt><dd class="subj" id="subj">A residential test bed for Optimus + Cybercab in Boise</dd>
     </dl>
     <div class="mbody">
       <div class="mtext" id="mailbody">
         <p>Hi [Name],</p>
         <p>[Introducer] suggested I send this to you.</p>
         <p>I'm offering Warm Springs House, my 1906 family home in Boise, to Tesla as a residential test bed for Optimus and Cybercab. One or more Tesla engineers live and work on site, at no cost to Tesla. The house is move-in ready.</p>
-        <p>The invitation: warmspringshouse.com/tesla<br>The one-page term sheet is attached.</p>
+        <p>The test bed is the first step. When Tesla is ready, it becomes the proof of concept for the first autonomous corporate residence + entertainment hub, and a blueprint for bringing autonomous technology to other cities.</p>
+        <p>The invitation: <a href="tesla/index.html" target="_blank" rel="noopener">warmspringshouse.com/tesla</a><br>The one-page term sheet is attached.</p>
         <p>I'd be glad to show you the house in person.</p>
         <div class="sig"><b>Lisa Wood</b><br>LISA WOOD STUDIO<br>208 720 2433 · lisa@lisawoodstudio.com · warmspringshouse.com</div>
       </div>
       <div class="gifcol">
-        <a class="gif" href="https://claude.ai/artifact/Sey1Nhvh5ddRRXL4kx9Aer" target="_blank" rel="noopener" aria-label="Open the invitation"><img src="invitation-opening.gif" width="400" height="711" alt="The sealed card opens to Prepared for Tesla"></a>
+        <a class="gif" href="tesla/index.html" target="_blank" rel="noopener" aria-label="Open the invitation"><img src="invitation-opening.gif" width="400" height="711" alt="The sealed card opens to Prepared for Tesla"></a>
         <div class="cap">The GIF plays once and links to the invitation.</div>
       </div>
     </div>
@@ -132,6 +149,25 @@ code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background
   </div>
   <div class="row"><button type="button" data-copy="dm">Copy message</button></div>
   <p class="note">Without an introduction, start with: "I'm Lisa Wood, owner of Warm Springs House in Boise."</p>
+</section>
+
+<section class="sec" aria-labelledby="h-web">
+  <h2 id="h-web">The invitation online</h2>
+  <p class="note">This is warmspringshouse.com/tesla once it's uploaded: a small card on a computer, full screen on a phone. Open it to scroll through the cards.</p>
+  <div class="web">
+    <a class="browser" href="tesla/index.html" target="_blank" rel="noopener" aria-label="Open the invitation as it will look online">
+      <div class="bar"><i></i><i></i><i></i><span>warmspringshouse.com/tesla</span></div>
+      <img src="preview-assets/desktop.jpg" width="1440" height="900" alt="The invitation on a computer screen">
+    </a>
+    <a class="handset" href="tesla/index.html" target="_blank" rel="noopener" aria-label="Open the invitation as it will look on a phone"><img src="preview-assets/phone.jpg" width="585" height="996" alt="The invitation on a phone"></a>
+  </div>
+  <div class="row"><a class="btn" href="tesla/index.html" target="_blank" rel="noopener">Open the invitation</a><a class="btn" href="tesla/terms.pdf" target="_blank" rel="noopener">Open the term sheet</a></div>
+</section>
+
+<section class="sec" aria-labelledby="h-vid">
+  <h2 id="h-vid">The video</h2>
+  <p class="note">63 seconds, vertical, no sound. It opens on the sealed card, so that's the preview people see in a message. This is the version for DMs and texts; the HD version is in the folder for large screens.</p>
+  <div class="player"><video src="prepared-for-tesla.mp4" poster="preview-assets/first.jpg" controls playsinline preload="metadata" aria-label="The invitation video"></video></div>
 </section>
 
 <section class="sec" aria-labelledby="h-steps">

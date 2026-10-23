@@ -4,13 +4,15 @@ Replace [Name] and [Introducer]. Nothing else needs editing.
 
 ## Email
 
-**Subject:** Prepared for Tesla: Warm Springs House, Boise
+**Subject:** A residential test bed for Optimus + Cybercab in Boise
 
 Hi [Name],
 
 [Introducer] suggested I send this to you.
 
 I'm offering Warm Springs House, my 1906 family home in Boise, to Tesla as a residential test bed for Optimus and Cybercab. One or more Tesla engineers live and work on site, at no cost to Tesla. The house is move-in ready.
+
+The test bed is the first step. When Tesla is ready, it becomes the proof of concept for the first autonomous corporate residence + entertainment hub, and a blueprint for bringing autonomous technology to other cities.
 
 [invitation-opening.gif, linked to https://warmspringshouse.com/tesla]
 
