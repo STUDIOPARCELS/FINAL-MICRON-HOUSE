@@ -179,7 +179,30 @@ $S .facts span{{display:block;margin-top:9px;font-size:12px;letter-spacing:.1em;
 </div></div>""",
 assets={'__PAPER__':('paper-gray.webp','image/webp')})
 
-CARDS=[OPENING,CARD1,CARD2,CARD3,CARD4]
+# Card 5: house and portrait wipe in, then the text line by line (same structure and type sizes as Card 2)
+CARD5=dict(id="card5", label="Card 5", dur=4.5, css=f"""
+$S{{background:#f4f4f3 url(__PAPER__) center/941px 1672px no-repeat}}
+$S .wrap{{position:absolute;left:60px;right:60px;top:60px;bottom:76px;display:flex;flex-direction:column;gap:38px}}
+$S .pics{{flex:1;min-height:0;display:flex;flex-direction:column;gap:17px}}
+$S .pics .im:first-child{{flex:1;min-height:0}} $S .pics .im:first-child img{{object-position:50% 55%}}
+$S .pics .im:last-child{{height:500px;flex:none}} $S .pics .im:last-child img{{object-position:48% 44%}}
+$S .h{{font-size:38px;line-height:1.08;letter-spacing:-.01em;font-weight:800;text-transform:uppercase}}
+$S .sub{{font-size:21px;line-height:1.42;font-weight:500;color:{INK2}}}
+$S .caps{{margin-top:20px;font-size:21px;letter-spacing:.12em;font-weight:800;text-transform:uppercase}}
+$S .rule{{margin-top:34px;background:{RULE}}}
+$S .sub.a{{margin-top:32px}} $S .sub.b{{padding-top:22px}}
+""", html="""<div class="wrap">
+<div class="pics"><div class="im" style="--d:.2s"><img src="__HOUSE__" alt="Warm Springs House in autumn"></div><div class="im" style="--d:.65s"><img src="__LISA__" alt="Lisa Wood"></div></div>
+<div>
+<div class="h"><span class="m"><span style="--d:1.45s">Warm Springs House</span></span><span class="m"><span style="--d:1.6s">+ Lisa Wood</span></span></div>
+<div class="sub a"><span class="m"><span style="--d:1.95s">Idaho since 1992. Owner of Warm Springs House since 2000.</span></span><span class="m"><span style="--d:2.07s">Three decades in executive search for Silicon Valley.</span></span></div>
+<div class="rule ln" style="--d:2.4s"></div>
+<div class="sub b"><span class="m"><span style="--d:2.7s">I&#8217;m in the demographic most wary of robots and self-driving cars,</span></span><span class="m"><span style="--d:2.82s">yet I can&#8217;t wait for them. I want to show how they will transform</span></span><span class="m"><span style="--d:2.94s">life for mothers, daughters and sisters like me.</span></span></div>
+<div class="caps"><span class="m"><span style="--d:3.3s">Grounding them here is my home&#8217;s</span></span><span class="m"><span style="--d:3.42s">highest and best use.</span></span></div>
+</div></div>""",
+assets={'__PAPER__':('paper-gray.webp','image/webp'),'__HOUSE__':('house-photo.webp','image/webp'),'__LISA__':('lisa-bw.webp','image/webp')})
+
+CARDS=[OPENING,CARD1,CARD2,CARD3,CARD4,CARD5]
 
 # Shared card box. The card is printed stock, so its colours stay fixed in both themes.
 CARD_BASE=f'''.card{{position:relative;width:941px;height:1672px;overflow:hidden;font-family:Montserrat,Arial,sans-serif;color:{INK};cursor:pointer}}
