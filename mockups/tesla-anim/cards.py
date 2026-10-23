@@ -184,12 +184,12 @@ $S{{background:#f4f4f3 url(__PAPER__) center/941px 1672px no-repeat}}
 $S .wrap{{position:absolute;left:60px;right:60px;top:60px;bottom:60px;display:flex;flex-direction:column;gap:60px}}
 $S .wrap>.im{{flex:none;width:821px;height:586px}}
 $S .h{{font-size:64px;line-height:1.04;letter-spacing:-.01em;font-weight:800;text-transform:uppercase}}
-$S .f{{margin-top:32px;font-size:27px;line-height:1.42;font-weight:500;color:{INK2}}}
+$S .f{{margin-top:28px;font-size:23px;line-height:1.42;font-weight:500;color:{INK2}}}
 $S .rule{{background:{RULE}}}
 $S .row{{display:flex;gap:48px;align-items:center;margin-top:-60px;padding-top:60px}}
 $S .s{{font-family:Newsreader,Georgia,serif;font-style:italic;font-size:30px;line-height:1.36;color:{INK}}}
 $S .cl{{margin-top:34px;font-size:21px;line-height:1.45;letter-spacing:.12em;font-weight:800;text-transform:uppercase}}
-$S .inw{{width:var(--p,396px);height:var(--p,396px);flex:none}} $S .inw img{{position:absolute;inset:0}}
+$S .inw{{width:var(--p,417px);height:var(--p,417px);flex:none}} $S .inw img{{position:absolute;inset:0}}
 """, html="""<div class="wrap">
 <div class="im" style="--d:.2s"><img src="__HOUSE__" alt="Warm Springs House in autumn"></div>
 <div><div class="h"><span class="m"><span style="--d:1.2s">Warm Springs House</span></span><span class="m" style="margin-top:14px"><span style="--d:1.35s">+ Lisa Wood Studio</span></span></div>
