@@ -154,8 +154,8 @@ $S.play .mk .k{{animation:kin 1.1s cubic-bezier(.2,.7,.2,1) var(--d) both}}
 $S.done .mk .k{{opacity:1}}
 $S .hero{{margin-top:56px;text-align:center;font-family:Newsreader,Georgia,serif;font-size:42px;line-height:1.34;font-weight:400;color:{INK2}}}
 $S .hero b{{font-style:italic;font-weight:500}}
-$S .h{{font-size:34px;line-height:1.15;letter-spacing:.06em;font-weight:800;text-transform:uppercase}}
-$S .it{{margin:14px 0 34px;font-family:Newsreader,Georgia,serif;font-style:italic;font-size:29px;line-height:1.35}}
+$S .h{{text-align:center;font-size:34px;line-height:1.15;letter-spacing:.06em;font-weight:800;text-transform:uppercase}}
+$S .it{{text-align:center;margin:14px 0 34px;font-family:Newsreader,Georgia,serif;font-style:italic;font-size:29px;line-height:1.35}}
 $S .rule{{background:{RULE}}}
 $S .cells{{display:grid;grid-template-columns:160px 1fr;align-items:baseline;padding:24px 0}}
 $S .vb{{font-size:18px;letter-spacing:.18em;font-weight:800;text-transform:uppercase}}
