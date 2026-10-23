@@ -207,7 +207,7 @@ $S{{background:#f4f4f3 url(__PAPER__) center/941px 1672px no-repeat}}
 $S .wrap{{position:absolute;left:60px;right:60px;top:60px;bottom:76px;display:flex;flex-direction:column;justify-content:space-between}}
 $S .wrap>.im{{flex:none;width:821px;height:462px}}
 $S .cta{{font-size:120px;line-height:.98;letter-spacing:-.015em;font-weight:800;text-transform:uppercase}}
-$S .sub{{margin-top:36px;font-size:30px;line-height:1.42;font-weight:500;color:{INK2}}}
+$S .sub{{margin-top:34px;font-size:24px;line-height:1.42;font-weight:500;color:{INK2}}}
 $S .rule{{background:{RULE}}}
 $S .ad{{margin-top:30px;font-size:22px;letter-spacing:.14em;font-weight:800;text-transform:uppercase}}
 $S .ct{{display:grid;grid-template-columns:1fr auto;align-items:center;column-gap:40px}}
