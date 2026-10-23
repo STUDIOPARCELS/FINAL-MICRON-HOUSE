@@ -27,11 +27,9 @@ button:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
 @keyframes prog{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 .view{position:relative;flex:1;min-height:0;--s:.3}
 .stage{position:absolute;left:50%;top:50%;width:941px;height:1672px;transform:translate(-50%,-50%) scale(var(--s))}
-.stage:not([hidden]){animation:stagein .45s ease both}
-@keyframes stagein{from{opacity:0}to{opacity:1}}
 .card{box-shadow:var(--shadow)}
 .hint{text-align:center;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);padding-block:8px 12px}
-@media (prefers-reduced-motion:reduce){.prog i.run,.stage:not([hidden]){animation:none} .prog i.run{transform:none}}
+@media (prefers-reduced-motion:reduce){.prog i.run{animation:none} .prog i.run{transform:none}}
 .card{position:relative;width:941px;height:1672px;overflow:hidden;font-family:Montserrat,Arial,sans-serif;color:#393c41;cursor:pointer}
 @media (prefers-reduced-motion:reduce){.card *{animation:none!important}}
 @keyframes in{from{opacity:0;transform:scale(1.02)}to{opacity:1;transform:none}}
