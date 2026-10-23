@@ -52,7 +52,7 @@ $S.play .line span{animation:rise 1s cubic-bezier(.2,.75,.15,1) 3.3s both}
 $S.done .p{display:none} $S.done .line span{transform:none}
 @media (prefers-reduced-motion:reduce){$S .p{display:none} $S .line span{transform:none}}
 ''', html='''<div class="under"></div><div class="p lp"></div><div class="p rp"></div>
-<div class="line"><span>An invitation to Tesla</span></div>''',
+<div class="line"><span>Prepared for Tesla</span></div>''',
 assets={'__SEALED__':('open-1-sealed.webp','image/webp'),'__OPEN__':('open-3-open.webp','image/webp')})
 
 # Card 1: house settles, wordmark, then the text line by line, rule draws, drive times one by one
@@ -102,7 +102,7 @@ $S .caps{{margin-top:20px;font-size:21px;letter-spacing:.12em;font-weight:800;te
 <div class="lede"><span class="m"><span style="--d:1.95s">Grounding Optimus and Cybercab in a historic home.</span></span></div>
 <div class="caps m"><span style="--d:2.3s">At no cost to Tesla.</span></div>
 <div class="rule ln" style="--d:2.6s"></div>
-<div class="p"><span class="m"><span style="--d:2.9s">One or more Tesla engineers live and work alongside</span></span><span class="m"><span style="--d:3.02s">Optimus and Cybercab, readying them for service in the</span></span><span class="m"><span style="--d:3.14s">first autonomous corporate residence + entertainment hub.</span></span><span class="m"><span style="--d:3.26s">Private, discreet and minutes from downtown.</span></span></div>
+<div class="p"><span class="m"><span style="--d:2.9s">One or more Tesla engineers live and work alongside</span></span><span class="m"><span style="--d:3.02s">Optimus and Cybercab in a residential test bed,</span></span><span class="m"><span style="--d:3.14s">readying them for service.</span></span><span class="m"><span style="--d:3.3s">Private, discreet and secure.</span></span></div>
 </div>
 </div></div>""",
 assets={'__PAPER__':('paper-gray.webp','image/webp'),'__ROOM__':('../tesla-v2/room-optimus.webp','image/webp'),'__CAB__':('../tesla-v2/cybercab.webp','image/webp')})
