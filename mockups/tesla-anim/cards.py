@@ -15,6 +15,7 @@ KEYFRAMES='''
 @keyframes draw{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 @keyframes wipe{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(-40px)}}
 @keyframes zoom{from{transform:scale(1.08)}to{transform:none}}
+@keyframes kin{from{opacity:0;transform:var(--k)}to{opacity:1;transform:none}}
 '''
 
 # Reveal system shared by all cards: .m masked line rise, .r fade-rise, .ln rule draw, .im photo wipe. Each takes --d (delay).
@@ -130,11 +131,41 @@ $S .uses{{padding-top:26px;color:{PLUM};display:grid;grid-template-columns:repea
 <div class="hub"><span class="m"><span style="--d:2.0s"><em>A new corporate asset for the Autonomous Age.</em></span></span></div>
 <div class="sub a"><span class="m"><span style="--d:2.3s">When Tesla is ready, a leading Boise corporation joins as founding partner</span></span><span class="m"><span style="--d:2.42s">to prove the concept, enabled by Starlink, Optimus and Cybercab.</span></span></div>
 <div class="rule ln" style="--d:2.9s"></div>
-<div class="uses"><div class="r" style="--d:3.20s">Entertaining</div><div class="r" style="--d:3.32s">Executive off-sites</div><div class="r" style="--d:3.44s">Recruiting</div><div class="r" style="--d:3.56s">Relocation</div><div class="r" style="--d:3.68s">Employee incentives</div><div class="r" style="--d:3.80s">Hospital stays</div></div>
+<div class="uses"><div class="r" style="--d:3.20s">Entertaining</div><div class="r" style="--d:3.32s">Executive off-sites</div><div class="r" style="--d:3.44s">Recruiting</div><div class="r" style="--d:3.56s">Relocation</div><div class="r" style="--d:3.68s">Employee incentives</div><div class="r" style="--d:3.80s">Private dinners</div></div>
 </div></div>""",
 assets={'__PAPER__':('paper-gray.webp','image/webp'),'__DINING__':('../tesla-v2/dining.6.webp','image/webp')})
 
-CARDS=[OPENING,CARD1,CARD2,CARD3]
+# Card 4: the logo assembles (earth and sky, then intelligence and vision, then the star), then the blueprint text line by line
+MARK='''<svg class="mk" viewBox="71 71 882 882" role="img" aria-label="Warm Springs House logo">
+<g class="k" style="--d:.5s;--k:translateY(-14%)"><circle cx="512" cy="306" r="234" fill="#7db0d3" opacity=".95"/></g>
+<g class="k" style="--d:.65s;--k:translateY(14%)"><circle cx="512" cy="718" r="234" fill="#00782a" opacity=".95"/></g>
+<g class="k" style="--d:1.2s;--k:translateX(-14%)"><circle cx="307" cy="512" r="235" fill="#2c0f38" opacity=".94"/></g>
+<g class="k" style="--d:1.35s;--k:translateX(14%)"><circle cx="717" cy="512" r="235" fill="#353942" opacity=".93"/></g>
+<g class="k" style="--d:1.9s;--k:scale(.2) rotate(-45deg)"><path fill="#fff" d="M512 195 A325 325 0 0 0 808 512 A325 325 0 0 0 512 828 A325 325 0 0 0 215 512 A325 325 0 0 0 512 195 Z"/></g>
+</svg>'''
+CARD4=dict(id='card4', label='Card 4', dur=4.9, css=f"""
+$S{{background:#f4f4f3 url(__PAPER__) center/941px 1672px no-repeat}}
+$S .wrap{{position:absolute;left:76px;right:76px;top:124px;bottom:112px;display:flex;flex-direction:column;justify-content:space-between;text-align:center}}
+$S .top{{font-size:22px;letter-spacing:.24em;font-weight:800;text-transform:uppercase}}
+$S .mk{{display:block;width:470px;height:470px;margin:0 auto;overflow:visible}}
+$S .mk .k{{transform-box:fill-box;transform-origin:center;opacity:0}}
+$S.play .mk .k{{animation:kin 1.1s cubic-bezier(.2,.7,.2,1) var(--d) both}}
+$S.done .mk .k{{opacity:1}}
+$S .h{{font-size:38px;line-height:1.08;letter-spacing:.02em;font-weight:800;text-transform:uppercase}}
+$S .s{{margin:30px auto 0;max-width:720px;font-family:Newsreader,Georgia,serif;font-size:37px;line-height:1.36;font-weight:400;color:{INK2}}}
+$S .s2{{margin-top:28px;color:{INK}}}
+@media (prefers-reduced-motion:reduce){{$S .mk .k{{opacity:1}}}}
+""", html="""<div class="wrap">
+<div class="top r" style="--d:.2s">Warm Springs House</div>
+"""+MARK+"""
+<div>
+<div class="h"><span class="m"><span style="--d:2.7s">A collaborative blueprint</span></span></div>
+<div class="s"><span class="m"><span style="--d:3.0s">When Tesla chooses, host Boise&#8217;s government,</span></span><span class="m"><span style="--d:3.12s">health care, education and business leaders</span></span><span class="m"><span style="--d:3.24s">alongside the founding partner, and show</span></span><span class="m"><span style="--d:3.36s">them autonomous technology firsthand.</span></span></div>
+<div class="s s2"><span class="m"><span style="--d:3.7s">Together, shape how autonomous technology</span></span><span class="m"><span style="--d:3.82s">enters daily life and create a playbook</span></span><span class="m"><span style="--d:3.94s">other cities can adopt.</span></span></div>
+</div></div>""",
+assets={'__PAPER__':('paper-gray.webp','image/webp')})
+
+CARDS=[OPENING,CARD1,CARD2,CARD3,CARD4]
 
 # Shared card box. The card is printed stock, so its colours stay fixed in both themes.
 CARD_BASE=f'''.card{{position:relative;width:941px;height:1672px;overflow:hidden;font-family:Montserrat,Arial,sans-serif;color:{INK};cursor:pointer}}

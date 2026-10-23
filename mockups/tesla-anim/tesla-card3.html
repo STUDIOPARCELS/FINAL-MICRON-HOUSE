@@ -21,6 +21,7 @@ body{display:grid;place-items:center;overflow:hidden}
 @keyframes draw{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 @keyframes wipe{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(-40px)}}
 @keyframes zoom{from{transform:scale(1.08)}to{transform:none}}
+@keyframes kin{from{opacity:0;transform:var(--k)}to{opacity:1;transform:none}}
 
 .card .m{display:block;clip-path:inset(0 -.5em)} .card .m>span{display:block;white-space:nowrap;transform:translateY(105%)}
 .card .r{opacity:0;transform:translateY(14px)}
@@ -57,7 +58,7 @@ body{display:grid;place-items:center;overflow:hidden}
 <div class="hub"><span class="m"><span style="--d:2.0s"><em>A new corporate asset for the Autonomous Age.</em></span></span></div>
 <div class="sub a"><span class="m"><span style="--d:2.3s">When Tesla is ready, a leading Boise corporation joins as founding partner</span></span><span class="m"><span style="--d:2.42s">to prove the concept, enabled by Starlink, Optimus and Cybercab.</span></span></div>
 <div class="rule ln" style="--d:2.9s"></div>
-<div class="uses"><div class="r" style="--d:3.20s">Entertaining</div><div class="r" style="--d:3.32s">Executive off-sites</div><div class="r" style="--d:3.44s">Recruiting</div><div class="r" style="--d:3.56s">Relocation</div><div class="r" style="--d:3.68s">Employee incentives</div><div class="r" style="--d:3.80s">Hospital stays</div></div>
+<div class="uses"><div class="r" style="--d:3.20s">Entertaining</div><div class="r" style="--d:3.32s">Executive off-sites</div><div class="r" style="--d:3.44s">Recruiting</div><div class="r" style="--d:3.56s">Relocation</div><div class="r" style="--d:3.68s">Employee incentives</div><div class="r" style="--d:3.80s">Private dinners</div></div>
 </div></div></div></div>
 <script>
 const st=document.getElementById('stage'),card=st.firstElementChild;

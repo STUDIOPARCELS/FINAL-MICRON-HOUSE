@@ -24,7 +24,7 @@ function play(){{card.classList.remove('play','done');void card.offsetWidth;card
 card.addEventListener('click',play);
 if(location.hash==='#end'){{card.classList.add('done')}}else{{document.fonts.ready.then(play)}}
 </script></body></html>'''
-names={'opening':'tesla-card0-opening.html','card1':'tesla-card1.html','card2':'tesla-card2.html','card3':'tesla-card3.html'}
+names={'opening':'tesla-card0-opening.html','card1':'tesla-card1.html','card2':'tesla-card2.html','card3':'tesla-card3.html','card4':'tesla-card4.html'}
 for i,c in enumerate(CARDS):
     out=STANDALONE.format(label=c['label'],fonts=FONTS,base=CARD_BASE,keys=KEYFRAMES,util=UTIL,css=card_css_assets(c,i),html=card_html(c,i))
     open(names[c['id']],'w').write(out); print(names[c['id']],len(out)//1024,'KB')

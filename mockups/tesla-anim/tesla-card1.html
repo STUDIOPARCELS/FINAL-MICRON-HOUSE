@@ -21,6 +21,7 @@ body{display:grid;place-items:center;overflow:hidden}
 @keyframes draw{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 @keyframes wipe{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(-40px)}}
 @keyframes zoom{from{transform:scale(1.08)}to{transform:none}}
+@keyframes kin{from{opacity:0;transform:var(--k)}to{opacity:1;transform:none}}
 
 .card .m{display:block;clip-path:inset(0 -.5em)} .card .m>span{display:block;white-space:nowrap;transform:translateY(105%)}
 .card .r{opacity:0;transform:translateY(14px)}
