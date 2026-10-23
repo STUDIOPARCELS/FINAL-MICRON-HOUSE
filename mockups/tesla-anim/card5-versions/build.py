@@ -40,3 +40,30 @@ page('4',f'''{LISA.format("40%","flex:1")}
 page('5',f'''<div class="pics">{HOUSE.format("flex:1")}{LISA.format("44%","flex:1")}</div>
 <div>{H}<div class="sub" style="margin-top:24px">{FACTS}</div><div class="rule" style="margin-top:28px"></div>
 <div class="q" style="padding-top:22px">I&#8217;m in the demographic most wary of robots and self-driving cars, yet I can&#8217;t wait for them. I want to show how they will transform life for mothers, daughters and sisters like me.</div><div class="caps">{CLOSE}</div></div>''')
+
+# ---- Round 2: house on top, text leads with a fixed, generous rhythm, inset portrait matched to the text beside it; the house takes the remaining height
+R2CSS=""".pretty{text-wrap:pretty}
+.w{gap:52px}
+.h2{font-size:46px;line-height:1.06;letter-spacing:-.01em;font-weight:800;text-transform:uppercase}
+.h2.n{font-size:44px}
+.f2{margin-top:18px;font-size:24px;line-height:1.42;font-weight:500;color:%s}
+.s2{font-family:Newsreader,Georgia,serif;font-size:40px;line-height:1.32;color:%s}
+.s2.l{font-size:44px}
+.c2{margin-top:26px;font-size:22px;line-height:1.45;letter-spacing:.12em;font-weight:800;text-transform:uppercase}
+.r2{height:1px;background:%s;margin:40px 0}
+.inw{position:relative;flex:none;box-shadow:0 1px 1px rgba(16,16,16,.18),0 6px 18px rgba(16,16,16,.10)}
+.inw img{position:absolute;inset:0;width:100%%;height:100%%;object-fit:cover;object-position:48%% 38%%}""" % (INK2,INK,RULE)
+HOUSE_F='<img class="ph" src="../house-photo.webp" style="flex:1;min-height:0;object-position:50% 55%">'
+TITLE='Warm Springs House<br>+ Lisa Wood'
+F2='<div class="f2 pretty">Idaho since 1992. Owner of Warm Springs House since 2000. Three decades in executive search for Silicon Valley.</div>'
+SQ='I&#8217;m in the demographic most wary of robots and self-driving cars, yet I can&#8217;t wait for them. I want to show how they will transform life for mothers, daughters and sisters like me.'
+C2='<div class="c2 pretty">Grounding them here is my home&#8217;s highest and best use.</div>'
+IN=lambda w: f'<div class="inw" style="width:{w}px"><img src="../lisa-bw.webp" alt="Lisa Wood"></div>'
+# A · Inset beside the headline and facts; story full width below
+page('A',HOUSE_F+f'<div style="flex:none"><div style="display:flex;gap:36px"><div style="flex:1"><div class="h2 n">{TITLE}</div>{F2}</div>{IN(250)}</div><div class="r2"></div><div class="s2 l pretty">{SQ}</div>{C2}</div>',R2CSS)
+# B · Inset at left beside the story and closing line
+page('B',HOUSE_F+f'<div style="flex:none"><div class="h2">{TITLE}</div>{F2}<div class="r2"></div><div style="display:flex;gap:36px">{IN(260)}<div style="flex:1"><div class="s2 pretty">{SQ}</div>{C2}</div></div></div>',R2CSS)
+# C · Inset at right beside the story and closing line
+page('C',HOUSE_F+f'<div style="flex:none"><div class="h2">{TITLE}</div>{F2}<div class="r2"></div><div style="display:flex;gap:36px"><div style="flex:1"><div class="s2 pretty">{SQ}</div>{C2}</div>{IN(260)}</div></div>',R2CSS)
+# D · Slim inset running the full height of the text, at right
+page('D',HOUSE_F+f'<div style="flex:none;display:flex;gap:40px"><div style="flex:1"><div class="h2 n">{TITLE}</div>{F2}<div class="r2"></div><div class="s2 pretty">{SQ}</div>{C2}</div>{IN(240)}</div>',R2CSS)
