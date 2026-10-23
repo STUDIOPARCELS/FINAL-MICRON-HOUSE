@@ -121,14 +121,14 @@ $S .caps{{margin-top:20px;font-size:21px;letter-spacing:.12em;font-weight:800;te
 $S .rule{{margin-top:40px;background:{RULE}}}
 $S em{{font-family:Newsreader,Georgia,serif;font-style:italic;font-size:25px;font-weight:400;color:{INK}}}
 $S .hub{{margin-top:18px;line-height:1.3}} $S .sub.a{{margin-top:28px}}
-$S .uses{{padding-top:26px;color:{PLUM};display:grid;grid-template-columns:repeat(3,1fr);gap:20px 12px;font-size:17px;letter-spacing:.12em;font-weight:700;text-transform:uppercase;line-height:1.3}}
+$S .uses{{padding-top:26px;color:{PLUM};display:grid;grid-template-columns:repeat(3,auto);justify-content:space-between;gap:20px 0;font-size:17px;letter-spacing:.12em;font-weight:700;text-transform:uppercase;line-height:1.3}}
 """, html="""<div class="wrap">
 <div class="im" style="--d:.2s"><img src="__DINING__" alt="The dining room through the French doors"></div>
 <div>
 <div class="lab r" style="--d:1.2s">Proof of concept</div>
 <div class="h"><span class="m"><span style="--d:1.4s">The first autonomous corporate</span></span><span class="m"><span style="--d:1.55s">residence + entertainment hub.</span></span></div>
-<div class="hub"><span class="m"><span style="--d:2.0s"><em>A new corporate asset for the autonomous age.</em></span></span></div>
-<div class="sub a"><span class="m"><span style="--d:2.3s">When Tesla is ready, a leading Boise corporation joins as founding</span></span><span class="m"><span style="--d:2.42s">partner to prove the concept, with Optimus and Cybercab providing</span></span><span class="m"><span style="--d:2.54s">service, security and mobility.</span></span></div>
+<div class="hub"><span class="m"><span style="--d:2.0s"><em>A new corporate asset for the Autonomous Age.</em></span></span></div>
+<div class="sub a"><span class="m"><span style="--d:2.3s">When Tesla is ready, a leading Boise corporation joins as founding partner</span></span><span class="m"><span style="--d:2.42s">to prove the concept, enabled by Starlink, Optimus and Cybercab.</span></span></div>
 <div class="rule ln" style="--d:2.9s"></div>
 <div class="uses"><div class="r" style="--d:3.20s">Entertaining</div><div class="r" style="--d:3.32s">Executive off-sites</div><div class="r" style="--d:3.44s">Recruiting</div><div class="r" style="--d:3.56s">Relocation</div><div class="r" style="--d:3.68s">Employee incentives</div><div class="r" style="--d:3.80s">Hospital stays</div></div>
 </div></div>""",
