@@ -178,44 +178,44 @@ $S .facts span{{display:block;margin-top:9px;font-size:12px;letter-spacing:.1em;
 </div></div>""",
 assets={'__PAPER__':('paper-gray.webp','image/webp')})
 
-# Card 5: house wipes in, then the title, facts and line; the story rises line by line beside a small portrait; the closing line last
-CARD5=dict(id="card5", label="Card 5", dur=4.4, css=f"""
+# Card 5: both photos at their true proportions (no cropping); title, facts, line and the quote row spaced evenly
+CARD5=dict(id="card5", label="Card 5", dur=4.2, css=f"""
 $S{{background:#f4f4f3 url(__PAPER__) center/941px 1672px no-repeat}}
-$S .wrap{{position:absolute;left:60px;right:60px;top:60px;bottom:76px;display:flex;flex-direction:column;gap:52px}}
-$S .wrap>.im{{flex:1;min-height:0}} $S .wrap>.im img{{object-position:50% 55%}}
-$S .h{{font-size:46px;line-height:1.06;letter-spacing:-.01em;font-weight:800;text-transform:uppercase}}
-$S .f{{margin-top:30px;font-size:24px;line-height:1.42;font-weight:500;color:{INK2}}}
-$S .rule{{margin:40px 0;background:{RULE}}}
-$S .row{{display:flex;gap:36px}}
-$S .s{{font-family:Newsreader,Georgia,serif;font-style:italic;font-size:34px;line-height:1.36;color:{INK}}}
-$S .cl{{margin-top:26px;font-size:21px;line-height:1.45;letter-spacing:.12em;font-weight:800;text-transform:uppercase}}
-$S .inw{{width:260px;flex:none}} $S .inw img{{position:absolute;inset:0;object-position:48% 38%}}
+$S .wrap{{position:absolute;left:60px;right:60px;top:60px;bottom:76px;display:flex;flex-direction:column;justify-content:space-between}}
+$S .wrap>.im{{flex:none;width:821px;height:586px}}
+$S .h{{font-size:64px;line-height:1.04;letter-spacing:-.01em;font-weight:800;text-transform:uppercase}}
+$S .f{{margin-top:32px;font-size:27px;line-height:1.42;font-weight:500;color:{INK2}}}
+$S .rule{{background:{RULE}}}
+$S .row{{display:flex;gap:40px;align-items:center}}
+$S .s{{font-family:Newsreader,Georgia,serif;font-style:italic;font-size:30px;line-height:1.36;color:{INK}}}
+$S .cl{{margin-top:34px;font-size:21px;line-height:1.45;letter-spacing:.12em;font-weight:800;text-transform:uppercase}}
+$S .inw{{width:280px;height:280px;flex:none}} $S .inw img{{position:absolute;inset:0}}
 """, html="""<div class="wrap">
 <div class="im" style="--d:.2s"><img src="__HOUSE__" alt="Warm Springs House in autumn"></div>
-<div>
-<div class="h"><span class="m"><span style="--d:1.2s">Warm Springs House</span></span><span class="m" style="margin-top:12px"><span style="--d:1.35s">+ Lisa Wood Studio</span></span></div>
-<div class="f"><span class="m"><span style="--d:1.65s">Idaho since 1992. Owner of Warm Springs House since 2000.</span></span><span class="m"><span style="--d:1.77s">Three decades in executive search for Silicon Valley.</span></span></div>
-<div class="rule ln" style="--d:2.0s"></div>
-<div class="row"><div style="flex:1"><div class="s"><span class="m"><span style="--d:2.2s;margin-left:-.4em">&#8220;I&#8217;m in the demographic most wary</span></span><span class="m"><span style="--d:2.32s">of robots and self-driving cars, yet</span></span><span class="m"><span style="--d:2.44s">I can&#8217;t wait for them. I want to show</span></span><span class="m"><span style="--d:2.56s">how they will transform life for</span></span><span class="m"><span style="--d:2.68s">mothers, daughters and sisters like me.&#8221;</span></span></div>
-<div class="cl"><span class="m"><span style="--d:3.1s">Hosting Optimus and Cybercab is</span></span><span class="m"><span style="--d:3.22s">my home&#8217;s highest and best use.</span></span></div></div>
-<div class="im inw" style="--d:2.4s"><img src="__LISA__" alt="Lisa Wood"></div></div>
-</div></div>""",
+<div><div class="h"><span class="m"><span style="--d:1.2s">Warm Springs House</span></span><span class="m" style="margin-top:14px"><span style="--d:1.35s">+ Lisa Wood Studio</span></span></div>
+<div class="f"><span class="m"><span style="--d:1.65s">Idaho since 1992.</span></span><span class="m"><span style="--d:1.75s">Owner of Warm Springs House since 2000.</span></span><span class="m"><span style="--d:1.85s">Three decades in executive search for Silicon Valley.</span></span></div>
+<div class="cl"><span class="m"><span style="--d:2.0s">Hosting Optimus and Cybercab is</span></span><span class="m"><span style="--d:2.12s">my home&#8217;s highest and best use.</span></span></div></div>
+<div class="rule ln" style="--d:2.35s"></div>
+<div class="row"><div style="flex:1"><div class="s"><span class="m"><span style="--d:2.4s;margin-left:-.4em">&#8220;I&#8217;m in the demographic most</span></span><span class="m"><span style="--d:2.52s">wary of robots and self-driving</span></span><span class="m"><span style="--d:2.64s">cars, yet I can&#8217;t wait for them.&#8221;</span></span></div></div>
+<div class="im inw" style="--d:2.2s"><img src="__LISA__" alt="Lisa Wood"></div></div>
+</div>""",
 assets={'__PAPER__':('paper-gray.webp','image/webp'),'__HOUSE__':('house-photo.webp','image/webp'),'__LISA__':('lisa-bw.webp','image/webp')})
 
 # Card 6: the Cybercab photo wipes in, the call to action rises, then the contact block and the logo assemble
 CARD6=dict(id="card6", label="Card 6", dur=4.6, css=f"""
 $S{{background:#f4f4f3 url(__PAPER__) center/941px 1672px no-repeat}}
-$S .wrap{{position:absolute;left:60px;right:60px;top:60px;bottom:76px;display:flex;flex-direction:column;gap:52px}}
-$S .wrap>.im{{flex:1;min-height:0}} $S .wrap>.im img{{object-position:55% 64%}}
-$S .cta{{font-size:104px;line-height:1.0;letter-spacing:-.015em;font-weight:800;text-transform:uppercase}}
-$S .sub{{margin-top:36px;font-size:28px;line-height:1.42;font-weight:500;color:{INK2}}}
-$S .rule{{margin:64px 0 60px;background:{RULE}}}
+$S .wrap{{position:absolute;left:60px;right:60px;top:60px;bottom:76px;display:flex;flex-direction:column;justify-content:space-between}}
+$S .wrap>.im{{flex:none;width:821px;height:462px}}
+$S .cta{{font-size:120px;line-height:.98;letter-spacing:-.015em;font-weight:800;text-transform:uppercase}}
+$S .sub{{margin-top:36px;font-size:30px;line-height:1.42;font-weight:500;color:{INK2}}}
+$S .rule{{background:{RULE}}}
+$S .ad{{margin-top:30px;font-size:22px;letter-spacing:.14em;font-weight:800;text-transform:uppercase}}
 $S .ct{{display:grid;grid-template-columns:1fr auto;align-items:center;column-gap:40px}}
 $S .nm{{font-size:38px;line-height:1.1;letter-spacing:.08em;font-weight:800;text-transform:uppercase}}
 $S .dt{{margin-top:18px;font-size:26px;line-height:1.55;font-weight:500}}
 $S .dt a{{color:inherit;text-decoration:underline;text-decoration-color:{RULE};text-decoration-thickness:1px;text-underline-offset:5px}}
 $S .pb{{margin-top:26px;font-size:15px;letter-spacing:.3em;font-weight:700;text-transform:uppercase;color:{INK2}}}
-$S .mk{{display:block;width:280px;height:280px;overflow:visible}}
+$S .mk{{display:block;width:340px;height:340px;overflow:visible}}
 $S .mk .k{{transform-box:fill-box;transform-origin:center;opacity:0}}
 $S.play .mk .k{{animation:kin 1.1s cubic-bezier(.2,.7,.2,1) var(--d) both}}
 $S.done .mk .k{{opacity:1}}
@@ -225,13 +225,14 @@ $S.done .mk .k{{opacity:1}}
 <div>
 <div class="cta"><span class="m"><span style="--d:1.3s">See it</span></span><span class="m"><span style="--d:1.48s">in person.</span></span></div>
 <div class="sub"><span class="m"><span style="--d:1.85s">Warm Springs House is ready now for Tesla engineers,</span></span><span class="m"><span style="--d:1.97s">Optimus and Cybercab.</span></span></div>
+<div class="ad"><span class="m"><span style="--d:2.15s">1020 E Warm Springs Ave &nbsp;&#183;&nbsp; Boise, Idaho</span></span></div></div>
 <div class="rule ln" style="--d:2.3s"></div>
 <div class="ct"><div>
 <div class="nm"><span class="m"><span style="--d:2.55s">Lisa Wood</span></span></div>
 <div class="dt"><span class="m"><span style="--d:2.75s">208 720 2433</span></span><span class="m"><span style="--d:2.85s"><a href="mailto:lisa@lisawoodstudio.com">lisa@lisawoodstudio.com</a></span></span><span class="m"><span style="--d:2.95s"><a href="https://warmspringshouse.com/" target="_blank" rel="noopener">warmspringshouse.com</a></span></span></div>
 <div class="pb"><span class="m"><span style="--d:3.1s">Presented by Lisa Wood Studio</span></span></div></div>
 """+MARK.replace('--d:.5s','--d:2.6s').replace('--d:.65s','--d:2.75s').replace('--d:1.2s','--d:3.0s').replace('--d:1.35s','--d:3.15s').replace('--d:1.9s','--d:3.45s')+"""</div>
-</div></div>""",
+</div>""",
 assets={'__PAPER__':('paper-gray.webp','image/webp'),'__CAB__':('../tesla-v2/cybercab.webp','image/webp')})
 
 CARDS=[OPENING,CARD1,CARD2,CARD3,CARD4,CARD5,CARD6]
