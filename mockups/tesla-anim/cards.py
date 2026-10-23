@@ -184,19 +184,19 @@ $S{{background:#f4f4f3 url(__PAPER__) center/941px 1672px no-repeat}}
 $S .wrap{{position:absolute;left:60px;right:60px;top:60px;bottom:76px;display:flex;flex-direction:column;gap:52px}}
 $S .wrap>.im{{flex:1;min-height:0}} $S .wrap>.im img{{object-position:50% 55%}}
 $S .h{{font-size:46px;line-height:1.06;letter-spacing:-.01em;font-weight:800;text-transform:uppercase}}
-$S .f{{margin-top:18px;font-size:24px;line-height:1.42;font-weight:500;color:{INK2}}}
+$S .f{{margin-top:30px;font-size:24px;line-height:1.42;font-weight:500;color:{INK2}}}
 $S .rule{{margin:40px 0;background:{RULE}}}
 $S .row{{display:flex;gap:36px}}
-$S .s{{font-family:Newsreader,Georgia,serif;font-size:40px;line-height:1.32;color:{INK}}}
+$S .s{{font-family:Newsreader,Georgia,serif;font-style:italic;font-size:34px;line-height:1.36;color:{INK}}}
 $S .cl{{margin-top:26px;font-size:21px;line-height:1.45;letter-spacing:.12em;font-weight:800;text-transform:uppercase}}
 $S .inw{{width:260px;flex:none}} $S .inw img{{position:absolute;inset:0;object-position:48% 38%}}
 """, html="""<div class="wrap">
 <div class="im" style="--d:.2s"><img src="__HOUSE__" alt="Warm Springs House in autumn"></div>
 <div>
-<div class="h"><span class="m"><span style="--d:1.2s">Warm Springs House</span></span><span class="m"><span style="--d:1.35s">+ Lisa Wood</span></span></div>
+<div class="h"><span class="m"><span style="--d:1.2s">Warm Springs House</span></span><span class="m" style="margin-top:12px"><span style="--d:1.35s">+ Lisa Wood Studio</span></span></div>
 <div class="f"><span class="m"><span style="--d:1.65s">Idaho since 1992. Owner of Warm Springs House since 2000.</span></span><span class="m"><span style="--d:1.77s">Three decades in executive search for Silicon Valley.</span></span></div>
 <div class="rule ln" style="--d:2.0s"></div>
-<div class="row"><div style="flex:1"><div class="s"><span class="m"><span style="--d:2.2s">I&#8217;m in the demographic most</span></span><span class="m"><span style="--d:2.32s">wary of robots and self-driving</span></span><span class="m"><span style="--d:2.44s">cars, yet I can&#8217;t wait for them.</span></span><span class="m"><span style="--d:2.56s">I want to show how they will</span></span><span class="m"><span style="--d:2.68s">transform life for mothers,</span></span><span class="m"><span style="--d:2.8s">daughters and sisters like me.</span></span></div>
+<div class="row"><div style="flex:1"><div class="s"><span class="m"><span style="--d:2.2s;margin-left:-.4em">&#8220;I&#8217;m in the demographic most wary</span></span><span class="m"><span style="--d:2.32s">of robots and self-driving cars, yet</span></span><span class="m"><span style="--d:2.44s">I can&#8217;t wait for them. I want to show</span></span><span class="m"><span style="--d:2.56s">how they will transform life for</span></span><span class="m"><span style="--d:2.68s">mothers, daughters and sisters like me.&#8221;</span></span></div>
 <div class="cl"><span class="m"><span style="--d:3.1s">Hosting Optimus and Cybercab is</span></span><span class="m"><span style="--d:3.22s">my home&#8217;s highest and best use.</span></span></div></div>
 <div class="im inw" style="--d:2.4s"><img src="__LISA__" alt="Lisa Wood"></div></div>
 </div></div>""",
