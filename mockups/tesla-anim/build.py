@@ -18,13 +18,13 @@ body{{display:grid;place-items:center;overflow:hidden}}
 .stage{{width:941px;height:1672px;transform-origin:center;flex:none}}
 .card{{position:relative;width:941px;height:1672px;overflow:hidden;background:#fbfbfa;font-family:Montserrat,Arial,sans-serif;color:{INK};box-shadow:0 2px 4px rgba(0,0,0,.08),0 24px 60px rgba(0,0,0,.16);cursor:pointer}}
 .house{{position:absolute;inset:0;--h:url({HOUSE});background:var(--h) 0 -70px/941px 1672px no-repeat,var(--h) 0 0/941px 1672px no-repeat}}
-.wm{{position:absolute;top:158px;left:683px;width:212px}}
+.wm{{position:absolute;top:116px;left:688px;width:212px}}
 .txt{{position:absolute;left:60px;right:60px;bottom:42px}}
 .lab{{font-size:15px;letter-spacing:.24em;text-transform:uppercase;color:{INK2};font-weight:700}}
 .h{{margin-top:10px;font-size:38px;line-height:1.08;letter-spacing:-.01em;font-weight:800;text-transform:uppercase}}
-.sub{{margin-top:14px;font-size:21px;line-height:1.42;font-weight:500;color:{INK2}}}
-.caps{{margin-top:10px;font-size:21px;letter-spacing:.12em;font-weight:800;text-transform:uppercase}}
-.rule{{margin-top:24px;height:1px;background:{RULE};transform-origin:left}}
+.sub{{margin-top:24px;font-size:21px;line-height:1.42;font-weight:500;color:{INK2}}}
+.caps{{margin-top:20px;font-size:21px;letter-spacing:.12em;font-weight:800;text-transform:uppercase}}
+.rule{{margin-top:34px;height:1px;background:{RULE};transform-origin:left}}
 .grid{{padding-top:16px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}}
 .n{{font-size:34px;font-weight:800;line-height:1}} .n span{{font-size:16px;font-weight:700}}
 .l{{margin-top:6px;font-size:13px;letter-spacing:.14em;color:{INK2};font-weight:600;text-transform:uppercase}}
