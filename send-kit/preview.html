@@ -1,0 +1,168 @@
+<title>Tesla Send Kit</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap">
+<style>
+/* Layout: one column; the email as a letter on paper, then two phone-width DM threads side by side, then the steps */
+:root{
+  --bg:#ecebe8; --paper:#fbfbfa; --ink:#393c41; --ink2:#5c5e62; --muted:#86888c; --rule:#d6d6d3;
+  --bubble:#e4e4e1; --mine:#393c41; --mine-fg:#f6f6f4; --green:#00782a; --focus:#393c41;
+  --sans:Montserrat,"Helvetica Neue",Arial,sans-serif; --serif:Newsreader,Georgia,serif;
+  --shadow:0 1px 2px rgba(30,30,32,.06),0 14px 40px rgba(30,30,32,.10);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#17181a; --paper:#212225; --ink:#e6e6e3; --ink2:#a9abaf; --muted:#7f8186; --rule:#34363a;
+  --bubble:#2c2e31; --mine:#e6e6e3; --mine-fg:#17181a; --green:#3fb26a; --focus:#e6e6e3;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 18px 50px rgba(0,0,0,.5); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#17181a; --paper:#212225; --ink:#e6e6e3; --ink2:#a9abaf; --muted:#7f8186; --rule:#34363a;
+  --bubble:#2c2e31; --mine:#e6e6e3; --mine-fg:#17181a; --green:#3fb26a; --focus:#e6e6e3;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 18px 50px rgba(0,0,0,.5); color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.5}
+.wrap{max-width:1040px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:40px 64px;display:flex;flex-direction:column;gap:56px}
+.eyebrow{font-size:11px;letter-spacing:.24em;font-weight:800;text-transform:uppercase;color:var(--ink2)}
+h1{margin:8px 0 0;font-size:clamp(28px,5vw,40px);line-height:1.05;letter-spacing:-.01em;font-weight:800;text-transform:uppercase;text-wrap:balance}
+.lede{margin:12px 0 0;max-width:60ch;color:var(--ink2)}
+h2{margin:0;display:flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.22em;font-weight:800;text-transform:uppercase}
+h2::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green)}
+.sec{display:flex;flex-direction:column;gap:18px}
+.note{margin:0;color:var(--ink2);max-width:68ch}
+button{font:700 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink);background:transparent;border:1px solid var(--rule);border-radius:999px;padding:9px 14px;cursor:pointer;transition:background-color .2s,border-color .2s,transform .12s}
+button:hover{border-color:var(--ink2)} button:active{transform:scale(.97)}
+button:focus-visible,a:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+button.done{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+/* email */
+.mail{background:var(--paper);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
+.mhead{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;padding:20px 24px;border-bottom:1px solid var(--rule);font-size:14px}
+.mhead dt{color:var(--muted);font-weight:600}
+.mhead dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.mhead .subj{font-weight:700}
+.mbody{padding:24px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:28px;align-items:start}
+.mtext p{margin:0 0 14px;max-width:60ch}
+.mtext .sig{margin-top:22px;font-size:14px;line-height:1.55}
+.mtext .sig b{letter-spacing:.06em}
+.gif{display:block;border-radius:6px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.12),0 8px 24px rgba(0,0,0,.12)}
+.gif img{display:block;width:100%;height:auto}
+.cap{margin-top:8px;font-size:12px;color:var(--muted);text-align:center}
+.att{margin:0 24px 24px;display:inline-flex;align-items:center;gap:12px;padding:10px 14px;border:1px solid var(--rule);border-radius:10px;font-size:13px;max-width:calc(100% - 48px)}
+.att i{flex:none;width:28px;height:34px;border-radius:3px;background:var(--ink);color:var(--paper);font:800 9px/34px var(--sans);text-align:center;font-style:normal}
+.att span{min-width:0;overflow-wrap:anywhere} .att small{display:block;color:var(--muted)}
+.row{display:flex;flex-wrap:wrap;gap:8px}
+/* DMs */
+.dms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+.phone{background:var(--paper);border-radius:28px;box-shadow:var(--shadow);padding:16px;display:flex;flex-direction:column;gap:12px;max-width:380px;width:100%;justify-self:center}
+.ph-top{display:flex;justify-content:space-between;align-items:center;padding:4px 6px 10px;border-bottom:1px solid var(--rule)}
+.ph-top b{font-size:13px;letter-spacing:.06em} .ph-top span{font-size:11px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;font-weight:700}
+.thread{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+.vid{width:62%;border-radius:16px;overflow:hidden;background:#000}
+.vid video{display:block;width:100%;height:auto}
+.msg{max-width:88%;background:var(--mine);color:var(--mine-fg);border-radius:18px 18px 4px 18px;padding:10px 14px;font-size:13.5px;line-height:1.45;overflow-wrap:anywhere}
+.msg p{margin:0} .msg p+p{margin-top:8px}
+.linkcard{width:88%;border-radius:14px;overflow:hidden;border:1px solid var(--rule);background:var(--bg)}
+.linkcard img{display:block;width:100%;aspect-ratio:1200/630;object-fit:cover}
+.linkcard div{padding:8px 12px;font-size:12px} .linkcard b{display:block;font-size:13px} .linkcard span{color:var(--muted)}
+/* steps and files */
+ol.steps{margin:0;padding:0;list-style:none;counter-reset:s;display:grid;gap:14px}
+ol.steps li{counter-increment:s;display:grid;grid-template-columns:40px 1fr;gap:14px;align-items:baseline;padding:16px 0;border-top:1px solid var(--rule)}
+ol.steps li::before{content:counter(s);font:400 30px/1 var(--serif);color:var(--ink2)}
+ol.steps b{display:block;margin-bottom:4px}
+ol.steps p{margin:0;color:var(--ink2);max-width:66ch}
+.files{width:100%;border-collapse:collapse;font-size:14px}
+.files td{padding:12px 12px 12px 0;border-top:1px solid var(--rule);vertical-align:top}
+.files td:first-child{font-weight:600;overflow-wrap:anywhere} .files td:last-child{color:var(--ink2);font-variant-numeric:tabular-nums;white-space:nowrap;padding-right:0;text-align:right}
+.tablewrap{overflow-x:auto}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:var(--bubble);padding:1px 6px;border-radius:5px}
+@media (max-width:760px){.mbody{grid-template-columns:1fr}.mbody .gifcol{max-width:260px}.dms{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){button{transition:none}}
+</style>
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">Warm Springs House</div>
+  <h1>Tesla Send Kit</h1>
+  <p class="lede">How the invitation reaches Tesla: one email for your introduction, and direct messages on X or Instagram. Every file is in the <code>send-kit</code> folder on your branch.</p>
+</header>
+
+<section class="sec" aria-labelledby="h-mail">
+  <h2 id="h-mail">Email</h2>
+  <article class="mail">
+    <dl class="mhead">
+      <dt>From</dt><dd>Lisa Wood &lt;lisa@lisawoodstudio.com&gt;</dd>
+      <dt>To</dt><dd>[Name]</dd>
+      <dt>Subject</dt><dd class="subj" id="subj">Prepared for Tesla: Warm Springs House, Boise</dd>
+    </dl>
+    <div class="mbody">
+      <div class="mtext" id="mailbody">
+        <p>Hi [Name],</p>
+        <p>[Introducer] suggested I send this to you.</p>
+        <p>I'm offering Warm Springs House, my 1906 family home in Boise, to Tesla as a residential test bed for Optimus and Cybercab. One or more Tesla engineers live and work on site, at no cost to Tesla. The house is move-in ready.</p>
+        <p>The invitation: warmspringshouse.com/tesla<br>The one-page term sheet is attached.</p>
+        <p>I'd be glad to show you the house in person.</p>
+        <div class="sig"><b>Lisa Wood</b><br>LISA WOOD STUDIO<br>208 720 2433 · lisa@lisawoodstudio.com · warmspringshouse.com</div>
+      </div>
+      <div class="gifcol">
+        <a class="gif" href="https://claude.ai/artifact/Sey1Nhvh5ddRRXL4kx9Aer" target="_blank" rel="noopener" aria-label="Open the invitation"><img src="invitation-opening.gif" width="400" height="711" alt="The sealed card opens to Prepared for Tesla"></a>
+        <div class="cap">The GIF plays once and links to the invitation.</div>
+      </div>
+    </div>
+    <div class="att"><i>PDF</i><span>Warm Springs House - Proposed Terms - Tesla.pdf<small>1.1 MB · one page</small></span></div>
+  </article>
+  <div class="row"><button type="button" data-copy="subj">Copy subject</button><button type="button" data-copy="mailbody">Copy email text</button></div>
+</section>
+
+<section class="sec" aria-labelledby="h-dm">
+  <h2 id="h-dm">X and Instagram direct messages</h2>
+  <p class="note">Send the video first, then the note. Direct messages can't carry a PDF, so the term sheet goes as a link. Once the page is live on your site, the link shows the sealed-card preview.</p>
+  <div class="dms">
+    <div class="phone" aria-label="X direct message">
+      <div class="ph-top"><b>[Name]</b><span>X</span></div>
+      <div class="thread">
+        <div class="vid"><video src="prepared-for-tesla.mp4" poster="preview.jpg" muted autoplay loop playsinline preload="metadata" aria-label="The 63-second invitation video"></video></div>
+        <div class="msg" id="dm"><p>Hi [Name], [Introducer] suggested I send this. I'm offering my 1906 family home in Boise to Tesla as a residential test bed for Optimus and Cybercab, at no cost to Tesla.</p><p>The invitation: warmspringshouse.com/tesla<br>Term sheet: warmspringshouse.com/tesla/terms.pdf</p><p>Lisa Wood</p></div>
+        <div class="linkcard"><img src="preview.jpg" alt=""><div><b>Prepared for Tesla</b><span>warmspringshouse.com</span></div></div>
+      </div>
+    </div>
+    <div class="phone" aria-label="Instagram direct message">
+      <div class="ph-top"><b>[Name]</b><span>Instagram</span></div>
+      <div class="thread">
+        <div class="vid"><video src="prepared-for-tesla.mp4" poster="preview.jpg" muted autoplay loop playsinline preload="metadata" aria-label="The 63-second invitation video"></video></div>
+        <div class="msg"><p>Hi [Name], [Introducer] suggested I send this. I'm offering my 1906 family home in Boise to Tesla as a residential test bed for Optimus and Cybercab, at no cost to Tesla.</p><p>The invitation: warmspringshouse.com/tesla<br>Term sheet: warmspringshouse.com/tesla/terms.pdf</p><p>Lisa Wood</p></div>
+        <div class="linkcard"><img src="preview.jpg" alt=""><div><b>Prepared for Tesla</b><span>warmspringshouse.com</span></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="row"><button type="button" data-copy="dm">Copy message</button></div>
+  <p class="note">Without an introduction, start with: "I'm Lisa Wood, owner of Warm Springs House in Boise."</p>
+</section>
+
+<section class="sec" aria-labelledby="h-steps">
+  <h2 id="h-steps">How to send it</h2>
+  <ol class="steps">
+    <li><div><b>Put the invitation online, once</b><p>Upload the three files in <code>send-kit/web/tesla</code> (index.html, terms.pdf, preview.jpg) so they live at warmspringshouse.com/tesla. The page stays out of search engines.</p></div></li>
+    <li><div><b>Email your introduction</b><p>Paste the subject and text. Drag the GIF into the body, select it, press Ctrl+K (Cmd+K on a Mac) and paste the invitation link. Attach the term sheet PDF. Send it to yourself first and open it on your phone.</p></div></li>
+    <li><div><b>Direct messages on X or Instagram</b><p>From your phone, send <code>Warm Springs House - Prepared for Tesla.mp4</code> from your camera roll, then paste the message.</p></div></li>
+  </ol>
+</section>
+
+<section class="sec" aria-labelledby="h-files">
+  <h2 id="h-files">Files</h2>
+  <div class="tablewrap"><table class="files">
+    <tr><td>Warm Springs House - Proposed Terms - Tesla.pdf</td><td>Email attachment</td><td>1.1 MB</td></tr>
+    <tr><td>invitation-opening.gif</td><td>Inside the email, linked to the invitation</td><td>1.0 MB</td></tr>
+    <tr><td>Warm Springs House - Prepared for Tesla.mp4</td><td>X and Instagram DMs, iMessage, WhatsApp · 720 × 1280 · 63 s</td><td>4.1 MB</td></tr>
+    <tr><td>Warm Springs House - Prepared for Tesla (HD).mp4</td><td>Large screens · 1080 × 1920</td><td>17 MB</td></tr>
+    <tr><td>web/tesla/</td><td>The scrolling invitation for warmspringshouse.com/tesla</td><td>5.8 MB</td></tr>
+    <tr><td>MESSAGES.md · README.md</td><td>The text above and these steps</td><td></td></tr>
+  </table></div>
+</section>
+</div>
+
+<script>
+document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>{
+  const el=document.getElementById(b.dataset.copy);
+  const text=el.innerText.replace(/\n{3,}/g,'\n\n').trim();
+  const label=b.textContent;
+  const done=()=>{b.textContent='Copied';b.classList.add('done');setTimeout(()=>{b.textContent=label;b.classList.remove('done')},1600)};
+  const fallback=()=>{const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selected · press copy';setTimeout(()=>{b.textContent=label},2200)};
+  try{navigator.clipboard.writeText(text).then(done,fallback)}catch(e){fallback()}
+}));
+</script>
