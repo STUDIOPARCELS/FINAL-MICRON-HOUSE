@@ -72,7 +72,7 @@ button:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
 #c0.play .lp{animation:in 1s ease-out both,openL 1.6s cubic-bezier(.55,0,.25,1) 1.5s both}
 #c0.play .rp{animation:in 1s ease-out both,openR 1.6s cubic-bezier(.55,0,.25,1) 1.5s both}
 #c0.play .p::after{animation:shade 1.6s cubic-bezier(.55,0,.25,1) 1.5s both}
-#c0.play .line span{animation:rise 1s cubic-bezier(.2,.75,.15,1) 3.3s both}
+#c0.play .line span{animation:rise .8s cubic-bezier(.2,.75,.15,1) 3.05s both}
 #c0.done .p{display:none} #c0.done .line span{transform:none}
 @media (prefers-reduced-motion:reduce){#c0 .p{display:none} #c0 .line span{transform:none}}
 
@@ -248,7 +248,7 @@ button:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
 </div></div></div></main>
 <div class="hint">Click the card or press R to replay · arrow keys change cards</div>
 <script>
-const ids=['opening','card1','card2','card3','card4','card5','card6'],dur=[4.4,4.9,4.5,4.7,6.2,4.2,4.6];
+const ids=['opening','card1','card2','card3','card4','card5','card6'],dur=[4.0,4.9,4.5,4.7,6.2,4.2,4.6],hold=[0.9,1.8,1.8,1.8,1.8,1.8,1.8];
 const view=document.getElementById('view'),prog=document.getElementById('prog'),allBtn=document.getElementById('all');
 const stages=[...view.querySelectorAll('.stage')],cards=stages.map(s=>s.firstElementChild),tabs=[...document.querySelectorAll('.tab')];
 let cur=0,seq=null;
@@ -266,7 +266,7 @@ function show(i){
 function stopAll(){clearTimeout(seq);seq=null;allBtn.setAttribute('aria-pressed','false');allBtn.querySelector('span').textContent='Play all'}
 function playAll(i){
   show(i);allBtn.setAttribute('aria-pressed','true');allBtn.querySelector('span').textContent='Stop';
-  seq=setTimeout(()=>i+1<cards.length?playAll(i+1):stopAll(),(dur[i]+1.8)*1000);
+  seq=setTimeout(()=>i+1<cards.length?playAll(i+1):stopAll(),(dur[i]+hold[i])*1000);
 }
 tabs.forEach((t,j)=>t.addEventListener('click',()=>{stopAll();show(j)}));
 cards.forEach(c=>c.addEventListener('click',()=>{stopAll();show(cur)}));

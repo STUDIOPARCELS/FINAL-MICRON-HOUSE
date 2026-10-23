@@ -33,7 +33,7 @@ for i,c in enumerate(CARDS):
 tabs=''.join(f'<button class="tab" role="tab" id="t{i}" aria-controls="s{i}" aria-selected="false" tabindex="-1">{c["label"]}</button>' for i,c in enumerate(CARDS))
 stages=''.join(f'<div class="stage" id="s{i}" role="tabpanel" aria-labelledby="t{i}"{"" if i==0 else " hidden"}>{card_html(c,i)}</div>' for i,c in enumerate(CARDS))
 css=''.join(card_css_assets(c,i) for i,c in enumerate(CARDS))
-ids=','.join(f"'{c['id']}'" for c in CARDS); durs=','.join(str(c['dur']) for c in CARDS)
+ids=','.join(f"'{c['id']}'" for c in CARDS); durs=','.join(str(c['dur']) for c in CARDS); holds=','.join(str(c.get('hold',1.8)) for c in CARDS)
 VIEWER=f'''<title>Tesla Invitation Cards</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 {FONTS}
@@ -82,7 +82,7 @@ button:focus-visible{{outline:2px solid var(--fg);outline-offset:2px}}
 <main class="view" id="view">{stages}</main>
 <div class="hint">Click the card or press R to replay · arrow keys change cards</div>
 <script>
-const ids=[{ids}],dur=[{durs}];
+const ids=[{ids}],dur=[{durs}],hold=[{holds}];
 const view=document.getElementById('view'),prog=document.getElementById('prog'),allBtn=document.getElementById('all');
 const stages=[...view.querySelectorAll('.stage')],cards=stages.map(s=>s.firstElementChild),tabs=[...document.querySelectorAll('.tab')];
 let cur=0,seq=null;
@@ -100,7 +100,7 @@ function show(i){{
 function stopAll(){{clearTimeout(seq);seq=null;allBtn.setAttribute('aria-pressed','false');allBtn.querySelector('span').textContent='Play all'}}
 function playAll(i){{
   show(i);allBtn.setAttribute('aria-pressed','true');allBtn.querySelector('span').textContent='Stop';
-  seq=setTimeout(()=>i+1<cards.length?playAll(i+1):stopAll(),(dur[i]+1.8)*1000);
+  seq=setTimeout(()=>i+1<cards.length?playAll(i+1):stopAll(),(dur[i]+hold[i])*1000);
 }}
 tabs.forEach((t,j)=>t.addEventListener('click',()=>{{stopAll();show(j)}}));
 cards.forEach(c=>c.addEventListener('click',()=>{{stopAll();show(cur)}}));

@@ -35,7 +35,7 @@ UTIL='''
 '''
 
 # Opening: the sealed card splits into a gatefold and opens onto the cardstock, then the line rises
-OPENING=dict(id='opening', label='Opening', dur=4.4, css='''
+OPENING=dict(id='opening', label='Opening', dur=4.0, hold=.9, css='''
 $S{background:#f3f1ec;perspective:2600px}
 $S .under{position:absolute;inset:0;background:url(__OPEN__) center/941px 1672px no-repeat}
 $S .p{position:absolute;top:0;height:1672px;width:470.5px;background:url(__SEALED__) no-repeat;background-size:941px 1672px;backface-visibility:hidden}
@@ -49,7 +49,7 @@ $S.play .p{animation:in 1s ease-out both}
 $S.play .lp{animation:in 1s ease-out both,openL 1.6s cubic-bezier(.55,0,.25,1) 1.5s both}
 $S.play .rp{animation:in 1s ease-out both,openR 1.6s cubic-bezier(.55,0,.25,1) 1.5s both}
 $S.play .p::after{animation:shade 1.6s cubic-bezier(.55,0,.25,1) 1.5s both}
-$S.play .line span{animation:rise 1s cubic-bezier(.2,.75,.15,1) 3.3s both}
+$S.play .line span{animation:rise .8s cubic-bezier(.2,.75,.15,1) 3.05s both}
 $S.done .p{display:none} $S.done .line span{transform:none}
 @media (prefers-reduced-motion:reduce){$S .p{display:none} $S .line span{transform:none}}
 ''', html='''<div class="under"></div><div class="p lp"></div><div class="p rp"></div>
