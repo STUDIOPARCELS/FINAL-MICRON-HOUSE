@@ -110,7 +110,7 @@ $S .sub.a{{margin-top:32px}} $S .sub.b{{padding-top:22px}}
 assets={'__PAPER__':('paper-gray.webp','image/webp'),'__ROOM__':('../tesla-v2/room-optimus.webp','image/webp'),'__CAB__':('../tesla-v2/cybercab.webp','image/webp')})
 
 # Card 3: dining room wipes in, green label, headline, hub name, founding partner, caps line, then the six uses one by one
-CARD3=dict(id='card3', label='Card 3', dur=4.7, hold=10.4, css=f"""
+CARD3=dict(id='card3', label='Card 3', dur=4.7, hold=13.4, css=f"""
 $S{{background:#f4f4f3 url(__PAPER__) center/941px 1672px no-repeat}}
 $S .wrap{{position:absolute;left:60px;right:60px;top:60px;bottom:76px;display:flex;flex-direction:column;gap:38px}}
 $S .wrap>.im{{flex:1;min-height:0}} $S .wrap>.im img{{object-position:50% 40%}}
@@ -143,7 +143,7 @@ MARK='''<svg class="mk" viewBox="71 71 882 882" role="img" aria-label="Warm Spri
 <g class="k" style="--d:1.35s;--k:translateX(14%)"><circle cx="717" cy="512" r="235" fill="#353942" opacity=".93"/></g>
 <g class="k" style="--d:1.9s;--k:scale(.2) rotate(-45deg)"><path fill="#fff" d="M512 195 A325 325 0 0 0 808 512 A325 325 0 0 0 512 828 A325 325 0 0 0 215 512 A325 325 0 0 0 512 195 Z"/></g>
 </svg>'''
-CARD4=dict(id='card4', label='Card 4', dur=6.2, css=f"""
+CARD4=dict(id='card4', label='Card 4', dur=6.2, hold=4.8, css=f"""
 $S{{background:#f4f4f3 url(__PAPER__) center/941px 1672px no-repeat}}
 $S .wrap{{position:absolute;left:76px;right:76px;top:124px;bottom:112px;display:flex;flex-direction:column;justify-content:space-between}}
 $S .half{{display:flex;flex-direction:column}}
@@ -181,22 +181,22 @@ assets={'__PAPER__':('paper-gray.webp','image/webp')})
 # Card 5: both photos at their true proportions (no cropping); title, facts, line and the quote row spaced evenly
 CARD5=dict(id="card5", label="Card 5", dur=4.2, css=f"""
 $S{{background:#f4f4f3 url(__PAPER__) center/941px 1672px no-repeat}}
-$S .wrap{{position:absolute;left:60px;right:60px;top:60px;bottom:76px;display:flex;flex-direction:column;justify-content:space-between}}
+$S .wrap{{position:absolute;left:60px;right:60px;top:60px;bottom:60px;display:flex;flex-direction:column;gap:60px}}
 $S .wrap>.im{{flex:none;width:821px;height:586px}}
 $S .h{{font-size:64px;line-height:1.04;letter-spacing:-.01em;font-weight:800;text-transform:uppercase}}
 $S .f{{margin-top:32px;font-size:27px;line-height:1.42;font-weight:500;color:{INK2}}}
 $S .rule{{background:{RULE}}}
-$S .row{{display:flex;gap:40px;align-items:center}}
+$S .row{{display:flex;gap:48px;align-items:center;margin-top:-60px;padding-top:60px}}
 $S .s{{font-family:Newsreader,Georgia,serif;font-style:italic;font-size:30px;line-height:1.36;color:{INK}}}
 $S .cl{{margin-top:34px;font-size:21px;line-height:1.45;letter-spacing:.12em;font-weight:800;text-transform:uppercase}}
-$S .inw{{width:280px;height:280px;flex:none}} $S .inw img{{position:absolute;inset:0}}
+$S .inw{{width:var(--p,396px);height:var(--p,396px);flex:none}} $S .inw img{{position:absolute;inset:0}}
 """, html="""<div class="wrap">
 <div class="im" style="--d:.2s"><img src="__HOUSE__" alt="Warm Springs House in autumn"></div>
 <div><div class="h"><span class="m"><span style="--d:1.2s">Warm Springs House</span></span><span class="m" style="margin-top:14px"><span style="--d:1.35s">+ Lisa Wood Studio</span></span></div>
-<div class="f"><span class="m"><span style="--d:1.65s">Idaho since 1992.</span></span><span class="m"><span style="--d:1.75s">Owner of Warm Springs House since 2000.</span></span><span class="m"><span style="--d:1.85s">Three decades in executive search for Silicon Valley.</span></span></div>
+<div class="f"><span class="m"><span style="--d:1.65s">Idaho since 1992.</span></span><span class="m"><span style="--d:1.75s">A career in high tech since 1995.</span></span><span class="m"><span style="--d:1.85s">Owner of Warm Springs House since 2000.</span></span></div>
 <div class="cl"><span class="m"><span style="--d:2.0s">Hosting Optimus and Cybercab is</span></span><span class="m"><span style="--d:2.12s">my home&#8217;s highest and best use.</span></span></div></div>
 <div class="rule ln" style="--d:2.35s"></div>
-<div class="row"><div style="flex:1"><div class="s"><span class="m"><span style="--d:2.4s;margin-left:-.4em">&#8220;I&#8217;m in the demographic most</span></span><span class="m"><span style="--d:2.52s">wary of robots and self-driving</span></span><span class="m"><span style="--d:2.64s">cars, yet I can&#8217;t wait for them.&#8221;</span></span></div></div>
+<div class="row"><div style="flex:1"><div class="s"><span class="m"><span style="--d:2.4s">&#8220;I&#8217;m in the demographic most</span></span><span class="m"><span style="--d:2.52s">wary of robots and self-driving</span></span><span class="m"><span style="--d:2.64s">cars, yet I can&#8217;t wait for them.&#8221;</span></span></div></div>
 <div class="im inw" style="--d:2.2s"><img src="__LISA__" alt="Lisa Wood"></div></div>
 </div>""",
 assets={'__PAPER__':('paper-gray.webp','image/webp'),'__HOUSE__':('house-photo.webp','image/webp'),'__LISA__':('lisa-bw.webp','image/webp')})
