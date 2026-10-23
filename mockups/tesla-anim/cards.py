@@ -143,7 +143,7 @@ MARK='''<svg class="mk" viewBox="71 71 882 882" role="img" aria-label="Warm Spri
 <g class="k" style="--d:1.35s;--k:translateX(14%)"><circle cx="717" cy="512" r="235" fill="#353942" opacity=".93"/></g>
 <g class="k" style="--d:1.9s;--k:scale(.2) rotate(-45deg)"><path fill="#fff" d="M512 195 A325 325 0 0 0 808 512 A325 325 0 0 0 512 828 A325 325 0 0 0 215 512 A325 325 0 0 0 512 195 Z"/></g>
 </svg>'''
-CARD4=dict(id='card4', label='Card 4', dur=5.7, css=f"""
+CARD4=dict(id='card4', label='Card 4', dur=6.2, css=f"""
 $S{{background:#f4f4f3 url(__PAPER__) center/941px 1672px no-repeat}}
 $S .wrap{{position:absolute;left:76px;right:76px;top:124px;bottom:112px;display:flex;flex-direction:column;justify-content:space-between}}
 $S .half{{display:flex;flex-direction:column}}
@@ -154,23 +154,28 @@ $S.play .mk .k{{animation:kin 1.1s cubic-bezier(.2,.7,.2,1) var(--d) both}}
 $S.done .mk .k{{opacity:1}}
 $S .hero{{margin-top:44px;text-align:center;font-family:Newsreader,Georgia,serif;font-size:34px;line-height:1.36;font-weight:400;color:{INK2}}}
 $S .hero b{{font-style:italic;font-weight:500}}
-$S .h{{text-align:center;font-size:28px;line-height:1.15;letter-spacing:.1em;font-weight:800;text-transform:uppercase}}
-$S .st{{margin-top:22px;text-align:center;font-family:Newsreader,Georgia,serif;font-size:34px;line-height:1.28;color:{INK}}} $S .st em{{font-style:italic}}
-$S .it{{text-align:center;margin:56px 0 22px;font-size:21px;line-height:1.45;font-weight:600;color:{INK2}}}
+$S .h{{font-size:26px;line-height:1.15;letter-spacing:.1em;font-weight:800;text-transform:uppercase}}
+$S .st{{margin-top:16px;font-family:Newsreader,Georgia,serif;font-size:27px;line-height:1.36;color:{INK}}} $S .st em{{font-style:italic}}
+$S .it{{margin:34px 0 16px;font-size:21px;line-height:1.45;font-weight:600;color:{INK2}}}
 $S .rule{{background:{RULE}}}
-$S .cells{{display:grid;grid-template-columns:150px 1fr;align-items:baseline;padding:22px 0}}
+$S .cells{{display:grid;grid-template-columns:150px 1fr;align-items:baseline;padding:18px 0}}
 $S .vb{{font-size:18px;letter-spacing:.18em;font-weight:800;text-transform:uppercase}}
-$S .t{{font-size:24px;line-height:1.4;font-weight:500;color:{INK2}}}
+$S .t{{font-size:22px;line-height:1.4;font-weight:500;color:{INK2}}}
+$S .facts{{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}}
+$S .facts>div{{border-radius:10px;padding:18px 6px 16px;text-align:center;color:#fff;box-shadow:0 6px 16px rgba(30,30,32,.12)}}
+$S .facts b{{display:block;font-size:30px;line-height:1;font-weight:800;letter-spacing:-.01em}}
+$S .facts span{{display:block;margin-top:9px;font-size:12px;letter-spacing:.1em;font-weight:700;text-transform:uppercase;opacity:.88;white-space:nowrap}}
 @media (prefers-reduced-motion:reduce){{$S .mk .k{{opacity:1}}}}
 """, html="""<div class="wrap">
 <div class="top r" style="--d:.2s">Warm Springs House</div>
 <div class="half">"""+MARK.replace('style="--d:1.9s','style="--d:1.75s')+"""
 <div class="hero"><span class="m"><span style="--d:2.2s">Without <b style="color:#353942">vision</b>, there&#8217;s no <b style="color:#353942">velocity</b>.</span></span><span class="m"><span style="--d:2.34s">Without <b style="color:#2c0f38">memory</b>, there&#8217;s no <b style="color:#2c0f38">meaning</b>.</span></span><span class="m"><span style="--d:2.48s">Without <b style="color:#00782a">place</b>, there&#8217;s no <b style="color:#00782a">perspective</b>.</span></span></div></div>
+<div class="facts"><div class="r" style="--d:2.75s;background:#2c0f38"><b>1906</b><span>Year built</span></div><div class="r" style="--d:2.85s;background:#353942"><b>3,374</b><span>Square feet</span></div><div class="r" style="--d:2.95s;background:#00782a"><b>3/4</b><span>Bed / bath</span></div><div class="r" style="--d:3.05s;background:#7db0d3"><b>1892</b><span>Geothermal rights</span></div></div>
 <div class="half">
-<div class="h"><span class="m"><span style="--d:2.75s">A collaborative blueprint</span></span></div>
-<div class="st"><span class="m"><span style="--d:2.95s">One place to see Optimus and Cybercab,</span></span><span class="m"><span style="--d:3.07s">test the hard questions and decide</span></span><span class="m"><span style="--d:3.19s">together how they enter daily life,</span></span><span class="m"><span style="--d:3.31s"><em>before the headlines do.</em></span></span></div>
-<div class="it"><span class="m"><span style="--d:3.6s">When Tesla is ready, together with the founding partner:</span></span></div>
-<div class="row"><div class="rule ln" style="--d:3.85s"></div><div class="cells"><div class="vb r" style="--d:3.95s;color:#00782a">Host</div><div class="t"><span class="m"><span style="--d:4.0s">Boise&#8217;s civic and business leaders.</span></span></div></div></div><div class="row"><div class="rule ln" style="--d:4.10s"></div><div class="cells"><div class="vb r" style="--d:4.20s;color:#353942">Show</div><div class="t"><span class="m"><span style="--d:4.25s">them autonomous technology firsthand.</span></span></div></div></div><div class="row"><div class="rule ln" style="--d:4.35s"></div><div class="cells"><div class="vb r" style="--d:4.45s;color:#2c0f38">Shape</div><div class="t"><span class="m"><span style="--d:4.5s">how autonomous technology enters daily life.</span></span></div></div></div><div class="row"><div class="rule ln" style="--d:4.60s"></div><div class="cells"><div class="vb r" style="--d:4.70s;color:#393c41">Create</div><div class="t"><span class="m"><span style="--d:4.75s">a playbook other cities can adopt.</span></span></div></div></div><div class="rule ln" style="--d:4.85s"></div>
+<div class="h"><span class="m"><span style="--d:3.25s">A collaborative blueprint</span></span></div>
+<div class="st"><span class="m"><span style="--d:3.45s">One place to see Optimus and Cybercab, test the hard</span></span><span class="m"><span style="--d:3.57s">questions and decide together how they enter daily life,</span></span><span class="m"><span style="--d:3.69s"><em>before the headlines do.</em></span></span></div>
+<div class="it"><span class="m"><span style="--d:4.10s">When Tesla is ready, together with the founding partner:</span></span></div>
+<div class="row"><div class="rule ln" style="--d:4.35s"></div><div class="cells"><div class="vb r" style="--d:4.45s;color:#00782a">Host</div><div class="t"><span class="m"><span style="--d:4.50s">Boise&#8217;s civic and business leaders.</span></span></div></div></div><div class="row"><div class="rule ln" style="--d:4.60s"></div><div class="cells"><div class="vb r" style="--d:4.70s;color:#353942">Show</div><div class="t"><span class="m"><span style="--d:4.75s">them autonomous technology firsthand.</span></span></div></div></div><div class="row"><div class="rule ln" style="--d:4.85s"></div><div class="cells"><div class="vb r" style="--d:4.95s;color:#2c0f38">Shape</div><div class="t"><span class="m"><span style="--d:5.00s">how autonomous technology enters daily life.</span></span></div></div></div><div class="row"><div class="rule ln" style="--d:5.10s"></div><div class="cells"><div class="vb r" style="--d:5.20s;color:#393c41">Create</div><div class="t"><span class="m"><span style="--d:5.25s">a playbook other cities can adopt.</span></span></div></div></div><div class="rule ln" style="--d:5.35s"></div>
 </div></div>""",
 assets={'__PAPER__':('paper-gray.webp','image/webp')})
 
