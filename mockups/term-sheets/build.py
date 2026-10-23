@@ -7,7 +7,9 @@ def rows(md):
         if m: out.append((m.group(1), m.group(2)))
     return out
 def cell(v):
-    v=html.escape(v).replace(' min','\u00a0min')
+    # keep each place with its drive time on one line
+    v=re.sub(r"(St\. Luke's|Downtown|Capitol|Airport) (\d+) min", lambda m: m.group(1).replace(' ','\u00a0')+'\u00a0'+m.group(2)+'\u00a0min', v)
+    v=html.escape(v).replace(' · ','\u00a0· ')
     v=re.sub(r'\[TBD\]', '<span class="tbd">To be agreed</span>', v)
     return v
 def page(who, ink, ink2, rule, md):
@@ -57,13 +59,13 @@ def tesla_page(md):
 h1{{margin:10pt 0 0;font-size:27pt;line-height:1.04;letter-spacing:-.01em;font-weight:800;text-transform:uppercase}}
 .it{{margin-top:8pt;font-family:Newsreader,Georgia,serif;font-style:italic;font-size:13pt;line-height:1.3}}
 .note{{margin-top:6pt;font-size:8pt;color:{INK2};font-weight:500}}
-table{{margin-top:16pt;width:100%;border-collapse:collapse}}
+table{{margin:auto 0;width:100%;border-collapse:collapse}}
 th,td{{text-align:left;vertical-align:top;padding:6.6pt 0;border-top:1px solid {RULE};font-size:9.2pt;line-height:1.42}}
 th{{width:1.6in;padding-right:14pt;font-size:7.4pt;letter-spacing:.18em;text-transform:uppercase;font-weight:800;color:{INK};padding-top:8.4pt}}
-td{{font-weight:500;color:{INK2}}}
+td{{font-weight:500;color:{INK2};text-wrap:pretty}}
 tr:last-child th,tr:last-child td{{border-bottom:1px solid {RULE}}}
 .tbd{{font-family:Newsreader,Georgia,serif;font-style:italic;font-size:10pt;color:{INK}}}
-.foot{{margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:14pt}}
+.foot{{display:flex;justify-content:space-between;align-items:center}}
 .foot .n{{font-size:12pt;letter-spacing:.08em;font-weight:800;text-transform:uppercase}}
 .foot .c{{margin-top:5pt;font-size:9.4pt;line-height:1.55;font-weight:500}}
 .foot .p{{margin-top:8pt;font-size:6.8pt;letter-spacing:.3em;font-weight:700;text-transform:uppercase;color:{INK2}}}
@@ -73,7 +75,7 @@ a{{color:inherit;text-decoration:underline;text-decoration-color:{RULE};text-und
 <div class="lab">Proposed terms</div>
 <h1>Prepared for Tesla</h1>
 <div class="it">A residential test bed for Optimus + Cybercab.</div>
-<div class="note">Non-binding proposal for discussion.</div>
+<div class="note">Non-binding. Creates no obligation for either party until a definitive agreement is signed.</div>
 <table>{trs}</table>
 <div class="foot"><div><div class="n">Lisa Wood</div>
 <div class="c">208 720 2433<br><a href="mailto:lisa@lisawoodstudio.com">lisa@lisawoodstudio.com</a><br><a href="https://warmspringshouse.com/">warmspringshouse.com</a></div>
