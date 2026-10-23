@@ -19,7 +19,7 @@ KEYFRAMES='''
 
 # Reveal system shared by all cards: .m masked line rise, .r fade-rise, .ln rule draw, .im photo wipe. Each takes --d (delay).
 UTIL='''
-.card .m{display:block;overflow:hidden} .card .m>span{display:block;white-space:nowrap;transform:translateY(105%)}
+.card .m{display:block;clip-path:inset(0 -.5em)} .card .m>span{display:block;white-space:nowrap;transform:translateY(105%)}
 .card .r{opacity:0;transform:translateY(14px)}
 .card .ln{height:1px;transform-origin:left;transform:scaleX(0)}
 .card .im{position:relative;overflow:hidden;clip-path:inset(0 0 100% 0);box-shadow:0 1px 1px rgba(16,16,16,.18),0 6px 18px rgba(16,16,16,.10)}
@@ -90,12 +90,12 @@ $S .wrap{{position:absolute;left:60px;right:60px;top:60px;bottom:76px;display:fl
 $S .pics{{flex:1;min-height:0;display:flex;flex-direction:column;gap:17px}}
 $S .pics .im:first-child{{flex:1;min-height:0}} $S .pics .im:first-child img{{object-position:100% 50%}}
 $S .pics .im:last-child{{height:400px;flex:none}}
-$S .h{{font-size:50px;line-height:1.04;letter-spacing:-.01em;font-weight:800;text-transform:uppercase}}
-$S .lede{{margin-top:20px;font-size:28px;line-height:1.36;font-weight:500;color:{INK2}}}
-$S .rule{{margin-top:30px;background:{RULE}}}
-$S .p{{padding-top:22px;font-size:24px;line-height:1.45;font-weight:500}}
+$S .h{{font-size:38px;line-height:1.08;letter-spacing:-.01em;font-weight:800;text-transform:uppercase}}
+$S .lede{{margin-top:32px;font-size:21px;line-height:1.42;font-weight:500;color:{INK2}}}
+$S .rule{{margin-top:34px;background:{RULE}}}
+$S .p{{padding-top:22px;font-size:21px;line-height:1.42;font-weight:500;color:{INK2}}}
 $S .caps{{margin-top:20px;font-size:21px;letter-spacing:.12em;font-weight:800;text-transform:uppercase}}
-$S .pds{{margin-top:16px;font-family:Newsreader,Georgia,serif;font-style:italic;font-size:34px;line-height:1.2;font-weight:400}}
+$S .p em{{font-family:Newsreader,Georgia,serif;font-style:italic;font-size:25px;font-weight:400;color:{INK}}}
 """, html="""<div class="wrap">
 <div class="pics"><div class="im" style="--d:.2s"><img src="__ROOM__" alt="Optimus in the living room"></div><div class="im" style="--d:.65s"><img src="__CAB__" alt="Cybercab at the house"></div></div>
 <div>
@@ -103,8 +103,8 @@ $S .pds{{margin-top:16px;font-family:Newsreader,Georgia,serif;font-style:italic;
 <div class="lede"><span class="m"><span style="--d:1.95s">Grounding Optimus and Cybercab in a historic home.</span></span></div>
 <div class="caps m"><span style="--d:2.3s">At no cost to Tesla.</span></div>
 <div class="rule ln" style="--d:2.6s"></div>
-<div class="p"><span class="m"><span style="--d:2.9s">One or more Tesla engineers live and work alongside</span></span><span class="m"><span style="--d:3.02s">Optimus and Cybercab, readying them for service for the</span></span><span class="m"><span style="--d:3.14s">first autonomous corporate residence + entertainment hub.</span></span></div>
-<div class="pds m"><span style="--d:3.5s">Private, discreet and secure.</span></div>
+<div class="p"><span class="m"><span style="--d:2.9s">One or more Tesla engineers live and work alongside</span></span><span class="m"><span style="--d:3.02s">Optimus and Cybercab, readying them for service for the</span></span><span class="m"><span style="--d:3.14s"><em>first autonomous corporate residence + entertainment hub.</em></span></span></div>
+<div class="caps m" style="margin-top:22px"><span style="--d:3.55s">Private, discreet and secure.</span></div>
 </div>
 </div></div>""",
 assets={'__PAPER__':('paper-gray.webp','image/webp'),'__ROOM__':('../tesla-v2/room-optimus.webp','image/webp'),'__CAB__':('../tesla-v2/cybercab.webp','image/webp')})

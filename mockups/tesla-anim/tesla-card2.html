@@ -22,7 +22,7 @@ body{display:grid;place-items:center;overflow:hidden}
 @keyframes wipe{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(-40px)}}
 @keyframes zoom{from{transform:scale(1.08)}to{transform:none}}
 
-.card .m{display:block;overflow:hidden} .card .m>span{display:block;white-space:nowrap;transform:translateY(105%)}
+.card .m{display:block;clip-path:inset(0 -.5em)} .card .m>span{display:block;white-space:nowrap;transform:translateY(105%)}
 .card .r{opacity:0;transform:translateY(14px)}
 .card .ln{height:1px;transform-origin:left;transform:scaleX(0)}
 .card .im{position:relative;overflow:hidden;clip-path:inset(0 0 100% 0);box-shadow:0 1px 1px rgba(16,16,16,.18),0 6px 18px rgba(16,16,16,.10)}
@@ -40,12 +40,12 @@ body{display:grid;place-items:center;overflow:hidden}
 #c2 .pics{flex:1;min-height:0;display:flex;flex-direction:column;gap:17px}
 #c2 .pics .im:first-child{flex:1;min-height:0} #c2 .pics .im:first-child img{object-position:100% 50%}
 #c2 .pics .im:last-child{height:400px;flex:none}
-#c2 .h{font-size:50px;line-height:1.04;letter-spacing:-.01em;font-weight:800;text-transform:uppercase}
-#c2 .lede{margin-top:20px;font-size:28px;line-height:1.36;font-weight:500;color:#5c5e62}
-#c2 .rule{margin-top:30px;background:#cfd0d2}
-#c2 .p{padding-top:22px;font-size:24px;line-height:1.45;font-weight:500}
+#c2 .h{font-size:38px;line-height:1.08;letter-spacing:-.01em;font-weight:800;text-transform:uppercase}
+#c2 .lede{margin-top:32px;font-size:21px;line-height:1.42;font-weight:500;color:#5c5e62}
+#c2 .rule{margin-top:34px;background:#cfd0d2}
+#c2 .p{padding-top:22px;font-size:21px;line-height:1.42;font-weight:500;color:#5c5e62}
 #c2 .caps{margin-top:20px;font-size:21px;letter-spacing:.12em;font-weight:800;text-transform:uppercase}
-#c2 .pds{margin-top:16px;font-family:Newsreader,Georgia,serif;font-style:italic;font-size:34px;line-height:1.2;font-weight:400}
+#c2 .p em{font-family:Newsreader,Georgia,serif;font-style:italic;font-size:25px;font-weight:400;color:#393c41}
 
 </style></head><body>
 <div class="stage" id="stage"><div class="card" id="c2" title="Click to replay"><div class="wrap">
@@ -55,8 +55,8 @@ body{display:grid;place-items:center;overflow:hidden}
 <div class="lede"><span class="m"><span style="--d:1.95s">Grounding Optimus and Cybercab in a historic home.</span></span></div>
 <div class="caps m"><span style="--d:2.3s">At no cost to Tesla.</span></div>
 <div class="rule ln" style="--d:2.6s"></div>
-<div class="p"><span class="m"><span style="--d:2.9s">One or more Tesla engineers live and work alongside</span></span><span class="m"><span style="--d:3.02s">Optimus and Cybercab, readying them for service for the</span></span><span class="m"><span style="--d:3.14s">first autonomous corporate residence + entertainment hub.</span></span></div>
-<div class="pds m"><span style="--d:3.5s">Private, discreet and secure.</span></div>
+<div class="p"><span class="m"><span style="--d:2.9s">One or more Tesla engineers live and work alongside</span></span><span class="m"><span style="--d:3.02s">Optimus and Cybercab, readying them for service for the</span></span><span class="m"><span style="--d:3.14s"><em>first autonomous corporate residence + entertainment hub.</em></span></span></div>
+<div class="caps m" style="margin-top:22px"><span style="--d:3.55s">Private, discreet and secure.</span></div>
 </div>
 </div></div></div></div>
 <script>
