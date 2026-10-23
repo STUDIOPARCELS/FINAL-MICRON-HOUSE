@@ -95,6 +95,7 @@ $S .lede{{margin-top:20px;font-size:28px;line-height:1.36;font-weight:500;color:
 $S .rule{{margin-top:30px;background:{RULE}}}
 $S .p{{padding-top:22px;font-size:24px;line-height:1.45;font-weight:500}}
 $S .caps{{margin-top:20px;font-size:21px;letter-spacing:.12em;font-weight:800;text-transform:uppercase}}
+$S .pds{{margin-top:16px;font-family:Newsreader,Georgia,serif;font-style:italic;font-size:34px;line-height:1.2;font-weight:400}}
 """, html="""<div class="wrap">
 <div class="pics"><div class="im" style="--d:.2s"><img src="__ROOM__" alt="Optimus in the living room"></div><div class="im" style="--d:.65s"><img src="__CAB__" alt="Cybercab at the house"></div></div>
 <div>
@@ -102,7 +103,8 @@ $S .caps{{margin-top:20px;font-size:21px;letter-spacing:.12em;font-weight:800;te
 <div class="lede"><span class="m"><span style="--d:1.95s">Grounding Optimus and Cybercab in a historic home.</span></span></div>
 <div class="caps m"><span style="--d:2.3s">At no cost to Tesla.</span></div>
 <div class="rule ln" style="--d:2.6s"></div>
-<div class="p"><span class="m"><span style="--d:2.9s">One or more Tesla engineers live and work alongside</span></span><span class="m"><span style="--d:3.02s">Optimus and Cybercab, readying them for service.</span></span><span class="m"><span style="--d:3.2s">Private, discreet and secure.</span></span></div>
+<div class="p"><span class="m"><span style="--d:2.9s">One or more Tesla engineers live and work alongside</span></span><span class="m"><span style="--d:3.02s">Optimus and Cybercab, readying them for service in the</span></span><span class="m"><span style="--d:3.14s">first autonomous corporate residence + entertainment hub.</span></span></div>
+<div class="pds m"><span style="--d:3.5s">Private, discreet and secure.</span></div>
 </div>
 </div></div>""",
 assets={'__PAPER__':('paper-gray.webp','image/webp'),'__ROOM__':('../tesla-v2/room-optimus.webp','image/webp'),'__CAB__':('../tesla-v2/cybercab.webp','image/webp')})
@@ -112,7 +114,7 @@ CARDS=[OPENING,CARD1,CARD2]
 # Shared card box. The card is printed stock, so its colours stay fixed in both themes.
 CARD_BASE=f'''.card{{position:relative;width:941px;height:1672px;overflow:hidden;font-family:Montserrat,Arial,sans-serif;color:{INK};cursor:pointer}}
 @media (prefers-reduced-motion:reduce){{.card *{{animation:none!important}}}}'''
-FONTS='<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">'
+FONTS='<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap" rel="stylesheet">'
 
 def card_css(c,i):
     return c['css'].replace('$S',f'#c{i}')
