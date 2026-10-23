@@ -80,3 +80,40 @@ f"""<div class="top c">Warm Springs House</div>
 <div class="half c"><div class="big bal" style="margin:0 auto;max-width:740px">A collaborative blueprint for other cities.</div>
 <div class="p bal" style="margin:34px auto 0;max-width:740px">{S1}</div>
 <div class="p bal" style="margin:18px auto 0;max-width:740px;color:{INK};font-weight:700">{S2}</div></div>""")
+
+# ---- Round 2: smaller hero lines, an explanation of "collaborative blueprint", space shared evenly between four groups
+EX='<b style="font-weight:700;font-style:normal;color:#393c41">Tesla&#8217;s opportunity:</b> a city whose leaders help shape the rollout, and a playbook for every city that follows.'
+LEAD='When Tesla chooses, together with the founding partner:'
+ROWS=[('Host',GR,'Boise&#8217;s government, health care, education and business leaders.'),('Show',SL,'them autonomous technology firsthand.'),
+      ('Shape',MP,'how autonomous technology enters daily life.'),('Create',INK,'a playbook other cities can adopt.')]
+def ledger(fs=24): return ''.join(f'<div style="display:grid;grid-template-columns:150px 1fr;align-items:baseline;padding:20px 0;border-top:1px solid {RULE}"><div class="vb" style="color:{c}">{v}</div><div style="font-size:{fs}px;line-height:1.4;font-weight:500;color:{INK2}">{t}</div></div>' for v,c,t in ROWS)+f'<div style="height:1px;background:{RULE}"></div>'
+SP2='.w{justify-content:space-between}'
+def hero_s(px,lh=1.36): return f'.hero{{font-size:{px}px;line-height:{lh};color:{INK2}}}'
+
+# F · Even rhythm: smaller serif lines; the explanation sits mid-card under the title
+page('F',SP2+hero_s(34)+f'.ex{{font-size:23px;line-height:1.5;font-weight:500;color:{INK2}}}',
+f'''<div class="top c">Warm Springs House</div>
+<div class="c"><div style="display:flex;justify-content:center">{mark(230)}</div><div style="margin-top:44px">{hero('hero serif')}</div></div>
+<div class="c"><div class="h">A collaborative blueprint</div><div class="ex bal" style="margin:16px auto 0;max-width:680px">{EX}</div></div>
+<div><div class="it c" style="margin-bottom:26px">{LEAD}</div>{ledger()}</div>''')
+
+# G · Statement in the middle: the explanation as a serif line at the card's centre
+page('G',SP2+hero_s(32)+f'.ex{{font-family:Newsreader,Georgia,serif;font-size:38px;line-height:1.28;color:{INK}}}',
+f'''<div class="top c">Warm Springs House</div>
+<div class="c"><div style="display:flex;justify-content:center">{mark(220)}</div><div style="margin-top:40px">{hero('hero serif')}</div></div>
+<div class="c"><div class="rule" style="width:80px;margin:0 auto 34px"></div><div class="h">A collaborative blueprint</div><div class="ex bal" style="margin:18px auto 0;max-width:700px">{EX}</div></div>
+<div><div class="it c" style="margin-bottom:26px">{LEAD}</div>{ledger()}</div>''')
+
+# H · Logo leads: larger logo, quieter hero lines
+page('H',SP2+hero_s(30,1.4)+f'.ex{{font-size:23px;line-height:1.5;font-weight:500;color:{INK2}}}',
+f'''<div class="top c">Warm Springs House</div>
+<div class="c"><div style="display:flex;justify-content:center">{mark(300)}</div><div style="margin-top:40px">{hero('hero serif')}</div></div>
+<div class="c"><div class="h">A collaborative blueprint</div><div class="ex bal" style="margin:16px auto 0;max-width:680px">{EX}</div></div>
+<div><div class="it c" style="margin-bottom:26px">{LEAD}</div>{ledger()}</div>''')
+
+# I · Caps hero: hero lines in small capitals, the explanation in serif
+page('I',SP2+f'.hero{{font-size:21px;line-height:2;letter-spacing:.1em;font-weight:600;text-transform:uppercase;color:{INK2}}} .hero b{{font-weight:800}} .ex{{font-family:Newsreader,Georgia,serif;font-size:36px;line-height:1.28;color:{INK}}}',
+f'''<div class="top c">Warm Springs House</div>
+<div class="c"><div style="display:flex;justify-content:center">{mark(260)}</div><div style="margin-top:44px">{hero('hero')}</div></div>
+<div class="c"><div class="h">A collaborative blueprint</div><div class="ex bal" style="margin:18px auto 0;max-width:700px">{EX}</div></div>
+<div><div class="it c" style="margin-bottom:26px">{LEAD}</div>{ledger()}</div>''')
