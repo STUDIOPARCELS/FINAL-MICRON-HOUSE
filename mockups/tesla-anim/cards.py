@@ -13,6 +13,24 @@ KEYFRAMES='''
 @keyframes settle{from{opacity:0;transform:scale(1.04)}to{opacity:1;transform:none}}
 @keyframes fadeup{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 @keyframes draw{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes wipe{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(-40px)}}
+@keyframes zoom{from{transform:scale(1.08)}to{transform:none}}
+'''
+
+# Reveal system shared by all cards: .m masked line rise, .r fade-rise, .ln rule draw, .im photo wipe. Each takes --d (delay).
+UTIL='''
+.card .m{display:block;overflow:hidden} .card .m>span{display:block;white-space:nowrap;transform:translateY(105%)}
+.card .r{opacity:0;transform:translateY(14px)}
+.card .ln{height:1px;transform-origin:left;transform:scaleX(0)}
+.card .im{position:relative;overflow:hidden;clip-path:inset(0 0 100% 0);box-shadow:0 1px 1px rgba(16,16,16,.18),0 6px 18px rgba(16,16,16,.10)}
+.card .im img{display:block;width:100%;height:100%;object-fit:cover}
+.card.play .m>span{animation:rise .9s cubic-bezier(.2,.75,.15,1) var(--d) both}
+.card.play .r{animation:fadeup .8s cubic-bezier(.2,.7,.2,1) var(--d) both}
+.card.play .ln{animation:draw 1s cubic-bezier(.6,0,.2,1) var(--d) both}
+.card.play .im{animation:wipe 1.3s cubic-bezier(.65,0,.2,1) var(--d) both}
+.card.play .im img{animation:zoom 2.6s cubic-bezier(.2,.7,.2,1) var(--d) both}
+.card.done .m>span,.card.done .r,.card.done .ln{transform:none;opacity:1} .card.done .im{clip-path:none}
+@media (prefers-reduced-motion:reduce){.card .m>span,.card .r,.card .ln{transform:none;opacity:1} .card .im{clip-path:none}}
 '''
 
 # Opening: the sealed card splits into a gatefold and opens onto the cardstock, then the line rises
@@ -46,33 +64,49 @@ $S .house{{position:absolute;inset:0;--h:url(__HOUSE__);background:var(--h) 0 -7
 $S .wm{{position:absolute;top:116px;left:688px;width:212px}}
 $S .txt{{position:absolute;left:60px;right:60px;bottom:42px}}
 $S .h{{font-size:38px;line-height:1.08;letter-spacing:-.01em;font-weight:800;text-transform:uppercase}}
-$S .sub{{margin-top:24px;font-size:21px;line-height:1.42;font-weight:500;color:{INK2}}}
+$S .sub{{margin-top:32px;font-size:21px;line-height:1.42;font-weight:500;color:{INK2}}}
 $S .caps{{margin-top:20px;font-size:21px;letter-spacing:.12em;font-weight:800;text-transform:uppercase}}
-$S .rule{{margin-top:34px;height:1px;background:{RULE};transform-origin:left}}
+$S .rule{{margin-top:34px;background:{RULE}}}
 $S .grid{{padding-top:16px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}}
 $S .n{{font-size:34px;font-weight:800;line-height:1}} $S .n span{{font-size:16px;font-weight:700}}
 $S .l{{margin-top:6px;font-size:13px;letter-spacing:.14em;color:{INK2};font-weight:600;text-transform:uppercase}}
-$S .m{{display:block;overflow:hidden}} $S .m>span{{display:block;transform:translateY(105%)}}
-$S .r{{opacity:0;transform:translateY(14px)}}
 $S.play .house{{animation:settle 2.2s cubic-bezier(.2,.7,.2,1) both}}
 $S.play .wm{{animation:fadeup 1.2s cubic-bezier(.2,.7,.2,1) .9s both}}
-$S.play .m>span{{animation:rise .9s cubic-bezier(.2,.75,.15,1) var(--d) both}}
-$S.play .r{{animation:fadeup .8s cubic-bezier(.2,.7,.2,1) var(--d) both}}
-$S.play .rule{{animation:draw 1s cubic-bezier(.6,0,.2,1) 3.25s both}}
-$S.done .m>span,$S.done .r{{transform:none;opacity:1}}
-@media (prefers-reduced-motion:reduce){{$S .m>span,$S .r{{transform:none;opacity:1}}}}
 ''', html='''<div class="house"></div>
 <img class="wm" src="__WORD__" alt="WARM SPRINGS HOUSE">
 <div class="txt">
 <div class="h"><span class="m"><span style="--d:1.95s">A residential test bed</span></span><span class="m"><span style="--d:2.1s">for Optimus + Cybercab.</span></span></div>
 <div class="sub"><span class="m"><span style="--d:2.45s">A modest 1906 three-bedroom home on a historic tree-lined avenue,</span></span><span class="m"><span style="--d:2.57s">heated by Boise&#8217;s geothermal springs.</span></span></div>
 <div class="caps m"><span style="--d:2.95s">Available now. Ready to host.</span></div>
-<div class="rule"></div>
+<div class="rule ln" style="--d:3.25s"></div>
 <div class="grid">'''+dt+'''</div>
 </div>''',
 assets={'__HOUSE__':('../tesla-v2/card1/house.webp','image/webp'),'__WORD__':('../tesla-v2/card1/wordmark-gray.png','image/png')})
 
-CARDS=[OPENING,CARD1]
+# Card 2: Optimus room and Cybercab wipe in, then the text line by line
+CARD2=dict(id='card2', label='Card 2', dur=4.4, css=f"""
+$S{{background:#f4f4f3 url(__PAPER__) center/941px 1672px no-repeat}}
+$S .wrap{{position:absolute;left:60px;right:60px;top:60px;bottom:76px;display:flex;flex-direction:column;gap:38px}}
+$S .pics{{flex:1;min-height:0;display:flex;flex-direction:column;gap:17px}}
+$S .pics .im:first-child{{flex:1;min-height:0}} $S .pics .im:first-child img{{object-position:100% 50%}}
+$S .pics .im:last-child{{height:400px;flex:none}}
+$S .h{{font-size:50px;line-height:1.04;letter-spacing:-.01em;font-weight:800;text-transform:uppercase}}
+$S .lede{{margin-top:20px;font-size:28px;line-height:1.36;font-weight:500;color:{INK2}}}
+$S .rule{{margin-top:24px;background:{RULE}}}
+$S .p{{padding-top:20px;font-size:24px;line-height:1.45;font-weight:500}}
+$S .close{{margin-top:12px;font-size:24px;line-height:1.45;font-weight:700}}
+""", html="""<div class="wrap">
+<div class="pics"><div class="im" style="--d:.2s"><img src="__ROOM__" alt="Optimus in the living room"></div><div class="im" style="--d:.65s"><img src="__CAB__" alt="Cybercab at the house"></div></div>
+<div>
+<div class="h"><span class="m"><span style="--d:1.45s">Tesla engineers</span></span><span class="m"><span style="--d:1.6s">in residence</span></span></div>
+<div class="lede"><span class="m"><span style="--d:1.95s">Test Optimus where it&#8217;s hardest: a 1906 home</span></span><span class="m"><span style="--d:2.07s">with stairs, narrow doorways and daily life.</span></span></div>
+<div class="rule ln" style="--d:2.4s"></div>
+<div class="p"><span class="m"><span style="--d:2.7s">One or more Tesla engineers live and work alongside</span></span><span class="m"><span style="--d:2.82s">Optimus and Cybercab, discreetly, minutes from downtown,</span></span><span class="m"><span style="--d:2.94s">the airport and Boise&#8217;s largest employers.</span></span></div>
+<div class="close"><span class="m"><span style="--d:3.3s">At no cost to Tesla.</span></span><span class="m"><span style="--d:3.42s">The environment is under Tesla&#8217;s control.</span></span></div>
+</div></div>""",
+assets={'__PAPER__':('paper-gray.webp','image/webp'),'__ROOM__':('../tesla-v2/room-optimus.webp','image/webp'),'__CAB__':('../tesla-v2/cybercab.webp','image/webp')})
+
+CARDS=[OPENING,CARD1,CARD2]
 
 # Shared card box. The card is printed stock, so its colours stay fixed in both themes.
 CARD_BASE=f'''.card{{position:relative;width:941px;height:1672px;overflow:hidden;font-family:Montserrat,Arial,sans-serif;color:{INK};cursor:pointer}}

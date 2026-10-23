@@ -1,6 +1,6 @@
 # Tesla animated cards: python3 build.py (run from mockups/tesla-anim)
 # Writes one standalone file per card (opens in any browser) and tesla-cards.html, the viewer page published as an Artifact.
-from cards import CARDS, KEYFRAMES, CARD_BASE, FONTS, card_css_assets, card_html
+from cards import CARDS, KEYFRAMES, UTIL, CARD_BASE, FONTS, card_css_assets, card_html
 
 STANDALONE='''<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -13,7 +13,7 @@ html,body{{margin:0;height:100%;background:var(--bg)}}
 body{{display:grid;place-items:center;overflow:hidden}}
 .stage{{width:941px;height:1672px;transform-origin:center;flex:none}}
 .card{{box-shadow:0 2px 4px rgba(0,0,0,.08),0 24px 60px rgba(0,0,0,.16)}}
-{base}{keys}{css}
+{base}{keys}{util}{css}
 </style></head><body>
 <div class="stage" id="stage">{html}</div>
 <script>
@@ -24,9 +24,9 @@ function play(){{card.classList.remove('play','done');void card.offsetWidth;card
 card.addEventListener('click',play);
 if(location.hash==='#end'){{card.classList.add('done')}}else{{document.fonts.ready.then(play)}}
 </script></body></html>'''
-names={'opening':'tesla-card0-opening.html','card1':'tesla-card1.html'}
+names={'opening':'tesla-card0-opening.html','card1':'tesla-card1.html','card2':'tesla-card2.html'}
 for i,c in enumerate(CARDS):
-    out=STANDALONE.format(label=c['label'],fonts=FONTS,base=CARD_BASE,keys=KEYFRAMES,css=card_css_assets(c,i),html=card_html(c,i))
+    out=STANDALONE.format(label=c['label'],fonts=FONTS,base=CARD_BASE,keys=KEYFRAMES,util=UTIL,css=card_css_assets(c,i),html=card_html(c,i))
     open(names[c['id']],'w').write(out); print(names[c['id']],len(out)//1024,'KB')
 
 # Viewer page. The Artifact publish wraps it in its own doctype/head/body, so it starts at <title>.
@@ -68,7 +68,7 @@ button:focus-visible{{outline:2px solid var(--fg);outline-offset:2px}}
 .card{{box-shadow:var(--shadow)}}
 .hint{{text-align:center;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);padding-block:8px 12px}}
 @media (prefers-reduced-motion:reduce){{.prog i.run,.stage:not([hidden]){{animation:none}} .prog i.run{{transform:none}}}}
-{CARD_BASE}{KEYFRAMES}{css}
+{CARD_BASE}{KEYFRAMES}{UTIL}{css}
 </style>
 <header class="bar">
 <div class="brand"><b>Warm Springs House</b><span>Tesla</span></div>
