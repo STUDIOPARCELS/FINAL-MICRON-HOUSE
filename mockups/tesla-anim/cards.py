@@ -143,26 +143,34 @@ MARK='''<svg class="mk" viewBox="71 71 882 882" role="img" aria-label="Warm Spri
 <g class="k" style="--d:1.35s;--k:translateX(14%)"><circle cx="717" cy="512" r="235" fill="#353942" opacity=".93"/></g>
 <g class="k" style="--d:1.9s;--k:scale(.2) rotate(-45deg)"><path fill="#fff" d="M512 195 A325 325 0 0 0 808 512 A325 325 0 0 0 512 828 A325 325 0 0 0 215 512 A325 325 0 0 0 512 195 Z"/></g>
 </svg>'''
-CARD4=dict(id='card4', label='Card 4', dur=4.9, css=f"""
+CARD4=dict(id='card4', label='Card 4', dur=5.3, css=f"""
 $S{{background:#f4f4f3 url(__PAPER__) center/941px 1672px no-repeat}}
 $S .wrap{{position:absolute;left:76px;right:76px;top:124px;bottom:112px;display:flex;flex-direction:column;justify-content:space-between;text-align:center}}
 $S .top{{font-size:22px;letter-spacing:.24em;font-weight:800;text-transform:uppercase}}
-$S .mk{{display:block;width:470px;height:470px;margin:0 auto;overflow:visible}}
+$S .mk{{display:block;width:330px;height:330px;margin:0 auto;overflow:visible}}
 $S .mk .k{{transform-box:fill-box;transform-origin:center;opacity:0}}
 $S.play .mk .k{{animation:kin 1.1s cubic-bezier(.2,.7,.2,1) var(--d) both}}
 $S.done .mk .k{{opacity:1}}
-$S .h{{font-size:38px;line-height:1.08;letter-spacing:.02em;font-weight:800;text-transform:uppercase}}
-$S .s{{margin:30px auto 0;max-width:720px;font-family:Newsreader,Georgia,serif;font-size:37px;line-height:1.36;font-weight:400;color:{INK2}}}
-$S .s2{{margin-top:28px;color:{INK}}}
+$S .hero{{font-family:Newsreader,Georgia,serif;font-size:46px;line-height:1.42;font-weight:400;color:{INK2}}}
+$S .hero b{{font-style:italic;font-weight:500}}
+$S .rule{{background:{RULE}}}
+$S .row{{padding:30px 46px 0;display:flex;justify-content:space-between;font-size:22px;letter-spacing:.2em;font-weight:800;text-transform:uppercase}}
+$S .blk{{padding-top:44px}}
+$S .h{{font-size:32px;line-height:1.15;letter-spacing:.06em;font-weight:800;text-transform:uppercase}}
+$S .p{{margin-top:18px;font-size:21px;line-height:1.55;font-weight:500;color:{INK2}}}
+$S .p.b{{margin-top:12px;font-weight:700;color:{INK}}}
 @media (prefers-reduced-motion:reduce){{$S .mk .k{{opacity:1}}}}
 """, html="""<div class="wrap">
 <div class="top r" style="--d:.2s">Warm Springs House</div>
-"""+MARK+"""
-<div>
-<div class="h"><span class="m"><span style="--d:2.7s">A collaborative blueprint</span></span></div>
-<div class="s"><span class="m"><span style="--d:3.0s">When Tesla chooses, host Boise&#8217;s government,</span></span><span class="m"><span style="--d:3.12s">health care, education and business leaders</span></span><span class="m"><span style="--d:3.24s">alongside the founding partner, and show</span></span><span class="m"><span style="--d:3.36s">them autonomous technology firsthand.</span></span></div>
-<div class="s s2"><span class="m"><span style="--d:3.7s">Together, shape how autonomous technology</span></span><span class="m"><span style="--d:3.82s">enters daily life and create a playbook</span></span><span class="m"><span style="--d:3.94s">other cities can adopt.</span></span></div>
-</div></div>""",
+"""+MARK.replace('style="--d:1.9s','style="--d:1.75s')+"""
+<div class="hero"><span class="m"><span style="--d:2.3s">Without <b style="color:#353942">vision</b>, there&#8217;s no <b style="color:#353942">velocity</b>.</span></span><span class="m"><span style="--d:2.46s">Without <b style="color:#2c0f38">memory</b>, there&#8217;s no <b style="color:#2c0f38">meaning</b>.</span></span><span class="m"><span style="--d:2.62s">Without <b style="color:#00782a">place</b>, there&#8217;s no <b style="color:#00782a">perspective</b>.</span></span></div>
+<div><div class="rule ln" style="--d:2.95s"></div><div class="row"><div class="r" style="--d:3.1s;color:#353942">Vision</div><div class="r" style="--d:3.22s;color:#2c0f38">Memory</div><div class="r" style="--d:3.34s;color:#00782a">Place</div></div></div>
+<div><div class="rule ln" style="--d:3.5s"></div><div class="blk">
+<div class="h"><span class="m"><span style="--d:3.65s">A collaborative blueprint</span></span></div>
+<div class="p"><span class="m"><span style="--d:3.9s">When Tesla chooses, host Boise&#8217;s government, health care,</span></span><span class="m"><span style="--d:4.0s">education and business leaders alongside the founding partner,</span></span><span class="m"><span style="--d:4.1s">and show them autonomous technology firsthand.</span></span></div>
+<div class="p b"><span class="m"><span style="--d:4.3s">Together, shape how autonomous technology enters daily life</span></span><span class="m"><span style="--d:4.4s">and create a playbook other cities can adopt.</span></span></div>
+</div></div>
+</div>""",
 assets={'__PAPER__':('paper-gray.webp','image/webp')})
 
 CARDS=[OPENING,CARD1,CARD2,CARD3,CARD4]
@@ -170,7 +178,7 @@ CARDS=[OPENING,CARD1,CARD2,CARD3,CARD4]
 # Shared card box. The card is printed stock, so its colours stay fixed in both themes.
 CARD_BASE=f'''.card{{position:relative;width:941px;height:1672px;overflow:hidden;font-family:Montserrat,Arial,sans-serif;color:{INK};cursor:pointer}}
 @media (prefers-reduced-motion:reduce){{.card *{{animation:none!important}}}}'''
-FONTS='<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap" rel="stylesheet">'
+FONTS='<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">'
 
 def card_css(c,i):
     return c['css'].replace('$S',f'#c{i}')
