@@ -100,11 +100,11 @@ $S .sub.a{{margin-top:32px}} $S .sub.b{{padding-top:22px}}
 <div class="pics"><div class="im" style="--d:.2s"><img src="__ROOM__" alt="Optimus in the living room"></div><div class="im" style="--d:.65s"><img src="__CAB__" alt="Cybercab at the house"></div></div>
 <div>
 <div class="h"><span class="m"><span style="--d:1.45s">Tesla engineers</span></span><span class="m"><span style="--d:1.6s">in residence</span></span></div>
-<div class="sub a"><span class="m"><span style="--d:1.95s">A residential test bed, grounding Optimus and Cybercab</span></span><span class="m"><span style="--d:2.07s">in a historic home.</span></span></div>
-<div class="caps m"><span style="--d:2.4s">At no cost to Tesla.</span></div>
-<div class="rule ln" style="--d:2.7s"></div>
-<div class="sub b"><span class="m"><span style="--d:3.0s">One or more Tesla engineers live and work alongside Optimus and</span></span><span class="m"><span style="--d:3.12s">Cybercab, readying them for service, security and mobility for the</span></span><span class="m"><span style="--d:3.24s"><em>first autonomous corporate residence + entertainment hub.</em></span></span></div>
-<div class="caps m" style="margin-top:22px"><span style="--d:3.6s">Private, discreet and secure.</span></div>
+<div class="sub a"><span class="m"><span style="--d:1.95s">One or more Tesla engineers live and work alongside Optimus and</span></span><span class="m"><span style="--d:2.07s">Cybercab, readying them for service, security and mobility for the</span></span><span class="m"><span style="--d:2.19s"><em>first autonomous corporate residence + entertainment hub.</em></span></span></div>
+<div class="caps m"><span style="--d:2.55s">At no cost to Tesla.</span></div>
+<div class="rule ln" style="--d:2.85s"></div>
+<div class="sub b"><span class="m"><span style="--d:3.15s">A residential test bed, grounding Optimus and Cybercab</span></span><span class="m"><span style="--d:3.27s">in a historic home minutes from downtown.</span></span></div>
+<div class="caps m" style="margin-top:22px"><span style="--d:3.6s">Private, quiet and discreet.</span></div>
 </div></div>""",
 assets={'__PAPER__':('paper-gray.webp','image/webp'),'__ROOM__':('../tesla-v2/room-optimus.webp','image/webp'),'__CAB__':('../tesla-v2/cybercab.webp','image/webp')})
 
