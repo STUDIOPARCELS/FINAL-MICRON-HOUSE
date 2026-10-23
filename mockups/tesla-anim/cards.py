@@ -202,7 +202,39 @@ $S .inw{{width:260px;flex:none}} $S .inw img{{position:absolute;inset:0;object-p
 </div></div>""",
 assets={'__PAPER__':('paper-gray.webp','image/webp'),'__HOUSE__':('house-photo.webp','image/webp'),'__LISA__':('lisa-bw.webp','image/webp')})
 
-CARDS=[OPENING,CARD1,CARD2,CARD3,CARD4,CARD5]
+# Card 6: the Cybercab photo wipes in, the call to action rises, then the contact block and the logo assemble
+CARD6=dict(id="card6", label="Card 6", dur=4.6, css=f"""
+$S{{background:#f4f4f3 url(__PAPER__) center/941px 1672px no-repeat}}
+$S .wrap{{position:absolute;left:60px;right:60px;top:60px;bottom:76px;display:flex;flex-direction:column;gap:52px}}
+$S .wrap>.im{{flex:1;min-height:0}} $S .wrap>.im img{{object-position:55% 64%}}
+$S .cta{{font-size:104px;line-height:1.0;letter-spacing:-.015em;font-weight:800;text-transform:uppercase}}
+$S .sub{{margin-top:36px;font-size:28px;line-height:1.42;font-weight:500;color:{INK2}}}
+$S .rule{{margin:64px 0 60px;background:{RULE}}}
+$S .ct{{display:grid;grid-template-columns:1fr auto;align-items:center;column-gap:40px}}
+$S .nm{{font-size:38px;line-height:1.1;letter-spacing:.08em;font-weight:800;text-transform:uppercase}}
+$S .dt{{margin-top:18px;font-size:26px;line-height:1.55;font-weight:500}}
+$S .dt a{{color:inherit;text-decoration:underline;text-decoration-color:{RULE};text-decoration-thickness:1px;text-underline-offset:5px}}
+$S .pb{{margin-top:26px;font-size:15px;letter-spacing:.3em;font-weight:700;text-transform:uppercase;color:{INK2}}}
+$S .mk{{display:block;width:280px;height:280px;overflow:visible}}
+$S .mk .k{{transform-box:fill-box;transform-origin:center;opacity:0}}
+$S.play .mk .k{{animation:kin 1.1s cubic-bezier(.2,.7,.2,1) var(--d) both}}
+$S.done .mk .k{{opacity:1}}
+@media (prefers-reduced-motion:reduce){{$S .mk .k{{opacity:1}}}}
+""", html="""<div class="wrap">
+<div class="im" style="--d:.2s"><img src="__CAB__" alt="Cybercab outside Warm Springs House at dusk"></div>
+<div>
+<div class="cta"><span class="m"><span style="--d:1.3s">See it</span></span><span class="m"><span style="--d:1.48s">in person.</span></span></div>
+<div class="sub"><span class="m"><span style="--d:1.85s">Warm Springs House is ready now for Tesla engineers,</span></span><span class="m"><span style="--d:1.97s">Optimus and Cybercab.</span></span></div>
+<div class="rule ln" style="--d:2.3s"></div>
+<div class="ct"><div>
+<div class="nm"><span class="m"><span style="--d:2.55s">Lisa Wood</span></span></div>
+<div class="dt"><span class="m"><span style="--d:2.75s">208 720 2433</span></span><span class="m"><span style="--d:2.85s"><a href="mailto:lisa@lisawoodstudio.com">lisa@lisawoodstudio.com</a></span></span><span class="m"><span style="--d:2.95s"><a href="https://warmspringshouse.com/" target="_blank" rel="noopener">warmspringshouse.com</a></span></span></div>
+<div class="pb"><span class="m"><span style="--d:3.1s">Presented by Lisa Wood Studio</span></span></div></div>
+"""+MARK.replace('--d:.5s','--d:2.6s').replace('--d:.65s','--d:2.75s').replace('--d:1.2s','--d:3.0s').replace('--d:1.35s','--d:3.15s').replace('--d:1.9s','--d:3.45s')+"""</div>
+</div></div>""",
+assets={'__PAPER__':('paper-gray.webp','image/webp'),'__CAB__':('../tesla-v2/cybercab.webp','image/webp')})
+
+CARDS=[OPENING,CARD1,CARD2,CARD3,CARD4,CARD5,CARD6]
 
 # Shared card box. The card is printed stock, so its colours stay fixed in both themes.
 CARD_BASE=f'''.card{{position:relative;width:941px;height:1672px;overflow:hidden;font-family:Montserrat,Arial,sans-serif;color:{INK};cursor:pointer}}
