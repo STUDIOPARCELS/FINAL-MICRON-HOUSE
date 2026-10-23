@@ -179,7 +179,7 @@ $S .facts span{{display:block;margin-top:9px;font-size:12px;letter-spacing:.1em;
 assets={'__PAPER__':('paper-gray.webp','image/webp')})
 
 # Card 5: both photos at their true proportions (no cropping); title, facts, line and the quote row spaced evenly
-CARD5=dict(id="card5", label="Card 5", dur=4.2, css=f"""
+CARD5=dict(id="card5", label="Card 5", dur=4.3, css=f"""
 $S{{background:#f4f4f3 url(__PAPER__) center/941px 1672px no-repeat}}
 $S .wrap{{position:absolute;left:60px;right:60px;top:60px;bottom:60px;display:flex;flex-direction:column;gap:60px}}
 $S .wrap>.im{{flex:none;width:821px;height:586px}}
@@ -189,6 +189,7 @@ $S .rule{{background:{RULE}}}
 $S .row{{display:flex;gap:48px;align-items:center;margin-top:-60px;padding-top:60px}}
 $S .s{{font-family:Newsreader,Georgia,serif;font-style:italic;font-size:30px;line-height:1.36;color:{INK}}}
 $S .cl{{margin-top:34px;font-size:21px;line-height:1.45;letter-spacing:.11em;font-weight:800;text-transform:uppercase}}
+$S .qp{{display:block;height:22px}}
 $S .inw{{width:var(--p,417px);height:var(--p,417px);flex:none}} $S .inw img{{position:absolute;inset:0}}
 """, html="""<div class="wrap">
 <div class="im" style="--d:.2s"><img src="__HOUSE__" alt="Warm Springs House in autumn"></div>
@@ -196,7 +197,7 @@ $S .inw{{width:var(--p,417px);height:var(--p,417px);flex:none}} $S .inw img{{pos
 <div class="f"><span class="m"><span style="--d:1.65s">Idaho since 1992.</span></span><span class="m"><span style="--d:1.75s">A career in high tech since 1995.</span></span><span class="m"><span style="--d:1.85s">Owner of Warm Springs House since 2000.</span></span></div>
 <div class="cl"><span class="m"><span style="--d:2.0s">A 1906 family home, opening its doors to the future &#8212;</span></span><span class="m"><span style="--d:2.12s">ready to welcome Optimus and Cybercab.</span></span></div></div>
 <div class="rule ln" style="--d:2.35s"></div>
-<div class="row"><div style="flex:1"><div class="s"><span class="m"><span style="--d:2.4s">&#8220;I&#8217;m in the demographic most</span></span><span class="m"><span style="--d:2.52s">wary of robots and self-driving</span></span><span class="m"><span style="--d:2.64s">cars, yet I can&#8217;t wait for them.&#8221;</span></span></div></div>
+<div class="row"><div style="flex:1"><div class="s"><span class="m"><span style="--d:2.4s">&#8220;I&#8217;m in the demographic most</span></span><span class="m"><span style="--d:2.52s">wary of robots and self-driving</span></span><span class="m"><span style="--d:2.64s">cars, yet I can&#8217;t wait for them.</span></span><span class="qp"></span><span class="m"><span style="--d:2.95s">I&#8217;ve seen how fragile care can</span></span><span class="m"><span style="--d:3.07s">be for the people I love.</span></span><span class="m"><span style="--d:3.19s">I want a robot in the loop.&#8221;</span></span></div></div>
 <div class="im inw" style="--d:2.2s"><img src="__LISA__" alt="Lisa Wood"></div></div>
 </div>""",
 assets={'__PAPER__':('paper-gray.webp','image/webp'),'__HOUSE__':('house-photo.webp','image/webp'),'__LISA__':('lisa-bw.webp','image/webp')})
