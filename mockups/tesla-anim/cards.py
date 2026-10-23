@@ -126,11 +126,11 @@ $S .uses{{padding-top:26px;color:{PLUM};display:grid;grid-template-columns:repea
 <div class="im" style="--d:.2s"><img src="__DINING__" alt="The dining room through the French doors"></div>
 <div>
 <div class="lab r" style="--d:1.2s">Proof of concept</div>
-<div class="h"><span class="m"><span style="--d:1.4s">The first autonomous</span></span><span class="m"><span style="--d:1.52s">corporate residence</span></span><span class="m"><span style="--d:1.64s">+ entertainment hub.</span></span></div>
+<div class="h"><span class="m"><span style="--d:1.4s">The first autonomous corporate</span></span><span class="m"><span style="--d:1.55s">residence + entertainment hub.</span></span></div>
 <div class="hub"><span class="m"><span style="--d:2.0s"><em>A new corporate asset for the autonomous age.</em></span></span></div>
 <div class="sub a"><span class="m"><span style="--d:2.3s">When Tesla is ready, a leading Boise corporation joins as founding</span></span><span class="m"><span style="--d:2.42s">partner to prove the concept, with Optimus and Cybercab providing</span></span><span class="m"><span style="--d:2.54s">service, security and mobility.</span></span></div>
 <div class="rule ln" style="--d:2.9s"></div>
-<div class="uses"><div class="r" style="--d:3.20s">Board hosting</div><div class="r" style="--d:3.32s">Executive off-sites</div><div class="r" style="--d:3.44s">Recruiting</div><div class="r" style="--d:3.56s">Relocation</div><div class="r" style="--d:3.68s">Employee incentives</div><div class="r" style="--d:3.80s">Corporate events</div></div>
+<div class="uses"><div class="r" style="--d:3.20s">Entertaining</div><div class="r" style="--d:3.32s">Executive off-sites</div><div class="r" style="--d:3.44s">Recruiting</div><div class="r" style="--d:3.56s">Relocation</div><div class="r" style="--d:3.68s">Employee incentives</div><div class="r" style="--d:3.80s">Hospital stays</div></div>
 </div></div>""",
 assets={'__PAPER__':('paper-gray.webp','image/webp'),'__DINING__':('../tesla-v2/dining.6.webp','image/webp')})
 
