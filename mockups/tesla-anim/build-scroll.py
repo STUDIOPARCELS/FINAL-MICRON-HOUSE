@@ -28,7 +28,7 @@ body{{margin:0;background:var(--bg);color:var(--fg);overflow:hidden}}
 .dot:focus-visible{{outline:2px solid var(--fg);outline-offset:3px}}
 .hint{{position:fixed;left:0;right:0;bottom:max(14px,env(safe-area-inset-bottom,0px));text-align:center;font:600 10px/1 Montserrat,Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);transition:opacity .6s;pointer-events:none}}
 .hint.off{{opacity:0}}
-@media (max-width:520px){{.rail{{gap:10px}} .dot{{width:8px;height:8px}}}}
+@media (max-width:699px){{.rail{{display:none}}}}
 {CARD_BASE}{KEYFRAMES}{UTIL}{css}
 </style>
 <div class="scroller" id="scroller">{sections}</div>
@@ -36,7 +36,8 @@ body{{margin:0;background:var(--bg);color:var(--fg);overflow:hidden}}
 <div class="hint" id="hint">Scroll</div>
 <script>
 const sc=document.getElementById('scroller'),secs=[...sc.querySelectorAll('.sec')],cards=secs.map(s=>s.querySelector('.card')),dots=[...document.querySelectorAll('.dot')],hint=document.getElementById('hint');
-function fit(){{const w=sc.clientWidth,h=sc.clientHeight;const s=Math.max(.05,Math.min((w-56)/941,(h-32)/1672));secs.forEach(x=>x.style.setProperty('--s',s))}}
+// Phones: the card fills the screen. Larger screens: a small invitation, about three-quarters of the window height, never taller than 760px.
+function fit(){{const w=sc.clientWidth,h=sc.clientHeight;const s=w<700?Math.min((w-32)/941,(h-24)/1672):Math.min(h*.76,760)/1672;secs.forEach(x=>x.style.setProperty('--s',Math.max(.05,s)))}}
 addEventListener('resize',fit);fit();
 function play(c){{c.classList.remove('play');void c.offsetWidth;c.classList.add('play')}}
 function mark(i){{dots.forEach((d,j)=>d.setAttribute('aria-current',String(j===i)));if(i>0)hint.classList.add('off')}}
