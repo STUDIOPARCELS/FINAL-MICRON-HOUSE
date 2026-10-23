@@ -13,7 +13,7 @@ Non-binding proposal for discussion. Items marked [TBD] are open.
 | **Control** | The environment is under Micron's control during Micron's use. |
 | **Collaboration** | Micron hosts Boise's government, health care, education and business leaders, with Tesla, and helps shape a playbook other cities can adopt. |
 | **Hospitality and upkeep** | [TBD] |
-| **Confidentiality** | Mutual NDA before any site visit. [TBD] |
+| **Confidentiality** | Mutual NDA before any site visit: [TBD]. |
 | **Insurance and liability** | [TBD] |
 | **Exit** | [TBD] |
 | **Next step** | A 20-minute call or site visit. |

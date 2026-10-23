@@ -14,9 +14,9 @@ Non-binding proposal for discussion. Items marked [TBD] are open.
 | **Founding partner** | A leading Boise corporation, proposed on a multi-year lease with founding partnership and naming rights. Not yet confirmed. |
 | **Collaboration** | When Tesla chooses: hosted visits with Boise's government, health care, education and business leaders, and a playbook other cities can adopt. |
 | **Publicity** | None without Tesla's written approval. |
-| **Confidentiality** | Mutual NDA before any site visit. [TBD] |
+| **Confidentiality** | Mutual NDA before any site visit: [TBD]. |
 | **Insurance and liability** | [TBD] |
-| **Exit** | Either party, on [TBD] days' notice. |
+| **Exit** | Either party, on notice. Notice period: [TBD]. |
 | **Next step** | A 20-minute call or site visit. |
 
 Lisa Wood · 208 720 2433 · lisa@lisawoodstudio.com · warmspringshouse.com
