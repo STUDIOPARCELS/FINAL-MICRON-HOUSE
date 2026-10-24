@@ -6,6 +6,9 @@ from cards import CARDS, KEYFRAMES, UTIL, CARD_BASE, FONTS, SPLIT_JS, card_css_a
 sections=''.join(f'<section class="sec" id="{c["id"]}" aria-label="{c["label"]}"><div class="stage">{card_html(c,i)}</div></section>' for i,c in enumerate(CARDS))
 dots=''.join(f'<button class="dot" type="button" data-i="{i}" aria-label="Go to {c["label"]}"></button>' for i,c in enumerate(CARDS))
 css=''.join(card_css_assets(c,i) for i,c in enumerate(CARDS))
+# Seconds each card stays up after its reveal before the page moves on by itself (same reading time as the video)
+READ={'opening':2.2,'card1':3.5,'card2':4.5,'card3':4.5,'card4':5.8,'card5':4.2,'card6':0}
+durs=','.join(str(c['dur']) for c in CARDS); reads=','.join(str(READ[c['id']]) for c in CARDS)
 PAGE=f'''<title>Prepared for Tesla</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 {FONTS}
@@ -26,30 +29,45 @@ body{{margin:0;background:var(--bg);color:var(--fg);overflow:hidden}}
 .dot:hover{{transform:scale(1.3)}}
 .dot[aria-current="true"]{{background:var(--fg);transform:scale(1.25)}}
 .dot:focus-visible{{outline:2px solid var(--fg);outline-offset:3px}}
-.hint{{position:fixed;left:0;right:0;bottom:max(14px,env(safe-area-inset-bottom,0px));text-align:center;font:600 10px/1 Montserrat,Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);transition:opacity .6s;pointer-events:none}}
-.hint.off{{opacity:0}}
-@media (max-width:699px){{.rail{{display:none}} html body{{background:#f4f4f3}} .hint{{color:#7b7d81}} .card{{box-shadow:none}}}}
+/* Scroll cue: appears once the opening words are in; a short line with a light travelling down it */
+.cue{{position:fixed;left:50%;bottom:max(18px,env(safe-area-inset-bottom,0px));transform:translate(-50%,8px);display:flex;flex-direction:column;align-items:center;gap:10px;font:600 10px/1 Montserrat,Arial,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);opacity:0;transition:opacity .8s,transform .8s cubic-bezier(.2,.7,.2,1);pointer-events:none}}
+.cue.on{{opacity:1;transform:translate(-50%,0)}}
+.cue i{{position:relative;width:1px;height:30px;background:var(--dot);overflow:hidden}}
+.cue i::after{{content:"";position:absolute;left:0;top:0;width:1px;height:12px;background:var(--fg);animation:cue 1.8s cubic-bezier(.6,0,.3,1) infinite}}
+@keyframes cue{{from{{transform:translateY(-12px)}}to{{transform:translateY(30px)}}}}
+@media (prefers-reduced-motion:reduce){{.cue i::after{{animation:none;transform:translateY(9px)}}}}
+@media (max-width:699px){{.rail{{display:none}} html body{{background:#f4f4f3}} .cue{{color:#7b7d81}} .cue i{{background:#c9c9c6}} .cue i::after{{background:#393c41}} .cue{{bottom:11%}} .card{{box-shadow:none}}}}
 {CARD_BASE}{KEYFRAMES}{UTIL}{css}
 </style>
 <div class="scroller" id="scroller">{sections}</div>
 <nav class="rail" aria-label="Cards">{dots}</nav>
-<div class="hint" id="hint">Scroll</div>
+<div class="cue" id="cue" aria-hidden="true"><span id="cueText">Scroll</span><i></i></div>
 <script>{SPLIT_JS}
-const sc=document.getElementById('scroller'),secs=[...sc.querySelectorAll('.sec')],cards=secs.map(s=>s.querySelector('.card')),dots=[...document.querySelectorAll('.dot')],hint=document.getElementById('hint');
+const sc=document.getElementById('scroller'),secs=[...sc.querySelectorAll('.sec')],cards=secs.map(s=>s.querySelector('.card')),dots=[...document.querySelectorAll('.dot')],cue=document.getElementById('cue');
+const dur=[{durs}],read=[{reads}],still=matchMedia('(prefers-reduced-motion:reduce)').matches;
+if(matchMedia('(pointer:coarse)').matches)document.getElementById('cueText').textContent='Swipe up';
 // Phones: the card fills the screen edge to edge (as far as its proportions allow). Larger screens: about an inch (120px) of space above and below the card.
 function fit(){{const w=sc.clientWidth,h=sc.clientHeight;const s=w<700?Math.min(w/941,h/1672):Math.min((w-96)/941,(h-240)/1672);secs.forEach(x=>x.style.setProperty('--s',Math.max(.05,s)))}}
 addEventListener('resize',fit);fit();
 function play(c){{c.classList.remove('play');void c.offsetWidth;c.classList.add('play')}}
-function mark(i){{dots.forEach((d,j)=>d.setAttribute('aria-current',String(j===i)));if(i>0)hint.classList.add('off')}}
+function mark(i){{dots.forEach((d,j)=>d.setAttribute('aria-current',String(j===i)));if(i>0){{cueDone=true;cue.classList.remove('on')}}}}
+// Until the viewer touches, scrolls, clicks or presses a key, the page moves to the next card by itself once each card has been read.
+let auto=true,timer=null,cueTimer=null,cueDone=false;
+function stopAuto(){{auto=false;clearTimeout(timer)}}
+['wheel','touchstart','pointerdown','keydown'].forEach(t=>addEventListener(t,stopAuto,{{passive:true,capture:true}}));
+function go(i){{secs[i].scrollIntoView({{behavior:still?'auto':'smooth'}})}}
+function arrive(i){{clearTimeout(timer);clearTimeout(cueTimer);
+  if(i===0&&!cueDone)cueTimer=setTimeout(()=>cue.classList.add('on'),dur[0]*1000);
+  if(auto&&i<secs.length-1)timer=setTimeout(()=>{{if(auto)go(i+1)}},(dur[i]+read[i])*1000)}}
 const io=new IntersectionObserver(es=>{{es.forEach(e=>{{const i=secs.indexOf(e.target),c=cards[i];
-  if(e.intersectionRatio>=.6){{if(!c.classList.contains('play'))play(c);mark(i)}}
+  if(e.intersectionRatio>=.6){{if(!c.classList.contains('play'))play(c);mark(i);arrive(i)}}
   else if(e.intersectionRatio===0){{c.classList.remove('play')}}
 }})}},{{root:sc,threshold:[0,.6]}});
 (document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(()=>{{secs.forEach(s=>splitLines(s));secs.forEach(s=>io.observe(s))}});
-dots.forEach((d,i)=>d.addEventListener('click',()=>secs[i].scrollIntoView({{behavior:'smooth'}})));
+dots.forEach((d,i)=>d.addEventListener('click',()=>go(i)));
 cards.forEach(c=>c.addEventListener('click',e=>{{if(!e.target.closest('a'))play(c)}}));
 addEventListener('keydown',e=>{{if(e.metaKey||e.ctrlKey||e.altKey)return;const i=Math.round(sc.scrollTop/sc.clientHeight);
-  if(['ArrowDown','PageDown',' '].includes(e.key)&&i<secs.length-1){{e.preventDefault();secs[i+1].scrollIntoView({{behavior:'smooth'}})}}
-  else if(['ArrowUp','PageUp'].includes(e.key)&&i>0){{e.preventDefault();secs[i-1].scrollIntoView({{behavior:'smooth'}})}}}});
+  if(['ArrowDown','PageDown',' '].includes(e.key)&&i<secs.length-1){{e.preventDefault();go(i+1)}}
+  else if(['ArrowUp','PageUp'].includes(e.key)&&i>0){{e.preventDefault();go(i-1)}}}});
 </script>'''
 open('tesla-scroll.html','w').write(PAGE); print('tesla-scroll.html',len(PAGE)//1024,'KB')

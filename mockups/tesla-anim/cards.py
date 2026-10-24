@@ -15,6 +15,7 @@ KEYFRAMES='''
 @keyframes draw{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 @keyframes wipe{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(-40px)}}
 @keyframes zoom{from{transform:scale(1.08)}to{transform:none}}
+@keyframes type{from{opacity:0;transform:translateY(.3em);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
 @keyframes kin{from{opacity:0;transform:var(--k)}to{opacity:1;transform:none}}
 '''
 
@@ -36,7 +37,7 @@ UTIL='''
 '''
 
 # Opening: the sealed card splits into a gatefold and opens onto the cardstock, then the line rises
-OPENING=dict(id='opening', label='Opening', dur=4.0, hold=.9, css='''
+OPENING=dict(id='opening', label='Opening', dur=4.6, hold=.9, css='''
 $S{background:#f3f1ec;perspective:2600px}
 $S .under{position:absolute;inset:0;background:url(__OPEN__) center/941px 1672px no-repeat}
 $S .p{position:absolute;top:0;height:1672px;width:470.5px;background:url(__SEALED__) no-repeat;background-size:941px 1672px;backface-visibility:hidden}
@@ -44,17 +45,17 @@ $S .p::after{content:"";position:absolute;inset:0;background:linear-gradient(90d
 $S .lp{left:0;background-position:0 0;transform-origin:left center}
 $S .rp{left:470.5px;background-position:-470.5px 0;transform-origin:right center}
 $S .rp::after{background:linear-gradient(270deg,rgba(40,36,30,0),rgba(40,36,30,.28))}
-$S .line{position:absolute;left:104px;width:731px;top:810px;text-align:center;overflow:hidden}
-$S .line span{display:block;font-size:34px;letter-spacing:.14em;font-weight:800;text-transform:uppercase;transform:translateY(105%)}
+$S .line{position:absolute;left:104px;width:731px;top:810px;text-align:center;font-size:34px;letter-spacing:.14em;font-weight:800;text-transform:uppercase}
+$S .line i{display:inline-block;font-style:normal;opacity:0}
 $S.play .p{animation:in 1s ease-out both}
 $S.play .lp{animation:in 1s ease-out both,openL 1.6s cubic-bezier(.55,0,.25,1) 1.5s both}
 $S.play .rp{animation:in 1s ease-out both,openR 1.6s cubic-bezier(.55,0,.25,1) 1.5s both}
 $S.play .p::after{animation:shade 1.6s cubic-bezier(.55,0,.25,1) 1.5s both}
-$S.play .line span{animation:rise .8s cubic-bezier(.2,.75,.15,1) 3.05s both}
-$S.done .p{display:none} $S.done .line span{transform:none}
-@media (prefers-reduced-motion:reduce){$S .p{display:none} $S .line span{transform:none}}
+$S.play .line i{animation:type .7s cubic-bezier(.2,.7,.2,1) calc(3s + var(--i) * 55ms) both}
+$S.done .p{display:none} $S.done .line i{opacity:1}
+@media (prefers-reduced-motion:reduce){$S .p{display:none} $S .line i{opacity:1}}
 ''', html='''<div class="under"></div><div class="p lp"></div><div class="p rp"></div>
-<div class="line"><span>Prepared for Tesla</span></div>''',
+<div class="line" aria-label="Prepared for Tesla"><i style="--i:0">P</i><i style="--i:1">r</i><i style="--i:2">e</i><i style="--i:3">p</i><i style="--i:4">a</i><i style="--i:5">r</i><i style="--i:6">e</i><i style="--i:7">d</i> <i style="--i:9">f</i><i style="--i:10">o</i><i style="--i:11">r</i> <i style="--i:13">T</i><i style="--i:14">e</i><i style="--i:15">s</i><i style="--i:16">l</i><i style="--i:17">a</i></div>''',
 assets={'__SEALED__':('open-1-sealed.webp','image/webp'),'__OPEN__':('open-3-open.webp','image/webp')})
 
 # Card 1: house settles, wordmark, then the text line by line, rule draws, drive times one by one
@@ -128,7 +129,7 @@ $S .uses{{padding-top:26px;color:{PLUM};display:grid;grid-template-columns:repea
 <div class="im" style="--d:.2s"><img src="__DINING__" alt="The dining room through the French doors"></div>
 <div>
 <div class="lab r" style="--d:1.2s">Proof of concept</div>
-<div class="h" data-lines="1.4:.13">The first autonomous corporate residence + entertainment hub.</div>
+<div class="h" data-lines="1.4:.13">Autonomous<br>corporate residence +<br>entertainment hub.</div>
 <div class="hub" data-lines="2.0:.12"><em>A new corporate asset for the Autonomous Age.</em></div>
 <div class="sub a" data-lines="2.3:.12">When Tesla is ready, a leading Boise corporation joins as founding partner to prove the concept, enabled by Starlink, Optimus and Cybercab.</div>
 <div class="rule ln" style="--d:2.9s"></div>
@@ -146,10 +147,11 @@ MARK='''<svg class="mk" viewBox="71 71 882 882" role="img" aria-label="Warm Spri
 </svg>'''
 CARD4=dict(id='card4', label='Card 4', dur=6.4, hold=4.6, css=f"""
 $S{{background:#f4f4f3 url(__PAPER__) center/941px 1672px no-repeat}}
-$S .wrap{{position:absolute;left:76px;right:76px;top:124px;bottom:112px;display:flex;flex-direction:column;justify-content:space-between}}
+$S .wrap{{position:absolute;left:76px;right:76px;top:0;bottom:0;display:flex;flex-direction:column;justify-content:center}}
+$S .facts{{margin:72px 0 88px}}
 $S .half{{display:flex;flex-direction:column}}
 $S .top{{text-align:center;font-size:26px;letter-spacing:.22em;font-weight:800;text-transform:uppercase}}
-$S .mk{{display:block;width:210px;height:210px;margin:40px auto 0;overflow:visible}}
+$S .mk{{display:block;width:240px;height:240px;margin:40px auto 0;overflow:visible}}
 $S .mk .k{{transform-box:fill-box;transform-origin:center;opacity:0}}
 $S.play .mk .k{{animation:kin 1.1s cubic-bezier(.2,.7,.2,1) var(--d) both}}
 $S.done .mk .k{{opacity:1}}
@@ -159,7 +161,7 @@ $S .h{{font-size:32px;line-height:1.15;letter-spacing:.08em;font-weight:800;text
 $S .st{{margin-top:14px;font-family:Newsreader,Georgia,serif;font-size:35px;line-height:1.3;color:{INK}}} $S .st em{{font-style:italic}}
 $S .it{{margin:30px 0 8px;font-size:26px;line-height:1.4;font-weight:600;color:{INK2}}}
 $S .rule{{background:{RULE}}}
-$S .cells{{display:grid;grid-template-columns:136px 1fr;align-items:baseline;padding:14px 0}}
+$S .cells{{display:grid;grid-template-columns:136px 1fr;align-items:baseline;padding:22px 0}}
 $S .vb{{font-size:22px;letter-spacing:.14em;font-weight:800;text-transform:uppercase;color:{INK}}}
 $S .t{{font-size:28px;line-height:1.36;font-weight:500;color:{INK2}}}
 $S .facts{{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}}
@@ -182,7 +184,8 @@ assets={'__PAPER__':('paper-gray.webp','image/webp')})
 # Card 5: house with its caption, then name and facts, then the quote beside the portrait; both photos uncropped, even spacing
 CARD5=dict(id="card5", label="Card 5", dur=5.1, css=f"""
 $S{{background:#f4f4f3 url(__PAPER__) center/941px 1672px no-repeat}}
-$S .wrap{{position:absolute;left:60px;right:60px;top:60px;bottom:60px;display:flex;flex-direction:column;justify-content:space-between}}
+$S .wrap{{position:absolute;left:60px;right:60px;top:60px;bottom:60px;display:flex;flex-direction:column}}
+$S .wrap>div:nth-child(2){{margin-top:52px}} $S .wrap>.rule,$S .wrap>.row{{margin-top:auto}}
 $S .hs{{width:821px;height:586px}}
 $S .b{{margin-top:22px;font-size:24px;line-height:1.45;letter-spacing:.09em;font-weight:800;text-transform:uppercase}}
 $S .h{{font-size:56px;line-height:1.06;letter-spacing:-.01em;font-weight:800;text-transform:uppercase}}
@@ -191,7 +194,7 @@ $S .rule{{background:{RULE}}}
 $S .row{{display:flex;gap:40px;align-items:center}}
 $S .s{{font-family:Newsreader,Georgia,serif;font-style:italic;font-size:34px;line-height:1.3;color:{INK}}}
 $S .s+.s{{margin-top:18px}}
-$S .inw{{width:330px;height:330px;flex:none}} $S .inw img{{position:absolute;inset:0}}
+$S .inw{{width:370px;height:370px;flex:none}} $S .inw img{{position:absolute;inset:0}}
 """, html="""<div class="wrap">
 <div><div class="im hs" style="--d:.2s"><img src="__HOUSE__" alt="Warm Springs House in autumn"></div>
 <div class="b" data-lines="1.05:.12">A 1906 family home, opening its doors to the future &#8212; ready to welcome Optimus and Cybercab.</div></div>
