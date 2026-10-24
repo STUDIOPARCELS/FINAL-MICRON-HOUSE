@@ -13,8 +13,8 @@ OPEN={'cold':"I'm Lisa Wood, owner of Warm Springs House in Boise. I'm writing t
 F='font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.55;color:#2b2d31'
 def body_html(kind,img_src):
     p=lambda t:f'<p style="margin:0 0 14px;{F}">{t}</p>'
-    return f'''<!doctype html><html><head><meta charset="utf-8"></head><body style="margin:0;padding:0;background:#ffffff">
-<div style="max-width:560px;padding:8px 4px">
+    return f'''<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head><body style="margin:0;padding:0;background:#ffffff">
+<div style="max-width:560px;padding:16px">
 {p('[Name],')}
 {p(html.escape(OPEN[kind]))}
 {p('<b>Offer:</b> '+html.escape(OFFER))}
