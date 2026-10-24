@@ -32,8 +32,9 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--focus);outline-offs
 button.done{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 /* email */
 .mbody .mtext{max-width:62ch}
-.gifin{margin:22px 0 18px}
-.gifin .gif{width:300px;max-width:100%}
+.gifin{margin:24px 0 20px;text-align:center}
+.gifin .gif{width:300px;max-width:100%;margin:0 auto;box-shadow:none;border-radius:0}
+.mbody .mtext{font-family:Georgia,Times,serif;font-size:16px;line-height:1.6}
 .jh{margin:6px 0 0;font-size:11px;letter-spacing:.2em;font-weight:700;text-transform:uppercase;color:var(--ink2)}
 .journey{list-style:none;margin:0;padding:4px 2px 18px;display:grid;grid-auto-flow:column;grid-auto-columns:minmax(220px,250px);gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:thin;overscroll-behavior-x:contain}
 .jstep{scroll-snap-align:start;display:flex;flex-direction:column;gap:12px}
@@ -181,7 +182,7 @@ code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background
     </div>
   </article>
   <div class="row"><button type="button" data-copy="subj">Copy subject</button><button type="button" data-copy="mailbody">Copy email</button></div>
-  <p class="note">The card in the email is animated: the seal opens to Reserved for Tesla (8 seconds, loops). Tapping it opens the live invitation.</p>
+  <p class="note">The card in the email floats on white with "Open the invitation" beneath it, and it is animated: the seal opens to Reserved for Tesla (8 seconds, loops). Tapping it opens the live invitation.</p>
 </section>
 
 <section class="sec" aria-labelledby="h-dm">
@@ -266,10 +267,10 @@ code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background
 
 // "Copy email" carries the whole email as rich text: the card comes from the live site (warmspringshouse.com/4tesla/invitation.gif),
 // linked to the invitation, with email-safe inline styles, so one paste into any mail program gives the finished message.
-const GIF='https://warmspringshouse.com/4tesla/invitation.gif',F='font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.55;color:#2b2d31';
+const GIF='https://warmspringshouse.com/4tesla/invitation.gif',F='font-family:Georgia,Times,serif;font-size:16px;line-height:1.6;color:#2b2d31';
 function mailHTML(el){const c=el.cloneNode(true);
-  c.querySelectorAll('p').forEach(p=>p.setAttribute('style',p.classList.contains('gifin')?'margin:22px 0 18px':'margin:0 0 14px;'+F));
-  c.querySelectorAll('img').forEach(i=>{i.setAttribute('src',GIF);i.setAttribute('width','300');i.removeAttribute('height');i.setAttribute('alt','Open the invitation: Reserved for Tesla');i.setAttribute('style','display:block;width:300px;max-width:100%;height:auto;border:0')});
+  c.querySelectorAll('p').forEach(p=>p.setAttribute('style',p.classList.contains('gifin')?'margin:24px 0 20px;text-align:center':'margin:0 0 14px;'+F));
+  c.querySelectorAll('img').forEach(i=>{i.setAttribute('src',GIF);i.setAttribute('width','300');i.removeAttribute('height');i.setAttribute('alt','Open the invitation: Reserved for Tesla');i.setAttribute('style','display:block;margin:0 auto;width:300px;max-width:100%;height:auto;border:0')});
   c.querySelectorAll('a').forEach(a=>{['class','target','rel','aria-label'].forEach(k=>a.removeAttribute(k));a.setAttribute('style','color:#2b2d31')});
   const g=c.querySelector('.sig');if(g)g.setAttribute('style','margin:22px 0 0;'+F);
   c.querySelectorAll('[class]').forEach(n=>n.removeAttribute('class'));

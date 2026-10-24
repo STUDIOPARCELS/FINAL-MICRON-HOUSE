@@ -12,14 +12,14 @@ GREET="I cannot overstate how excited I am about the ways Optimus and Cybercab w
 BODY=["I'm inviting Tesla to join me at Warm Springs House, my 1906 house in Boise, where Tesla engineers live and work alongside Optimus and Cybercab: the proving ground for the first autonomous corporate residence and entertainment hub."]
 ASK="I'd be glad to talk or to host a site visit, whenever suits you. My mobile is below."
 CLOSE=["I'm in the demographic most wary of robots and self-driving cars, yet I can't wait for them. I've seen how fragile care can be for the people I love. I want a robot in the loop."]
-F='font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.55;color:#2b2d31'
+F='font-family:Georgia,Times,serif;font-size:16px;line-height:1.6;color:#2b2d31'
 def body_html(kind,img_src):
     p=lambda t,m='0 0 14px':f'<p style="margin:{m};{F}">{t}</p>'
     paras=''.join(p(html.escape(t))+'\n' for t in [GREET]+INTRO[kind]+BODY)
     return f'''<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head><body style="margin:0;padding:0;background:#ffffff">
 <div style="max-width:560px;padding:16px">
 {p('Hi [First name],')}
-{paras}<p style="margin:22px 0 18px"><a href="{OPEN}" target="_blank"><img src="{img_src}" width="300" alt="Open the invitation: Reserved for Tesla" style="display:block;width:300px;max-width:100%;height:auto;border:0"></a></p>
+{paras}<p style="margin:24px 0 20px;text-align:center"><a href="{OPEN}" target="_blank"><img src="{img_src}" width="300" alt="Open the invitation: Reserved for Tesla" style="display:block;margin:0 auto;width:300px;max-width:100%;height:auto;border:0"></a></p>
 {p(f'The invitation: <a href="{OPEN}" style="color:#2b2d31">warmspringshouse.com/4tesla</a>','0 0 14px')}
 {p(html.escape(ASK))}
 {p(html.escape(CLOSE[0]),'0 0 22px')}
