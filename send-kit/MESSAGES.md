@@ -16,9 +16,9 @@ Replace [Name] and [Introducer]. Nothing else needs editing.
 
 **Next step:** A site visit at your convenience.
 
-[invitation-opening.gif, linked to https://warmspringshouse.com/for/tesla]
+[invitation-opening.gif, linked to https://warmspringshouse.com/4tesla]
 
-Invitation: warmspringshouse.com/for/tesla
+Invitation: warmspringshouse.com/4tesla
 Term sheet attached (one page).
 
 Lisa Wood
@@ -34,8 +34,8 @@ LISA WOOD STUDIO · 208 720 2433 · warmspringshouse.com
 
 Hi [Name], [Introducer] suggested I send this. I'm offering my 1906 family home in Boise to Tesla as a residential test bed for Optimus and Cybercab, at no cost to Tesla.
 
-The invitation: warmspringshouse.com/for/tesla
-Term sheet: warmspringshouse.com/for/tesla/terms.pdf
+The invitation: warmspringshouse.com/4tesla
+Term sheet: warmspringshouse.com/4tesla/terms.pdf
 
 Lisa Wood
 
