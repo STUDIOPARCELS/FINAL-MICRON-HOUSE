@@ -132,7 +132,7 @@ $S .uses{{padding-top:26px;color:{PLUM};display:grid;grid-template-columns:repea
 <div class="lab r" style="--d:1.2s">Proof of concept</div>
 <div class="h" data-lines="1.4:.13">The autonomous<br>corporate residence +<br>entertainment hub.</div>
 <div class="hub" data-lines="2.0:.12"><em style="color:#2c0f38">A new corporate asset for the Autonomous Age.</em></div>
-<div class="sub a" data-lines="2.3:.12">At Tesla&#8217;s option, a leading Boise corporation joins as founding partner to scope, test and launch it with Optimus, Cybercab and Starlink.</div>
+<div class="sub a" data-lines="2.3:.12">When Tesla is ready, a leading Boise corporation joins as founding partner to scope, test and launch it with Optimus, Cybercab and Starlink.</div>
 <div class="rule ln" style="--d:2.9s"></div>
 <div class="uses"><div class="r" style="--d:3.20s">Entertaining</div><div class="r" style="--d:3.32s">Executive off-sites</div><div class="r" style="--d:3.44s">Recruiting</div><div class="r" style="--d:3.56s">Relocation</div><div class="r" style="--d:3.68s">Employee incentives</div><div class="r" style="--d:3.80s">Private dinners</div></div>
 </div></div>""",
@@ -199,7 +199,7 @@ $S .s+.s{{margin-top:18px}}
 $S .inw{{width:370px;height:370px;flex:none}} $S .inw img{{position:absolute;inset:0}}
 """, html="""<div class="wrap">
 <div><div class="im hs" style="--d:.2s"><img src="__HOUSE__" alt="Warm Springs House in autumn"></div>
-<div class="b" data-lines="1.05:.12">A 1906 family home, opening its doors to the future &#8212; ready to welcome Optimus and Cybercab.</div></div>
+<div class="b" data-lines="1.05:.12">A 1906 family home, opening its doors to the future.</div></div>
 <div><div class="h"><span class="m"><span style="--d:1.5s"><a href="https://warmspringshouse.com/" target="_blank" rel="noopener">Warm Springs House</a></span></span><span class="m"><span style="--d:1.62s">+ <a href="https://lisawoodstudio.com/" target="_blank" rel="noopener">Lisa Wood Studio</a></span></span></div>
 <div class="f" data-lines="1.9:.1">Idaho since 1992.<br>A career in high tech since 1995.<br>Owner of Warm Springs House since 2000.</div></div>
 <div class="rule ln" style="--d:2.35s"></div>
