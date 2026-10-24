@@ -99,7 +99,7 @@ $S .pics .im{{flex:none}} $S .pics .im:first-child{{height:min(616px,calc((100cq
 $S .h{{font-size:54px;line-height:1.06;letter-spacing:-.01em;font-weight:800;text-transform:uppercase}}
 $S .sub{{font-size:31px;line-height:1.38;font-weight:500;color:{INK2}}}
 $S .caps{{margin-top:22px;font-size:27px;letter-spacing:.1em;font-weight:800;text-transform:uppercase}}
-$S .caps+.caps{{margin-top:14px}}
+$S .pv{{margin-top:10px;font-family:Newsreader,Georgia,serif;font-style:italic;font-size:35px;color:#2c0f38}}
 $S em{{font-family:Newsreader,Georgia,serif;font-style:italic;font-size:35px;font-weight:400;color:{INK}}}
 $S .sub.a{{margin-top:32px}}
 """, html="""<div class="wrap">
@@ -108,7 +108,7 @@ $S .sub.a{{margin-top:32px}}
 <div class="h"><span class="m"><span style="--d:1.45s">Tesla engineers</span></span><span class="m"><span style="--d:1.6s">in residence</span></span></div>
 <div class="sub a" data-lines="1.95:.12">One or more Tesla engineers live and work alongside Optimus and Cybercab, readying them for service, security and mobility for the <em>first autonomous corporate residence + entertainment hub.</em></div>
 <div class="caps m"><span style="--d:2.65s">At no cost to Tesla.</span></div>
-<div class="caps m"><span style="--d:2.85s">Completely private.</span></div>
+<div class="pv m"><span style="--d:2.85s">Completely private.</span></div>
 </div></div>""",
 assets={'__PAPER__':('paper-gray.webp','image/webp'),'__ROOM__':('../tesla-v2/room-optimus.webp','image/webp'),'__CAB__':('../tesla-v2/cybercab.webp','image/webp')})
 
@@ -176,9 +176,9 @@ $S .facts span{{display:block;margin-top:8px;font-size:17px;line-height:1.25;let
 <div class="facts"><div class="r" style="--d:2.75s;background:#2c0f38"><b>1906</b><span>Year built</span></div><div class="r" style="--d:2.85s;background:#353942"><b>3,374</b><span>Square feet</span></div><div class="r" style="--d:2.95s;background:#00782a"><b>3/4</b><span>Bed / bath</span></div><div class="r" style="--d:3.05s;background:#7db0d3"><b>1892</b><span>Geothermal rights</span></div></div>
 <div class="half">
 <div class="h"><span class="m"><span style="--d:3.25s">A collaborative blueprint</span></span></div>
-<div class="st" data-lines="3.45:.12">A central, historic home to experience Optimus and Cybercab for the first time and shape together how this technology enters daily life.</div>
+<div class="st" data-lines="3.45:.12" style="text-wrap:balance">A central setting where Boise first meets Optimus and Cybercab.</div>
 <div class="it" data-lines="4.1:.1">When Tesla is ready, together with the founding partner:</div>
-<div class="row"><div class="rule ln" style="--d:4.35s"></div><div class="cells"><div class="vb r" style="--d:4.45s">Host</div><div class="t" data-lines="4.50:.1">Boise&#8217;s civic and business leaders.</div></div></div><div class="row"><div class="rule ln" style="--d:4.60s"></div><div class="cells"><div class="vb r" style="--d:4.70s">Show</div><div class="t" data-lines="4.75:.1">them autonomous technology firsthand.</div></div></div><div class="row"><div class="rule ln" style="--d:4.85s"></div><div class="cells"><div class="vb r" style="--d:4.95s">Shape</div><div class="t" data-lines="5.00:.1">how autonomous technology enters daily life.</div></div></div><div class="row"><div class="rule ln" style="--d:5.10s"></div><div class="cells"><div class="vb r" style="--d:5.20s">Create</div><div class="t" data-lines="5.25:.1">a playbook other cities can adopt.</div></div></div><div class="rule ln" style="--d:5.35s"></div>
+<div class="row"><div class="rule ln" style="--d:4.35s"></div><div class="cells"><div class="vb r" style="--d:4.45s">Host</div><div class="t" data-lines="4.50:.1">Boise&#8217;s civic and business leaders.</div></div></div><div class="row"><div class="rule ln" style="--d:4.60s"></div><div class="cells"><div class="vb r" style="--d:4.70s">Show</div><div class="t" data-lines="4.75:.1">them autonomous technology firsthand.</div></div></div><div class="row"><div class="rule ln" style="--d:4.85s"></div><div class="cells"><div class="vb r" style="--d:4.95s">Shape</div><div class="t" data-lines="5.00:.1">how it serves the community.</div></div></div><div class="row"><div class="rule ln" style="--d:5.10s"></div><div class="cells"><div class="vb r" style="--d:5.20s">Create</div><div class="t" data-lines="5.25:.1">a playbook other cities can adopt.</div></div></div><div class="rule ln" style="--d:5.35s"></div>
 </div></div>""",
 assets={'__PAPER__':('paper-gray.webp','image/webp')})
 
