@@ -1,6 +1,6 @@
 # Tesla animated cards: python3 build.py (run from mockups/tesla-anim)
 # Writes one standalone file per card (opens in any browser) and tesla-cards.html, the viewer page published as an Artifact.
-from cards import CARDS, KEYFRAMES, UTIL, CARD_BASE, FONTS, card_css_assets, card_html
+from cards import CARDS, KEYFRAMES, UTIL, CARD_BASE, FONTS, SPLIT_JS, card_css_assets, card_html
 
 STANDALONE='''<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -16,17 +16,17 @@ body{{display:grid;place-items:center;overflow:hidden}}
 {base}{keys}{util}{css}
 </style></head><body>
 <div class="stage" id="stage">{html}</div>
-<script>
+<script>{split}
 const st=document.getElementById('stage'),card=st.firstElementChild;
 function fit(){{const s=Math.min((innerWidth-24)/941,(innerHeight-24)/1672);st.style.transform='scale('+s+')';st.style.margin=((1672*s-1672)/2)+'px '+((941*s-941)/2)+'px'}}
 addEventListener('resize',fit);fit();
 function play(){{card.classList.remove('play','done');void card.offsetWidth;card.classList.add('play')}}
 card.addEventListener('click',play);
-if(location.hash==='#end'){{card.classList.add('done')}}else{{document.fonts.ready.then(play)}}
+document.fonts.ready.then(()=>{{splitLines(card);if(location.hash==='#end')card.classList.add('done');else play()}})
 </script></body></html>'''
 names={'opening':'tesla-card0-opening.html','card1':'tesla-card1.html','card2':'tesla-card2.html','card3':'tesla-card3.html','card4':'tesla-card4.html','card5':'tesla-card5.html','card6':'tesla-card6.html'}
 for i,c in enumerate(CARDS):
-    out=STANDALONE.format(label=c['label'],fonts=FONTS,base=CARD_BASE,keys=KEYFRAMES,util=UTIL,css=card_css_assets(c,i),html=card_html(c,i))
+    out=STANDALONE.format(label=c['label'],fonts=FONTS,base=CARD_BASE,keys=KEYFRAMES,util=UTIL,css=card_css_assets(c,i),html=card_html(c,i),split=SPLIT_JS)
     open(names[c['id']],'w').write(out); print(names[c['id']],len(out)//1024,'KB')
 
 # Viewer page. The Artifact publish wraps it in its own doctype/head/body, so it starts at <title>.
@@ -79,7 +79,7 @@ button:focus-visible{{outline:2px solid var(--fg);outline-offset:2px}}
 </header>
 <main class="view" id="view">{stages}</main>
 <div class="hint">Click the card or press R to replay · arrow keys change cards</div>
-<script>
+<script>{SPLIT_JS}
 const ids=[{ids}],dur=[{durs}],hold=[{holds}];
 const view=document.getElementById('view'),prog=document.getElementById('prog'),allBtn=document.getElementById('all');
 const stages=[...view.querySelectorAll('.stage')],cards=stages.map(s=>s.firstElementChild),tabs=[...document.querySelectorAll('.tab')];
@@ -90,6 +90,7 @@ function restart(el,cls){{el.classList.remove(cls);void el.offsetWidth;el.classL
 function show(i){{
   cur=i;
   stages.forEach((s,j)=>s.hidden=j!==i);
+  splitLines(cards[i]);
   tabs.forEach((t,j)=>{{t.setAttribute('aria-selected',String(j===i));t.tabIndex=j===i?0:-1}});
   prog.style.setProperty('--dur',dur[i]+'s');
   restart(cards[i],'play');restart(prog,'run');

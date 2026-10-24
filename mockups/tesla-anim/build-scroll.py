@@ -1,7 +1,7 @@
 # Tesla cards as one scrolling page: python3 build-scroll.py (run from mockups/tesla-anim)
 # Each card is a full-height snap section. A card plays its reveal when it comes into view and resets when it leaves,
 # so scrolling down or back up always plays it again. The Artifact publish wraps this file in its own doctype/head/body.
-from cards import CARDS, KEYFRAMES, UTIL, CARD_BASE, FONTS, card_css_assets, card_html
+from cards import CARDS, KEYFRAMES, UTIL, CARD_BASE, FONTS, SPLIT_JS, card_css_assets, card_html
 
 sections=''.join(f'<section class="sec" id="{c["id"]}" aria-label="{c["label"]}"><div class="stage">{card_html(c,i)}</div></section>' for i,c in enumerate(CARDS))
 dots=''.join(f'<button class="dot" type="button" data-i="{i}" aria-label="Go to {c["label"]}"></button>' for i,c in enumerate(CARDS))
@@ -34,10 +34,10 @@ body{{margin:0;background:var(--bg);color:var(--fg);overflow:hidden}}
 <div class="scroller" id="scroller">{sections}</div>
 <nav class="rail" aria-label="Cards">{dots}</nav>
 <div class="hint" id="hint">Scroll</div>
-<script>
+<script>{SPLIT_JS}
 const sc=document.getElementById('scroller'),secs=[...sc.querySelectorAll('.sec')],cards=secs.map(s=>s.querySelector('.card')),dots=[...document.querySelectorAll('.dot')],hint=document.getElementById('hint');
-// Phones: the card fills the screen. Larger screens: a small invitation, about three-quarters of the window height, never taller than 760px.
-function fit(){{const w=sc.clientWidth,h=sc.clientHeight;const s=w<700?Math.min((w-32)/941,(h-24)/1672):Math.min(h*.76,760)/1672;secs.forEach(x=>x.style.setProperty('--s',Math.max(.05,s)))}}
+// The card fills the screen height, with a small margin; on phones it fills the width.
+function fit(){{const w=sc.clientWidth,h=sc.clientHeight;const s=w<700?Math.min((w-32)/941,(h-24)/1672):Math.min((w-96)/941,(h-32)/1672);secs.forEach(x=>x.style.setProperty('--s',Math.max(.05,s)))}}
 addEventListener('resize',fit);fit();
 function play(c){{c.classList.remove('play');void c.offsetWidth;c.classList.add('play')}}
 function mark(i){{dots.forEach((d,j)=>d.setAttribute('aria-current',String(j===i)));if(i>0)hint.classList.add('off')}}
@@ -45,7 +45,7 @@ const io=new IntersectionObserver(es=>{{es.forEach(e=>{{const i=secs.indexOf(e.t
   if(e.intersectionRatio>=.6){{if(!c.classList.contains('play'))play(c);mark(i)}}
   else if(e.intersectionRatio===0){{c.classList.remove('play')}}
 }})}},{{root:sc,threshold:[0,.6]}});
-(document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(()=>secs.forEach(s=>io.observe(s)));
+(document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(()=>{{secs.forEach(s=>splitLines(s));secs.forEach(s=>io.observe(s))}});
 dots.forEach((d,i)=>d.addEventListener('click',()=>secs[i].scrollIntoView({{behavior:'smooth'}})));
 cards.forEach(c=>c.addEventListener('click',e=>{{if(!e.target.closest('a'))play(c)}}));
 addEventListener('keydown',e=>{{if(e.metaKey||e.ctrlKey||e.altKey)return;const i=Math.round(sc.scrollTop/sc.clientHeight);
