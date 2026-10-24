@@ -8,16 +8,18 @@ Replace [Name]. Nothing else needs editing.
 
 Hi [Name],
 
-I'm in the demographic most wary of robots and self-driving cars, yet I can't wait for them.
+I hope you're doing well.
 
-So I'm offering Warm Springs House, my 1906 family home in Boise, to Tesla as a residential test bed for Optimus and Cybercab. One or more Tesla engineers live and work on site, at no cost to Tesla. The house is move-in ready.
+I'm offering Warm Springs House, my 1906 family home in Boise, to Tesla as a residential test bed for Optimus and Cybercab. One or more Tesla engineers live and work on site, at no cost to Tesla. The house is move-in ready.
 
-[Warm Springs House - Email GIF.gif: the seal opens to Prepared for Tesla; linked to https://warmspringshouse.com/4tesla]
+[Warm Springs House - Email GIF.gif: the seal opens to Prepared for Tesla; linked to https://warmspringshouse.com/4tesla?card=1]
 
 The invitation: warmspringshouse.com/4tesla
 The terms (one page): warmspringshouse.com/4tesla/terms
 
 I'd be glad to show you the house in person.
+
+I'm in the demographic most wary of robots and self-driving cars, yet I can't wait for them.
 
 Lisa Wood
 LISA WOOD STUDIO
@@ -33,18 +35,20 @@ No attachment.
 
 Hi [Name],
 
+I hope you're doing well.
+
 [Introducer] suggested I send this to you.
 
-I'm in the demographic most wary of robots and self-driving cars, yet I can't wait for them.
+I'm offering Warm Springs House, my 1906 family home in Boise, to Tesla as a residential test bed for Optimus and Cybercab. One or more Tesla engineers live and work on site, at no cost to Tesla. The house is move-in ready.
 
-So I'm offering Warm Springs House, my 1906 family home in Boise, to Tesla as a residential test bed for Optimus and Cybercab. One or more Tesla engineers live and work on site, at no cost to Tesla. The house is move-in ready.
-
-[Warm Springs House - Email GIF.gif: the seal opens to Prepared for Tesla; linked to https://warmspringshouse.com/4tesla]
+[Warm Springs House - Email GIF.gif: the seal opens to Prepared for Tesla; linked to https://warmspringshouse.com/4tesla?card=1]
 
 The invitation: warmspringshouse.com/4tesla
 The terms (one page): warmspringshouse.com/4tesla/terms
 
 I'd be glad to show you the house in person.
+
+I'm in the demographic most wary of robots and self-driving cars, yet I can't wait for them.
 
 Lisa Wood
 LISA WOOD STUDIO

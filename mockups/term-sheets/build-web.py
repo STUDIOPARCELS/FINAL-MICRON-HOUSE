@@ -12,6 +12,9 @@ PAGE=f'''<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
+<!-- Vercel Web Analytics: anonymous page views, no cookies; counted once Analytics is enabled for the project -->
+<script>window.va=window.va||function(){{(window.vaq=window.vaq||[]).push(arguments)}};</script>
+<script defer src="/_vercel/insights/script.js"></script>
 <title>Proposed Terms · Prepared for Tesla</title>
 <meta name="description" content="Warm Springs House, Boise: proposed terms for Tesla.">
 <meta property="og:title" content="Proposed Terms · Prepared for Tesla">

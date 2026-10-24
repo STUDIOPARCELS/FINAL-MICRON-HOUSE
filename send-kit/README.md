@@ -18,8 +18,8 @@ The page is set to stay out of search engines. When the link is pasted into an e
 ## 2. Email (Gmail)
 
 1. New message. Paste the subject and text from MESSAGES.md.
-2. Drag Warm Springs House - Email GIF.gif into the body where the placeholder is, set it to medium size, select it, press Ctrl+K (Cmd+K on a Mac) and paste https://warmspringshouse.com/4tesla.
-3. Click the GIF, press Ctrl+K (Cmd+K on Mac) and paste https://warmspringshouse.com/4tesla so the GIF opens the invitation.
+2. Drag Warm Springs House - Email GIF.gif into the body where the placeholder is, set it to medium size, select it, press Ctrl+K (Cmd+K on a Mac) and paste https://warmspringshouse.com/4tesla?card=1 (the page then starts on Card 1, since the reader has just watched the seal open).
+3. Click the GIF, press Ctrl+K (Cmd+K on Mac) and paste https://warmspringshouse.com/4tesla?card=1 so the GIF opens the invitation on Card 1.
 4. No attachment: the terms are linked.
 5. Send it to yourself first and open it on your phone.
 

@@ -40,6 +40,11 @@ body{{margin:0;background:var(--bg);color:var(--fg);overflow:hidden}}
 .cue.on svg{{animation:cue 2s cubic-bezier(.45,0,.25,1) infinite}}
 @keyframes cue{{0%,100%{{transform:translateY(-3px)}}50%{{transform:translateY(5px)}}}}
 @media (prefers-reduced-motion:reduce){{.cue.on svg{{animation:none}}}}
+/* Arriving from the email (?card=1): the reader has just watched the seal open, so the page starts on Card 1 and it drops onto the table */
+.stage.wait{{opacity:0}}
+.stage.drop{{animation:drop 1.1s cubic-bezier(.2,.75,.15,1) both}}
+@keyframes drop{{from{{translate:0 -9vh;scale:1.03;opacity:0}}to{{translate:0 0;scale:1;opacity:1}}}}
+@media (prefers-reduced-motion:reduce){{.stage.drop{{animation:none}}}}
 @media (max-width:699px){{.rail{{display:none}} html body{{background:#fff}} .cue{{color:#393c41;bottom:12%}} .card{{box-shadow:none}} .sec{{overflow:hidden}} .sec~.sec{{box-shadow:0 -10px 34px rgba(20,20,22,.22)}}}}
 {CARD_BASE}{KEYFRAMES}{UTIL}{css}
 </style>
@@ -81,7 +86,13 @@ let ready=false,ticking=false,shown=-1;
 function frame(){{ticking=false;if(!ready)return;const y=sc.scrollTop/sc.clientHeight;
   const i=Math.round(y);if(Math.abs(y-i)<.45&&i!==shown){{shown=i;if(!cards[i].classList.contains('play'))play(cards[i]);mark(i);arrive(i)}}}}
 sc.addEventListener('scroll',()=>{{if(!ticking){{ticking=true;requestAnimationFrame(frame)}}}},{{passive:true}});
-(document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(()=>{{secs.forEach(s=>splitLines(s));ready=true;frame()}});
+// A link ending ?card=N starts on that card. The email's GIF and invitation link use ?card=1: the reader has just watched
+// the seal open, so the opening is skipped and Card 1 drops in.
+const start=Math.min(secs.length-1,Math.max(0,parseInt(new URLSearchParams(location.search).get('card'),10)||0)),first=secs[start].querySelector('.stage');
+if(start){{sc.scrollTop=start*sc.clientHeight;first.classList.add('wait')}}
+(document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(()=>{{secs.forEach(s=>splitLines(s));
+  if(start){{sc.scrollTop=start*sc.clientHeight;first.classList.remove('wait');first.classList.add('drop')}}
+  ready=true;frame()}});
 dots.forEach((d,i)=>d.addEventListener('click',()=>go(i)));
 addEventListener('keydown',e=>{{if(e.metaKey||e.ctrlKey||e.altKey)return;const i=cur;
   if(['ArrowDown','PageDown',' '].includes(e.key)&&i<secs.length-1){{e.preventDefault();go(i+1)}}
