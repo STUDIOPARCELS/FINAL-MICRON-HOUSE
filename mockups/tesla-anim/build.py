@@ -17,7 +17,7 @@ body{{display:grid;place-items:center;overflow:hidden}}
 <div class="stage" id="stage">{html}</div>
 <script>{split}
 const st=document.getElementById('stage'),card=st.firstElementChild;
-function fit(){{const w=innerWidth,h=innerHeight,s=w<700?Math.min((w-24)/941,(h-24)/1672):Math.min((w-96)/941,(h-240)/1672,640/1672);st.style.transform='scale('+s+')';st.style.margin=((1672*s-1672)/2)+'px '+((941*s-941)/2)+'px'}}
+function fit(){{const w=innerWidth,h=innerHeight,s=w<700?Math.min((w-24)/941,(h-24)/1672):Math.min((w-96)/941,(h-240)/1672,768/1672);st.style.transform='scale('+s+')';st.style.margin=((1672*s-1672)/2)+'px '+((941*s-941)/2)+'px'}}
 addEventListener('resize',fit);fit();
 function play(){{card.classList.remove('play','done');void card.offsetWidth;card.classList.add('play')}}
 card.addEventListener('click',play);

@@ -27,8 +27,7 @@ body{{margin:0;background:var(--bg);color:var(--fg);overflow:hidden}}
 .scroller::-webkit-scrollbar{{display:none}}
 .sec{{position:sticky;top:0;height:100%;box-sizing:border-box;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0}}
 .stage{{position:absolute;left:50%;top:calc(50% + var(--dy,0px));width:941px;height:var(--ch,1672px);transform:translate(-50%,-50%) scale(var(--s,.3))}}
-.card{{box-shadow:var(--shadow);transform-origin:50% 40%}}
-.card::after{{content:"";position:absolute;inset:0;z-index:50;background:#1e1f22;opacity:calc(var(--p,0) * .32);pointer-events:none}}
+.card{{box-shadow:var(--shadow)}}
 .rail{{position:fixed;right:max(14px,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;z-index:2}}
 .dot{{width:10px;height:10px;padding:0;border:0;border-radius:50%;background:var(--dot);cursor:pointer;transition:background-color .25s,transform .25s}}
 .dot:hover{{transform:scale(1.3)}}
@@ -54,11 +53,11 @@ const dur=[{durs}],read=[{reads}],still=matchMedia('(prefers-reduced-motion:redu
 // than the card, only plain margin runs off the edge: at most 62px of card at the top and bottom (cards keep 64-90px there)
 // and 50px at the sides (they keep 60). Past that the whole card shows, on its own paper. A card whose photo runs off its top
 // edge keeps that edge on screen: up to 120px comes off its deeper bottom margin first, only then the top.
-// Larger screens: a restrained card, at most 640px tall, with at least an inch (120px) above and below.
+// Larger screens: a restrained card, at most 768px tall, with at least an inch (120px) above and below.
 const phone=()=>sc.clientWidth<700;
 function fit(){{const w=sc.clientWidth,h=sc.clientHeight;let s;
   if(phone()){{s=Math.max(w/941,h/1672);if((941*s-w)/2/s>50||(1672*s-h)/2/s>62)s=Math.min(w/941,h/1672)}}
-  else s=Math.min((w-96)/941,(h-240)/1672,640/1672);
+  else s=Math.min((w-96)/941,(h-240)/1672,768/1672);
   const cy=Math.max(0,(1672*s-h)/2/s);
   secs.forEach(x=>{{x.style.setProperty('--s',Math.max(.05,s));x.style.setProperty('--dy',(x.dataset.anchor==='top'?(cy-Math.max(0,2*cy-120))*s:0)+'px')}})}}
 // refit whenever the visible area changes: rotation, Safari's toolbar growing or shrinking, a tab restored from the background
@@ -76,12 +75,10 @@ function arrive(i){{clearTimeout(timer);clearTimeout(cueTimer);
   if(i===0&&!cueDone)cueTimer=setTimeout(()=>cue.classList.add('on'),dur[0]*1000);
   if(!auto)return;
   if(i<secs.length-1)timer=setTimeout(()=>{{if(auto)go(i+1)}},(dur[i]+read[i])*1000)}}
-// y = how many screens down. A card plays once it is more than half in place; the card beneath eases back and dims as it is covered;
-// a card resets once it is fully covered or fully below the screen, so it plays again when the reader comes back to it.
+// y = how many screens down. The next card slides up over the one beneath, which stays perfectly still (nothing is redrawn
+// while scrolling). A card plays the first time it is more than half in place, then stays finished: coming back shows it complete.
 let ready=false,ticking=false,shown=-1;
 function frame(){{ticking=false;if(!ready)return;const y=sc.scrollTop/sc.clientHeight;
-  cards.forEach((c,i)=>{{const p=Math.min(1,Math.max(0,y-i));c.style.setProperty('--p',p.toFixed(3));c.style.scale=(1-.045*p).toFixed(4);
-    if(y>=i+1-.002||y<=i-1+.002)c.classList.remove('play')}});
   const i=Math.round(y);if(Math.abs(y-i)<.45&&i!==shown){{shown=i;if(!cards[i].classList.contains('play'))play(cards[i]);mark(i);arrive(i)}}}}
 sc.addEventListener('scroll',()=>{{if(!ticking){{ticking=true;requestAnimationFrame(frame)}}}},{{passive:true}});
 (document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(()=>{{secs.forEach(s=>splitLines(s));ready=true;frame()}});

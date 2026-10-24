@@ -53,7 +53,7 @@ $S.play .box{animation:in 1s ease-out both}
 $S.play .lp{animation:openL 1.6s cubic-bezier(.55,0,.25,1) 1.5s both}
 $S.play .rp{animation:openR 1.6s cubic-bezier(.55,0,.25,1) 1.5s both}
 $S.play .p::after{animation:shade 1.6s cubic-bezier(.55,0,.25,1) 1.5s both}
-$S.play .line i{animation:type .04s steps(1,end) calc(3s + var(--i) * 75ms) both}
+$S.play .line i{animation:type .1s linear calc(3s + var(--i) * 75ms) both}
 $S.done .box{opacity:1} $S.done .p{display:none} $S.done .line i{opacity:1}
 @media (prefers-reduced-motion:reduce){$S .box{opacity:1} $S .p{display:none} $S .line i{opacity:1}}
 ''', html='''<div class="box"><div class="under"></div>
@@ -159,10 +159,10 @@ $S.done .mk .k{{opacity:1}}
 $S .hero{{margin-top:34px;text-align:center;font-family:Newsreader,Georgia,serif;font-size:42px;line-height:1.3;font-weight:400;color:{INK2}}}
 $S .hero b{{font-style:italic;font-weight:500}}
 $S .h{{font-size:32px;line-height:1.15;letter-spacing:.08em;font-weight:800;text-transform:uppercase}}
-$S .st{{margin-top:14px;font-family:Newsreader,Georgia,serif;font-size:35px;line-height:1.3;color:{INK}}} $S .st em{{font-style:italic}}
-$S .it{{margin:30px 0 8px;font-size:26px;line-height:1.4;font-weight:600;color:{INK2}}}
+$S .st{{margin-top:20px;font-family:Newsreader,Georgia,serif;font-size:35px;line-height:1.3;color:{INK}}} $S .st em{{font-style:italic}}
+$S .it{{margin:56px 0 30px;font-size:26px;line-height:1.4;font-weight:600;color:{INK2}}}
 $S .rule{{background:{RULE}}}
-$S .cells{{display:grid;grid-template-columns:136px 1fr;align-items:baseline;padding:22px 0}}
+$S .cells{{display:grid;grid-template-columns:136px 1fr;align-items:baseline;padding:26px 0}}
 $S .vb{{font-size:22px;letter-spacing:.14em;font-weight:800;text-transform:uppercase;color:{INK}}}
 $S .t{{font-size:28px;line-height:1.36;font-weight:500;color:{INK2}}}
 $S .facts{{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}}
@@ -205,7 +205,7 @@ $S .inw{{width:370px;height:370px;flex:none}} $S .inw img{{position:absolute;ins
 <div class="row"><div style="flex:1;min-width:0"><div class="s" data-lines="2.75:.12">&#8220;I&#8217;m in the demographic most wary of robots and self-driving cars, yet I can&#8217;t wait for them.</div><div class="s" data-lines="3.4:.12">I&#8217;ve seen how fragile care can be for the people I love. I want a robot in the loop.&#8221;</div></div>
 <div class="im inw" style="--d:2.5s"><img src="__LISA__" alt="Lisa Wood"></div></div>
 </div>""",
-assets={'__PAPER__':('paper-gray.webp','image/webp'),'__HOUSE__':('house-photo.webp','image/webp'),'__LISA__':('lisa-bw.webp','image/webp')})
+assets={'__PAPER__':('paper-gray.webp','image/webp'),'__HOUSE__':('house-photo.webp','image/webp'),'__LISA__':('lisa-about.webp','image/webp')})
 
 # Card 6: the Cybercab photo wipes in, the call to action rises, then the contact block and the logo assemble
 CARD6=dict(id="card6", label="Card 6", dur=4.6, css=f"""
@@ -222,6 +222,7 @@ $S .ct{{display:grid;grid-template-columns:1fr auto;align-items:center;column-ga
 $S .nm{{font-size:46px;line-height:1.1;letter-spacing:.07em;font-weight:800;text-transform:uppercase}}
 $S .dt{{margin-top:16px;font-size:33px;line-height:1.5;font-weight:500}}
 $S .dt a{{color:inherit;text-decoration:underline;text-decoration-color:{RULE};text-decoration-thickness:1px;text-underline-offset:5px}}
+$S .pb a{{color:inherit;text-decoration:underline;text-decoration-color:#cfd0d2;text-decoration-thickness:1px;text-underline-offset:5px}}
 $S .pb{{margin-top:24px;font-size:19px;letter-spacing:.24em;font-weight:700;text-transform:uppercase;color:{INK2}}}
 $S .mk{{display:block;width:260px;height:260px;overflow:visible}}
 $S .mk .k{{transform-box:fill-box;transform-origin:center;opacity:0}}
@@ -238,7 +239,7 @@ $S.done .mk .k{{opacity:1}}
 <div class="ct"><div>
 <div class="nm"><span class="m"><span style="--d:2.55s">Lisa Wood</span></span></div>
 <div class="dt"><span class="m"><span style="--d:2.75s">208 720 2433</span></span><span class="m"><span style="--d:2.85s"><a href="mailto:lisa@lisawoodstudio.com">lisa@lisawoodstudio.com</a></span></span><span class="m"><span style="--d:2.95s"><a href="https://warmspringshouse.com/" target="_blank" rel="noopener">warmspringshouse.com</a></span></span></div>
-<div class="pb"><span class="m"><span style="--d:3.1s">Presented by Lisa Wood Studio</span></span></div></div>
+<div class="pb"><span class="m"><span style="--d:3.1s">Presented by <a href="https://lisawoodstudio.com/" target="_blank" rel="noopener">Lisa Wood Studio</a></span></span></div></div>
 """+MARK.replace('--d:.5s','--d:2.6s').replace('--d:.65s','--d:2.75s').replace('--d:1.2s','--d:3.0s').replace('--d:1.35s','--d:3.15s').replace('--d:1.9s','--d:3.45s')+"""</div>
 </div>""",
 assets={'__PAPER__':('paper-gray.webp','image/webp'),'__CAB__':('../tesla-v2/cybercab.webp','image/webp')})

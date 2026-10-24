@@ -52,6 +52,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 #c6 .nm{font-size:46px;line-height:1.1;letter-spacing:.07em;font-weight:800;text-transform:uppercase}
 #c6 .dt{margin-top:16px;font-size:33px;line-height:1.5;font-weight:500}
 #c6 .dt a{color:inherit;text-decoration:underline;text-decoration-color:#cfd0d2;text-decoration-thickness:1px;text-underline-offset:5px}
+#c6 .pb a{color:inherit;text-decoration:underline;text-decoration-color:#cfd0d2;text-decoration-thickness:1px;text-underline-offset:5px}
 #c6 .pb{margin-top:24px;font-size:19px;letter-spacing:.24em;font-weight:700;text-transform:uppercase;color:#5c5e62}
 #c6 .mk{display:block;width:260px;height:260px;overflow:visible}
 #c6 .mk .k{transform-box:fill-box;transform-origin:center;opacity:0}
@@ -70,7 +71,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 <div class="ct"><div>
 <div class="nm"><span class="m"><span style="--d:2.55s">Lisa Wood</span></span></div>
 <div class="dt"><span class="m"><span style="--d:2.75s">208 720 2433</span></span><span class="m"><span style="--d:2.85s"><a href="mailto:lisa@lisawoodstudio.com">lisa@lisawoodstudio.com</a></span></span><span class="m"><span style="--d:2.95s"><a href="https://warmspringshouse.com/" target="_blank" rel="noopener">warmspringshouse.com</a></span></span></div>
-<div class="pb"><span class="m"><span style="--d:3.1s">Presented by Lisa Wood Studio</span></span></div></div>
+<div class="pb"><span class="m"><span style="--d:3.1s">Presented by <a href="https://lisawoodstudio.com/" target="_blank" rel="noopener">Lisa Wood Studio</a></span></span></div></div>
 <svg class="mk" viewBox="71 71 882 882" role="img" aria-label="Warm Springs House logo">
 <g class="k" style="--d:2.6s;--k:translateY(-14%)"><circle cx="512" cy="306" r="234" fill="#7db0d3" opacity=".95"/></g>
 <g class="k" style="--d:2.75s;--k:translateY(14%)"><circle cx="512" cy="718" r="234" fill="#00782a" opacity=".95"/></g>
@@ -94,7 +95,7 @@ el.textContent='';lines.forEach((ws,i)=>{const m=document.createElement('span');
 inner.style.setProperty('--d',(d0+i*st).toFixed(2)+'s');ws.forEach((w,j)=>{if(j&&!w.glue)inner.appendChild(document.createTextNode(' '));while(w.sp.firstChild)inner.appendChild(w.sp.firstChild)});
 m.appendChild(inner);el.appendChild(m)});el.dataset.done='1'})}
 const st=document.getElementById('stage'),card=st.firstElementChild;
-function fit(){const w=innerWidth,h=innerHeight,s=w<700?Math.min((w-24)/941,(h-24)/1672):Math.min((w-96)/941,(h-240)/1672,640/1672);st.style.transform='scale('+s+')';st.style.margin=((1672*s-1672)/2)+'px '+((941*s-941)/2)+'px'}
+function fit(){const w=innerWidth,h=innerHeight,s=w<700?Math.min((w-24)/941,(h-24)/1672):Math.min((w-96)/941,(h-240)/1672,768/1672);st.style.transform='scale('+s+')';st.style.margin=((1672*s-1672)/2)+'px '+((941*s-941)/2)+'px'}
 addEventListener('resize',fit);fit();
 function play(){card.classList.remove('play','done');void card.offsetWidth;card.classList.add('play')}
 card.addEventListener('click',play);
