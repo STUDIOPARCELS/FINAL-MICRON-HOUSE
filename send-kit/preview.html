@@ -31,12 +31,19 @@ button:hover{border-color:var(--ink2)} button:active{transform:scale(.97)}
 button:focus-visible,a:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
 button.done{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 /* email */
+.opts{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.opts button{transition:background-color .2s,color .2s,border-color .2s,transform .15s}
+.opts button[aria-selected="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.mtext[hidden]{display:none}
+.mbody .mtext{max-width:62ch}
+.gifin{margin:22px 0 18px}
+.gifin .gif{width:300px;max-width:100%}
 .mail{background:var(--paper);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
 .mhead{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;padding:20px 24px;border-bottom:1px solid var(--rule);font-size:14px}
 .mhead dt{color:var(--muted);font-weight:600}
 .mhead dd{margin:0;min-width:0;overflow-wrap:anywhere}
 .mhead .subj{font-weight:700}
-.mbody{padding:24px;display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:28px;align-items:start}
+.mbody{padding:24px}
 .mtext p{margin:0 0 14px;max-width:60ch}
 .mtext .sig{margin-top:22px;font-size:14px;line-height:1.55}
 .mtext .sig b{letter-spacing:.06em}
@@ -100,30 +107,45 @@ code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background
 
 <section class="sec" aria-labelledby="h-mail">
   <h2 id="h-mail">Email</h2>
+  <div class="opts" role="tablist" aria-label="Email options"><button type="button" role="tab" id="opt1" aria-selected="true" aria-controls="mailbody1" data-subj="A home in Boise for Optimus and Cybercab">Option 1 · Straight</button><button type="button" role="tab" id="opt2" aria-selected="false" aria-controls="mailbody2" data-subj="A real home to test Optimus and Cybercab">Option 2 · Why a real home</button><button type="button" role="tab" id="opt3" aria-selected="false" aria-controls="mailbody3" data-subj="My Boise home, offered to Tesla">Option 3 · Personal</button></div>
   <article class="mail">
     <dl class="mhead">
       <dt>From</dt><dd>Lisa Wood &lt;lisa@lisawoodstudio.com&gt;</dd>
       <dt>To</dt><dd>[Name]</dd>
-      <dt>Subject</dt><dd class="subj" id="subj">Residential test bed for Optimus + Cybercab: Boise, available now</dd>
+      <dt>Subject</dt><dd class="subj" id="subj">A home in Boise for Optimus and Cybercab</dd>
     </dl>
     <div class="mbody">
-      <div class="mtext" id="mailbody">
+      <div class="mtext" id="mailbody1" role="tabpanel" aria-labelledby="opt1">
         <p>[Name],</p>
-        <p>I'm Lisa Wood, owner of Warm Springs House in Boise. I'm writing to offer it to Tesla.</p>
-        <p><b>Offer:</b> My 1906 home as a residential test bed for Optimus and Cybercab. One or more Tesla engineers live and work on site. No cost to Tesla. Available now.</p>
-        <p><b>Objective:</b> Prove the first autonomous corporate residence + entertainment hub with a leading Boise corporation, and build a blueprint for bringing autonomous technology into daily life in other cities. Both at Tesla's option.</p>
-        <p><b>Next step:</b> A site visit at your convenience.</p>
+        <p>I&#x27;m Lisa Wood. I own Warm Springs House, a 1906 home in Boise, Idaho, and I&#x27;d like to offer it to Tesla.</p>
+        <p>The idea: Tesla engineers live and work there with Optimus and Cybercab and test them in everyday life. It costs Tesla nothing, and it&#x27;s available now. When Tesla is ready, a leading Boise company can join to make it the first autonomous corporate residence.</p>
+        <p>The invitation below shows the house and the plan. I&#x27;d be glad to show you in person.</p>
+        <p class="gifin"><a class="gif" href="tesla/index.html" target="_blank" rel="noopener" aria-label="Open the invitation"><img src="invitation-email.gif" width="300" height="533" alt="The sealed card opens to Prepared for Tesla"></a></p>
         <p>Invitation: <a href="tesla/index.html" target="_blank" rel="noopener">warmspringshouse.com/4tesla</a><br>Terms (one page): <a href="tesla/terms.html" target="_blank" rel="noopener">warmspringshouse.com/4tesla/terms</a></p>
-        <div class="sig"><b>Lisa Wood</b><br>LISA WOOD STUDIO · 208 720 2433 · warmspringshouse.com</div>
+        <div class="sig"><b>Lisa Wood</b><br>LISA WOOD STUDIO<br>208 720 2433<br>lisa@lisawoodstudio.com<br>warmspringshouse.com</div>
       </div>
-      <div class="gifcol">
-        <a class="gif" href="tesla/index.html" target="_blank" rel="noopener" aria-label="Open the invitation"><img src="invitation-email.gif" width="400" height="711" alt="The sealed card opens to Prepared for Tesla"></a>
-        <div class="cap">The seal opens to Prepared for Tesla (8 seconds, loops). Tapping it opens the live invitation.</div>
+      <div class="mtext" id="mailbody2" role="tabpanel" aria-labelledby="opt2" hidden>
+        <p>[Name],</p>
+        <p>Optimus and Cybercab are headed into everyday life. A real home is the best place to get them ready, and I&#x27;d like to offer mine.</p>
+        <p>I&#x27;m Lisa Wood, owner of Warm Springs House, a 1906 home in Boise, Idaho. Tesla engineers could live there and test Optimus and Cybercab day to day, at no cost to Tesla. It&#x27;s ready now.</p>
+        <p>The invitation is below. Would you like to see the house?</p>
+        <p class="gifin"><a class="gif" href="tesla/index.html" target="_blank" rel="noopener" aria-label="Open the invitation"><img src="invitation-email.gif" width="300" height="533" alt="The sealed card opens to Prepared for Tesla"></a></p>
+        <p>Invitation: <a href="tesla/index.html" target="_blank" rel="noopener">warmspringshouse.com/4tesla</a><br>Terms (one page): <a href="tesla/terms.html" target="_blank" rel="noopener">warmspringshouse.com/4tesla/terms</a></p>
+        <div class="sig"><b>Lisa Wood</b><br>LISA WOOD STUDIO<br>208 720 2433<br>lisa@lisawoodstudio.com<br>warmspringshouse.com</div>
+      </div>
+      <div class="mtext" id="mailbody3" role="tabpanel" aria-labelledby="opt3" hidden>
+        <p>[Name],</p>
+        <p>I&#x27;m in the demographic most wary of robots and self-driving cars, yet I can&#x27;t wait for them. So I&#x27;m offering my home to Tesla.</p>
+        <p>Warm Springs House is a 1906 home in Boise, Idaho. Tesla engineers could live and work there with Optimus and Cybercab, at no cost to Tesla. It&#x27;s available now.</p>
+        <p>The invitation is below. I&#x27;d love to show you the house.</p>
+        <p class="gifin"><a class="gif" href="tesla/index.html" target="_blank" rel="noopener" aria-label="Open the invitation"><img src="invitation-email.gif" width="300" height="533" alt="The sealed card opens to Prepared for Tesla"></a></p>
+        <p>Invitation: <a href="tesla/index.html" target="_blank" rel="noopener">warmspringshouse.com/4tesla</a><br>Terms (one page): <a href="tesla/terms.html" target="_blank" rel="noopener">warmspringshouse.com/4tesla/terms</a></p>
+        <div class="sig"><b>Lisa Wood</b><br>LISA WOOD STUDIO<br>208 720 2433<br>lisa@lisawoodstudio.com<br>warmspringshouse.com</div>
       </div>
     </div>
   </article>
-  <div class="row"><button type="button" data-copy="subj">Copy subject</button><button type="button" data-copy="mailbody">Copy email text</button></div>
-  <p class="note">With an introduction, the first line becomes "[Introducer] suggested I write to you." and the Offer names the house: "Warm Springs House, a 1906 home in Boise, as a residential test bed…" Both versions are ready in the email folder.</p>
+  <div class="row"><button type="button" data-copy="subj">Copy subject</button><button type="button" data-copy="mailbody1" id="copybody">Copy email text</button></div>
+  <p class="note">The card in the email is animated: the seal opens to Prepared for Tesla (8 seconds, loops). Tapping it opens the live invitation. With an introduction, add "[Introducer] suggested I write to you." as the first line.</p>
 </section>
 
 <section class="sec" aria-labelledby="h-dm">
@@ -206,6 +228,13 @@ code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background
 </div>
 
 <script>
+
+const tabs=[...document.querySelectorAll('.opts [role=tab]')];
+function pick(t){tabs.forEach(x=>{const on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;document.getElementById(x.getAttribute('aria-controls')).hidden=!on});
+  document.getElementById('subj').textContent=t.dataset.subj;document.getElementById('copybody').dataset.copy=t.getAttribute('aria-controls');
+  try{localStorage.setItem('kit-email-option',t.id)}catch(e){}}
+tabs.forEach((t,k)=>{t.addEventListener('click',()=>pick(t));t.addEventListener('keydown',e=>{const d=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;if(d){e.preventDefault();const n=tabs[(k+d+tabs.length)%tabs.length];pick(n);n.focus()}})});
+try{const saved=document.getElementById(localStorage.getItem('kit-email-option')||'');if(saved&&tabs.includes(saved))pick(saved)}catch(e){}
 document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>{
   const el=document.getElementById(b.dataset.copy);
   const text=el.innerText.replace(/\n{3,}/g,'\n\n').trim();

@@ -22,7 +22,10 @@ Invitation: warmspringshouse.com/4tesla
 Terms (one page): warmspringshouse.com/4tesla/terms
 
 Lisa Wood
-LISA WOOD STUDIO · 208 720 2433 · warmspringshouse.com
+LISA WOOD STUDIO
+208 720 2433
+lisa@lisawoodstudio.com
+warmspringshouse.com
 
 No attachment.
 
@@ -46,7 +49,10 @@ Invitation: warmspringshouse.com/4tesla
 Terms (one page): warmspringshouse.com/4tesla/terms
 
 Lisa Wood
-LISA WOOD STUDIO · 208 720 2433 · warmspringshouse.com
+LISA WOOD STUDIO
+208 720 2433
+lisa@lisawoodstudio.com
+warmspringshouse.com
 
 No attachment.
 

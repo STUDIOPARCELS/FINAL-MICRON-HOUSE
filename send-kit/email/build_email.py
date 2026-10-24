@@ -24,7 +24,7 @@ def body_html(kind,img_src):
 <p style="margin:22px 0 18px"><a href="{URL}" target="_blank"><img src="{img_src}" width="300" alt="Open the invitation: Prepared for Tesla" style="display:block;width:300px;max-width:100%;height:auto;border:0"></a></p>
 <p style="margin:0 0 4px;{F}">Invitation: <a href="{URL}" style="color:#2b2d31">warmspringshouse.com/4tesla</a></p>
 <p style="margin:0 0 22px;{F}">Terms (one page): <a href="{URL}/terms" style="color:#2b2d31">warmspringshouse.com/4tesla/terms</a></p>
-<p style="margin:0;{F}"><b>Lisa Wood</b><br><span style="font-size:13px;letter-spacing:.04em">LISA WOOD STUDIO &middot; <a href="tel:+12087202433" style="color:#2b2d31">208 720 2433</a> &middot; <a href="https://warmspringshouse.com/" style="color:#2b2d31">warmspringshouse.com</a></span></p>
+<p style="margin:0;{F}"><b>Lisa Wood</b><br>LISA WOOD STUDIO<br><a href="tel:+12087202433" style="color:#2b2d31">208 720 2433</a><br><a href="mailto:lisa@lisawoodstudio.com" style="color:#2b2d31">lisa@lisawoodstudio.com</a><br><a href="https://warmspringshouse.com/" style="color:#2b2d31">warmspringshouse.com</a></p>
 </div></body></html>'''
 def body_text(kind):
     return f'''[Name],
@@ -41,7 +41,10 @@ Invitation: {URL}
 Terms (one page): {URL}/terms
 
 Lisa Wood
-LISA WOOD STUDIO · 208 720 2433 · warmspringshouse.com
+LISA WOOD STUDIO
+208 720 2433
+lisa@lisawoodstudio.com
+warmspringshouse.com
 '''
 def wrap(b): return '\r\n'.join(b[i:i+76] for i in range(0,len(b),76))
 gif=wrap(base64.b64encode(open(GIF,'rb').read()).decode())
