@@ -13,7 +13,7 @@ css=''.join(card_css_assets(c,i) for i,c in enumerate(CARDS))
 # Seconds each card stays up after its reveal before the page moves on by itself (same reading time as the video)
 READ={'opening':2.2,'card1':3.5,'card2':4.5,'card3':4.5,'card4':5.8,'card5':4.2,'card6':0}
 durs=','.join(str(c['dur']) for c in CARDS); reads=','.join(str(READ[c['id']]) for c in CARDS)
-PAGE=f'''<title>Prepared for Tesla</title>
+PAGE=f'''<title>Reserved for Tesla</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 {FONTS}
 <style>

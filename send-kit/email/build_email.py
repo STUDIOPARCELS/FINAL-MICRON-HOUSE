@@ -19,7 +19,7 @@ def body_html(kind,img_src):
     return f'''<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head><body style="margin:0;padding:0;background:#ffffff">
 <div style="max-width:560px;padding:16px">
 {p('Hi [First name],')}
-{paras}<p style="margin:22px 0 18px"><a href="{OPEN}" target="_blank"><img src="{img_src}" width="300" alt="Open the invitation: Prepared for Tesla" style="display:block;width:300px;max-width:100%;height:auto;border:0"></a></p>
+{paras}<p style="margin:22px 0 18px"><a href="{OPEN}" target="_blank"><img src="{img_src}" width="300" alt="Open the invitation: Reserved for Tesla" style="display:block;width:300px;max-width:100%;height:auto;border:0"></a></p>
 {p(f'The invitation: <a href="{OPEN}" style="color:#2b2d31">warmspringshouse.com/4tesla</a>','0 0 14px')}
 {p(html.escape(ASK))}
 {p(html.escape(CLOSE[0]),'0 0 22px')}

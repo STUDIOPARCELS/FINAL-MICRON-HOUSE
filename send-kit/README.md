@@ -1,12 +1,12 @@
-# Send kit: Prepared for Tesla
+# Send kit: Reserved for Tesla
 
 | File | Use it for |
 |---|---|
 | Warm Springs House - Proposed Terms - Tesla.pdf | Printable copy of the terms; not attached (the email links to warmspringshouse.com/4tesla/terms) |
-| Warm Springs House - Email GIF.gif | Inside the email body: the seal opens to Prepared for Tesla, linked to the live page (3.3 MB) |
+| Warm Springs House - Email GIF.gif | Inside the email body: the seal opens to Reserved for Tesla, linked to the live page (3.3 MB) |
 | Warm Springs House - Email image (Card 1).jpg | A still alternative to the GIF |
-| Warm Springs House - Prepared for Tesla.mp4 | X and Instagram DMs, iMessage, WhatsApp (720 x 1280, 4 MB, 63 s, no sound) |
-| Warm Springs House - Prepared for Tesla (HD).mp4 | Showing on a large screen or in person (1080 x 1920, 17 MB) |
+| Warm Springs House - Reserved for Tesla.mp4 | X and Instagram DMs, iMessage, WhatsApp (720 x 1280, 4 MB, 63 s, no sound) |
+| Warm Springs House - Reserved for Tesla (HD).mp4 | Showing on a large screen or in person (1080 x 1920, 17 MB) |
 | web/4tesla/ | Upload this folder so it lives at warmspringshouse.com/4tesla |
 | MESSAGES.md | The email and DM text, ready to paste |
 
@@ -25,6 +25,6 @@ The page is set to stay out of search engines. When the link is pasted into an e
 
 ## 3. X or Instagram DM
 
-1. Send the video first: Warm Springs House - Prepared for Tesla.mp4 from your phone's camera roll.
+1. Send the video first: Warm Springs House - Reserved for Tesla.mp4 from your phone's camera roll.
 2. Then send Message 2 from MESSAGES.md.
 3. The terms go as a link to warmspringshouse.com/4tesla/terms.

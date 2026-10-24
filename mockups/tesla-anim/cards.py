@@ -57,7 +57,7 @@ $S.play .line i{animation:type .1s linear calc(3s + var(--i) * 75ms) both}
 $S.done .box{opacity:1} $S.done .p{display:none} $S.done .line i{opacity:1}
 @media (prefers-reduced-motion:reduce){$S .box{opacity:1} $S .p{display:none} $S .line i{opacity:1}}
 ''', html='''<div class="box"><div class="under"></div>
-<div class="line" aria-label="Prepared for Tesla"><i style="--i:0">P</i><i style="--i:1">r</i><i style="--i:2">e</i><i style="--i:3">p</i><i style="--i:4">a</i><i style="--i:5">r</i><i style="--i:6">e</i><i style="--i:7">d</i> <i style="--i:9">f</i><i style="--i:10">o</i><i style="--i:11">r</i> <i style="--i:13">T</i><i style="--i:14">e</i><i style="--i:15">s</i><i style="--i:16">l</i><i style="--i:17">a</i></div>
+<div class="line" aria-label="Reserved for Tesla"><i style="--i:0">R</i><i style="--i:1">e</i><i style="--i:2">s</i><i style="--i:3">e</i><i style="--i:4">r</i><i style="--i:5">v</i><i style="--i:6">e</i><i style="--i:7">d</i> <i style="--i:9">f</i><i style="--i:10">o</i><i style="--i:11">r</i> <i style="--i:13">T</i><i style="--i:14">e</i><i style="--i:15">s</i><i style="--i:16">l</i><i style="--i:17">a</i></div>
 <div class="p lp"></div><div class="p rp"></div></div>''',
 assets={'__SEALED__':('open-1-sealed.webp','image/webp'),'__PAPER__':('paper-gray.webp','image/webp')})
 

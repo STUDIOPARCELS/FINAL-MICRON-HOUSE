@@ -15,9 +15,9 @@ PAGE=f'''<!doctype html>
 <!-- Vercel Web Analytics: anonymous page views, no cookies; counted once Analytics is enabled for the project -->
 <script>window.va=window.va||function(){{(window.vaq=window.vaq||[]).push(arguments)}};</script>
 <script defer src="/_vercel/insights/script.js"></script>
-<title>Proposed Terms · Prepared for Tesla</title>
+<title>Proposed Terms · Reserved for Tesla</title>
 <meta name="description" content="Warm Springs House, Boise: proposed terms for Tesla.">
-<meta property="og:title" content="Proposed Terms · Prepared for Tesla">
+<meta property="og:title" content="Proposed Terms · Reserved for Tesla">
 <meta property="og:image" content="https://warmspringshouse.com/4tesla/preview.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap" rel="stylesheet">
@@ -63,7 +63,7 @@ a:hover{{text-decoration-color:{INK2}}}
 <main class="pg">
 <div class="brand">Warm Springs House</div>
 <div class="lab">Proposed terms</div>
-<h1>Prepared for Tesla</h1>
+<h1>Reserved for Tesla</h1>
 <div class="it">A residential test bed for Optimus + Cybercab.</div>
 <div class="note">Non-binding. Creates no obligation for either party until a definitive agreement is signed.</div>
 <table>{trs}</table>

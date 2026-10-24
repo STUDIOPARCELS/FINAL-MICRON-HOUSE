@@ -73,7 +73,7 @@ a{{color:inherit;text-decoration:underline;text-decoration-color:{RULE};text-und
 </style></head><body><div class="pg">
 <div class="top"><div class="brand">Warm Springs House</div></div>
 <div class="lab">Proposed terms</div>
-<h1>Prepared for Tesla</h1>
+<h1>Reserved for Tesla</h1>
 <div class="it">A residential test bed for Optimus + Cybercab.</div>
 <div class="note">Non-binding. Creates no obligation for either party until a definitive agreement is signed.</div>
 <table>{trs}</table>

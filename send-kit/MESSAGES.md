@@ -12,7 +12,7 @@ I cannot overstate how excited I am about the ways Optimus and Cybercab will res
 
 I'm inviting Tesla to join me at Warm Springs House, my 1906 house in Boise, where Tesla engineers live and work alongside Optimus and Cybercab: the proving ground for the first autonomous corporate residence and entertainment hub.
 
-[Warm Springs House - Email GIF.gif: the seal opens to Prepared for Tesla; linked to https://warmspringshouse.com/4tesla?card=1]
+[Warm Springs House - Email GIF.gif: the seal opens to Reserved for Tesla; linked to https://warmspringshouse.com/4tesla?card=1]
 
 The invitation: warmspringshouse.com/4tesla
 
@@ -30,7 +30,7 @@ No attachment.
 
 ## X or Instagram DM
 
-**Message 1:** the video, Warm Springs House - Prepared for Tesla.mp4
+**Message 1:** the video, Warm Springs House - Reserved for Tesla.mp4
 
 **Message 2:**
 
