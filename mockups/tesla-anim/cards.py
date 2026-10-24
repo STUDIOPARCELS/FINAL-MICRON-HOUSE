@@ -277,7 +277,7 @@ def card_css(c,i):
     return c['css'].replace('$S',f'#c{i}')
 
 def card_html(c,i):
-    h=f'<div class="card" id="c{i}" title="Click to replay">{c["html"]}</div>'
+    h=f'<div class="card" id="c{i}">{c["html"]}</div>'
     for k,(p,m) in c['assets'].items(): h=h.replace(k,b64(p,m))
     return h
 

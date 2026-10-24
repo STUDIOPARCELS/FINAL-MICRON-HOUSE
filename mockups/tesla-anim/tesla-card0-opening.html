@@ -3,12 +3,11 @@
 <title>Tesla · Opening</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
 <style>
-:root{color-scheme:light dark;--bg:#e7e6e3}
-@media (prefers-color-scheme:dark){:root{--bg:#1d1e20}}
+:root{color-scheme:light;--bg:#fff}
 html,body{margin:0;height:100%;background:var(--bg)}
 body{display:grid;place-items:center;overflow:hidden}
 .stage{width:941px;height:1672px;transform-origin:center;flex:none}
-.card{box-shadow:0 2px 4px rgba(0,0,0,.08),0 24px 60px rgba(0,0,0,.16)}
+.card{box-shadow:0 1px 3px rgba(30,30,32,.06),0 18px 50px rgba(30,30,32,.10)}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 .card{position:relative;width:941px;height:var(--ch,1672px);overflow:hidden;font-family:Montserrat,Arial,sans-serif;color:#393c41;cursor:pointer}
 @media (prefers-reduced-motion:reduce){.card *{animation:none!important}}
@@ -58,7 +57,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 @media (prefers-reduced-motion:reduce){#c0 .box{opacity:1} #c0 .p{display:none} #c0 .line i{opacity:1}}
 
 </style></head><body>
-<div class="stage" id="stage"><div class="card" id="c0" title="Click to replay"><div class="box"><div class="under"></div>
+<div class="stage" id="stage"><div class="card" id="c0"><div class="box"><div class="under"></div>
 <div class="line" aria-label="Prepared for Tesla"><i style="--i:0">P</i><i style="--i:1">r</i><i style="--i:2">e</i><i style="--i:3">p</i><i style="--i:4">a</i><i style="--i:5">r</i><i style="--i:6">e</i><i style="--i:7">d</i> <i style="--i:9">f</i><i style="--i:10">o</i><i style="--i:11">r</i> <i style="--i:13">T</i><i style="--i:14">e</i><i style="--i:15">s</i><i style="--i:16">l</i><i style="--i:17">a</i></div>
 <div class="p lp"></div><div class="p rp"></div></div></div></div>
 <script>function splitLines(root){root.querySelectorAll('[data-lines]').forEach(el=>{
@@ -76,7 +75,7 @@ el.textContent='';lines.forEach((ws,i)=>{const m=document.createElement('span');
 inner.style.setProperty('--d',(d0+i*st).toFixed(2)+'s');ws.forEach((w,j)=>{if(j&&!w.glue)inner.appendChild(document.createTextNode(' '));while(w.sp.firstChild)inner.appendChild(w.sp.firstChild)});
 m.appendChild(inner);el.appendChild(m)});el.dataset.done='1'})}
 const st=document.getElementById('stage'),card=st.firstElementChild;
-function fit(){const s=Math.min((innerWidth-24)/941,(innerHeight-24)/1672);st.style.transform='scale('+s+')';st.style.margin=((1672*s-1672)/2)+'px '+((941*s-941)/2)+'px'}
+function fit(){const w=innerWidth,h=innerHeight,s=w<700?Math.min((w-24)/941,(h-24)/1672):Math.min((w-96)/941,(h-240)/1672,640/1672);st.style.transform='scale('+s+')';st.style.margin=((1672*s-1672)/2)+'px '+((941*s-941)/2)+'px'}
 addEventListener('resize',fit);fit();
 function play(){card.classList.remove('play','done');void card.offsetWidth;card.classList.add('play')}
 card.addEventListener('click',play);

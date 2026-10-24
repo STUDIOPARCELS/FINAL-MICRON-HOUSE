@@ -7,18 +7,17 @@ STANDALONE='''<!doctype html><html lang="en"><head><meta charset="utf-8">
 <title>Tesla · {label}</title>
 {fonts}
 <style>
-:root{{color-scheme:light dark;--bg:#e7e6e3}}
-@media (prefers-color-scheme:dark){{:root{{--bg:#1d1e20}}}}
+:root{{color-scheme:light;--bg:#fff}}
 html,body{{margin:0;height:100%;background:var(--bg)}}
 body{{display:grid;place-items:center;overflow:hidden}}
 .stage{{width:941px;height:1672px;transform-origin:center;flex:none}}
-.card{{box-shadow:0 2px 4px rgba(0,0,0,.08),0 24px 60px rgba(0,0,0,.16)}}
+.card{{box-shadow:0 1px 3px rgba(30,30,32,.06),0 18px 50px rgba(30,30,32,.10)}}
 {base}{keys}{util}{css}
 </style></head><body>
 <div class="stage" id="stage">{html}</div>
 <script>{split}
 const st=document.getElementById('stage'),card=st.firstElementChild;
-function fit(){{const s=Math.min((innerWidth-24)/941,(innerHeight-24)/1672);st.style.transform='scale('+s+')';st.style.margin=((1672*s-1672)/2)+'px '+((941*s-941)/2)+'px'}}
+function fit(){{const w=innerWidth,h=innerHeight,s=w<700?Math.min((w-24)/941,(h-24)/1672):Math.min((w-96)/941,(h-240)/1672,640/1672);st.style.transform='scale('+s+')';st.style.margin=((1672*s-1672)/2)+'px '+((941*s-941)/2)+'px'}}
 addEventListener('resize',fit);fit();
 function play(){{card.classList.remove('play','done');void card.offsetWidth;card.classList.add('play')}}
 card.addEventListener('click',play);

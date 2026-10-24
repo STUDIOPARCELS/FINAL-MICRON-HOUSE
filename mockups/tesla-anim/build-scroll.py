@@ -18,9 +18,8 @@ PAGE=f'''<title>Prepared for Tesla</title>
 {FONTS}
 <style>
 /* Layout: one card per screen, snapped; a quiet dot rail on the right */
-:root{{--bg:#e8e7e4;--fg:#393c41;--muted:#7b7d81;--dot:#b9b9b6;--shadow:0 2px 4px rgba(30,30,32,.08),0 24px 60px rgba(30,30,32,.16)}}
-@media (prefers-color-scheme:dark){{:root:not([data-theme="light"]){{--bg:#17181a;--fg:#e4e4e2;--muted:#9a9ca0;--dot:#4a4c50;--shadow:0 2px 6px rgba(0,0,0,.4),0 28px 70px rgba(0,0,0,.55);color-scheme:dark}}}}
-:root[data-theme="dark"]{{--bg:#17181a;--fg:#e4e4e2;--muted:#9a9ca0;--dot:#4a4c50;--shadow:0 2px 6px rgba(0,0,0,.4),0 28px 70px rgba(0,0,0,.55);color-scheme:dark}}
+:root{{--bg:#fff;--fg:#393c41;--muted:#7b7d81;--dot:#c4c4c1;--shadow:0 1px 3px rgba(30,30,32,.06),0 18px 50px rgba(30,30,32,.10);color-scheme:light}}
+/* The page stays plain white in light and dark mode: the invitation is printed stock on a white table */
 html,body{{height:100%}}
 body{{margin:0;background:var(--bg);color:var(--fg);overflow:hidden}}
 .scroller{{position:relative;height:100%;overflow-x:hidden;overflow-y:auto;scroll-snap-type:y mandatory;overscroll-behavior:contain;scrollbar-width:none}}
@@ -42,7 +41,7 @@ body{{margin:0;background:var(--bg);color:var(--fg);overflow:hidden}}
 .cue.on svg{{animation:cue 2s cubic-bezier(.45,0,.25,1) infinite}}
 @keyframes cue{{0%,100%{{transform:translateY(-3px)}}50%{{transform:translateY(5px)}}}}
 @media (prefers-reduced-motion:reduce){{.cue.on svg{{animation:none}}}}
-@media (max-width:699px){{.rail{{display:none}} html body{{background:#f4f4f3}} .cue{{color:#393c41;bottom:12%}} .card{{box-shadow:none}} .sec{{overflow:hidden}} .sec~.sec{{box-shadow:0 -10px 34px rgba(20,20,22,.22)}}}}
+@media (max-width:699px){{.rail{{display:none}} html body{{background:#fff}} .cue{{color:#393c41;bottom:12%}} .card{{box-shadow:none}} .sec{{overflow:hidden}} .sec~.sec{{box-shadow:0 -10px 34px rgba(20,20,22,.22)}}}}
 {CARD_BASE}{KEYFRAMES}{UTIL}{css}
 </style>
 <div class="scroller" id="scroller">{snaps}{sections}</div>
@@ -55,11 +54,11 @@ const dur=[{durs}],read=[{reads}],still=matchMedia('(prefers-reduced-motion:redu
 // than the card, only plain margin runs off the edge: at most 84px of card at the top and bottom (every card keeps 90px there)
 // and 50px at the sides (they keep 60). Past that the whole card shows, on its own paper. A card whose photo runs off its top
 // edge keeps that edge on screen: up to 120px comes off its deeper bottom margin first, only then the top.
-// Larger screens: the card with about an inch (120px) above and below.
+// Larger screens: a restrained card, at most 640px tall, with at least an inch (120px) above and below.
 const phone=()=>sc.clientWidth<700;
 function fit(){{const w=sc.clientWidth,h=sc.clientHeight;let s;
   if(phone()){{s=Math.max(w/941,h/1672);if((941*s-w)/2/s>50||(1672*s-h)/2/s>84)s=Math.min(w/941,h/1672)}}
-  else s=Math.min((w-96)/941,(h-240)/1672);
+  else s=Math.min((w-96)/941,(h-240)/1672,640/1672);
   const cy=Math.max(0,(1672*s-h)/2/s);
   secs.forEach(x=>{{x.style.setProperty('--s',Math.max(.05,s));x.style.setProperty('--dy',(x.dataset.anchor==='top'?(cy-Math.max(0,2*cy-120))*s:0)+'px')}})}}
 // refit whenever the visible area changes: rotation, Safari's toolbar growing or shrinking, a tab restored from the background
