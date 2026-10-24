@@ -4,57 +4,25 @@ Replace [Name]. Nothing else needs editing.
 
 ## Email
 
-**Subject:** Prepared for Tesla: Warm Springs House, Boise
+**Subject:** An invitation for Optimus + Cybercab
 
-Hi [Name],
+Hi [First name],
 
-I hope you're doing well.
+I'm excited about the ways Optimus and Cybercab will reshape how we live, work, travel and gather.
 
-I'm offering Warm Springs House, my 1906 family home in Boise, to Tesla as a residential test bed for Optimus and Cybercab. One or more Tesla engineers live and work on site, at no cost to Tesla. The house is move-in ready.
-
-[Warm Springs House - Email GIF.gif: the seal opens to Prepared for Tesla; linked to https://warmspringshouse.com/4tesla?card=1]
-
-The invitation: warmspringshouse.com/4tesla
-The terms (one page): warmspringshouse.com/4tesla/terms
-
-I'd be glad to show you the house in person.
-
-I'm in the demographic most wary of robots and self-driving cars, yet I can't wait for them.
-
-Lisa Wood
-LISA WOOD STUDIO
-208 720 2433
-lisa@lisawoodstudio.com
-warmspringshouse.com
-
-No attachment.
-
-## Email, if someone introduced you
-
-**Subject:** Prepared for Tesla: Warm Springs House, Boise
-
-Hi [Name],
-
-I hope you're doing well.
-
-[Introducer] suggested I send this to you.
-
-I'm offering Warm Springs House, my 1906 family home in Boise, to Tesla as a residential test bed for Optimus and Cybercab. One or more Tesla engineers live and work on site, at no cost to Tesla. The house is move-in ready.
+I'd like to offer my 1906 home in Boise, Warm Springs House, as a place where Tesla engineers live and work with both, at no cost to Tesla. It's a real-world proof of concept that can grow into a corporate residence.
 
 [Warm Springs House - Email GIF.gif: the seal opens to Prepared for Tesla; linked to https://warmspringshouse.com/4tesla?card=1]
 
 The invitation: warmspringshouse.com/4tesla
-The terms (one page): warmspringshouse.com/4tesla/terms
 
-I'd be glad to show you the house in person.
-
-I'm in the demographic most wary of robots and self-driving cars, yet I can't wait for them.
+“I'm in the demographic most wary of robots and self-driving cars, yet I can't wait for them. I've seen how fragile care can be for the people I love. I want a robot in the loop.”
 
 Lisa Wood
-LISA WOOD STUDIO
 208 720 2433
 lisa@lisawoodstudio.com
 warmspringshouse.com
+LISA WOOD STUDIO
 
 No attachment.
 

@@ -5,43 +5,39 @@ import base64,html
 GIF='../Warm Springs House - Email GIF.gif'
 URL='https://warmspringshouse.com/4tesla'
 OPEN=URL+'?card=1'  # the email's card and invitation link skip the opening the reader just watched; Card 1 drops in
-SUBJECT='Prepared for Tesla: Warm Springs House, Boise'
+SUBJECT='An invitation for Optimus + Cybercab'
 # The first email, ending with Lisa's line from Card 5
 INTRO={'cold':[],'introduced':['[Introducer] suggested I send this to you.']}
-GREET="I hope you're doing well."
-BODY=["I'm offering Warm Springs House, my 1906 family home in Boise, to Tesla as a residential test bed for Optimus and Cybercab. One or more Tesla engineers live and work on site, at no cost to Tesla. The house is move-in ready."]
-CLOSE=["I'd be glad to show you the house in person.","I'm in the demographic most wary of robots and self-driving cars, yet I can't wait for them."]
+GREET="I'm excited about the ways Optimus and Cybercab will reshape how we live, work, travel and gather."
+BODY=["I'd like to offer my 1906 home in Boise, Warm Springs House, as a place where Tesla engineers live and work with both, at no cost to Tesla. It's a real-world proof of concept that can grow into a corporate residence."]
+CLOSE=["“I'm in the demographic most wary of robots and self-driving cars, yet I can't wait for them. I've seen how fragile care can be for the people I love. I want a robot in the loop.”"]
 F='font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.55;color:#2b2d31'
 def body_html(kind,img_src):
     p=lambda t,m='0 0 14px':f'<p style="margin:{m};{F}">{t}</p>'
     paras=''.join(p(html.escape(t))+'\n' for t in [GREET]+INTRO[kind]+BODY)
     return f'''<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head><body style="margin:0;padding:0;background:#ffffff">
 <div style="max-width:560px;padding:16px">
-{p('Hi [Name],')}
+{p('Hi [First name],')}
 {paras}<p style="margin:22px 0 18px"><a href="{OPEN}" target="_blank"><img src="{img_src}" width="300" alt="Open the invitation: Prepared for Tesla" style="display:block;width:300px;max-width:100%;height:auto;border:0"></a></p>
-{p(f'The invitation: <a href="{OPEN}" style="color:#2b2d31">warmspringshouse.com/4tesla</a><br>The terms (one page): <a href="{URL}/terms" style="color:#2b2d31">warmspringshouse.com/4tesla/terms</a>','0 0 14px')}
-{p(html.escape(CLOSE[0]))}
-{p(html.escape(CLOSE[1]),'0 0 22px')}
-<p style="margin:0;{F}"><b>Lisa Wood</b><br>LISA WOOD STUDIO<br><a href="tel:+12087202433" style="color:#2b2d31">208 720 2433</a><br><a href="mailto:lisa@lisawoodstudio.com" style="color:#2b2d31">lisa@lisawoodstudio.com</a><br><a href="https://warmspringshouse.com/" style="color:#2b2d31">warmspringshouse.com</a></p>
+{p(f'The invitation: <a href="{OPEN}" style="color:#2b2d31">warmspringshouse.com/4tesla</a>','0 0 14px')}
+{p(html.escape(CLOSE[0]),'0 0 22px')}
+<p style="margin:0;{F}"><b>Lisa Wood</b><br><a href="tel:+12087202433" style="color:#2b2d31">208 720 2433</a><br><a href="mailto:lisa@lisawoodstudio.com" style="color:#2b2d31">lisa@lisawoodstudio.com</a><br><a href="https://warmspringshouse.com/" style="color:#2b2d31">warmspringshouse.com</a><br>LISA WOOD STUDIO</p>
 </div></body></html>'''
 def body_text(kind):
     paras='\n\n'.join([GREET]+INTRO[kind]+BODY)
-    return f'''Hi [Name],
+    return f'''Hi [First name],
 
 {paras}
 
 The invitation: {OPEN}
-The terms (one page): {URL}/terms
 
 {CLOSE[0]}
 
-{CLOSE[1]}
-
 Lisa Wood
-LISA WOOD STUDIO
 208 720 2433
 lisa@lisawoodstudio.com
 warmspringshouse.com
+LISA WOOD STUDIO
 '''
 def wrap(b): return '\r\n'.join(b[i:i+76] for i in range(0,len(b),76))
 gif=wrap(base64.b64encode(open(GIF,'rb').read()).decode())
