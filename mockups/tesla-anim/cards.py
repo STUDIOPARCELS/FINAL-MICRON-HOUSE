@@ -100,7 +100,7 @@ $S .h{{font-size:54px;line-height:1.06;letter-spacing:-.01em;font-weight:800;tex
 $S .sub{{font-size:31px;line-height:1.38;font-weight:500;color:{INK2}}}
 $S .caps{{margin-top:22px;font-size:27px;letter-spacing:.1em;font-weight:800;text-transform:uppercase}}
 $S .pv{{margin-top:10px;font-family:Newsreader,Georgia,serif;font-style:italic;font-size:35px;color:#2c0f38}}
-$S em{{font-family:Newsreader,Georgia,serif;font-style:italic;font-size:35px;font-weight:400;color:{INK}}}
+$S em{{font-family:Newsreader,Georgia,serif;font-style:italic;font-size:35px;line-height:1;font-weight:400;color:{INK}}}
 $S .sub.a{{margin-top:32px}}
 """, html="""<div class="wrap">
 <div class="pics"><div class="im" style="--d:.2s"><img src="__ROOM__" alt="Optimus in the living room"></div><div class="im" style="--d:.65s"><img src="__CAB__" alt="Cybercab at the house"></div></div>
@@ -189,6 +189,7 @@ $S .wrap{{position:absolute;left:60px;right:60px;top:90px;bottom:90px;display:fl
 $S .wrap>div:nth-child(2){{margin-top:52px}} $S .wrap>.rule,$S .wrap>.row{{margin-top:auto}}
 $S .hs{{height:min(586px,calc(100cqh - 894px));aspect-ratio:1240/885;margin:0 auto}}
 $S .b{{margin-top:22px;font-size:24px;line-height:1.45;letter-spacing:.09em;font-weight:800;text-transform:uppercase}}
+$S .h a{{color:inherit;text-decoration:underline;text-decoration-color:#d6d6d3;text-decoration-thickness:2px;text-underline-offset:7px}}
 $S .h{{font-size:56px;line-height:1.06;letter-spacing:-.01em;font-weight:800;text-transform:uppercase}}
 $S .f{{margin-top:20px;font-size:30px;line-height:1.4;font-weight:500;color:{INK2}}}
 $S .rule{{background:{RULE}}}
@@ -199,7 +200,7 @@ $S .inw{{width:370px;height:370px;flex:none}} $S .inw img{{position:absolute;ins
 """, html="""<div class="wrap">
 <div><div class="im hs" style="--d:.2s"><img src="__HOUSE__" alt="Warm Springs House in autumn"></div>
 <div class="b" data-lines="1.05:.12">A 1906 family home, opening its doors to the future &#8212; ready to welcome Optimus and Cybercab.</div></div>
-<div><div class="h"><span class="m"><span style="--d:1.5s">Warm Springs House</span></span><span class="m"><span style="--d:1.62s">+ Lisa Wood Studio</span></span></div>
+<div><div class="h"><span class="m"><span style="--d:1.5s"><a href="https://warmspringshouse.com/" target="_blank" rel="noopener">Warm Springs House</a></span></span><span class="m"><span style="--d:1.62s">+ <a href="https://lisawoodstudio.com/" target="_blank" rel="noopener">Lisa Wood Studio</a></span></span></div>
 <div class="f" data-lines="1.9:.1">Idaho since 1992.<br>A career in high tech since 1995.<br>Owner of Warm Springs House since 2000.</div></div>
 <div class="rule ln" style="--d:2.35s"></div>
 <div class="row"><div style="flex:1;min-width:0"><div class="s" data-lines="2.75:.12">&#8220;I&#8217;m in the demographic most wary of robots and self-driving cars, yet I can&#8217;t wait for them.</div><div class="s" data-lines="3.4:.12">I&#8217;ve seen how fragile care can be for the people I love. I want a robot in the loop.&#8221;</div></div>
