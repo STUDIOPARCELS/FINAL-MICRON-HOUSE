@@ -122,7 +122,7 @@ code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background
       </div>
     </div>
   </article>
-  <div class="row"><button type="button" data-copy="subj">Copy subject</button><button type="button" data-copy="mailbody">Copy email text</button></div>
+  <div class="row"><button type="button" data-copy="subj">Copy subject</button><button type="button" data-copy="mailbody">Copy email</button></div>
   <p class="note">The card in the email is animated: the seal opens to Prepared for Tesla (8 seconds, loops). Tapping it opens the live invitation.</p>
 </section>
 
@@ -186,7 +186,7 @@ code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background
   <h2 id="h-steps">How to send it</h2>
   <ol class="steps">
     <li><div><b>Put the invitation online, once</b><p>Already live at warmspringshouse.com/4tesla, with the terms at warmspringshouse.com/4tesla/terms. The page stays out of search engines.</p></div></li>
-    <li><div><b>Email</b><p>Paste the subject and text. Drag <code>Warm Springs House - Email GIF.gif</code> into the body, select it, press Ctrl+K (Cmd+K on a Mac) and paste the invitation link. No attachment. Send it to yourself first and open it on your phone.</p></div></li>
+    <li><div><b>Email</b><p>Open a new message from lisa@lisawoodstudio.com. Press <b>Copy subject</b> and paste it into the subject, then <b>Copy email</b> and paste it into the body: the text, the animated card (linked to the invitation), the links and your signature all come across. Change [Name], add their address and send. No attachment. Send one to yourself first and open it on your phone.</p></div></li>
     <li><div><b>Direct messages on X or Instagram</b><p>From your phone, send <code>Warm Springs House - Prepared for Tesla.mp4</code> from your camera roll, then paste the message.</p></div></li>
   </ol>
 </section>
@@ -206,9 +206,29 @@ code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background
 
 <script>
 
+// "Copy email" carries the whole email as rich text: the card comes from the live site (warmspringshouse.com/4tesla/invitation.gif),
+// linked to the invitation, with email-safe inline styles, so one paste into any mail program gives the finished message.
+const GIF='https://warmspringshouse.com/4tesla/invitation.gif',F='font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.55;color:#2b2d31';
+function mailHTML(el){const c=el.cloneNode(true);
+  c.querySelectorAll('p').forEach(p=>p.setAttribute('style',p.classList.contains('gifin')?'margin:22px 0 18px':'margin:0 0 14px;'+F));
+  c.querySelectorAll('img').forEach(i=>{i.setAttribute('src',GIF);i.setAttribute('width','300');i.removeAttribute('height');i.setAttribute('alt','Open the invitation: Prepared for Tesla');i.setAttribute('style','display:block;width:300px;max-width:100%;height:auto;border:0')});
+  c.querySelectorAll('a').forEach(a=>{['class','target','rel','aria-label'].forEach(k=>a.removeAttribute(k));a.setAttribute('style','color:#2b2d31')});
+  const g=c.querySelector('.sig');if(g)g.setAttribute('style','margin:22px 0 0;'+F);
+  c.querySelectorAll('[class]').forEach(n=>n.removeAttribute('class'));
+  return '<div style="'+F+'">'+c.innerHTML+'</div>'}
+let pending=null;
+document.addEventListener('copy',e=>{if(!pending)return;e.clipboardData.setData('text/html',pending.html);e.clipboardData.setData('text/plain',pending.text);e.preventDefault();pending=null});
 document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>{
   const el=document.getElementById(b.dataset.copy);
   const text=el.innerText.replace(/\n{3,}/g,'\n\n').trim();
+  if(b.dataset.copy==='mailbody'){const label=b.textContent;pending={html:mailHTML(el),text};
+    const done=()=>{b.textContent='Copied';b.classList.add('done');setTimeout(()=>{b.textContent=label;b.classList.remove('done')},1600)};
+    let ok=false;try{ok=document.execCommand('copy')}catch(e){}
+    if(ok&&!pending)return done();
+    const html=pending.html;
+    try{navigator.clipboard.write([new ClipboardItem({'text/html':new Blob([html],{type:'text/html'}),'text/plain':new Blob([text],{type:'text/plain'})})]).then(()=>{pending=null;done()},()=>{const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selected · press copy';setTimeout(()=>{b.textContent=label},4000)})}
+    catch(e){const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selected · press copy';setTimeout(()=>{b.textContent=label},4000)}
+    return}
   const label=b.textContent;
   const done=()=>{b.textContent='Copied';b.classList.add('done');setTimeout(()=>{b.textContent=label;b.classList.remove('done')},1600)};
   const fallback=()=>{const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selected · press copy';setTimeout(()=>{b.textContent=label},2200)};
