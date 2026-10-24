@@ -4,26 +4,25 @@ Replace [Name] and [Introducer]. Nothing else needs editing.
 
 ## Email
 
-**Subject:** A residential test bed for Optimus + Cybercab in Boise
+**Subject:** Residential test bed for Optimus + Cybercab: Boise, available now
 
-Hi [Name],
+[Name],
 
-[Introducer] suggested I send this to you.
+[Introducer] suggested I write to you.
 
-I'm offering Warm Springs House, my 1906 family home in Boise, to Tesla as a residential test bed for Optimus and Cybercab. One or more Tesla engineers live and work on site, at no cost to Tesla. The house is move-in ready.
+**Offer:** Warm Springs House, a 1906 home in Boise, as a residential test bed for Optimus and Cybercab. One or more Tesla engineers live and work on site. No cost to Tesla. Available now.
 
-The test bed is the first step. When Tesla is ready, it becomes the proof of concept for the first autonomous corporate residence + entertainment hub, and a blueprint for bringing autonomous technology to other cities.
+**Objective:** Prove the first autonomous corporate residence + entertainment hub with a leading Boise corporation, and build a blueprint for bringing autonomous technology into daily life in other cities. Both at Tesla's option.
+
+**Next step:** A site visit at your convenience.
 
 [invitation-opening.gif, linked to https://warmspringshouse.com/tesla]
 
-The invitation: warmspringshouse.com/tesla
-The one-page term sheet is attached.
-
-I'd be glad to show you the house in person.
+Invitation: warmspringshouse.com/tesla
+Term sheet attached (one page).
 
 Lisa Wood
-LISA WOOD STUDIO
-208 720 2433 · lisa@lisawoodstudio.com · warmspringshouse.com
+LISA WOOD STUDIO · 208 720 2433 · warmspringshouse.com
 
 **Attach:** Warm Springs House - Proposed Terms - Tesla.pdf
 
