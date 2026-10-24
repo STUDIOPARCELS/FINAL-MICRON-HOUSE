@@ -16,7 +16,7 @@ KEYFRAMES='''
 @keyframes wipe-edge{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0)}}
 @keyframes wipe{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(-40px)}}
 @keyframes zoom{from{transform:scale(1.08)}to{transform:none}}
-@keyframes type{from{opacity:0;transform:translateY(.3em);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+@keyframes type{from{opacity:0}to{opacity:1}}
 @keyframes kin{from{opacity:0;transform:var(--k)}to{opacity:1;transform:none}}
 '''
 
@@ -53,7 +53,7 @@ $S.play .box{animation:in 1s ease-out both}
 $S.play .lp{animation:openL 1.6s cubic-bezier(.55,0,.25,1) 1.5s both}
 $S.play .rp{animation:openR 1.6s cubic-bezier(.55,0,.25,1) 1.5s both}
 $S.play .p::after{animation:shade 1.6s cubic-bezier(.55,0,.25,1) 1.5s both}
-$S.play .line i{animation:type .7s cubic-bezier(.2,.7,.2,1) calc(3s + var(--i) * 55ms) both}
+$S.play .line i{animation:type .04s steps(1,end) calc(3s + var(--i) * 75ms) both}
 $S.done .box{opacity:1} $S.done .p{display:none} $S.done .line i{opacity:1}
 @media (prefers-reduced-motion:reduce){$S .box{opacity:1} $S .p{display:none} $S .line i{opacity:1}}
 ''', html='''<div class="box"><div class="under"></div>
