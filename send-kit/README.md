@@ -3,7 +3,8 @@
 | File | Use it for |
 |---|---|
 | Warm Springs House - Proposed Terms - Tesla.pdf | Printable copy of the terms; not attached (the email links to warmspringshouse.com/4tesla/terms) |
-| Warm Springs House - Invitation.gif | Inside the email body: the whole invitation, linked to the live page (3.2 MB) |
+| Warm Springs House - Email GIF.gif | Inside the email body: the seal opens to Prepared for Tesla, linked to the live page (3.3 MB) |
+| Warm Springs House - Email image (Card 1).jpg | A still alternative to the GIF |
 | Warm Springs House - Prepared for Tesla.mp4 | X and Instagram DMs, iMessage, WhatsApp (720 x 1280, 4 MB, 63 s, no sound) |
 | Warm Springs House - Prepared for Tesla (HD).mp4 | Showing on a large screen or in person (1080 x 1920, 17 MB) |
 | web/4tesla/ | Upload this folder so it lives at warmspringshouse.com/4tesla |
@@ -17,7 +18,7 @@ The page is set to stay out of search engines. When the link is pasted into an e
 ## 2. Email (Gmail)
 
 1. New message. Paste the subject and text from MESSAGES.md.
-2. Drag Warm Springs House - Invitation.gif into the body where the placeholder is.
+2. Drag Warm Springs House - Email GIF.gif into the body where the placeholder is, set it to medium size, select it, press Ctrl+K (Cmd+K on a Mac) and paste https://warmspringshouse.com/4tesla.
 3. Click the GIF, press Ctrl+K (Cmd+K on Mac) and paste https://warmspringshouse.com/4tesla so the GIF opens the invitation.
 4. No attachment: the terms are linked.
 5. Send it to yourself first and open it on your phone.

@@ -16,7 +16,7 @@ Replace [Name] (and [Introducer] in the introduced email). Nothing else needs ed
 
 **Next step:** A site visit at your convenience.
 
-[Warm Springs House - Invitation.gif: the whole invitation, linked to https://warmspringshouse.com/4tesla]
+[Warm Springs House - Email GIF.gif: the seal opens to Prepared for Tesla; linked to https://warmspringshouse.com/4tesla]
 
 Invitation: warmspringshouse.com/4tesla
 Terms (one page): warmspringshouse.com/4tesla/terms
@@ -40,7 +40,7 @@ I'm Lisa Wood, owner of Warm Springs House in Boise. I'm writing to offer it to 
 
 **Next step:** A site visit at your convenience.
 
-[Warm Springs House - Invitation.gif: the whole invitation, linked to https://warmspringshouse.com/4tesla]
+[Warm Springs House - Email GIF.gif: the seal opens to Prepared for Tesla; linked to https://warmspringshouse.com/4tesla]
 
 Invitation: warmspringshouse.com/4tesla
 Terms (one page): warmspringshouse.com/4tesla/terms
