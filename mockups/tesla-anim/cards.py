@@ -71,7 +71,7 @@ $S .wm{{position:absolute;top:64px;left:723px;width:168px}}
 $S .txt{{position:absolute;left:60px;right:60px;bottom:90px}}
 $S .h{{font-size:54px;line-height:1.06;letter-spacing:-.01em;font-weight:800;text-transform:uppercase}}
 $S .sub{{margin-top:26px;font-size:31px;line-height:1.38;font-weight:500;color:{INK2}}}
-$S .caps{{margin-top:22px;font-size:27px;letter-spacing:.1em;font-weight:800;text-transform:uppercase}}
+$S .caps{{margin-top:22px;font-size:27px;letter-spacing:.1em;font-weight:800;text-transform:uppercase;color:#00782a}}
 $S .rule{{margin-top:30px;background:{RULE}}}
 $S .grid{{padding-top:16px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}}
 $S .n{{font-size:48px;font-weight:800;line-height:1}} $S .n span{{font-size:22px;font-weight:700}}
@@ -223,8 +223,8 @@ $S .ct{{display:grid;grid-template-columns:1fr auto;align-items:center;column-ga
 $S .nm{{font-size:46px;line-height:1.1;letter-spacing:.07em;font-weight:800;text-transform:uppercase}}
 $S .dt{{margin-top:16px;font-size:33px;line-height:1.5;font-weight:500}}
 $S .dt a{{color:inherit;text-decoration:underline;text-decoration-color:{RULE};text-decoration-thickness:1px;text-underline-offset:5px}}
-$S .pb a{{color:inherit;text-decoration:underline;text-decoration-color:#cfd0d2;text-decoration-thickness:1px;text-underline-offset:5px}}
-$S .pb{{margin-top:24px;font-size:19px;letter-spacing:.24em;font-weight:700;text-transform:uppercase;color:{INK2}}}
+$S .pb a{{color:inherit;text-decoration:underline;text-decoration-color:#c4c4c1;text-decoration-thickness:1px;text-underline-offset:5px}}
+$S .pb{{margin-top:18px;line-height:1.9;font-size:19px;letter-spacing:.24em;font-weight:700;text-transform:uppercase;color:{INK2}}}
 $S .mk{{display:block;width:260px;height:260px;overflow:visible}}
 $S .mk .k{{transform-box:fill-box;transform-origin:center;opacity:0}}
 $S.play .mk .k{{animation:kin 1.1s cubic-bezier(.2,.7,.2,1) var(--d) both}}

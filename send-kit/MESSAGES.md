@@ -16,15 +16,15 @@ Replace [Name] (and [Introducer] in the introduced email). Nothing else needs ed
 
 **Next step:** A site visit at your convenience.
 
-[invitation-opening.gif, linked to https://warmspringshouse.com/4tesla]
+[Warm Springs House - Invitation.gif: the whole invitation, linked to https://warmspringshouse.com/4tesla]
 
 Invitation: warmspringshouse.com/4tesla
-Term sheet attached (one page).
+Terms (one page): warmspringshouse.com/4tesla/terms
 
 Lisa Wood
 LISA WOOD STUDIO · 208 720 2433 · warmspringshouse.com
 
-**Attach:** Warm Springs House - Proposed Terms - Tesla.pdf
+No attachment.
 
 ## Email, cold (no introduction)
 
@@ -40,15 +40,15 @@ I'm Lisa Wood, owner of Warm Springs House in Boise. I'm writing to offer it to 
 
 **Next step:** A site visit at your convenience.
 
-[invitation-opening.gif, linked to https://warmspringshouse.com/4tesla]
+[Warm Springs House - Invitation.gif: the whole invitation, linked to https://warmspringshouse.com/4tesla]
 
 Invitation: warmspringshouse.com/4tesla
-Term sheet attached (one page).
+Terms (one page): warmspringshouse.com/4tesla/terms
 
 Lisa Wood
 LISA WOOD STUDIO · 208 720 2433 · warmspringshouse.com
 
-**Attach:** Warm Springs House - Proposed Terms - Tesla.pdf
+No attachment.
 
 ## X or Instagram DM
 
@@ -59,7 +59,7 @@ LISA WOOD STUDIO · 208 720 2433 · warmspringshouse.com
 Hi [Name], [Introducer] suggested I send this. I'm offering my 1906 family home in Boise to Tesla as a residential test bed for Optimus and Cybercab, at no cost to Tesla.
 
 The invitation: warmspringshouse.com/4tesla
-Term sheet: warmspringshouse.com/4tesla/terms.pdf
+Terms: warmspringshouse.com/4tesla/terms
 
 Lisa Wood
 

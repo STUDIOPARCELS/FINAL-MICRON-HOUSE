@@ -2,8 +2,8 @@
 
 | File | Use it for |
 |---|---|
-| Warm Springs House - Proposed Terms - Tesla.pdf | Email attachment |
-| invitation-opening.gif | Inside the email body, linked to the invitation (1 MB) |
+| Warm Springs House - Proposed Terms - Tesla.pdf | Printable copy of the terms; not attached (the email links to warmspringshouse.com/4tesla/terms) |
+| Warm Springs House - Invitation.gif | Inside the email body: the whole invitation, linked to the live page (3.2 MB) |
 | Warm Springs House - Prepared for Tesla.mp4 | X and Instagram DMs, iMessage, WhatsApp (720 x 1280, 4 MB, 63 s, no sound) |
 | Warm Springs House - Prepared for Tesla (HD).mp4 | Showing on a large screen or in person (1080 x 1920, 17 MB) |
 | web/4tesla/ | Upload this folder so it lives at warmspringshouse.com/4tesla |
@@ -11,19 +11,19 @@
 
 ## 1. Put the invitation online (once)
 
-Upload the three files in web/4tesla/ (index.html, terms.pdf, preview.jpg) to warmspringshouse.com/4tesla/.
+Live at warmspringshouse.com/4tesla; the terms are at warmspringshouse.com/4tesla/terms.
 The page is set to stay out of search engines. When the link is pasted into an email, X, Instagram or iMessage, it shows the sealed-card preview image.
 
 ## 2. Email (Gmail)
 
 1. New message. Paste the subject and text from MESSAGES.md.
-2. Drag invitation-opening.gif into the body where the placeholder is.
+2. Drag Warm Springs House - Invitation.gif into the body where the placeholder is.
 3. Click the GIF, press Ctrl+K (Cmd+K on Mac) and paste https://warmspringshouse.com/4tesla so the GIF opens the invitation.
-4. Attach the term sheet PDF.
+4. No attachment: the terms are linked.
 5. Send it to yourself first and open it on your phone.
 
 ## 3. X or Instagram DM
 
 1. Send the video first: Warm Springs House - Prepared for Tesla.mp4 from your phone's camera roll.
 2. Then send Message 2 from MESSAGES.md.
-3. DMs can't carry a PDF, so the term sheet goes as the link.
+3. The terms go as a link to warmspringshouse.com/4tesla/terms.
