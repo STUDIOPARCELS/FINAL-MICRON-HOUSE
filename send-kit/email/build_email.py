@@ -8,9 +8,9 @@ OPEN=URL+'?card=1'  # the email's card and invitation link skip the opening the 
 SUBJECT='An invitation for Optimus + Cybercab'
 # The first email, ending with Lisa's line from Card 5
 INTRO={'cold':[],'introduced':['[Introducer] suggested I send this to you.']}
-GREET="I'm excited about the ways Optimus and Cybercab will reshape how we live, work, travel and gather."
+GREET="I cannot overstate how excited I am about the ways Optimus and Cybercab will reshape how we live, work, travel and gather."
 BODY=["I'd like to offer my 1906 home in Boise, Warm Springs House, as a place where Tesla engineers live and work with both, at no cost to Tesla. It's a real-world proof of concept that can grow into a corporate residence."]
-CLOSE=["“I'm in the demographic most wary of robots and self-driving cars, yet I can't wait for them. I've seen how fragile care can be for the people I love. I want a robot in the loop.”"]
+CLOSE=["I'm in the demographic most wary of robots and self-driving cars, yet I can't wait for them. I've seen how fragile care can be for the people I love. I want a robot in the loop."]
 F='font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.55;color:#2b2d31'
 def body_html(kind,img_src):
     p=lambda t,m='0 0 14px':f'<p style="margin:{m};{F}">{t}</p>'
