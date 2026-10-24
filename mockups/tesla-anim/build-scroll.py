@@ -30,24 +30,24 @@ body{{margin:0;background:var(--bg);color:var(--fg);overflow:hidden}}
 .dot[aria-current="true"]{{background:var(--fg);transform:scale(1.25)}}
 .dot:focus-visible{{outline:2px solid var(--fg);outline-offset:3px}}
 /* Scroll cue: appears once the opening words are in; a short line with a light travelling down it */
-.cue{{position:fixed;left:50%;bottom:max(18px,env(safe-area-inset-bottom,0px));transform:translate(-50%,8px);display:flex;flex-direction:column;align-items:center;gap:10px;font:600 10px/1 Montserrat,Arial,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);opacity:0;transition:opacity .8s,transform .8s cubic-bezier(.2,.7,.2,1);pointer-events:none}}
-.cue.on{{opacity:1;transform:translate(-50%,0)}}
-.cue i{{position:relative;width:1px;height:30px;background:var(--dot);overflow:hidden}}
-.cue i::after{{content:"";position:absolute;left:0;top:0;width:1px;height:12px;background:var(--fg);animation:cue 1.8s cubic-bezier(.6,0,.3,1) infinite}}
-@keyframes cue{{from{{transform:translateY(-12px)}}to{{transform:translateY(30px)}}}}
-@media (prefers-reduced-motion:reduce){{.cue i::after{{animation:none;transform:translateY(9px)}}}}
-@media (max-width:699px){{.rail{{display:none}} html body{{background:#f4f4f3}} .cue{{color:#7b7d81}} .cue i{{background:#c9c9c6}} .cue i::after{{background:#393c41}} .cue{{bottom:11%}} .card{{box-shadow:none}}}}
+.cue{{position:fixed;left:50%;bottom:max(18px,env(safe-area-inset-bottom,0px));width:26px;height:26px;margin-left:-13px;color:var(--fg);opacity:0;transition:opacity .8s;pointer-events:none}}
+.cue.on{{opacity:.55}}
+.cue svg{{display:block;width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}}
+.cue.on svg{{animation:cue 2s cubic-bezier(.45,0,.25,1) infinite}}
+@keyframes cue{{0%,100%{{transform:translateY(-3px)}}50%{{transform:translateY(5px)}}}}
+@media (prefers-reduced-motion:reduce){{.cue.on svg{{animation:none}}}}
+@media (max-width:699px){{.rail{{display:none}} html body{{background:#f4f4f3}} .cue{{color:#393c41;bottom:12%}} .sec #c1 .wm{{top:56px}} .sec #c1 .txt{{bottom:60px}} .card{{box-shadow:none}}}}
 {CARD_BASE}{KEYFRAMES}{UTIL}{css}
 </style>
 <div class="scroller" id="scroller">{sections}</div>
 <nav class="rail" aria-label="Cards">{dots}</nav>
-<div class="cue" id="cue" aria-hidden="true"><span id="cueText">Scroll</span><i></i></div>
+<div class="cue" id="cue" aria-hidden="true"><svg viewBox="0 0 26 26"><path d="M6 10l7 7 7-7"/></svg></div>
 <script>{SPLIT_JS}
 const sc=document.getElementById('scroller'),secs=[...sc.querySelectorAll('.sec')],cards=secs.map(s=>s.querySelector('.card')),dots=[...document.querySelectorAll('.dot')],cue=document.getElementById('cue');
 const dur=[{durs}],read=[{reads}],still=matchMedia('(prefers-reduced-motion:reduce)').matches;
-if(matchMedia('(pointer:coarse)').matches)document.getElementById('cueText').textContent='Swipe up';
-// Phones: the card fills the screen edge to edge (as far as its proportions allow). Larger screens: about an inch (120px) of space above and below the card.
-function fit(){{const w=sc.clientWidth,h=sc.clientHeight;const s=w<700?Math.min(w/941,h/1672):Math.min((w-96)/941,(h-240)/1672);secs.forEach(x=>x.style.setProperty('--s',Math.max(.05,s)))}}
+// Phones: full bleed. The card fills the width; the few points it is taller than the screen come off its top and bottom margins
+// (never more than 60px of card, so no content is cut; very short screens fit the card instead). Larger screens: about an inch (120px) above and below.
+function fit(){{const w=sc.clientWidth,h=sc.clientHeight;let s;if(w<700){{s=w/941;if((1672*s-h)/2/s>60)s=Math.min(w/941,h/1672)}}else s=Math.min((w-96)/941,(h-240)/1672);secs.forEach(x=>x.style.setProperty('--s',Math.max(.05,s)))}}
 addEventListener('resize',fit);fit();
 function play(c){{c.classList.remove('play');void c.offsetWidth;c.classList.add('play')}}
 function mark(i){{dots.forEach((d,j)=>d.setAttribute('aria-current',String(j===i)));if(i>0){{cueDone=true;cue.classList.remove('on')}}}}
@@ -65,7 +65,6 @@ const io=new IntersectionObserver(es=>{{es.forEach(e=>{{const i=secs.indexOf(e.t
 }})}},{{root:sc,threshold:[0,.6]}});
 (document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(()=>{{secs.forEach(s=>splitLines(s));secs.forEach(s=>io.observe(s))}});
 dots.forEach((d,i)=>d.addEventListener('click',()=>go(i)));
-cards.forEach(c=>c.addEventListener('click',e=>{{if(!e.target.closest('a'))play(c)}}));
 addEventListener('keydown',e=>{{if(e.metaKey||e.ctrlKey||e.altKey)return;const i=Math.round(sc.scrollTop/sc.clientHeight);
   if(['ArrowDown','PageDown',' '].includes(e.key)&&i<secs.length-1){{e.preventDefault();go(i+1)}}
   else if(['ArrowUp','PageUp'].includes(e.key)&&i>0){{e.preventDefault();go(i-1)}}}});

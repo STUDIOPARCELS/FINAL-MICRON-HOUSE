@@ -37,26 +37,28 @@ UTIL='''
 '''
 
 # Opening: the sealed card splits into a gatefold and opens onto the cardstock, then the line rises
-OPENING=dict(id='opening', label='Opening', dur=4.6, hold=.9, css='''
-$S{background:#f3f1ec;perspective:2600px}
-$S .under{position:absolute;inset:0;background:url(__OPEN__) center/941px 1672px no-repeat}
-$S .p{position:absolute;top:0;height:1672px;width:470.5px;background:url(__SEALED__) no-repeat;background-size:941px 1672px;backface-visibility:hidden}
+OPENING=dict(id='opening', label='Opening', dur=4.7, hold=.9, css='''
+$S{background:#fff;perspective:2600px}
+$S .box{position:absolute;left:70.5px;top:125.5px;width:800px;height:1421px;opacity:0;box-shadow:0 1px 2px rgba(30,28,24,.06),0 18px 50px rgba(30,28,24,.13)}
+$S .under{position:absolute;inset:0;background:#f4f4f3 url(__PAPER__) center/941px 1672px no-repeat}
+$S .p{position:absolute;top:0;height:1421px;width:400px;background:url(__SEALED__) no-repeat;background-size:800px 1421px;backface-visibility:hidden}
 $S .p::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(40,36,30,0),rgba(40,36,30,.28));opacity:0}
 $S .lp{left:0;background-position:0 0;transform-origin:left center}
-$S .rp{left:470.5px;background-position:-470.5px 0;transform-origin:right center}
+$S .rp{left:400px;background-position:-400px 0;transform-origin:right center}
 $S .rp::after{background:linear-gradient(270deg,rgba(40,36,30,0),rgba(40,36,30,.28))}
-$S .line{position:absolute;left:104px;width:731px;top:810px;text-align:center;font-size:34px;letter-spacing:.14em;font-weight:800;text-transform:uppercase}
+$S .line{position:absolute;left:0;right:0;top:684.5px;text-align:center;font-size:34px;letter-spacing:.14em;font-weight:800;text-transform:uppercase}
 $S .line i{display:inline-block;font-style:normal;opacity:0}
-$S.play .p{animation:in 1s ease-out both}
-$S.play .lp{animation:in 1s ease-out both,openL 1.6s cubic-bezier(.55,0,.25,1) 1.5s both}
-$S.play .rp{animation:in 1s ease-out both,openR 1.6s cubic-bezier(.55,0,.25,1) 1.5s both}
+$S.play .box{animation:in 1s ease-out both}
+$S.play .lp{animation:openL 1.6s cubic-bezier(.55,0,.25,1) 1.5s both}
+$S.play .rp{animation:openR 1.6s cubic-bezier(.55,0,.25,1) 1.5s both}
 $S.play .p::after{animation:shade 1.6s cubic-bezier(.55,0,.25,1) 1.5s both}
 $S.play .line i{animation:type .7s cubic-bezier(.2,.7,.2,1) calc(3s + var(--i) * 55ms) both}
-$S.done .p{display:none} $S.done .line i{opacity:1}
-@media (prefers-reduced-motion:reduce){$S .p{display:none} $S .line i{opacity:1}}
-''', html='''<div class="under"></div><div class="p lp"></div><div class="p rp"></div>
-<div class="line" aria-label="Prepared for Tesla"><i style="--i:0">P</i><i style="--i:1">r</i><i style="--i:2">e</i><i style="--i:3">p</i><i style="--i:4">a</i><i style="--i:5">r</i><i style="--i:6">e</i><i style="--i:7">d</i> <i style="--i:9">f</i><i style="--i:10">o</i><i style="--i:11">r</i> <i style="--i:13">T</i><i style="--i:14">e</i><i style="--i:15">s</i><i style="--i:16">l</i><i style="--i:17">a</i></div>''',
-assets={'__SEALED__':('open-1-sealed.webp','image/webp'),'__OPEN__':('open-3-open.webp','image/webp')})
+$S.done .box{opacity:1} $S.done .p{display:none} $S.done .line i{opacity:1}
+@media (prefers-reduced-motion:reduce){$S .box{opacity:1} $S .p{display:none} $S .line i{opacity:1}}
+''', html='''<div class="box"><div class="under"></div>
+<div class="line" aria-label="Prepared for Tesla"><i style="--i:0">P</i><i style="--i:1">r</i><i style="--i:2">e</i><i style="--i:3">p</i><i style="--i:4">a</i><i style="--i:5">r</i><i style="--i:6">e</i><i style="--i:7">d</i> <i style="--i:9">f</i><i style="--i:10">o</i><i style="--i:11">r</i> <i style="--i:13">T</i><i style="--i:14">e</i><i style="--i:15">s</i><i style="--i:16">l</i><i style="--i:17">a</i></div>
+<div class="p lp"></div><div class="p rp"></div></div>''',
+assets={'__SEALED__':('open-1-sealed.webp','image/webp'),'__PAPER__':('paper-gray.webp','image/webp')})
 
 # Card 1: house settles, wordmark, then the text line by line, rule draws, drive times one by one
 drive=[('3','Downtown'),('3','Capitol'),('2','St. Luke&#8217;s'),('15','Airport')]
@@ -129,9 +131,9 @@ $S .uses{{padding-top:26px;color:{PLUM};display:grid;grid-template-columns:repea
 <div class="im" style="--d:.2s"><img src="__DINING__" alt="The dining room through the French doors"></div>
 <div>
 <div class="lab r" style="--d:1.2s">Proof of concept</div>
-<div class="h" data-lines="1.4:.13">Autonomous<br>corporate residence +<br>entertainment hub.</div>
+<div class="h" data-lines="1.4:.13">The autonomous<br>corporate residence +<br>entertainment hub.</div>
 <div class="hub" data-lines="2.0:.12"><em>A new corporate asset for the Autonomous Age.</em></div>
-<div class="sub a" data-lines="2.3:.12">When Tesla is ready, a leading Boise corporation joins as founding partner to prove the concept, enabled by Starlink, Optimus and Cybercab.</div>
+<div class="sub a" data-lines="2.3:.12">At Tesla&#8217;s option, a leading Boise corporation joins as founding partner to scope, test and launch it with Optimus, Cybercab and Starlink.</div>
 <div class="rule ln" style="--d:2.9s"></div>
 <div class="uses"><div class="r" style="--d:3.20s">Entertaining</div><div class="r" style="--d:3.32s">Executive off-sites</div><div class="r" style="--d:3.44s">Recruiting</div><div class="r" style="--d:3.56s">Relocation</div><div class="r" style="--d:3.68s">Employee incentives</div><div class="r" style="--d:3.80s">Private dinners</div></div>
 </div></div>""",
