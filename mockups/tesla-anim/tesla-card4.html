@@ -82,7 +82,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 </div></div></div></div>
 <script>function splitLines(root){root.querySelectorAll('[data-lines]').forEach(el=>{
 if(el.dataset.done)return;const [d0,st]=el.dataset.lines.split(':').map(Number);const toks=[];
-const walk=(node,wrap)=>node.childNodes.forEach(n=>{if(n.nodeType===3){n.textContent.split(/(\s+)/).forEach(p=>{if(!p)return;if(/^\s+$/.test(p))toks.push({sp:1});else p.split(/(?<=-)/).forEach(w=>toks.push({w,wrap}))})}
+const walk=(node,wrap)=>node.childNodes.forEach(n=>{if(n.nodeType===3){n.textContent.split(/([^\S\u00a0]+)/).forEach(p=>{if(!p)return;if(/^[^\S\u00a0]+$/.test(p))toks.push({sp:1});else p.split(/(?<=-)/).forEach(w=>toks.push({w,wrap}))})}
 else if(n.nodeName==='BR')toks.push({br:1});else walk(n,(wrap||[]).concat([n]))});
 walk(el,null);el.textContent='';const items=[];let space=true;
 toks.forEach(t=>{if(t.sp){el.appendChild(document.createTextNode(' '));space=true;return}
