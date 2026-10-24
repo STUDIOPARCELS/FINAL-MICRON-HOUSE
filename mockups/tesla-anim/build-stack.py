@@ -57,7 +57,9 @@ function fit(){{const w=sc.clientWidth,h=sc.clientHeight;let s,H=1672;
   if(phone()){{s=w/941;H=h/s;if(H<1450){{H=1450;s=h/H}}else if(H>1820){{s=Math.min(h/1820,w/861);H=Math.min(h/s,1960)}}}}
   else s=Math.min((w-96)/941,(h-240)/1672);
   secs.forEach(x=>{{x.style.setProperty('--s',Math.max(.05,s));x.style.setProperty('--ch',H+'px');x.style.setProperty('--k',Math.max(1,H/1672))}})}}
-addEventListener('resize',fit);fit();
+// refit whenever the visible area changes: rotation, Safari's toolbar growing or shrinking, a tab restored from the background
+addEventListener('resize',fit);addEventListener('pageshow',fit);if(window.visualViewport)visualViewport.addEventListener('resize',fit);
+if('ResizeObserver' in window)new ResizeObserver(fit).observe(sc);fit();
 function play(c){{c.classList.remove('play');void c.offsetWidth;c.classList.add('play')}}
 let cur=0;
 function mark(i){{cur=i;dots.forEach((d,j)=>d.setAttribute('aria-current',String(j===i)));if(i>0){{cueDone=true;cue.classList.remove('on')}}}}
