@@ -65,9 +65,9 @@ drive=[('3','Downtown'),('3','Capitol'),('2','St. Luke&#8217;s'),('15','Airport'
 dt=''.join(f'<div class="r" style="--d:{3.55+i*.14:.2f}s"><div class="n">{n}<span> min</span></div><div class="l">{l}</div></div>' for i,(n,l) in enumerate(drive))
 CARD1=dict(id='card1', label='Card 1', dur=4.9, css=f'''
 $S{{background:#fbfbfa}}
-$S .house{{position:absolute;left:0;right:0;bottom:0;height:1672px;transform-origin:50% 100%;scale:var(--k,1);--h:url(__HOUSE__);background:var(--h) 0 -175px/941px 1672px no-repeat,var(--h) 0 -80px/941px 1672px no-repeat,var(--h) 0 0/941px 1672px no-repeat}}
-$S .wm{{position:absolute;top:56px;left:700px;width:196px}}
-$S .txt{{position:absolute;left:60px;right:60px;bottom:58px}}
+$S .house{{position:absolute;left:0;right:0;bottom:32px;height:1672px;transform-origin:50% 100%;scale:var(--k,1);--h:url(__HOUSE__);background:var(--h) 0 -175px/941px 1672px no-repeat,var(--h) 0 -80px/941px 1672px no-repeat,var(--h) 0 0/941px 1672px no-repeat}}
+$S .wm{{position:absolute;top:90px;left:700px;width:196px}}
+$S .txt{{position:absolute;left:60px;right:60px;bottom:90px}}
 $S .h{{font-size:54px;line-height:1.06;letter-spacing:-.01em;font-weight:800;text-transform:uppercase}}
 $S .sub{{margin-top:26px;font-size:31px;line-height:1.38;font-weight:500;color:{INK2}}}
 $S .caps{{margin-top:22px;font-size:27px;letter-spacing:.1em;font-weight:800;text-transform:uppercase}}
@@ -92,9 +92,9 @@ assets={'__HOUSE__':('../tesla-v2/card1/house.webp','image/webp'),'__WORD__':('.
 CARD2=dict(id="card2", label="Card 2", dur=4.5, css=f"""
 $S{{background:#f4f4f3 url(__PAPER__) center/cover no-repeat}}
 $S .hero{{position:absolute;left:0;top:0;width:941px;height:706px;box-shadow:none}}
-/* Below the full-bleed photo, one spacing unit everywhere: photo to headline, block to rule, rule to block, block to the card's edge */
-$S .wrap{{position:absolute;left:60px;right:60px;top:706px;bottom:0;display:flex;flex-direction:column}}
-$S .g1,$S .wrap>.rule,$S .g2{{margin-top:auto}} $S .wrap::after{{content:"";margin-top:auto}}
+/* Below the full-bleed photo: one spacing unit between photo, headline block, rule and second block; a deeper bottom margin, the first part any phone trims */
+$S .wrap{{position:absolute;left:60px;right:60px;top:706px;bottom:140px;display:flex;flex-direction:column}}
+$S .g1,$S .wrap>.rule,$S .g2{{margin-top:auto}}
 $S .h{{font-size:54px;line-height:1.06;letter-spacing:-.01em;font-weight:800;text-transform:uppercase}}
 $S .sub{{font-size:31px;line-height:1.38;font-weight:500;color:{INK2}}}
 $S .caps{{margin-top:22px;font-size:27px;letter-spacing:.1em;font-weight:800;text-transform:uppercase}}
@@ -119,7 +119,7 @@ assets={'__PAPER__':('paper-gray.webp','image/webp'),'__ROOM__':('../tesla-v2/ro
 # Card 3: dining room wipes in, green label, headline, hub name, founding partner, caps line, then the six uses one by one
 CARD3=dict(id='card3', label='Card 3', dur=4.7, hold=13.4, css=f"""
 $S{{background:#f4f4f3 url(__PAPER__) center/cover no-repeat}}
-$S .wrap{{position:absolute;left:60px;right:60px;top:60px;bottom:60px;display:flex;flex-direction:column;gap:38px}}
+$S .wrap{{position:absolute;left:60px;right:60px;top:90px;bottom:90px;display:flex;flex-direction:column;gap:38px}}
 $S .ph{{flex:1;min-height:0;container-type:size;display:flex;justify-content:center}} $S .ph>.im{{flex:none;height:min(1095px,100cqh);aspect-ratio:3/4}}
 $S .lab{{display:flex;align-items:center;gap:12px;margin-bottom:24px;font-size:20px;letter-spacing:.2em;font-weight:800;text-transform:uppercase;color:{GREEN}}}
 $S .lab::before{{content:"";width:11px;height:11px;border-radius:50%;background:{GREEN}}}
@@ -189,7 +189,7 @@ assets={'__PAPER__':('paper-gray.webp','image/webp')})
 # Card 5: house with its caption, then name and facts, then the quote beside the portrait; both photos uncropped, even spacing
 CARD5=dict(id="card5", label="Card 5", dur=5.1, css=f"""
 $S{{background:#f4f4f3 url(__PAPER__) center/cover no-repeat}}
-$S .wrap{{position:absolute;left:60px;right:60px;top:60px;bottom:60px;display:flex;flex-direction:column;container-type:size}}
+$S .wrap{{position:absolute;left:60px;right:60px;top:90px;bottom:90px;display:flex;flex-direction:column;container-type:size}}
 $S .wrap>div:nth-child(2){{margin-top:52px}} $S .wrap>.rule,$S .wrap>.row{{margin-top:auto}}
 $S .hs{{height:min(586px,calc(100cqh - 894px));aspect-ratio:1240/885;margin:0 auto}}
 $S .b{{margin-top:22px;font-size:24px;line-height:1.45;letter-spacing:.09em;font-weight:800;text-transform:uppercase}}
@@ -214,7 +214,7 @@ assets={'__PAPER__':('paper-gray.webp','image/webp'),'__HOUSE__':('house-photo.w
 # Card 6: the Cybercab photo wipes in, the call to action rises, then the contact block and the logo assemble
 CARD6=dict(id="card6", label="Card 6", dur=4.6, css=f"""
 $S{{background:#f4f4f3 url(__PAPER__) center/cover no-repeat}}
-$S .wrap{{position:absolute;left:60px;right:60px;top:60px;bottom:60px;display:flex;flex-direction:column;justify-content:space-between}}
+$S .wrap{{position:absolute;left:60px;right:60px;top:90px;bottom:90px;display:flex;flex-direction:column;justify-content:space-between}}
 $S .wrap>.im{{flex:none;width:821px;height:462px}}
 $S .cta{{font-size:128px;line-height:.98;letter-spacing:-.015em;font-weight:800;text-transform:uppercase}}
 $S .sub{{margin-top:36px;font-size:34px;line-height:1.42;font-weight:500;color:{INK2}}}
