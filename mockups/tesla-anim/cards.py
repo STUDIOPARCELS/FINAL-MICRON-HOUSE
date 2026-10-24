@@ -82,7 +82,7 @@ $S.play .wm{{animation:fadeup 1.2s cubic-bezier(.2,.7,.2,1) .9s both}}
 <img class="wm" src="__WORD__" alt="WARM SPRINGS HOUSE">
 <div class="txt">
 <div class="h"><span class="m"><span style="--d:1.95s">A residential test bed</span></span><span class="m"><span style="--d:2.1s">for Optimus + Cybercab.</span></span></div>
-<div class="sub" data-lines="2.45:.12">A modest 1906 three-bedroom home on a historic tree-lined avenue, heated by America&#8217;s first geothermal district, since 1892.</div>
+<div class="sub" data-lines="2.45:.12">A modest 1906 three-bedroom home on a historic tree-lined avenue, heated by America&#8217;s first geothermal district.</div>
 <div class="caps m"><span style="--d:2.95s">Available now. Ready to host.</span></div>
 <div class="rule ln" style="--d:3.25s"></div>
 <div class="grid">'''+dt+'''</div>
@@ -178,7 +178,7 @@ $S .facts span{{display:block;margin-top:8px;font-size:17px;line-height:1.25;let
 <div class="h"><span class="m"><span style="--d:3.25s">A collaborative blueprint</span></span></div>
 <div class="st" data-lines="3.45:.12">A central setting where Boise first meets<br>Optimus and Cybercab.</div>
 <div class="it" data-lines="4.1:.1">When Tesla is ready, together with the founding partner:</div>
-<div class="row"><div class="rule ln" style="--d:4.35s"></div><div class="cells"><div class="vb r" style="--d:4.45s">Host</div><div class="t" data-lines="4.50:.1">Boise&#8217;s civic and business leaders.</div></div></div><div class="row"><div class="rule ln" style="--d:4.60s"></div><div class="cells"><div class="vb r" style="--d:4.70s">Show</div><div class="t" data-lines="4.75:.1">them autonomous technology firsthand.</div></div></div><div class="row"><div class="rule ln" style="--d:4.85s"></div><div class="cells"><div class="vb r" style="--d:4.95s">Shape</div><div class="t" data-lines="5.00:.1">how it serves the community.</div></div></div><div class="row"><div class="rule ln" style="--d:5.10s"></div><div class="cells"><div class="vb r" style="--d:5.20s">Create</div><div class="t" data-lines="5.25:.1">a playbook other cities can adopt.</div></div></div><div class="rule ln" style="--d:5.35s"></div>
+<div class="row"><div class="rule ln" style="--d:4.35s"></div><div class="cells"><div class="vb r" style="--d:4.45s">Host</div><div class="t" data-lines="4.50:.1">Boise&#8217;s civic and business leaders.</div></div></div><div class="row"><div class="rule ln" style="--d:4.60s"></div><div class="cells"><div class="vb r" style="--d:4.70s">Show</div><div class="t" data-lines="4.75:.1">autonomous technology firsthand.</div></div></div><div class="row"><div class="rule ln" style="--d:4.85s"></div><div class="cells"><div class="vb r" style="--d:4.95s">Shape</div><div class="t" data-lines="5.00:.1">how it serves the community.</div></div></div><div class="row"><div class="rule ln" style="--d:5.10s"></div><div class="cells"><div class="vb r" style="--d:5.20s">Create</div><div class="t" data-lines="5.25:.1">a playbook other cities can adopt.</div></div></div><div class="rule ln" style="--d:5.35s"></div>
 </div></div>""",
 assets={'__PAPER__':('paper-gray.webp','image/webp')})
 
