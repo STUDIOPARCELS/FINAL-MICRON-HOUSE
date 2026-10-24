@@ -31,10 +31,6 @@ button:hover{border-color:var(--ink2)} button:active{transform:scale(.97)}
 button:focus-visible,a:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
 button.done{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 /* email */
-.opts{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
-.opts button{transition:background-color .2s,color .2s,border-color .2s,transform .15s}
-.opts button[aria-selected="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-.mtext[hidden]{display:none}
 .mbody .mtext{max-width:62ch}
 .gifin{margin:22px 0 18px}
 .gifin .gif{width:300px;max-width:100%}
@@ -102,50 +98,31 @@ code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background
 <header>
   <div class="eyebrow">Warm Springs House</div>
   <h1>Tesla Send Kit</h1>
-  <p class="lede">How the invitation reaches Tesla: one email for your introduction, direct messages on X or Instagram, the invitation online and the video. Every file is in the <code>send-kit</code> folder on your branch.</p>
+  <p class="lede">How the invitation reaches Tesla: one email, direct messages on X or Instagram, the invitation online and the video. Every file is in the <code>send-kit</code> folder on your branch.</p>
 </header>
 
 <section class="sec" aria-labelledby="h-mail">
   <h2 id="h-mail">Email</h2>
-  <div class="opts" role="tablist" aria-label="Email options"><button type="button" role="tab" id="opt1" aria-selected="true" aria-controls="mailbody1" data-subj="A home in Boise for Optimus and Cybercab">Option 1 · Straight</button><button type="button" role="tab" id="opt2" aria-selected="false" aria-controls="mailbody2" data-subj="A real home to test Optimus and Cybercab">Option 2 · Why a real home</button><button type="button" role="tab" id="opt3" aria-selected="false" aria-controls="mailbody3" data-subj="My Boise home, offered to Tesla">Option 3 · Personal</button></div>
   <article class="mail">
     <dl class="mhead">
       <dt>From</dt><dd>Lisa Wood &lt;lisa@lisawoodstudio.com&gt;</dd>
       <dt>To</dt><dd>[Name]</dd>
-      <dt>Subject</dt><dd class="subj" id="subj">A home in Boise for Optimus and Cybercab</dd>
+      <dt>Subject</dt><dd class="subj" id="subj">Prepared for Tesla: Warm Springs House, Boise</dd>
     </dl>
     <div class="mbody">
-      <div class="mtext" id="mailbody1" role="tabpanel" aria-labelledby="opt1">
-        <p>[Name],</p>
-        <p>I&#x27;m Lisa Wood. I own Warm Springs House, a 1906 home in Boise, Idaho, and I&#x27;d like to offer it to Tesla.</p>
-        <p>The idea: Tesla engineers live and work there with Optimus and Cybercab and test them in everyday life. It costs Tesla nothing, and it&#x27;s available now. When Tesla is ready, a leading Boise company can join to make it the first autonomous corporate residence.</p>
-        <p>The invitation below shows the house and the plan. I&#x27;d be glad to show you in person.</p>
-        <p class="gifin"><a class="gif" href="tesla/index.html" target="_blank" rel="noopener" aria-label="Open the invitation"><img src="invitation-email.gif" width="300" height="533" alt="The sealed card opens to Prepared for Tesla"></a></p>
-        <p>Invitation: <a href="tesla/index.html" target="_blank" rel="noopener">warmspringshouse.com/4tesla</a><br>Terms (one page): <a href="tesla/terms.html" target="_blank" rel="noopener">warmspringshouse.com/4tesla/terms</a></p>
-        <div class="sig"><b>Lisa Wood</b><br>LISA WOOD STUDIO<br>208 720 2433<br>lisa@lisawoodstudio.com<br>warmspringshouse.com</div>
-      </div>
-      <div class="mtext" id="mailbody2" role="tabpanel" aria-labelledby="opt2" hidden>
-        <p>[Name],</p>
-        <p>Optimus and Cybercab are headed into everyday life. A real home is the best place to get them ready, and I&#x27;d like to offer mine.</p>
-        <p>I&#x27;m Lisa Wood, owner of Warm Springs House, a 1906 home in Boise, Idaho. Tesla engineers could live there and test Optimus and Cybercab day to day, at no cost to Tesla. It&#x27;s ready now.</p>
-        <p>The invitation is below. Would you like to see the house?</p>
-        <p class="gifin"><a class="gif" href="tesla/index.html" target="_blank" rel="noopener" aria-label="Open the invitation"><img src="invitation-email.gif" width="300" height="533" alt="The sealed card opens to Prepared for Tesla"></a></p>
-        <p>Invitation: <a href="tesla/index.html" target="_blank" rel="noopener">warmspringshouse.com/4tesla</a><br>Terms (one page): <a href="tesla/terms.html" target="_blank" rel="noopener">warmspringshouse.com/4tesla/terms</a></p>
-        <div class="sig"><b>Lisa Wood</b><br>LISA WOOD STUDIO<br>208 720 2433<br>lisa@lisawoodstudio.com<br>warmspringshouse.com</div>
-      </div>
-      <div class="mtext" id="mailbody3" role="tabpanel" aria-labelledby="opt3" hidden>
-        <p>[Name],</p>
-        <p>I&#x27;m in the demographic most wary of robots and self-driving cars, yet I can&#x27;t wait for them. So I&#x27;m offering my home to Tesla.</p>
-        <p>Warm Springs House is a 1906 home in Boise, Idaho. Tesla engineers could live and work there with Optimus and Cybercab, at no cost to Tesla. It&#x27;s available now.</p>
-        <p>The invitation is below. I&#x27;d love to show you the house.</p>
-        <p class="gifin"><a class="gif" href="tesla/index.html" target="_blank" rel="noopener" aria-label="Open the invitation"><img src="invitation-email.gif" width="300" height="533" alt="The sealed card opens to Prepared for Tesla"></a></p>
-        <p>Invitation: <a href="tesla/index.html" target="_blank" rel="noopener">warmspringshouse.com/4tesla</a><br>Terms (one page): <a href="tesla/terms.html" target="_blank" rel="noopener">warmspringshouse.com/4tesla/terms</a></p>
+      <div class="mtext" id="mailbody">
+        <p>Hi [Name],</p>
+        <p>I'm in the demographic most wary of robots and self-driving cars, yet I can't wait for them.</p>
+        <p>So I'm offering Warm Springs House, my 1906 family home in Boise, to Tesla as a residential test bed for Optimus and Cybercab. One or more Tesla engineers live and work on site, at no cost to Tesla. The house is move-in ready.</p>
+        <p class="gifin"><a class="gif" href="https://warmspringshouse.com/4tesla" target="_blank" rel="noopener" aria-label="Open the invitation"><img src="invitation-email.gif" width="300" height="533" alt="The sealed card opens to Prepared for Tesla"></a></p>
+        <p>The invitation: <a href="https://warmspringshouse.com/4tesla" target="_blank" rel="noopener">warmspringshouse.com/4tesla</a><br>The terms (one page): <a href="https://warmspringshouse.com/4tesla/terms" target="_blank" rel="noopener">warmspringshouse.com/4tesla/terms</a></p>
+        <p>I'd be glad to show you the house in person.</p>
         <div class="sig"><b>Lisa Wood</b><br>LISA WOOD STUDIO<br>208 720 2433<br>lisa@lisawoodstudio.com<br>warmspringshouse.com</div>
       </div>
     </div>
   </article>
-  <div class="row"><button type="button" data-copy="subj">Copy subject</button><button type="button" data-copy="mailbody1" id="copybody">Copy email text</button></div>
-  <p class="note">The card in the email is animated: the seal opens to Prepared for Tesla (8 seconds, loops). Tapping it opens the live invitation. With an introduction, add "[Introducer] suggested I write to you." as the first line.</p>
+  <div class="row"><button type="button" data-copy="subj">Copy subject</button><button type="button" data-copy="mailbody">Copy email text</button></div>
+  <p class="note">The card in the email is animated: the seal opens to Prepared for Tesla (8 seconds, loops). Tapping it opens the live invitation.</p>
 </section>
 
 <section class="sec" aria-labelledby="h-dm">
@@ -156,7 +133,7 @@ code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background
       <div class="ph-top"><b>[Name]</b><span>X</span></div>
       <div class="thread">
         <div class="vid"><video src="prepared-for-tesla.mp4" poster="preview.jpg" muted autoplay loop playsinline preload="metadata" aria-label="The 63-second invitation video"></video></div>
-        <div class="msg" id="dm"><p>Hi [Name], [Introducer] suggested I send this. I'm offering my 1906 family home in Boise to Tesla as a residential test bed for Optimus and Cybercab, at no cost to Tesla.</p><p>The invitation: warmspringshouse.com/4tesla<br>Terms: warmspringshouse.com/4tesla/terms</p><p>Lisa Wood</p></div>
+        <div class="msg" id="dm"><p>Hi [Name], I'm offering my 1906 family home in Boise to Tesla as a residential test bed for Optimus and Cybercab, at no cost to Tesla.</p><p>The invitation: warmspringshouse.com/4tesla<br>Terms: warmspringshouse.com/4tesla/terms</p><p>Lisa Wood</p></div>
         <div class="linkcard"><img src="preview.jpg" alt=""><div><b>Prepared for Tesla</b><span>warmspringshouse.com</span></div></div>
       </div>
     </div>
@@ -164,39 +141,38 @@ code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background
       <div class="ph-top"><b>[Name]</b><span>Instagram</span></div>
       <div class="thread">
         <div class="vid"><video src="prepared-for-tesla.mp4" poster="preview.jpg" muted autoplay loop playsinline preload="metadata" aria-label="The 63-second invitation video"></video></div>
-        <div class="msg"><p>Hi [Name], [Introducer] suggested I send this. I'm offering my 1906 family home in Boise to Tesla as a residential test bed for Optimus and Cybercab, at no cost to Tesla.</p><p>The invitation: warmspringshouse.com/4tesla<br>Terms: warmspringshouse.com/4tesla/terms</p><p>Lisa Wood</p></div>
+        <div class="msg"><p>Hi [Name], I'm offering my 1906 family home in Boise to Tesla as a residential test bed for Optimus and Cybercab, at no cost to Tesla.</p><p>The invitation: warmspringshouse.com/4tesla<br>Terms: warmspringshouse.com/4tesla/terms</p><p>Lisa Wood</p></div>
         <div class="linkcard"><img src="preview.jpg" alt=""><div><b>Prepared for Tesla</b><span>warmspringshouse.com</span></div></div>
       </div>
     </div>
   </div>
   <div class="row"><button type="button" data-copy="dm">Copy message</button></div>
-  <p class="note">Without an introduction, start with: "I'm Lisa Wood, owner of Warm Springs House in Boise."</p>
 </section>
 
 <section class="sec" aria-labelledby="h-web">
   <h2 id="h-web">The invitation online</h2>
   <p class="note">This is warmspringshouse.com/4tesla, live now: a small card on a computer, full screen on a phone. Open it to scroll through the cards.</p>
   <div class="web">
-    <a class="browser" href="tesla/index.html" target="_blank" rel="noopener" aria-label="Open the invitation as it will look online">
+    <a class="browser" href="https://warmspringshouse.com/4tesla" target="_blank" rel="noopener" aria-label="Open the invitation as it will look online">
       <div class="bar"><i></i><i></i><i></i><span>warmspringshouse.com/4tesla</span></div>
       <img src="preview-assets/desktop.jpg" width="1440" height="900" alt="The invitation on a computer screen">
     </a>
-    <a class="handset" href="tesla/index.html" target="_blank" rel="noopener" aria-label="Open the invitation as it will look on a phone"><img src="preview-assets/phone.jpg" width="585" height="996" alt="The invitation on a phone"></a>
+    <a class="handset" href="https://warmspringshouse.com/4tesla" target="_blank" rel="noopener" aria-label="Open the invitation as it will look on a phone"><img src="preview-assets/phone.jpg" width="585" height="996" alt="The invitation on a phone"></a>
   </div>
-  <div class="row"><a class="btn" href="tesla/index.html" target="_blank" rel="noopener">Open the invitation</a><a class="btn" href="tesla/terms.html" target="_blank" rel="noopener">Open the terms</a></div>
+  <div class="row"><a class="btn" href="https://warmspringshouse.com/4tesla" target="_blank" rel="noopener">Open the invitation</a><a class="btn" href="https://warmspringshouse.com/4tesla/terms" target="_blank" rel="noopener">Open the terms</a></div>
 </section>
 
 <section class="sec" aria-labelledby="h-terms">
   <h2 id="h-terms">The terms online</h2>
   <p class="note">A one-page web page at warmspringshouse.com/4tesla/terms. People reach it from the terms link in your email or message; the invitation itself doesn't link to it. It stays out of search engines. The PDF in the folder is only a printable copy and is never attached.</p>
   <div class="web">
-    <a class="browser" href="tesla/terms.html" target="_blank" rel="noopener" aria-label="Open the terms as they look on a computer">
+    <a class="browser" href="https://warmspringshouse.com/4tesla/terms" target="_blank" rel="noopener" aria-label="Open the terms as they look on a computer">
       <div class="bar"><i></i><i></i><i></i><span>warmspringshouse.com/4tesla/terms</span></div>
       <img src="preview-assets/terms-desktop.jpg" width="1440" height="900" alt="The terms on a computer screen">
     </a>
-    <a class="handset" href="tesla/terms.html" target="_blank" rel="noopener" aria-label="Open the terms as they look on a phone"><img src="preview-assets/terms-phone.jpg" width="585" height="996" alt="The terms on a phone"></a>
+    <a class="handset" href="https://warmspringshouse.com/4tesla/terms" target="_blank" rel="noopener" aria-label="Open the terms as they look on a phone"><img src="preview-assets/terms-phone.jpg" width="585" height="996" alt="The terms on a phone"></a>
   </div>
-  <div class="row"><a class="btn" href="tesla/terms.html" target="_blank" rel="noopener">Open the terms</a></div>
+  <div class="row"><a class="btn" href="https://warmspringshouse.com/4tesla/terms" target="_blank" rel="noopener">Open the terms</a></div>
 </section>
 
 <section class="sec" aria-labelledby="h-vid">
@@ -209,7 +185,7 @@ code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background
   <h2 id="h-steps">How to send it</h2>
   <ol class="steps">
     <li><div><b>Put the invitation online, once</b><p>Already live at warmspringshouse.com/4tesla, with the terms at warmspringshouse.com/4tesla/terms. The page stays out of search engines.</p></div></li>
-    <li><div><b>Email your introduction</b><p>Paste the subject and text. Drag <code>Warm Springs House - Email GIF.gif</code> into the body, select it, press Ctrl+K (Cmd+K on a Mac) and paste the invitation link. No attachment. Send it to yourself first and open it on your phone.</p></div></li>
+    <li><div><b>Email</b><p>Paste the subject and text. Drag <code>Warm Springs House - Email GIF.gif</code> into the body, select it, press Ctrl+K (Cmd+K on a Mac) and paste the invitation link. No attachment. Send it to yourself first and open it on your phone.</p></div></li>
     <li><div><b>Direct messages on X or Instagram</b><p>From your phone, send <code>Warm Springs House - Prepared for Tesla.mp4</code> from your camera roll, then paste the message.</p></div></li>
   </ol>
 </section>
@@ -229,12 +205,6 @@ code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background
 
 <script>
 
-const tabs=[...document.querySelectorAll('.opts [role=tab]')];
-function pick(t){tabs.forEach(x=>{const on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;document.getElementById(x.getAttribute('aria-controls')).hidden=!on});
-  document.getElementById('subj').textContent=t.dataset.subj;document.getElementById('copybody').dataset.copy=t.getAttribute('aria-controls');
-  try{localStorage.setItem('kit-email-option',t.id)}catch(e){}}
-tabs.forEach((t,k)=>{t.addEventListener('click',()=>pick(t));t.addEventListener('keydown',e=>{const d=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;if(d){e.preventDefault();const n=tabs[(k+d+tabs.length)%tabs.length];pick(n);n.focus()}})});
-try{const saved=document.getElementById(localStorage.getItem('kit-email-option')||'');if(saved&&tabs.includes(saved))pick(saved)}catch(e){}
 document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>{
   const el=document.getElementById(b.dataset.copy);
   const text=el.innerText.replace(/\n{3,}/g,'\n\n').trim();

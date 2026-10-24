@@ -4,41 +4,34 @@
 import base64,html
 GIF='../Warm Springs House - Email GIF.gif'
 URL='https://warmspringshouse.com/4tesla'
-SUBJECT='Residential test bed for Optimus + Cybercab: Boise, available now'
-OFFER={'cold':'My 1906 home as a residential test bed for Optimus and Cybercab. One or more Tesla engineers live and work on site. No cost to Tesla. Available now.',
-       'introduced':'Warm Springs House, a 1906 home in Boise, as a residential test bed for Optimus and Cybercab. One or more Tesla engineers live and work on site. No cost to Tesla. Available now.'}
-OBJECTIVE="Prove the first autonomous corporate residence + entertainment hub with a leading Boise corporation, and build a blueprint for bringing autonomous technology into daily life in other cities. Both at Tesla's option."
-NEXT='A site visit at your convenience.'
-OPEN={'cold':"I'm Lisa Wood, owner of Warm Springs House in Boise. I'm writing to offer it to Tesla.",
-      'introduced':'[Introducer] suggested I write to you.'}
+SUBJECT='Prepared for Tesla: Warm Springs House, Boise'
+# The first email, opened with Lisa's line from Card 5
+INTRO={'cold':[],'introduced':['[Introducer] suggested I send this to you.']}
+BODY=["I'm in the demographic most wary of robots and self-driving cars, yet I can't wait for them.",
+      "So I'm offering Warm Springs House, my 1906 family home in Boise, to Tesla as a residential test bed for Optimus and Cybercab. One or more Tesla engineers live and work on site, at no cost to Tesla. The house is move-in ready."]
+CLOSE="I'd be glad to show you the house in person."
 F='font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.55;color:#2b2d31'
 def body_html(kind,img_src):
-    p=lambda t:f'<p style="margin:0 0 14px;{F}">{t}</p>'
+    p=lambda t,m='0 0 14px':f'<p style="margin:{m};{F}">{t}</p>'
+    paras=''.join(p(html.escape(t))+'\n' for t in INTRO[kind]+BODY)
     return f'''<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head><body style="margin:0;padding:0;background:#ffffff">
 <div style="max-width:560px;padding:16px">
-{p('[Name],')}
-{p(html.escape(OPEN[kind]))}
-{p('<b>Offer:</b> '+html.escape(OFFER[kind]))}
-{p('<b>Objective:</b> '+html.escape(OBJECTIVE))}
-{p('<b>Next step:</b> '+html.escape(NEXT))}
-<p style="margin:22px 0 18px"><a href="{URL}" target="_blank"><img src="{img_src}" width="300" alt="Open the invitation: Prepared for Tesla" style="display:block;width:300px;max-width:100%;height:auto;border:0"></a></p>
-<p style="margin:0 0 4px;{F}">Invitation: <a href="{URL}" style="color:#2b2d31">warmspringshouse.com/4tesla</a></p>
-<p style="margin:0 0 22px;{F}">Terms (one page): <a href="{URL}/terms" style="color:#2b2d31">warmspringshouse.com/4tesla/terms</a></p>
+{p('Hi [Name],')}
+{paras}<p style="margin:22px 0 18px"><a href="{URL}" target="_blank"><img src="{img_src}" width="300" alt="Open the invitation: Prepared for Tesla" style="display:block;width:300px;max-width:100%;height:auto;border:0"></a></p>
+{p(f'The invitation: <a href="{URL}" style="color:#2b2d31">warmspringshouse.com/4tesla</a><br>The terms (one page): <a href="{URL}/terms" style="color:#2b2d31">warmspringshouse.com/4tesla/terms</a>','0 0 14px')}
+{p(html.escape(CLOSE),'0 0 22px')}
 <p style="margin:0;{F}"><b>Lisa Wood</b><br>LISA WOOD STUDIO<br><a href="tel:+12087202433" style="color:#2b2d31">208 720 2433</a><br><a href="mailto:lisa@lisawoodstudio.com" style="color:#2b2d31">lisa@lisawoodstudio.com</a><br><a href="https://warmspringshouse.com/" style="color:#2b2d31">warmspringshouse.com</a></p>
 </div></body></html>'''
 def body_text(kind):
-    return f'''[Name],
+    paras='\n\n'.join(INTRO[kind]+BODY)
+    return f'''Hi [Name],
 
-{OPEN[kind]}
+{paras}
 
-Offer: {OFFER[kind]}
+The invitation: {URL}
+The terms (one page): {URL}/terms
 
-Objective: {OBJECTIVE}
-
-Next step: {NEXT}
-
-Invitation: {URL}
-Terms (one page): {URL}/terms
+{CLOSE}
 
 Lisa Wood
 LISA WOOD STUDIO
