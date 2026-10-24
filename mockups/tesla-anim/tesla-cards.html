@@ -263,7 +263,7 @@ items.forEach(sp=>{if(!sp){cur=null;return}const t=sp.offsetTop;if(cur===null||M
 el.textContent='';lines.forEach((ws,i)=>{const m=document.createElement('span');m.className='m';const inner=document.createElement('span');
 inner.style.setProperty('--d',(d0+i*st).toFixed(2)+'s');ws.forEach((w,j)=>{if(j)inner.appendChild(document.createTextNode(' '));while(w.firstChild)inner.appendChild(w.firstChild)});
 m.appendChild(inner);el.appendChild(m)});el.dataset.done='1'})}
-const ids=['opening','card1','card2','card3','card4','card5','card6'],dur=[4.0,4.9,4.5,4.7,6.2,4.3,4.6],hold=[0.9,1.8,1.8,13.4,4.8,1.8,1.8];
+const ids=['opening','card1','card2','card3','card4','card5','card6'],dur=[4.0,4.9,4.5,4.7,6.4,5.1,4.6],hold=[0.9,1.8,1.8,13.4,4.6,1.8,1.8];
 const view=document.getElementById('view'),prog=document.getElementById('prog'),allBtn=document.getElementById('all');
 const stages=[...view.querySelectorAll('.stage')],cards=stages.map(s=>s.firstElementChild),tabs=[...document.querySelectorAll('.tab')];
 let cur=0,seq=null;

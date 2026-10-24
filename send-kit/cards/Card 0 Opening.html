@@ -9,6 +9,7 @@ html,body{margin:0;height:100%;background:var(--bg)}
 body{display:grid;place-items:center;overflow:hidden}
 .stage{width:941px;height:1672px;transform-origin:center;flex:none}
 .card{box-shadow:0 2px 4px rgba(0,0,0,.08),0 24px 60px rgba(0,0,0,.16)}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 .card{position:relative;width:941px;height:1672px;overflow:hidden;font-family:Montserrat,Arial,sans-serif;color:#393c41;cursor:pointer}
 @media (prefers-reduced-motion:reduce){.card *{animation:none!important}}
 @keyframes in{from{opacity:0;transform:scale(1.02)}to{opacity:1;transform:none}}
@@ -24,6 +25,7 @@ body{display:grid;place-items:center;overflow:hidden}
 @keyframes kin{from{opacity:0;transform:var(--k)}to{opacity:1;transform:none}}
 
 .card .m{display:block;clip-path:inset(0 -.5em)} .card .m>span{display:block;white-space:nowrap;transform:translateY(105%)}
+.card [data-lines]{text-wrap:pretty} .card [data-lines]:not([data-done]){visibility:hidden}
 .card .r{opacity:0;transform:translateY(14px)}
 .card .ln{height:1px;transform-origin:left;transform:scaleX(0)}
 .card .im{position:relative;overflow:hidden;clip-path:inset(0 0 100% 0);box-shadow:0 1px 1px rgba(16,16,16,.18),0 6px 18px rgba(16,16,16,.10)}
@@ -44,7 +46,7 @@ body{display:grid;place-items:center;overflow:hidden}
 #c0 .rp{left:470.5px;background-position:-470.5px 0;transform-origin:right center}
 #c0 .rp::after{background:linear-gradient(270deg,rgba(40,36,30,0),rgba(40,36,30,.28))}
 #c0 .line{position:absolute;left:104px;width:731px;top:810px;text-align:center;overflow:hidden}
-#c0 .line span{display:block;font-size:24px;letter-spacing:.16em;font-weight:800;text-transform:uppercase;transform:translateY(105%)}
+#c0 .line span{display:block;font-size:34px;letter-spacing:.14em;font-weight:800;text-transform:uppercase;transform:translateY(105%)}
 #c0.play .p{animation:in 1s ease-out both}
 #c0.play .lp{animation:in 1s ease-out both,openL 1.6s cubic-bezier(.55,0,.25,1) 1.5s both}
 #c0.play .rp{animation:in 1s ease-out both,openR 1.6s cubic-bezier(.55,0,.25,1) 1.5s both}
@@ -56,11 +58,23 @@ body{display:grid;place-items:center;overflow:hidden}
 </style></head><body>
 <div class="stage" id="stage"><div class="card" id="c0" title="Click to replay"><div class="under"></div><div class="p lp"></div><div class="p rp"></div>
 <div class="line"><span>Prepared for Tesla</span></div></div></div>
-<script>
+<script>function splitLines(root){root.querySelectorAll('[data-lines]').forEach(el=>{
+if(el.dataset.done)return;const [d0,st]=el.dataset.lines.split(':').map(Number);const toks=[];
+const walk=(node,wrap)=>node.childNodes.forEach(n=>{if(n.nodeType===3){n.textContent.split(/(\s+)/).forEach(p=>{if(!p)return;toks.push(/^\s+$/.test(p)?{sp:1}:{w:p,wrap})})}
+else if(n.nodeName==='BR')toks.push({br:1});else walk(n,(wrap||[]).concat([n]))});
+walk(el,null);el.textContent='';const items=[];let word=null;
+toks.forEach(t=>{if(t.sp||t.br){word=null;if(t.sp)el.appendChild(document.createTextNode(' '));else{el.appendChild(document.createElement('br'));items.push(null)}return}
+let node=document.createTextNode(t.w);(t.wrap||[]).slice().reverse().forEach(w=>{const c=w.cloneNode(false);c.appendChild(node);node=c});
+if(!word){word=document.createElement('span');el.appendChild(word);items.push(word)}word.appendChild(node)});
+const lines=[];let cur=null,top=null;
+items.forEach(sp=>{if(!sp){cur=null;return}const t=sp.offsetTop;if(cur===null||Math.abs(t-top)>3){cur=[];lines.push(cur);top=t}cur.push(sp)});
+el.textContent='';lines.forEach((ws,i)=>{const m=document.createElement('span');m.className='m';const inner=document.createElement('span');
+inner.style.setProperty('--d',(d0+i*st).toFixed(2)+'s');ws.forEach((w,j)=>{if(j)inner.appendChild(document.createTextNode(' '));while(w.firstChild)inner.appendChild(w.firstChild)});
+m.appendChild(inner);el.appendChild(m)});el.dataset.done='1'})}
 const st=document.getElementById('stage'),card=st.firstElementChild;
 function fit(){const s=Math.min((innerWidth-24)/941,(innerHeight-24)/1672);st.style.transform='scale('+s+')';st.style.margin=((1672*s-1672)/2)+'px '+((941*s-941)/2)+'px'}
 addEventListener('resize',fit);fit();
 function play(){card.classList.remove('play','done');void card.offsetWidth;card.classList.add('play')}
 card.addEventListener('click',play);
-if(location.hash==='#end'){card.classList.add('done')}else{document.fonts.ready.then(play)}
+document.fonts.ready.then(()=>{splitLines(card);if(location.hash==='#end')card.classList.add('done');else play()})
 </script></body></html>

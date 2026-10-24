@@ -144,7 +144,7 @@ MARK='''<svg class="mk" viewBox="71 71 882 882" role="img" aria-label="Warm Spri
 <g class="k" style="--d:1.35s;--k:translateX(14%)"><circle cx="717" cy="512" r="235" fill="#353942" opacity=".93"/></g>
 <g class="k" style="--d:1.9s;--k:scale(.2) rotate(-45deg)"><path fill="#fff" d="M512 195 A325 325 0 0 0 808 512 A325 325 0 0 0 512 828 A325 325 0 0 0 215 512 A325 325 0 0 0 512 195 Z"/></g>
 </svg>'''
-CARD4=dict(id='card4', label='Card 4', dur=6.2, hold=4.8, css=f"""
+CARD4=dict(id='card4', label='Card 4', dur=6.4, hold=4.6, css=f"""
 $S{{background:#f4f4f3 url(__PAPER__) center/941px 1672px no-repeat}}
 $S .wrap{{position:absolute;left:76px;right:76px;top:124px;bottom:112px;display:flex;flex-direction:column;justify-content:space-between}}
 $S .half{{display:flex;flex-direction:column}}
@@ -180,7 +180,7 @@ $S .facts span{{display:block;margin-top:8px;font-size:17px;line-height:1.25;let
 assets={'__PAPER__':('paper-gray.webp','image/webp')})
 
 # Card 5: house with its caption, then name and facts, then the quote beside the portrait; both photos uncropped, even spacing
-CARD5=dict(id="card5", label="Card 5", dur=4.3, css=f"""
+CARD5=dict(id="card5", label="Card 5", dur=5.1, css=f"""
 $S{{background:#f4f4f3 url(__PAPER__) center/941px 1672px no-repeat}}
 $S .wrap{{position:absolute;left:60px;right:60px;top:60px;bottom:60px;display:flex;flex-direction:column;justify-content:space-between}}
 $S .hs{{width:821px;height:586px}}

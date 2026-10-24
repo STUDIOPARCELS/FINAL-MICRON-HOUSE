@@ -6,19 +6,19 @@
 | invitation-opening.gif | Inside the email body, linked to the invitation (1 MB) |
 | Warm Springs House - Prepared for Tesla.mp4 | X and Instagram DMs, iMessage, WhatsApp (720 x 1280, 4 MB, 63 s, no sound) |
 | Warm Springs House - Prepared for Tesla (HD).mp4 | Showing on a large screen or in person (1080 x 1920, 17 MB) |
-| web/tesla/ | Upload this folder so it lives at warmspringshouse.com/tesla |
+| web/for/tesla/ | Upload this folder so it lives at warmspringshouse.com/for/tesla |
 | MESSAGES.md | The email and DM text, ready to paste |
 
 ## 1. Put the invitation online (once)
 
-Upload the three files in web/tesla/ (index.html, terms.pdf, preview.jpg) to warmspringshouse.com/tesla/.
+Upload the three files in web/for/tesla/ (index.html, terms.pdf, preview.jpg) to warmspringshouse.com/for/tesla/.
 The page is set to stay out of search engines. When the link is pasted into an email, X, Instagram or iMessage, it shows the sealed-card preview image.
 
 ## 2. Email (Gmail)
 
 1. New message. Paste the subject and text from MESSAGES.md.
 2. Drag invitation-opening.gif into the body where the placeholder is.
-3. Click the GIF, press Ctrl+K (Cmd+K on Mac) and paste https://warmspringshouse.com/tesla so the GIF opens the invitation.
+3. Click the GIF, press Ctrl+K (Cmd+K on Mac) and paste https://warmspringshouse.com/for/tesla so the GIF opens the invitation.
 4. Attach the term sheet PDF.
 5. Send it to yourself first and open it on your phone.
 
