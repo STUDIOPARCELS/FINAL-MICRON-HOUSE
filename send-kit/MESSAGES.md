@@ -16,6 +16,8 @@ I'd like to offer my 1906 home in Boise, Warm Springs House, as a place where Te
 
 The invitation: warmspringshouse.com/4tesla
 
+I'd love to talk with you about where this idea came from and where it could go.
+
 I'm in the demographic most wary of robots and self-driving cars, yet I can't wait for them. I've seen how fragile care can be for the people I love. I want a robot in the loop.
 
 Lisa Wood

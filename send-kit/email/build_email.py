@@ -10,6 +10,7 @@ SUBJECT='An invitation for Optimus + Cybercab'
 INTRO={'cold':[],'introduced':['[Introducer] suggested I send this to you.']}
 GREET="I cannot overstate how excited I am about the ways Optimus and Cybercab will reshape how we live, work, travel and gather."
 BODY=["I'd like to offer my 1906 home in Boise, Warm Springs House, as a place where Tesla engineers live and work with both, at no cost to Tesla. It's a real-world proof of concept that can grow into a corporate residence."]
+ASK="I'd love to talk with you about where this idea came from and where it could go."
 CLOSE=["I'm in the demographic most wary of robots and self-driving cars, yet I can't wait for them. I've seen how fragile care can be for the people I love. I want a robot in the loop."]
 F='font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.55;color:#2b2d31'
 def body_html(kind,img_src):
@@ -20,6 +21,7 @@ def body_html(kind,img_src):
 {p('Hi [First name],')}
 {paras}<p style="margin:22px 0 18px"><a href="{OPEN}" target="_blank"><img src="{img_src}" width="300" alt="Open the invitation: Prepared for Tesla" style="display:block;width:300px;max-width:100%;height:auto;border:0"></a></p>
 {p(f'The invitation: <a href="{OPEN}" style="color:#2b2d31">warmspringshouse.com/4tesla</a>','0 0 14px')}
+{p(html.escape(ASK))}
 {p(html.escape(CLOSE[0]),'0 0 22px')}
 <p style="margin:0;{F}"><b>Lisa Wood</b><br><a href="tel:+12087202433" style="color:#2b2d31">208 720 2433</a><br><a href="mailto:lisa@lisawoodstudio.com" style="color:#2b2d31">lisa@lisawoodstudio.com</a><br><a href="https://warmspringshouse.com/" style="color:#2b2d31">warmspringshouse.com</a><br>LISA WOOD STUDIO</p>
 </div></body></html>'''
@@ -30,6 +32,8 @@ def body_text(kind):
 {paras}
 
 The invitation: {OPEN}
+
+{ASK}
 
 {CLOSE[0]}
 
