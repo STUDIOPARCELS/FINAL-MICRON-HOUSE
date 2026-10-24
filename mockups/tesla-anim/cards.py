@@ -82,7 +82,7 @@ $S.play .wm{{animation:fadeup 1.2s cubic-bezier(.2,.7,.2,1) .9s both}}
 <img class="wm" src="__WORD__" alt="WARM SPRINGS HOUSE">
 <div class="txt">
 <div class="h"><span class="m"><span style="--d:1.95s">A residential test bed</span></span><span class="m"><span style="--d:2.1s">for Optimus + Cybercab.</span></span></div>
-<div class="sub" data-lines="2.45:.12">A modest 1906 three-bedroom home on a historic tree-lined avenue, heated by America&#8217;s first geothermal district.</div>
+<div class="sub" data-lines="2.45:.12">A modest 1906 three-bedroom home in Boise, Idaho, on a historic tree-lined avenue heated by America&#8217;s first geothermal district.</div>
 <div class="caps m"><span style="--d:2.95s">Available now. Ready to host.</span></div>
 <div class="rule ln" style="--d:3.25s"></div>
 <div class="grid">'''+dt+'''</div>
