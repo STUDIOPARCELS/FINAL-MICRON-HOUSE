@@ -40,13 +40,13 @@ UTIL='''
 OPENING=dict(id='opening', label='Opening', dur=4.7, hold=.9, css='''
 $S{background:#f3f1ec;perspective:2600px}
 $S .box{position:absolute;inset:0;opacity:0}
-$S .under{position:absolute;inset:0;background:#f4f4f3 url(__PAPER__) center/941px 1672px no-repeat}
-$S .p{position:absolute;top:0;height:1672px;width:470.5px;background:url(__SEALED__) no-repeat;background-size:941px 1672px;backface-visibility:hidden}
+$S .under{position:absolute;inset:0;background:#f4f4f3 url(__PAPER__) center/cover no-repeat}
+$S .p{position:absolute;top:0;height:100%;width:470.5px;background:url(__SEALED__) no-repeat;background-size:calc(941px * var(--k,1)) calc(1672px * var(--k,1));backface-visibility:hidden}
 $S .p::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(40,36,30,0),rgba(40,36,30,.28));opacity:0}
-$S .lp{left:0;background-position:0 0;transform-origin:left center}
-$S .rp{left:470.5px;background-position:-470.5px 0;transform-origin:right center}
+$S .lp{left:0;background-position:calc((941px - 941px * var(--k,1)) / 2) 50%;transform-origin:left center}
+$S .rp{left:470.5px;background-position:calc((941px - 941px * var(--k,1)) / 2 - 470.5px) 50%;transform-origin:right center}
 $S .rp::after{background:linear-gradient(270deg,rgba(40,36,30,0),rgba(40,36,30,.28))}
-$S .line{position:absolute;left:0;right:0;top:810px;text-align:center;font-size:34px;letter-spacing:.14em;font-weight:800;text-transform:uppercase}
+$S .line{position:absolute;left:0;right:0;top:48.44%;text-align:center;font-size:34px;letter-spacing:.14em;font-weight:800;text-transform:uppercase}
 $S .line i{display:inline-block;font-style:normal;opacity:0}
 $S.play .box{animation:in 1s ease-out both}
 $S.play .lp{animation:openL 1.6s cubic-bezier(.55,0,.25,1) 1.5s both}
@@ -65,7 +65,7 @@ drive=[('3','Downtown'),('3','Capitol'),('2','St. Luke&#8217;s'),('15','Airport'
 dt=''.join(f'<div class="r" style="--d:{3.55+i*.14:.2f}s"><div class="n">{n}<span> min</span></div><div class="l">{l}</div></div>' for i,(n,l) in enumerate(drive))
 CARD1=dict(id='card1', label='Card 1', dur=4.9, css=f'''
 $S{{background:#fbfbfa}}
-$S .house{{position:absolute;inset:0;--h:url(__HOUSE__);background:var(--h) 0 -175px/941px 1672px no-repeat,var(--h) 0 -80px/941px 1672px no-repeat,var(--h) 0 0/941px 1672px no-repeat}}
+$S .house{{position:absolute;left:0;right:0;bottom:0;height:1672px;transform-origin:50% 100%;scale:var(--k,1);--h:url(__HOUSE__);background:var(--h) 0 -175px/941px 1672px no-repeat,var(--h) 0 -80px/941px 1672px no-repeat,var(--h) 0 0/941px 1672px no-repeat}}
 $S .wm{{position:absolute;top:34px;left:700px;width:196px}}
 $S .txt{{position:absolute;left:60px;right:60px;bottom:42px}}
 $S .h{{font-size:54px;line-height:1.06;letter-spacing:-.01em;font-weight:800;text-transform:uppercase}}
@@ -90,10 +90,10 @@ assets={'__HOUSE__':('../tesla-v2/card1/house.webp','image/webp'),'__WORD__':('.
 
 # Card 2: Optimus room and Cybercab wipe in, then the text line by line (type sizes match Card 1)
 CARD2=dict(id="card2", label="Card 2", dur=4.5, css=f"""
-$S{{background:#f4f4f3 url(__PAPER__) center/941px 1672px no-repeat}}
+$S{{background:#f4f4f3 url(__PAPER__) center/cover no-repeat}}
 $S .wrap{{position:absolute;left:60px;right:60px;top:60px;bottom:60px;display:flex;flex-direction:column;gap:38px}}
-$S .pics{{flex:none;display:flex;flex-direction:column;align-items:center;gap:17px}}
-$S .pics .im:first-child{{width:696px;height:522px}} $S .pics .im:last-child{{width:696px;height:392px}}
+$S .pics{{flex:1;min-height:0;container-type:size;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:17px}}
+$S .pics .im{{flex:none}} $S .pics .im:first-child{{height:calc((100cqh - 17px) * .5711);aspect-ratio:1448/1086}} $S .pics .im:last-child{{height:calc((100cqh - 17px) * .4289);aspect-ratio:1671/941}}
 $S .h{{font-size:54px;line-height:1.06;letter-spacing:-.01em;font-weight:800;text-transform:uppercase}}
 $S .sub{{font-size:31px;line-height:1.38;font-weight:500;color:{INK2}}}
 $S .caps{{margin-top:22px;font-size:27px;letter-spacing:.1em;font-weight:800;text-transform:uppercase}}
@@ -114,9 +114,9 @@ assets={'__PAPER__':('paper-gray.webp','image/webp'),'__ROOM__':('../tesla-v2/ro
 
 # Card 3: dining room wipes in, green label, headline, hub name, founding partner, caps line, then the six uses one by one
 CARD3=dict(id='card3', label='Card 3', dur=4.7, hold=13.4, css=f"""
-$S{{background:#f4f4f3 url(__PAPER__) center/941px 1672px no-repeat}}
+$S{{background:#f4f4f3 url(__PAPER__) center/cover no-repeat}}
 $S .wrap{{position:absolute;left:60px;right:60px;top:60px;bottom:60px;display:flex;flex-direction:column;gap:38px}}
-$S .wrap>.im{{flex:none;align-self:center;width:675px;height:900px}}
+$S .ph{{flex:1;min-height:0;container-type:size;display:flex;justify-content:center}} $S .ph>.im{{flex:none;height:100cqh;aspect-ratio:3/4}}
 $S .lab{{display:flex;align-items:center;gap:12px;margin-bottom:24px;font-size:20px;letter-spacing:.2em;font-weight:800;text-transform:uppercase;color:{GREEN}}}
 $S .lab::before{{content:"";width:11px;height:11px;border-radius:50%;background:{GREEN}}}
 $S .h{{font-size:50px;line-height:1.06;letter-spacing:-.01em;font-weight:800;text-transform:uppercase}}
@@ -127,7 +127,7 @@ $S em{{font-family:Newsreader,Georgia,serif;font-style:italic;font-size:35px;fon
 $S .hub{{margin-top:16px;line-height:1.3}} $S .sub.a{{margin-top:24px}}
 $S .uses{{padding-top:26px;color:{PLUM};display:grid;grid-template-columns:repeat(2,1fr);gap:18px 24px;font-size:23px;letter-spacing:.1em;font-weight:700;text-transform:uppercase;line-height:1.3}}
 """, html="""<div class="wrap">
-<div class="im" style="--d:.2s"><img src="__DINING__" alt="The dining room through the French doors"></div>
+<div class="ph"><div class="im" style="--d:.2s"><img src="__DINING__" alt="The dining room through the French doors"></div></div>
 <div>
 <div class="lab r" style="--d:1.2s">Proof of concept</div>
 <div class="h" data-lines="1.4:.13">The autonomous<br>corporate residence +<br>entertainment hub.</div>
@@ -147,7 +147,7 @@ MARK='''<svg class="mk" viewBox="71 71 882 882" role="img" aria-label="Warm Spri
 <g class="k" style="--d:1.9s;--k:scale(.2) rotate(-45deg)"><path fill="#fff" d="M512 195 A325 325 0 0 0 808 512 A325 325 0 0 0 512 828 A325 325 0 0 0 215 512 A325 325 0 0 0 512 195 Z"/></g>
 </svg>'''
 CARD4=dict(id='card4', label='Card 4', dur=6.4, hold=4.6, css=f"""
-$S{{background:#f4f4f3 url(__PAPER__) center/941px 1672px no-repeat}}
+$S{{background:#f4f4f3 url(__PAPER__) center/cover no-repeat}}
 $S .wrap{{position:absolute;left:76px;right:76px;top:0;bottom:0;display:flex;flex-direction:column;justify-content:center}}
 $S .facts{{margin:72px 0 88px}}
 $S .half{{display:flex;flex-direction:column}}
@@ -184,10 +184,10 @@ assets={'__PAPER__':('paper-gray.webp','image/webp')})
 
 # Card 5: house with its caption, then name and facts, then the quote beside the portrait; both photos uncropped, even spacing
 CARD5=dict(id="card5", label="Card 5", dur=5.1, css=f"""
-$S{{background:#f4f4f3 url(__PAPER__) center/941px 1672px no-repeat}}
-$S .wrap{{position:absolute;left:60px;right:60px;top:60px;bottom:60px;display:flex;flex-direction:column}}
+$S{{background:#f4f4f3 url(__PAPER__) center/cover no-repeat}}
+$S .wrap{{position:absolute;left:60px;right:60px;top:60px;bottom:60px;display:flex;flex-direction:column;container-type:size}}
 $S .wrap>div:nth-child(2){{margin-top:52px}} $S .wrap>.rule,$S .wrap>.row{{margin-top:auto}}
-$S .hs{{width:821px;height:586px}}
+$S .hs{{height:min(586px,calc(100cqh - 894px));aspect-ratio:1240/885;margin:0 auto}}
 $S .b{{margin-top:22px;font-size:24px;line-height:1.45;letter-spacing:.09em;font-weight:800;text-transform:uppercase}}
 $S .h{{font-size:56px;line-height:1.06;letter-spacing:-.01em;font-weight:800;text-transform:uppercase}}
 $S .f{{margin-top:20px;font-size:30px;line-height:1.4;font-weight:500;color:{INK2}}}
@@ -209,7 +209,7 @@ assets={'__PAPER__':('paper-gray.webp','image/webp'),'__HOUSE__':('house-photo.w
 
 # Card 6: the Cybercab photo wipes in, the call to action rises, then the contact block and the logo assemble
 CARD6=dict(id="card6", label="Card 6", dur=4.6, css=f"""
-$S{{background:#f4f4f3 url(__PAPER__) center/941px 1672px no-repeat}}
+$S{{background:#f4f4f3 url(__PAPER__) center/cover no-repeat}}
 $S .wrap{{position:absolute;left:60px;right:60px;top:60px;bottom:60px;display:flex;flex-direction:column;justify-content:space-between}}
 $S .wrap>.im{{flex:none;width:821px;height:462px}}
 $S .cta{{font-size:128px;line-height:.98;letter-spacing:-.015em;font-weight:800;text-transform:uppercase}}
@@ -265,7 +265,7 @@ m.appendChild(inner);el.appendChild(m)});el.dataset.done='1'})}'''
 
 # Shared card box. The card is printed stock, so its colours stay fixed in both themes.
 CARD_BASE=f'''html{{-webkit-text-size-adjust:100%;text-size-adjust:100%}}
-.card{{position:relative;width:941px;height:1672px;overflow:hidden;font-family:Montserrat,Arial,sans-serif;color:{INK};cursor:pointer}}
+.card{{position:relative;width:941px;height:var(--ch,1672px);overflow:hidden;font-family:Montserrat,Arial,sans-serif;color:{INK};cursor:pointer}}
 @media (prefers-reduced-motion:reduce){{.card *{{animation:none!important}}}}'''
 FONTS='<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">'
 

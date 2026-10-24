@@ -22,7 +22,7 @@ body{{margin:0;background:var(--bg);color:var(--fg);overflow:hidden}}
 .scroller{{height:100%;overflow-y:auto;scroll-snap-type:y mandatory;overscroll-behavior:contain;scrollbar-width:none}}
 .scroller::-webkit-scrollbar{{display:none}}
 .sec{{position:relative;height:100%;scroll-snap-align:start;scroll-snap-stop:always;overflow:hidden;box-sizing:border-box;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0}}
-.stage{{position:absolute;left:50%;top:50%;width:941px;height:1672px;transform:translate(-50%,-50%) scale(var(--s,.3))}}
+.stage{{position:absolute;left:50%;top:50%;width:941px;height:var(--ch,1672px);transform:translate(-50%,-50%) scale(var(--s,.3))}}
 .card{{box-shadow:var(--shadow)}}
 .rail{{position:fixed;right:max(14px,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;z-index:2}}
 .dot{{width:10px;height:10px;padding:0;border:0;border-radius:50%;background:var(--dot);cursor:pointer;transition:background-color .25s,transform .25s}}
@@ -36,7 +36,7 @@ body{{margin:0;background:var(--bg);color:var(--fg);overflow:hidden}}
 .cue.on svg{{animation:cue 2s cubic-bezier(.45,0,.25,1) infinite}}
 @keyframes cue{{0%,100%{{transform:translateY(-3px)}}50%{{transform:translateY(5px)}}}}
 @media (prefers-reduced-motion:reduce){{.cue.on svg{{animation:none}}}}
-@media (max-width:699px){{.scroller{{scroll-snap-type:y proximity}} .rail{{display:none}} html body{{background:#f4f4f3}} .cue{{color:#393c41;bottom:12%}} .card{{box-shadow:none}}}}
+@media (max-width:699px){{.rail{{display:none}} html body{{background:#f4f4f3}} .cue{{color:#393c41;bottom:12%}} .card{{box-shadow:none}}}}
 {CARD_BASE}{KEYFRAMES}{UTIL}{css}
 </style>
 <div class="scroller" id="scroller">{sections}</div>
@@ -45,11 +45,14 @@ body{{margin:0;background:var(--bg);color:var(--fg);overflow:hidden}}
 <script>{SPLIT_JS}
 const sc=document.getElementById('scroller'),secs=[...sc.querySelectorAll('.sec')],cards=secs.map(s=>s.querySelector('.card')),dots=[...document.querySelectorAll('.dot')],cue=document.getElementById('cue');
 const dur=[{durs}],read=[{reads}],still=matchMedia('(prefers-reduced-motion:reduce)').matches;
-// Phones: full bleed. Every card is the full width of the screen and nothing is cut: each section is exactly as tall as its card,
-// so where a card is taller than the screen the reader (or the autoplay) simply scrolls the last few points into view.
-// Larger screens: one card per screen with about an inch (120px) above and below.
+// Phones: each card takes the exact shape of the screen, full bleed, nothing cut. The card stays 941 wide and its height follows
+// the screen (--ch); spacing and photo sizes inside each card adjust, photos keep their own proportions. Larger screens: the
+// 941 x 1672 card with about an inch (120px) above and below.
 const phone=()=>sc.clientWidth<700;
-function fit(){{const w=sc.clientWidth,h=sc.clientHeight;const s=phone()?w/941:Math.min((w-96)/941,(h-240)/1672);secs.forEach(x=>{{x.style.setProperty('--s',Math.max(.05,s));x.style.height=phone()?(1672*s)+'px':''}})}}
+function fit(){{const w=sc.clientWidth,h=sc.clientHeight;let s,H=1672;
+  if(phone()){{s=w/941;H=h/s;if(H<1450){{H=1450;s=h/H}}else if(H>1820){{H=1820;s=Math.min(w/941,h/H)}}}}
+  else s=Math.min((w-96)/941,(h-240)/1672);
+  secs.forEach(x=>{{x.style.setProperty('--s',Math.max(.05,s));x.style.setProperty('--ch',H+'px');x.style.setProperty('--k',Math.max(1,H/1672))}})}}
 addEventListener('resize',fit);fit();
 function play(c){{c.classList.remove('play');void c.offsetWidth;c.classList.add('play')}}
 let cur=0;
