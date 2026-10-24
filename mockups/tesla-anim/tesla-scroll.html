@@ -20,7 +20,7 @@ body{margin:0;background:var(--bg);color:var(--fg);overflow:hidden}
 .dot:focus-visible{outline:2px solid var(--fg);outline-offset:3px}
 .hint{position:fixed;left:0;right:0;bottom:max(14px,env(safe-area-inset-bottom,0px));text-align:center;font:600 10px/1 Montserrat,Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);transition:opacity .6s;pointer-events:none}
 .hint.off{opacity:0}
-@media (max-width:699px){.rail{display:none}}
+@media (max-width:699px){.rail{display:none} html body{background:#f4f4f3} .hint{color:#7b7d81} .card{box-shadow:none}}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 .card{position:relative;width:941px;height:1672px;overflow:hidden;font-family:Montserrat,Arial,sans-serif;color:#393c41;cursor:pointer}
 @media (prefers-reduced-motion:reduce){.card *{animation:none!important}}
@@ -247,8 +247,8 @@ el.textContent='';lines.forEach((ws,i)=>{const m=document.createElement('span');
 inner.style.setProperty('--d',(d0+i*st).toFixed(2)+'s');ws.forEach((w,j)=>{if(j)inner.appendChild(document.createTextNode(' '));while(w.firstChild)inner.appendChild(w.firstChild)});
 m.appendChild(inner);el.appendChild(m)});el.dataset.done='1'})}
 const sc=document.getElementById('scroller'),secs=[...sc.querySelectorAll('.sec')],cards=secs.map(s=>s.querySelector('.card')),dots=[...document.querySelectorAll('.dot')],hint=document.getElementById('hint');
-// Phones: the card fills the width. Larger screens: about an inch (120px) of space above and below the card.
-function fit(){const w=sc.clientWidth,h=sc.clientHeight;const s=w<700?Math.min((w-32)/941,(h-24)/1672):Math.min((w-96)/941,(h-240)/1672);secs.forEach(x=>x.style.setProperty('--s',Math.max(.05,s)))}
+// Phones: the card fills the screen edge to edge (as far as its proportions allow). Larger screens: about an inch (120px) of space above and below the card.
+function fit(){const w=sc.clientWidth,h=sc.clientHeight;const s=w<700?Math.min(w/941,h/1672):Math.min((w-96)/941,(h-240)/1672);secs.forEach(x=>x.style.setProperty('--s',Math.max(.05,s)))}
 addEventListener('resize',fit);fit();
 function play(c){c.classList.remove('play');void c.offsetWidth;c.classList.add('play')}
 function mark(i){dots.forEach((d,j)=>d.setAttribute('aria-current',String(j===i)));if(i>0)hint.classList.add('off')}
