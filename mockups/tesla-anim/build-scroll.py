@@ -6,7 +6,7 @@ from cards import CARDS, KEYFRAMES, UTIL, CARD_BASE, FONTS, SPLIT_JS, card_css_a
 
 snaps=''.join(f'<i class="snap" style="top:{i*100}%"></i>' for i in range(len(CARDS)))
 # cards whose full-bleed photo runs off the top edge keep that edge on screen; any phone overhang comes off the bottom margin
-TOP={'card2'}
+TOP=set()  # cards whose photo runs off the top edge (none at present)
 sections=''.join(f'<section class="sec" id="{c["id"]}" aria-label="{c["label"]}"{" data-anchor=top" if c["id"] in TOP else ""}><div class="stage">{card_html(c,i)}</div></section>' for i,c in enumerate(CARDS))
 dots=''.join(f'<button class="dot" type="button" data-i="{i}" aria-label="Go to {c["label"]}"></button>' for i,c in enumerate(CARDS))
 css=''.join(card_css_assets(c,i) for i,c in enumerate(CARDS))
@@ -51,13 +51,13 @@ body{{margin:0;background:var(--bg);color:var(--fg);overflow:hidden}}
 const sc=document.getElementById('scroller'),secs=[...sc.querySelectorAll('.sec')],cards=secs.map(s=>s.querySelector('.card')),dots=[...document.querySelectorAll('.dot')],cue=document.getElementById('cue');
 const dur=[{durs}],read=[{reads}],still=matchMedia('(prefers-reduced-motion:reduce)').matches;
 // Phones: full bleed with one fixed design. The card is scaled to cover the screen; where the screen is a little shorter or wider
-// than the card, only plain margin runs off the edge: at most 84px of card at the top and bottom (every card keeps 90px there)
+// than the card, only plain margin runs off the edge: at most 62px of card at the top and bottom (cards keep 64-90px there)
 // and 50px at the sides (they keep 60). Past that the whole card shows, on its own paper. A card whose photo runs off its top
 // edge keeps that edge on screen: up to 120px comes off its deeper bottom margin first, only then the top.
 // Larger screens: a restrained card, at most 640px tall, with at least an inch (120px) above and below.
 const phone=()=>sc.clientWidth<700;
 function fit(){{const w=sc.clientWidth,h=sc.clientHeight;let s;
-  if(phone()){{s=Math.max(w/941,h/1672);if((941*s-w)/2/s>50||(1672*s-h)/2/s>84)s=Math.min(w/941,h/1672)}}
+  if(phone()){{s=Math.max(w/941,h/1672);if((941*s-w)/2/s>50||(1672*s-h)/2/s>62)s=Math.min(w/941,h/1672)}}
   else s=Math.min((w-96)/941,(h-240)/1672,640/1672);
   const cy=Math.max(0,(1672*s-h)/2/s);
   secs.forEach(x=>{{x.style.setProperty('--s',Math.max(.05,s));x.style.setProperty('--dy',(x.dataset.anchor==='top'?(cy-Math.max(0,2*cy-120))*s:0)+'px')}})}}
