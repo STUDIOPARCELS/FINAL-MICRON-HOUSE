@@ -66,7 +66,7 @@ dt=''.join(f'<div class="r" style="--d:{3.55+i*.14:.2f}s"><div class="n">{n}<spa
 CARD1=dict(id='card1', label='Card 1', dur=4.9, css=f'''
 $S{{background:#fbfbfa}}
 $S .house{{position:absolute;left:0;right:0;bottom:32px;height:1672px;transform-origin:50% 100%;scale:var(--k,1);--h:url(__HOUSE__);background:var(--h) 0 -175px/941px 1672px no-repeat,var(--h) 0 -80px/941px 1672px no-repeat,var(--h) 0 0/941px 1672px no-repeat}}
-$S .wm{{position:absolute;top:90px;left:700px;width:196px}}
+$S .wm{{position:absolute;top:64px;left:723px;width:168px}}
 $S .txt{{position:absolute;left:60px;right:60px;bottom:90px}}
 $S .h{{font-size:54px;line-height:1.06;letter-spacing:-.01em;font-weight:800;text-transform:uppercase}}
 $S .sub{{margin-top:26px;font-size:31px;line-height:1.38;font-weight:500;color:{INK2}}}
