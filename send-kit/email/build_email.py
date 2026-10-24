@@ -9,8 +9,8 @@ SUBJECT='An invitation for Optimus + Cybercab'
 # The first email, ending with Lisa's line from Card 5
 INTRO={'cold':[],'introduced':['[Introducer] suggested I send this to you.']}
 GREET="I cannot overstate how excited I am about the ways Optimus and Cybercab will reshape how we live, work, travel and gather."
-BODY=["I would be delighted to welcome Tesla into Warm Springs House, my 1906 house in Boise, where Tesla engineers live and work alongside Optimus and Cybercab: the proving ground for the first autonomous corporate residence and entertainment hub."]
-ASK="Please reach me anytime."
+BODY=["I'm inviting Tesla to join me at Warm Springs House, my 1906 house in Boise, where Tesla engineers live and work alongside Optimus and Cybercab: the proving ground for the first autonomous corporate residence and entertainment hub."]
+ASK="I'd be glad to talk or to host a site visit, whenever suits you. My mobile is below."
 CLOSE=["I'm in the demographic most wary of robots and self-driving cars, yet I can't wait for them. I've seen how fragile care can be for the people I love. I want a robot in the loop."]
 F='font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.55;color:#2b2d31'
 def body_html(kind,img_src):
