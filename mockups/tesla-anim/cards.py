@@ -38,15 +38,15 @@ UTIL='''
 
 # Opening: the sealed card splits into a gatefold and opens onto the cardstock, then the line rises
 OPENING=dict(id='opening', label='Opening', dur=4.7, hold=.9, css='''
-$S{background:#fff;perspective:2600px}
-$S .box{position:absolute;left:70.5px;top:125.5px;width:800px;height:1421px;opacity:0;box-shadow:0 1px 2px rgba(30,28,24,.06),0 18px 50px rgba(30,28,24,.13)}
+$S{background:#f3f1ec;perspective:2600px}
+$S .box{position:absolute;inset:0;opacity:0}
 $S .under{position:absolute;inset:0;background:#f4f4f3 url(__PAPER__) center/941px 1672px no-repeat}
-$S .p{position:absolute;top:0;height:1421px;width:400px;background:url(__SEALED__) no-repeat;background-size:800px 1421px;backface-visibility:hidden}
+$S .p{position:absolute;top:0;height:1672px;width:470.5px;background:url(__SEALED__) no-repeat;background-size:941px 1672px;backface-visibility:hidden}
 $S .p::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(40,36,30,0),rgba(40,36,30,.28));opacity:0}
 $S .lp{left:0;background-position:0 0;transform-origin:left center}
-$S .rp{left:400px;background-position:-400px 0;transform-origin:right center}
+$S .rp{left:470.5px;background-position:-470.5px 0;transform-origin:right center}
 $S .rp::after{background:linear-gradient(270deg,rgba(40,36,30,0),rgba(40,36,30,.28))}
-$S .line{position:absolute;left:0;right:0;top:684.5px;text-align:center;font-size:34px;letter-spacing:.14em;font-weight:800;text-transform:uppercase}
+$S .line{position:absolute;left:0;right:0;top:810px;text-align:center;font-size:34px;letter-spacing:.14em;font-weight:800;text-transform:uppercase}
 $S .line i{display:inline-block;font-style:normal;opacity:0}
 $S.play .box{animation:in 1s ease-out both}
 $S.play .lp{animation:openL 1.6s cubic-bezier(.55,0,.25,1) 1.5s both}
@@ -131,7 +131,7 @@ $S .uses{{padding-top:26px;color:{PLUM};display:grid;grid-template-columns:repea
 <div>
 <div class="lab r" style="--d:1.2s">Proof of concept</div>
 <div class="h" data-lines="1.4:.13">The autonomous<br>corporate residence +<br>entertainment hub.</div>
-<div class="hub" data-lines="2.0:.12"><em>A new corporate asset for the Autonomous Age.</em></div>
+<div class="hub" data-lines="2.0:.12"><em style="color:#2c0f38">A new corporate asset for the Autonomous Age.</em></div>
 <div class="sub a" data-lines="2.3:.12">At Tesla&#8217;s option, a leading Boise corporation joins as founding partner to scope, test and launch it with Optimus, Cybercab and Starlink.</div>
 <div class="rule ln" style="--d:2.9s"></div>
 <div class="uses"><div class="r" style="--d:3.20s">Entertaining</div><div class="r" style="--d:3.32s">Executive off-sites</div><div class="r" style="--d:3.44s">Recruiting</div><div class="r" style="--d:3.56s">Relocation</div><div class="r" style="--d:3.68s">Employee incentives</div><div class="r" style="--d:3.80s">Private dinners</div></div>

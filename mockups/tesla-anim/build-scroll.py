@@ -36,7 +36,7 @@ body{{margin:0;background:var(--bg);color:var(--fg);overflow:hidden}}
 .cue.on svg{{animation:cue 2s cubic-bezier(.45,0,.25,1) infinite}}
 @keyframes cue{{0%,100%{{transform:translateY(-3px)}}50%{{transform:translateY(5px)}}}}
 @media (prefers-reduced-motion:reduce){{.cue.on svg{{animation:none}}}}
-@media (max-width:699px){{.rail{{display:none}} html body{{background:#f4f4f3}} .cue{{color:#393c41;bottom:12%}} .sec #c1 .wm{{top:56px}} .sec #c1 .txt{{bottom:60px}} .card{{box-shadow:none}}}}
+@media (max-width:699px){{.scroller{{scroll-snap-type:y proximity}} .rail{{display:none}} html body{{background:#f4f4f3}} .cue{{color:#393c41;bottom:12%}} .card{{box-shadow:none}}}}
 {CARD_BASE}{KEYFRAMES}{UTIL}{css}
 </style>
 <div class="scroller" id="scroller">{sections}</div>
@@ -45,12 +45,15 @@ body{{margin:0;background:var(--bg);color:var(--fg);overflow:hidden}}
 <script>{SPLIT_JS}
 const sc=document.getElementById('scroller'),secs=[...sc.querySelectorAll('.sec')],cards=secs.map(s=>s.querySelector('.card')),dots=[...document.querySelectorAll('.dot')],cue=document.getElementById('cue');
 const dur=[{durs}],read=[{reads}],still=matchMedia('(prefers-reduced-motion:reduce)').matches;
-// Phones: full bleed. The card covers the screen; the few points it overhangs come off its plain margins
-// (never more than 60px of card, so no content is cut; very short screens fit the card instead). Larger screens: about an inch (120px) above and below.
-function fit(){{const w=sc.clientWidth,h=sc.clientHeight;let s;if(w<700){{s=Math.max(w/941,h/1672);if((941*s-w)/2/s>60||(1672*s-h)/2/s>60)s=Math.min(w/941,h/1672)}}else s=Math.min((w-96)/941,(h-240)/1672);secs.forEach(x=>x.style.setProperty('--s',Math.max(.05,s)))}}
+// Phones: full bleed. Every card is the full width of the screen and nothing is cut: each section is exactly as tall as its card,
+// so where a card is taller than the screen the reader (or the autoplay) simply scrolls the last few points into view.
+// Larger screens: one card per screen with about an inch (120px) above and below.
+const phone=()=>sc.clientWidth<700;
+function fit(){{const w=sc.clientWidth,h=sc.clientHeight;const s=phone()?w/941:Math.min((w-96)/941,(h-240)/1672);secs.forEach(x=>{{x.style.setProperty('--s',Math.max(.05,s));x.style.height=phone()?(1672*s)+'px':''}})}}
 addEventListener('resize',fit);fit();
 function play(c){{c.classList.remove('play');void c.offsetWidth;c.classList.add('play')}}
-function mark(i){{dots.forEach((d,j)=>d.setAttribute('aria-current',String(j===i)));if(i>0){{cueDone=true;cue.classList.remove('on')}}}}
+let cur=0;
+function mark(i){{cur=i;dots.forEach((d,j)=>d.setAttribute('aria-current',String(j===i)));if(i>0){{cueDone=true;cue.classList.remove('on')}}}}
 // Until the viewer touches, scrolls, clicks or presses a key, the page moves to the next card by itself once each card has been read.
 let auto=true,timer=null,cueTimer=null,cueDone=false;
 function stopAuto(){{auto=false;clearTimeout(timer)}}
@@ -58,14 +61,18 @@ function stopAuto(){{auto=false;clearTimeout(timer)}}
 function go(i){{secs[i].scrollIntoView({{behavior:still?'auto':'smooth'}})}}
 function arrive(i){{clearTimeout(timer);clearTimeout(cueTimer);
   if(i===0&&!cueDone)cueTimer=setTimeout(()=>cue.classList.add('on'),dur[0]*1000);
-  if(auto&&i<secs.length-1)timer=setTimeout(()=>{{if(auto)go(i+1)}},(dur[i]+read[i])*1000)}}
+  if(!auto)return;
+  // a card taller than the screen: once it has played, glide down to show its last lines, then move on
+  timer=setTimeout(()=>{{if(!auto)return;const over=secs[i].offsetHeight-sc.clientHeight;
+    if(over>2)sc.scrollTo({{top:secs[i].offsetTop+over,behavior:still?'auto':'smooth'}});
+    if(i<secs.length-1)timer=setTimeout(()=>{{if(auto)go(i+1)}},read[i]*1000)}},dur[i]*1000)}}
 const io=new IntersectionObserver(es=>{{es.forEach(e=>{{const i=secs.indexOf(e.target),c=cards[i];
   if(e.intersectionRatio>=.6){{if(!c.classList.contains('play'))play(c);mark(i);arrive(i)}}
   else if(e.intersectionRatio===0){{c.classList.remove('play')}}
 }})}},{{root:sc,threshold:[0,.6]}});
 (document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(()=>{{secs.forEach(s=>splitLines(s));secs.forEach(s=>io.observe(s))}});
 dots.forEach((d,i)=>d.addEventListener('click',()=>go(i)));
-addEventListener('keydown',e=>{{if(e.metaKey||e.ctrlKey||e.altKey)return;const i=Math.round(sc.scrollTop/sc.clientHeight);
+addEventListener('keydown',e=>{{if(e.metaKey||e.ctrlKey||e.altKey)return;const i=cur;
   if(['ArrowDown','PageDown',' '].includes(e.key)&&i<secs.length-1){{e.preventDefault();go(i+1)}}
   else if(['ArrowUp','PageUp'].includes(e.key)&&i>0){{e.preventDefault();go(i-1)}}}});
 </script>'''
