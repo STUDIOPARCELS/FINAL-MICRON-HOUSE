@@ -64,16 +64,17 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 </div></div></div>
 <script>function splitLines(root){root.querySelectorAll('[data-lines]').forEach(el=>{
 if(el.dataset.done)return;const [d0,st]=el.dataset.lines.split(':').map(Number);const toks=[];
-const walk=(node,wrap)=>node.childNodes.forEach(n=>{if(n.nodeType===3){n.textContent.split(/(\s+)/).forEach(p=>{if(!p)return;toks.push(/^\s+$/.test(p)?{sp:1}:{w:p,wrap})})}
+const walk=(node,wrap)=>node.childNodes.forEach(n=>{if(n.nodeType===3){n.textContent.split(/(\s+)/).forEach(p=>{if(!p)return;if(/^\s+$/.test(p))toks.push({sp:1});else p.split(/(?<=-)/).forEach(w=>toks.push({w,wrap}))})}
 else if(n.nodeName==='BR')toks.push({br:1});else walk(n,(wrap||[]).concat([n]))});
-walk(el,null);el.textContent='';const items=[];let word=null;
-toks.forEach(t=>{if(t.sp||t.br){word=null;if(t.sp)el.appendChild(document.createTextNode(' '));else{el.appendChild(document.createElement('br'));items.push(null)}return}
+walk(el,null);el.textContent='';const items=[];let space=true;
+toks.forEach(t=>{if(t.sp){el.appendChild(document.createTextNode(' '));space=true;return}
+if(t.br){el.appendChild(document.createElement('br'));items.push(null);space=true;return}
 let node=document.createTextNode(t.w);(t.wrap||[]).slice().reverse().forEach(w=>{const c=w.cloneNode(false);c.appendChild(node);node=c});
-if(!word){word=document.createElement('span');el.appendChild(word);items.push(word)}word.appendChild(node)});
+const sp=document.createElement('span');sp.appendChild(node);el.appendChild(sp);items.push({sp,glue:!space});space=false});
 const lines=[];let cur=null,top=null;
-items.forEach(sp=>{if(!sp){cur=null;return}const t=sp.offsetTop;if(cur===null||Math.abs(t-top)>3){cur=[];lines.push(cur);top=t}cur.push(sp)});
+items.forEach(it=>{if(!it){cur=null;return}const t=it.sp.offsetTop;if(cur===null||Math.abs(t-top)>3){cur=[];lines.push(cur);top=t}cur.push(it)});
 el.textContent='';lines.forEach((ws,i)=>{const m=document.createElement('span');m.className='m';const inner=document.createElement('span');
-inner.style.setProperty('--d',(d0+i*st).toFixed(2)+'s');ws.forEach((w,j)=>{if(j)inner.appendChild(document.createTextNode(' '));while(w.firstChild)inner.appendChild(w.firstChild)});
+inner.style.setProperty('--d',(d0+i*st).toFixed(2)+'s');ws.forEach((w,j)=>{if(j&&!w.glue)inner.appendChild(document.createTextNode(' '));while(w.sp.firstChild)inner.appendChild(w.sp.firstChild)});
 m.appendChild(inner);el.appendChild(m)});el.dataset.done='1'})}
 const st=document.getElementById('stage'),card=st.firstElementChild;
 function fit(){const s=Math.min((innerWidth-24)/941,(innerHeight-24)/1672);st.style.transform='scale('+s+')';st.style.margin=((1672*s-1672)/2)+'px '+((941*s-941)/2)+'px'}
