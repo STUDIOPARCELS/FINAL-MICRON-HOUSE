@@ -34,10 +34,9 @@ No attachment.
 
 **Message 2:**
 
-Hi [Name], I'm offering my 1906 family home in Boise to Tesla as a residential test bed for Optimus and Cybercab, at no cost to Tesla.
+Hi [First name], Warm Springs House in Boise: the proving ground for the first autonomous corporate residence and entertainment hub. I am delighted to welcome Tesla.
 
-The invitation: warmspringshouse.com/4tesla
-Terms: warmspringshouse.com/4tesla/terms
+warmspringshouse.com/4tesla
 
 Lisa Wood
 
