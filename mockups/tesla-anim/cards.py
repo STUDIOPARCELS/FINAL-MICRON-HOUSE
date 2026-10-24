@@ -82,7 +82,7 @@ $S.play .wm{{animation:fadeup 1.2s cubic-bezier(.2,.7,.2,1) .9s both}}
 <img class="wm" src="__WORD__" alt="WARM SPRINGS HOUSE">
 <div class="txt">
 <div class="h"><span class="m"><span style="--d:1.95s">A residential test bed</span></span><span class="m"><span style="--d:2.1s">for Optimus + Cybercab.</span></span></div>
-<div class="sub" data-lines="2.45:.12">A modest 1906 three-bedroom home in Boise,&nbsp;Idaho, on a historic tree-lined avenue heated by America&#8217;s first geothermal district.</div>
+<div class="sub" data-lines="2.45:.12">A modest 1906 three-bedroom home in Boise, Idaho, on a historic tree-lined avenue heated by America&#8217;s first geothermal district.</div>
 <div class="caps m"><span style="--d:2.95s">Available now. Ready to host.</span></div>
 <div class="rule ln" style="--d:3.25s"></div>
 <div class="grid">'''+dt+'''</div>
@@ -251,7 +251,7 @@ CARDS=[OPENING,CARD1,CARD2,CARD3,CARD4,CARD5,CARD6]
 # whatever the browser's font metrics; each line then reveals in turn, starting at `start` seconds, `step` apart.
 SPLIT_JS='''function splitLines(root){root.querySelectorAll('[data-lines]').forEach(el=>{
 if(el.dataset.done)return;const [d0,st]=el.dataset.lines.split(':').map(Number);const toks=[];
-const walk=(node,wrap)=>node.childNodes.forEach(n=>{if(n.nodeType===3){n.textContent.split(/([^\\S\\u00a0]+)/).forEach(p=>{if(!p)return;if(/^[^\\S\\u00a0]+$/.test(p))toks.push({sp:1});else p.split(/(?<=-)/).forEach(w=>toks.push({w,wrap}))})}
+const walk=(node,wrap)=>node.childNodes.forEach(n=>{if(n.nodeType===3){n.textContent.split(/(\\s+)/).forEach(p=>{if(!p)return;if(/^\\s+$/.test(p))toks.push({sp:1});else p.split(/(?<=-)/).forEach(w=>toks.push({w,wrap}))})}
 else if(n.nodeName==='BR')toks.push({br:1});else walk(n,(wrap||[]).concat([n]))});
 walk(el,null);el.textContent='';const items=[];let space=true;
 toks.forEach(t=>{if(t.sp){el.appendChild(document.createTextNode(' '));space=true;return}
