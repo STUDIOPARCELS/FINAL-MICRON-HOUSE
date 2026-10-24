@@ -241,7 +241,8 @@ assets={'__PAPER__':('paper-gray.webp','image/webp'),'__CAB__':('../tesla-v2/cyb
 CARDS=[OPENING,CARD1,CARD2,CARD3,CARD4,CARD5,CARD6]
 
 # Shared card box. The card is printed stock, so its colours stay fixed in both themes.
-CARD_BASE=f'''.card{{position:relative;width:941px;height:1672px;overflow:hidden;font-family:Montserrat,Arial,sans-serif;color:{INK};cursor:pointer}}
+CARD_BASE=f'''html{{-webkit-text-size-adjust:100%;text-size-adjust:100%}}
+.card{{position:relative;width:941px;height:1672px;overflow:hidden;font-family:Montserrat,Arial,sans-serif;color:{INK};cursor:pointer}}
 @media (prefers-reduced-motion:reduce){{.card *{{animation:none!important}}}}'''
 FONTS='<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">'
 
