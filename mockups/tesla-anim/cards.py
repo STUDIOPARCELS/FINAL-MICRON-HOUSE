@@ -66,8 +66,8 @@ dt=''.join(f'<div class="r" style="--d:{3.55+i*.14:.2f}s"><div class="n">{n}<spa
 CARD1=dict(id='card1', label='Card 1', dur=4.9, css=f'''
 $S{{background:#fbfbfa}}
 $S .house{{position:absolute;left:0;right:0;bottom:0;height:1672px;transform-origin:50% 100%;scale:var(--k,1);--h:url(__HOUSE__);background:var(--h) 0 -175px/941px 1672px no-repeat,var(--h) 0 -80px/941px 1672px no-repeat,var(--h) 0 0/941px 1672px no-repeat}}
-$S .wm{{position:absolute;top:34px;left:700px;width:196px}}
-$S .txt{{position:absolute;left:60px;right:60px;bottom:42px}}
+$S .wm{{position:absolute;top:56px;left:700px;width:196px}}
+$S .txt{{position:absolute;left:60px;right:60px;bottom:58px}}
 $S .h{{font-size:54px;line-height:1.06;letter-spacing:-.01em;font-weight:800;text-transform:uppercase}}
 $S .sub{{margin-top:26px;font-size:31px;line-height:1.38;font-weight:500;color:{INK2}}}
 $S .caps{{margin-top:22px;font-size:27px;letter-spacing:.1em;font-weight:800;text-transform:uppercase}}
@@ -91,26 +91,30 @@ assets={'__HOUSE__':('../tesla-v2/card1/house.webp','image/webp'),'__WORD__':('.
 # Card 2: Optimus room and Cybercab wipe in, then the text line by line (type sizes match Card 1)
 CARD2=dict(id="card2", label="Card 2", dur=4.5, css=f"""
 $S{{background:#f4f4f3 url(__PAPER__) center/cover no-repeat}}
-$S .wrap{{position:absolute;left:60px;right:60px;top:60px;bottom:60px;display:flex;flex-direction:column;gap:38px}}
-$S .pics{{flex:1;min-height:0;container-type:size;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:17px}}
-$S .pics .im{{flex:none}} $S .pics .im:first-child{{height:min(616px,calc((100cqh - 17px) * .5711));aspect-ratio:1448/1086}} $S .pics .im:last-child{{height:min(462px,calc((100cqh - 17px) * .4289));aspect-ratio:1671/941}}
+$S .hero{{position:absolute;left:0;top:0;width:941px;height:706px;box-shadow:none}}
+/* Below the full-bleed photo, one spacing unit everywhere: photo to headline, block to rule, rule to block, block to the card's edge */
+$S .wrap{{position:absolute;left:60px;right:60px;top:706px;bottom:0;display:flex;flex-direction:column}}
+$S .g1,$S .wrap>.rule,$S .g2{{margin-top:auto}} $S .wrap::after{{content:"";margin-top:auto}}
 $S .h{{font-size:54px;line-height:1.06;letter-spacing:-.01em;font-weight:800;text-transform:uppercase}}
 $S .sub{{font-size:31px;line-height:1.38;font-weight:500;color:{INK2}}}
 $S .caps{{margin-top:22px;font-size:27px;letter-spacing:.1em;font-weight:800;text-transform:uppercase}}
-$S .rule{{margin-top:34px;background:{RULE}}}
+$S .rule{{background:{RULE}}}
 $S em{{font-family:Newsreader,Georgia,serif;font-style:italic;font-size:35px;font-weight:400;color:{INK}}}
-$S .sub.a{{margin-top:32px}} $S .sub.b{{padding-top:22px}}
-""", html="""<div class="wrap">
-<div class="pics"><div class="im" style="--d:.2s"><img src="__ROOM__" alt="Optimus in the living room"></div><div class="im" style="--d:.65s"><img src="__CAB__" alt="Cybercab at the house"></div></div>
-<div>
+$S .sub.a{{margin-top:32px}}
+""", html="""<div class="im hero" style="--d:.2s"><img src="__ROOM__" alt="Optimus in the living room"></div>
+<div class="wrap">
+<div class="g1">
 <div class="h"><span class="m"><span style="--d:1.45s">Tesla engineers</span></span><span class="m"><span style="--d:1.6s">in residence</span></span></div>
 <div class="sub a" data-lines="1.95:.12">One or more Tesla engineers live and work alongside Optimus and Cybercab, readying them for service, security and mobility for the <em>first autonomous corporate residence + entertainment hub.</em></div>
 <div class="caps m"><span style="--d:2.65s">At no cost to Tesla.</span></div>
+</div>
 <div class="rule ln" style="--d:2.9s"></div>
+<div class="g2">
 <div class="sub b" data-lines="3.15:.12">Real-world testing in a historic home, minutes from downtown.</div>
-<div class="caps m" style="margin-top:22px"><span style="--d:3.6s">Private, quiet and discreet.</span></div>
-</div></div>""",
-assets={'__PAPER__':('paper-gray.webp','image/webp'),'__ROOM__':('../tesla-v2/room-optimus.webp','image/webp'),'__CAB__':('../tesla-v2/cybercab.webp','image/webp')})
+<div class="caps m"><span style="--d:3.6s">Private, quiet and discreet.</span></div>
+</div>
+</div>""",
+assets={'__PAPER__':('paper-gray.webp','image/webp'),'__ROOM__':('../tesla-v2/room-optimus.webp','image/webp')})
 
 # Card 3: dining room wipes in, green label, headline, hub name, founding partner, caps line, then the six uses one by one
 CARD3=dict(id='card3', label='Card 3', dur=4.7, hold=13.4, css=f"""

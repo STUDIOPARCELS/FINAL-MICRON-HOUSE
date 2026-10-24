@@ -1,9 +1,13 @@
-# Tesla cards as one scrolling page: python3 build-scroll.py (run from mockups/tesla-anim)
-# Each card is a full-height snap section. A card plays its reveal when it comes into view and resets when it leaves,
-# so scrolling down or back up always plays it again. The Artifact publish wraps this file in its own doctype/head/body.
+# Tesla cards as one scrolling page, a stacked deck: python3 build-scroll.py (run from mockups/tesla-anim)
+# Each card is pinned in place; the next one slides up over it while the covered card eases back and dims, like invitation
+# cards laid one on another. Snap points sit on invisible markers, one per screen. Every card keeps one fixed design (941 x 1672)
+# on every screen. The Artifact publish wraps this file in its own doctype/head/body.
 from cards import CARDS, KEYFRAMES, UTIL, CARD_BASE, FONTS, SPLIT_JS, card_css_assets, card_html
 
-sections=''.join(f'<section class="sec" id="{c["id"]}" aria-label="{c["label"]}"><div class="stage">{card_html(c,i)}</div></section>' for i,c in enumerate(CARDS))
+snaps=''.join(f'<i class="snap" style="top:{i*100}%"></i>' for i in range(len(CARDS)))
+# cards whose full-bleed photo runs off the top edge keep that edge on screen; any phone overhang comes off the bottom margin
+TOP={'card2'}
+sections=''.join(f'<section class="sec" id="{c["id"]}" aria-label="{c["label"]}"{" data-anchor=top" if c["id"] in TOP else ""}><div class="stage">{card_html(c,i)}</div></section>' for i,c in enumerate(CARDS))
 dots=''.join(f'<button class="dot" type="button" data-i="{i}" aria-label="Go to {c["label"]}"></button>' for i,c in enumerate(CARDS))
 css=''.join(card_css_assets(c,i) for i,c in enumerate(CARDS))
 # Seconds each card stays up after its reveal before the page moves on by itself (same reading time as the video)
@@ -19,11 +23,13 @@ PAGE=f'''<title>Prepared for Tesla</title>
 :root[data-theme="dark"]{{--bg:#17181a;--fg:#e4e4e2;--muted:#9a9ca0;--dot:#4a4c50;--shadow:0 2px 6px rgba(0,0,0,.4),0 28px 70px rgba(0,0,0,.55);color-scheme:dark}}
 html,body{{height:100%}}
 body{{margin:0;background:var(--bg);color:var(--fg);overflow:hidden}}
-.scroller{{height:100%;overflow-y:auto;scroll-snap-type:y mandatory;overscroll-behavior:contain;scrollbar-width:none}}
+.scroller{{position:relative;height:100%;overflow-x:hidden;overflow-y:auto;scroll-snap-type:y mandatory;overscroll-behavior:contain;scrollbar-width:none}}
+.snap{{position:absolute;left:0;width:1px;height:100%;scroll-snap-align:start;scroll-snap-stop:always;pointer-events:none}}
 .scroller::-webkit-scrollbar{{display:none}}
-.sec{{position:relative;height:100%;scroll-snap-align:start;scroll-snap-stop:always;overflow:hidden;box-sizing:border-box;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0}}
-.stage{{position:absolute;left:50%;top:50%;width:941px;height:var(--ch,1672px);transform:translate(-50%,-50%) scale(var(--s,.3))}}
-.card{{box-shadow:var(--shadow)}}
+.sec{{position:sticky;top:0;height:100%;box-sizing:border-box;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0}}
+.stage{{position:absolute;left:50%;top:calc(50% + var(--dy,0px));width:941px;height:var(--ch,1672px);transform:translate(-50%,-50%) scale(var(--s,.3))}}
+.card{{box-shadow:var(--shadow);transform-origin:50% 40%}}
+.card::after{{content:"";position:absolute;inset:0;z-index:50;background:#1e1f22;opacity:calc(var(--p,0) * .32);pointer-events:none}}
 .rail{{position:fixed;right:max(14px,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;z-index:2}}
 .dot{{width:10px;height:10px;padding:0;border:0;border-radius:50%;background:var(--dot);cursor:pointer;transition:background-color .25s,transform .25s}}
 .dot:hover{{transform:scale(1.3)}}
@@ -36,24 +42,24 @@ body{{margin:0;background:var(--bg);color:var(--fg);overflow:hidden}}
 .cue.on svg{{animation:cue 2s cubic-bezier(.45,0,.25,1) infinite}}
 @keyframes cue{{0%,100%{{transform:translateY(-3px)}}50%{{transform:translateY(5px)}}}}
 @media (prefers-reduced-motion:reduce){{.cue.on svg{{animation:none}}}}
-@media (max-width:699px){{.rail{{display:none}} html body{{background:#f4f4f3}} .cue{{color:#393c41;bottom:12%}} .card{{box-shadow:none}}}}
+@media (max-width:699px){{.rail{{display:none}} html body{{background:#f4f4f3}} .cue{{color:#393c41;bottom:12%}} .card{{box-shadow:none}} .sec{{overflow:hidden}} .sec~.sec{{box-shadow:0 -10px 34px rgba(20,20,22,.22)}}}}
 {CARD_BASE}{KEYFRAMES}{UTIL}{css}
 </style>
-<div class="scroller" id="scroller">{sections}</div>
+<div class="scroller" id="scroller">{snaps}{sections}</div>
 <nav class="rail" aria-label="Cards">{dots}</nav>
 <div class="cue" id="cue" aria-hidden="true"><svg viewBox="0 0 26 26"><path d="M6 10l7 7 7-7"/></svg></div>
 <script>{SPLIT_JS}
 const sc=document.getElementById('scroller'),secs=[...sc.querySelectorAll('.sec')],cards=secs.map(s=>s.querySelector('.card')),dots=[...document.querySelectorAll('.dot')],cue=document.getElementById('cue');
 const dur=[{durs}],read=[{reads}],still=matchMedia('(prefers-reduced-motion:reduce)').matches;
-// Phones: each card takes the exact shape of the screen, full bleed, nothing cut. The card stays 941 wide and its height follows
-// the screen (--ch); spacing and photo sizes inside each card adjust, photos keep their own proportions. Larger screens: the
-// 941 x 1672 card with about an inch (120px) above and below.
+// Phones: full bleed with one fixed design. The card is scaled to cover the screen; where the screen is a little taller or wider
+// than the card, only the plain margin runs off the edge (never more than 50px of card per side; past that the whole card shows,
+// on its own paper). Larger screens: the card with about an inch (120px) above and below.
 const phone=()=>sc.clientWidth<700;
-function fit(){{const w=sc.clientWidth,h=sc.clientHeight;let s,H=1672;
-  // very tall screens (an app's full-screen viewer): grow the card to the screen height, giving up at most 40px of each side margin
-  if(phone()){{s=w/941;H=h/s;if(H<1450){{H=1450;s=h/H}}else if(H>1820){{s=Math.min(h/1820,w/861);H=Math.min(h/s,1960)}}}}
+function fit(){{const w=sc.clientWidth,h=sc.clientHeight;let s;
+  if(phone()){{s=Math.max(w/941,h/1672);if((941*s-w)/2/s>50||(1672*s-h)/2/s>50)s=Math.min(w/941,h/1672)}}
   else s=Math.min((w-96)/941,(h-240)/1672);
-  secs.forEach(x=>{{x.style.setProperty('--s',Math.max(.05,s));x.style.setProperty('--ch',H+'px');x.style.setProperty('--k',Math.max(1,H/1672))}})}}
+  const over=Math.max(0,(1672*s-h)/2);
+  secs.forEach(x=>{{x.style.setProperty('--s',Math.max(.05,s));x.style.setProperty('--dy',(x.dataset.anchor==='top'?over:0)+'px')}})}}
 // refit whenever the visible area changes: rotation, Safari's toolbar growing or shrinking, a tab restored from the background
 addEventListener('resize',fit);addEventListener('pageshow',fit);if(window.visualViewport)visualViewport.addEventListener('resize',fit);
 if('ResizeObserver' in window)new ResizeObserver(fit).observe(sc);fit();
@@ -64,19 +70,20 @@ function mark(i){{cur=i;dots.forEach((d,j)=>d.setAttribute('aria-current',String
 let auto=true,timer=null,cueTimer=null,cueDone=false;
 function stopAuto(){{auto=false;clearTimeout(timer)}}
 ['wheel','touchstart','pointerdown','keydown'].forEach(t=>addEventListener(t,stopAuto,{{passive:true,capture:true}}));
-function go(i){{secs[i].scrollIntoView({{behavior:still?'auto':'smooth'}})}}
+function go(i){{sc.scrollTo({{top:i*sc.clientHeight,behavior:still?'auto':'smooth'}})}}
 function arrive(i){{clearTimeout(timer);clearTimeout(cueTimer);
   if(i===0&&!cueDone)cueTimer=setTimeout(()=>cue.classList.add('on'),dur[0]*1000);
   if(!auto)return;
-  // a card taller than the screen: once it has played, glide down to show its last lines, then move on
-  timer=setTimeout(()=>{{if(!auto)return;const over=secs[i].offsetHeight-sc.clientHeight;
-    if(over>2)sc.scrollTo({{top:secs[i].offsetTop+over,behavior:still?'auto':'smooth'}});
-    if(i<secs.length-1)timer=setTimeout(()=>{{if(auto)go(i+1)}},read[i]*1000)}},dur[i]*1000)}}
-const io=new IntersectionObserver(es=>{{es.forEach(e=>{{const i=secs.indexOf(e.target),c=cards[i];
-  if(e.intersectionRatio>=.6){{if(!c.classList.contains('play'))play(c);mark(i);arrive(i)}}
-  else if(e.intersectionRatio===0){{c.classList.remove('play')}}
-}})}},{{root:sc,threshold:[0,.6]}});
-(document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(()=>{{secs.forEach(s=>splitLines(s));secs.forEach(s=>io.observe(s))}});
+  if(i<secs.length-1)timer=setTimeout(()=>{{if(auto)go(i+1)}},(dur[i]+read[i])*1000)}}
+// y = how many screens down. A card plays once it is more than half in place; the card beneath eases back and dims as it is covered;
+// a card resets once it is fully covered or fully below the screen, so it plays again when the reader comes back to it.
+let ready=false,ticking=false,shown=-1;
+function frame(){{ticking=false;if(!ready)return;const y=sc.scrollTop/sc.clientHeight;
+  cards.forEach((c,i)=>{{const p=Math.min(1,Math.max(0,y-i));c.style.setProperty('--p',p.toFixed(3));c.style.scale=(1-.045*p).toFixed(4);
+    if(y>=i+1-.002||y<=i-1+.002)c.classList.remove('play')}});
+  const i=Math.round(y);if(Math.abs(y-i)<.45&&i!==shown){{shown=i;if(!cards[i].classList.contains('play'))play(cards[i]);mark(i);arrive(i)}}}}
+sc.addEventListener('scroll',()=>{{if(!ticking){{ticking=true;requestAnimationFrame(frame)}}}},{{passive:true}});
+(document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(()=>{{secs.forEach(s=>splitLines(s));ready=true;frame()}});
 dots.forEach((d,i)=>d.addEventListener('click',()=>go(i)));
 addEventListener('keydown',e=>{{if(e.metaKey||e.ctrlKey||e.altKey)return;const i=cur;
   if(['ArrowDown','PageDown',' '].includes(e.key)&&i<secs.length-1){{e.preventDefault();go(i+1)}}
