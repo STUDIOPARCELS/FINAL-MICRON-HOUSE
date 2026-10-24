@@ -36,8 +36,8 @@ body{{margin:0;background:var(--bg);color:var(--fg);overflow:hidden}}
 <div class="hint" id="hint">Scroll</div>
 <script>{SPLIT_JS}
 const sc=document.getElementById('scroller'),secs=[...sc.querySelectorAll('.sec')],cards=secs.map(s=>s.querySelector('.card')),dots=[...document.querySelectorAll('.dot')],hint=document.getElementById('hint');
-// The card fills the screen height, with a small margin; on phones it fills the width.
-function fit(){{const w=sc.clientWidth,h=sc.clientHeight;const s=w<700?Math.min((w-32)/941,(h-24)/1672):Math.min((w-96)/941,(h-32)/1672);secs.forEach(x=>x.style.setProperty('--s',Math.max(.05,s)))}}
+// Phones: the card fills the width. Larger screens: about an inch (120px) of space above and below the card.
+function fit(){{const w=sc.clientWidth,h=sc.clientHeight;const s=w<700?Math.min((w-32)/941,(h-24)/1672):Math.min((w-96)/941,(h-240)/1672);secs.forEach(x=>x.style.setProperty('--s',Math.max(.05,s)))}}
 addEventListener('resize',fit);fit();
 function play(c){{c.classList.remove('play');void c.offsetWidth;c.classList.add('play')}}
 function mark(i){{dots.forEach((d,j)=>d.setAttribute('aria-current',String(j===i)));if(i>0)hint.classList.add('off')}}
