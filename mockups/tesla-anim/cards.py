@@ -104,7 +104,7 @@ $S .sub.a{{margin-top:32px}} $S .sub.b{{padding-top:22px}}
 <div class="sub a"><span class="m"><span style="--d:1.95s">One or more Tesla engineers live and work alongside Optimus and</span></span><span class="m"><span style="--d:2.07s">Cybercab, readying them for service, security and mobility for the</span></span><span class="m"><span style="--d:2.19s"><em>first autonomous corporate residence + entertainment hub.</em></span></span></div>
 <div class="caps m"><span style="--d:2.55s">At no cost to Tesla.</span></div>
 <div class="rule ln" style="--d:2.85s"></div>
-<div class="sub b"><span class="m"><span style="--d:3.15s">A residential test bed, grounding Optimus and Cybercab</span></span><span class="m"><span style="--d:3.27s">in a historic home minutes from downtown.</span></span></div>
+<div class="sub b"><span class="m"><span style="--d:3.15s">Real-world testing in a historic home, minutes from downtown.</span></span></div>
 <div class="caps m" style="margin-top:22px"><span style="--d:3.6s">Private, quiet and discreet.</span></div>
 </div></div>""",
 assets={'__PAPER__':('paper-gray.webp','image/webp'),'__ROOM__':('../tesla-v2/room-optimus.webp','image/webp'),'__CAB__':('../tesla-v2/cybercab.webp','image/webp')})
@@ -207,8 +207,8 @@ CARD6=dict(id="card6", label="Card 6", dur=4.6, css=f"""
 $S{{background:#f4f4f3 url(__PAPER__) center/941px 1672px no-repeat}}
 $S .wrap{{position:absolute;left:60px;right:60px;top:60px;bottom:60px;display:flex;flex-direction:column;justify-content:space-between}}
 $S .wrap>.im{{flex:none;width:821px;height:462px}}
-$S .cta{{font-size:120px;line-height:.98;letter-spacing:-.015em;font-weight:800;text-transform:uppercase}}
-$S .sub{{margin-top:34px;font-size:24px;line-height:1.42;font-weight:500;color:{INK2}}}
+$S .cta{{font-size:128px;line-height:.98;letter-spacing:-.015em;font-weight:800;text-transform:uppercase}}
+$S .sub{{margin-top:40px;font-size:28px;line-height:1.42;font-weight:500;color:{INK2}}}
 $S .rule{{background:{RULE}}}
 $S .adr{{margin-bottom:26px;font-size:22px;line-height:1.45;font-weight:500;color:{INK2}}}
 $S .fx{{padding:9px 0;font-size:20px;line-height:1.3;letter-spacing:.14em;font-weight:800;text-transform:uppercase}}
@@ -227,9 +227,8 @@ $S.done .mk .k{{opacity:1}}
 <div class="im" style="--d:.2s"><img src="__CAB__" alt="Cybercab outside Warm Springs House at dusk"></div>
 <div>
 <div class="cta"><span class="m"><span style="--d:1.3s">See it</span></span><span class="m"><span style="--d:1.48s">in person.</span></span></div>
-<div class="sub"><span class="m"><span style="--d:1.85s">Warm Springs House is ready now for Tesla engineers,</span></span><span class="m"><span style="--d:1.97s">Optimus and Cybercab.</span></span></div>
+<div class="sub"><span class="m"><span style="--d:1.85s">1020 E Warm Springs Ave &#183; Boise, Idaho</span></span></div>
 </div>
-<div><div class="adr"><span class="m"><span style="--d:2.15s">1020 E Warm Springs Ave &#183; Boise, Idaho</span></span></div><div class="fx r" style="--d:2.35s"><i style="background:#00782a"></i>At no cost to Tesla</div><div class="fx r" style="--d:2.49s"><i style="background:#7db0d3"></i>15 minutes from the airport</div><div class="fx r" style="--d:2.63s"><i style="background:#2c0f38"></i>Private, quiet and discreet</div></div>
 <div class="rule ln" style="--d:2.85s"></div>
 <div class="ct"><div>
 <div class="nm"><span class="m"><span style="--d:2.55s">Lisa Wood</span></span></div>
