@@ -10,7 +10,7 @@ Hi [First name],
 
 I cannot overstate how excited I am about the ways Optimus and Cybercab will reshape how we live, work, travel and gather.
 
-I want to invite you into Warm Springs House, my 1906 home in Boise: a place where Tesla engineers can live and work with both, at no cost to Tesla. It's a real-world proof of concept that can grow into a corporate residence.
+I want to extend you an invitation to Warm Springs House, my 1906 home in Boise, where Tesla engineers can live and work with both, at no cost to Tesla. It's a real-world proof of concept that can grow into a corporate residence.
 
 [Warm Springs House - Email GIF.gif: the seal opens to Prepared for Tesla; linked to https://warmspringshouse.com/4tesla?card=1]
 

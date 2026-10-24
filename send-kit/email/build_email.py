@@ -9,7 +9,7 @@ SUBJECT='An invitation for Optimus + Cybercab'
 # The first email, ending with Lisa's line from Card 5
 INTRO={'cold':[],'introduced':['[Introducer] suggested I send this to you.']}
 GREET="I cannot overstate how excited I am about the ways Optimus and Cybercab will reshape how we live, work, travel and gather."
-BODY=["I want to invite you into Warm Springs House, my 1906 home in Boise: a place where Tesla engineers can live and work with both, at no cost to Tesla. It's a real-world proof of concept that can grow into a corporate residence."]
+BODY=["I want to extend you an invitation to Warm Springs House, my 1906 home in Boise, where Tesla engineers can live and work with both, at no cost to Tesla. It's a real-world proof of concept that can grow into a corporate residence."]
 ASK="I'd love to talk with you about where this idea came from and where it could go."
 CLOSE=["I'm in the demographic most wary of robots and self-driving cars, yet I can't wait for them. I've seen how fragile care can be for the people I love. I want a robot in the loop."]
 F='font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.55;color:#2b2d31'
