@@ -87,7 +87,7 @@ $S.play .wm{{animation:fadeup 1.2s cubic-bezier(.2,.7,.2,1) .9s both}}
 <div class="rule ln" style="--d:3.25s"></div>
 <div class="grid">'''+dt+'''</div>
 </div>''',
-assets={'__HOUSE__':('../tesla-v2/card1/house.webp','image/webp'),'__WORD__':('../tesla-v2/card1/wordmark-gray.png','image/png')})
+assets={'__HOUSE__':('../tesla-v2/card1/house-leaves.webp','image/webp'),'__WORD__':('../tesla-v2/card1/wordmark-gray.png','image/png')})
 
 # Card 2: Optimus room and Cybercab wipe in, then the text line by line (type sizes match Card 1)
 CARD2=dict(id="card2", label="Card 2", dur=4.5, css=f"""
@@ -108,7 +108,7 @@ $S .sub.a{{margin-top:32px}}
 <div class="h"><span class="m"><span style="--d:1.45s">Tesla engineers</span></span><span class="m"><span style="--d:1.6s">in residence</span></span></div>
 <div class="sub a" data-lines="1.95:.12">One or more Tesla engineers live and work alongside Optimus and Cybercab, readying them for service, security and mobility for the <em>first autonomous corporate residence + entertainment hub.</em></div>
 <div class="caps m"><span style="--d:2.65s">At no cost to Tesla.</span></div>
-<div class="caps m"><span style="--d:2.85s">Private, quiet and discreet.</span></div>
+<div class="caps m"><span style="--d:2.85s">Completely private.</span></div>
 </div></div>""",
 assets={'__PAPER__':('paper-gray.webp','image/webp'),'__ROOM__':('../tesla-v2/room-optimus.webp','image/webp'),'__CAB__':('../tesla-v2/cybercab.webp','image/webp')})
 
