@@ -163,7 +163,7 @@ $S .st{{margin-top:20px;font-family:Newsreader,Georgia,serif;font-size:35px;line
 $S .it{{margin:56px 0 30px;font-size:26px;line-height:1.4;font-weight:600;color:{INK2}}}
 $S .rule{{background:{RULE}}}
 $S .cells{{display:grid;grid-template-columns:136px 1fr;align-items:baseline;padding:26px 0}}
-$S .vb{{font-size:22px;letter-spacing:.14em;font-weight:800;text-transform:uppercase;color:{INK}}}
+$S .vb{{font-size:22px;letter-spacing:.14em;font-weight:800;text-transform:uppercase;color:#2c0f38}}
 $S .t{{font-size:28px;line-height:1.36;font-weight:500;color:{INK2}}}
 $S .facts{{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}}
 $S .facts>div{{border-radius:10px;padding:18px 6px 16px;text-align:center;color:#fff;box-shadow:0 2px 6px rgba(30,30,32,.08)}}
@@ -176,7 +176,7 @@ $S .facts span{{display:block;margin-top:8px;font-size:17px;line-height:1.25;let
 <div class="facts"><div class="r" style="--d:2.75s;background:#2c0f38"><b>1906</b><span>Year built</span></div><div class="r" style="--d:2.85s;background:#353942"><b>3,374</b><span>Square feet</span></div><div class="r" style="--d:2.95s;background:#00782a"><b>3/4</b><span>Bed / bath</span></div><div class="r" style="--d:3.05s;background:#7db0d3"><b>1892</b><span>Geothermal rights</span></div></div>
 <div class="half">
 <div class="h"><span class="m"><span style="--d:3.25s">A collaborative blueprint</span></span></div>
-<div class="st" data-lines="3.45:.12">A central setting where Boise first meets<br>Optimus and Cybercab.</div>
+<div class="st" data-lines="3.45:.12">A central setting where Boise first meets<br>humanoid robots and driverless cars.</div>
 <div class="it" data-lines="4.1:.1">When Tesla is ready, together with the founding partner:</div>
 <div class="row"><div class="rule ln" style="--d:4.35s"></div><div class="cells"><div class="vb r" style="--d:4.45s">Host</div><div class="t" data-lines="4.50:.1">Boise&#8217;s civic and business leaders.</div></div></div><div class="row"><div class="rule ln" style="--d:4.60s"></div><div class="cells"><div class="vb r" style="--d:4.70s">Show</div><div class="t" data-lines="4.75:.1">autonomous technology firsthand.</div></div></div><div class="row"><div class="rule ln" style="--d:4.85s"></div><div class="cells"><div class="vb r" style="--d:4.95s">Shape</div><div class="t" data-lines="5.00:.1">how it serves the community.</div></div></div><div class="row"><div class="rule ln" style="--d:5.10s"></div><div class="cells"><div class="vb r" style="--d:5.20s">Create</div><div class="t" data-lines="5.25:.1">a playbook other cities can adopt.</div></div></div><div class="rule ln" style="--d:5.35s"></div>
 </div></div>""",
