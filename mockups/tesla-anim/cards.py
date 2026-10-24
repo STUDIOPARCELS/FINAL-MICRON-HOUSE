@@ -66,7 +66,7 @@ drive=[('3','Downtown'),('3','Capitol'),('2','St. Luke&#8217;s'),('15','Airport'
 dt=''.join(f'<div class="r" style="--d:{3.55+i*.14:.2f}s"><div class="n">{n}<span> min</span></div><div class="l">{l}</div></div>' for i,(n,l) in enumerate(drive))
 CARD1=dict(id='card1', label='Card 1', dur=4.9, css=f'''
 $S{{background:#fbfbfa}}
-$S .house{{position:absolute;left:0;right:0;bottom:0;height:1672px;transform-origin:50% 100%;scale:var(--k,1);--h:url(__HOUSE__);background:var(--h) 0 -207px/941px 1672px no-repeat,var(--h) 0 -112px/941px 1672px no-repeat,var(--h) 0 -32px/941px 1672px no-repeat,var(--h) 0 0/941px 1672px no-repeat}}
+$S .house{{position:absolute;left:0;right:0;bottom:0;height:1672px;transform-origin:50% 100%;scale:var(--k,1);--h:url(__HOUSE__);background:var(--h) 0 -207px/941px 1672px no-repeat,var(--h) 0 0/941px 1672px no-repeat}}
 $S .wm{{position:absolute;top:64px;left:723px;width:168px}}
 $S .txt{{position:absolute;left:60px;right:60px;bottom:90px}}
 $S .h{{font-size:54px;line-height:1.06;letter-spacing:-.01em;font-weight:800;text-transform:uppercase}}
