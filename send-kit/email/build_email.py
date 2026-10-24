@@ -5,7 +5,8 @@ import base64,html
 GIF='../Warm Springs House - Email GIF.gif'
 URL='https://warmspringshouse.com/4tesla'
 SUBJECT='Residential test bed for Optimus + Cybercab: Boise, available now'
-OFFER='Warm Springs House, a 1906 home in Boise, as a residential test bed for Optimus and Cybercab. One or more Tesla engineers live and work on site. No cost to Tesla. Available now.'
+OFFER={'cold':'My 1906 home as a residential test bed for Optimus and Cybercab. One or more Tesla engineers live and work on site. No cost to Tesla. Available now.',
+       'introduced':'Warm Springs House, a 1906 home in Boise, as a residential test bed for Optimus and Cybercab. One or more Tesla engineers live and work on site. No cost to Tesla. Available now.'}
 OBJECTIVE="Prove the first autonomous corporate residence + entertainment hub with a leading Boise corporation, and build a blueprint for bringing autonomous technology into daily life in other cities. Both at Tesla's option."
 NEXT='A site visit at your convenience.'
 OPEN={'cold':"I'm Lisa Wood, owner of Warm Springs House in Boise. I'm writing to offer it to Tesla.",
@@ -17,7 +18,7 @@ def body_html(kind,img_src):
 <div style="max-width:560px;padding:16px">
 {p('[Name],')}
 {p(html.escape(OPEN[kind]))}
-{p('<b>Offer:</b> '+html.escape(OFFER))}
+{p('<b>Offer:</b> '+html.escape(OFFER[kind]))}
 {p('<b>Objective:</b> '+html.escape(OBJECTIVE))}
 {p('<b>Next step:</b> '+html.escape(NEXT))}
 <p style="margin:22px 0 18px"><a href="{URL}" target="_blank"><img src="{img_src}" width="300" alt="Open the invitation: Prepared for Tesla" style="display:block;width:300px;max-width:100%;height:auto;border:0"></a></p>
@@ -30,7 +31,7 @@ def body_text(kind):
 
 {OPEN[kind]}
 
-Offer: {OFFER}
+Offer: {OFFER[kind]}
 
 Objective: {OBJECTIVE}
 

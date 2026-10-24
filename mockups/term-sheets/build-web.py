@@ -51,6 +51,7 @@ a:hover{{text-decoration-color:{INK2}}}
   tr{{display:block;padding:12px 0;border-top:1px solid {RULE}}}
   tr:last-child{{border-bottom:1px solid {RULE}}}
   th{{padding:0 0 5px}}
+  td{{text-wrap:wrap}}
   .foot img{{width:84px;height:84px}}
 }}
 </style>
