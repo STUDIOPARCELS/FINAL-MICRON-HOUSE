@@ -13,6 +13,7 @@ KEYFRAMES='''
 @keyframes settle{from{opacity:0;transform:scale(1.04)}to{opacity:1;transform:none}}
 @keyframes fadeup{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 @keyframes draw{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes wipe-edge{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0)}}
 @keyframes wipe{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(-40px)}}
 @keyframes zoom{from{transform:scale(1.08)}to{transform:none}}
 @keyframes type{from{opacity:0;transform:translateY(.3em);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
@@ -65,7 +66,7 @@ drive=[('3','Downtown'),('3','Capitol'),('2','St. Luke&#8217;s'),('15','Airport'
 dt=''.join(f'<div class="r" style="--d:{3.55+i*.14:.2f}s"><div class="n">{n}<span> min</span></div><div class="l">{l}</div></div>' for i,(n,l) in enumerate(drive))
 CARD1=dict(id='card1', label='Card 1', dur=4.9, css=f'''
 $S{{background:#fbfbfa}}
-$S .house{{position:absolute;left:0;right:0;bottom:32px;height:1672px;transform-origin:50% 100%;scale:var(--k,1);--h:url(__HOUSE__);background:var(--h) 0 -175px/941px 1672px no-repeat,var(--h) 0 -80px/941px 1672px no-repeat,var(--h) 0 0/941px 1672px no-repeat}}
+$S .house{{position:absolute;left:0;right:0;bottom:0;height:1672px;transform-origin:50% 100%;scale:var(--k,1);--h:url(__HOUSE__);background:var(--h) 0 -207px/941px 1672px no-repeat,var(--h) 0 -112px/941px 1672px no-repeat,var(--h) 0 -32px/941px 1672px no-repeat,var(--h) 0 0/941px 1672px no-repeat}}
 $S .wm{{position:absolute;top:64px;left:723px;width:168px}}
 $S .txt{{position:absolute;left:60px;right:60px;bottom:90px}}
 $S .h{{font-size:54px;line-height:1.06;letter-spacing:-.01em;font-weight:800;text-transform:uppercase}}
@@ -92,6 +93,7 @@ assets={'__HOUSE__':('../tesla-v2/card1/house.webp','image/webp'),'__WORD__':('.
 CARD2=dict(id="card2", label="Card 2", dur=4.5, css=f"""
 $S{{background:#f4f4f3 url(__PAPER__) center/cover no-repeat}}
 $S .hero{{position:absolute;left:0;top:0;width:941px;height:706px;box-shadow:none}}
+$S.play .hero{{animation-name:wipe-edge}} $S.play .hero img{{animation:none}} $S.done .hero{{clip-path:none}}
 /* Below the full-bleed photo: one spacing unit between photo, headline block, rule and second block; a deeper bottom margin, the first part any phone trims */
 $S .wrap{{position:absolute;left:60px;right:60px;top:706px;bottom:140px;display:flex;flex-direction:column}}
 $S .g1,$S .wrap>.rule,$S .g2{{margin-top:auto}}
