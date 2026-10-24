@@ -50,7 +50,8 @@ const dur=[{durs}],read=[{reads}],still=matchMedia('(prefers-reduced-motion:redu
 // 941 x 1672 card with about an inch (120px) above and below.
 const phone=()=>sc.clientWidth<700;
 function fit(){{const w=sc.clientWidth,h=sc.clientHeight;let s,H=1672;
-  if(phone()){{s=w/941;H=h/s;if(H<1450){{H=1450;s=h/H}}else if(H>1820){{H=1820;s=Math.min(w/941,h/H)}}}}
+  // very tall screens (an app's full-screen viewer): grow the card to the screen height, giving up at most 40px of each side margin
+  if(phone()){{s=w/941;H=h/s;if(H<1450){{H=1450;s=h/H}}else if(H>1820){{s=Math.min(h/1820,w/861);H=Math.min(h/s,1960)}}}}
   else s=Math.min((w-96)/941,(h-240)/1672);
   secs.forEach(x=>{{x.style.setProperty('--s',Math.max(.05,s));x.style.setProperty('--ch',H+'px');x.style.setProperty('--k',Math.max(1,H/1672))}})}}
 addEventListener('resize',fit);fit();

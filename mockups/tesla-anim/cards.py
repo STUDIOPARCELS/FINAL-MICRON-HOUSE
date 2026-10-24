@@ -93,7 +93,7 @@ CARD2=dict(id="card2", label="Card 2", dur=4.5, css=f"""
 $S{{background:#f4f4f3 url(__PAPER__) center/cover no-repeat}}
 $S .wrap{{position:absolute;left:60px;right:60px;top:60px;bottom:60px;display:flex;flex-direction:column;gap:38px}}
 $S .pics{{flex:1;min-height:0;container-type:size;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:17px}}
-$S .pics .im{{flex:none}} $S .pics .im:first-child{{height:calc((100cqh - 17px) * .5711);aspect-ratio:1448/1086}} $S .pics .im:last-child{{height:calc((100cqh - 17px) * .4289);aspect-ratio:1671/941}}
+$S .pics .im{{flex:none}} $S .pics .im:first-child{{height:min(616px,calc((100cqh - 17px) * .5711));aspect-ratio:1448/1086}} $S .pics .im:last-child{{height:min(462px,calc((100cqh - 17px) * .4289));aspect-ratio:1671/941}}
 $S .h{{font-size:54px;line-height:1.06;letter-spacing:-.01em;font-weight:800;text-transform:uppercase}}
 $S .sub{{font-size:31px;line-height:1.38;font-weight:500;color:{INK2}}}
 $S .caps{{margin-top:22px;font-size:27px;letter-spacing:.1em;font-weight:800;text-transform:uppercase}}
@@ -116,7 +116,7 @@ assets={'__PAPER__':('paper-gray.webp','image/webp'),'__ROOM__':('../tesla-v2/ro
 CARD3=dict(id='card3', label='Card 3', dur=4.7, hold=13.4, css=f"""
 $S{{background:#f4f4f3 url(__PAPER__) center/cover no-repeat}}
 $S .wrap{{position:absolute;left:60px;right:60px;top:60px;bottom:60px;display:flex;flex-direction:column;gap:38px}}
-$S .ph{{flex:1;min-height:0;container-type:size;display:flex;justify-content:center}} $S .ph>.im{{flex:none;height:100cqh;aspect-ratio:3/4}}
+$S .ph{{flex:1;min-height:0;container-type:size;display:flex;justify-content:center}} $S .ph>.im{{flex:none;height:min(1095px,100cqh);aspect-ratio:3/4}}
 $S .lab{{display:flex;align-items:center;gap:12px;margin-bottom:24px;font-size:20px;letter-spacing:.2em;font-weight:800;text-transform:uppercase;color:{GREEN}}}
 $S .lab::before{{content:"";width:11px;height:11px;border-radius:50%;background:{GREEN}}}
 $S .h{{font-size:50px;line-height:1.06;letter-spacing:-.01em;font-weight:800;text-transform:uppercase}}
