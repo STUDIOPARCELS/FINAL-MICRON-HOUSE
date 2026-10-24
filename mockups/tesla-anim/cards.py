@@ -177,7 +177,7 @@ $S .facts span{{display:block;margin-top:8px;font-size:17px;line-height:1.25;let
 <div class="half">
 <div class="h"><span class="m"><span style="--d:3.25s">A collaborative blueprint</span></span></div>
 <div class="st" data-lines="3.45:.12">A central setting where Boise first meets<br>Optimus and Cybercab.</div>
-<div class="it" data-lines="4.1:.1">When Tesla is ready, together with the founding partner:</div>
+<div class="it" data-lines="4.1:.1">Together with the founding partner:</div>
 <div class="row"><div class="rule ln" style="--d:4.35s"></div><div class="cells"><div class="vb r" style="--d:4.45s">Host</div><div class="t" data-lines="4.50:.1">Boise&#8217;s civic and business leaders.</div></div></div><div class="row"><div class="rule ln" style="--d:4.60s"></div><div class="cells"><div class="vb r" style="--d:4.70s">Show</div><div class="t" data-lines="4.75:.1">autonomous technology firsthand.</div></div></div><div class="row"><div class="rule ln" style="--d:4.85s"></div><div class="cells"><div class="vb r" style="--d:4.95s">Shape</div><div class="t" data-lines="5.00:.1">how it serves the community.</div></div></div><div class="row"><div class="rule ln" style="--d:5.10s"></div><div class="cells"><div class="vb r" style="--d:5.20s">Create</div><div class="t" data-lines="5.25:.1">a playbook other cities can adopt.</div></div></div><div class="rule ln" style="--d:5.35s"></div>
 </div></div>""",
 assets={'__PAPER__':('paper-gray.webp','image/webp')})
@@ -223,7 +223,7 @@ $S .ct{{display:grid;grid-template-columns:1fr auto;align-items:center;column-ga
 $S .nm{{font-size:46px;line-height:1.1;letter-spacing:.07em;font-weight:800;text-transform:uppercase}}
 $S .dt{{margin-top:16px;font-size:33px;line-height:1.5;font-weight:500}}
 $S .dt a{{color:inherit;text-decoration:underline;text-decoration-color:{RULE};text-decoration-thickness:1px;text-underline-offset:5px}}
-$S .pb a{{color:inherit;text-decoration:underline;text-decoration-color:#c4c4c1;text-decoration-thickness:1px;text-underline-offset:5px}}
+$S .pb a{{color:inherit;text-decoration:none;background:linear-gradient(#c6c6c3,#c6c6c3) no-repeat 0 100%/calc(100% - .24em) 2px;padding-bottom:5px}}
 $S .pb{{margin-top:18px;line-height:1.9;font-size:19px;letter-spacing:.24em;font-weight:700;text-transform:uppercase;color:{INK2}}}
 $S .mk{{display:block;width:260px;height:260px;overflow:visible}}
 $S .mk .k{{transform-box:fill-box;transform-origin:center;opacity:0}}
