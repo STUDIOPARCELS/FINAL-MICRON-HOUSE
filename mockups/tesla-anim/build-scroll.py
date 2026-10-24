@@ -45,9 +45,9 @@ body{{margin:0;background:var(--bg);color:var(--fg);overflow:hidden}}
 <script>{SPLIT_JS}
 const sc=document.getElementById('scroller'),secs=[...sc.querySelectorAll('.sec')],cards=secs.map(s=>s.querySelector('.card')),dots=[...document.querySelectorAll('.dot')],cue=document.getElementById('cue');
 const dur=[{durs}],read=[{reads}],still=matchMedia('(prefers-reduced-motion:reduce)').matches;
-// Phones: full bleed. The card fills the width; the few points it is taller than the screen come off its top and bottom margins
+// Phones: full bleed. The card covers the screen; the few points it overhangs come off its plain margins
 // (never more than 60px of card, so no content is cut; very short screens fit the card instead). Larger screens: about an inch (120px) above and below.
-function fit(){{const w=sc.clientWidth,h=sc.clientHeight;let s;if(w<700){{s=w/941;if((1672*s-h)/2/s>60)s=Math.min(w/941,h/1672)}}else s=Math.min((w-96)/941,(h-240)/1672);secs.forEach(x=>x.style.setProperty('--s',Math.max(.05,s)))}}
+function fit(){{const w=sc.clientWidth,h=sc.clientHeight;let s;if(w<700){{s=Math.max(w/941,h/1672);if((941*s-w)/2/s>60||(1672*s-h)/2/s>60)s=Math.min(w/941,h/1672)}}else s=Math.min((w-96)/941,(h-240)/1672);secs.forEach(x=>x.style.setProperty('--s',Math.max(.05,s)))}}
 addEventListener('resize',fit);fit();
 function play(c){{c.classList.remove('play');void c.offsetWidth;c.classList.add('play')}}
 function mark(i){{dots.forEach((d,j)=>d.setAttribute('aria-current',String(j===i)));if(i>0){{cueDone=true;cue.classList.remove('on')}}}}
