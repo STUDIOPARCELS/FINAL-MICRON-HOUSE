@@ -66,11 +66,6 @@ button.done{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 .links span{color:var(--muted)}
 .links a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--rule);text-underline-offset:3px;overflow-wrap:anywhere}
 @media (prefers-reduced-motion:reduce){.deck img{animation:none}.deck img:first-child{opacity:1}.jphone{transition:none}}
-.why{display:flex;flex-wrap:wrap;gap:8px}
-.why button{transition:background-color .2s,color .2s,border-color .2s,transform .15s}
-.why button[aria-selected="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-.whofor{margin:0;font-size:13px;color:var(--ink2)} .whofor span:first-child{font-weight:700;color:var(--ink)}
-#whyline{transition:background-color .6s} #whyline.flash{background:color-mix(in srgb,var(--green) 14%,transparent)}
 .mail{background:var(--paper);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
 .mhead{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;padding:20px 24px;border-bottom:1px solid var(--rule);font-size:14px}
 .mhead dt{color:var(--muted);font-weight:600}
@@ -167,8 +162,6 @@ code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background
 
 <section class="sec" aria-labelledby="h-mail">
   <h2 id="h-mail">Email</h2>
-  <div class="why" role="tablist" aria-label="Who the email is for"><button type="button" role="tab" aria-selected="true" data-why="Your work is shaping what Optimus and Cybercab become, which is why I&#x27;m writing to you." data-who="Ashok Elluswamy · Lars Moravy · Konstantinos Laskaris · Eric Earley · Javier Verdura · Julian Ibarz · Optimus and Cybercab product management leaders (to be found)">Engineering, product and design</button><button type="button" role="tab" aria-selected="false" data-why="You help decide where Robotaxi goes next, which is why I&#x27;m writing to you." data-who="Robotaxi market expansion leaders (to be found)">Robotaxi expansion</button><button type="button" role="tab" aria-selected="false" data-why="You shape the places where Tesla&#x27;s people live and work, which is why I&#x27;m writing to you." data-who="Corporate real estate and facilities leaders (to be found)">Real estate and facilities</button><button type="button" role="tab" aria-selected="false" data-why="You create the places and moments where people experience Tesla, which is why I&#x27;m writing to you." data-who="Gerald Larson · Justin Capolongo · Anne Yang · Tiffanie Tellez · Bayan Abdellatif · David Zhai">Events and workplace</button><button type="button" role="tab" aria-selected="false" data-why="You help shape how Tesla&#x27;s technology finds its place in cities and communities, which is why I&#x27;m writing to you." data-who="Tom Zhu · Karen Steakley">Policy and leadership</button></div>
-  <p class="whofor"><span>Send this version to:</span> <span id="whonames">Ashok Elluswamy · Lars Moravy · Konstantinos Laskaris · Eric Earley · Javier Verdura · Julian Ibarz · Optimus and Cybercab product management leaders (to be found)</span></p>
   <article class="mail">
     <dl class="mhead">
       <dt>From</dt><dd>Lisa Wood &lt;lisa@lisawoodstudio.com&gt;</dd>
@@ -179,7 +172,7 @@ code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background
       <div class="mtext" id="mailbody">
         <p>Hi [First name],</p>
         <p>I&#x27;m in the demographic most wary of robots and self-driving cars, yet I can&#x27;t wait for them. I&#x27;ve seen how fragile care can be for the people I love, and I want a robot in the loop.</p>
-        <p id="whyline">Your work is shaping what Optimus and Cybercab become, which is why I&#x27;m writing to you.</p>
+        <p id="whyline">You&#x27;re leading one of the most important shifts of our lifetime, which is why I&#x27;m writing to you.</p>
         <p>I&#x27;m inviting Tesla to join me at Warm Springs House in Boise, Idaho, where Tesla engineers would live and work alongside Optimus and Cybercab, as the first autonomous corporate residence.</p>
         <p class="gifin"><a class="gif" href="https://warmspringshouse.com/4tesla?card=1" target="_blank" rel="noopener" aria-label="Open the invitation"><img src="invitation-email.gif" width="300" height="533" alt="The sealed card opens to Reserved for Tesla"></a></p>
         <p>The invitation: <a href="https://warmspringshouse.com/4tesla?card=1" target="_blank" rel="noopener">warmspringshouse.com/4tesla</a></p>
@@ -272,11 +265,6 @@ code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background
 
 <script>
 
-const whyTabs=[...document.querySelectorAll('.why [role=tab]')];
-whyTabs.forEach((t,k)=>{t.addEventListener('click',()=>{whyTabs.forEach(x=>x.setAttribute('aria-selected',String(x===t)));
-  const w=document.getElementById('whyline');w.textContent=t.dataset.why;document.getElementById('whonames').textContent=t.dataset.who;
-  w.classList.add('flash');setTimeout(()=>w.classList.remove('flash'),700)});
-  t.addEventListener('keydown',e=>{const d=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;if(d){e.preventDefault();const n=whyTabs[(k+d+whyTabs.length)%whyTabs.length];n.click();n.focus()}})});
 
 // "Copy email" carries the whole email as rich text: the card comes from the live site (warmspringshouse.com/4tesla/invitation.gif),
 // linked to the invitation, with email-safe inline styles, so one paste into any mail program gives the finished message.

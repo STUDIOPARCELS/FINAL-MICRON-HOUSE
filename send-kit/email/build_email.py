@@ -9,7 +9,7 @@ SUBJECT='An invitation for Optimus + Cybercab'
 # Opens with Lisa's own line, then the invitation, the card, and one easy question
 INTRO={'cold':[],'introduced':['[Introducer] suggested I send this to you.']}
 GREET="I'm in the demographic most wary of robots and self-driving cars, yet I can't wait for them. I've seen how fragile care can be for the people I love, and I want a robot in the loop."
-BODY=["Your work is shaping what Optimus and Cybercab become, which is why I'm writing to you.", "I'm inviting Tesla to join me at Warm Springs House in Boise, Idaho, where Tesla engineers would live and work alongside Optimus and Cybercab, as the first autonomous corporate residence."]
+BODY=["You're leading one of the most important shifts of our lifetime, which is why I'm writing to you.", "I'm inviting Tesla to join me at Warm Springs House in Boise, Idaho, where Tesla engineers would live and work alongside Optimus and Cybercab, as the first autonomous corporate residence."]
 ASK="Whenever suits you, I'd be glad to talk or to host a site visit."
 F='font-family:Georgia,Times,serif;font-size:16px;line-height:1.6;color:#2b2d31'
 def body_html(kind,img_src):
