@@ -32,8 +32,8 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--focus);outline-offs
 button.done{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 /* email */
 .mbody .mtext{max-width:62ch}
-.gifin{margin:24px 0 20px;text-align:center}
-.gifin .gif{width:300px;max-width:100%;margin:0 auto;box-shadow:none;border-radius:0}
+.gifin{margin:20px 0 16px}
+.gifin .gif{width:280px;max-width:100%;box-shadow:none;border-radius:0}
 .mbody .mtext{font-family:Georgia,Times,serif;font-size:16px;line-height:1.6}
 .jh{margin:6px 0 0;font-size:11px;letter-spacing:.2em;font-weight:700;text-transform:uppercase;color:var(--ink2)}
 .journey{list-style:none;margin:0;padding:4px 2px 18px;display:grid;grid-auto-flow:column;grid-auto-columns:minmax(220px,250px);gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:thin;overscroll-behavior-x:contain}
@@ -138,7 +138,7 @@ code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background
   <p class="note">Every screen below is the live site on a phone. Swipe sideways through each path.</p>
   <h3 class="jh">By email</h3>
   <ol class="journey" aria-label="The email path">
-      <li class="jstep"><figure class="jphone"><div class="inbox"><div class="ibar">Inbox</div><div class="irow"><span class="idot"></span><div><div class="ifrom">Lisa Wood <span>9:02 AM</span></div><div class="isubj">An invitation for Optimus + Cybercab</div><div class="ipre">Hi [First name], I can&#x27;t overstate how excited I am…</div></div></div><div class="irow dim"><div><div class="ifrom">…</div><div class="isubj">&nbsp;</div></div></div></div></figure><div class="jcap"><span class="jn">1</span><b>It arrives</b><p>From Lisa Wood, lisa@lisawoodstudio.com. Your name, the subject and the first line are all they see before opening. No attachment, nothing hidden, no tracking.</p></div></li>
+      <li class="jstep"><figure class="jphone"><div class="inbox"><div class="ibar">Inbox</div><div class="irow"><span class="idot"></span><div><div class="ifrom">Lisa Wood <span>9:02 AM</span></div><div class="isubj">An invitation for Optimus + Cybercab</div><div class="ipre">Hi [First name], I&#x27;m in the demographic most wary of robots and self-driving cars…</div></div></div><div class="irow dim"><div><div class="ifrom">…</div><div class="isubj">&nbsp;</div></div></div></div></figure><div class="jcap"><span class="jn">1</span><b>It arrives</b><p>From Lisa Wood, lisa@lisawoodstudio.com. Your name, the subject and the first line are all they see before opening. No attachment, nothing hidden, no tracking.</p></div></li>
       <li class="jstep"><figure class="jphone"><img src="preview-assets/j-email.jpg" width="390" height="664" alt="The email opened on a phone" loading="lazy"></figure><div class="jcap"><span class="jn">2</span><b>They open the email</b><p>A short note, then the card: the seal opens to Reserved for Tesla and loops (8 seconds). It plays inside the email.</p></div></li>
       <li class="jstep"><figure class="jphone"><img src="preview-assets/j-drop.jpg" width="390" height="664" alt="Card 1 dropping in" loading="lazy"></figure><div class="jcap"><span class="jn">3</span><b>They tap the card</b><p>warmspringshouse.com/4tesla?card=1 opens. They have just watched the seal open, so the page skips it and Card 1 drops in.</p></div></li>
       <li class="jstep"><figure class="jphone"><img src="preview-assets/j-card1.jpg" width="390" height="664" alt="Card 1 finished" loading="lazy"></figure><div class="jcap"><span class="jn">4</span><b>Card 1 plays</b><p>The house, Warm Springs House, then the words line by line. Full screen on a phone, a framed card on a computer.</p></div></li>
@@ -171,12 +171,11 @@ code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background
     <div class="mbody">
       <div class="mtext" id="mailbody">
         <p>Hi [First name],</p>
-        <p>I can&#x27;t overstate how excited I am about the ways Optimus and Cybercab will reshape how we live, work, travel and gather.</p>
-        <p>I&#x27;m inviting Tesla to join me at Warm Springs House in Boise, Idaho, where Tesla engineers live and work alongside Optimus and Cybercab: the proving ground for the first autonomous corporate residence and entertainment hub.</p>
+        <p>I&#x27;m in the demographic most wary of robots and self-driving cars, yet I can&#x27;t wait for them. I&#x27;ve seen how fragile care can be for the people I love, and I want a robot in the loop.</p>
+        <p>I&#x27;m inviting Tesla to join me at Warm Springs House in Boise, Idaho, where Tesla engineers would live and work alongside Optimus and Cybercab: the proving ground for the first autonomous corporate residence and entertainment hub.</p>
         <p class="gifin"><a class="gif" href="https://warmspringshouse.com/4tesla?card=1" target="_blank" rel="noopener" aria-label="Open the invitation"><img src="invitation-email.gif" width="300" height="533" alt="The sealed card opens to Reserved for Tesla"></a></p>
         <p>The invitation: <a href="https://warmspringshouse.com/4tesla?card=1" target="_blank" rel="noopener">warmspringshouse.com/4tesla</a></p>
-        <p>I&#x27;d be glad to talk or to host a site visit, whenever suits you. My mobile is below.</p>
-        <p>I'm in the demographic most wary of robots and self-driving cars, yet I can't wait for them. I've seen how fragile care can be for the people I love. I want a robot in the loop.</p>
+        <p>I&#x27;d be glad to talk or to host a site visit, whenever suits you. Is this yours, or who at Tesla should see it?</p>
         <div class="sig"><b>Lisa Wood</b><br>208 720 2433<br>lisa@lisawoodstudio.com<br>warmspringshouse.com<br>LISA WOOD STUDIO</div>
       </div>
     </div>
@@ -269,8 +268,8 @@ code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background
 // linked to the invitation, with email-safe inline styles, so one paste into any mail program gives the finished message.
 const GIF='https://warmspringshouse.com/4tesla/invitation.gif',F='font-family:Georgia,Times,serif;font-size:16px;line-height:1.6;color:#2b2d31';
 function mailHTML(el){const c=el.cloneNode(true);
-  c.querySelectorAll('p').forEach(p=>p.setAttribute('style',p.classList.contains('gifin')?'margin:24px 0 20px;text-align:center':'margin:0 0 14px;'+F));
-  c.querySelectorAll('img').forEach(i=>{i.setAttribute('src',GIF);i.setAttribute('width','300');i.removeAttribute('height');i.setAttribute('alt','Open the invitation: Reserved for Tesla');i.setAttribute('style','display:block;margin:0 auto;width:300px;max-width:100%;height:auto;border:0')});
+  c.querySelectorAll('p').forEach(p=>p.setAttribute('style',p.classList.contains('gifin')?'margin:20px 0 16px':'margin:0 0 14px;'+F));
+  c.querySelectorAll('img').forEach(i=>{i.setAttribute('src',GIF);i.setAttribute('width','280');i.removeAttribute('height');i.setAttribute('alt','Open the invitation: Reserved for Tesla');i.setAttribute('style','display:block;width:280px;max-width:100%;height:auto;border:0')});
   c.querySelectorAll('a').forEach(a=>{['class','target','rel','aria-label'].forEach(k=>a.removeAttribute(k));a.setAttribute('style','color:#2b2d31')});
   const g=c.querySelector('.sig');if(g)g.setAttribute('style','margin:22px 0 0;'+F);
   c.querySelectorAll('[class]').forEach(n=>n.removeAttribute('class'));

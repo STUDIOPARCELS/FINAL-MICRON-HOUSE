@@ -8,17 +8,15 @@ Replace [Name]. Nothing else needs editing.
 
 Hi [First name],
 
-I can't overstate how excited I am about the ways Optimus and Cybercab will reshape how we live, work, travel and gather.
+I'm in the demographic most wary of robots and self-driving cars, yet I can't wait for them. I've seen how fragile care can be for the people I love, and I want a robot in the loop.
 
-I'm inviting Tesla to join me at Warm Springs House in Boise, Idaho, where Tesla engineers live and work alongside Optimus and Cybercab: the proving ground for the first autonomous corporate residence and entertainment hub.
+I'm inviting Tesla to join me at Warm Springs House in Boise, Idaho, where Tesla engineers would live and work alongside Optimus and Cybercab: the proving ground for the first autonomous corporate residence and entertainment hub.
 
-[Warm Springs House - Email GIF.gif: the seal opens to Reserved for Tesla; linked to https://warmspringshouse.com/4tesla?card=1]
+[Warm Springs House - Email GIF.gif: the card floats on white, opens to Reserved for Tesla, then a small arrow; linked to https://warmspringshouse.com/4tesla?card=1]
 
 The invitation: warmspringshouse.com/4tesla
 
-I'd be glad to talk or to host a site visit, whenever suits you. My mobile is below.
-
-I'm in the demographic most wary of robots and self-driving cars, yet I can't wait for them. I've seen how fragile care can be for the people I love. I want a robot in the loop.
+I'd be glad to talk or to host a site visit, whenever suits you. Is this yours, or who at Tesla should see it?
 
 Lisa Wood
 208 720 2433
