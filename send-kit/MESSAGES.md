@@ -16,7 +16,7 @@ I'm inviting Tesla to join me at Warm Springs House in Boise, Idaho, where Tesla
 
 The invitation: warmspringshouse.com/4tesla
 
-Whenever suits you, I'd be glad to talk or to host a site visit.
+Warm Springs House is ready now. Whenever suits you, I'd be glad to talk or to host a site visit.
 
 Please feel free to share this with anyone at Tesla who should see it.
 
