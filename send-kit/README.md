@@ -25,6 +25,6 @@ The page is set to stay out of search engines. When the link is pasted into an e
 
 ## 3. X or Instagram DM
 
-1. Send the video first: Warm Springs House - Reserved for Tesla.mp4 from your phone's camera roll.
-2. Then send Message 2 from MESSAGES.md.
+1. Send Message 1 from MESSAGES.md.
+2. Then send the video: Warm Springs House - Reserved for Tesla.mp4 from your phone's camera roll.
 3. The terms go as a link to warmspringshouse.com/4tesla/terms.

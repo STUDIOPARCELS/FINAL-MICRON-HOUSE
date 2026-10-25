@@ -30,13 +30,10 @@ No attachment.
 
 ## X or Instagram DM
 
-**Message 1:** the video, Warm Springs House - Reserved for Tesla.mp4
+**Message 1:**
 
-**Message 2:**
-
-Hi [First name], Warm Springs House in Boise: the proving ground for the first autonomous corporate residence and entertainment hub. I am delighted to welcome Tesla.
+Hi [First name], I'm inviting Tesla to Warm Springs House in Boise, Idaho, where Tesla engineers would live and work alongside Optimus and Cybercab.
 
 warmspringshouse.com/4tesla
 
-Lisa Wood
-
+**Message 2:** the video, Warm Springs House - Reserved for Tesla.mp4
