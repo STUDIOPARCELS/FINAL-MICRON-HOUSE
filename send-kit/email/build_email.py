@@ -8,7 +8,7 @@ OPEN=URL+'?card=1'  # the email's card and invitation link skip the opening the 
 SUBJECT='An invitation for Optimus + Cybercab'
 # The first email, ending with Lisa's line from Card 5
 INTRO={'cold':[],'introduced':['[Introducer] suggested I send this to you.']}
-GREET="I cannot overstate how excited I am about the ways Optimus and Cybercab will reshape how we live, work, travel and gather."
+GREET="I can't overstate how excited I am about the ways Optimus and Cybercab will reshape how we live, work, travel and gather."
 BODY=["I'm inviting Tesla to join me at Warm Springs House in Boise, Idaho, where Tesla engineers live and work alongside Optimus and Cybercab: the proving ground for the first autonomous corporate residence and entertainment hub."]
 ASK="I'd be glad to talk or to host a site visit, whenever suits you. My mobile is below."
 CLOSE=["I'm in the demographic most wary of robots and self-driving cars, yet I can't wait for them. I've seen how fragile care can be for the people I love. I want a robot in the loop."]
