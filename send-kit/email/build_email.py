@@ -9,8 +9,9 @@ SUBJECT='An invitation for Optimus + Cybercab'
 # Opens with Lisa's own line, then the invitation, the card, and one easy question
 INTRO={'cold':[],'introduced':['[Introducer] suggested I send this to you.']}
 GREET="I'm in the demographic most wary of robots and self-driving cars, yet I can't wait for them. I've seen how fragile care can be for the people I love, and I want a robot in the loop."
-BODY=["You're leading one of the most important shifts of our lifetime, which is why I'm writing to you.", "I'm inviting Tesla to join me at Warm Springs House in Boise, Idaho, where Tesla engineers would live and work alongside Optimus and Cybercab, as the first autonomous corporate residence."]
+BODY=["I'm inviting Tesla to join me at Warm Springs House, my home in Boise, Idaho, where Tesla engineers would live and work alongside Optimus and Cybercab, as the first autonomous corporate residence."]
 ASK="Whenever suits you, I'd be glad to talk or to host a site visit."
+SHARE="Please feel free to share this with anyone at Tesla who should see it."
 F='font-family:Georgia,Times,serif;font-size:16px;line-height:1.6;color:#2b2d31'
 def body_html(kind,img_src):
     p=lambda t,m='0 0 14px':f'<p style="margin:{m};{F}">{t}</p>'
@@ -20,7 +21,8 @@ def body_html(kind,img_src):
 {p('Hi [First name],')}
 {paras}<p style="margin:20px 0 16px"><a href="{OPEN}" target="_blank"><img src="{img_src}" width="280" alt="Open the invitation: Reserved for Tesla" style="display:block;width:280px;max-width:100%;height:auto;border:0"></a></p>
 {p(f'The invitation: <a href="{OPEN}" style="color:#2b2d31">warmspringshouse.com/4tesla</a>','0 0 14px')}
-{p(html.escape(ASK),'0 0 22px')}
+{p(html.escape(ASK))}
+{p(html.escape(SHARE),'0 0 22px')}
 <p style="margin:0;{F}"><b>Lisa Wood</b><br><a href="tel:+12087202433" style="color:#2b2d31">208 720 2433</a><br><a href="mailto:lisa@lisawoodstudio.com" style="color:#2b2d31">lisa@lisawoodstudio.com</a><br><a href="https://warmspringshouse.com/" style="color:#2b2d31">warmspringshouse.com</a><br>LISA WOOD STUDIO</p>
 </div></body></html>'''
 def body_text(kind):
@@ -32,6 +34,8 @@ def body_text(kind):
 The invitation: {OPEN}
 
 {ASK}
+
+{SHARE}
 
 Lisa Wood
 208 720 2433
